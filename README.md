@@ -1,0 +1,3 @@
+# Allmark
+
+Markdown for all.
