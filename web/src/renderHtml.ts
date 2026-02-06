@@ -329,7 +329,12 @@ function getChildText(node: MarkdownNode) {
 function renderTag(node: MarkdownNode, result: Result, tag: string, decode = true) {
 	startNewLine(node, result);
 	result.html += `<${tag}>`;
-	innerNewLine(node, result);
+	// Block nodes with no children still need a newline
+	if (node.block && node.children?.length === 0) {
+		result.html += "\n";
+	} else {
+		innerNewLine(node, result);
+	}
 	renderChildren(node, result, decode);
 	result.html += `</${tag}>`;
 	endNewLine(node, result);

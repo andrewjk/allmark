@@ -192,15 +192,17 @@ export function testListContinue(
 	node: MarkdownNode,
 	info?: ListInfo,
 ): boolean {
-	// If there's a list marker and the indent is not too far, we can continue
+	let char = state.src[state.i];
+
+	// If there's the same list marker and the indent is not too far, we can continue
 	if (info !== undefined) {
 		if (state.hasBlankLine && state.indent >= 4) {
 			return false;
 		}
-		return true;
+		if (info.delimiter === node.delimiter) {
+			return true;
+		}
 	}
-
-	let char = state.src[state.i];
 
 	// Can't continue if there's only one item, it's blank and there's a blank line after the list
 	// HACK: This is messy

@@ -131,7 +131,7 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 						if (state.src[i] === "]") {
 							// Lookup using the text between the [], or if there
 							// is no text, use the label
-							label = i - start > 1 ? state.src.substring(start, i) : label;
+							label = i - start > 0 ? state.src.substring(start, i) : label;
 							label = normalizeLabel(label);
 							link = state.refs[label];
 							if (link !== undefined) {
