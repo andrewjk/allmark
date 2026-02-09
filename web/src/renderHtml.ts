@@ -130,6 +130,10 @@ function renderNode(
 			renderAlert(node, result);
 			break;
 		}
+		case "superscript": {
+			renderTag(node, result, "sup");
+			break;
+		}
 	}
 }
 
