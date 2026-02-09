@@ -19,6 +19,7 @@ export default function parse(src: string, rules: RuleSet, debug = false): Markd
 		hasBlankLine: false,
 		openNodes: [document],
 		refs: {},
+		footnotes: {},
 		debug,
 	};
 
@@ -30,7 +31,7 @@ export default function parse(src: string, rules: RuleSet, debug = false): Markd
 	// TODO: Close the open nodes?
 
 	// Stage 2 -- parse the inlines for each block
-	parseBlockInlines(document, rules.inlines, state.refs);
+	parseBlockInlines(document, rules.inlines, state.refs, state.footnotes);
 
 	return document;
 }

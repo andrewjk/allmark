@@ -1,4 +1,5 @@
 import type Delimiter from "./Delimiter";
+import type FootnoteReference from "./FootnoteReference";
 import type InlineRule from "./InlineRule";
 import type LinkReference from "./LinkReference";
 
@@ -12,6 +13,7 @@ export default interface InlineParserState {
 	indent: number;
 	delimiters: Delimiter[];
 	refs: Record<string, LinkReference>;
+	footnotes: Record<string, FootnoteReference>;
 
 	// HACK:
 	debug?: boolean;

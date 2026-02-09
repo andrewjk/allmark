@@ -1,0 +1,3 @@
+onlyBuiltDependencies:
+  - cmark-gfm
+  - esbuild

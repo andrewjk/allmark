@@ -19,9 +19,16 @@
 		"tsx": "^4.21.0"
 	},
 	"dependencies": {
+		"cmark-gfm": "^0.9.0",
 		"markdown-it": "^14.1.0",
 		"markdown-it-footnote": "^4.0.0",
+		"markdown-it-task-lists": "^2.1.1",
 		"micromark": "^4.0.2",
 		"micromark-extension-gfm": "^3.0.0"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"cmark-gfm"
+		]
 	}
 }

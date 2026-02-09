@@ -6,11 +6,17 @@ import isSpace from "./utils/isSpace";
 
 interface Result {
 	html: string;
+	footnotes: MarkdownNode[];
 }
 
 export default function renderHtml(root: MarkdownNode): string {
-	let result = { html: "" };
+	let result = { html: "", footnotes: [] };
 	renderNode(root, result);
+
+	if (result.footnotes.length > 0) {
+		renderFootnoteList(result);
+	}
+
 	return result.html;
 }
 
@@ -50,7 +56,7 @@ function renderNode(
 		}
 		case "list_task_item": {
 			let checked = !isSpace(node.markup.charCodeAt(1)) ? ` checked=""` : ``;
-			result.html += `<input${checked} disabled="" type="checkbox"> `;
+			result.html += `<input type="checkbox"${checked} disabled="" /> `;
 			break;
 		}
 		case "block_quote": {
@@ -110,6 +116,14 @@ function renderNode(
 		}
 		case "text": {
 			renderText(node, result, first, last, decode);
+			break;
+		}
+		case "footnote": {
+			renderFootnote(node, result);
+			break;
+		}
+		case "footnote_ref": {
+			// Footnote definitions are not rendered inline
 			break;
 		}
 	}
@@ -269,6 +283,33 @@ function renderImage(node: MarkdownNode, result: Result) {
 	let title = node.title ? ` title="${node.title}"` : "";
 	result.html += `<img src="${node.info}" alt="${alt}"${title} />`;
 	endNewLine(node, result);
+}
+
+function renderFootnote(node: MarkdownNode, result: Result) {
+	if (result.footnotes.find((f) => f.info === node.info) === undefined) {
+		result.footnotes.push(node);
+	}
+	let label = result.footnotes.length;
+	let id = `fnref${label}`;
+	let href = `#fn${label}`;
+	result.html += `<sup class="footnote-ref"><a href="${href}" id="${id}">${label}</a></sup>`;
+}
+
+function renderFootnoteList(result: Result) {
+	result.html += `<section class="footnotes">\n<ol>\n`;
+	let number = 1;
+	for (let node of result.footnotes) {
+		let label = number++;
+		let id = `fn${label}`;
+		let href = `#fnref${label}`;
+		result.html += `<li id="${id}">`;
+		renderChildren(node, result);
+		if (result.html.endsWith("</p>\n")) {
+			result.html = result.html.slice(0, result.html.length - 5);
+		}
+		result.html += ` <a href="${href}" class="footnote-backref">↩</a></p>\n</li>\n`;
+	}
+	result.html += `</ol>\n</section>`;
 }
 
 function getChildText(node: MarkdownNode) {

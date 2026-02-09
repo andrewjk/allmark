@@ -2,6 +2,7 @@ import testBlockQuote from "../block/testBlockQuote";
 import testCodeBlock from "../block/testCodeBlock";
 import testCodeFence from "../block/testCodeFence";
 import testContent from "../block/testContent";
+import testFootnoteReference from "../block/testFootnoteReference";
 import testHeading from "../block/testHeading";
 import testHeadingUnderline from "../block/testHeadingUnderline";
 import testHtmlBlock from "../block/testHtmlBlock";
@@ -18,6 +19,7 @@ import testAutolink from "../inline/testAutolink";
 import testCodeSpan from "../inline/testCodeSpan";
 import testEmphasis from "../inline/testEmphasis";
 import testExtendedAutolink from "../inline/testExtendedAutolink";
+import testFootnote from "../inline/testFootnote";
 import testHardBreak from "../inline/testHardBreak";
 import testHtmlSpan from "../inline/testHtmlSpan";
 import testLineBreak from "../inline/testLineBreak";
@@ -44,6 +46,7 @@ const gfm: RuleSet = {
 		[testCodeBlock.name, testCodeBlock],
 		[testCodeFence.name, testCodeFence],
 		[testHtmlBlock.name, testHtmlBlock],
+		[testFootnoteReference.name, testFootnoteReference],
 		[testLinkReference.name, testLinkReference],
 		[testTable.name, testTable],
 		[testParagraph.name, testParagraph],
@@ -56,6 +59,7 @@ const gfm: RuleSet = {
 		[testCodeSpan.name, testCodeSpan],
 		[testEmphasis.name, testEmphasis],
 		[testStrikethrough.name, testStrikethrough],
+		[testFootnote.name, testFootnote],
 		[testLink.name, testLink],
 		[testHardBreak.name, testHardBreak],
 		[testLineBreak.name, testLineBreak],

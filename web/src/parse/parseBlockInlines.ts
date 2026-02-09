@@ -1,3 +1,4 @@
+import type FootnoteReference from "../types/FootnoteReference";
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type LinkReference from "../types/LinkReference";
@@ -9,6 +10,7 @@ export default function parseBlockInlines(
 	parent: MarkdownNode,
 	rules: Map<string, InlineRule>,
 	refs: Record<string, LinkReference>,
+	footnotes: Record<string, FootnoteReference>,
 ): void {
 	if (parent.type === "html_block") {
 		return;
@@ -60,6 +62,7 @@ export default function parseBlockInlines(
 		indent: 0,
 		delimiters: [],
 		refs,
+		footnotes,
 	};
 
 	parseInline(state, parent);
@@ -68,7 +71,7 @@ export default function parseBlockInlines(
 	if (parent.children !== undefined) {
 		for (let child of parent.children) {
 			if (child.block) {
-				parseBlockInlines(child, rules, refs);
+				parseBlockInlines(child, rules, refs, footnotes);
 			}
 		}
 	}

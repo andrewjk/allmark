@@ -4848,8 +4848,8 @@ baz</li>
 `;
 		const expected = `
 <ul>
-<li><input disabled="" type="checkbox"> foo</li>
-<li><input checked="" disabled="" type="checkbox"> bar</li>
+<li><input type="checkbox" disabled="" /> foo</li>
+<li><input type="checkbox" checked="" disabled="" /> bar</li>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), gfm);
@@ -4866,13 +4866,13 @@ baz</li>
 `;
 		const expected = `
 <ul>
-<li><input checked="" disabled="" type="checkbox"> foo
+<li><input type="checkbox" checked="" disabled="" /> foo
 <ul>
-<li><input disabled="" type="checkbox"> bar</li>
-<li><input checked="" disabled="" type="checkbox"> baz</li>
+<li><input type="checkbox" disabled="" /> bar</li>
+<li><input type="checkbox" checked="" disabled="" /> baz</li>
 </ul>
 </li>
-<li><input disabled="" type="checkbox"> bim</li>
+<li><input type="checkbox" disabled="" /> bim</li>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), gfm);

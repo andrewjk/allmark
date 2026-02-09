@@ -1,5 +1,7 @@
 import markdownit from "markdown-it";
 import mditfootnote from "markdown-it-footnote";
+// @ts-ignore
+import mdittasklist from "markdown-it-task-lists";
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
 import fs from "node:fs";
@@ -7,15 +9,34 @@ import { Bench } from "tinybench";
 import parse from "../web/src/parse";
 import renderHtml from "../web/src/renderHtml";
 import gfmx from "../web/src/rules/gfm"
+import { renderHtmlSync } from "cmark-gfm"
 
 // Markdown file from https://gist.github.com/allysonsilva/85fff14a22bbdf55485be947566cc09e
 
-// MICROMARK
 const markdownFile = "./full-markdown.md";
 const markdownSource = fs.readFileSync(markdownFile, "utf-8");
-const markdownHtmlFile = "./full-micromark.html";
+
+// CMARK-GFM
+const cmarkHtmlFile = "./full-cmark-gfm.html";
+const cmarkOptions = {
+	footnotes: true,
+	extensions: {
+		table: true,
+		strikethrough: true,
+     tagfilter: true,
+		autolink: true,
+		tasklist: true,
+	},
+}
 fs.writeFileSync(
-	markdownHtmlFile,
+	cmarkHtmlFile,
+	renderHtmlSync(markdownSource, cmarkOptions)
+);
+
+// MICROMARK
+const micromarkHtmlFile = "./full-micromark.html";
+fs.writeFileSync(
+	micromarkHtmlFile,
 	micromark(markdownSource, {
 		extensions: [gfm()],
 		htmlExtensions: [gfmHtml()],
@@ -29,7 +50,7 @@ fs.writeFileSync(allmarkHtmlFile, renderHtml(root)
 );
 
 // MARKDOWN-IT
-const md = markdownit().use(mditfootnote);
+const md = markdownit().use(mditfootnote).use(mdittasklist);
 const encode = md.utils.lib.mdurl.encode;
 md.normalizeLink = (url: string) => encode(url);
 md.normalizeLinkText = (str: string) => str;
@@ -59,7 +80,10 @@ bench
 	.add("allmark", () => {
 		const doc = parse(markdownSource, gfmx);
 		renderHtml(doc);
-	});
+	})
+	.add("cmark-gfm", () => {
+		renderHtmlSync(markdownSource, cmarkOptions);
+	})
 
 await bench.run();
 

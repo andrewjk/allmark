@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import isSpace from "../utils/isSpace";
 import newNode from "../utils/newNode";
 
 const rule: BlockRule = {
@@ -37,7 +38,13 @@ export default rule;
 function testStart(state: BlockParserState, parent: MarkdownNode) {
 	if (parent.type === "list_item") {
 		let start = state.i;
-		if (state.src[start] === "[" && state.src[start + 2] === "]") {
+		if (
+			state.src[start] === "[" &&
+			state.src[start + 2] === "]" &&
+			isSpace(state.src.charCodeAt(start + 3)) &&
+			// GitHub doesn't support task lists in block quotes
+			state.openNodes.find((n) => n.type === "block_quote") === undefined
+		) {
 			let markup = `[${state.src[start + 1]}]`;
 			// HACK: It should be a block, but it's not for output reasons
 			let task = newNode("list_task_item", false, state.i, state.line, 1, markup, 0, []);
