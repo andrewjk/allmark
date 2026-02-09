@@ -18,6 +18,7 @@ import testTable from "../block/testTable";
 import testThematicBreak from "../block/testThematicBreak";
 import testAutolink from "../inline/testAutolink";
 import testCodeSpan from "../inline/testCodeSpan";
+import testDeletion from "../inline/testDeletion";
 import testEmphasis from "../inline/testEmphasis";
 import testExtendedAutolink from "../inline/testExtendedAutolink";
 import testFootnote from "../inline/testFootnote";
@@ -74,6 +75,7 @@ const gfm: RuleSet = {
 		[testHardBreak.name, testHardBreak],
 		[testLineBreak.name, testLineBreak],
 		[testInsertion.name, testInsertion],
+		[testDeletion.name, testDeletion],
 		[testText.name, testText],
 	]),
 };

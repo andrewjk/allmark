@@ -146,6 +146,10 @@ function renderNode(
 			renderInsertion(node, result);
 			break;
 		}
+		case "deletion": {
+			renderDeletion(node, result);
+			break;
+		}
 	}
 }
 
@@ -346,6 +350,14 @@ function renderInsertion(node: MarkdownNode, result: Result) {
 	result.html += `<ins class="markdown-insertion">`;
 	renderChildren(node, result);
 	result.html += "</ins>";
+	endNewLine(node, result);
+}
+
+function renderDeletion(node: MarkdownNode, result: Result) {
+	startNewLine(node, result);
+	result.html += `<del class="markdown-deletion">`;
+	renderChildren(node, result);
+	result.html += "</del>";
 	endNewLine(node, result);
 }
 
