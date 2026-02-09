@@ -26,6 +26,7 @@ import testHtmlSpan from "../inline/testHtmlSpan";
 import testLineBreak from "../inline/testLineBreak";
 import testLink from "../inline/testLink";
 import testStrikethrough from "../inline/testStrikethrough";
+import testSubscript from "../inline/testSubscript";
 import testSuperscript from "../inline/testSuperscript";
 import testText from "../inline/testText";
 import type RuleSet from "../types/RuleSet";
@@ -62,6 +63,7 @@ const gfm: RuleSet = {
 		[testHtmlSpan.name, testHtmlSpan],
 		[testCodeSpan.name, testCodeSpan],
 		[testEmphasis.name, testEmphasis],
+		[testSubscript.name, testSubscript],
 		[testSuperscript.name, testSuperscript],
 		[testStrikethrough.name, testStrikethrough],
 		[testFootnote.name, testFootnote],

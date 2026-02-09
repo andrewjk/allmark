@@ -134,6 +134,10 @@ function renderNode(
 			renderTag(node, result, "sup");
 			break;
 		}
+		case "subscript": {
+			renderTag(node, result, "sub");
+			break;
+		}
 	}
 }
 
