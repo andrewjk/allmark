@@ -1,3 +1,4 @@
+import testAlert from "../block/testAlert";
 import testBlockQuote from "../block/testBlockQuote";
 import testCodeBlock from "../block/testCodeBlock";
 import testCodeFence from "../block/testCodeFence";
@@ -38,6 +39,7 @@ const gfm: RuleSet = {
 		[testHeading.name, testHeading],
 		[testHeadingUnderline.name, testHeadingUnderline],
 		[testThematicBreak.name, testThematicBreak],
+		[testAlert.name, testAlert],
 		[testBlockQuote.name, testBlockQuote],
 		[testListOrdered.name, testListOrdered],
 		[testListBulleted.name, testListBulleted],

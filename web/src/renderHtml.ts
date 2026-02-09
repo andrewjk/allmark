@@ -126,6 +126,10 @@ function renderNode(
 			// Footnote definitions are not rendered inline
 			break;
 		}
+		case "alert": {
+			renderAlert(node, result);
+			break;
+		}
 	}
 }
 
@@ -310,6 +314,15 @@ function renderFootnoteList(result: Result) {
 		result.html += ` <a href="${href}" class="footnote-backref">↩</a></p>\n</li>\n`;
 	}
 	result.html += `</ol>\n</section>`;
+}
+
+function renderAlert(node: MarkdownNode, result: Result) {
+	startNewLine(node, result);
+	result.html += `<div class="markdown-alert markdown-alert-${node.markup}">
+<p class="markdown-alert-title">${node.markup.substring(0, 1).toUpperCase() + node.markup.substring(1)}</p>`;
+	renderChildren(node, result);
+	result.html += "</div>";
+	endNewLine(node, result);
 }
 
 function getChildText(node: MarkdownNode) {
