@@ -315,7 +315,10 @@ function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail:
 		// line (and it must be complete)"
 		// HACK: Maybe we could improve the regex?
 		let newLineIndex = match[0].indexOf("\n");
-		if (newLineIndex !== -1 && newLineIndex < match[0].length - 1) {
+		if (
+			(newLineIndex !== -1 && newLineIndex < match[0].length - 1) ||
+			(state.i + match[0].length < state.src.length && !match[0].endsWith("\n"))
+		) {
 			return false;
 		}
 
