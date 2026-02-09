@@ -287,22 +287,19 @@ namespace MyApplication
 }
 </code></pre>
 <pre><code class="language-css">@font-face {
-	font-family: Chunkfive;
-	src: url(&quot;Chunkfive.otf&quot;);
+  font-family: Chunkfive; src: url('Chunkfive.otf');
 }
 
-body,
-.usertext {
-	color: #f0f0f0;
-	background: #600;
-	font-family: Chunkfive, sans;
+body, .usertext {
+  color: #F0F0F0; background: #600;
+  font-family: Chunkfive, sans;
 }
 
 @import url(print.css);
 @media print {
-	a[href^=&quot;http&quot;]::after {
-		content: attr(href);
-	}
+  a[href^=http]::after {
+    content: attr(href)
+  }
 }
 </code></pre>
 <pre><code class="language-javascript">function $initHighlight(block, cls) {

@@ -20,10 +20,11 @@ const markdownSource = fs.readFileSync(markdownFile, "utf-8");
 const cmarkHtmlFile = "./full-cmark-gfm.html";
 const cmarkOptions = {
 	footnotes: true,
+	unsafe: true,
 	extensions: {
 		table: true,
 		strikethrough: true,
-     tagfilter: true,
+		tagfilter: true,
 		autolink: true,
 		tasklist: true,
 	},

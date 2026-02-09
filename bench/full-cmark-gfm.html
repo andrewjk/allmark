@@ -166,7 +166,7 @@ _This is italic text_
 <li><input type="checkbox" checked="" disabled="" /> Finish my changes</li>
 <li><input type="checkbox" disabled="" /> Push my commits to GitHub</li>
 <li><input type="checkbox" disabled="" /> Open a pull request</li>
-<li><input type="checkbox" checked="" disabled="" /> @mentions, #refs, <a href="">links</a>, <strong>formatting</strong>, and <!-- raw HTML omitted -->tags<!-- raw HTML omitted --> supported</li>
+<li><input type="checkbox" checked="" disabled="" /> @mentions, #refs, <a href="">links</a>, <strong>formatting</strong>, and <del>tags</del> supported</li>
 <li><input type="checkbox" checked="" disabled="" /> list syntax required (any unordered or ordered list supported)</li>
 <li><input type="checkbox" disabled="" /> this is a complete item</li>
 <li><input type="checkbox" disabled="" /> this is an incomplete item</li>
@@ -287,22 +287,19 @@ namespace MyApplication
 }
 </code></pre>
 <pre><code class="language-css">@font-face {
-	font-family: Chunkfive;
-	src: url(&quot;Chunkfive.otf&quot;);
+  font-family: Chunkfive; src: url('Chunkfive.otf');
 }
 
-body,
-.usertext {
-	color: #f0f0f0;
-	background: #600;
-	font-family: Chunkfive, sans;
+body, .usertext {
+  color: #F0F0F0; background: #600;
+  font-family: Chunkfive, sans;
 }
 
 @import url(print.css);
 @media print {
-	a[href^=&quot;http&quot;]::after {
-		content: attr(href);
-	}
+  a[href^=http]::after {
+    content: attr(href)
+  }
 }
 </code></pre>
 <pre><code class="language-javascript">function $initHighlight(block, cls) {
@@ -602,8 +599,12 @@ This line is part of the same quote.</p>
   &lt;dd&gt;Does *not* work **very** well. Use HTML &lt;em&gt;tags&lt;/em&gt;.&lt;/dd&gt;
 &lt;/dl&gt;
 </code></pre>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
 <hr />
 <h1>Horizontal Rules</h1>
 <pre><code>Three or more...
@@ -633,7 +634,9 @@ Underscores
 &lt;img src=&quot;http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg&quot; alt=&quot;IMAGE ALT TEXT HERE&quot; width=&quot;240&quot; height=&quot;180&quot; border=&quot;10&quot;&gt;
 &lt;/a&gt;
 </code></pre>
-<!-- raw HTML omitted -->
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE" target="_blank">
+<img src="http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10">
+</a>
 <pre><code>[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
 </code></pre>
 <p><a href="https://www.youtube.com/watch?v=ciawICBvQoE"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/YouTube_logo_2015.svg/1200px-YouTube_logo_2015.svg.png" alt="IMAGE ALT TEXT HERE" /></a></p>
