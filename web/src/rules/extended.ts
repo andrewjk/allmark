@@ -24,6 +24,7 @@ import testFootnote from "../inline/testFootnote";
 import testHardBreak from "../inline/testHardBreak";
 import testHighlight from "../inline/testHighlight";
 import testHtmlSpan from "../inline/testHtmlSpan";
+import testInsertion from "../inline/testInsertion";
 import testLineBreak from "../inline/testLineBreak";
 import testLink from "../inline/testLink";
 import testStrikethrough from "../inline/testStrikethrough";
@@ -72,6 +73,7 @@ const gfm: RuleSet = {
 		[testLink.name, testLink],
 		[testHardBreak.name, testHardBreak],
 		[testLineBreak.name, testLineBreak],
+		[testInsertion.name, testInsertion],
 		[testText.name, testText],
 	]),
 };

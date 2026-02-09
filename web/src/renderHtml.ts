@@ -142,6 +142,10 @@ function renderNode(
 			renderTag(node, result, "mark");
 			break;
 		}
+		case "insertion": {
+			renderInsertion(node, result);
+			break;
+		}
 	}
 }
 
@@ -334,6 +338,14 @@ function renderAlert(node: MarkdownNode, result: Result) {
 <p class="markdown-alert-title">${node.markup.substring(0, 1).toUpperCase() + node.markup.substring(1)}</p>`;
 	renderChildren(node, result);
 	result.html += "</div>";
+	endNewLine(node, result);
+}
+
+function renderInsertion(node: MarkdownNode, result: Result) {
+	startNewLine(node, result);
+	result.html += `<ins class="markdown-insertion">`;
+	renderChildren(node, result);
+	result.html += "</ins>";
 	endNewLine(node, result);
 }
 
