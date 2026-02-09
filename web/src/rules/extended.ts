@@ -22,6 +22,7 @@ import testEmphasis from "../inline/testEmphasis";
 import testExtendedAutolink from "../inline/testExtendedAutolink";
 import testFootnote from "../inline/testFootnote";
 import testHardBreak from "../inline/testHardBreak";
+import testHighlight from "../inline/testHighlight";
 import testHtmlSpan from "../inline/testHtmlSpan";
 import testLineBreak from "../inline/testLineBreak";
 import testLink from "../inline/testLink";
@@ -66,6 +67,7 @@ const gfm: RuleSet = {
 		[testSubscript.name, testSubscript],
 		[testSuperscript.name, testSuperscript],
 		[testStrikethrough.name, testStrikethrough],
+		[testHighlight.name, testHighlight],
 		[testFootnote.name, testFootnote],
 		[testLink.name, testLink],
 		[testHardBreak.name, testHardBreak],

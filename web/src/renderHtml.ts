@@ -138,6 +138,10 @@ function renderNode(
 			renderTag(node, result, "sub");
 			break;
 		}
+		case "highlight": {
+			renderTag(node, result, "mark");
+			break;
+		}
 	}
 }
 
