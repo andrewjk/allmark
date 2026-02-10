@@ -220,7 +220,7 @@ test("link reference takes precedence", () => {
 	expect(html.trim()).toBe(expected.trim());
 });
 
-test.skip("multiple paragraphs", () => {
+test("multiple paragraphs", () => {
 	const input = `Footnote 1 link[^first].
 
 [^first]: Footnote **can have markup**

@@ -105,6 +105,13 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return true;
 	}
 
+	// Add another paragraph if there is an indent of at least 4 characters
+	if (state.hasBlankLine && state.indent >= 4 && parent.children?.at(-1)?.type === "footnote_ref") {
+		state.indent = 0;
+		parseBlock(state, parent.children.at(-1)!);
+		return true;
+	}
+
 	return false;
 }
 
