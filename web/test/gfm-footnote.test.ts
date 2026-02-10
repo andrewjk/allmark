@@ -231,16 +231,3 @@ test("multiple paragraphs", () => {
 	const html = renderHtml(doc);
 	expect(html.trim()).toBe(expected.trim());
 });
-
-test.only("lists", () => {
-	const input = `
-1. Make my changes
-    1. Improve formatting
-        - Make the headings bigger
-2. Push my commits to GitHub
-`;
-	const expected = renderHtmlSync(input, options);
-	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
-	expect(html.trim()).toBe(expected.trim());
-});

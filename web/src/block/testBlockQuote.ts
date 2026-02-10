@@ -3,6 +3,7 @@ import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import closeNode from "../utils/closeNode";
+import movePastMarker from "../utils/movePastMarker";
 import newNode from "../utils/newNode";
 
 const rule: BlockRule = {
@@ -67,7 +68,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		parent.children!.push(quote);
 		state.openNodes.push(quote);
 
-		movePastMarker(state);
+		movePastMarker(1, state);
 
 		state.hasBlankLine = false;
 		parseBlock(state, quote);
@@ -78,24 +79,10 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	return false;
 }
 
-function movePastMarker(state: BlockParserState) {
-	// HACK: I think this can be done better
-	// If the '>' is followed by a tab, the markup is considered to be '> '
-	// followed by 2 spaces. Otherwise we reset the indent for children
-	state.i += 1;
-	if (state.src[state.i] === "\t" && state.src[state.i + 1] === "\t") {
-		state.indent = 6;
-		state.i += 2;
-	} else if (state.src[state.i] === " ") {
-		state.indent = 0;
-		state.i += 1;
-	}
-}
-
 function testContinue(state: BlockParserState, node: MarkdownNode) {
 	let char = state.src[state.i];
 	if (hasMarkup(char, state)) {
-		movePastMarker(state);
+		movePastMarker(1, state);
 		return true;
 	}
 

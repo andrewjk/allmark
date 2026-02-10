@@ -4,6 +4,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import closeNode from "../utils/closeNode";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
+import movePastMarker from "../utils/movePastMarker";
 import newNode from "../utils/newNode";
 
 /**
@@ -169,17 +170,7 @@ export function testListStart(
 	list.children?.push(item);
 	state.openNodes.push(item);
 
-	// HACK: I think this can be done better
-	// If the '>' is followed by a tab, the markup is considered to be '> '
-	// followed by 2 spaces. Otherwise we reset the indent for children
-	state.i += info.markup.length;
-	if (state.src[state.i] === "\t" && state.src[state.i + 1] === "\t") {
-		state.indent = 6;
-		state.i += 2;
-	} else if (state.src[state.i] === " ") {
-		state.indent = 0;
-		state.i += 1;
-	}
+	movePastMarker(info.markup.length, state);
 
 	state.hasBlankLine = false;
 	parseBlock(state, item);

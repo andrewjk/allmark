@@ -2,6 +2,7 @@ import type Delimiter from "../types/Delimiter";
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import addMarkupAsText from "../utils/addMarkupAsText";
 import isEscaped from "../utils/isEscaped";
 import isUnicodePunctuation from "../utils/isUnicodePunctuation";
 import isUnicodeSpace from "../utils/isUnicodeSpace";
@@ -178,16 +179,7 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 			return true;
 		}
 
-		// TODO: If we use this in a lot of rules make it a helper
-		let lastNode = parent.children!.at(-1);
-		let haveText = lastNode && lastNode.type === "text";
-		let text = haveText ? lastNode! : newNode("text", false, state.i, state.line, 1, "", 0);
-		text.markup += markup;
-		if (!haveText) {
-			parent.children!.push(text);
-		}
-
-		state.i += markup.length;
+		addMarkupAsText(markup, state, parent);
 
 		return true;
 	}
