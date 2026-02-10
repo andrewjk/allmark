@@ -69,6 +69,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		movePastMarker(state);
 
+		state.hasBlankLine = false;
 		parseBlock(state, quote);
 
 		return true;

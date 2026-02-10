@@ -182,6 +182,7 @@ export function testListStart(
 		state.i += 1;
 	}
 
+	state.hasBlankLine = false;
 	parseBlock(state, item);
 
 	return true;

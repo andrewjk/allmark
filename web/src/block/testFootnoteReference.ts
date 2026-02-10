@@ -99,6 +99,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		parent.children!.push(ref);
 		state.openNodes.push(ref);
 
+		state.hasBlankLine = false;
 		parseBlock(state, ref);
 
 		return true;

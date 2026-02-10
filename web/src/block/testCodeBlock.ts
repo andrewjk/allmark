@@ -79,6 +79,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		state.openNodes.push(code);
 
 		state.indent = 0;
+		state.hasBlankLine = false;
 		parseBlock(state, code);
 
 		return true;
