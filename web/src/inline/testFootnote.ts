@@ -13,7 +13,7 @@ const rule: InlineRule = {
 };
 export default rule;
 
-function testFootnote(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testFootnote(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
 
 	if (!isEscaped(state.src, state.i)) {

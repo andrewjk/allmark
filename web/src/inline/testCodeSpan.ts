@@ -12,7 +12,7 @@ const rule: InlineRule = {
 };
 export default rule;
 
-function testCodeSpan(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testCodeSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
 	if (char === "`" && !isEscaped(state.src, state.i)) {
 		let openMatched = 1;

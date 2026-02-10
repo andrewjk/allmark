@@ -17,7 +17,7 @@ export default rule;
  * "Strikethrough text is any text wrapped in a matching pair of one or two
  * tildes (~).
  */
-function testStrikethrough(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testStrikethrough(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
 	if (char === "~" && !isEscaped(state.src, state.i)) {
 		let start = state.i;

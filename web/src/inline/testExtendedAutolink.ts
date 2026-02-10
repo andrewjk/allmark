@@ -21,7 +21,7 @@ const EXT_URL_REGEX = /^((https*|ftp):\/\/([a-z0-9_-]\.*)+([a-z0-9-]\.*){0,2}[^\
 const EXT_EMAIL_REGEX = /^([a-z0-9._\-+]+@([a-z0-9._\-+]+\.*)+)/i;
 const EXT_XMPP_REGEX = /^((mailto|xmpp):[a-z0-9._\-+]+@([a-z0-9._\-+]+\.*)+(\/[a-z0-9@.]+){0,1})/i;
 
-function testAutolink(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 	// Don't try to extract HTML for HTML blocks
 	if (parent.type === "html_block") {
 		return false;

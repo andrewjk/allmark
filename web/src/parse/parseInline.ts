@@ -1,15 +1,10 @@
 import type InlineParserState from "../types/InlineParserState";
 import type MarkdownNode from "../types/MarkdownNode";
 
-export default function parseInline(
-	state: InlineParserState,
-	parent: MarkdownNode,
-	end = -1,
-): void {
-	let inlineEnd = end === -1 ? state.src.length : end;
-	while (state.i < inlineEnd) {
+export default function parseInline(state: InlineParserState, parent: MarkdownNode): void {
+	while (state.i < state.src.length) {
 		let char = state.src[state.i];
-		if (end === -1 && (char === "\r" || char === "\n")) {
+		if (char === "\r" || char === "\n") {
 			// Treat Windows \r\n as \n
 			if (char === "\r" && state.src[state.i + 1] === "\n") {
 				state.i++;
@@ -20,7 +15,7 @@ export default function parseInline(
 		}
 
 		for (let rule of state.rules.values()) {
-			let handled = rule.test(state, parent, inlineEnd);
+			let handled = rule.test(state, parent);
 			//console.log("Rule:", rule.name, handled);
 			if (handled) {
 				// TODO: Make sure that state.i has been incremented to prevent infinite loops

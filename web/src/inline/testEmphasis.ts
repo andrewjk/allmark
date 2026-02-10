@@ -13,7 +13,7 @@ const rule: InlineRule = {
 };
 export default rule;
 
-function testEmphasis(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
 	if ((char === "*" || char === "_") && !isEscaped(state.src, state.i)) {
 		let start = state.i;

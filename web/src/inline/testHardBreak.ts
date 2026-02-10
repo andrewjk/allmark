@@ -10,7 +10,7 @@ const rule: InlineRule = {
 };
 export default rule;
 
-function testHardBreak(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean {
 	if (state.src[state.i] === "\\" && isNewLine(state.src[state.i + 1])) {
 		let hb = newNode("hard_break", false, state.i, state.line, 1, "\\", 0);
 		state.i += 2;

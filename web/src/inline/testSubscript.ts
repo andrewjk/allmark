@@ -13,7 +13,7 @@ const rule: InlineRule = {
 };
 export default rule;
 
-function testSubscript(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testSubscript(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
 	if (char === "~" && !isEscaped(state.src, state.i)) {
 		// Subscripts can only be one character long, otherwise they are a GFM strikethrough

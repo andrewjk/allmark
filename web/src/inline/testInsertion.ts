@@ -11,7 +11,7 @@ const rule: InlineRule = {
 };
 export default rule;
 
-function testInsertion(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testInsertion(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
 	if (char === "{" && !isEscaped(state.src, state.i)) {
 		let start = state.i;

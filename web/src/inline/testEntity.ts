@@ -9,7 +9,7 @@ const rule: InlineRule = {
 };
 export default rule;
 
-function testEntity(state: InlineParserState, parent: MarkdownNode, end: number): boolean {
+function testEntity(state: InlineParserState, parent: MarkdownNode): boolean {
 	// Don't try to extract HTML for HTML blocks
 	if (parent.type === "html_block") {
 		return false;
@@ -21,7 +21,7 @@ function testEntity(state: InlineParserState, parent: MarkdownNode, end: number)
 		let start = state.i + 1;
 		let i = start;
 		let found = false;
-		for (; i < end; i++) {
+		for (; i < state.src.length; i++) {
 			let nextChar = state.src[i];
 			if (nextChar === ";") {
 				found = true;

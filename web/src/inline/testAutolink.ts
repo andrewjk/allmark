@@ -18,7 +18,7 @@ const LINK_REGEX = /^<(\s*[a-z][a-z0-9+.-]{1,31}:[^<>]*)>/i;
 const EMAIL_REGEX =
 	/^<(\s*[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*\s*)>/i;
 
-function testAutolink(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 	// Don't try to extract HTML for HTML blocks
 	if (parent.type === "html_block") {
 		return false;

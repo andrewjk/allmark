@@ -24,7 +24,7 @@ const HTML_TAG_REGEX = new RegExp(
 	`^(?:${OPEN_TAG}|${CLOSE_TAG}|${COMMENT}|${INSTRUCTION}|${DECLARATION}|${CDATA})`,
 );
 
-function testHtmlSpan(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testHtmlSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 	// Don't try to extract HTML for HTML blocks
 	if (parent.type === "html_block") {
 		return false;

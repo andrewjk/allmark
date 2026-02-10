@@ -15,7 +15,7 @@ export default rule;
  * more spaces and does not occur at the end of a block is parsed as a hard line
  * break (rendered in HTML as a <br /> tag)"
  */
-function testLineBreak(state: InlineParserState, parent: MarkdownNode, _end: number): boolean {
+function testLineBreak(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
 	if (char === " ") {
 		let end = state.i;
