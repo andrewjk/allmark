@@ -90,7 +90,6 @@ export function testListStart(
 				node.maybeContinuing = false;
 				closedNode = node;
 				state.openNodes.length = i;
-				break;
 			}
 		}
 		parent = state.openNodes.at(-1)!;
