@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This file provides guidelines for AI coding agents working in the allmark repository.
+Guidelines for AI coding agents working in the allmark repository.
 
 ## Project Overview
 
@@ -12,25 +12,14 @@ Allmark is a TypeScript Markdown parser library supporting CommonMark and GitHub
 
 ## Build/Lint/Test Commands
 
-All commands should be run from the `/web` directory:
+Run from `/web` directory:
 
 ```bash
-# Type checking and linting
-pnpm check              # Run TypeScript checker + oxlint
-
-# Building
+pnpm check              # TypeScript + oxlint
 pnpm build              # Type check + bundle with tsdown
-
-# Testing
-pnpm test               # Run all tests with Vitest
-pnpm test -- testName   # Run a single test by name
-pnpm test -- --run    # Run tests once (CI mode)
-
-# Utility scripts
-pnpm test:split         # Split spec files into individual tests
-pnpm test:dl            # Download GitHub top repos for testing
-
-# Formatting
+pnpm test               # Run all tests (watch mode)
+pnpm test -- --run      # Run tests once (CI mode)
+pnpm test -- testName   # Run single test by name pattern
 pnpm format             # Format with Prettier
 ```
 
@@ -47,7 +36,6 @@ pnpm format             # Format with Prettier
 ```typescript
 // Type imports must use explicit `import type`
 import type BlockParserState from "../types/BlockParserState";
-import type BlockRule from "../types/BlockRule";
 
 // Regular imports for runtime values
 import closeNode from "../utils/closeNode";
@@ -55,9 +43,6 @@ import closeNode from "../utils/closeNode";
 // Default exports for modules
 const rule: BlockRule = { name: "heading", testStart, testContinue };
 export default rule;
-
-// Default export for functions
-export default function parse(src: string, rules: RuleSet, debug = false): MarkdownNode { }
 ```
 
 ### Import Order (Prettier-enforced)
@@ -65,13 +50,12 @@ export default function parse(src: string, rules: RuleSet, debug = false): Markd
 2. Local imports (`^[./]`)
 
 ### Naming Conventions
-- **Files**: camelCase (e.g., `testHeading.ts`, `renderHtml.ts`)
-- **Types/Interfaces**: PascalCase (e.g., `MarkdownNode`, `BlockParserState`)
-- **Functions**: camelCase (e.g., `testStart`, `renderNode`)
-- **Constants**: camelCase for rule objects
+- **Files**: camelCase (e.g., `testHeading.ts`)
+- **Types/Interfaces**: PascalCase (e.g., `MarkdownNode`)
+- **Functions**: camelCase (e.g., `testStart`)
 
 ### Formatting (Prettier)
-- **Indentation**: Tabs (not spaces)
+- **Indentation**: Tabs
 - **Print width**: 100
 - **Trailing commas**: Always (except JSON)
 - **Semicolons**: Required
@@ -83,26 +67,20 @@ export default function parse(src: string, rules: RuleSet, debug = false): Markd
 - Use optional chaining (`?.`) and nullish coalescing (`??`)
 - Non-null assertions (`!`) acceptable when safe
 
-### Code Organization
-- Each block/inline rule is a separate file with default export
-- Rules export an object with `name`, `testStart`, and optionally `testContinue`
-- JSDoc comments for public APIs and spec references
-- Inline comments explaining Markdown spec compliance
-
 ### Error Handling
-- TypeScript strict mode catches most issues
 - Use early returns for guard clauses
 - No try/catch for parsing logic - return false/undefined instead
 
 ## Architecture
 
-- `/block` - Block parsing rules (20 files)
-- `/inline` - Inline parsing rules (13 files)  
+- `/block` - Block parsing rules
+- `/inline` - Inline parsing rules  
 - `/parse` - Core parsing logic
+- `/render` - HTML rendering functions
 - `/types` - TypeScript interfaces
 - `/utils` - Helper functions
-- `/rules` - Rule set definitions (`core.ts`, `gfm.ts`)
-- `/test` - Vitest test files
+- `/rules` - Rule sets (`core.ts`, `gfm.ts`, `extended.ts`)
+- `/test` - Vitest test files (located at `/web/test/`)
 
 ## Testing Patterns
 
@@ -113,10 +91,64 @@ import renderHtml from "../src/renderHtml";
 import core from "../src/rules/core";
 
 test("description", () => {
-    const input = `# Markdown`;
-    const expected = `<h1>Markdown</h1>\n`;
     const root = parse(input, core, false);
-    const html = renderHtml(root);
+    const html = renderHtml(root, core.renderers);
     expect(html).toBe(expected);
 });
+```
+
+---
+
+## Swift Project
+
+Swift port located in `/swift` directory.
+
+### Swift Commands
+
+Run from `/swift`:
+
+```bash
+swift build                    # Build package
+swift test                     # Run tests
+swift test --filter testName   # Run single test
+swift-format --in-place --recursive Sources/ Tests/
+```
+
+### Swift Code Style
+
+- **Files/Protocols**: PascalCase (e.g., `BlockRule.swift`)
+- **Functions/Properties**: camelCase
+- TypeScript `interface` → Swift `protocol`
+- TypeScript `Map<string, T>` → Swift `[String: T]`
+- Optional protocol methods → Extensions with default implementations
+- **Formatting**: Tabs, 100 char line length, `///` docs
+
+### Swift Example
+
+```swift
+import Foundation
+
+protocol BlockRule {
+    var name: String { get }
+    func testStart(state: BlockParserState, parent: MarkdownNode) -> Bool
+}
+
+extension BlockRule {
+    func closeNode(state: BlockParserState, parent: MarkdownNode) {
+        // Default: no cleanup
+    }
+}
+```
+
+### Swift Testing
+
+Uses Swift Testing framework (not XCTest):
+
+```swift
+import Testing
+@testable import allmark
+
+@Test func example() async throws {
+    #expect(actual == expected)
+}
 ```

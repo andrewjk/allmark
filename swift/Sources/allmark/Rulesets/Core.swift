@@ -1,0 +1,51 @@
+import Foundation
+
+@MainActor
+let coreRuleSet = RuleSet(
+	blocks: [
+		indentRule.name: indentRule,
+		headingRule.name: headingRule,
+		headingUnderlineRule.name: headingUnderlineRule,
+		thematicBreakRule.name: thematicBreakRule,
+		blockQuoteRule.name: blockQuoteRule,
+		listOrderedRule.name: listOrderedRule,
+		listBulletedRule.name: listBulletedRule,
+		listItemRule.name: listItemRule,
+		codeBlockRule.name: codeBlockRule,
+		codeFenceRule.name: codeFenceRule,
+		htmlBlockRule.name: htmlBlockRule,
+		linkReferenceRule.name: linkReferenceRule,
+		paragraphRule.name: paragraphRule,
+		contentRule.name: contentRule,
+	],
+	inlines: [
+		autolinkRule.name: autolinkRule,
+		htmlSpanRule.name: htmlSpanRule,
+		codeSpanRule.name: codeSpanRule,
+		emphasisRule.name: emphasisRule,
+		linkRule.name: linkRule,
+		hardBreakRule.name: hardBreakRule,
+		lineBreakRule.name: lineBreakRule,
+		textRule.name: textRule,
+	],
+	renderers: [
+		blockQuoteRenderer.name: blockQuoteRenderer,
+		codeBlockRenderer.name: codeBlockRenderer,
+		codeFenceRenderer.name: codeFenceRenderer,
+		codeSpanRenderer.name: codeSpanRenderer,
+		emphasisRenderer.name: emphasisRenderer,
+		hardBreakRenderer.name: hardBreakRenderer,
+		headingRenderer.name: headingRenderer,
+		headingUnderlineRenderer.name: headingUnderlineRenderer,
+		htmlBlockRenderer.name: htmlBlockRenderer,
+		htmlSpanRenderer.name: htmlSpanRenderer,
+		imageRenderer.name: imageRenderer,
+		linkRenderer.name: linkRenderer,
+		listBulletedRenderer.name: listBulletedRenderer,
+		listOrderedRenderer.name: listOrderedRenderer,
+		paragraphRenderer.name: paragraphRenderer,
+		strongRenderer.name: strongRenderer,
+		textRenderer.name: textRenderer,
+		thematicBreakRenderer.name: thematicBreakRenderer,
+	]
+)
