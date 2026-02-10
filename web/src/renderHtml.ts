@@ -17,6 +17,10 @@ export default function renderHtml(root: MarkdownNode): string {
 		renderFootnoteList(result);
 	}
 
+	if (!result.html.endsWith("\n")) {
+		result.html += "\n";
+	}
+
 	return result.html;
 }
 
