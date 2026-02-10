@@ -21,7 +21,6 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 		let end = state.i;
 
 		// TODO: Need a consumeUntil function
-		// TODO: Just get the length instead of making a new string
 		let markup = char;
 		for (let i = state.i + 1; i < state.src.length; i++) {
 			if (state.src[i] === char) {
