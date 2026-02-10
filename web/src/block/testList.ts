@@ -70,7 +70,7 @@ export function testListStart(
 	// "[L]ist items may not be indented more than three spaces"
 	let openIndent = state.indent;
 	let i = state.openNodes.length;
-	while (i--) {
+	while (i-- > 1) {
 		if (isList(state.openNodes[i].type)) {
 			openIndent -= state.openNodes[i].indent;
 			break;
@@ -85,7 +85,7 @@ export function testListStart(
 	if (state.maybeContinue) {
 		state.maybeContinue = false;
 		let i = state.openNodes.length;
-		while (i--) {
+		while (i-- > 1) {
 			let node = state.openNodes[i];
 			if (node.maybeContinuing) {
 				node.maybeContinuing = false;

@@ -107,7 +107,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			if (state.maybeContinue) {
 				state.maybeContinue = false;
 				let i = state.openNodes.length;
-				while (i--) {
+				while (i-- > 1) {
 					let node = state.openNodes[i];
 					if (node.maybeContinuing) {
 						node.maybeContinuing = false;

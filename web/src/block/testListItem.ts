@@ -22,7 +22,7 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 	// TODO: Split this out into different list_items
 	let i = state.openNodes.length;
 	let itemNode: MarkdownNode | undefined;
-	while (i--) {
+	while (i-- > 1) {
 		let openNode = state.openNodes[i];
 		if (openNode.type === "list_item") {
 			itemNode = openNode;

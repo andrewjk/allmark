@@ -38,7 +38,7 @@ export default rule;
 function testStart(state: BlockParserState, parent: MarkdownNode) {
 	if (state.maybeContinue) {
 		let i = state.openNodes.length;
-		while (i--) {
+		while (i-- > 1) {
 			let node = state.openNodes[i];
 			if (node.maybeContinuing) {
 				return false;
