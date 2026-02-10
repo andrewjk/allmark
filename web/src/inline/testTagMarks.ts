@@ -15,8 +15,7 @@ export default function testTagMarks(
 	let start = state.i;
 	let end = state.i;
 
-	// TODO: Need a consumeUntil function
-	// TODO: Just get the length instead of making a new string
+	// Get the markup
 	let markup = char;
 	for (let i = state.i + 1; i < state.src.length; i++) {
 		if (state.src[i] === char) {

@@ -17,25 +17,18 @@ function testEntity(state: InlineParserState, parent: MarkdownNode): boolean {
 
 	let char = state.src[state.i];
 	if (char === "&") {
-		// TODO: Need a consumeUntil function
 		let start = state.i + 1;
-		let i = start;
-		let found = false;
-		for (; i < state.src.length; i++) {
+		for (let i = start; i < state.src.length; i++) {
 			let nextChar = state.src[i];
 			if (nextChar === ";") {
-				found = true;
+				let content = ENTITIES[state.src.substring(start, i)];
+				if (content !== undefined) {
+					let text = newNode("text", false, start, state.line, 1, content, 0);
+					parent.children!.push(text);
+					state.i = i + 1;
+					return true;
+				}
 				break;
-			}
-		}
-
-		if (found) {
-			let content = ENTITIES[state.src.substring(start, i)];
-			if (content !== undefined) {
-				let text = newNode("text", false, start, state.line, 1, content, 0);
-				parent.children!.push(text);
-				state.i = i + 1;
-				return true;
 			}
 		}
 	}

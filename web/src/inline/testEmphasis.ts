@@ -20,9 +20,9 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 		let start = state.i;
 		let end = state.i;
 
-		// TODO: Need a consumeUntil function
+		// Get the markup
 		let markup = char;
-		for (let i = state.i + 1; i < state.src.length; i++) {
+		for (let i = start + 1; i < state.src.length; i++) {
 			if (state.src[i] === char) {
 				markup += char;
 				end++;

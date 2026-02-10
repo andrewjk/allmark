@@ -15,9 +15,9 @@ export default function testCriticMarks(
 		let start = state.i;
 		let end = state.i;
 
-		// TODO: Need a consumeUntil function
+		// Get the markup
 		let markup = char;
-		for (let i = state.i + 1; i < state.src.length; i++) {
+		for (let i = start + 1; i < state.src.length; i++) {
 			if (state.src[i] === delimiter) {
 				markup += delimiter;
 				end++;
@@ -40,7 +40,7 @@ export default function testCriticMarks(
 			return true;
 		}
 	} else if (char === delimiter && !isEscaped(state.src, state.i)) {
-		// TODO: Need a consumeUntil function
+		// Get the markup
 		let markup = "{" + delimiter;
 		for (let i = state.i + 1; i < state.src.length; i++) {
 			if (state.src[i] === delimiter) {
