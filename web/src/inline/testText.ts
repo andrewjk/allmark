@@ -1,6 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { isAlphaNumeric } from "../utils/isAlphaNumeric";
 import isNewLine from "../utils/isNewLine";
 import newNode from "../utils/newNode";
 
@@ -25,20 +26,28 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 	//}
 
 	let lastNode = parent.children!.at(-1);
-	let haveText = lastNode && lastNode.type === "text";
-	let text = haveText ? lastNode! : newNode("text", false, state.i, state.line, 1, "", 0);
-
-	// "Spaces at the end of the line and beginning of the next line are removed"
-	if (haveText && isNewLine(char)) {
-		text.markup = text.markup.trimEnd();
-	}
-	text.markup += char;
-
-	if (!haveText) {
-		parent.children!.push(text);
+	if (lastNode === undefined || lastNode.type !== "text") {
+		lastNode = newNode("text", false, state.i, state.line, 1, "", 0);
+		parent.children!.push(lastNode);
+	} else if (isNewLine(char)) {
+		// "Spaces at the end of the line and beginning of the next line are removed"
+		lastNode.markup = lastNode.markup.trimEnd();
 	}
 
-	state.i++;
+	if (isAlphaNumeric(state.src.charCodeAt(state.i))) {
+		// If this an alphanumeric character, we can just process the whole
+		// word, and save checking a bunch of characters that are never going to
+		// match anything
+		const start = state.i;
+		state.i++;
+		while (isAlphaNumeric(state.src.charCodeAt(state.i))) {
+			state.i++;
+		}
+		lastNode.markup += state.src.substring(start, state.i);
+	} else {
+		state.i++;
+		lastNode.markup += char;
+	}
 
 	return true;
 }
