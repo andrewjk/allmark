@@ -20,6 +20,24 @@ import testHtmlSpan from "../inline/testHtmlSpan";
 import testLineBreak from "../inline/testLineBreak";
 import testLink from "../inline/testLink";
 import testText from "../inline/testText";
+import renderBlockQuote from "../render/renderBlockQuote";
+import renderCodeBlock from "../render/renderCodeBlock";
+import renderCodeFence from "../render/renderCodeFence";
+import renderCodeSpan from "../render/renderCodeSpan";
+import renderEmphasis from "../render/renderEmphasis";
+import renderHardBreak from "../render/renderHardBreak";
+import renderHeading from "../render/renderHeading";
+import renderHeadingUnderline from "../render/renderHeadingUnderline";
+import renderHtmlBlock from "../render/renderHtmlBlock";
+import renderHtmlSpan from "../render/renderHtmlSpan";
+import renderImage from "../render/renderImage";
+import renderLink from "../render/renderLink";
+import renderListBulleted from "../render/renderListBulleted";
+import renderListOrdered from "../render/renderListOrdered";
+import renderParagraph from "../render/renderParagraph";
+import renderStrong from "../render/renderStrong";
+import renderText from "../render/renderText";
+import renderThematicBreak from "../render/renderThematicBreak";
 import type RuleSet from "../types/RuleSet";
 
 /**
@@ -51,6 +69,26 @@ const core: RuleSet = {
 		[testHardBreak.name, testHardBreak],
 		[testLineBreak.name, testLineBreak],
 		[testText.name, testText],
+	]),
+	renderers: new Map([
+		[renderBlockQuote.name, renderBlockQuote],
+		[renderCodeBlock.name, renderCodeBlock],
+		[renderCodeFence.name, renderCodeFence],
+		[renderCodeSpan.name, renderCodeSpan],
+		[renderEmphasis.name, renderEmphasis],
+		[renderHardBreak.name, renderHardBreak],
+		[renderHeading.name, renderHeading],
+		[renderHeadingUnderline.name, renderHeadingUnderline],
+		[renderHtmlBlock.name, renderHtmlBlock],
+		[renderHtmlSpan.name, renderHtmlSpan],
+		[renderImage.name, renderImage],
+		[renderLink.name, renderLink],
+		[renderListBulleted.name, renderListBulleted],
+		[renderListOrdered.name, renderListOrdered],
+		[renderParagraph.name, renderParagraph],
+		[renderStrong.name, renderStrong],
+		[renderText.name, renderText],
+		[renderThematicBreak.name, renderThematicBreak],
 	]),
 };
 

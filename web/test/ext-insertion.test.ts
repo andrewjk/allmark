@@ -12,7 +12,7 @@ This text was {+inserted+} recently.
 <p>This text was <ins class="markdown-insertion">inserted</ins> recently.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -24,7 +24,7 @@ This text was {++inserted++} recently.
 <p>This text was <ins class="markdown-insertion">inserted</ins> recently.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -36,7 +36,7 @@ This text was {+++inserted+++} recently.
 <p>This text was {+++inserted+++} recently.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -44,7 +44,7 @@ This text was {+++inserted+++} recently.
 		const input = `text {+a+} more`;
 		const expected = `<p>text <ins class="markdown-insertion">a</ins> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -52,7 +52,7 @@ This text was {+++inserted+++} recently.
 		const input = `text {+with spaces+} more`;
 		const expected = `<p>text <ins class="markdown-insertion">with spaces</ins> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -60,7 +60,7 @@ This text was {+++inserted+++} recently.
 		const input = `{+inserted+} This is new.`;
 		const expected = `<p><ins class="markdown-insertion">inserted</ins> This is new.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -68,7 +68,7 @@ This text was {+++inserted+++} recently.
 		const input = `This is {+inserted+}`;
 		const expected = `<p>This is <ins class="markdown-insertion">inserted</ins></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -76,7 +76,7 @@ This text was {+++inserted+++} recently.
 		const input = `text {+word!+} more`;
 		const expected = `<p>text <ins class="markdown-insertion">word!</ins> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -84,7 +84,7 @@ This text was {+++inserted+++} recently.
 		const input = `text {+a+b+} more`;
 		const expected = `<p>text <ins class="markdown-insertion">a+b</ins> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -92,7 +92,7 @@ This text was {+++inserted+++} recently.
 		const input = `test{+ing+}test`;
 		const expected = `<p>test<ins class="markdown-insertion">ing</ins>test</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -100,7 +100,7 @@ This text was {+++inserted+++} recently.
 		const input = `text{++}text`;
 		const expected = `<p>text{++}text</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -108,7 +108,7 @@ This text was {+++inserted+++} recently.
 		const input = `text {+**bold**+}`;
 		const expected = `<p>text <ins class="markdown-insertion"><strong>bold</strong></ins></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -116,7 +116,7 @@ This text was {+++inserted+++} recently.
 		const input = `text {+\`code\`+}`;
 		const expected = `<p>text <ins class="markdown-insertion"><code>code</code></ins></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -124,7 +124,7 @@ This text was {+++inserted+++} recently.
 		const input = `text \\{+not insertion\\+}`;
 		const expected = `<p>text {+not insertion+}</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -132,7 +132,7 @@ This text was {+++inserted+++} recently.
 		const input = `text {+not closed`;
 		const expected = `<p>text {+not closed</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -140,7 +140,7 @@ This text was {+++inserted+++} recently.
 		const input = `text not opened+}`;
 		const expected = `<p>text not opened+}</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -150,7 +150,7 @@ This text was {+++inserted+++} recently.
 <li>Item with <ins class="markdown-insertion">insertion</ins></li>
 </ul>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -160,7 +160,7 @@ This text was {+++inserted+++} recently.
 <p>Quote with <ins class="markdown-insertion">insertion</ins></p>
 </blockquote>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -168,7 +168,7 @@ This text was {+++inserted+++} recently.
 		const input = `text {+plus + inside+}`;
 		const expected = `<p>text <ins class="markdown-insertion">plus + inside</ins></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -176,7 +176,7 @@ This text was {+++inserted+++} recently.
 		const input = `{+Start+} of document.`;
 		const expected = `<p><ins class="markdown-insertion">Start</ins> of document.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -184,7 +184,7 @@ This text was {+++inserted+++} recently.
 		const input = `End of {+document+}`;
 		const expected = `<p>End of <ins class="markdown-insertion">document</ins></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -192,7 +192,7 @@ This text was {+++inserted+++} recently.
 		const input = `{+first+} and {+second+} and {+third+}`;
 		const expected = `<p><ins class="markdown-insertion">first</ins> and <ins class="markdown-insertion">second</ins> and <ins class="markdown-insertion">third</ins></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -200,7 +200,7 @@ This text was {+++inserted+++} recently.
 		const input = `{+inserted *text+} that shouldn't be bold*`;
 		const expected = `<p><ins class="markdown-insertion">inserted *text</ins> that shouldn't be bold*</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -208,7 +208,7 @@ This text was {+++inserted+++} recently.
 		const input = `*this text should be {+inserted but not bold*+}`;
 		const expected = `<p>*this text should be <ins class="markdown-insertion">inserted but not bold*</ins></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 });

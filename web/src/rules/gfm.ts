@@ -27,6 +27,32 @@ import testLineBreak from "../inline/testLineBreak";
 import testLink from "../inline/testLink";
 import testStrikethrough from "../inline/testStrikethrough";
 import testText from "../inline/testText";
+import renderAlert from "../render/renderAlert";
+import renderBlockQuote from "../render/renderBlockQuote";
+import renderCodeBlock from "../render/renderCodeBlock";
+import renderCodeFence from "../render/renderCodeFence";
+import renderCodeSpan from "../render/renderCodeSpan";
+import renderEmphasis from "../render/renderEmphasis";
+import renderFootnote from "../render/renderFootnote";
+import renderHardBreak from "../render/renderHardBreak";
+import renderHeading from "../render/renderHeading";
+import renderHeadingUnderline from "../render/renderHeadingUnderline";
+import renderHtmlBlock from "../render/renderHtmlBlock";
+import renderHtmlSpan from "../render/renderHtmlSpan";
+import renderImage from "../render/renderImage";
+import renderLink from "../render/renderLink";
+import renderListBulleted from "../render/renderListBulleted";
+import renderListOrdered from "../render/renderListOrdered";
+import renderListTaskItem from "../render/renderListTaskItem";
+import renderParagraph from "../render/renderParagraph";
+import renderStrikethrough from "../render/renderStrikethrough";
+import renderStrong from "../render/renderStrong";
+import renderTable from "../render/renderTable";
+import renderTableCell from "../render/renderTableCell";
+import renderTableHeader from "../render/renderTableHeader";
+import renderTableRow from "../render/renderTableRow";
+import renderText from "../render/renderText";
+import renderThematicBreak from "../render/renderThematicBreak";
 import type RuleSet from "../types/RuleSet";
 
 /**
@@ -66,6 +92,34 @@ const gfm: RuleSet = {
 		[testHardBreak.name, testHardBreak],
 		[testLineBreak.name, testLineBreak],
 		[testText.name, testText],
+	]),
+	renderers: new Map([
+		[renderAlert.name, renderAlert],
+		[renderBlockQuote.name, renderBlockQuote],
+		[renderCodeBlock.name, renderCodeBlock],
+		[renderCodeFence.name, renderCodeFence],
+		[renderCodeSpan.name, renderCodeSpan],
+		[renderEmphasis.name, renderEmphasis],
+		[renderFootnote.name, renderFootnote],
+		[renderHardBreak.name, renderHardBreak],
+		[renderHeading.name, renderHeading],
+		[renderHeadingUnderline.name, renderHeadingUnderline],
+		[renderHtmlBlock.name, renderHtmlBlock],
+		[renderHtmlSpan.name, renderHtmlSpan],
+		[renderImage.name, renderImage],
+		[renderLink.name, renderLink],
+		[renderListBulleted.name, renderListBulleted],
+		[renderListOrdered.name, renderListOrdered],
+		[renderListTaskItem.name, renderListTaskItem],
+		[renderParagraph.name, renderParagraph],
+		[renderStrikethrough.name, renderStrikethrough],
+		[renderStrong.name, renderStrong],
+		[renderTable.name, renderTable],
+		[renderTableCell.name, renderTableCell],
+		[renderTableHeader.name, renderTableHeader],
+		[renderTableRow.name, renderTableRow],
+		[renderText.name, renderText],
+		[renderThematicBreak.name, renderThematicBreak],
 	]),
 };
 

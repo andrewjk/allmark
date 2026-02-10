@@ -47,7 +47,7 @@ fs.writeFileSync(
 // ALLMARK
 const allmarkHtmlFile = "./full-allmark.html";
 const root = parse(markdownSource, gfmx);
-fs.writeFileSync(allmarkHtmlFile, renderHtml(root)
+fs.writeFileSync(allmarkHtmlFile, renderHtml(root, gfmx.renderers)
 );
 
 // MARKDOWN-IT
@@ -80,7 +80,7 @@ bench
 	})
 	.add("allmark", () => {
 		const doc = parse(markdownSource, gfmx);
-		renderHtml(doc);
+		renderHtml(doc, gfmx.renderers);
 	})
 	.add("cmark-gfm", () => {
 		renderHtmlSync(markdownSource, cmarkOptions);

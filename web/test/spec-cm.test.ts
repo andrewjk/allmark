@@ -13,7 +13,7 @@ describe("spec-cm", () => {
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -26,7 +26,7 @@ describe("spec-cm", () => {
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -41,7 +41,7 @@ describe("spec-cm", () => {
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -60,7 +60,7 @@ describe("spec-cm", () => {
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -80,7 +80,7 @@ describe("spec-cm", () => {
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -95,7 +95,7 @@ describe("spec-cm", () => {
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -112,7 +112,7 @@ describe("spec-cm", () => {
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -127,7 +127,7 @@ bar
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -151,7 +151,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -163,7 +163,7 @@ bar
 <h1>Foo</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -175,7 +175,7 @@ bar
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -187,7 +187,7 @@ bar
 <p>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_\`{|}~</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -199,7 +199,7 @@ bar
 <p>\\	\\A\\a\\ \\3\\φ\\«</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -227,7 +227,7 @@ bar
 &amp;ouml; not a character entity</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -239,7 +239,7 @@ bar
 <p>\\<em>emphasis</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -253,7 +253,7 @@ bar
 bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -265,7 +265,7 @@ bar</p>
 <p><code>\\[\\\`</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -278,7 +278,7 @@ bar</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -293,7 +293,7 @@ bar</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -305,7 +305,7 @@ bar</p>
 <p><a href="https://example.com?find=%5C*">https://example.com?find=\\*</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -317,7 +317,7 @@ bar</p>
 <a href="/bar\\/)">
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -329,7 +329,7 @@ bar</p>
 <p><a href="/bar*" title="ti*tle">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -343,7 +343,7 @@ bar</p>
 <p><a href="/bar*" title="ti*tle">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -358,7 +358,7 @@ foo
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -374,7 +374,7 @@ foo
 ∲ ≧̸</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -386,7 +386,7 @@ foo
 <p># Ӓ Ϡ �</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -398,7 +398,7 @@ foo
 <p>&quot; ആ ಫ</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -416,7 +416,7 @@ foo
 &amp;ThisIsNotDefined; &amp;hi?;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -428,7 +428,7 @@ foo
 <p>&amp;copy</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -440,7 +440,7 @@ foo
 <p>&amp;MadeUpEntity;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -452,7 +452,7 @@ foo
 <a href="&ouml;&ouml;.html">
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -464,7 +464,7 @@ foo
 <p><a href="/f%C3%B6%C3%B6" title="föö">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -478,7 +478,7 @@ foo
 <p><a href="/f%C3%B6%C3%B6" title="föö">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -493,7 +493,7 @@ foo
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -505,7 +505,7 @@ foo
 <p><code>f&amp;ouml;&amp;ouml;</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -518,7 +518,7 @@ foo
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -532,7 +532,7 @@ foo
 <em>foo</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -549,7 +549,7 @@ foo
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -563,7 +563,7 @@ foo&#10;&#10;bar
 bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -575,7 +575,7 @@ bar</p>
 <p>	foo</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -587,7 +587,7 @@ bar</p>
 <p>[a](url &quot;tit&quot;)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -603,7 +603,7 @@ bar</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -619,7 +619,7 @@ ___
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -631,7 +631,7 @@ ___
 <p>+++</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -643,7 +643,7 @@ ___
 <p>===</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -659,7 +659,7 @@ __
 __</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -675,7 +675,7 @@ __</p>
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -688,7 +688,7 @@ __</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -702,7 +702,7 @@ Foo
 ***</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -714,7 +714,7 @@ _____________________________________
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -726,7 +726,7 @@ _____________________________________
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -738,7 +738,7 @@ _____________________________________
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -750,7 +750,7 @@ _____________________________________
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -762,7 +762,7 @@ _____________________________________
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -780,7 +780,7 @@ a------
 <p>---a---</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -792,7 +792,7 @@ a------
 <p><em>-</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -812,7 +812,7 @@ a------
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -828,7 +828,7 @@ bar
 <p>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -843,7 +843,7 @@ bar
 <p>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -863,7 +863,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -881,7 +881,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -903,7 +903,7 @@ bar
 <h6>foo</h6>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -915,7 +915,7 @@ bar
 <p>####### foo</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -930,7 +930,7 @@ bar
 <p>#hashtag</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -942,7 +942,7 @@ bar
 <p>## foo</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -954,7 +954,7 @@ bar
 <h1>foo <em>bar</em> *baz*</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -966,7 +966,7 @@ bar
 <h1>foo</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -982,7 +982,7 @@ bar
 <h1>foo</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -995,7 +995,7 @@ bar
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1009,7 +1009,7 @@ foo
 # bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1023,7 +1023,7 @@ foo
 <h3>bar</h3>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1037,7 +1037,7 @@ foo
 <h5>foo</h5>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1049,7 +1049,7 @@ foo
 <h3>foo</h3>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1061,7 +1061,7 @@ foo
 <h3>foo ### b</h3>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1073,7 +1073,7 @@ foo
 <h1>foo#</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1089,7 +1089,7 @@ foo
 <h1>foo #</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1105,7 +1105,7 @@ foo
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1121,7 +1121,7 @@ Bar foo
 <p>Bar foo</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1137,7 +1137,7 @@ Bar foo
 <h3></h3>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1154,7 +1154,7 @@ Foo *bar*
 <h2>Foo <em>bar</em></h2>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1169,7 +1169,7 @@ baz*
 baz</em></h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1184,7 +1184,7 @@ baz*
 baz</em></h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1201,7 +1201,7 @@ Foo
 <h1>Foo</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1222,7 +1222,7 @@ Foo
 <h1>Foo</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1243,7 +1243,7 @@ Foo
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1256,7 +1256,7 @@ Foo
 <h2>Foo</h2>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1270,7 +1270,7 @@ Foo
 ---</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1289,7 +1289,7 @@ Foo
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1302,7 +1302,7 @@ Foo
 <h2>Foo</h2>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1315,7 +1315,7 @@ Foo\\
 <h2>Foo\\</h2>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1336,7 +1336,7 @@ of dashes"/>
 <p>of dashes&quot;/&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1352,7 +1352,7 @@ of dashes"/>
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1370,7 +1370,7 @@ bar
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1386,7 +1386,7 @@ bar
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1401,7 +1401,7 @@ Bar
 Bar</h2>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1421,7 +1421,7 @@ Baz
 <p>Baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1434,7 +1434,7 @@ Baz
 <p>====</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1448,7 +1448,7 @@ Baz
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1464,7 +1464,7 @@ Baz
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1479,7 +1479,7 @@ Baz
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1495,7 +1495,7 @@ Baz
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1508,7 +1508,7 @@ Baz
 <h2>&gt; foo</h2>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1526,7 +1526,7 @@ baz
 <p>baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1546,7 +1546,7 @@ bar</p>
 <p>baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1564,7 +1564,7 @@ bar</p>
 <p>baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1582,7 +1582,7 @@ bar
 baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1597,7 +1597,7 @@ baz</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1616,7 +1616,7 @@ baz</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1637,7 +1637,7 @@ baz</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1656,7 +1656,7 @@ baz</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1681,7 +1681,7 @@ chunk3
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1698,7 +1698,7 @@ chunk3
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1713,7 +1713,7 @@ Foo
 bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1728,7 +1728,7 @@ bar
 <p>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1751,7 +1751,7 @@ Heading
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1766,7 +1766,7 @@ bar
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1783,7 +1783,7 @@ bar
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1796,7 +1796,7 @@ bar
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1813,7 +1813,7 @@ bar
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1830,7 +1830,7 @@ bar
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1844,7 +1844,7 @@ foo
 <p><code>foo</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1861,7 +1861,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1878,7 +1878,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1895,7 +1895,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1912,7 +1912,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1924,7 +1924,7 @@ aaa
 <pre><code></code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1942,7 +1942,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1961,7 +1961,7 @@ bbb
 <p>bbb</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1978,7 +1978,7 @@ bbb
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -1991,7 +1991,7 @@ bbb
 <pre><code></code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2008,7 +2008,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2027,7 +2027,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2046,7 +2046,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2063,7 +2063,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2078,7 +2078,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2093,7 +2093,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2109,7 +2109,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2123,7 +2123,7 @@ aaa
 aaa</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2139,7 +2139,7 @@ aaa
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2158,7 +2158,7 @@ baz
 <p>baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2178,7 +2178,7 @@ bar
 <h1>baz</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2197,7 +2197,7 @@ end
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2216,7 +2216,7 @@ end
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2229,7 +2229,7 @@ end
 <pre><code class="language-;"></code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2243,7 +2243,7 @@ foo
 foo</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2258,7 +2258,7 @@ foo
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2273,7 +2273,7 @@ foo
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2296,7 +2296,7 @@ _world_.
 </td></tr></table>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2323,7 +2323,7 @@ okay.
 <p>okay.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2339,7 +2339,7 @@ okay.
          <foo><a>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2353,7 +2353,7 @@ okay.
 *foo*
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2371,7 +2371,7 @@ okay.
 </DIV>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2387,7 +2387,7 @@ okay.
 </div>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2403,7 +2403,7 @@ okay.
 </div>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2420,7 +2420,7 @@ okay.
 <p><em>bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2434,7 +2434,7 @@ okay.
 *hi*
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2448,7 +2448,7 @@ foo
 foo
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2462,7 +2462,7 @@ foo
 *foo*
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2474,7 +2474,7 @@ foo
 <div><a href="bar">*foo*</a></div>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2490,7 +2490,7 @@ foo
 </td></tr></table>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2508,7 +2508,7 @@ int x = 33;
 \`\`\`
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2524,7 +2524,7 @@ int x = 33;
 </a>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2540,7 +2540,7 @@ int x = 33;
 </Warning>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2556,7 +2556,7 @@ int x = 33;
 </i>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2570,7 +2570,7 @@ int x = 33;
 *bar*
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2586,7 +2586,7 @@ int x = 33;
 </del>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2604,7 +2604,7 @@ int x = 33;
 </del>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2616,7 +2616,7 @@ int x = 33;
 <p><del><em>foo</em></del></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2640,7 +2640,7 @@ main = print $ parseTags tags
 <p>okay</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2662,7 +2662,7 @@ document.getElementById("demo").innerHTML = "Hello JavaScript!";
 <p>okay</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2686,7 +2686,7 @@ _bar_
 </textarea>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2710,7 +2710,7 @@ p {color:blue;}
 <p>okay</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2728,7 +2728,7 @@ foo
 foo
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2747,7 +2747,7 @@ foo
 <p>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2765,7 +2765,7 @@ foo
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2779,7 +2779,7 @@ foo
 <p><em>foo</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2793,7 +2793,7 @@ foo
 <p><em>baz</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2809,7 +2809,7 @@ foo
 </script>1. *bar*
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2829,7 +2829,7 @@ bar
 <p>okay</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2851,7 +2851,7 @@ okay
 <p>okay</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2863,7 +2863,7 @@ okay
 <!DOCTYPE html>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2899,7 +2899,7 @@ function matchwo(a,b)
 <p>okay</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2915,7 +2915,7 @@ function matchwo(a,b)
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2931,7 +2931,7 @@ function matchwo(a,b)
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2949,7 +2949,7 @@ bar
 </div>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2967,7 +2967,7 @@ bar
 *foo*
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -2983,7 +2983,7 @@ baz
 baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3001,7 +3001,7 @@ baz</p>
 </div>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3017,7 +3017,7 @@ baz</p>
 </div>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3045,7 +3045,7 @@ Hi
 </table>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3074,7 +3074,7 @@ Hi
 </table>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3088,7 +3088,7 @@ Hi
 <p><a href="/url" title="title">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3104,7 +3104,7 @@ Hi
 <p><a href="/url" title="the title">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3118,7 +3118,7 @@ Hi
 <p><a href="my_(url)" title="title (with parens)">Foo*bar]</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3134,7 +3134,7 @@ Hi
 <p><a href="my%20url" title="title">Foo bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3156,7 +3156,7 @@ line2
 ">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3174,7 +3174,7 @@ with blank line'
 <p>[foo]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3189,7 +3189,7 @@ with blank line'
 <p><a href="/url">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3204,7 +3204,7 @@ with blank line'
 <p>[foo]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3218,7 +3218,7 @@ with blank line'
 <p><a href="">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3233,7 +3233,7 @@ with blank line'
 <p>[foo]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3247,7 +3247,7 @@ with blank line'
 <p><a href="/url%5Cbar*baz" title="foo&quot;bar\\baz">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3261,7 +3261,7 @@ with blank line'
 <p><a href="url">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3276,7 +3276,7 @@ with blank line'
 <p><a href="first">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3290,7 +3290,7 @@ with blank line'
 <p><a href="/url">Foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3304,7 +3304,7 @@ with blank line'
 <p><a href="/%CF%86%CE%BF%CF%85">αγω</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3316,7 +3316,7 @@ with blank line'
 
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3331,7 +3331,7 @@ bar
 <p>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3343,7 +3343,7 @@ bar
 <p>[foo]: /url &quot;title&quot; ok</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3356,7 +3356,7 @@ bar
 <p>&quot;title&quot; ok</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3372,7 +3372,7 @@ bar
 <p>[foo]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3390,7 +3390,7 @@ bar
 <p>[foo]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3407,7 +3407,7 @@ Foo
 <p>[bar]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3424,7 +3424,7 @@ Foo
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3440,7 +3440,7 @@ bar
 <p><a href="/url">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3455,7 +3455,7 @@ bar
 <a href="/url">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3476,7 +3476,7 @@ bar
 <a href="/baz-url">baz</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3492,7 +3492,7 @@ bar
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3507,7 +3507,7 @@ bbb
 <p>bbb</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3526,7 +3526,7 @@ bbb</p>
 ddd</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3542,7 +3542,7 @@ bbb
 <p>bbb</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3556,7 +3556,7 @@ bbb
 bbb</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3572,7 +3572,7 @@ bbb
 ccc</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3586,7 +3586,7 @@ bbb
 bbb</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3601,7 +3601,7 @@ bbb
 <p>bbb</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3615,7 +3615,7 @@ bbb
 bbb</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3635,7 +3635,7 @@ aaa
 <h1>aaa</h1>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3653,7 +3653,7 @@ baz</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3671,7 +3671,7 @@ baz</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3689,7 +3689,7 @@ baz</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3706,7 +3706,7 @@ baz</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3724,7 +3724,7 @@ baz</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3742,7 +3742,7 @@ foo</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3758,7 +3758,7 @@ foo</p>
 <hr />
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3778,7 +3778,7 @@ foo</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3796,7 +3796,7 @@ foo</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3814,7 +3814,7 @@ foo
 <pre><code></code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3830,7 +3830,7 @@ foo
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3843,7 +3843,7 @@ foo
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3858,7 +3858,7 @@ foo
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3874,7 +3874,7 @@ foo
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3893,7 +3893,7 @@ foo
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3909,7 +3909,7 @@ bar</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3926,7 +3926,7 @@ bar</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3942,7 +3942,7 @@ foo
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3962,7 +3962,7 @@ foo
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3978,7 +3978,7 @@ baz</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -3995,7 +3995,7 @@ baz
 <p>baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4012,7 +4012,7 @@ baz
 <p>baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4032,7 +4032,7 @@ bar</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4054,7 +4054,7 @@ baz</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4074,7 +4074,7 @@ baz</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4097,7 +4097,7 @@ with two lines.</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4124,7 +4124,7 @@ with two lines.</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4141,7 +4141,7 @@ with two lines.</p>
 <p>two</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4160,7 +4160,7 @@ with two lines.</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4178,7 +4178,7 @@ with two lines.</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4197,7 +4197,7 @@ with two lines.</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4220,7 +4220,7 @@ with two lines.</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4241,7 +4241,7 @@ with two lines.</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4256,7 +4256,7 @@ with two lines.</p>
 <p>2.two</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4276,7 +4276,7 @@ with two lines.</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4306,7 +4306,7 @@ with two lines.</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4332,7 +4332,7 @@ baz
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4346,7 +4346,7 @@ baz
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4358,7 +4358,7 @@ baz
 <p>1234567890. not ok</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4372,7 +4372,7 @@ baz
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4386,7 +4386,7 @@ baz
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4398,7 +4398,7 @@ baz
 <p>-1. not ok</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4418,7 +4418,7 @@ baz
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4438,7 +4438,7 @@ baz
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4458,7 +4458,7 @@ paragraph
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4482,7 +4482,7 @@ paragraph
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4506,7 +4506,7 @@ paragraph
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4521,7 +4521,7 @@ bar
 <p>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4538,7 +4538,7 @@ bar
 <p>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4557,7 +4557,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4586,7 +4586,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4601,7 +4601,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4618,7 +4618,7 @@ bar
 <p>foo</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4636,7 +4636,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4654,7 +4654,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4672,7 +4672,7 @@ bar
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4686,7 +4686,7 @@ bar
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4705,7 +4705,7 @@ foo
 1.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4732,7 +4732,7 @@ with two lines.</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4759,7 +4759,7 @@ with two lines.</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4786,7 +4786,7 @@ with two lines.</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4809,7 +4809,7 @@ with two lines.</p>
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4836,7 +4836,7 @@ with two lines.</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4852,7 +4852,7 @@ with two lines.</li>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4874,7 +4874,7 @@ continued here.</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4896,7 +4896,7 @@ continued here.</p>
 </blockquote>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4925,7 +4925,7 @@ continued here.</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4945,7 +4945,7 @@ continued here.</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4964,7 +4964,7 @@ continued here.</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -4982,7 +4982,7 @@ continued here.</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5000,7 +5000,7 @@ continued here.</p>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5022,7 +5022,7 @@ continued here.</p>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5044,7 +5044,7 @@ baz</li>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5064,7 +5064,7 @@ baz</li>
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5084,7 +5084,7 @@ baz</li>
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5102,7 +5102,7 @@ Foo
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5116,7 +5116,7 @@ The number of windows in my house is
 14.  The number of doors is 6.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5132,7 +5132,7 @@ The number of windows in my house is
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5159,7 +5159,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5189,7 +5189,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5215,7 +5215,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5246,7 +5246,7 @@ The number of windows in my house is
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5272,7 +5272,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5298,7 +5298,7 @@ The number of windows in my house is
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5320,7 +5320,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5345,7 +5345,7 @@ The number of windows in my house is
 </code></pre>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5370,7 +5370,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5393,7 +5393,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5420,7 +5420,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5446,7 +5446,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5473,7 +5473,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5499,7 +5499,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5521,7 +5521,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5547,7 +5547,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5561,7 +5561,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5580,7 +5580,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5602,7 +5602,7 @@ The number of windows in my house is
 </ol>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5625,7 +5625,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5658,7 +5658,7 @@ The number of windows in my house is
 </ul>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5670,7 +5670,7 @@ The number of windows in my house is
 <p><code>hi</code>lo\`</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5682,7 +5682,7 @@ The number of windows in my house is
 <p><code>foo</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5694,7 +5694,7 @@ The number of windows in my house is
 <p><code>foo \` bar</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5706,7 +5706,7 @@ The number of windows in my house is
 <p><code>\`\`</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5718,7 +5718,7 @@ The number of windows in my house is
 <p><code> \`\` </code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5730,7 +5730,7 @@ The number of windows in my house is
 <p><code> a</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5742,7 +5742,7 @@ The number of windows in my house is
 <p><code> b </code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5756,7 +5756,7 @@ The number of windows in my house is
 <code>  </code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5772,7 +5772,7 @@ baz
 <p><code>foo bar   baz</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5786,7 +5786,7 @@ foo
 <p><code>foo </code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5799,7 +5799,7 @@ baz\`
 <p><code>foo   bar  baz</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5811,7 +5811,7 @@ baz\`
 <p><code>foo\\</code>bar\`</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5823,7 +5823,7 @@ baz\`
 <p><code>foo\`bar</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5835,7 +5835,7 @@ baz\`
 <p><code>foo \`\` bar</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5847,7 +5847,7 @@ baz\`
 <p>*foo<code>*</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5859,7 +5859,7 @@ baz\`
 <p>[not a <code>link](/foo</code>)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5871,7 +5871,7 @@ baz\`
 <p><code>&lt;a href=&quot;</code>&quot;&gt;\`</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5883,7 +5883,7 @@ baz\`
 <p><a href="\`">\`</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5895,7 +5895,7 @@ baz\`
 <p><code>&lt;https://foo.bar.</code>baz&gt;\`</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5907,7 +5907,7 @@ baz\`
 <p><a href="https://foo.bar.%60baz">https://foo.bar.\`baz</a>\`</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5919,7 +5919,7 @@ baz\`
 <p>\`\`\`foo\`\`</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5931,7 +5931,7 @@ baz\`
 <p>\`foo</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5943,7 +5943,7 @@ baz\`
 <p>\`foo<code>bar</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5955,7 +5955,7 @@ baz\`
 <p><em>foo bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5967,7 +5967,7 @@ a * foo bar*
 <p>a * foo bar*</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5979,7 +5979,7 @@ a*"foo"*
 <p>a*&quot;foo&quot;*</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -5991,7 +5991,7 @@ a*"foo"*
 <p>* a *</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6009,7 +6009,7 @@ a*"foo"*
 <p>*€*charlie.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6021,7 +6021,7 @@ foo*bar*
 <p>foo<em>bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6033,7 +6033,7 @@ foo*bar*
 <p>5<em>6</em>78</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6045,7 +6045,7 @@ _foo bar_
 <p><em>foo bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6057,7 +6057,7 @@ _ foo bar_
 <p>_ foo bar_</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6069,7 +6069,7 @@ a_"foo"_
 <p>a_&quot;foo&quot;_</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6081,7 +6081,7 @@ foo_bar_
 <p>foo_bar_</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6093,7 +6093,7 @@ foo_bar_
 <p>5_6_78</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6105,7 +6105,7 @@ foo_bar_
 <p>пристаням_стремятся_</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6117,7 +6117,7 @@ aa_"bb"_cc
 <p>aa_&quot;bb&quot;_cc</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6129,7 +6129,7 @@ foo-_(bar)_
 <p>foo-<em>(bar)</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6141,7 +6141,7 @@ _foo*
 <p>_foo*</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6153,7 +6153,7 @@ _foo*
 <p>*foo bar *</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6167,7 +6167,7 @@ _foo*
 *</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6179,7 +6179,7 @@ _foo*
 <p>*(*foo)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6191,7 +6191,7 @@ _foo*
 <p><em>(<em>foo</em>)</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6203,7 +6203,7 @@ _foo*
 <p><em>foo</em>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6215,7 +6215,7 @@ _foo bar _
 <p>_foo bar _</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6227,7 +6227,7 @@ _(_foo)
 <p>_(_foo)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6239,7 +6239,7 @@ _(_foo_)_
 <p><em>(<em>foo</em>)</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6251,7 +6251,7 @@ _foo_bar
 <p>_foo_bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6263,7 +6263,7 @@ _пристаням_стремятся
 <p>_пристаням_стремятся</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6275,7 +6275,7 @@ _foo_bar_baz_
 <p><em>foo_bar_baz</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6287,7 +6287,7 @@ _(bar)_.
 <p><em>(bar)</em>.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6299,7 +6299,7 @@ _(bar)_.
 <p><strong>foo bar</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6311,7 +6311,7 @@ _(bar)_.
 <p>** foo bar**</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6323,7 +6323,7 @@ a**"foo"**
 <p>a**&quot;foo&quot;**</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6335,7 +6335,7 @@ foo**bar**
 <p>foo<strong>bar</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6347,7 +6347,7 @@ __foo bar__
 <p><strong>foo bar</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6359,7 +6359,7 @@ __ foo bar__
 <p>__ foo bar__</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6373,7 +6373,7 @@ foo bar__
 foo bar__</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6385,7 +6385,7 @@ a__"foo"__
 <p>a__&quot;foo&quot;__</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6397,7 +6397,7 @@ foo__bar__
 <p>foo__bar__</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6409,7 +6409,7 @@ foo__bar__
 <p>5__6__78</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6421,7 +6421,7 @@ foo__bar__
 <p>пристаням__стремятся__</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6433,7 +6433,7 @@ __foo, __bar__, baz__
 <p><strong>foo, <strong>bar</strong>, baz</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6445,7 +6445,7 @@ foo-__(bar)__
 <p>foo-<strong>(bar)</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6457,7 +6457,7 @@ foo-__(bar)__
 <p>**foo bar **</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6469,7 +6469,7 @@ foo-__(bar)__
 <p>**(**foo)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6481,7 +6481,7 @@ foo-__(bar)__
 <p><em>(<strong>foo</strong>)</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6495,7 +6495,7 @@ foo-__(bar)__
 <em>Asclepias physocarpa</em>)</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6507,7 +6507,7 @@ foo-__(bar)__
 <p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6519,7 +6519,7 @@ foo-__(bar)__
 <p><strong>foo</strong>bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6531,7 +6531,7 @@ __foo bar __
 <p>__foo bar __</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6543,7 +6543,7 @@ __(__foo)
 <p>__(__foo)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6555,7 +6555,7 @@ _(__foo__)_
 <p><em>(<strong>foo</strong>)</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6567,7 +6567,7 @@ __foo__bar
 <p>__foo__bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6579,7 +6579,7 @@ __пристаням__стремятся
 <p>__пристаням__стремятся</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6591,7 +6591,7 @@ __foo__bar__baz__
 <p><strong>foo__bar__baz</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6603,7 +6603,7 @@ __(bar)__.
 <p><strong>(bar)</strong>.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6615,7 +6615,7 @@ __(bar)__.
 <p><em>foo <a href="/url">bar</a></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6629,7 +6629,7 @@ bar*
 bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6641,7 +6641,7 @@ _foo __bar__ baz_
 <p><em>foo <strong>bar</strong> baz</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6653,7 +6653,7 @@ _foo _bar_ baz_
 <p><em>foo <em>bar</em> baz</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6665,7 +6665,7 @@ __foo_ bar_
 <p><em><em>foo</em> bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6677,7 +6677,7 @@ __foo_ bar_
 <p><em>foo <em>bar</em></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6689,7 +6689,7 @@ __foo_ bar_
 <p><em>foo <strong>bar</strong> baz</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6701,7 +6701,7 @@ __foo_ bar_
 <p><em>foo<strong>bar</strong>baz</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6713,7 +6713,7 @@ __foo_ bar_
 <p><em>foo**bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6725,7 +6725,7 @@ __foo_ bar_
 <p><em><strong>foo</strong> bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6737,7 +6737,7 @@ __foo_ bar_
 <p><em>foo <strong>bar</strong></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6749,7 +6749,7 @@ __foo_ bar_
 <p><em>foo<strong>bar</strong></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6761,7 +6761,7 @@ foo***bar***baz
 <p>foo<em><strong>bar</strong></em>baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6773,7 +6773,7 @@ foo******bar*********baz
 <p>foo<strong><strong><strong>bar</strong></strong></strong>***baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6785,7 +6785,7 @@ foo******bar*********baz
 <p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6797,7 +6797,7 @@ foo******bar*********baz
 <p><em>foo <a href="/url"><em>bar</em></a></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6809,7 +6809,7 @@ foo******bar*********baz
 <p>** is not an empty emphasis</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6821,7 +6821,7 @@ foo******bar*********baz
 <p>**** is not an empty strong emphasis</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6833,7 +6833,7 @@ foo******bar*********baz
 <p><strong>foo <a href="/url">bar</a></strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6847,7 +6847,7 @@ bar**
 bar</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6859,7 +6859,7 @@ __foo _bar_ baz__
 <p><strong>foo <em>bar</em> baz</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6871,7 +6871,7 @@ __foo __bar__ baz__
 <p><strong>foo <strong>bar</strong> baz</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6883,7 +6883,7 @@ ____foo__ bar__
 <p><strong><strong>foo</strong> bar</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6895,7 +6895,7 @@ ____foo__ bar__
 <p><strong>foo <strong>bar</strong></strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6907,7 +6907,7 @@ ____foo__ bar__
 <p><strong>foo <em>bar</em> baz</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6919,7 +6919,7 @@ ____foo__ bar__
 <p><strong>foo<em>bar</em>baz</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6931,7 +6931,7 @@ ____foo__ bar__
 <p><strong><em>foo</em> bar</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6943,7 +6943,7 @@ ____foo__ bar__
 <p><strong>foo <em>bar</em></strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6957,7 +6957,7 @@ bim* bop**
 bim</em> bop</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6969,7 +6969,7 @@ bim</em> bop</strong></p>
 <p><strong>foo <a href="/url"><em>bar</em></a></strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6981,7 +6981,7 @@ __ is not an empty emphasis
 <p>__ is not an empty emphasis</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -6993,7 +6993,7 @@ ____ is not an empty strong emphasis
 <p>____ is not an empty strong emphasis</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7005,7 +7005,7 @@ foo ***
 <p>foo ***</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7017,7 +7017,7 @@ foo *\\**
 <p>foo <em>*</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7029,7 +7029,7 @@ foo *_*
 <p>foo <em>_</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7041,7 +7041,7 @@ foo *****
 <p>foo *****</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7053,7 +7053,7 @@ foo **\\***
 <p>foo <strong>*</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7065,7 +7065,7 @@ foo **_**
 <p>foo <strong>_</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7077,7 +7077,7 @@ foo **_**
 <p>*<em>foo</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7089,7 +7089,7 @@ foo **_**
 <p><em>foo</em>*</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7101,7 +7101,7 @@ foo **_**
 <p>*<strong>foo</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7113,7 +7113,7 @@ foo **_**
 <p>***<em>foo</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7125,7 +7125,7 @@ foo **_**
 <p><strong>foo</strong>*</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7137,7 +7137,7 @@ foo **_**
 <p><em>foo</em>***</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7149,7 +7149,7 @@ foo ___
 <p>foo ___</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7161,7 +7161,7 @@ foo _\\__
 <p>foo <em>_</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7173,7 +7173,7 @@ foo _*_
 <p>foo <em>*</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7185,7 +7185,7 @@ foo _____
 <p>foo _____</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7197,7 +7197,7 @@ foo __\\___
 <p>foo <strong>_</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7209,7 +7209,7 @@ foo __*__
 <p>foo <strong>*</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7221,7 +7221,7 @@ __foo_
 <p>_<em>foo</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7233,7 +7233,7 @@ _foo__
 <p><em>foo</em>_</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7245,7 +7245,7 @@ ___foo__
 <p>_<strong>foo</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7257,7 +7257,7 @@ ____foo_
 <p>___<em>foo</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7269,7 +7269,7 @@ __foo___
 <p><strong>foo</strong>_</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7281,7 +7281,7 @@ _foo____
 <p><em>foo</em>___</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7293,7 +7293,7 @@ _foo____
 <p><strong>foo</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7305,7 +7305,7 @@ _foo____
 <p><em><em>foo</em></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7317,7 +7317,7 @@ __foo__
 <p><strong>foo</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7329,7 +7329,7 @@ _*foo*_
 <p><em><em>foo</em></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7341,7 +7341,7 @@ _*foo*_
 <p><strong><strong>foo</strong></strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7353,7 +7353,7 @@ ____foo____
 <p><strong><strong>foo</strong></strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7365,7 +7365,7 @@ ____foo____
 <p><strong><strong><strong>foo</strong></strong></strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7377,7 +7377,7 @@ ____foo____
 <p><em><strong>foo</strong></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7389,7 +7389,7 @@ _____foo_____
 <p><em><strong><strong>foo</strong></strong></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7401,7 +7401,7 @@ _____foo_____
 <p><em>foo _bar</em> baz_</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7413,7 +7413,7 @@ _____foo_____
 <p><em>foo <strong>bar *baz bim</strong> bam</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7425,7 +7425,7 @@ _____foo_____
 <p>**foo <strong>bar baz</strong></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7437,7 +7437,7 @@ _____foo_____
 <p>*foo <em>bar baz</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7449,7 +7449,7 @@ _____foo_____
 <p>*<a href="/url">bar*</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7461,7 +7461,7 @@ _foo [bar_](/url)
 <p>_foo <a href="/url">bar_</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7473,7 +7473,7 @@ _foo [bar_](/url)
 <p>*<img src="foo" title="*"/></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7485,7 +7485,7 @@ _foo [bar_](/url)
 <p>**<a href="**"></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7497,7 +7497,7 @@ __<a href="__">
 <p>__<a href="__"></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7509,7 +7509,7 @@ __<a href="__">
 <p><em>a <code>*</code></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7521,7 +7521,7 @@ _a \`_\`_
 <p><em>a <code>_</code></em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7533,7 +7533,7 @@ _a \`_\`_
 <p>**a<a href="https://foo.bar/?q=**">https://foo.bar/?q=**</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7545,7 +7545,7 @@ __a<https://foo.bar/?q=__>
 <p>__a<a href="https://foo.bar/?q=__">https://foo.bar/?q=__</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7557,7 +7557,7 @@ __a<https://foo.bar/?q=__>
 <p><a href="/uri" title="title">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7569,7 +7569,7 @@ __a<https://foo.bar/?q=__>
 <p><a href="/uri">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7581,7 +7581,7 @@ __a<https://foo.bar/?q=__>
 <p><a href="./target.md"></a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7593,7 +7593,7 @@ __a<https://foo.bar/?q=__>
 <p><a href="">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7605,7 +7605,7 @@ __a<https://foo.bar/?q=__>
 <p><a href="">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7617,7 +7617,7 @@ __a<https://foo.bar/?q=__>
 <p><a href=""></a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7629,7 +7629,7 @@ __a<https://foo.bar/?q=__>
 <p>[link](/my uri)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7641,7 +7641,7 @@ __a<https://foo.bar/?q=__>
 <p><a href="/my%20uri">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7655,7 +7655,7 @@ bar)
 bar)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7669,7 +7669,7 @@ bar>)
 bar>)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7681,7 +7681,7 @@ bar>)</p>
 <p><a href="b)c">a</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7693,7 +7693,7 @@ bar>)</p>
 <p>[link](&lt;foo&gt;)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7709,7 +7709,7 @@ bar>)</p>
 [a](<b>c)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7721,7 +7721,7 @@ bar>)</p>
 <p><a href="(foo)">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7733,7 +7733,7 @@ bar>)</p>
 <p><a href="foo(and(bar))">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7745,7 +7745,7 @@ bar>)</p>
 <p>[link](foo(and(bar))</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7757,7 +7757,7 @@ bar>)</p>
 <p><a href="foo(and(bar)">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7769,7 +7769,7 @@ bar>)</p>
 <p><a href="foo(and(bar)">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7781,7 +7781,7 @@ bar>)</p>
 <p><a href="foo):">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7799,7 +7799,7 @@ bar>)</p>
 <p><a href="https://example.com?foo=3#frag">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7811,7 +7811,7 @@ bar>)</p>
 <p><a href="foo%5Cbar">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7823,7 +7823,7 @@ bar>)</p>
 <p><a href="foo%20b%C3%A4">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7835,7 +7835,7 @@ bar>)</p>
 <p><a href="%22title%22">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7851,7 +7851,7 @@ bar>)</p>
 <a href="/url" title="title">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7863,7 +7863,7 @@ bar>)</p>
 <p><a href="/url" title="title &quot;&quot;">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7875,7 +7875,7 @@ bar>)</p>
 <p><a href="/url%C2%A0%22title%22">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7887,7 +7887,7 @@ bar>)</p>
 <p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7899,7 +7899,7 @@ bar>)</p>
 <p><a href="/url" title="title &quot;and&quot; title">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7912,7 +7912,7 @@ bar>)</p>
 <p><a href="/uri" title="title">link</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7924,7 +7924,7 @@ bar>)</p>
 <p>[link] (/uri)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7936,7 +7936,7 @@ bar>)</p>
 <p><a href="/uri">link [foo [bar]]</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7948,7 +7948,7 @@ bar>)</p>
 <p>[link] bar](/uri)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7960,7 +7960,7 @@ bar>)</p>
 <p>[link <a href="/uri">bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7972,7 +7972,7 @@ bar>)</p>
 <p><a href="/uri">link [bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7984,7 +7984,7 @@ bar>)</p>
 <p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -7996,7 +7996,7 @@ bar>)</p>
 <p><a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8008,7 +8008,7 @@ bar>)</p>
 <p>[foo <a href="/uri">bar</a>](/uri)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8020,7 +8020,7 @@ bar>)</p>
 <p>[foo <em>[bar <a href="/uri">baz</a>](/uri)</em>](/uri)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8032,7 +8032,7 @@ bar>)</p>
 <p><img src="uri3" alt="[foo](uri2)" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8044,7 +8044,7 @@ bar>)</p>
 <p>*<a href="/uri">foo*</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8056,7 +8056,7 @@ bar>)</p>
 <p><a href="baz*">foo *bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8068,7 +8068,7 @@ bar>)</p>
 <p><em>foo [bar</em> baz]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8080,7 +8080,7 @@ bar>)</p>
 <p>[foo <bar attr="](baz)"></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8092,7 +8092,7 @@ bar>)</p>
 <p>[foo<code>](/uri)</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8104,7 +8104,7 @@ bar>)</p>
 <p>[foo<a href="https://example.com/?search=%5D(uri)">https://example.com/?search=](uri)</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8118,7 +8118,7 @@ bar>)</p>
 <p><a href="/url" title="title">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8132,7 +8132,7 @@ bar>)</p>
 <p><a href="/uri">link [foo [bar]]</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8146,7 +8146,7 @@ bar>)</p>
 <p><a href="/uri">link [bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8160,7 +8160,7 @@ bar>)</p>
 <p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8174,7 +8174,7 @@ bar>)</p>
 <p><a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8188,7 +8188,7 @@ bar>)</p>
 <p>[foo <a href="/uri">bar</a>]<a href="/uri">ref</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8202,7 +8202,7 @@ bar>)</p>
 <p>[foo <em>bar <a href="/uri">baz</a></em>]<a href="/uri">ref</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8216,7 +8216,7 @@ bar>)</p>
 <p>*<a href="/uri">foo*</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8230,7 +8230,7 @@ bar>)</p>
 <p><a href="/uri">foo *bar</a>*</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8244,7 +8244,7 @@ bar>)</p>
 <p>[foo <bar attr="][ref]"></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8258,7 +8258,7 @@ bar>)</p>
 <p>[foo<code>][ref]</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8272,7 +8272,7 @@ bar>)</p>
 <p>[foo<a href="https://example.com/?search=%5D%5Bref%5D">https://example.com/?search=][ref]</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8286,7 +8286,7 @@ bar>)</p>
 <p><a href="/url" title="title">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8300,7 +8300,7 @@ bar>)</p>
 <p><a href="/url">ẞ</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8315,7 +8315,7 @@ bar>)</p>
 <p><a href="/url">Baz</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8329,7 +8329,7 @@ bar>)</p>
 <p>[foo] <a href="/url" title="title">bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8345,7 +8345,7 @@ bar>)</p>
 <a href="/url" title="title">bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8361,7 +8361,7 @@ bar>)</p>
 <p><a href="/url1">bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8375,7 +8375,7 @@ bar>)</p>
 <p>[bar][foo!]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8390,7 +8390,7 @@ bar>)</p>
 <p>[ref[]: /uri</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8405,7 +8405,7 @@ bar>)</p>
 <p>[ref[bar]]: /uri</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8420,7 +8420,7 @@ bar>)</p>
 <p>[[[foo]]]: /url</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8434,7 +8434,7 @@ bar>)</p>
 <p><a href="/uri">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8448,7 +8448,7 @@ bar>)</p>
 <p><a href="/uri">bar\\</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8463,7 +8463,7 @@ bar>)</p>
 <p>[]: /uri</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8482,7 +8482,7 @@ bar>)</p>
 ]: /uri</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8496,7 +8496,7 @@ bar>)</p>
 <p><a href="/url" title="title">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8510,7 +8510,7 @@ bar>)</p>
 <p><a href="/url" title="title"><em>foo</em> bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8524,7 +8524,7 @@ bar>)</p>
 <p><a href="/url" title="title">Foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8540,7 +8540,7 @@ bar>)</p>
 []</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8554,7 +8554,7 @@ bar>)</p>
 <p><a href="/url" title="title">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8568,7 +8568,7 @@ bar>)</p>
 <p><a href="/url" title="title"><em>foo</em> bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8582,7 +8582,7 @@ bar>)</p>
 <p>[<a href="/url" title="title"><em>foo</em> bar</a>]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8596,7 +8596,7 @@ bar>)</p>
 <p>[[bar <a href="/url">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8610,7 +8610,7 @@ bar>)</p>
 <p><a href="/url" title="title">Foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8624,7 +8624,7 @@ bar>)</p>
 <p><a href="/url">foo</a> bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8638,7 +8638,7 @@ bar>)</p>
 <p>[foo]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8652,7 +8652,7 @@ bar>)</p>
 <p>*<a href="/url">foo*</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8667,7 +8667,7 @@ bar>)</p>
 <p><a href="/url2">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8681,7 +8681,7 @@ bar>)</p>
 <p><a href="/url1">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8695,7 +8695,7 @@ bar>)</p>
 <p><a href="">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8709,7 +8709,7 @@ bar>)</p>
 <p><a href="/url1">foo</a>(not a link)</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8723,7 +8723,7 @@ bar>)</p>
 <p>[foo]<a href="/url">bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8738,7 +8738,7 @@ bar>)</p>
 <p><a href="/url2">foo</a><a href="/url1">baz</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8753,7 +8753,7 @@ bar>)</p>
 <p>[foo]<a href="/url1">bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8765,7 +8765,7 @@ bar>)</p>
 <p><img src="/url" alt="foo" title="title" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8779,7 +8779,7 @@ bar>)</p>
 <p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8791,7 +8791,7 @@ bar>)</p>
 <p><img src="/url2" alt="foo bar" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8803,7 +8803,7 @@ bar>)</p>
 <p><img src="/url2" alt="foo bar" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8817,7 +8817,7 @@ bar>)</p>
 <p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8831,7 +8831,7 @@ bar>)</p>
 <p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8843,7 +8843,7 @@ bar>)</p>
 <p><img src="train.jpg" alt="foo" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8855,7 +8855,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>My <img src="/path/to/train.jpg" alt="foo bar" title="title" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8867,7 +8867,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="url" alt="foo" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8879,7 +8879,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8893,7 +8893,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="foo" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8907,7 +8907,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="foo" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8921,7 +8921,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="foo" title="title" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8935,7 +8935,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="foo bar" title="title" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8949,7 +8949,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="Foo" title="title" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8965,7 +8965,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 []</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8979,7 +8979,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="foo" title="title" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -8993,7 +8993,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="foo bar" title="title" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9008,7 +9008,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>[[foo]]: /url &quot;title&quot;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9022,7 +9022,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><img src="/url" alt="Foo" title="title" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9036,7 +9036,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>![foo]</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9050,7 +9050,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>!<a href="/url" title="title">foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9062,7 +9062,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="http://foo.bar.baz">http://foo.bar.baz</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9074,7 +9074,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="https://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean">https://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9086,7 +9086,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="irc://foo.bar:2233/baz">irc://foo.bar:2233/baz</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9098,7 +9098,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="MAILTO:FOO@BAR.BAZ">MAILTO:FOO@BAR.BAZ</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9110,7 +9110,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="a+b+c:d">a+b+c:d</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9122,7 +9122,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="made-up-scheme://foo,bar">made-up-scheme://foo,bar</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9134,7 +9134,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="https://../">https://../</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9146,7 +9146,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="localhost:5001/foo">localhost:5001/foo</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9158,7 +9158,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>&lt;https://foo.bar/baz bim&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9170,7 +9170,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="https://example.com/%5C%5B%5C">https://example.com/\\[\\</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9182,7 +9182,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="mailto:foo@bar.example.com">foo@bar.example.com</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9194,7 +9194,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p><a href="mailto:foo+special@Bar.baz-bar0.com">foo+special@Bar.baz-bar0.com</a></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9206,7 +9206,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>&lt;foo+@bar.example.com&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9218,7 +9218,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>&lt;&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9230,7 +9230,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>&lt; https://foo.bar &gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9242,7 +9242,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>&lt;m:abc&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9254,7 +9254,7 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 <p>&lt;foo.bar.baz&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9266,7 +9266,7 @@ https://example.com
 <p>https://example.com</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9278,7 +9278,7 @@ foo@bar.example.com
 <p>foo@bar.example.com</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9290,7 +9290,7 @@ foo@bar.example.com
 <p><a><bab><c2c></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9302,7 +9302,7 @@ foo@bar.example.com
 <p><a/><b2/></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9316,7 +9316,7 @@ data="foo" >
 data="foo" ></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9330,7 +9330,7 @@ _boolean zoop:33=zoop:33 />
 _boolean zoop:33=zoop:33 /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9342,7 +9342,7 @@ Foo <responsive-image src="foo.jpg" />
 <p>Foo <responsive-image src="foo.jpg" /></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9354,7 +9354,7 @@ Foo <responsive-image src="foo.jpg" />
 <p>&lt;33&gt; &lt;__&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9366,7 +9366,7 @@ Foo <responsive-image src="foo.jpg" />
 <p>&lt;a h*#ref=&quot;hi&quot;&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9378,7 +9378,7 @@ Foo <responsive-image src="foo.jpg" />
 <p>&lt;a href=&quot;hi'&gt; &lt;a href=hi'&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9396,7 +9396,7 @@ foo&gt;&lt;bar/ &gt;
 bim!bop /&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9408,7 +9408,7 @@ bim!bop /&gt;</p>
 <p>&lt;a href='bar'title=title&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9420,7 +9420,7 @@ bim!bop /&gt;</p>
 <p></a></foo ></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9432,7 +9432,7 @@ bim!bop /&gt;</p>
 <p>&lt;/a href=&quot;foo&quot;&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9446,7 +9446,7 @@ comment - with hyphens -->
 comment - with hyphens --></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9461,7 +9461,7 @@ foo <!---> foo -->
 <p>foo <!---> foo --&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9473,7 +9473,7 @@ foo <?php echo $a; ?>
 <p>foo <?php echo $a; ?></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9485,7 +9485,7 @@ foo <!ELEMENT br EMPTY>
 <p>foo <!ELEMENT br EMPTY></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9497,7 +9497,7 @@ foo <![CDATA[>&<]]>
 <p>foo <![CDATA[>&<]]></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9509,7 +9509,7 @@ foo <a href="&ouml;">
 <p>foo <a href="&ouml;"></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9521,7 +9521,7 @@ foo <a href="\\*">
 <p>foo <a href="\\*"></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9533,7 +9533,7 @@ foo <a href="\\*">
 <p>&lt;a href=&quot;&quot;&quot;&gt;</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9547,7 +9547,7 @@ baz
 baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9561,7 +9561,7 @@ baz
 baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9575,7 +9575,7 @@ baz
 baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9589,7 +9589,7 @@ foo
 bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9603,7 +9603,7 @@ foo\\
 bar</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9617,7 +9617,7 @@ bar*
 bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9631,7 +9631,7 @@ bar*
 bar</em></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9644,7 +9644,7 @@ span\`
 <p><code>code   span</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9657,7 +9657,7 @@ span\`
 <p><code>code\\ span</code></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9671,7 +9671,7 @@ bar">
 bar"></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9685,7 +9685,7 @@ bar">
 bar"></p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9697,7 +9697,7 @@ foo\\
 <p>foo\\</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9709,7 +9709,7 @@ foo
 <p>foo</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9721,7 +9721,7 @@ foo
 <h3>foo\\</h3>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9733,7 +9733,7 @@ foo
 <h3>foo</h3>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9747,7 +9747,7 @@ baz
 baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9761,7 +9761,7 @@ foo
 baz</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9773,7 +9773,7 @@ hello $.;'there
 <p>hello $.;'there</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9785,7 +9785,7 @@ Foo χρῆν
 <p>Foo χρῆν</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -9797,7 +9797,7 @@ Multiple     spaces
 <p>Multiple     spaces</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), core);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, core.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 });

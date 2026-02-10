@@ -12,7 +12,7 @@ This should be ~down~ below everything else.
 <p>This should be <sub>down</sub> below everything else.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -25,7 +25,7 @@ This should be ~~down~~ below everything else.
 <p>This should be <del>down</del> below everything else.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -37,7 +37,7 @@ This should be ~~~down~~~ below everything else.
 <p>This should be ~~~down~~~ below everything else.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -45,7 +45,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `H~2~O`;
 		const expected = `<p>H<sub>2</sub>O</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -53,7 +53,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `x~1~ + x~2~`;
 		const expected = `<p>x<sub>1</sub> + x<sub>2</sub></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -61,7 +61,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `a~i~ + b~j~ = c~k~`;
 		const expected = `<p>a<sub>i</sub> + b<sub>j</sub> = c<sub>k</sub></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -69,7 +69,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `~note~ This is important.`;
 		const expected = `<p><sub>note</sub> This is important.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -77,7 +77,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `See index~1~`;
 		const expected = `<p>See index<sub>1</sub></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -85,7 +85,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `Hello~world!~`;
 		const expected = `<p>Hello<sub>world!</sub></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -93,7 +93,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text ~with spaces~ more`;
 		const expected = `<p>text <sub>with spaces</sub> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -101,7 +101,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `math~i+j~`;
 		const expected = `<p>math<sub>i+j</sub></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -109,7 +109,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `test~ing~test`;
 		const expected = `<p>test<sub>ing</sub>test</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -117,7 +117,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text~~text`;
 		const expected = `<p>text~~text</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -125,7 +125,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text ~**bold**~`;
 		const expected = `<p>text <sub><strong>bold</strong></sub></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -133,7 +133,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text ~\`code\`~`;
 		const expected = `<p>text <sub><code>code</code></sub></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -141,7 +141,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text \\~not subscript\\~`;
 		const expected = `<p>text ~not subscript~</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -149,7 +149,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text ~not closed`;
 		const expected = `<p>text ~not closed</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -157,7 +157,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text not opened~`;
 		const expected = `<p>text not opened~</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -167,7 +167,7 @@ This should be ~~~down~~~ below everything else.
 <li>Item with <sub>subscript</sub></li>
 </ul>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -177,7 +177,7 @@ This should be ~~~down~~~ below everything else.
 <p>Quote with <sub>subscript</sub></p>
 </blockquote>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -185,7 +185,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `This is ~~deleted~~ text.`;
 		const expected = `<p>This is <del>deleted</del> text.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -193,7 +193,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text ~tilde ~ inside~`;
 		const expected = `<p>text <sub>tilde ~ inside</sub></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -201,7 +201,7 @@ This should be ~~~down~~~ below everything else.
 		const input = `text ~~struck~~, not subscripted`;
 		const expected = `<p>text <del>struck</del>, not subscripted</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 });

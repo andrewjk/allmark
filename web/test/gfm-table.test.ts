@@ -22,7 +22,7 @@ test("spec table", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -35,7 +35,7 @@ test("table with alignment", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -49,7 +49,7 @@ test("table with inline formatting", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -62,7 +62,7 @@ test("table with missing cells", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -74,7 +74,7 @@ test("table with extra cells", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -85,7 +85,7 @@ test("table with only header", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -98,7 +98,7 @@ test("table with empty cells", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -110,7 +110,7 @@ a | b | c
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -122,7 +122,7 @@ test("table with whitespace variations", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -137,7 +137,7 @@ test("table with mixed content types", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -150,7 +150,7 @@ test("table with single column", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -163,6 +163,6 @@ test("table with many columns", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });

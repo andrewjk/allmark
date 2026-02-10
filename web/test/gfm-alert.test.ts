@@ -15,7 +15,7 @@ test("spec alert", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -31,7 +31,7 @@ test("alert tip", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -47,7 +47,7 @@ test("alert important", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -63,7 +63,7 @@ test("alert warning", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -79,7 +79,7 @@ test("alert caution", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -98,7 +98,7 @@ test("alert with multiple paragraphs", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -114,7 +114,7 @@ test("alert with inline formatting", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -138,7 +138,7 @@ test("alert with list", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -160,7 +160,7 @@ test("alert with code block", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -176,7 +176,7 @@ test("alert with link", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -192,7 +192,7 @@ test("alert case insensitive", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -208,7 +208,7 @@ It should not be treated as an alert.</p>
 </blockquote>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -224,7 +224,7 @@ It should be a regular blockquote.</p>
 </blockquote>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -245,7 +245,7 @@ test("alert with nested blockquote", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -268,7 +268,7 @@ test("consecutive alerts", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -285,6 +285,6 @@ test("alert with empty content", () => {
 </div>
 `;
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });

@@ -26,7 +26,7 @@ This is a second line.
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -36,7 +36,7 @@ test("simple footnote reference", () => {
 [^1]: This is the footnote content.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -47,7 +47,7 @@ test("multiple footnote references", () => {
 [^2]: Second footnote.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -57,7 +57,7 @@ test("footnote with inline formatting", () => {
 [^1]: Footnote with **bold** and *italic* text.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -67,7 +67,7 @@ test("footnote with code", () => {
 [^1]: Footnote with \`inline code\`.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -77,7 +77,7 @@ test("footnote with link", () => {
 [^1]: See [example](http://example.com).`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -85,7 +85,7 @@ test("footnote reference not at definition", () => {
 	const input = `Unknown footnote[^99].`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -97,7 +97,7 @@ test("footnote with multiline content", () => {
     Third line`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -107,7 +107,7 @@ test("repeated footnote reference", () => {
 [^1]: Shared footnote content.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -119,7 +119,7 @@ test("footnote in list", () => {
 [^2]: Second footnote.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -129,7 +129,7 @@ test("footnote in blockquote", () => {
 [^1]: Footnote for quote.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -139,7 +139,7 @@ test("footnote with special characters in label", () => {
 [^a-b_c]: Footnote with special label.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -149,7 +149,7 @@ test("case insensitive footnote labels", () => {
 [^abc]: Should match.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -160,7 +160,7 @@ test("footnote then list", () => {
 - and here is a list`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -170,7 +170,7 @@ test("title after footnote label", () => {
 [^1]: https://example.com test`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -181,7 +181,7 @@ test("link then footnote", () => {
 [^1]: https://example.com/1 test`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -192,7 +192,7 @@ test("footnote then link", () => {
 [foo]: https://example.com/foo`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -202,7 +202,7 @@ test("swallow following brackets", () => {
 [^1]: /footnote`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -216,7 +216,7 @@ test("link reference takes precedence", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -228,6 +228,6 @@ test("multiple paragraphs", () => {
     and multiple paragraphs.`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });

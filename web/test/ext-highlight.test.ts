@@ -12,7 +12,7 @@ This should be =highlighted= as it is important.
 <p>This should be <mark>highlighted</mark> as it is important.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -24,7 +24,7 @@ This should be ==highlighted== as it is important.
 <p>This should be <mark>highlighted</mark> as it is important.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -36,7 +36,7 @@ This should be ===highlighted=== as it is important.
 <p>This should be ===highlighted=== as it is important.</p>
 `;
 		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -44,7 +44,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text =a= more`;
 		const expected = `<p>text <mark>a</mark> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -52,7 +52,7 @@ This should be ===highlighted=== as it is important.
 		const input = `=first= and =second= and =third=`;
 		const expected = `<p><mark>first</mark> and <mark>second</mark> and <mark>third</mark></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -60,7 +60,7 @@ This should be ===highlighted=== as it is important.
 		const input = `=highlighted= This is important.`;
 		const expected = `<p><mark>highlighted</mark> This is important.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -68,7 +68,7 @@ This should be ===highlighted=== as it is important.
 		const input = `This is =highlighted=`;
 		const expected = `<p>This is <mark>highlighted</mark></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -76,7 +76,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text =word!= more`;
 		const expected = `<p>text <mark>word!</mark> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -84,7 +84,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text =with spaces= more`;
 		const expected = `<p>text <mark>with spaces</mark> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -92,7 +92,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text =a+b= more`;
 		const expected = `<p>text <mark>a+b</mark> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -100,7 +100,7 @@ This should be ===highlighted=== as it is important.
 		const input = `test=ing=test`;
 		const expected = `<p>test<mark>ing</mark>test</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -108,7 +108,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text==text`;
 		const expected = `<p>text==text</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -116,7 +116,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text =**bold**=`;
 		const expected = `<p>text <mark><strong>bold</strong></mark></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -124,7 +124,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text =\`code\`=`;
 		const expected = `<p>text <mark><code>code</code></mark></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -132,7 +132,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text \\=not highlight\\=`;
 		const expected = `<p>text =not highlight=</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -140,7 +140,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text =not closed`;
 		const expected = `<p>text =not closed</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -148,7 +148,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text not opened=`;
 		const expected = `<p>text not opened=</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -158,7 +158,7 @@ This should be ===highlighted=== as it is important.
 <li>Item with <mark>highlight</mark></li>
 </ul>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -168,7 +168,7 @@ This should be ===highlighted=== as it is important.
 <p>Quote with <mark>highlight</mark></p>
 </blockquote>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -176,7 +176,7 @@ This should be ===highlighted=== as it is important.
 		const input = `text =equals = inside=`;
 		const expected = `<p>text <mark>equals = inside</mark></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -184,7 +184,7 @@ This should be ===highlighted=== as it is important.
 		const input = `=Start= of document.`;
 		const expected = `<p><mark>Start</mark> of document.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -192,7 +192,7 @@ This should be ===highlighted=== as it is important.
 		const input = `End of =document=`;
 		const expected = `<p>End of <mark>document</mark></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = renderHtml(doc, extended.renderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 });

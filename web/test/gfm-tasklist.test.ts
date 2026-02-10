@@ -21,7 +21,7 @@ test("spec tasklist", () => {
 `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input.substring(1, input.length - 1), gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -30,7 +30,7 @@ test("tasklist with asterisk marker", () => {
 * [x] checked`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -39,7 +39,7 @@ test("tasklist with plus marker", () => {
 + [x] checked`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -48,7 +48,7 @@ test("tasklist in ordered list", () => {
 2. [x] checked item`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -58,7 +58,7 @@ test("tasklist with inline formatting", () => {
 - [ ] ~~strikethrough~~ task`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -67,7 +67,7 @@ test("tasklist with code", () => {
 - [x] another \`code\` task`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -76,7 +76,7 @@ test("tasklist with links", () => {
 - [x] checked [link](http://example.com) task`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -87,7 +87,7 @@ test("nested tasklist", () => {
 - [x] another parent`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -98,7 +98,7 @@ test("mixed tasks and regular items", () => {
 - another regular item`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -107,7 +107,7 @@ test("tasklist with single character", () => {
 - [x] b`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -116,7 +116,7 @@ test("tasklist with empty brackets", () => {
 - [x] `;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -125,7 +125,7 @@ test("tasklist with uppercase X", () => {
 - [X] checked with uppercase`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -134,7 +134,7 @@ test("tasklist in blockquote", () => {
 > - [x] checked quoted task`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -145,7 +145,7 @@ test("tasklist with multiple paragraphs", () => {
 - [x] another task`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -156,7 +156,7 @@ test("tasklist with sublist", () => {
 - [x] checked task`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -165,7 +165,7 @@ test("tasklist with html entities", () => {
 - [x] task with &lt;HTML&gt;`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });
 
@@ -175,6 +175,6 @@ test("tasklist with various whitespace", () => {
 - [ x] three`;
 	const expected = renderHtmlSync(input, options);
 	const doc = parse(input, gfm);
-	const html = renderHtml(doc);
+	const html = renderHtml(doc, gfm.renderers);
 	expect(html.trim()).toBe(expected.trim());
 });

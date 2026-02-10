@@ -34,6 +34,6 @@ Here is some text
 `.trimStart();
 	const root = parse(input, core, false);
 	//console.log(JSON.stringify(root, null, 2));
-	const html = renderHtml(root);
+	const html = renderHtml(root, core.renderers);
 	expect(html).toBe(expected);
 });
