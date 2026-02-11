@@ -152,3 +152,92 @@ import Testing
     #expect(actual == expected)
 }
 ```
+
+---
+
+## .NET Project
+
+.NET port located in `/dotnet` directory.
+
+### .NET Commands
+
+Run from `/dotnet`:
+
+```bash
+dotnet build                    # Build solution
+dotnet test                     # Run tests
+dotnet test --filter "BasicParse"  # Run single test by name
+dotnet format Allmark.sln       # Format code
+```
+
+### .NET Code Style
+
+- **Language**: C# (.NET 10.0)
+- **Types/Records**: PascalCase (e.g., `BlockRule`, `MarkdownNode`, `InlineRule`)
+- **Classes/Methods**: PascalCase (e.g., `ParagraphRule.Create()`, `Parse.Execute()`)
+- **Properties**: PascalCase (e.g., `Name`, `TestStart`)
+- **Local variables**: camelCase
+- TypeScript `interface` → C# `record` or `record class`
+- TypeScript `Map<string, T>` → C# `Dictionary<string, T>`
+- **Formatting**: Tabs, `///` XML docs
+- **Null reference types**: Enabled (`Nullable enable`)
+- **Implicit usings**: Enabled
+
+### .NET Example
+
+```csharp
+namespace Allmark.Block;
+
+using Allmark.Types;
+using static Allmark.Utils.NewNode;
+
+public static class ParagraphRule
+{
+    public static BlockRule Create()
+    {
+        return new BlockRule
+        {
+            Name = "paragraph",
+            TestStart = TestStart,
+            TestContinue = TestContinue,
+        };
+    }
+
+    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    {
+        if (parent.AcceptsContent)
+        {
+            return false;
+        }
+
+        var paragraph = Utils.NewNode("paragraph", true, state.I, state.Line, 1, "", 0, []);
+        state.OpenNodes.Push(paragraph);
+
+        return true;
+    }
+}
+```
+
+### .NET Testing
+
+Uses MSTest framework:
+
+```csharp
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Allmark;
+
+namespace Allmark.Tests;
+
+[TestClass]
+public class ParserTests
+{
+    [TestMethod]
+    public void BasicParse()
+    {
+        var root = Parse.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(root, Core.RuleSet.Renderers);
+
+        Assert.AreEqual(expected, html);
+    }
+}
+```
