@@ -2,7 +2,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import type RendererState from "../types/RendererState";
 import renderChildren from "./renderChildren";
 import renderNode from "./renderNode";
-import { endNewLine, innerNewLine, startNewLine } from "./utils";
+import { endNewLine, innerNewLine, startNewLine } from "./renderUtils";
 
 export default function render(node: MarkdownNode, state: RendererState): void {
 	// TODO: Can we remove paragraphs when parsing instead?

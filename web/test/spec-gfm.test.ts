@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
 import renderHtml from "../src/renderHtml";
-import gfm from "../src/rules/gfm";
+import gfm from "../src/rulesets/gfm";
 
 describe("spec-gfm", () => {
 	test("Example 1, line 368: '→foo→baz→→bim'", () => {

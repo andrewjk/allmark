@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import parse from "../src/parse";
 import renderHtml from "../src/renderHtml";
-import gfm from "../src/rules/gfm";
+import gfm from "../src/rulesets/gfm";
 
 test("spec alert", () => {
 	const input = `

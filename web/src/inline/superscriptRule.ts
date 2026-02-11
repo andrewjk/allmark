@@ -2,7 +2,7 @@ import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import isEscaped from "../utils/isEscaped";
-import testTagMarks from "./testTagMarks";
+import testTagMarks from "./tagMarksRule";
 
 const rule: InlineRule = {
 	name: "superscript",

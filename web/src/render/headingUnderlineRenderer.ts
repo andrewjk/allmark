@@ -1,5 +1,5 @@
 import type Renderer from "../types/Renderer";
-import { render } from "./renderHeading";
+import { render } from "./headingRenderer";
 
 const renderer: Renderer = {
 	name: "html_underline",

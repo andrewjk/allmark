@@ -1,5 +1,5 @@
+import renderFootnoteList from "./render/footnoteListRenderer";
 import renderChildren from "./render/renderChildren";
-import renderFootnoteList from "./render/renderFootnoteList";
 import type MarkdownNode from "./types/MarkdownNode";
 import type Renderer from "./types/Renderer";
 import type RendererState from "./types/RendererState";

@@ -1,6 +1,6 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type RendererState from "../types/RendererState";
-import { endNewLine, startNewLine } from "./utils";
+import { endNewLine, startNewLine } from "./renderUtils";
 
 export default function render(node: MarkdownNode, state: RendererState, tag: string): void {
 	startNewLine(node, state);

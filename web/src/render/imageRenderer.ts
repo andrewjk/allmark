@@ -1,7 +1,7 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
-import { endNewLine, startNewLine } from "./utils";
+import { endNewLine, startNewLine } from "./renderUtils";
 
 const renderer: Renderer = {
 	name: "image",

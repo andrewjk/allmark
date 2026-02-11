@@ -1,12 +1,13 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { isNumeric } from "../utils/isAlphaNumeric";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
-import { testListContinue, testListStart } from "./testList";
+import { testListContinue, testListStart } from "./listRule";
 
 const rule: BlockRule = {
-	name: "list_bulleted",
+	name: "list_ordered",
 	testStart,
 	testContinue,
 };
@@ -36,17 +37,24 @@ export default rule;
  */
 
 function getMarkup(state: BlockParserState) {
-	let char = state.src[state.i];
-	if (
-		(char === "-" || char === "+" || char === "*") &&
-		// TODO: Should this be part of the isSpace/isNewLine check? i.e. eof counts as a space?
-		(state.i === state.src.length - 1 || isSpace(state.src.charCodeAt(state.i + 1)))
-	) {
+	let numbers = "";
+	let end = state.i;
+	while (isNumeric(state.src.charCodeAt(end))) {
+		numbers += state.src[end];
+		end++;
+	}
+	let orderedList =
+		numbers.length > 0 &&
+		numbers.length < 10 &&
+		(state.src[end] === "." || state.src[end] === ")") &&
+		(end === state.src.length - 1 || isSpace(state.src.charCodeAt(end + 1)));
+	if (orderedList) {
+		let delimiter = state.src[end];
 		return {
-			delimiter: char,
-			markup: char,
-			isBlank: state.i === state.src.length - 1 || isNewLine(state.src[state.i + 1]),
-			type: "list_bulleted",
+			delimiter,
+			markup: numbers + delimiter,
+			isBlank: end === state.src.length - 1 || isNewLine(state.src[end + 1]),
+			type: "list_ordered",
 		};
 	}
 }

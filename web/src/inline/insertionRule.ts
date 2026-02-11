@@ -1,7 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import testCriticMarks from "./testCriticMarks";
+import testCriticMarks from "./criticMarksRUle";
 
 const rule: InlineRule = {
 	name: "insertion",

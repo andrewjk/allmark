@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import parse from "../src/parse";
 import renderHtml from "../src/renderHtml";
-import core from "../src/rules/core";
+import core from "../src/rulesets/core";
 
 test("basic parse", () => {
 	const input = `

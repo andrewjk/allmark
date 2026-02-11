@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
 import renderHtml from "../src/renderHtml";
-import extended from "../src/rules/extended";
+import extended from "../src/rulesets/extended";
 
 describe("deletion", () => {
 	test("deletion single", () => {

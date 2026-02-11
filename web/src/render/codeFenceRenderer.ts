@@ -1,8 +1,8 @@
 import type Renderer from "../types/Renderer";
-import renderList from "./renderList";
+import { render } from "./codeBlockRenderer";
 
 const renderer: Renderer = {
-	name: "list_bulleted",
-	render: renderList,
+	name: "code_fence",
+	render,
 };
 export default renderer;

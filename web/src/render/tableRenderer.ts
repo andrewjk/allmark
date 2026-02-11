@@ -2,7 +2,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
 import renderChildren from "./renderChildren";
-import { endNewLine, innerNewLine, startNewLine } from "./utils";
+import { endNewLine, innerNewLine, startNewLine } from "./renderUtils";
 
 const renderer: Renderer = {
 	name: "table",

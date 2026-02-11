@@ -38,7 +38,7 @@ export default function parseBlockInlines(
 		let content = parent.content;
 		if (/[^\s]/.test(content)) {
 			if (parent.indent > 0) {
-				content = content.replaceAll(new RegExp(`(^) {1,${parent.indent}}`, "gm"), "$1");
+				content = content.replaceAll(new RegExp(`(^|\\n) {1,${parent.indent}}`, "g"), "$1");
 			}
 			// HACK: Not sure about this logic:
 			content = content.replaceAll(/^\n\s+\n/g, "");
