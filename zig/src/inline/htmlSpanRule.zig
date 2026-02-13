@@ -1,0 +1,59 @@
+const std = @import("std");
+const InlineParserState = @import("../types/InlineParserState.zig").InlineParserState;
+const InlineRule = @import("../types/InlineRule.zig").InlineRule;
+const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
+const OPEN_TAG = @import("../utils/htmlPatterns.zig").OPEN_TAG;
+const CLOSE_TAG = @import("../utils/htmlPatterns.zig").CLOSE_TAG;
+const COMMENT = @import("../utils/htmlPatterns.zig").COMMENT;
+const INSTRUCTION = @import("../utils/htmlPatterns.zig").INSTRUCTION;
+const DECLARATION = @import("../utils/htmlPatterns.zig").DECLARATION;
+const CDATA = @import("../utils/htmlPatterns.zig").CDATA;
+const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
+const newNode = @import("../utils/newNode.zig").newNode;
+const appendChild = @import("../utils/appendChild.zig").appendChild;
+
+const mvzr = @import("mvzr");
+
+// NOTE: removed non-capturing groups `(?:)`
+const pattern = "^(" ++ OPEN_TAG ++ "|" ++ CLOSE_TAG ++ "|" ++ COMMENT ++ "|" ++ INSTRUCTION ++ "|" ++ DECLARATION ++ "|" ++ CDATA ++ ")";
+//const resources = mvzr.resourcesNeeded(pattern);
+//std.debug.print("RESOURCES: {any}\n", .{resources});
+const ProperlySizedRegex = mvzr.SizedRegex(118, 11);
+
+pub fn testHtmlSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
+    if (std.mem.eql(u8, parent.type, "html_block")) {
+        return false;
+    }
+
+    if (state.i >= state.src.len) return false;
+
+    const char = state.src[state.i];
+    if (char == '<' and !isEscaped(state.src, state.i)) {
+        const tail = state.src[state.i..];
+
+        const regex = ProperlySizedRegex.compile(pattern) orelse return false;
+        const match = regex.match(tail);
+
+        if (match == null or match.?.start != 0) {
+            return false;
+        }
+
+        const content = match.?.slice;
+        const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+        html.*.content = state.allocator.dupe(u8, content) catch return false;
+        html.*.content_allocated = true;
+
+        appendChild(state.allocator, parent, html) catch return false;
+
+        state.i += match.?.end;
+
+        return true;
+    }
+
+    return false;
+}
+
+pub const htmlSpanRule = InlineRule{
+    .name = "html_span",
+    .@"test" = testHtmlSpan,
+};

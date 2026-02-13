@@ -11,9 +11,13 @@ This text was {-deleted-} recently.
 		const expected = `
 <p>This text was <del class="markdown-deletion">deleted</del> recently.</p>
 `;
-		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc, extended.renderers);
-		expect(html.trim()).toBe(expected.trim());
+		const docSpaced = parse(input, extended);
+		const htmlSpaced = renderHtml(docSpaced, extended.renderers);
+		expect(htmlSpaced.trim()).toBe(expected.trim());
+
+		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
+		const htmlTrimmed = renderHtml(docTrimmed, extended.renderers);
+		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
 	test("deletion double", () => {
@@ -23,9 +27,13 @@ This text was {--deleted--} recently.
 		const expected = `
 <p>This text was <del class="markdown-deletion">deleted</del> recently.</p>
 `;
-		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc, extended.renderers);
-		expect(html.trim()).toBe(expected.trim());
+		const docSpaced = parse(input, extended);
+		const htmlSpaced = renderHtml(docSpaced, extended.renderers);
+		expect(htmlSpaced.trim()).toBe(expected.trim());
+
+		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
+		const htmlTrimmed = renderHtml(docTrimmed, extended.renderers);
+		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
 	test("deletion triple", () => {
@@ -35,9 +43,13 @@ This text was {---deleted---} recently.
 		const expected = `
 <p>This text was {---deleted---} recently.</p>
 `;
-		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc, extended.renderers);
-		expect(html.trim()).toBe(expected.trim());
+		const docSpaced = parse(input, extended);
+		const htmlSpaced = renderHtml(docSpaced, extended.renderers);
+		expect(htmlSpaced.trim()).toBe(expected.trim());
+
+		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
+		const htmlTrimmed = renderHtml(docTrimmed, extended.renderers);
+		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
 	test("deletion single character", () => {

@@ -4,16 +4,17 @@ Guidelines for AI coding agents working in the allmark repository.
 
 ## Project Overview
 
-Allmark is a TypeScript Markdown parser library supporting CommonMark and GitHub Flavored Markdown (GFM).
+Allmark is a Markdown parser library supporting CommonMark and GitHub Flavored Markdown (GFM).
 
-- **Language**: TypeScript (ES modules)
-- **Package Manager**: pnpm (v10.x)
-- **Location**: `/web` directory contains the main library
+Multi-language implementation:
+- **TypeScript** (main): `/web` directory
+- **Swift**: `/swift` directory
+- **.NET**: `/dotnet` directory
+- **Zig**: `/zig` directory
 
 ## Build/Lint/Test Commands
 
-Run from `/web` directory:
-
+### TypeScript (`/web`)
 ```bash
 pnpm check              # TypeScript + oxlint
 pnpm build              # Type check + bundle with tsdown
@@ -23,67 +24,108 @@ pnpm test -- testName   # Run single test by name pattern
 pnpm format             # Format with Prettier
 ```
 
-## Code Style Guidelines
-
-### TypeScript Configuration
-- **Target**: ES2022 with ESNext modules
-- **Strict mode**: Enabled with full strictNullChecks
-- **Isolated modules/declarations**: Required
-- Use `erasableSyntaxOnly` - no TypeScript-specific runtime features
-
-### Import/Export Patterns
-
-```typescript
-// Type imports must use explicit `import type`
-import type BlockParserState from "../types/BlockParserState";
-
-// Regular imports for runtime values
-import closeNode from "../utils/closeNode";
-
-// Default exports for modules
-const rule: BlockRule = { name: "heading", testStart, testContinue };
-export default rule;
+### Swift (`/swift`)
+```bash
+swift build                     # Build package
+swift test                      # Run tests
+swift test --filter testName    # Run single test
+swift-format --in-place --recursive Sources/ Tests/
 ```
 
-### Import Order (Prettier-enforced)
-1. Parent imports (`^[../]`)
-2. Local imports (`^[./]`)
+### .NET (`/dotnet`)
+```bash
+dotnet build                    # Build solution
+dotnet test                     # Run tests
+dotnet test --filter "BasicParse"  # Run single test by name
+dotnet format Allmark.sln       # Format code
+```
 
-### Naming Conventions
-- **Files**: camelCase (e.g., `testHeading.ts`)
-- **Types/Interfaces**: PascalCase (e.g., `MarkdownNode`)
-- **Functions**: camelCase (e.g., `testStart`)
+### Zig (`/zig`)
+```bash
+zig build                       # Build
+zig build test                  # Run all tests (no output means all tests succeeded)
+zig test test/parser_test.zig   # Run single test file
+```
 
-### Formatting (Prettier)
-- **Indentation**: Tabs
-- **Print width**: 100
-- **Trailing commas**: Always (except JSON)
-- **Semicolons**: Required
-- **Quotes**: Double quotes
+## TypeScript Code Style
 
-### Type Patterns
-- Use `interface` for object types (not `type` aliases)
-- Explicit return types on exported functions
-- Use optional chaining (`?.`) and nullish coalescing (`??`)
-- Non-null assertions (`!`) acceptable when safe
+- Target: ES2022 with ESNext modules, strict mode, `erasableSyntaxOnly`
+- Type imports: `import type BlockParserState from "../types/BlockParserState";`
+- Runtime imports: `import closeNode from "../utils/closeNode";`
+- Default exports: `const rule: BlockRule = { name: "heading", testStart, testContinue }; export default rule;`
+- Import order: Parent (`^[../]`) then local (`^[./]`)
+- **Files**: camelCase, **Types**: PascalCase, **Functions**: camelCase
+- Formatting: Tabs, 100 width, trailing commas: always, semicolons: required, double quotes
+- Use `interface` for objects, explicit returns on exports, `?.`/`??` operators, `!` safe
+- Error handling: early returns, no try/catch for parsing (return false/undefined)
 
-### Error Handling
-- Use early returns for guard clauses
-- No try/catch for parsing logic - return false/undefined instead
+## Swift Code Style
+
+- **Files/Protocols**: PascalCase, **Functions/Properties**: camelCase
+- TypeScript `interface` → Swift `struct`, `Map<string, T>` → `[String: T]`
+- Closures with `inout` require `@MainActor`
+- Formatting: Tabs, 100 chars, `///` docs
+
+```swift
+struct BlockRule {
+    var name: String
+    var testStart: @MainActor (inout BlockParserState, MarkdownNode) -> Bool
+    var testContinue: @MainActor (inout BlockParserState, MarkdownNode) -> Bool
+    var closeNode: @MainActor (inout BlockParserState, MarkdownNode) -> Void
+}
+```
+
+## .NET Code Style
+
+- **Language**: C# (.NET 10.0), **Types**: PascalCase, **Methods**: PascalCase, **Locals**: camelCase
+- TypeScript `interface` → C# `record`, `Map<string, T>` → `Dictionary<string, T>`
+- Formatting: Tabs, `///` XML docs, nullable enabled, implicit usings enabled
+
+```csharp
+public static class ParagraphRule
+{
+    public static BlockRule Create()
+    {
+        return new BlockRule { Name = "paragraph", TestStart = TestStart };
+    }
+
+    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    {
+        if (parent.AcceptsContent) { return false; }
+        return true;
+    }
+}
+```
+
+## Zig Code Style
+
+- **Files**: camelCase, **Types**: PascalCase, **Functions**: camelCase
+- TypeScript `interface` → Zig `struct`, `Map<string, T>` → `std.StringHashMap(T)`
+- Use `pub const` for module-level exports
+
+```zig
+pub const BlockRule = struct {
+    name: []const u8,
+    testStart: *const fn (state: *BlockParserState, parent: *MarkdownNode) bool,
+    testContinue: *const fn (state: *BlockParserState, parent: *MarkdownNode) bool,
+    closeNode: ?*const fn (state: *BlockParserState, parent: *MarkdownNode) void = null,
+};
+```
 
 ## Architecture
 
+All implementations share similar structure:
 - `/block` - Block parsing rules
-- `/inline` - Inline parsing rules  
+- `/inline` - Inline parsing rules
 - `/parse` - Core parsing logic
 - `/render` - HTML rendering functions
-- `/types` - TypeScript interfaces
+- `/types` - Type definitions
 - `/utils` - Helper functions
-- `/rules` - Rule sets (`core.ts`, `gfm.ts`, `extended.ts`)
-- `/test` - Vitest test files (located at `/web/test/`)
+- `/rulesets` - Rule sets (`core`, `gfm`, `extended`)
 
 ## Testing Patterns
 
+### TypeScript (Vitest)
 ```typescript
 import { expect, test } from "vitest";
 import parse from "../src/parse";
@@ -97,147 +139,37 @@ test("description", () => {
 });
 ```
 
----
-
-## Swift Project
-
-Swift port located in `/swift` directory.
-
-### Swift Commands
-
-Run from `/swift`:
-
-```bash
-swift build                    # Build package
-swift test                     # Run tests
-swift test --filter testName   # Run single test
-swift-format --in-place --recursive Sources/ Tests/
-```
-
-### Swift Code Style
-
-- **Files/Protocols**: PascalCase (e.g., `BlockRule.swift`)
-- **Functions/Properties**: camelCase
-- TypeScript `interface` → Swift `protocol`
-- TypeScript `Map<string, T>` → Swift `[String: T]`
-- Optional protocol methods → Extensions with default implementations
-- **Formatting**: Tabs, 100 char line length, `///` docs
-
-### Swift Example
-
-```swift
-import Foundation
-
-protocol BlockRule {
-    var name: String { get }
-    func testStart(state: BlockParserState, parent: MarkdownNode) -> Bool
-}
-
-extension BlockRule {
-    func closeNode(state: BlockParserState, parent: MarkdownNode) {
-        // Default: no cleanup
-    }
-}
-```
-
-### Swift Testing
-
-Uses Swift Testing framework (not XCTest):
-
+### Swift (Swift Testing)
 ```swift
 import Testing
 @testable import allmark
 
 @Test func example() async throws {
+    let root = parse(src: input, rules: coreRuleSet, debug: false)
+    let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
     #expect(actual == expected)
 }
 ```
 
----
-
-## .NET Project
-
-.NET port located in `/dotnet` directory.
-
-### .NET Commands
-
-Run from `/dotnet`:
-
-```bash
-dotnet build                    # Build solution
-dotnet test                     # Run tests
-dotnet test --filter "BasicParse"  # Run single test by name
-dotnet format Allmark.sln       # Format code
-```
-
-### .NET Code Style
-
-- **Language**: C# (.NET 10.0)
-- **Types/Records**: PascalCase (e.g., `BlockRule`, `MarkdownNode`, `InlineRule`)
-- **Classes/Methods**: PascalCase (e.g., `ParagraphRule.Create()`, `Parse.Execute()`)
-- **Properties**: PascalCase (e.g., `Name`, `TestStart`)
-- **Local variables**: camelCase
-- TypeScript `interface` → C# `record` or `record class`
-- TypeScript `Map<string, T>` → C# `Dictionary<string, T>`
-- **Formatting**: Tabs, `///` XML docs
-- **Null reference types**: Enabled (`Nullable enable`)
-- **Implicit usings**: Enabled
-
-### .NET Example
-
-```csharp
-namespace Allmark.Block;
-
-using Allmark.Types;
-using static Allmark.Utils.NewNode;
-
-public static class ParagraphRule
-{
-    public static BlockRule Create()
-    {
-        return new BlockRule
-        {
-            Name = "paragraph",
-            TestStart = TestStart,
-            TestContinue = TestContinue,
-        };
-    }
-
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
-    {
-        if (parent.AcceptsContent)
-        {
-            return false;
-        }
-
-        var paragraph = Utils.NewNode("paragraph", true, state.I, state.Line, 1, "", 0, []);
-        state.OpenNodes.Push(paragraph);
-
-        return true;
-    }
-}
-```
-
-### .NET Testing
-
-Uses MSTest framework:
-
+### .NET (MSTest)
 ```csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Allmark;
 
-namespace Allmark.Tests;
-
-[TestClass]
-public class ParserTests
+[TestMethod]
+public void BasicParse()
 {
-    [TestMethod]
-    public void BasicParse()
-    {
-        var root = Parse.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(root, Core.RuleSet.Renderers);
+    var root = Parse.Execute(input, Core.RuleSet, false);
+    var html = RenderHtml.Execute(root, Core.RuleSet.Renderers);
+    Assert.AreEqual(expected, html);
+}
+```
 
-        Assert.AreEqual(expected, html);
-    }
+### Zig
+```zig
+test "basic parse" {
+    const root = parse(allocator, input, coreRuleSet, false);
+    const html = renderHtml(root, coreRuleSet.renderers);
+    try std.testing.expectEqualStrings(expected, html);
 }
 ```

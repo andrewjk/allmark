@@ -11,9 +11,13 @@ This should be ^up^ above everything else.
 		const expected = `
 <p>This should be <sup>up</sup> above everything else.</p>
 `;
-		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc, extended.renderers);
-		expect(html.trim()).toBe(expected.trim());
+		const docSpaced = parse(input, extended);
+		const htmlSpaced = renderHtml(docSpaced, extended.renderers);
+		expect(htmlSpaced.trim()).toBe(expected.trim());
+
+		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
+		const htmlTrimmed = renderHtml(docTrimmed, extended.renderers);
+		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
 	test("superscript double", () => {
@@ -23,9 +27,13 @@ This should be ^^up^^ above everything else.
 		const expected = `
 <p>This should be <sup>up</sup> above everything else.</p>
 `;
-		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc, extended.renderers);
-		expect(html.trim()).toBe(expected.trim());
+		const docSpaced = parse(input, extended);
+		const htmlSpaced = renderHtml(docSpaced, extended.renderers);
+		expect(htmlSpaced.trim()).toBe(expected.trim());
+
+		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
+		const htmlTrimmed = renderHtml(docTrimmed, extended.renderers);
+		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
 	test("superscript triple", () => {
@@ -35,9 +43,13 @@ This should be ^^^up^^^ above everything else.
 		const expected = `
 <p>This should be ^^^up^^^ above everything else.</p>
 `;
-		const doc = parse(input.substring(1, input.length - 1), extended);
-		const html = renderHtml(doc, extended.renderers);
-		expect(html.trim()).toBe(expected.trim());
+		const docSpaced = parse(input, extended);
+		const htmlSpaced = renderHtml(docSpaced, extended.renderers);
+		expect(htmlSpaced.trim()).toBe(expected.trim());
+
+		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
+		const htmlTrimmed = renderHtml(docTrimmed, extended.renderers);
+		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
 	test("superscript single character", () => {

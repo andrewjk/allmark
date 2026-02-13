@@ -40,6 +40,8 @@ Text with a footnote[^1].
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -58,6 +60,8 @@ First reference[^1] and second[^2].
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -74,6 +78,8 @@ Text[^1].
 [^1]: Footnote with **bold** and *italic* text.
 `;
 		const expected = renderHtmlSync(input, options);
+
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
@@ -92,6 +98,8 @@ Code reference[^1].
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -109,6 +117,8 @@ Link reference[^1].
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -123,6 +133,8 @@ Link reference[^1].
 Unknown footnote[^99].
 `;
 		const expected = renderHtmlSync(input, options);
+
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
@@ -143,6 +155,8 @@ Multiline[^1].
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -159,6 +173,8 @@ First[^1] and second[^1] use same footnote.
 [^1]: Shared footnote content.
 `;
 		const expected = renderHtmlSync(input, options);
+
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
@@ -179,6 +195,8 @@ First[^1] and second[^1] use same footnote.
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -195,6 +213,8 @@ First[^1] and second[^1] use same footnote.
 [^1]: Footnote for quote.
 `;
 		const expected = renderHtmlSync(input, options);
+
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
@@ -213,6 +233,8 @@ Special label[^a-b_c].
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -229,6 +251,8 @@ Mixed case[^ABC].
 [^abc]: Should match.
 `;
 		const expected = renderHtmlSync(input, options);
+
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
@@ -248,6 +272,8 @@ Text[^1]
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -264,6 +290,8 @@ Text[^1]
 [^1]: https://example.com test
 `;
 		const expected = renderHtmlSync(input, options);
+
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
@@ -283,6 +311,8 @@ Text[^1] [foo]
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -301,6 +331,8 @@ Text[^1] [foo]
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -317,6 +349,8 @@ Text[^1] [foo]
 [^1]: /footnote
 `;
 		const expected = renderHtmlSync(input, options);
+
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
@@ -339,6 +373,8 @@ Text[^1] [foo]
 `;
 		const expected = renderHtmlSync(input, options);
 
+		expect(expected).toBe(renderHtmlSync(input, options));
+
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
@@ -357,6 +393,8 @@ Footnote 1 link[^first].
     and multiple paragraphs.
 `;
 		const expected = renderHtmlSync(input, options);
+
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
 		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
