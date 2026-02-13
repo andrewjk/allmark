@@ -9,11 +9,26 @@ public static class Parser
 	{
 		var document = Utils.NewNode("document", true, 0, 1, 1, "", 0, []);
 
+		// Skip empty lines at the start
+		var start = 0;
+		var i = 0;
+		for (; i < src.Length; i++)
+		{
+			if (!Utils.IsSpace(src[i]))
+			{
+				break;
+			}
+			else if (Utils.IsNewLine(src[i]))
+			{
+				start = i + 1;
+			}
+		}
+
 		var state = new BlockParserState
 		{
 			Rules = rules.Blocks,
 			Src = src,
-			I = 0,
+			I = start,
 			Line = 0,
 			LineStart = 0,
 			Indent = 0,
