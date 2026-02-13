@@ -1,0 +1,153 @@
+const std = @import("std");
+const RuleSet = @import("../types/RuleSet.zig").RuleSet;
+const BlockRule = @import("../types/BlockRule.zig").BlockRule;
+const InlineRule = @import("../types/InlineRule.zig").InlineRule;
+const Renderer = @import("../types/Renderer.zig").Renderer;
+
+const indentRule = @import("../block/indentRule.zig").indentRule;
+const headingRule = @import("../block/headingRule.zig").headingRule;
+const headingUnderlineRule = @import("../block/headingUnderlineRule.zig").headingUnderlineRule;
+const thematicBreakRule = @import("../block/thematicBreakRule.zig").thematicBreakRule;
+const alertRule = @import("../block/alertRule.zig").alertRule;
+const blockQuoteRule2 = @import("../block/blockQuoteRule2.zig").blockQuoteRule2;
+const listOrderedRule = @import("../block/listOrderedRule.zig").listOrderedRule;
+const listBulletedRule = @import("../block/listBulletedRule.zig").listBulletedRule;
+const listItemRule = @import("../block/listItemRule.zig").listItemRule;
+const listTaskItemRule = @import("../block/listTaskItemRule.zig").listTaskItemRule;
+const footnoteReferenceRule = @import("../block/footnoteReferenceRule.zig").footnoteReferenceRule;
+const codeBlockRule = @import("../block/codeBlockRule.zig").codeBlockRule;
+const codeFenceRule = @import("../block/codeFenceRule.zig").codeFenceRule;
+const htmlBlockRule = @import("../block/htmlBlockRule.zig").htmlBlockRule;
+const linkReferenceRule = @import("../block/linkReferenceRule.zig").linkReferenceRule;
+const tableRule = @import("../block/tableRule.zig").tableRule;
+const paragraphRule = @import("../block/paragraphRule.zig").paragraphRule;
+const contentRule = @import("../block/contentRule.zig").contentRule;
+const autolinkRule = @import("../inline/autolinkRule.zig").autolinkRule;
+const extendedAutolinkRule = @import("../inline/extendedAutolinkRule.zig").extendedAutolinkRule;
+const codeSpanRule = @import("../inline/codeSpanRule.zig").codeSpanRule;
+const deletionRule = @import("../inline/deletionRule.zig").deletionRule;
+const emphasisRule = @import("../inline/emphasisRule.zig").emphasisRule;
+const footnoteRule = @import("../inline/footnoteRule.zig").footnoteRule;
+const highlightRule = @import("../inline/highlightRule.zig").highlightRule;
+const hardBreakRule = @import("../inline/hardBreakRule.zig").hardBreakRule;
+const htmlSpanRule = @import("../inline/htmlSpanRule.zig").htmlSpanRule;
+const insertionRule = @import("../inline/insertionRule.zig").insertionRule;
+const lineBreakRule = @import("../inline/lineBreakRule.zig").lineBreakRule;
+const linkRule = @import("../inline/linkRule.zig").linkRule;
+const strikethroughRule = @import("../inline/strikethroughRule.zig").strikethroughRule;
+const subscriptRule = @import("../inline/subscriptRule.zig").subscriptRule;
+const superscriptRule = @import("../inline/superscriptRule.zig").superscriptRule;
+const textRule = @import("../inline/textRule.zig").textRule;
+const alertRenderer = @import("../render/alertRenderer.zig").alertRenderer;
+const blockQuoteRenderer = @import("../render/blockQuoteRenderer.zig").blockQuoteRenderer;
+const codeBlockRenderer = @import("../render/codeBlockRenderer.zig").codeBlockRenderer;
+const codeFenceRenderer = @import("../render/codeFenceRenderer.zig").codeFenceRenderer;
+const codeSpanRenderer = @import("../render/codeSpanRenderer.zig").codeSpanRenderer;
+const deletionRenderer = @import("../render/deletionRenderer.zig").deletionRenderer;
+const emphasisRenderer = @import("../render/emphasisRenderer.zig").emphasisRenderer;
+const footnoteRenderer = @import("../render/footnoteRenderer.zig").footnoteRenderer;
+const hardBreakRenderer = @import("../render/hardBreakRenderer.zig").hardBreakRenderer;
+const headingRenderer = @import("../render/headingRenderer.zig").headingRenderer;
+const headingUnderlineRenderer = @import("../render/headingUnderlineRenderer.zig").headingUnderlineRenderer;
+const highlightRenderer = @import("../render/highlightRenderer.zig").highlightRenderer;
+const htmlRenderer = @import("../render/htmlRenderer.zig").htmlRenderer;
+const imageRenderer = @import("../render/imageRenderer.zig").imageRenderer;
+const insertionRenderer = @import("../render/insertionRenderer.zig").insertionRenderer;
+const linkRenderer = @import("../render/linkRenderer.zig").linkRenderer;
+const listRenderer = @import("../render/listRenderer.zig").listRenderer;
+const listTaskItemRenderer = @import("../render/listTaskItemRenderer.zig").listTaskItemRenderer;
+const paragraphRenderer = @import("../render/paragraphRenderer.zig").paragraphRenderer;
+const strikethroughRenderer = @import("../render/strikethroughRenderer.zig").strikethroughRenderer;
+const strongRenderer = @import("../render/strongRenderer.zig").strongRenderer;
+const subscriptRenderer = @import("../render/subscriptRenderer.zig").subscriptRenderer;
+const superscriptRenderer = @import("../render/superscriptRenderer.zig").superscriptRenderer;
+const tableRenderer = @import("../render/tableRenderer.zig").tableRenderer;
+const tableCellRenderer = @import("../render/tableCellRenderer.zig").tableCellRenderer;
+const tableHeaderRenderer = @import("../render/tableHeaderRenderer.zig").tableHeaderRenderer;
+const tableRowRenderer = @import("../render/tableRowRenderer.zig").tableRowRenderer;
+const textRenderer = @import("../render/textRenderer.zig").textRenderer;
+const thematicBreakRenderer = @import("../render/thematicBreakRenderer.zig").thematicBreakRenderer;
+
+pub const extended = RuleSet{
+    .blocks = std.StringHashMap(*const BlockRule).init(std.heap.page_allocator) catch unreachable,
+    .inlines = std.StringHashMap(*const InlineRule).init(std.heap.page_allocator) catch unreachable,
+    .renderers = std.StringHashMap(*const Renderer).init(std.heap.page_allocator) catch unreachable,
+};
+
+pub fn init(allocator: std.mem.Allocator) !RuleSet {
+    var blocks = std.StringHashMap(*const BlockRule).init(allocator);
+    var inlines = std.StringHashMap(*const InlineRule).init(allocator);
+    var renderers = std.StringHashMap(*const Renderer).init(allocator);
+
+    try blocks.put(indentRule.name, &indentRule);
+    try blocks.put(headingRule.name, &headingRule);
+    try blocks.put(headingUnderlineRule.name, &headingUnderlineRule);
+    try blocks.put(thematicBreakRule.name, &thematicBreakRule);
+    try blocks.put(alertRule.name, &alertRule);
+    try blocks.put(blockQuoteRule2.name, &blockQuoteRule2);
+    try blocks.put(listOrderedRule.name, &listOrderedRule);
+    try blocks.put(listBulletedRule.name, &listBulletedRule);
+    try blocks.put(listItemRule.name, &listItemRule);
+    try blocks.put(listTaskItemRule.name, &listTaskItemRule);
+    try blocks.put(footnoteReferenceRule.name, &footnoteReferenceRule);
+    try blocks.put(codeBlockRule.name, &codeBlockRule);
+    try blocks.put(codeFenceRule.name, &codeFenceRule);
+    try blocks.put(htmlBlockRule.name, &htmlBlockRule);
+    try blocks.put(linkReferenceRule.name, &linkReferenceRule);
+    try blocks.put(tableRule.name, &tableRule);
+    try blocks.put(paragraphRule.name, &paragraphRule);
+    try blocks.put(contentRule.name, &contentRule);
+
+    try inlines.put(autolinkRule.name, &autolinkRule);
+    try inlines.put(extendedAutolinkRule.name, &extendedAutolinkRule);
+    try inlines.put(htmlSpanRule.name, &htmlSpanRule);
+    try inlines.put(codeSpanRule.name, &codeSpanRule);
+    try inlines.put(emphasisRule.name, &emphasisRule);
+    try inlines.put(subscriptRule.name, &subscriptRule);
+    try inlines.put(superscriptRule.name, &superscriptRule);
+    try inlines.put(strikethroughRule.name, &strikethroughRule);
+    try inlines.put(highlightRule.name, &highlightRule);
+    try inlines.put(footnoteRule.name, &footnoteRule);
+    try inlines.put(linkRule.name, &linkRule);
+    try inlines.put(hardBreakRule.name, &hardBreakRule);
+    try inlines.put(lineBreakRule.name, &lineBreakRule);
+    try inlines.put(insertionRule.name, &insertionRule);
+    try inlines.put(deletionRule.name, &deletionRule);
+    try inlines.put(textRule.name, &textRule);
+
+    try renderers.put(alertRenderer.name, &alertRenderer);
+    try renderers.put(blockQuoteRenderer.name, &blockQuoteRenderer);
+    try renderers.put(codeBlockRenderer.name, &codeBlockRenderer);
+    try renderers.put(codeFenceRenderer.name, &codeFenceRenderer);
+    try renderers.put(codeSpanRenderer.name, &codeSpanRenderer);
+    try renderers.put(deletionRenderer.name, &deletionRenderer);
+    try renderers.put(emphasisRenderer.name, &emphasisRenderer);
+    try renderers.put(footnoteRenderer.name, &footnoteRenderer);
+    try renderers.put(hardBreakRenderer.name, &hardBreakRenderer);
+    try renderers.put(headingRenderer.name, &headingRenderer);
+    try renderers.put(headingUnderlineRenderer.name, &headingUnderlineRenderer);
+    try renderers.put(highlightRenderer.name, &highlightRenderer);
+    try renderers.put(htmlRenderer.name, &htmlRenderer);
+    try renderers.put(imageRenderer.name, &imageRenderer);
+    try renderers.put(insertionRenderer.name, &insertionRenderer);
+    try renderers.put(linkRenderer.name, &linkRenderer);
+    try renderers.put(listRenderer.name, &listRenderer);
+    try renderers.put(listTaskItemRenderer.name, &listTaskItemRenderer);
+    try renderers.put(paragraphRenderer.name, &paragraphRenderer);
+    try renderers.put(strikethroughRenderer.name, &strikethroughRenderer);
+    try renderers.put(strongRenderer.name, &strongRenderer);
+    try renderers.put(subscriptRenderer.name, &subscriptRenderer);
+    try renderers.put(superscriptRenderer.name, &superscriptRenderer);
+    try renderers.put(tableRenderer.name, &tableRenderer);
+    try renderers.put(tableCellRenderer.name, &tableCellRenderer);
+    try renderers.put(tableHeaderRenderer.name, &tableHeaderRenderer);
+    try renderers.put(tableRowRenderer.name, &tableRowRenderer);
+    try renderers.put(textRenderer.name, &textRenderer);
+    try renderers.put(thematicBreakRenderer.name, &thematicBreakRenderer);
+
+    return RuleSet{
+        .blocks = blocks,
+        .inlines = inlines,
+        .renderers = renderers,
+    };
+}
