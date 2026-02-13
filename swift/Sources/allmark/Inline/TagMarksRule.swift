@@ -82,7 +82,7 @@ func testTagMarks(
 				var i = (parent.children?.count ?? 0) - 1
 				while i >= 0 {
 					if let lastNode = parent.children?[i], lastNode.index == startDel.start {
-						var text = MarkdownNode(
+						let text = MarkdownNode(
 							type: "text",
 							block: false,
 							index: lastNode.index,
@@ -94,16 +94,15 @@ func testTagMarks(
 						)
 						text.markup = String(lastNode.markup.dropFirst(startDel.length))
 						
-						var mutableLastNode = lastNode
-						mutableLastNode.type = name
-						mutableLastNode.markup = markup
+						lastNode.type = name
+						lastNode.markup = markup
 						
 						let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
 						if let childCount = parent.children?.count {
 							parent.children?.removeSubrange((i + 1)..<childCount)
 						}
-						mutableLastNode.children = [text] + movedNodes
-						parent.children?[i] = mutableLastNode
+						lastNode.children = [text] + movedNodes
+						parent.children?[i] = lastNode
 						
 						state.i += markup.count
 						

@@ -44,7 +44,7 @@ func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 			state.maybeContinue = false
 			var i = state.openNodes.count - 1
 			while i > 0 {
-				var node = state.openNodes[i]
+				let node = state.openNodes[i]
 				if node.maybeContinuing {
 					node.maybeContinuing = false
 					closedNode = node
@@ -62,7 +62,7 @@ func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		
 		let codeIndent = state.indent - 4
 		
-		var code = MarkdownNode(
+		let code = MarkdownNode(
 			type: "code_block",
 			block: true,
 			index: state.i,
@@ -76,7 +76,7 @@ func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		code.content = String(repeating: " ", count: codeIndent)
 		
 		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
-			var lastChild = currentParent.children![currentParent.children!.count - 1]
+			let lastChild = currentParent.children![currentParent.children!.count - 1]
 			lastChild.blankAfter = true
 			state.hasBlankLine = false
 		}
@@ -95,12 +95,10 @@ func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 }
 
 func testCodeBlockContinue(state: inout BlockParserState, node: MarkdownNode) -> Bool {
-	var mutableNode = node
-	
 	if state.hasBlankLine && state.indent >= 4 {
 		// Any initial spaces beyond four will be included in the content,
 		// even in interior blank lines
-		mutableNode.content += String(repeating: " ", count: state.indent - 4)
+		node.content += String(repeating: " ", count: state.indent - 4)
 	}
 	
 	if state.indent >= 4 {

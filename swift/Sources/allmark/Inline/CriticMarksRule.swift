@@ -97,13 +97,12 @@ func testCriticMarks(
 							children: nil
 						)
 						
-						var mutableLastNode = lastNode
-						mutableLastNode.type = name
-						mutableLastNode.markup = markup
+						lastNode.type = name
+						lastNode.markup = markup
 						
 						// Get children after the start node
 						let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
-						mutableLastNode.children = [text] + movedNodes
+						lastNode.children = [text] + movedNodes
 						
 						// Remove the moved nodes from parent
 						if let childCount = parent.children?.count {
@@ -111,7 +110,7 @@ func testCriticMarks(
 						}
 						
 						// Replace the node
-						parent.children?[i] = mutableLastNode
+						parent.children?[i] = lastNode
 						
 						state.i += markup.count
 

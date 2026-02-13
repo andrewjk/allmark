@@ -98,7 +98,7 @@ func testBlockQuoteContinue(state: inout BlockParserState, node: MarkdownNode) -
 
 func closeBlockQuote(state: inout BlockParserState, node: MarkdownNode) {
 	if state.hasBlankLine && node.children != nil && !node.children!.isEmpty {
-		var lastChild = node.children![node.children!.count - 1]
+		let lastChild = node.children![node.children!.count - 1]
 		lastChild.blankAfter = true
 		state.hasBlankLine = false
 	}

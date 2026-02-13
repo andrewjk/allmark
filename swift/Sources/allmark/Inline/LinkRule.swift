@@ -173,7 +173,7 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 				}
 				
 				if let foundLink = link {
-					var text = MarkdownNode(
+					let text = MarkdownNode(
 						type: "text",
 						block: false,
 						index: lastNode.index,
@@ -185,17 +185,16 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 					)
 					text.markup = String(lastNode.markup.dropFirst(startDel.markup.count))
 					
-					var mutableLastNode = lastNode
-					mutableLastNode.type = isLink ? "link" : "image"
-					mutableLastNode.info = foundLink.url
-					mutableLastNode.title = foundLink.title
+					lastNode.type = isLink ? "link" : "image"
+					lastNode.info = foundLink.url
+					lastNode.title = foundLink.title
 					
 					let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
 					if let childCount = parent.children?.count {
 						parent.children?.removeSubrange((i + 1)..<childCount)
 					}
-					mutableLastNode.children = [text] + movedNodes
-					parent.children?[i] = mutableLastNode
+					lastNode.children = [text] + movedNodes
+					parent.children?[i] = lastNode
 					
 					// "[L]inks may not contain other links, at any level of nesting"
 					if isLink {

@@ -7,7 +7,7 @@ func addMarkupAsText(
 ) {
 	let lastNode = parent.children?.last
 	let haveText = lastNode?.type == "text"
-	var text = haveText ? lastNode! : MarkdownNode(
+	let text = haveText ? lastNode! : MarkdownNode(
 		type: "text",
 		block: false,
 		index: state.i,

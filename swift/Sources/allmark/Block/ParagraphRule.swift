@@ -35,7 +35,7 @@ func testParagraphStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		return true
 	}
 	
-	var paragraph = MarkdownNode(
+	let paragraph = MarkdownNode(
 		type: "paragraph",
 		block: true,
 		index: state.i,
@@ -48,14 +48,13 @@ func testParagraphStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 	paragraph.content = content
 	state.i = endOfLine
 	
-	var currentParent = parent
-	if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
-		var lastChild = currentParent.children![currentParent.children!.count - 1]
+	if state.hasBlankLine && parent.children != nil && !parent.children!.isEmpty {
+		let lastChild = parent.children![parent.children!.count - 1]
 		lastChild.blankAfter = true
 		state.hasBlankLine = false
 	}
 	
-	currentParent.children!.append(paragraph)
+	parent.children!.append(paragraph)
 	state.openNodes.append(paragraph)
 	
 	return true

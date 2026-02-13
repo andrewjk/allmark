@@ -72,11 +72,10 @@ func testHeadingUnderlineStart(state: inout BlockParserState, parent: MarkdownNo
 		let haveParagraph = currentParent.type == "paragraph" && !currentParent.blankAfter && contentPattern.firstMatch(in: currentParent.content, options: [], range: contentRange) != nil
 		
 		if haveParagraph {
-			var mutableParent = currentParent
-			mutableParent.type = "heading"
+			currentParent.type = "heading"
 			let markupStart = src.index(src.startIndex, offsetBy: state.i)
 			let markupEnd = src.index(src.startIndex, offsetBy: end)
-			mutableParent.markup = String(src[markupStart..<markupEnd])
+			currentParent.markup = String(src[markupStart..<markupEnd])
 			state.i = end
 			return true
 		}

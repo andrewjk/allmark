@@ -33,7 +33,7 @@ func testLineBreak(state: inout InlineParserState, parent: inout MarkdownNode) -
 		}
 		
 		if end - state.i >= 2 {
-			var html = MarkdownNode(
+			let html = MarkdownNode(
 				type: "html_span",
 				block: false,
 				index: state.i,

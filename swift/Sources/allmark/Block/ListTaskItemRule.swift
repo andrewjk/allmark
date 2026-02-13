@@ -44,8 +44,7 @@ func testListTaskItemStart(state: inout BlockParserState, parent: MarkdownNode) 
 						children: []
 					)
 					
-					var currentParent = parent
-					currentParent.children?.append(task)
+                    parent.children?.append(task)
 					state.i = start + 3
 				}
 			}

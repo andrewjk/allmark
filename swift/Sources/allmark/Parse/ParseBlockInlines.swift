@@ -35,7 +35,7 @@ func parseBlockInlines(
 				content += "\n"
 			}
 		}
-		var text = MarkdownNode(
+		let text = MarkdownNode(
 			type: "text",
 			block: false,
 			index: parent.index,
@@ -75,7 +75,7 @@ func parseBlockInlines(
 				content += "\n"
 			}
 		}
-		var text = MarkdownNode(
+		let text = MarkdownNode(
 			type: "text",
 			block: false,
 			index: parent.index,

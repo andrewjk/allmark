@@ -52,7 +52,7 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 				state.maybeContinue = false
 				var i = state.openNodes.count - 1
 				while i > 0 {
-					var node = state.openNodes[i]
+					let node = state.openNodes[i]
 					if node.maybeContinuing {
 						node.maybeContinuing = false
 						closedNode = node

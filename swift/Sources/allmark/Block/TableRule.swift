@@ -26,7 +26,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 			return false
 		}
 
-		let row = newNode(
+		let row = MarkdownNode(
 			type: "table_row",
 			block: true,
 			index: state.i,
@@ -55,7 +55,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 
 		var ri = 0
 		for text in rowParts {
-			let cell = newNode(
+			let cell = MarkdownNode(
 				type: "table_cell",
 				block: true,
 				index: state.i,
@@ -172,7 +172,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 				closeNode(state: &state, node: closed)
 			}
 
-			let header = newNode(
+			let header = MarkdownNode(
 				type: "table_header",
 				block: true,
 				index: state.i,
@@ -187,7 +187,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 			let headerParts = splitByUnescapedPipe(headerContent)
 			var hi = 0
 			for text in headerParts {
-				let cell = newNode(
+				let cell = MarkdownNode(
 					type: "table_cell",
 					block: true,
 					index: state.i,

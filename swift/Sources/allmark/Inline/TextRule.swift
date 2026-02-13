@@ -41,7 +41,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		lastNode = newTextNode
 	} else if isNewLine(char: String(char)) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
-		if var last = lastNode {
+		if let last = lastNode {
             last.markup = last.markup.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
 			if let count = parent.children?.count, count > 0 {
 				parent.children?[count - 1] = last
@@ -66,7 +66,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		}
 		let startIndex = src.index(src.startIndex, offsetBy: start)
 		let endIndex = src.index(src.startIndex, offsetBy: state.i)
-		if var last = lastNode {
+		if let last = lastNode {
 			last.markup += String(src[startIndex..<endIndex])
 			if let count = parent.children?.count, count > 0 {
 				parent.children?[count - 1] = last
@@ -74,7 +74,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		}
 	} else {
 		state.i += 1
-		if var last = lastNode {
+		if let last = lastNode {
 			last.markup += String(char)
 			if let count = parent.children?.count, count > 0 {
 				parent.children?[count - 1] = last

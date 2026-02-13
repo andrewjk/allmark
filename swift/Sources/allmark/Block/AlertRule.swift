@@ -98,8 +98,7 @@ func testAlertContinue(state: inout BlockParserState, node: MarkdownNode) -> Boo
 	let openNode = state.openNodes.last!
 	if openNode.type == "paragraph" {
 		state.maybeContinue = true
-		var mutableNode = node
-		mutableNode.maybeContinuing = true
+		node.maybeContinuing = true
 		return true
 	}
 	
@@ -108,7 +107,7 @@ func testAlertContinue(state: inout BlockParserState, node: MarkdownNode) -> Boo
 
 func closeAlert(state: inout BlockParserState, node: MarkdownNode) {
 	if state.hasBlankLine && node.children != nil && !node.children!.isEmpty {
-		var lastChild = node.children![node.children!.count - 1]
+		let lastChild = node.children![node.children!.count - 1]
 		lastChild.blankAfter = true
 		state.hasBlankLine = false
 	}

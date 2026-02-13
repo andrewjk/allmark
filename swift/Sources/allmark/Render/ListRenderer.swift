@@ -25,11 +25,10 @@ func renderList(_ node: MarkdownNode, _ state: inout RendererState, _ first: Boo
 	if let children = node.children {
 		for i in 0..<(children.count - 1) {
 			let child = children[i]
-			var mutableChild = child
 			if let grandchild = child.children?.last, grandchild.blankAfter {
-				mutableChild.blankAfter = true
+				child.blankAfter = true
 			}
-			if mutableChild.blankAfter {
+			if child.blankAfter {
 				loose = true
 				break
 			}

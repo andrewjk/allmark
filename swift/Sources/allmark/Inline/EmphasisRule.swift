@@ -114,7 +114,7 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 						let useLength = min(startDel.length, 2)
 						let useMarkup = String(markup.prefix(useLength))
 						
-						var text = MarkdownNode(
+						let text = MarkdownNode(
 							type: "text",
 							block: false,
 							index: lastNode.index,
@@ -131,10 +131,8 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							parent.children?.removeSubrange((i + 1)..<childCount)
 						}
 						
-						var mutableLastNode = lastNode
-						
 						if useMarkup.count < startDel.length {
-							mutableLastNode.markup = String(lastNode.markup.prefix(startDel.length - useMarkup.count))
+							lastNode.markup = String(lastNode.markup.prefix(startDel.length - useMarkup.count))
 							let emphasis = MarkdownNode(
 								type: useMarkup.count == 2 ? "strong" : "emphasis",
 								block: false,
@@ -147,10 +145,10 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							)
 							parent.children?.append(emphasis)
 						} else {
-							mutableLastNode.type = useMarkup.count == 2 ? "strong" : "emphasis"
-							mutableLastNode.markup = useMarkup
-							mutableLastNode.children = [text] + movedNodes
-							parent.children?[i] = mutableLastNode
+							lastNode.type = useMarkup.count == 2 ? "strong" : "emphasis"
+							lastNode.markup = useMarkup
+							lastNode.children = [text] + movedNodes
+							parent.children?[i] = lastNode
 						}
 						
 						state.i += useMarkup.count

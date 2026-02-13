@@ -52,7 +52,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 						let fullMatchRange = urlMatch.range(at: 0)
 						if let fullRange = Range(fullMatchRange, in: tail) {
 							let markup = escapeHtml(text: String(tail[fullRange]))
-							var text = MarkdownNode(
+							let text = MarkdownNode(
 								type: "text",
 								block: false,
 								index: state.i,
@@ -73,7 +73,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					url = escapeHtml(text: url)
 					
 					let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? url
-					var html = MarkdownNode(
+					let html = MarkdownNode(
 						type: "html_span",
 						block: false,
 						index: state.i,
@@ -106,7 +106,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 						let fullMatchRange = urlMatch.range(at: 0)
 						if let fullRange = Range(fullMatchRange, in: tail) {
 							let markup = escapeHtml(text: String(tail[fullRange]))
-							var text = MarkdownNode(
+							let text = MarkdownNode(
 								type: "text",
 								block: false,
 								index: state.i,
@@ -127,7 +127,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					url = escapeHtml(text: url)
 					
 					let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? url
-					var html = MarkdownNode(
+					let html = MarkdownNode(
 						type: "html_span",
 						block: false,
 						index: state.i,
@@ -168,7 +168,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 							let fullMatchRange = emailMatch.range(at: 0)
 							if let fullRange = Range(fullMatchRange, in: tail) {
 								let markup = escapeHtml(text: String(tail[fullRange]))
-								var text = MarkdownNode(
+								let text = MarkdownNode(
 									type: "text",
 									block: false,
 									index: state.i,
@@ -191,7 +191,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 								let fullMatchRange = emailMatch.range(at: 0)
 								if let fullRange = Range(fullMatchRange, in: tail) {
 									let markup = escapeHtml(text: String(tail[fullRange]))
-									var text = MarkdownNode(
+									let text = MarkdownNode(
 										type: "text",
 										block: false,
 										index: state.i,
@@ -212,7 +212,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 						url = url.replacingOccurrences(of: "\\.$", with: "", options: .regularExpression)
 						
 						let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? url
-						var html = MarkdownNode(
+						let html = MarkdownNode(
 							type: "html_span",
 							block: false,
 							index: state.i,
@@ -249,7 +249,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 						let fullMatchRange = emailMatch.range(at: 0)
 						if let fullRange = Range(fullMatchRange, in: tail) {
 							let markup = escapeHtml(text: String(tail[fullRange]))
-							var text = MarkdownNode(
+							let text = MarkdownNode(
 								type: "text",
 								block: false,
 								index: state.i,
@@ -272,7 +272,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 							let fullMatchRange = emailMatch.range(at: 0)
 							if let fullRange = Range(fullMatchRange, in: tail) {
 								let markup = escapeHtml(text: String(tail[fullRange]))
-								var text = MarkdownNode(
+								let text = MarkdownNode(
 									type: "text",
 									block: false,
 									index: state.i,
@@ -293,7 +293,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					url = url.replacingOccurrences(of: "\\.$", with: "", options: .regularExpression)
 					
 					let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? url
-					var html = MarkdownNode(
+					let html = MarkdownNode(
 						type: "html_span",
 						block: false,
 						index: state.i,

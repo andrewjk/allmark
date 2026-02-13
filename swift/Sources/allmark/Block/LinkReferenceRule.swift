@@ -90,14 +90,13 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 			children: []
 		)
 		
-		var currentParent = parent
-		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
-			var lastChild = currentParent.children![currentParent.children!.count - 1]
+		if state.hasBlankLine && parent.children != nil && !parent.children!.isEmpty {
+			let lastChild = parent.children![parent.children!.count - 1]
 			lastChild.blankAfter = true
 			state.hasBlankLine = false
 		}
 		
-		currentParent.children!.append(ref)
+		parent.children!.append(ref)
 		
 		if state.i > 0 {
 			let prevIndex = src.index(src.startIndex, offsetBy: state.i - 1)

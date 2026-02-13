@@ -49,7 +49,7 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: Li
 		state.maybeContinue = false
 		i = state.openNodes.count - 1
 		while i > 0 {
-			var node = state.openNodes[i]
+			let node = state.openNodes[i]
 			if node.maybeContinuing {
 				node.maybeContinuing = false
 				closedNode = node
@@ -128,7 +128,7 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: Li
 	}
 	list.delimiter = info.delimiter
 	
-	var item = MarkdownNode(
+	let item = MarkdownNode(
 		type: "list_item",
 		block: true,
 		index: state.i,
@@ -143,7 +143,7 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: Li
 	
 	if !haveList {
 		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
-			var lastChild = currentParent.children![currentParent.children!.count - 1]
+			let lastChild = currentParent.children![currentParent.children!.count - 1]
 			lastChild.blankAfter = true
 			state.hasBlankLine = false
 		}
@@ -153,7 +153,7 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: Li
 	}
 	
 	if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
-		var lastChild = currentParent.children![currentParent.children!.count - 1]
+		let lastChild = currentParent.children![currentParent.children!.count - 1]
 		lastChild.blankAfter = true
 		state.hasBlankLine = false
 	}

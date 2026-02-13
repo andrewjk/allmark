@@ -153,19 +153,18 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 					}
 
 					// Create the footnote reference node with parsed children
-					var mutableLastNode = lastNode
-					mutableLastNode.type = "footnote"
-					mutableLastNode.info = label
-					mutableLastNode.markup = "[^\(label)]"
-					mutableLastNode.children = footnote.content.children
-					parent.children?[i] = mutableLastNode
+					lastNode.type = "footnote"
+					lastNode.info = label
+					lastNode.markup = "[^\(label)]"
+					lastNode.children = footnote.content.children
+					parent.children?[i] = lastNode
 					
 					// Parse the footnote content for inline elements
 					var tempState = InlineParserState(
 						rules: state.rules,
-                        src: mutableLastNode.content.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression),
+                        src: lastNode.content.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression),
 						i: 0,
-						line: mutableLastNode.line,
+						line: lastNode.line,
 						lineStart: 0,
 						indent: 0,
 						delimiters: [],
@@ -173,7 +172,7 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 						footnotes: state.footnotes,
 						debug: nil
 					)
-					parseInline(state: &tempState, parent: mutableLastNode)
+					parseInline(state: &tempState, parent: lastNode)
 					
 					return true
 				}

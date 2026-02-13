@@ -19,15 +19,12 @@ func testContentStart(state: inout BlockParserState, parent: MarkdownNode) -> Bo
 	
 	if parent.acceptsContent {
 		if !state.hasBlankLine {
-			var mutableParent = parent
-			mutableParent.content += String(repeating: " ", count: state.indent)
+			parent.content += String(repeating: " ", count: state.indent)
 		}
-		var mutableParent = parent
-		mutableParent.content += content
+		parent.content += content
 		state.hasBlankLine = false
 	} else {
-		var mutableParent = parent
-		mutableParent.content += content
+		parent.content += content
 	}
 	
 	state.i = endOfLine

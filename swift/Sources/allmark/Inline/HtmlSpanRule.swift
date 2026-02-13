@@ -33,7 +33,7 @@ func testHtmlSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 			let matchRange = match.range(at: 0)
 			if let swiftRange = Range(matchRange, in: tail) {
 				let content = String(tail[swiftRange])
-				var html = MarkdownNode(
+				let html = MarkdownNode(
 					type: "html_span",
 					block: false,
 					index: state.i,
