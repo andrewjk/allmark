@@ -8,7 +8,7 @@ import fs from "node:fs";
 import { Bench } from "tinybench";
 import parse from "../web/src/parse";
 import renderHtml from "../web/src/renderHtml";
-import gfmx from "../web/src/rules/gfm"
+import gfmx from "../web/src/rulesets/gfm"
 import { renderHtmlSync } from "cmark-gfm"
 
 // Markdown file from https://gist.github.com/allysonsilva/85fff14a22bbdf55485be947566cc09e
