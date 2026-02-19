@@ -55,3 +55,4 @@ pub const render = struct {
 pub const core = @import("rulesets/core.zig");
 pub const gfm = @import("rulesets/gfm.zig");
 pub const extended = @import("rulesets/extended.zig");
+pub const RuleSet = @import("types/RuleSet.zig").RuleSet;

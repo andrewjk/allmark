@@ -1,39 +1,151 @@
 const std = @import("std");
-const Io = std.Io;
 
 const allmark = @import("allmark");
-const mvzr = @import("mvzr");
 
-test "parse functions compile" {
-    _ = allmark.parse.parseBlock;
-    _ = allmark.parse.parseBlockInlines;
-    _ = allmark.parse.parseIndent;
-    _ = allmark.parse.parseInline;
-    _ = allmark.parse.parseLine;
+const printUsage = struct {
+    pub fn print(writer: anytype) !void {
+        try writer.print("Usage: allmark <input-file> [-o <file>] [-r <core|gfm|extended>]\n", .{});
+        try writer.print("  input-file   Path to the markdown file to convert\n", .{});
+        try writer.print("  -o, --output Path to output HTML file (optional, prints to stdout by default)\n", .{});
+        try writer.print("  -r, --ruleset Ruleset to use: core, gfm, or extended (default: extended)\n", .{});
+        try writer.print("  -h, --help   Show this help message\n", .{});
+    }
+};
+
+const Args = struct {
+    input: []const u8,
+    output: ?[]const u8,
+    ruleset: []const u8,
+};
+
+pub fn parseArgs(allocator: std.mem.Allocator, args: []const []const u8, io: std.Io) !Args {
+    _ = allocator;
+    var buffer: [4096]u8 = undefined;
+    var result = Args{
+        .input = "",
+        .output = null,
+        .ruleset = "extended",
+    };
+
+    var i: usize = 0;
+    while (i < args.len) {
+        const arg = args[i];
+
+        if (std.mem.eql(u8, arg, "--output") or std.mem.eql(u8, arg, "-o")) {
+            if (i + 1 >= args.len) {
+                var stderr = std.Io.File.stderr().writer(io, &buffer);
+                try stderr.interface.print("Error: {s} requires a file path\n", .{arg});
+                try printUsage.print(&stderr.interface);
+                try stderr.interface.flush();
+                std.process.exit(1);
+            }
+            result.output = args[i + 1];
+            i += 2;
+            continue;
+        } else if (std.mem.eql(u8, arg, "--ruleset") or std.mem.eql(u8, arg, "-r")) {
+            if (i + 1 >= args.len) {
+                var stderr = std.Io.File.stderr().writer(io, &buffer);
+                try stderr.interface.print("Error: {s} requires a value (core, gfm, or extended)\n", .{arg});
+                try printUsage.print(&stderr.interface);
+                try stderr.interface.flush();
+                std.process.exit(1);
+            }
+            const ruleset = args[i + 1];
+            if (!std.mem.eql(u8, ruleset, "core") and !std.mem.eql(u8, ruleset, "gfm") and !std.mem.eql(u8, ruleset, "extended")) {
+                var stderr = std.Io.File.stderr().writer(io, &buffer);
+                try stderr.interface.print("Error: Invalid ruleset '{s}'. Must be core, gfm, or extended\n", .{ruleset});
+                try printUsage.print(&stderr.interface);
+                try stderr.interface.flush();
+                std.process.exit(1);
+            }
+            result.ruleset = ruleset;
+            i += 2;
+            continue;
+        } else if (std.mem.eql(u8, arg, "--help") or std.mem.eql(u8, arg, "-h")) {
+            var stdout = std.Io.File.stdout().writer(io, &buffer);
+            try printUsage.print(&stdout.interface);
+            try stdout.interface.flush();
+            std.process.exit(0);
+        } else if (std.mem.startsWith(u8, arg, "--")) {
+            var stderr = std.Io.File.stderr().writer(io, &buffer);
+            try stderr.interface.print("Error: Unknown option '{s}'\n", .{arg});
+            try printUsage.print(&stderr.interface);
+            try stderr.interface.flush();
+            std.process.exit(1);
+        } else if (std.mem.startsWith(u8, arg, "-") and arg.len > 1) {
+            var stderr = std.Io.File.stderr().writer(io, &buffer);
+            try stderr.interface.print("Error: Unknown option '{s}'\n", .{arg});
+            try printUsage.print(&stderr.interface);
+            try stderr.interface.flush();
+            std.process.exit(1);
+        } else {
+            if (result.input.len > 0) {
+                var stderr = std.Io.File.stderr().writer(io, &buffer);
+                try stderr.interface.print("Error: Multiple input files specified: '{s}' and '{s}'\n", .{ result.input, arg });
+                try printUsage.print(&stderr.interface);
+                try stderr.interface.flush();
+                std.process.exit(1);
+            }
+            result.input = arg;
+            i += 1;
+        }
+    }
+
+    if (result.input.len == 0) {
+        var stderr = std.Io.File.stderr().writer(io, &buffer);
+        try stderr.interface.print("Error: No input file specified\n", .{});
+        try printUsage.print(&stderr.interface);
+        try stderr.interface.flush();
+        std.process.exit(1);
+    }
+
+    return result;
 }
 
 pub fn main(init: std.process.Init) !void {
-    // Prints to stderr, unbuffered, ignoring potential errors.
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-
-    // This is appropriate for anything that lives as long as the process.
-    const arena: std.mem.Allocator = init.arena.allocator();
-
-    // Accessing command line arguments:
-    const args = try init.minimal.args.toSlice(arena);
-    for (args) |arg| {
-        std.log.info("arg: {s}", .{arg});
-    }
-
-    // In order to do I/O operations need an `Io` instance.
+    const allocator = init.gpa;
+    const arena = init.arena.allocator();
     const io = init.io;
 
-    // Stdout is for the actual output of your application, for example if you
-    // are implementing gzip, then only the compressed bytes should be sent to
-    // stdout, not any debugging messages.
-    var stdout_buffer: [1024]u8 = undefined;
-    var stdout_file_writer: Io.File.Writer = .init(.stdout(), io, &stdout_buffer);
-    const stdout_writer = &stdout_file_writer.interface;
+    const args = try std.process.Args.toSlice(init.minimal.args, arena);
+    const parsed_args = try parseArgs(allocator, args[1..], io);
 
-    try stdout_writer.flush(); // Don't forget to flush!
+    const cwd = std.Io.Dir.cwd();
+    const markdown = cwd.readFileAlloc(io, parsed_args.input, allocator, .unlimited) catch |err| {
+        var buffer: [4096]u8 = undefined;
+        var stderr = std.Io.File.stderr().writer(io, &buffer);
+        if (err == error.FileNotFound) {
+            try stderr.interface.print("Error: File not found: '{s}'\n", .{parsed_args.input});
+        } else {
+            try stderr.interface.print("Error: {}\n", .{err});
+        }
+        try stderr.interface.flush();
+        std.process.exit(1);
+    };
+    defer allocator.free(markdown);
+
+    var ruleset: allmark.RuleSet = if (std.mem.eql(u8, parsed_args.ruleset, "core"))
+        try allmark.core.init(allocator)
+    else if (std.mem.eql(u8, parsed_args.ruleset, "gfm"))
+        try allmark.gfm.init(allocator)
+    else
+        try allmark.extended.init(allocator);
+    defer ruleset.blocks.deinit();
+    defer ruleset.inlines.deinit();
+    defer ruleset.renderers.deinit();
+
+    const document = try allmark.parse.execute(allocator, markdown, ruleset, false);
+    defer document.deinit(allocator);
+
+    const html = try allmark.render.renderHtml(allocator, document, ruleset);
+    defer allocator.free(html);
+
+    if (parsed_args.output) |output_path| {
+        try cwd.writeFile(io, .{ .sub_path = output_path, .data = html });
+    } else {
+        var buffer: [4096]u8 = undefined;
+        var stdout = std.Io.File.stdout().writer(io, &buffer);
+        try stdout.interface.print("{s}\n", .{html});
+        try stdout.interface.flush();
+    }
 }

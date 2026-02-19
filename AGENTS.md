@@ -22,6 +22,7 @@ pnpm test               # Run all tests (watch mode)
 pnpm test -- --run      # Run tests once (CI mode)
 pnpm test -- testName   # Run single test by name pattern
 pnpm format             # Format with Prettier
+pnpm cli <input.md>     # Run CLI to convert MD to HTML
 ```
 
 ### Swift (`/swift`)

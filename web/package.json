@@ -3,6 +3,9 @@
 	"version": "1.0.0",
 	"description": "",
 	"type": "module",
+	"bin": {
+		"allmark": "./dist/cli.mjs"
+	},
 	"exports": {
 		"types": "./dist/index.d.mts",
 		"import": "./dist/index.mjs"
@@ -13,7 +16,8 @@
 		"format": "prettier --write .",
 		"test": "vitest",
 		"test:split": "tsx ./scripts/splitSpecsIntoTests.ts",
-		"test:dl": "tsx ./scripts/downloadGitHubTop.ts"
+		"test:dl": "tsx ./scripts/downloadGitHubTop.ts",
+		"cli": "node dist/bin/index.mjs"
 	},
 	"keywords": [],
 	"author": "",
