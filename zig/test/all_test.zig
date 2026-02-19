@@ -14,6 +14,7 @@ comptime {
     _ = @import("gfm_table_test.zig");
     _ = @import("gfm_footnote_test.zig");
     _ = @import("gfm_alert_test.zig");
+    _ = @import("ext_comment_test.zig");
     _ = @import("ext_deletion_test.zig");
     _ = @import("ext_highlight_test.zig");
     _ = @import("ext_insertion_test.zig");

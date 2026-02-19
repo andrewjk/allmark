@@ -9,7 +9,10 @@ export default function testCriticMarks(
 	delimiter: string,
 	state: InlineParserState,
 	parent: MarkdownNode,
+	closingDelimiter?: string,
 ): boolean {
+	closingDelimiter ??= delimiter;
+
 	let char = state.src[state.i];
 	if (char === "{" && !isEscaped(state.src, state.i)) {
 		let start = state.i;
@@ -21,7 +24,10 @@ export default function testCriticMarks(
 			if (state.src[i] === delimiter) {
 				markup += delimiter;
 				end++;
-			} else if (state.src[i] === "}") {
+			} else if (
+				state.src[i] === "}" ||
+				(closingDelimiter !== delimiter && state.src[i] === closingDelimiter)
+			) {
 				return false;
 			} else {
 				break;
@@ -29,7 +35,7 @@ export default function testCriticMarks(
 		}
 
 		if (markup.length === 2 || markup.length === 3) {
-			// Add a new text node which may turn into deletion
+			// Add a new text node which may turn into a critic mark
 			let text = newNode("text", false, start, state.line, 1, markup, 0);
 			parent.children!.push(text);
 
@@ -39,11 +45,11 @@ export default function testCriticMarks(
 
 			return true;
 		}
-	} else if (char === delimiter && !isEscaped(state.src, state.i)) {
+	} else if (char === closingDelimiter && !isEscaped(state.src, state.i)) {
 		// Get the markup
 		let markup = "{" + delimiter;
 		for (let i = state.i + 1; i < state.src.length; i++) {
-			if (state.src[i] === delimiter) {
+			if (state.src[i] === closingDelimiter) {
 				markup += delimiter;
 			} else if (state.src[i] === "}") {
 				break;
@@ -65,9 +71,9 @@ export default function testCriticMarks(
 				}
 			}
 
-			// Check if it's a closing deletion
+			// Check if it's a closing critic mark
 			if (startDelimiter !== undefined) {
-				// Convert the text node into a deletion node with a new text
+				// Convert the text node into a critic mark node with a new text
 				// child followed by the other children of the parent (if any)
 				let i = parent.children!.length;
 				while (i--) {

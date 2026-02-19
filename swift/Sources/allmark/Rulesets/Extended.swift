@@ -38,6 +38,7 @@ let extendedRuleSet = RuleSet(
 		lineBreakRule.name: lineBreakRule,
 		insertionRule.name: insertionRule,
 		deletionRule.name: deletionRule,
+		commentRule.name: commentRule,
 		textRule.name: textRule,
 	],
 	renderers: [
@@ -46,6 +47,7 @@ let extendedRuleSet = RuleSet(
 		codeBlockRenderer.name: codeBlockRenderer,
 		codeFenceRenderer.name: codeFenceRenderer,
 		codeSpanRenderer.name: codeSpanRenderer,
+		commentRenderer.name: commentRenderer,
 		deletionRenderer.name: deletionRenderer,
 		emphasisRenderer.name: emphasisRenderer,
 		footnoteRenderer.name: footnoteRenderer,

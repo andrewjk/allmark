@@ -4,8 +4,9 @@ using Allmark.Types;
 
 public static class CriticMarksRule
 {
-	public static bool Execute(string name, string delimiter, InlineParserState state, MarkdownNode parent)
+	public static bool Execute(string name, string delimiter, InlineParserState state, MarkdownNode parent, string? closingDelimiter = null)
 	{
+		var closeDel = closingDelimiter ?? delimiter;
 		var ch = Utils.GetChar(state.Src, state.I);
 		if (ch == '{' && !Utils.IsEscaped(state.Src, state.I))
 		{
@@ -21,7 +22,7 @@ public static class CriticMarksRule
 					markup += delimiter;
 					end++;
 				}
-				else if (state.Src[i] == '}')
+				else if (state.Src[i] == '}' || (closeDel != delimiter && state.Src[i].ToString() == closeDel))
 				{
 					return false;
 				}
@@ -44,13 +45,13 @@ public static class CriticMarksRule
 				return true;
 			}
 		}
-		else if (ch.ToString() == delimiter && !Utils.IsEscaped(state.Src, state.I))
+		else if (ch.ToString() == closeDel && !Utils.IsEscaped(state.Src, state.I))
 		{
 			// Get the markup
 			var markup = "{" + delimiter;
 			for (var i = state.I + 1; i < state.Src.Length; i++)
 			{
-				if (state.Src[i].ToString() == delimiter)
+				if (state.Src[i].ToString() == closeDel)
 				{
 					markup += delimiter;
 				}

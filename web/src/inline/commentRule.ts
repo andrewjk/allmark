@@ -4,11 +4,11 @@ import type MarkdownNode from "../types/MarkdownNode";
 import testCriticMarks from "./criticMarksRule";
 
 const rule: InlineRule = {
-	name: "insertion",
-	test: testInsertion,
+	name: "comment",
+	test: testComment,
 };
 export default rule;
 
-function testInsertion(state: InlineParserState, parent: MarkdownNode): boolean {
-	return testCriticMarks(rule.name, "+", state, parent);
+function testComment(state: InlineParserState, parent: MarkdownNode): boolean {
+	return testCriticMarks(rule.name, ">", state, parent, "<");
 }

@@ -60,7 +60,7 @@ export default function render(node: MarkdownNode, state: RendererState): void {
 				if (i === 0) {
 					innerNewLine(item, state);
 				}
-				renderNode(child, state, i === item.children!.length - 1);
+				renderNode(child, state, i === 0, i === item.children!.length - 1);
 			}
 		}
 		state.output += "</li>";

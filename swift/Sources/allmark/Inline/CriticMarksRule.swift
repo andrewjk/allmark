@@ -4,8 +4,10 @@ func testCriticMarks(
 	name: String,
 	delimiter: String,
 	state: inout InlineParserState,
-	parent: inout MarkdownNode
+	parent: inout MarkdownNode,
+	closingDelimiter: String? = nil
 ) -> Bool {
+	let closeDel = closingDelimiter ?? delimiter
 	let src = state.src
 	guard state.i < src.count else { return false }
 	
@@ -23,7 +25,7 @@ func testCriticMarks(
 			if src[iIndex] == delimiter.first {
 				markup.append(delimiter)
 				end += 1
-			} else if src[iIndex] == "}" {
+			} else if src[iIndex] == "}" || (closeDel != delimiter && src[iIndex] == closeDel.first) {
 				return false
 			} else {
 				break
@@ -50,12 +52,12 @@ func testCriticMarks(
 			
 			return true
 		}
-	} else if String(char) == delimiter && !isEscaped(text: src, i: state.i) {
+	} else if String(char) == closeDel && !isEscaped(text: src, i: state.i) {
 		// Get the markup
 		var markup = "{" + delimiter
 		for i in (state.i + 1)..<src.count {
 			let iIndex = src.index(src.startIndex, offsetBy: i)
-			if src[iIndex] == delimiter.first {
+			if src[iIndex] == closeDel.first {
 				markup.append(delimiter)
 			} else if src[iIndex] == "}" {
 				break

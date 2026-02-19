@@ -25,6 +25,7 @@ const contentRule = @import("../block/contentRule.zig").contentRule;
 const autolinkRule = @import("../inline/autolinkRule.zig").autolinkRule;
 const extendedAutolinkRule = @import("../inline/extendedAutolinkRule.zig").extendedAutolinkRule;
 const codeSpanRule = @import("../inline/codeSpanRule.zig").codeSpanRule;
+const commentRule = @import("../inline/commentRule.zig").commentRule;
 const deletionRule = @import("../inline/deletionRule.zig").deletionRule;
 const emphasisRule = @import("../inline/emphasisRule.zig").emphasisRule;
 const footnoteRule = @import("../inline/footnoteRule.zig").footnoteRule;
@@ -43,6 +44,7 @@ const blockQuoteRenderer = @import("../render/blockQuoteRenderer.zig").blockQuot
 const codeBlockRenderer = @import("../render/codeBlockRenderer.zig").codeBlockRenderer;
 const codeFenceRenderer = @import("../render/codeFenceRenderer.zig").codeFenceRenderer;
 const codeSpanRenderer = @import("../render/codeSpanRenderer.zig").codeSpanRenderer;
+const commentRenderer = @import("../render/commentRenderer.zig").commentRenderer;
 const deletionRenderer = @import("../render/deletionRenderer.zig").deletionRenderer;
 const emphasisRenderer = @import("../render/emphasisRenderer.zig").emphasisRenderer;
 const footnoteRenderer = @import("../render/footnoteRenderer.zig").footnoteRenderer;
@@ -115,6 +117,7 @@ pub fn init(allocator: std.mem.Allocator) !RuleSet {
     try inlines.put(lineBreakRule.name, &lineBreakRule);
     try inlines.put(insertionRule.name, &insertionRule);
     try inlines.put(deletionRule.name, &deletionRule);
+    try inlines.put(commentRule.name, &commentRule);
     try inlines.put(textRule.name, &textRule);
 
     try renderers.put(alertRenderer.name, &alertRenderer);
@@ -122,6 +125,7 @@ pub fn init(allocator: std.mem.Allocator) !RuleSet {
     try renderers.put(codeBlockRenderer.name, &codeBlockRenderer);
     try renderers.put(codeFenceRenderer.name, &codeFenceRenderer);
     try renderers.put(codeSpanRenderer.name, &codeSpanRenderer);
+    try renderers.put(commentRenderer.name, &commentRenderer);
     try renderers.put(deletionRenderer.name, &deletionRenderer);
     try renderers.put(emphasisRenderer.name, &emphasisRenderer);
     try renderers.put(footnoteRenderer.name, &footnoteRenderer);

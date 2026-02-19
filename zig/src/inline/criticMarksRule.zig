@@ -4,7 +4,8 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const newNode = @import("../utils/newNode.zig").newNode;
 
-pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserState, parent: *MarkdownNode) bool {
+pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserState, parent: *MarkdownNode, closingDelimiter: ?u8) bool {
+    const closeDel = closingDelimiter orelse delimiter;
     if (state.i < state.src.len) {
         const char = state.src[state.i];
         if (char == '{' and !isEscaped(state.src, state.i)) {
@@ -22,7 +23,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
                     markup_buf[markup_len] = delimiter;
                     markup_len += 1;
                     end += 1;
-                } else if (state.src[i] == '}') {
+                } else if (state.src[i] == '}' or (closeDel != delimiter and state.src[i] == closeDel)) {
                     return false;
                 } else {
                     break;
@@ -56,7 +57,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
 
                 return true;
             }
-        } else if (char == delimiter and !isEscaped(state.src, state.i)) {
+        } else if (char == closeDel and !isEscaped(state.src, state.i)) {
             var markup_buf: [4]u8 = undefined;
             var markup_len: usize = 0;
             markup_buf[0] = '{';
@@ -65,7 +66,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
 
             var i = state.i + 1;
             while (i < state.src.len) : (i += 1) {
-                if (state.src[i] == delimiter) {
+                if (state.src[i] == closeDel) {
                     markup_buf[markup_len] = delimiter;
                     markup_len += 1;
                 } else if (state.src[i] == '}') {

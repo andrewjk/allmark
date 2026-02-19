@@ -52,6 +52,7 @@ public static class Extended
 			[LineBreakRule.Create().Name] = LineBreakRule.Create(),
 			[InsertionRule.Create().Name] = InsertionRule.Create(),
 			[DeletionRule.Create().Name] = DeletionRule.Create(),
+			[CommentRule.Create().Name] = CommentRule.Create(),
 			[TextRule.Create().Name] = TextRule.Create(),
 		},
 		Renderers = new Dictionary<string, Renderer>
@@ -61,6 +62,7 @@ public static class Extended
 			[CodeBlockRenderer.Create().Name] = CodeBlockRenderer.Create(),
 			[CodeFenceRenderer.Create().Name] = CodeFenceRenderer.Create(),
 			[CodeSpanRenderer.Create().Name] = CodeSpanRenderer.Create(),
+			[CommentRenderer.Create().Name] = CommentRenderer.Create(),
 			[DeletionRenderer.Create().Name] = DeletionRenderer.Create(),
 			[EmphasisRenderer.Create().Name] = EmphasisRenderer.Create(),
 			[FootnoteRenderer.Create().Name] = FootnoteRenderer.Create(),

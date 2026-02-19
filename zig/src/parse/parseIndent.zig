@@ -4,7 +4,7 @@ const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 
 pub fn parseIndent(state: *BlockParserState) void {
-    if (isSpace(state.src[state.i])) {
+    if (state.i < state.src.len and isSpace(state.src[state.i])) {
         while (state.i < state.src.len) {
             const char = state.src[state.i];
             if (char == ' ') {

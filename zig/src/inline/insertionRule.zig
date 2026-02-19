@@ -5,7 +5,7 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const testCriticMarks = @import("criticMarksRule.zig").testCriticMarks;
 
 pub fn testInsertion(state: *InlineParserState, parent: *MarkdownNode) bool {
-    return testCriticMarks("insertion", '+', state, parent);
+    return testCriticMarks("insertion", '+', state, parent, null);
 }
 
 pub const insertionRule = InlineRule{

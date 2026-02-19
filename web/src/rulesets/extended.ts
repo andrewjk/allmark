@@ -18,6 +18,7 @@ import tableRule from "../block/tableRule";
 import thematicBreakRule from "../block/thematicBreakRule";
 import autolinkRule from "../inline/autolinkRule";
 import codeSpanRule from "../inline/codeSpanRule";
+import commentRule from "../inline/commentRule";
 import deletionRule from "../inline/deletionRule";
 import emphasisRule from "../inline/emphasisRule";
 import extendedAutolinkRule from "../inline/extendedAutolinkRule";
@@ -37,6 +38,7 @@ import blockQuoteRenderer from "../render/blockQuoteRenderer";
 import codeBlockRenderer from "../render/codeBlockRenderer";
 import codeFenceRenderer from "../render/codeFenceRenderer";
 import codeSpanRenderer from "../render/codeSpanRenderer";
+import commentRenderer from "../render/commentRenderer";
 import deletionRenderer from "../render/deletionRenderer";
 import emphasisRenderer from "../render/emphasisRenderer";
 import footnoteRenderer from "../render/footnoteRenderer";
@@ -107,6 +109,7 @@ const gfm: RuleSet = {
 		[lineBreakRule.name, lineBreakRule],
 		[insertionRule.name, insertionRule],
 		[deletionRule.name, deletionRule],
+		[commentRule.name, commentRule],
 		[textRule.name, textRule],
 	]),
 	renderers: new Map([
@@ -115,6 +118,7 @@ const gfm: RuleSet = {
 		[codeBlockRenderer.name, codeBlockRenderer],
 		[codeFenceRenderer.name, codeFenceRenderer],
 		[codeSpanRenderer.name, codeSpanRenderer],
+		[commentRenderer.name, commentRenderer],
 		[deletionRenderer.name, deletionRenderer],
 		[emphasisRenderer.name, emphasisRenderer],
 		[footnoteRenderer.name, footnoteRenderer],
