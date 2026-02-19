@@ -690,4 +690,14 @@ struct ThematicBreakTests {
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
+
+	@Test func emptyThematicBreakShouldNotMatch() async {
+		let input = ""
+		let expected = ""
+		await MainActor.run {
+			let root = parse(src: input, rules: coreRuleSet, debug: false)
+			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected)
+		}
+	}
 }

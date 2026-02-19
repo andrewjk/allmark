@@ -3,7 +3,6 @@ import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 
 export default function parseIndent(state: BlockParserState): void {
-	//let char = state.src[state.i];
 	if (isSpace(state.src.charCodeAt(state.i))) {
 		for (; state.i < state.src.length; state.i++) {
 			let char = state.src[state.i];

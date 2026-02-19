@@ -192,17 +192,6 @@ This text was {>>commented<<} recently.
 		expect(html.trim()).toBe(expected.trim());
 	});
 
-	// TODO: maybe?
-	test.skip("comment multiline", () => {
-		const input = `text {>>multiline
-comment<<} more`;
-		const expected = `<p>text {>>multiline
-comment<<} more</p>`;
-		const doc = parse(input, extended);
-		const html = renderHtml(doc, extended.renderers);
-		expect(html.trim()).toBe(expected.trim());
-	});
-
 	test("comment with plus signs inside", () => {
 		const input = `text {>>plus + sign<<}`;
 		const expected = `<p>text <span class="markdown-comment">plus + sign</span></p>`;

@@ -196,8 +196,7 @@ describe("links", () => {
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("link with special characters in URL", () => {
+	test("link with special characters in URL", () => {
 		const input = `[Link](https://example.com/path?query=value&other=123#anchor)`;
 		const expected = `<p><a href="https://example.com/path?query=value&amp;other=123#anchor">Link</a></p>
 `;

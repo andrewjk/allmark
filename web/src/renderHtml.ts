@@ -17,7 +17,7 @@ export default function renderHtml(doc: MarkdownNode, renderers: Map<string, Ren
 		renderFootnoteList(state);
 	}
 
-	if (!state.output.endsWith("\n")) {
+	if (state.output.length && !state.output.endsWith("\n")) {
 		state.output += "\n";
 	}
 

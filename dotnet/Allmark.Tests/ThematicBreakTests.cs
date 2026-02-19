@@ -694,4 +694,14 @@ public class ThematicBreakTests
 		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
 		Assert.AreEqual(expected.Trim(), html.Trim());
 	}
+
+	[TestMethod]
+	public void EmptyThematicBreakShouldNotMatch()
+	{
+		var input = "";
+		var expected = "";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected, html.Trim());
+	}
 }

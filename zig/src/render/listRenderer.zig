@@ -109,6 +109,12 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, first: ?bool, la
                             renderUtils.innerNewLine(item, state);
                         }
                         renderNodeFn(child, state, ii == 0, ii == ic.len - 1, true);
+                        if (ii == ic.len - 1 and child.block) {
+                            const output_slice = state.output.items;
+                            if (output_slice.len > 0 and output_slice[output_slice.len - 1] != '\n') {
+                                state.output.append(state.allocator, '\n') catch unreachable;
+                            }
+                        }
                     }
                 }
             }

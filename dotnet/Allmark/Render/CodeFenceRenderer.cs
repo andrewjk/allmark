@@ -16,7 +16,15 @@ public static class CodeFenceRenderer
 	public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
 	{
 		RenderUtils.StartNewLine(node, state);
-		var lang = !string.IsNullOrEmpty(node.Info) ? $" class=\"language-{node.Info.Trim().Split(' ')[0]}\"" : "";
+		var lang = "";
+		if (!string.IsNullOrEmpty(node.Info))
+		{
+			var trimmed = node.Info.Trim().Split(' ')[0];
+			if (!string.IsNullOrEmpty(trimmed))
+			{
+				lang = $" class=\"language-{Utils.EscapeHtml(trimmed)}\"";
+			}
+		}
 		state.Output.Append($"<pre><code{lang}>");
 		RenderChildren.Execute(node, state, false);
 		state.Output.Append("</code></pre>");

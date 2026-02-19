@@ -668,6 +668,40 @@ public class FencedCodeTests
 	}
 
 	[TestMethod]
+	public void CodeFenceWithTrailingSpacesAfterOpening()
+	{
+		var input = """
+		```   
+		code
+		```
+		""";
+		var expected = """
+		<pre><code>code
+		</code></pre>
+		""";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected.Trim(), html.Trim());
+	}
+
+	[TestMethod]
+	public void CodeFenceWithHTMLEntitiesInInfo()
+	{
+		var input = """
+		```&lt;test&gt;
+		code
+		```
+		""";
+		var expected = """
+		<pre><code class="language-&lt;test&gt;">code
+		</code></pre>
+		""";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected.Trim(), html.Trim());
+	}
+
+	[TestMethod]
 	public void CodeFenceWithAtxHeadingBelow()
 	{
 		var input = """

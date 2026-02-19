@@ -64,9 +64,9 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 				parent = state.openNodes.at(-1)!;
 			}
 
-			// HACK: Special case for an underlined heading in a list
+			// HACK: Special case for a thematic break in a list
 			// Maybe do this with interrupts?
-			if (parent.type === "list_item" && !parent.blankAfter && char === parent.delimiter) {
+			if (parent.type === "list_item" && !state.hasBlankLine && char === parent.delimiter) {
 				closedNode = state.openNodes.pop();
 				closedNode = state.openNodes.pop();
 				parent = state.openNodes.at(-1)!;

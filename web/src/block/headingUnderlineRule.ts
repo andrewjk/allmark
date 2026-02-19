@@ -69,14 +69,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			}
 		}
 
-		// HACK: Special case for an underlined heading in a list
-		// Maybe do this with interrupts?
-		if (parent.type === "list_item" && !parent.blankAfter && state.indent === parent.indent) {
-			state.openNodes.pop();
-			state.openNodes.pop();
-			parent = state.openNodes.at(-1)!;
-		}
-
 		let haveParagraph =
 			parent.type === "paragraph" && !parent.blankAfter && /[^\s]/.test(parent.content);
 		if (haveParagraph) {

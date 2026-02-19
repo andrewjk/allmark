@@ -53,12 +53,15 @@ func renderList(_ node: MarkdownNode, _ state: inout RendererState, _ first: Boo
 				for (i, child) in itemChildren.enumerated() {
 					if !loose && child.type == "paragraph" {
 						renderChildren(node: child, state: &state)
-					} else {
-						if i == 0 {
-							innerNewLine(node: item, state: &state)
-						}
-						renderNode(node: child, state: &state, first: i == itemChildren.count - 1)
+				} else {
+					if i == 0 {
+						innerNewLine(node: item, state: &state)
 					}
+					renderNode(node: child, state: &state, first: i == itemChildren.count - 1)
+					if i == itemChildren.count - 1 && child.block && !state.output.hasSuffix("\n") {
+						state.output += "\n"
+					}
+				}
 				}
 			}
 			state.output += "</li>"

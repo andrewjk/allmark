@@ -1188,3 +1188,39 @@ test "Ordered list at end of line without space" {
 
     try std.testing.expectEqualStrings(expected, html);
 }
+
+test "Ordered list with thematic break in item" {
+    const input =
+        \\1. Item 1
+        \\
+        \\   ---
+        \\
+        \\2. Item 2
+    ;
+    const expected =
+        \\<ol>
+        \\<li>
+        \\<p>Item 1</p>
+        \\<hr />
+        \\</li>
+        \\<li>
+        \\<p>Item 2</p>
+        \\</li>
+        \\</ol>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+    defer rules.renderers.deinit();
+
+    const root = try parse.execute(gpa, input, rules, null);
+    defer root.deinit(gpa);
+
+    const html = try render.renderHtml(gpa, root, rules);
+    defer gpa.free(html);
+
+    try std.testing.expectEqualStrings(expected, html);
+}

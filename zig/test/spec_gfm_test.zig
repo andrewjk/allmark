@@ -4452,7 +4452,7 @@ test "Example 176, line 3010: '[foo]: /url'" {
     const input =
         "[foo]: /url\n";
     const expected =
-        "\n";
+        "";
 
     const gpa = std.testing.allocator;
     var rules = try gfm.init(gpa);
@@ -4748,7 +4748,7 @@ test "Example 188, line 3167: '[foo]: /url'" {
     const input =
         "[foo]: /url\n";
     const expected =
-        "\n";
+        "";
 
     const gpa = std.testing.allocator;
     var rules = try gfm.init(gpa);

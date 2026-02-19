@@ -59,23 +59,15 @@ func testHeadingUnderlineStart(state: inout BlockParserState, parent: MarkdownNo
 			end += 1
 		}
 		
-		// HACK: Special case for an underlined heading in a list
-		var currentParent = parent
-		if currentParent.type == "list_item" && !currentParent.blankAfter && state.indent == currentParent.indent {
-			state.openNodes.removeLast()
-			state.openNodes.removeLast()
-			currentParent = state.openNodes.last!
-		}
-		
 		let contentPattern = try! NSRegularExpression(pattern: "[^\\s]")
-		let contentRange = NSRange(location: 0, length: currentParent.content.utf16.count)
-		let haveParagraph = currentParent.type == "paragraph" && !currentParent.blankAfter && contentPattern.firstMatch(in: currentParent.content, options: [], range: contentRange) != nil
+		let contentRange = NSRange(location: 0, length: parent.content.utf16.count)
+		let haveParagraph = parent.type == "paragraph" && !parent.blankAfter && contentPattern.firstMatch(in: parent.content, options: [], range: contentRange) != nil
 		
 		if haveParagraph {
-			currentParent.type = "heading"
+			parent.type = "heading"
 			let markupStart = src.index(src.startIndex, offsetBy: state.i)
 			let markupEnd = src.index(src.startIndex, offsetBy: end)
-			currentParent.markup = String(src[markupStart..<markupEnd])
+			parent.markup = String(src[markupStart..<markupEnd])
 			state.i = end
 			return true
 		}

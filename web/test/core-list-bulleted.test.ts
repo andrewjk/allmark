@@ -478,8 +478,7 @@ Paragraph`.substring(1);
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("Bulleted list with thematic break in item", () => {
+	test("Bulleted list with thematic break in item", () => {
 		const input = `
 - Item 1
 

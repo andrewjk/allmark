@@ -765,6 +765,26 @@ public class IndentedCodeTests
 	}
 
 	[TestMethod]
+	public void EmptyIndentedCodeBlock()
+	{
+		var input = "    \n    ";
+		var expected = "";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected, html.Trim());
+	}
+
+	[TestMethod]
+	public void IndentedCodeBlockWithOnlyWhitespace()
+	{
+		var input = "    \n    \n    ";
+		var expected = "";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected, html.Trim());
+	}
+
+	[TestMethod]
 	public void IndentedCodeWithInlineCode()
 	{
 		var input = "    `inline code`";

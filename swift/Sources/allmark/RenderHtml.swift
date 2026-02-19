@@ -15,7 +15,7 @@ func renderHtml(doc: MarkdownNode, renderers: OrderedDictionary<String, Renderer
 		renderFootnoteList(state: &state)
 	}
 
-	if !state.output.hasSuffix("\n") {
+	if !state.output.isEmpty && !state.output.hasSuffix("\n") {
 		state.output += "\n"
 	}
 

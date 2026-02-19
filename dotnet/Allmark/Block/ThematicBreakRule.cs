@@ -81,9 +81,9 @@ public static class ThematicBreakRule
 					parent = state.OpenNodes.Peek();
 				}
 
-				// HACK: Special case for an underlined heading in a list
+				// HACK: Special case for a thematic break in a list
 				// Maybe do this with interrupts?
-				if (parent.Type == "list_item" && !parent.BlankAfter && ch.ToString() == parent.Delimiter)
+				if (parent.Type == "list_item" && !state.HasBlankLine && ch.ToString() == parent.Delimiter)
 				{
 					state.OpenNodes.Pop();
 					state.OpenNodes.Pop();

@@ -301,6 +301,27 @@ public class ListBulletedTests
 	}
 
 	[TestMethod]
+	public void BulletedListWithHTMLBlock()
+	{
+		var input = """
+		- Item
+
+		  <div>HTML</div>
+		""";
+		var expected = """
+		<ul>
+		<li>
+		<p>Item</p>
+		<div>HTML</div>
+		</li>
+		</ul>
+		""";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected.Trim(), html.Trim());
+	}
+
+	[TestMethod]
 	public void BulletedListWithInlineFormatting()
 	{
 		var input = "- Item with *emphasis*";
@@ -516,6 +537,32 @@ public class ListBulletedTests
 		<li>Ordered 1</li>
 		<li>Ordered 2</li>
 		</ol>
+		""";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected.Trim(), html.Trim());
+	}
+
+	[TestMethod]
+	public void BulletedListWithThematicBreakInItem()
+	{
+		var input = """
+		- Item 1
+
+		  ---
+
+		- Item 2
+		""";
+		var expected = """
+		<ul>
+		<li>
+		<p>Item 1</p>
+		<hr />
+		</li>
+		<li>
+		<p>Item 2</p>
+		</li>
+		</ul>
 		""";
 		var doc = Parser.Execute(input, Core.RuleSet, false);
 		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);

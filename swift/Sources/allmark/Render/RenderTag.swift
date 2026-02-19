@@ -8,8 +8,11 @@ func renderTag(node: MarkdownNode, state: inout RendererState, tag: String, deco
 		state.output += "\n"
 	} else {
 		innerNewLine(node: node, state: &state)
+		renderChildren(node: node, state: &state, decode: decode)
+		if node.block && !state.output.hasSuffix("\n") {
+			state.output += "\n"
+		}
 	}
-	renderChildren(node: node, state: &state, decode: decode)
 	state.output += "</\(tag)>"
 	endNewLine(node: node, state: &state)
 }

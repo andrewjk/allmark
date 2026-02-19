@@ -681,4 +681,38 @@ struct FencedCodeTests {
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
+
+	@Test func codeFenceWithTrailingSpacesAfterOpening() async {
+		let input = """
+		```   
+		code
+		```
+		"""
+		let expected = """
+		<pre><code>code
+		</code></pre>
+		"""
+		await MainActor.run {
+			let root = parse(src: input, rules: coreRuleSet, debug: false)
+			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
+		}
+	}
+
+	@Test func codeFenceWithHTMLEntitiesInInfo() async {
+		let input = """
+		```&lt;test&gt;
+		code
+		```
+		"""
+		let expected = """
+		<pre><code class="language-&lt;test&gt;">code
+		</code></pre>
+		"""
+		await MainActor.run {
+			let root = parse(src: input, rules: coreRuleSet, debug: false)
+			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
+		}
+	}
 }

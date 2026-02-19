@@ -517,4 +517,51 @@ struct ListBulletedTests {
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
+
+	@Test func bulletedListWithThematicBreakInItem() async {
+		let input = """
+		- Item 1
+
+		  ---
+
+		- Item 2
+		"""
+		let expected = """
+		<ul>
+		<li>
+		<p>Item 1</p>
+		<hr />
+		</li>
+		<li>
+		<p>Item 2</p>
+		</li>
+		</ul>
+		"""
+		await MainActor.run {
+			let root = parse(src: input, rules: coreRuleSet, debug: false)
+			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
+		}
+	}
+
+	@Test func bulletedListWithHTMLBlock() async {
+		let input = """
+		- Item
+
+		  <div>HTML</div>
+		"""
+		let expected = """
+		<ul>
+		<li>
+		<p>Item</p>
+		<div>HTML</div>
+		</li>
+		</ul>
+		"""
+		await MainActor.run {
+			let root = parse(src: input, rules: coreRuleSet, debug: false)
+			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
+		}
+	}
 }

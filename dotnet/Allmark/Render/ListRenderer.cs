@@ -75,6 +75,10 @@ public static class ListRenderer
 						RenderUtils.InnerNewLine(item, state);
 					}
 					RenderNode.Execute(child, state, i == item.Children!.Count - 1, decode: decode);
+					if (i == item.Children!.Count - 1 && child.Block && state.Output.Length > 0 && state.Output[^1] != '\n')
+					{
+						state.Output.Append('\n');
+					}
 				}
 			}
 			state.Output.Append("</li>");

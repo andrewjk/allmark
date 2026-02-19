@@ -61,6 +61,9 @@ export default function render(node: MarkdownNode, state: RendererState): void {
 					innerNewLine(item, state);
 				}
 				renderNode(child, state, i === 0, i === item.children!.length - 1);
+				if (i === item.children!.length - 1 && child.block && !state.output.endsWith("\n")) {
+					state.output += "\n";
+				}
 			}
 		}
 		state.output += "</li>";

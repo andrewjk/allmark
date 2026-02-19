@@ -69,8 +69,8 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 				currentParent = state.openNodes.last!
 			}
 			
-			// HACK: Special case for an underlined heading in a list
-			if currentParent.type == "list_item" && !currentParent.blankAfter && String(char) == currentParent.delimiter {
+			// HACK: Special case for a thematic break in a list
+			if currentParent.type == "list_item" && !state.hasBlankLine && String(char) == currentParent.delimiter {
 				state.openNodes.removeLast()
 				state.openNodes.removeLast()
 				currentParent = state.openNodes.last!

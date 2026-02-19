@@ -734,4 +734,30 @@ struct ListOrderedTests {
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
+
+	@Test func orderedListWithThematicBreakInItem() async {
+		let input = """
+		1. Item 1
+
+		   ---
+
+		2. Item 2
+		"""
+		let expected = """
+		<ol>
+		<li>
+		<p>Item 1</p>
+		<hr />
+		</li>
+		<li>
+		<p>Item 2</p>
+		</li>
+		</ol>
+		"""
+		await MainActor.run {
+			let root = parse(src: input, rules: coreRuleSet, debug: false)
+			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
+		}
+	}
 }

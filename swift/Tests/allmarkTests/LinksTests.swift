@@ -320,4 +320,16 @@ struct LinksTests {
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
+
+	@Test func linkWithSpecialCharactersInURL() async {
+		let input = "[Link](https://example.com/path?query=value&other=123#anchor)"
+		let expected = """
+		<p><a href="https://example.com/path?query=value&amp;other=123#anchor">Link</a></p>
+		"""
+		await MainActor.run {
+			let root = parse(src: input, rules: coreRuleSet, debug: false)
+			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
+		}
+	}
 }

@@ -597,4 +597,18 @@ struct BlockquoteTests {
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
+
+	@Test func blockquoteWithHTMLBlock() async {
+		let input = "> <div>HTML</div>"
+		let expected = """
+		<blockquote>
+		<div>HTML</div>
+		</blockquote>
+		"""
+		await MainActor.run {
+			let root = parse(src: input, rules: coreRuleSet, debug: false)
+			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
+		}
+	}
 }

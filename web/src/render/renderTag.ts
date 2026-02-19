@@ -11,13 +11,16 @@ export default function render(
 ): void {
 	startNewLine(node, state);
 	state.output += `<${tag}>`;
-	// Block nodes with no children still need a newline
 	if (node.block && node.children?.length === 0) {
+		// Block nodes with no children still need a newline
 		state.output += "\n";
 	} else {
 		innerNewLine(node, state);
+		renderChildren(node, state, decode);
+		if (node.block && !state.output.endsWith("\n")) {
+			state.output += "\n";
+		}
 	}
-	renderChildren(node, state, decode);
 	state.output += `</${tag}>`;
 	endNewLine(node, state);
 }

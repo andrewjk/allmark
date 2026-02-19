@@ -523,8 +523,7 @@ Heading
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("Empty thematic break (should not match)", () => {
+	test("Empty thematic break (should not match)", () => {
 		const input = "";
 		const expected = "";
 		expect(expected).toBe(renderHtmlSync(input));

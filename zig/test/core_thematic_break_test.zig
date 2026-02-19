@@ -998,10 +998,7 @@ test "Thematic break after ordered list" {
 
 test "Empty thematic break (should not match)" {
     const input = "";
-    const expected =
-        \\
-        \\
-    ;
+    const expected = "";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);

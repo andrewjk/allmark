@@ -433,8 +433,7 @@ Back to outer</li>
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("Blockquote with HTML block", () => {
+	test("Blockquote with HTML block", () => {
 		const input = "> <div>HTML</div>";
 		const expected = `
 <blockquote>

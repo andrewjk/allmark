@@ -1313,3 +1313,43 @@ test "Indented code with inline code" {
 
     try std.testing.expectEqualStrings(expected, html);
 }
+
+test "Empty indented code block" {
+    // Input: newline + 4 spaces + newline + 4 spaces (substring(1) removes first newline)
+    const input = "    \n    ";
+    const expected = "";
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+    defer rules.renderers.deinit();
+
+    const root = try parse.execute(gpa, input, rules, null);
+    defer root.deinit(gpa);
+
+    const html = try render.renderHtml(gpa, root, rules);
+    defer gpa.free(html);
+
+    try std.testing.expectEqualStrings(expected, html);
+}
+
+test "Indented code block with only whitespace" {
+    // Input: newline + 4 spaces + newline + 4 spaces + newline + 4 spaces (substring(1) removes first newline)
+    const input = "    \n    \n    ";
+    const expected = "";
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+    defer rules.renderers.deinit();
+
+    const root = try parse.execute(gpa, input, rules, null);
+    defer root.deinit(gpa);
+
+    const html = try render.renderHtml(gpa, root, rules);
+    defer gpa.free(html);
+
+    try std.testing.expectEqualStrings(expected, html);
+}

@@ -738,4 +738,30 @@ public class ListOrderedTests
 		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
 		Assert.AreEqual(expected.Trim(), html.Trim());
 	}
+
+	[TestMethod]
+	public void OrderedListWithThematicBreakInItem()
+	{
+		var input = """
+		1. Item 1
+
+		   ---
+
+		2. Item 2
+		""";
+		var expected = """
+		<ol>
+		<li>
+		<p>Item 1</p>
+		<hr />
+		</li>
+		<li>
+		<p>Item 2</p>
+		</li>
+		</ol>
+		""";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected.Trim(), html.Trim());
+	}
 }

@@ -5167,7 +5167,7 @@ test "Example 207, line 3363: '[foo]: /url'" {
     const input =
         "[foo]: /url\n";
     const expected =
-        "\n";
+        "";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);

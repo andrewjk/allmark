@@ -22,7 +22,7 @@ pub fn renderHtml(allocator: std.mem.Allocator, doc: *const MarkdownNode, rules:
         renderFootnoteList(&state);
     }
 
-    if (state.output.items.len == 0 or state.output.items[state.output.items.len - 1] != '\n') {
+    if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] != '\n') {
         try state.output.append(allocator, '\n');
     }
 

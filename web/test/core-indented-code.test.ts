@@ -81,8 +81,7 @@ line 3
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("Empty indented code block", () => {
+	test("Empty indented code block", () => {
 		const input = `
     
     `.substring(1);
@@ -581,8 +580,7 @@ Paragraph`.substring(1);
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("Indented code block with only whitespace", () => {
+	test("Indented code block with only whitespace", () => {
 		const input = `
     
     

@@ -9,7 +9,6 @@ public static class RenderTag
 		RenderUtils.StartNewLine(node, state);
 		state.Output.Append($"<{tag}>");
 
-		// Block nodes with no children still need a newline
 		if (node.Block && (node.Children?.Count ?? 0) == 0)
 		{
 			state.Output.Append("\n");
@@ -17,9 +16,13 @@ public static class RenderTag
 		else
 		{
 			RenderUtils.InnerNewLine(node, state);
+			RenderChildren.Execute(node, state, decode);
+			if (node.Block && state.Output.Length > 0 && state.Output[^1] != '\n')
+			{
+				state.Output.Append('\n');
+			}
 		}
 
-		RenderChildren.Execute(node, state, decode);
 		state.Output.Append($"</{tag}>");
 		RenderUtils.EndNewLine(node, state);
 	}

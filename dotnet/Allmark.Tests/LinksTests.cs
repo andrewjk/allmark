@@ -314,6 +314,18 @@ public class LinksTests
 	}
 
 	[TestMethod]
+	public void LinkWithSpecialCharactersInURL()
+	{
+		var input = "[Link](https://example.com/path?query=value&other=123#anchor)";
+		var expected = """
+		<p><a href="https://example.com/path?query=value&amp;other=123#anchor">Link</a></p>
+		""";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected.Trim(), html.Trim());
+	}
+
+	[TestMethod]
 	public void LinkWithPercentEncoding()
 	{
 		var input = "[Link](https://example.com/path%20with%20spaces)";

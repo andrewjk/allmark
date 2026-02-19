@@ -62,15 +62,6 @@ public static class HeadingUnderlineRule
 				}
 			}
 
-			// HACK: Special case for an underlined heading in a list
-			// Maybe do this with interrupts?
-			if (parent.Type == "list_item" && !parent.BlankAfter && state.Indent == parent.Indent)
-			{
-				state.OpenNodes.Pop();
-				state.OpenNodes.Pop();
-				parent = state.OpenNodes.Peek();
-			}
-
 			var haveParagraph =
 				parent.Type == "paragraph" && !parent.BlankAfter && Regex.IsMatch(parent.Content ?? "", @"[^\s]");
 			if (haveParagraph)

@@ -1152,3 +1152,57 @@ test "Code fence with ATX heading below" {
 
     try std.testing.expectEqualStrings(expected, html);
 }
+
+test "Code fence with trailing spaces after opening" {
+    const input =
+        \\```   
+        \\code
+        \\```
+    ;
+    const expected =
+        \\<pre><code>code
+        \\</code></pre>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+    defer rules.renderers.deinit();
+
+    const root = try parse.execute(gpa, input, rules, null);
+    defer root.deinit(gpa);
+
+    const html = try render.renderHtml(gpa, root, rules);
+    defer gpa.free(html);
+
+    try std.testing.expectEqualStrings(expected, html);
+}
+
+test "Code fence with HTML entities in info" {
+    const input =
+        \\\```&lt;test&gt;
+        \\\code
+        \\\```
+    ;
+    const expected =
+        \\\<pre><code class="language-&lt;test&gt;">code
+        \\\</code></pre>
+        \\\\
+    ;
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+    defer rules.renderers.deinit();
+
+    const root = try parse.execute(gpa, input, rules, null);
+    defer root.deinit(gpa);
+
+    const html = try render.renderHtml(gpa, root, rules);
+    defer gpa.free(html);
+
+    try std.testing.expectEqualStrings(expected, html);
+}

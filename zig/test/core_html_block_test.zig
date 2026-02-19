@@ -1750,3 +1750,59 @@ test "HTML block continues until blank line (type 6)" {
 
     try std.testing.expectEqualStrings(expected, html);
 }
+
+test "HTML block inside list" {
+    const input =
+        \\- Item
+        \\
+        \\  <div>HTML</div>
+    ;
+    const expected =
+        \\<ul>
+        \\<li>
+        \\<p>Item</p>
+        \\<div>HTML</div>
+        \\</li>
+        \\</ul>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+    defer rules.renderers.deinit();
+
+    const root = try parse.execute(gpa, input, rules, null);
+    defer root.deinit(gpa);
+
+    const html = try render.renderHtml(gpa, root, rules);
+    defer gpa.free(html);
+
+    try std.testing.expectEqualStrings(expected, html);
+}
+
+test "HTML block inside blockquote" {
+    const input =
+        \\> <div>HTML</div>
+    ;
+    const expected =
+        \\<blockquote>
+        \\<div>HTML</div></blockquote>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+    defer rules.renderers.deinit();
+
+    const root = try parse.execute(gpa, input, rules, null);
+    defer root.deinit(gpa);
+
+    const html = try render.renderHtml(gpa, root, rules);
+    defer gpa.free(html);
+
+    try std.testing.expectEqualStrings(expected, html);
+}

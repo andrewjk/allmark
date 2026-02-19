@@ -58,7 +58,7 @@ alert('bye');
 		expect(html).toBe(expected);
 	});
 
-	// TODO
+	// TODO:
 	test.skip("HTML textarea tag", () => {
 		const input = "<textarea>Type here</textarea>";
 		const expected = `
@@ -748,8 +748,7 @@ Line 3
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("HTML block inside list", () => {
+	test("HTML block inside list", () => {
 		const input = `
 - Item
 
@@ -768,8 +767,7 @@ Line 3
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("HTML block inside blockquote", () => {
+	test("HTML block inside blockquote", () => {
 		const input = "> <div>HTML</div>";
 		const expected = `
 <blockquote>

@@ -590,8 +590,7 @@ Paragraph`.substring(1);
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("Ordered list with thematic break in item", () => {
+	test("Ordered list with thematic break in item", () => {
 		const input = `
 1. Item 1
 

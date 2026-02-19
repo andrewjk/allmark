@@ -234,22 +234,6 @@ This text was {>>commented<<} recently.
 		}
 	}
 
-	/*@Test*/ func commentMultiline() async {
-		let input = """
-text {>>multiline
-comment<<} more
-"""
-		let expected = """
-<p>text {>>multiline
-comment<<} more</p>
-"""
-		await MainActor.run {
-			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
-			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
-		}
-	}
-
 	@Test func commentWithPlusSignsInside() async {
 		let input = "text {>>plus + sign<<}"
 		let expected = "<p>text <span class=\"markdown-comment\">plus + sign</span></p>"

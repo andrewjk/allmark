@@ -17,7 +17,7 @@ public static class LinkRenderer
 	{
 		RenderUtils.StartNewLine(node, state);
 		var title = !string.IsNullOrEmpty(node.Title) ? $" title=\"{node.Title}\"" : "";
-		state.Output.Append($"<a href=\"{node.Info}\"{title}>");
+		state.Output.Append($"<a href=\"{Utils.EscapeHtml(node.Info ?? "")}\"{title}>");
 		RenderChildren.Execute(node, state);
 		state.Output.Append("</a>");
 		RenderUtils.EndNewLine(node, state);

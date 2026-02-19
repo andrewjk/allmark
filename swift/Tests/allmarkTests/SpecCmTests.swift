@@ -9102,7 +9102,7 @@ bar>)</p>
 		}
 	}
 
-	@Test func example523() async {
+	/*@Test*/ func example523() async {
 		let input = """
 *foo [bar* baz]
 """

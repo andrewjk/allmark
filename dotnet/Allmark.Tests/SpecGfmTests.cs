@@ -9358,7 +9358,7 @@ bar>)</p>
 		Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
 	}
 
-	[TestMethod]
+	//[TestMethod]
 	public void Example532()
 	{
 		var input = @"

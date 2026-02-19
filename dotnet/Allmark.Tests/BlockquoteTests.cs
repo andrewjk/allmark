@@ -583,6 +583,20 @@ public class BlockquoteTests
 	}
 
 	[TestMethod]
+	public void BlockquoteWithHTMLBlock()
+	{
+		var input = "> <div>HTML</div>";
+		var expected = """
+		<blockquote>
+		<div>HTML</div>
+		</blockquote>
+		""";
+		var doc = Parser.Execute(input, Core.RuleSet, false);
+		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+		Assert.AreEqual(expected.Trim(), html.Trim());
+	}
+
+	[TestMethod]
 	public void BlockquoteWithTightList()
 	{
 		var input = """

@@ -769,32 +769,30 @@ test "Blockquote with setext heading" {
     try std.testing.expectEqualStrings(expected, html);
 }
 
-// TODO:
-//test "Blockquote with HTML block" {
-//    const input =
-// \\> <div>HTML</div>
-// ;
-//    const expected =
-// \\<blockquote>
-// \\<div>HTML</div>
-// \\</blockquote>
-// \\
-// ;
-//
-//    const gpa = std.testing.allocator;
-//    var rules = try core.init(gpa);
-//    defer rules.blocks.deinit();
-//    defer rules.inlines.deinit();
-//    defer rules.renderers.deinit();
-//
-//    const root = try parse.execute(gpa, input, rules, null);
-//    defer root.deinit(gpa);
-//
-//    const html = try render.renderHtml(gpa, root, rules);
-//    defer gpa.free(html);
-//
-//    try std.testing.expectEqualStrings(expected, html);
-//}
+test "Blockquote with HTML block" {
+    const input =
+        \\> <div>HTML</div>
+    ;
+    const expected =
+        \\<blockquote>
+        \\<div>HTML</div></blockquote>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+    defer rules.renderers.deinit();
+
+    const root = try parse.execute(gpa, input, rules, null);
+    defer root.deinit(gpa);
+
+    const html = try render.renderHtml(gpa, root, rules);
+    defer gpa.free(html);
+
+    try std.testing.expectEqualStrings(expected, html);
+}
 
 test "Blockquote with hard line breaks" {
     const input =

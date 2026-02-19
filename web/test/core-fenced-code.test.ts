@@ -440,8 +440,7 @@ code
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("Code fence with trailing spaces after opening", () => {
+	test("Code fence with trailing spaces after opening", () => {
 		const input = `
 \`\`\`   
 code
@@ -599,8 +598,7 @@ code
 		expect(html).toBe(expected);
 	});
 
-	// TODO:
-	test.skip("Code fence with HTML entities in info", () => {
+	test("Code fence with HTML entities in info", () => {
 		const input = `
 \`\`\`&lt;test&gt;
 code
