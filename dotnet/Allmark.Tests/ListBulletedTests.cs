@@ -6,95 +6,95 @@ namespace Allmark.Tests;
 [TestClass]
 public class ListBulletedTests
 {
-	[TestMethod]
-	public void SimpleBulletedListWithDashes()
-	{
-		var input = "- Item";
-		var expected = """
+    [TestMethod]
+    public void SimpleBulletedListWithDashes()
+    {
+        var input = "- Item";
+        var expected = """
 		<ul>
 		<li>Item</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void SimpleBulletedListWithPlus()
-	{
-		var input = "+ Item";
-		var expected = """
+    [TestMethod]
+    public void SimpleBulletedListWithPlus()
+    {
+        var input = "+ Item";
+        var expected = """
 		<ul>
 		<li>Item</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void SimpleBulletedListWithAsterisks()
-	{
-		var input = "* Item";
-		var expected = """
+    [TestMethod]
+    public void SimpleBulletedListWithAsterisks()
+    {
+        var input = "* Item";
+        var expected = """
 		<ul>
 		<li>Item</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithMultipleItems()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListWithMultipleItems()
+    {
+        var input = """
 		- Item 1
 		- Item 2
 		- Item 3
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		<li>Item 3</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TightBulletedList()
-	{
-		var input = """
+    [TestMethod]
+    public void TightBulletedList()
+    {
+        var input = """
 		- Item 1
 		- Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void LooseBulletedListWithBlankLines()
-	{
-		var input = """
+    [TestMethod]
+    public void LooseBulletedListWithBlankLines()
+    {
+        var input = """
 		- Item 1
 
 		- Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>
 		<p>Item 1</p>
@@ -104,20 +104,20 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void NestedBulletedLists()
-	{
-		var input = """
+    [TestMethod]
+    public void NestedBulletedLists()
+    {
+        var input = """
 		- Item 1
 		  - Nested item
 		- Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Item 1
 		<ul>
@@ -127,20 +127,20 @@ public class ListBulletedTests
 		<li>Item 2</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void DeepNestedBulletedLists()
-	{
-		var input = """
+    [TestMethod]
+    public void DeepNestedBulletedLists()
+    {
+        var input = """
 		- Level 1
 		  - Level 2
 		    - Level 3
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Level 1
 		<ul>
@@ -153,19 +153,19 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListInBlockquote()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListInBlockquote()
+    {
+        var input = """
 		> - Item 1
 		> - Item 2
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<ul>
 		<li>Item 1</li>
@@ -173,36 +173,36 @@ public class ListBulletedTests
 		</ul>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void EmptyListItem()
-	{
-		var input = "-";
-		var expected = """
+    [TestMethod]
+    public void EmptyListItem()
+    {
+        var input = "-";
+        var expected = """
 		<ul>
 		<li></li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithParagraphs()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListWithParagraphs()
+    {
+        var input = """
 		- Item 1
 
 		  Paragraph in item 1
 
 		- Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>
 		<p>Item 1</p>
@@ -213,57 +213,57 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListPrecededByParagraph()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListPrecededByParagraph()
+    {
+        var input = """
 		Paragraph
 
 		- Item
 		""";
-		var expected = """
+        var expected = """
 		<p>Paragraph</p>
 		<ul>
 		<li>Item</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListFollowedByParagraph()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListFollowedByParagraph()
+    {
+        var input = """
 		- Item
 
 		Paragraph
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Item</li>
 		</ul>
 		<p>Paragraph</p>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void MixedBulletMarkersShouldNotBeSameList()
-	{
-		var input = """
+    [TestMethod]
+    public void MixedBulletMarkersShouldNotBeSameList()
+    {
+        var input = """
 		- Item 1
 		+ Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Item 1</li>
 		</ul>
@@ -271,22 +271,22 @@ public class ListBulletedTests
 		<li>Item 2</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithCodeBlock()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListWithCodeBlock()
+    {
+        var input = """
 		- Item
 
 		  ```
 		  code
 		  ```
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>
 		<p>Item</p>
@@ -295,20 +295,20 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithHTMLBlock()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListWithHTMLBlock()
+    {
+        var input = """
 		- Item
 
 		  <div>HTML</div>
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>
 		<p>Item</p>
@@ -316,50 +316,50 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithInlineFormatting()
-	{
-		var input = "- Item with *emphasis*";
-		var expected = """
+    [TestMethod]
+    public void BulletedListWithInlineFormatting()
+    {
+        var input = "- Item with *emphasis*";
+        var expected = """
 		<ul>
 		<li>Item with <em>emphasis</em></li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithBold()
-	{
-		var input = "- Item with **bold**";
-		var expected = """
+    [TestMethod]
+    public void BulletedListWithBold()
+    {
+        var input = "- Item with **bold**";
+        var expected = """
 		<ul>
 		<li>Item with <strong>bold</strong></li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListItemWithMultipleParagraphs()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListItemWithMultipleParagraphs()
+    {
+        var input = """
 		- Item 1
 
 		  Second paragraph
 
 		- Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>
 		<p>Item 1</p>
@@ -370,68 +370,68 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithLinks()
-	{
-		var input = "- [Link](https://example.com)";
-		var expected = """
+    [TestMethod]
+    public void BulletedListWithLinks()
+    {
+        var input = "- [Link](https://example.com)";
+        var expected = """
 		<ul>
 		<li><a href="https://example.com">Link</a></li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithCodeSpan()
-	{
-		var input = "- `inline code`";
-		var expected = """
+    [TestMethod]
+    public void BulletedListWithCodeSpan()
+    {
+        var input = "- `inline code`";
+        var expected = """
 		<ul>
 		<li><code>inline code</code></li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListAtEndOfDocument()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListAtEndOfDocument()
+    {
+        var input = """
 		- Item 1
 		- Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void MultipleSeparateBulletedLists()
-	{
-		var input = """
+    [TestMethod]
+    public void MultipleSeparateBulletedLists()
+    {
+        var input = """
 		- List 1 item 1
 		- List 1 item 2
 
 		- List 2 item 1
 		- List 2 item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>
 		<p>List 1 item 1</p>
@@ -447,61 +447,61 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListItemWithLeadingSpaces()
-	{
-		var input = "   - Item";
-		var expected = """
+    [TestMethod]
+    public void BulletedListItemWithLeadingSpaces()
+    {
+        var input = "   - Item";
+        var expected = """
 		<ul>
 		<li>Item</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListItemWith4SpacesIndentShouldBeCode()
-	{
-		var input = "    - Item";
-		var expected = """
+    [TestMethod]
+    public void BulletedListItemWith4SpacesIndentShouldBeCode()
+    {
+        var input = "    - Item";
+        var expected = """
 		<pre><code>- Item
 		</code></pre>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithOnlySpacesAfterMarker()
-	{
-		var input = "-    Item";
-		var expected = """
+    [TestMethod]
+    public void BulletedListWithOnlySpacesAfterMarker()
+    {
+        var input = "-    Item";
+        var expected = """
 		<ul>
 		<li>Item</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void NestedListsWithDifferentMarkers()
-	{
-		var input = """
+    [TestMethod]
+    public void NestedListsWithDifferentMarkers()
+    {
+        var input = """
 		- Dash
 		  + Plus
 		    * Star
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Dash
 		<ul>
@@ -514,21 +514,21 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListFollowedImmediatelyByOrderedList()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListFollowedImmediatelyByOrderedList()
+    {
+        var input = """
 		- Item 1
 		- Item 2
 		1. Ordered 1
 		2. Ordered 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>Item 1</li>
 		<li>Item 2</li>
@@ -538,22 +538,22 @@ public class ListBulletedTests
 		<li>Ordered 2</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BulletedListWithThematicBreakInItem()
-	{
-		var input = """
+    [TestMethod]
+    public void BulletedListWithThematicBreakInItem()
+    {
+        var input = """
 		- Item 1
 
 		  ---
 
 		- Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ul>
 		<li>
 		<p>Item 1</p>
@@ -564,8 +564,8 @@ public class ListBulletedTests
 		</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 }

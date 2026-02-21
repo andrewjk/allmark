@@ -6,7 +6,9 @@ func renderHtml(doc: MarkdownNode, renderers: OrderedDictionary<String, Renderer
 	var state = RendererState(
 		renderers: renderers,
 		output: "",
-		footnotes: []
+		footnotes: [],
+		depth: 0,
+		quoteDepth: 0
 	)
 
 	renderChildren(node: doc, state: &state)

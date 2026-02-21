@@ -6,15 +6,15 @@ namespace Allmark.Tests;
 [TestClass]
 public class GfmTableTests
 {
-	[TestMethod]
-	public void SpecTable()
-	{
-		var input = @"
+    [TestMethod]
+    public void SpecTable()
+    {
+        var input = @"
 | foo | bar |
 | --- | --- |
 | baz | bim |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -30,22 +30,22 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithAlignment()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithAlignment()
+    {
+        var input = @"
 | Left | Center | Right |
 | :--- | :----: | ----: |
 | foo  |  bar   |   baz |
 | a    |   b    |     c |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -68,23 +68,23 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithInlineFormatting()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithInlineFormatting()
+    {
+        var input = @"
 | Text | Code |
 | ---- | ---- |
 | **bold** | `code` |
 | *italic* | [link](url) |
 | ~~strike~~ | `multi` |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -108,22 +108,22 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithMissingCells()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithMissingCells()
+    {
+        var input = @"
 | a | b | c |
 | - | - | - |
 | 1 | 2 |
 | 1 |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -146,21 +146,21 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithExtraCells()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithExtraCells()
+    {
+        var input = @"
 | a | b |
 | - | - |
 | 1 | 2 | 3 | 4 |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -176,20 +176,20 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithOnlyHeader()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithOnlyHeader()
+    {
+        var input = @"
 | foo | bar |
 | --- | --- |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -199,22 +199,22 @@ public class GfmTableTests
 </thead>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithEmptyCells()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithEmptyCells()
+    {
+        var input = @"
 | a | b | c |
 | - | - | - |
 |   | 2 |   |
 | 1 |   | 3 |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -237,42 +237,42 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithoutOuterPipes()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithoutOuterPipes()
+    {
+        var input = @"
 a | b | c
 - | - | -
 1 | 2 | 3
 ";
-		var expected = @"
+        var expected = @"
 <p>a | b | c</p>
 <ul>
 <li>| - | -
 1 | 2 | 3</li>
 </ul>
 ";
-		var root = Parser.Execute(input, Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input, Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithWhitespaceVariations()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithWhitespaceVariations()
+    {
+        var input = @"
 |  a  |  b  |  c  |
 | --- | --- | --- |
 | 1   |   2 |3    |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -290,16 +290,16 @@ a | b | c
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithMixedContentTypes()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithMixedContentTypes()
+    {
+        var input = @"
 | Type | Example |
 | ---- | ------- |
 | Text | plain text |
@@ -307,7 +307,7 @@ a | b | c
 | Bold | **strong** |
 | Link | [text](http://example.com) |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -335,22 +335,22 @@ a | b | c
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithSingleColumn()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithSingleColumn()
+    {
+        var input = @"
 | Column |
 | ------ |
 | data   |
 | more   |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -367,22 +367,22 @@ a | b | c
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TableWithManyColumns()
-	{
-		var input = @"
+    [TestMethod]
+    public void TableWithManyColumns()
+    {
+        var input = @"
 | A | B | C | D | E | F |
 | - | - | - | - | - | - |
 | 1 | 2 | 3 | 4 | 5 | 6 |
 | a | b | c | d | e | f |
 ";
-		var expected = @"
+        var expected = @"
 <table>
 <thead>
 <tr>
@@ -414,9 +414,9 @@ a | b | c
 </tbody>
 </table>
 ";
-		var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-		var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
 
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 }

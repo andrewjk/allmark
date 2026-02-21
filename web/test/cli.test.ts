@@ -1,15 +1,14 @@
-import { describe, expect, test, vi, beforeEach } from "vitest";
-import type { Mock } from "vitest";
 import * as fs from "node:fs";
+import { beforeEach, describe, expect, test, vi } from "vitest";
+import type { Mock } from "vitest";
+import { getRuleset, parseArgs } from "../src/bin/index";
+import parse from "../src/parse";
+import renderHtml from "../src/renderHtml";
 
 vi.mock("node:fs", () => ({
 	readFileSync: vi.fn(),
 	writeFileSync: vi.fn(),
 }));
-
-import { parseArgs, getRuleset } from "../src/bin/index";
-import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
 
 function resetMocks(): void {
 	vi.clearAllMocks();
@@ -20,77 +19,117 @@ describe("CLI parseArgs", () => {
 		resetMocks();
 		const args = ["input.md"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: null, ruleset: "extended" });
+		expect(result).toEqual({
+			input: "input.md",
+			output: null,
+			ruleset: "extended",
+			format: "html",
+		});
 	});
 
 	test("parses input file with output", () => {
 		resetMocks();
 		const args = ["input.md", "--output", "output.html"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: "output.html", ruleset: "extended" });
+		expect(result).toEqual({
+			input: "input.md",
+			output: "output.html",
+			ruleset: "extended",
+			format: "html",
+		});
 	});
 
 	test("parses input file with ruleset core", () => {
 		resetMocks();
 		const args = ["input.md", "--ruleset", "core"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: null, ruleset: "core" });
+		expect(result).toEqual({ input: "input.md", output: null, ruleset: "core", format: "html" });
 	});
 
 	test("parses input file with ruleset gfm", () => {
 		resetMocks();
 		const args = ["input.md", "--ruleset", "gfm"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: null, ruleset: "gfm" });
+		expect(result).toEqual({ input: "input.md", output: null, ruleset: "gfm", format: "html" });
 	});
 
 	test("parses input file with ruleset extended", () => {
 		resetMocks();
 		const args = ["input.md", "--ruleset", "extended"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: null, ruleset: "extended" });
+		expect(result).toEqual({
+			input: "input.md",
+			output: null,
+			ruleset: "extended",
+			format: "html",
+		});
 	});
 
 	test("parses all options", () => {
 		resetMocks();
 		const args = ["input.md", "--output", "output.html", "--ruleset", "gfm"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: "output.html", ruleset: "gfm" });
+		expect(result).toEqual({
+			input: "input.md",
+			output: "output.html",
+			ruleset: "gfm",
+			format: "html",
+		});
 	});
 
 	test("parses options in different order", () => {
 		resetMocks();
 		const args = ["--ruleset", "core", "input.md", "--output", "out.html"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: "out.html", ruleset: "core" });
+		expect(result).toEqual({
+			input: "input.md",
+			output: "out.html",
+			ruleset: "core",
+			format: "html",
+		});
 	});
 
 	test("parses -o shortcut for output", () => {
 		resetMocks();
 		const args = ["input.md", "-o", "output.html"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: "output.html", ruleset: "extended" });
+		expect(result).toEqual({
+			input: "input.md",
+			output: "output.html",
+			ruleset: "extended",
+			format: "html",
+		});
 	});
 
 	test("parses -r shortcut for ruleset", () => {
 		resetMocks();
 		const args = ["input.md", "-r", "gfm"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: null, ruleset: "gfm" });
+		expect(result).toEqual({ input: "input.md", output: null, ruleset: "gfm", format: "html" });
 	});
 
 	test("parses both shortcuts -o and -r", () => {
 		resetMocks();
 		const args = ["input.md", "-o", "out.html", "-r", "core"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: "out.html", ruleset: "core" });
+		expect(result).toEqual({
+			input: "input.md",
+			output: "out.html",
+			ruleset: "core",
+			format: "html",
+		});
 	});
 
 	test("parses mixed shortcuts and long options", () => {
 		resetMocks();
 		const args = ["-r", "gfm", "input.md", "--output", "out.html"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: "out.html", ruleset: "gfm" });
+		expect(result).toEqual({
+			input: "input.md",
+			output: "out.html",
+			ruleset: "gfm",
+			format: "html",
+		});
 	});
 });
 
@@ -127,12 +166,16 @@ describe("CLI parseArgs error handling", () => {
 
 	test("exits with error when --ruleset has no value", () => {
 		expect(() => parseArgs(["input.md", "--ruleset"])).toThrow("process.exit called");
-		expect(mockConsoleError).toHaveBeenCalledWith("Error: --ruleset requires a value (core, gfm, or extended)");
+		expect(mockConsoleError).toHaveBeenCalledWith(
+			"Error: --ruleset requires a value (core, gfm, or extended)",
+		);
 	});
 
 	test("exits with error when -r has no value", () => {
 		expect(() => parseArgs(["input.md", "-r"])).toThrow("process.exit called");
-		expect(mockConsoleError).toHaveBeenCalledWith("Error: -r requires a value (core, gfm, or extended)");
+		expect(mockConsoleError).toHaveBeenCalledWith(
+			"Error: -r requires a value (core, gfm, or extended)",
+		);
 	});
 
 	test("exits with error when -r has invalid ruleset", () => {
@@ -178,7 +221,7 @@ describe("CLI main integration", () => {
 		const ruleset = getRuleset("core");
 		const markdown = "# Heading\n\nParagraph text";
 		const document = parse(markdown, ruleset, false);
-		const html = renderHtml(document, ruleset.renderers);
+		const html = renderHtml(document);
 		expect(html).toContain("<h1>Heading</h1>");
 		expect(html).toContain("<p>Paragraph text</p>");
 	});
@@ -187,7 +230,7 @@ describe("CLI main integration", () => {
 		const ruleset = getRuleset("gfm");
 		const markdown = "# Heading\n\n- List item 1\n- List item 2";
 		const document = parse(markdown, ruleset, false);
-		const html = renderHtml(document, ruleset.renderers);
+		const html = renderHtml(document);
 		expect(html).toContain("<h1>Heading</h1>");
 		expect(html).toContain("<ul>");
 	});
@@ -196,7 +239,7 @@ describe("CLI main integration", () => {
 		const ruleset = getRuleset("extended");
 		const markdown = "# Heading\n\n**bold** text";
 		const document = parse(markdown, ruleset, false);
-		const html = renderHtml(document, ruleset.renderers);
+		const html = renderHtml(document);
 		expect(html).toContain("<h1>Heading</h1>");
 		expect(html).toContain("<strong>bold</strong>");
 	});

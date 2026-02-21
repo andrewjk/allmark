@@ -135,7 +135,7 @@ import core from "../src/rulesets/core";
 
 test("description", () => {
     const root = parse(input, core, false);
-    const html = renderHtml(root, core.renderers);
+    const html = renderHtml(root);
     expect(html).toBe(expected);
 });
 ```

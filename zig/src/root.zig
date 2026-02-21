@@ -13,6 +13,7 @@ pub const parse = struct {
 
 pub const render = struct {
     pub const renderHtml = @import("render/renderHtml.zig").renderHtml;
+    pub const renderToConsole = @import("render/renderToConsole.zig").renderToConsole;
     pub const textRenderer = @import("render/textRenderer.zig").textRenderer;
     pub const emphasisRenderer = @import("render/emphasisRenderer.zig").emphasisRenderer;
     pub const strongRenderer = @import("render/strongRenderer.zig").strongRenderer;
@@ -39,7 +40,7 @@ pub const render = struct {
     pub const footnoteListRenderer = @import("render/footnoteListRenderer.zig").renderFootnoteList;
     pub const listTaskItemRenderer = @import("render/listTaskItemRenderer.zig").listTaskItemRenderer;
     pub const listRenderer = @import("render/listRenderer.zig").listBulletedRenderer;
-    pub const listOrderedRenderer = @import("render/listRenderer.zig").listOrderedRenderer;
+    pub const listOrderedRenderer = @import("render/listOrderedRenderer.zig").listOrderedRenderer;
     pub const thematicBreakRenderer = @import("render/thematicBreakRenderer.zig").thematicBreakRenderer;
     pub const subscriptRenderer = @import("render/subscriptRenderer.zig").subscriptRenderer;
     pub const superscriptRenderer = @import("render/superscriptRenderer.zig").superscriptRenderer;
@@ -49,7 +50,7 @@ pub const render = struct {
     pub const renderChildren = @import("render/renderChildren.zig").renderChildren;
     pub const renderTag = @import("render/renderTag.zig").renderTag;
     pub const renderSelfClosedTag = @import("render/renderSelfClosedTag.zig").renderSelfClosedTag;
-    pub const renderUtils = @import("render/renderUtils.zig");
+    pub const renderUtils = @import("render/renderUtils.zig").renderUtils;
 };
 
 pub const core = @import("rulesets/core.zig");

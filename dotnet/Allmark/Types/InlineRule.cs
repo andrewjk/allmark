@@ -5,6 +5,6 @@ namespace Allmark.Types;
 /// </summary>
 public record InlineRule
 {
-	public required string Name { get; init; }
-	public required Func<InlineParserState, MarkdownNode, bool> Test { get; init; }
+    public required string Name { get; init; }
+    public required Func<InlineParserState, MarkdownNode, bool> Test { get; init; }
 }

@@ -6,134 +6,134 @@ namespace Allmark.Tests;
 [TestClass]
 public class BlockquoteTests
 {
-	[TestMethod]
-	public void SimpleBlockquote()
-	{
-		var input = "> Simple quote";
-		var expected = """
+    [TestMethod]
+    public void SimpleBlockquote()
+    {
+        var input = "> Simple quote";
+        var expected = """
 		<blockquote>
 		<p>Simple quote</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithMultipleLines()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithMultipleLines()
+    {
+        var input = """
 		> Line 1
 		> Line 2
 		> Line 3
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Line 1
 		Line 2
 		Line 3</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithLazyContinuation()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithLazyContinuation()
+    {
+        var input = """
 		> Line 1
 		Line 2
 		> Line 3
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Line 1
 		Line 2
 		Line 3</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithSpaceAfter()
-	{
-		var input = "> With space";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithSpaceAfter()
+    {
+        var input = "> With space";
+        var expected = """
 		<blockquote>
 		<p>With space</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithoutSpaceAfter()
-	{
-		var input = ">Without space";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithoutSpaceAfter()
+    {
+        var input = ">Without space";
+        var expected = """
 		<blockquote>
 		<p>Without space</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithMultipleParagraphs()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithMultipleParagraphs()
+    {
+        var input = """
 		> Paragraph 1
 		>
 		> Paragraph 2
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Paragraph 1</p>
 		<p>Paragraph 2</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithCodeBlock()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithCodeBlock()
+    {
+        var input = """
 		>     code block
 		>     more code
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<pre><code>code block
 		more code
 		</code></pre>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithList()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithList()
+    {
+        var input = """
 		> - Item 1
 		> - Item 2
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<ul>
 		<li>Item 1</li>
@@ -141,20 +141,20 @@ public class BlockquoteTests
 		</ul>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithNestedBlockquote()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithNestedBlockquote()
+    {
+        var input = """
 		> Outer
 		>> Inner
 		>>> Innerer
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Outer</p>
 		<blockquote>
@@ -165,117 +165,117 @@ public class BlockquoteTests
 		</blockquote>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithHeading()
-	{
-		var input = "> # Heading";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithHeading()
+    {
+        var input = "> # Heading";
+        var expected = """
 		<blockquote>
 		<h1>Heading</h1>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithInlineEmphasis()
-	{
-		var input = "> *italic* and **bold**";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithInlineEmphasis()
+    {
+        var input = "> *italic* and **bold**";
+        var expected = """
 		<blockquote>
 		<p><em>italic</em> and <strong>bold</strong></p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithInlineCode()
-	{
-		var input = "> `code` inside quote";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithInlineCode()
+    {
+        var input = "> `code` inside quote";
+        var expected = """
 		<blockquote>
 		<p><code>code</code> inside quote</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithLink()
-	{
-		var input = "> [link](https://example.com)";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithLink()
+    {
+        var input = "> [link](https://example.com)";
+        var expected = """
 		<blockquote>
 		<p><a href="https://example.com">link</a></p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWith1SpaceIndent()
-	{
-		var input = " > Indented quote";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWith1SpaceIndent()
+    {
+        var input = " > Indented quote";
+        var expected = """
 		<blockquote>
 		<p>Indented quote</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWith3SpaceIndent()
-	{
-		var input = "   > Indented quote";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWith3SpaceIndent()
+    {
+        var input = "   > Indented quote";
+        var expected = """
 		<blockquote>
 		<p>Indented quote</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWith4SpaceIndentShouldBeCode()
-	{
-		var input = "    > Not a quote";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWith4SpaceIndentShouldBeCode()
+    {
+        var input = "    > Not a quote";
+        var expected = """
 		<pre><code>&gt; Not a quote
 		</code></pre>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void MultipleConsecutiveBlockquotes()
-	{
-		var input = """
+    [TestMethod]
+    public void MultipleConsecutiveBlockquotes()
+    {
+        var input = """
 		> Quote 1
 
 		> Quote 2
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Quote 1</p>
 		</blockquote>
@@ -283,52 +283,52 @@ public class BlockquoteTests
 		<p>Quote 2</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquotePrecededByParagraphWithoutBlankLine()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquotePrecededByParagraphWithoutBlankLine()
+    {
+        var input = """
 		Paragraph
 		> Quote
 		""";
-		var expected = """
+        var expected = """
 		<p>Paragraph</p>
 		<blockquote>
 		<p>Quote</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithThematicBreak()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithThematicBreak()
+    {
+        var input = """
 		> Text
 		>
 		> ---
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Text</p>
 		<hr />
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithMultipleBlocks()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithMultipleBlocks()
+    {
+        var input = """
 		> Paragraph
 		>
 		> - List item
@@ -336,7 +336,7 @@ public class BlockquoteTests
 		> Code:
 		>     code
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Paragraph</p>
 		<ul>
@@ -346,15 +346,15 @@ public class BlockquoteTests
 		code</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithComplexNestedContent()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithComplexNestedContent()
+    {
+        var input = """
 		> Quote
 		>
 		>> Nested quote
@@ -362,7 +362,7 @@ public class BlockquoteTests
 		>> - List in nested
 		> Back to outer
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Quote</p>
 		<blockquote>
@@ -374,78 +374,78 @@ public class BlockquoteTests
 		</blockquote>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void EmptyBlockquote()
-	{
-		var input = ">";
-		var expected = """
+    [TestMethod]
+    public void EmptyBlockquote()
+    {
+        var input = ">";
+        var expected = """
 		<blockquote>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithOnlySpace()
-	{
-		var input = "> ";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithOnlySpace()
+    {
+        var input = "> ";
+        var expected = """
 		<blockquote>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteAtEndOfDocument()
-	{
-		var input = "> Last quote";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteAtEndOfDocument()
+    {
+        var input = "> Last quote";
+        var expected = """
 		<blockquote>
 		<p>Last quote</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithFencedCodeBlock()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithFencedCodeBlock()
+    {
+        var input = """
 		> ```
 		> code
 		> ```
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<pre><code>code
 		</code></pre>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithOrderedList()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithOrderedList()
+    {
+        var input = """
 		> 1. First
 		> 2. Second
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<ol>
 		<li>First</li>
@@ -453,70 +453,70 @@ public class BlockquoteTests
 		</ol>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithSetextHeading()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithSetextHeading()
+    {
+        var input = """
 		> Heading
 		> =======
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<h1>Heading</h1>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithHardLineBreaks()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithHardLineBreaks()
+    {
+        var input = """
 		> Line 1  
 		> Line 2
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Line 1<br />
 		Line 2</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithImage()
-	{
-		var input = "> ![alt](image.png)";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithImage()
+    {
+        var input = "> ![alt](image.png)";
+        var expected = """
 		<blockquote>
 		<p><img src="image.png" alt="alt" /></p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void DeeplyNestedBlockquotes()
-	{
-		var input = """
+    [TestMethod]
+    public void DeeplyNestedBlockquotes()
+    {
+        var input = """
 		> Level 1
 		>> Level 2
 		>>> Level 3
 		>>>> Level 4
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Level 1</p>
 		<blockquote>
@@ -530,21 +530,21 @@ public class BlockquoteTests
 		</blockquote>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithMixedLazyContinuation()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithMixedLazyContinuation()
+    {
+        var input = """
 		> Line 1
 		> Line 2
 		Line 3 (lazy)
 		> Line 4
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<p>Line 1
 		Line 2
@@ -552,20 +552,20 @@ public class BlockquoteTests
 		Line 4</p>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithLooseList()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithLooseList()
+    {
+        var input = """
 		> - Item 1
 		>
 		> - Item 2
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<ul>
 		<li>
@@ -577,33 +577,33 @@ public class BlockquoteTests
 		</ul>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithHTMLBlock()
-	{
-		var input = "> <div>HTML</div>";
-		var expected = """
+    [TestMethod]
+    public void BlockquoteWithHTMLBlock()
+    {
+        var input = "> <div>HTML</div>";
+        var expected = """
 		<blockquote>
 		<div>HTML</div>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void BlockquoteWithTightList()
-	{
-		var input = """
+    [TestMethod]
+    public void BlockquoteWithTightList()
+    {
+        var input = """
 		> - Item 1
 		> - Item 2
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<ul>
 		<li>Item 1</li>
@@ -611,8 +611,8 @@ public class BlockquoteTests
 		</ul>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 }

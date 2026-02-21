@@ -20,24 +20,6 @@ import htmlSpanRule from "../inline/htmlSpanRule";
 import lineBreakRule from "../inline/lineBreakRule";
 import linkRule from "../inline/linkRule";
 import textRule from "../inline/textRule";
-import blockQuoteRenderer from "../render/blockQuoteRenderer";
-import codeBlockRenderer from "../render/codeBlockRenderer";
-import codeFenceRenderer from "../render/codeFenceRenderer";
-import codeSpanRenderer from "../render/codeSpanRenderer";
-import emphasisRenderer from "../render/emphasisRenderer";
-import hardBreakRenderer from "../render/hardBreakRenderer";
-import headingRenderer from "../render/headingRenderer";
-import headingUnderlineRenderer from "../render/headingUnderlineRenderer";
-import htmlBlockRenderer from "../render/htmlBlockRenderer";
-import htmlSpanRenderer from "../render/htmlSpanRenderer";
-import imageRenderer from "../render/imageRenderer";
-import linkRenderer from "../render/linkRenderer";
-import listBulletedRenderer from "../render/listBulletedRenderer";
-import listOrderedRenderer from "../render/listOrderedRenderer";
-import paragraphRenderer from "../render/paragraphRenderer";
-import strongRenderer from "../render/strongRenderer";
-import textRenderer from "../render/textRenderer";
-import thematicBreakRenderer from "../render/thematicBreakRenderer";
 import type RuleSet from "../types/RuleSet";
 
 /**
@@ -69,26 +51,6 @@ const core: RuleSet = {
 		[hardBreakRule.name, hardBreakRule],
 		[lineBreakRule.name, lineBreakRule],
 		[textRule.name, textRule],
-	]),
-	renderers: new Map([
-		[blockQuoteRenderer.name, blockQuoteRenderer],
-		[codeBlockRenderer.name, codeBlockRenderer],
-		[codeFenceRenderer.name, codeFenceRenderer],
-		[codeSpanRenderer.name, codeSpanRenderer],
-		[emphasisRenderer.name, emphasisRenderer],
-		[hardBreakRenderer.name, hardBreakRenderer],
-		[headingRenderer.name, headingRenderer],
-		[headingUnderlineRenderer.name, headingUnderlineRenderer],
-		[htmlBlockRenderer.name, htmlBlockRenderer],
-		[htmlSpanRenderer.name, htmlSpanRenderer],
-		[imageRenderer.name, imageRenderer],
-		[linkRenderer.name, linkRenderer],
-		[listBulletedRenderer.name, listBulletedRenderer],
-		[listOrderedRenderer.name, listOrderedRenderer],
-		[paragraphRenderer.name, paragraphRenderer],
-		[strongRenderer.name, strongRenderer],
-		[textRenderer.name, textRenderer],
-		[thematicBreakRenderer.name, thematicBreakRenderer],
 	]),
 };
 

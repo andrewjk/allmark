@@ -14,7 +14,7 @@ describe("blockquotes", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -32,7 +32,7 @@ Line 3</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -50,7 +50,7 @@ Line 3</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -63,7 +63,7 @@ Line 3</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -76,7 +76,7 @@ Line 3</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -93,7 +93,7 @@ Line 3</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -110,7 +110,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -128,7 +128,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -150,7 +150,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -163,7 +163,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -176,7 +176,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -189,7 +189,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -202,7 +202,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -215,7 +215,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -228,7 +228,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -240,7 +240,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -259,7 +259,7 @@ more code
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -275,7 +275,7 @@ Paragraph
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -292,7 +292,7 @@ Paragraph
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -316,7 +316,7 @@ code</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -342,7 +342,7 @@ Back to outer</li>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -354,7 +354,7 @@ Back to outer</li>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -366,7 +366,7 @@ Back to outer</li>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -379,7 +379,7 @@ Back to outer</li>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -396,7 +396,7 @@ Back to outer</li>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -414,7 +414,7 @@ Back to outer</li>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -429,7 +429,7 @@ Back to outer</li>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -442,7 +442,7 @@ Back to outer</li>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, { unsafe: true }));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -458,7 +458,7 @@ Line 2</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -471,7 +471,7 @@ Line 2</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -497,7 +497,7 @@ Line 2</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -517,7 +517,7 @@ Line 4</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -540,7 +540,7 @@ Line 4</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -558,7 +558,7 @@ Line 4</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 });

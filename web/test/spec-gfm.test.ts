@@ -14,11 +14,11 @@ describe("spec-gfm", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -32,11 +32,11 @@ describe("spec-gfm", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -52,11 +52,11 @@ describe("spec-gfm", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -76,11 +76,11 @@ describe("spec-gfm", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -101,11 +101,11 @@ describe("spec-gfm", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -121,11 +121,11 @@ describe("spec-gfm", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -143,11 +143,11 @@ describe("spec-gfm", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -163,11 +163,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -192,11 +192,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -209,11 +209,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -226,11 +226,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -247,11 +247,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -268,11 +268,11 @@ ___
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -285,11 +285,11 @@ ___
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -302,11 +302,11 @@ ___
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -323,11 +323,11 @@ __</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -344,11 +344,11 @@ __</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -362,11 +362,11 @@ __</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -381,11 +381,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -398,11 +398,11 @@ _____________________________________
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -415,11 +415,11 @@ _____________________________________
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -432,11 +432,11 @@ _____________________________________
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -449,11 +449,11 @@ _____________________________________
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -466,11 +466,11 @@ _____________________________________
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -489,11 +489,11 @@ a------
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -506,11 +506,11 @@ a------
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -531,11 +531,11 @@ a------
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -552,11 +552,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -572,11 +572,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -597,11 +597,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -620,11 +620,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -647,11 +647,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -664,11 +664,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -684,11 +684,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -701,11 +701,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -718,11 +718,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -735,11 +735,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -756,11 +756,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -774,11 +774,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -793,11 +793,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -812,11 +812,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -831,11 +831,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -848,11 +848,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -865,11 +865,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -882,11 +882,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -903,11 +903,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -924,11 +924,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -945,11 +945,11 @@ Bar foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -966,11 +966,11 @@ Bar foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -988,11 +988,11 @@ Foo *bar*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1008,11 +1008,11 @@ baz</em></h1>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1028,11 +1028,11 @@ baz</em></h1>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1050,11 +1050,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1076,11 +1076,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1102,11 +1102,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1120,11 +1120,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1139,11 +1139,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1163,11 +1163,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1181,11 +1181,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1199,11 +1199,11 @@ Foo\\
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1225,11 +1225,11 @@ of dashes"/>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1246,11 +1246,11 @@ of dashes"/>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1269,11 +1269,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1290,11 +1290,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1310,11 +1310,11 @@ Bar</h2>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1335,11 +1335,11 @@ Baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1353,11 +1353,11 @@ Baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1372,11 +1372,11 @@ Baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1393,11 +1393,11 @@ Baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1413,11 +1413,11 @@ Baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1434,11 +1434,11 @@ Baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1452,11 +1452,11 @@ Baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1475,11 +1475,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1500,11 +1500,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1523,11 +1523,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1546,11 +1546,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1566,11 +1566,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1590,11 +1590,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1616,11 +1616,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1640,11 +1640,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1670,11 +1670,11 @@ chunk3
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1692,11 +1692,11 @@ chunk3
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1712,11 +1712,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1732,11 +1732,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1760,11 +1760,11 @@ Heading
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1780,11 +1780,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1802,11 +1802,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1820,11 +1820,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1842,11 +1842,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1864,11 +1864,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1883,11 +1883,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1905,11 +1905,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1927,11 +1927,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1949,11 +1949,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1971,11 +1971,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -1988,11 +1988,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2011,11 +2011,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2035,11 +2035,11 @@ bbb
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2057,11 +2057,11 @@ bbb
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2075,11 +2075,11 @@ bbb
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2097,11 +2097,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2121,11 +2121,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2145,11 +2145,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2167,11 +2167,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2187,11 +2187,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2207,11 +2207,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2228,11 +2228,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2247,11 +2247,11 @@ aaa</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2268,11 +2268,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2292,11 +2292,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2317,11 +2317,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2341,11 +2341,11 @@ end
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2365,11 +2365,11 @@ end
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2383,11 +2383,11 @@ end
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2402,11 +2402,11 @@ foo</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2422,11 +2422,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2442,11 +2442,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2470,11 +2470,11 @@ _world_.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2502,11 +2502,11 @@ okay.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2523,11 +2523,11 @@ okay.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2542,11 +2542,11 @@ okay.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2565,11 +2565,11 @@ okay.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2586,11 +2586,11 @@ okay.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2607,11 +2607,11 @@ okay.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2629,11 +2629,11 @@ okay.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2648,11 +2648,11 @@ okay.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2667,11 +2667,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2686,11 +2686,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2703,11 +2703,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2724,11 +2724,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2747,11 +2747,11 @@ int x = 33;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2768,11 +2768,11 @@ int x = 33;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2789,11 +2789,11 @@ int x = 33;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2810,11 +2810,11 @@ int x = 33;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2829,11 +2829,11 @@ int x = 33;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2850,11 +2850,11 @@ int x = 33;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2873,11 +2873,11 @@ int x = 33;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2890,11 +2890,11 @@ int x = 33;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2919,11 +2919,11 @@ main = print $ parseTags tags
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2946,11 +2946,11 @@ document.getElementById("demo").innerHTML = "Hello JavaScript!";
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2975,11 +2975,11 @@ p {color:blue;}
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -2998,11 +2998,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3022,11 +3022,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3045,11 +3045,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3064,11 +3064,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3083,11 +3083,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3104,11 +3104,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3129,11 +3129,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3156,11 +3156,11 @@ okay
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3173,11 +3173,11 @@ okay
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3214,11 +3214,11 @@ function matchwo(a,b)
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3235,11 +3235,11 @@ function matchwo(a,b)
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3256,11 +3256,11 @@ function matchwo(a,b)
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3279,11 +3279,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3302,11 +3302,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3323,11 +3323,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3346,11 +3346,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3367,11 +3367,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3400,11 +3400,11 @@ Hi
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3434,11 +3434,11 @@ Hi
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3453,11 +3453,11 @@ Hi
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3474,11 +3474,11 @@ Hi
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3493,11 +3493,11 @@ Hi
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3514,11 +3514,11 @@ Hi
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3541,11 +3541,11 @@ line2
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3564,11 +3564,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3584,11 +3584,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3604,11 +3604,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3623,11 +3623,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3643,11 +3643,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3662,11 +3662,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3681,11 +3681,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3701,11 +3701,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3720,11 +3720,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3739,11 +3739,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3756,11 +3756,11 @@ with blank line'
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3776,11 +3776,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3793,11 +3793,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3811,11 +3811,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3832,11 +3832,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3855,11 +3855,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3877,11 +3877,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3899,11 +3899,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3920,11 +3920,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3940,11 +3940,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3966,11 +3966,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -3987,11 +3987,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4004,11 +4004,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4024,11 +4024,11 @@ bbb
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4048,11 +4048,11 @@ ddd</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4069,11 +4069,11 @@ bbb
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4088,11 +4088,11 @@ bbb</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4109,11 +4109,11 @@ ccc</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4128,11 +4128,11 @@ bbb</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4148,11 +4148,11 @@ bbb
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4167,11 +4167,11 @@ bbb</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4192,11 +4192,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4224,11 +4224,11 @@ aaa
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4256,11 +4256,11 @@ bar | baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4290,11 +4290,11 @@ bar | baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4326,11 +4326,11 @@ bar | baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4366,11 +4366,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4387,11 +4387,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4424,11 +4424,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4449,11 +4449,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4472,11 +4472,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4495,11 +4495,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4518,11 +4518,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4540,11 +4540,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4563,11 +4563,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4586,11 +4586,11 @@ foo</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4607,11 +4607,11 @@ foo</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4632,11 +4632,11 @@ foo</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4655,11 +4655,11 @@ foo</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4678,11 +4678,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4699,11 +4699,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4717,11 +4717,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4737,11 +4737,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4758,11 +4758,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4782,11 +4782,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4803,11 +4803,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4825,11 +4825,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4846,11 +4846,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4871,11 +4871,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4892,11 +4892,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4914,11 +4914,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4936,11 +4936,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4961,11 +4961,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -4988,11 +4988,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5013,11 +5013,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5041,11 +5041,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5073,11 +5073,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5095,11 +5095,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5119,11 +5119,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5142,11 +5142,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5166,11 +5166,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5194,11 +5194,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5220,11 +5220,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5240,11 +5240,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5265,11 +5265,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5300,11 +5300,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5331,11 +5331,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5350,11 +5350,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5367,11 +5367,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5386,11 +5386,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5405,11 +5405,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5422,11 +5422,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5447,11 +5447,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5472,11 +5472,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5497,11 +5497,11 @@ paragraph
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5526,11 +5526,11 @@ paragraph
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5555,11 +5555,11 @@ paragraph
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5575,11 +5575,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5597,11 +5597,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5621,11 +5621,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5655,11 +5655,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5675,11 +5675,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5697,11 +5697,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5720,11 +5720,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5743,11 +5743,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5766,11 +5766,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5785,11 +5785,11 @@ bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5809,11 +5809,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5841,11 +5841,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5873,11 +5873,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5905,11 +5905,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5933,11 +5933,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5965,11 +5965,11 @@ with two lines.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -5986,11 +5986,11 @@ with two lines.</li>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6013,11 +6013,11 @@ continued here.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6040,11 +6040,11 @@ continued here.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6074,11 +6074,11 @@ continued here.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6099,11 +6099,11 @@ continued here.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6123,11 +6123,11 @@ continued here.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6146,11 +6146,11 @@ continued here.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6169,11 +6169,11 @@ continued here.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6196,11 +6196,11 @@ continued here.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6223,11 +6223,11 @@ baz</li>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6244,11 +6244,11 @@ baz</li>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6272,11 +6272,11 @@ baz</li>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6297,11 +6297,11 @@ baz</li>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6322,11 +6322,11 @@ baz</li>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6345,11 +6345,11 @@ Foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6364,11 +6364,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6385,11 +6385,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6417,11 +6417,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6452,11 +6452,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6483,11 +6483,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6519,11 +6519,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6550,11 +6550,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6581,11 +6581,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6608,11 +6608,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6638,11 +6638,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6668,11 +6668,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6696,11 +6696,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6728,11 +6728,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6759,11 +6759,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6791,11 +6791,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6822,11 +6822,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6849,11 +6849,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6880,11 +6880,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6899,11 +6899,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6923,11 +6923,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6950,11 +6950,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -6978,11 +6978,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7016,11 +7016,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7033,11 +7033,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7050,11 +7050,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7067,11 +7067,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7100,11 +7100,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7117,11 +7117,11 @@ The number of windows in my house is
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7136,11 +7136,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7153,11 +7153,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7171,11 +7171,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7191,11 +7191,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7208,11 +7208,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7225,11 +7225,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7242,11 +7242,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7261,11 +7261,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7281,11 +7281,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7302,11 +7302,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7319,11 +7319,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7336,11 +7336,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7359,11 +7359,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7376,11 +7376,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7393,11 +7393,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7410,11 +7410,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7427,11 +7427,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7446,11 +7446,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7466,11 +7466,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7483,11 +7483,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7501,11 +7501,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7520,11 +7520,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7542,11 +7542,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7561,11 +7561,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7578,11 +7578,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7595,11 +7595,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7612,11 +7612,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7629,11 +7629,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7646,11 +7646,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7663,11 +7663,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7680,11 +7680,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7697,11 +7697,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7716,11 +7716,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7737,11 +7737,11 @@ baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7756,11 +7756,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7774,11 +7774,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7791,11 +7791,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7808,11 +7808,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7825,11 +7825,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7842,11 +7842,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7859,11 +7859,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7876,11 +7876,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7893,11 +7893,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7910,11 +7910,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7927,11 +7927,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7944,11 +7944,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7961,11 +7961,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7978,11 +7978,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -7995,11 +7995,11 @@ baz\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8012,11 +8012,11 @@ a * foo bar*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8029,11 +8029,11 @@ a*"foo"*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8046,11 +8046,11 @@ a*"foo"*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8063,11 +8063,11 @@ foo*bar*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8080,11 +8080,11 @@ foo*bar*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8097,11 +8097,11 @@ _foo bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8114,11 +8114,11 @@ _ foo bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8131,11 +8131,11 @@ a_"foo"_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8148,11 +8148,11 @@ foo_bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8165,11 +8165,11 @@ foo_bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8182,11 +8182,11 @@ foo_bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8199,11 +8199,11 @@ aa_"bb"_cc
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8216,11 +8216,11 @@ foo-_(bar)_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8233,11 +8233,11 @@ _foo*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8250,11 +8250,11 @@ _foo*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8269,11 +8269,11 @@ _foo*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8286,11 +8286,11 @@ _foo*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8303,11 +8303,11 @@ _foo*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8320,11 +8320,11 @@ _foo*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8337,11 +8337,11 @@ _foo bar _
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8354,11 +8354,11 @@ _(_foo)
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8371,11 +8371,11 @@ _(_foo_)_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8388,11 +8388,11 @@ _foo_bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8405,11 +8405,11 @@ _пристаням_стремятся
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8422,11 +8422,11 @@ _foo_bar_baz_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8439,11 +8439,11 @@ _(bar)_.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8456,11 +8456,11 @@ _(bar)_.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8473,11 +8473,11 @@ _(bar)_.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8490,11 +8490,11 @@ a**"foo"**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8507,11 +8507,11 @@ foo**bar**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8524,11 +8524,11 @@ __foo bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8541,11 +8541,11 @@ __ foo bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8560,11 +8560,11 @@ foo bar__</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8577,11 +8577,11 @@ a__"foo"__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8594,11 +8594,11 @@ foo__bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8611,11 +8611,11 @@ foo__bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8628,11 +8628,11 @@ foo__bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8645,11 +8645,11 @@ __foo, __bar__, baz__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8662,11 +8662,11 @@ foo-__(bar)__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8679,11 +8679,11 @@ foo-__(bar)__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8696,11 +8696,11 @@ foo-__(bar)__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8713,11 +8713,11 @@ foo-__(bar)__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8732,11 +8732,11 @@ foo-__(bar)__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8749,11 +8749,11 @@ foo-__(bar)__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8766,11 +8766,11 @@ foo-__(bar)__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8783,11 +8783,11 @@ __foo bar __
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8800,11 +8800,11 @@ __(__foo)
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8817,11 +8817,11 @@ _(__foo__)_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8834,11 +8834,11 @@ __foo__bar
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8851,11 +8851,11 @@ __пристаням__стремятся
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8868,11 +8868,11 @@ __foo__bar__baz__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8885,11 +8885,11 @@ __(bar)__.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8902,11 +8902,11 @@ __(bar)__.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8921,11 +8921,11 @@ bar</em></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8938,11 +8938,11 @@ _foo __bar__ baz_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8955,11 +8955,11 @@ _foo _bar_ baz_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8972,11 +8972,11 @@ __foo_ bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -8989,11 +8989,11 @@ __foo_ bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9006,11 +9006,11 @@ __foo_ bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9023,11 +9023,11 @@ __foo_ bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9040,11 +9040,11 @@ __foo_ bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9057,11 +9057,11 @@ __foo_ bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9074,11 +9074,11 @@ __foo_ bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9091,11 +9091,11 @@ __foo_ bar_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9108,11 +9108,11 @@ foo***bar***baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9125,11 +9125,11 @@ foo******bar*********baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9142,11 +9142,11 @@ foo******bar*********baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9159,11 +9159,11 @@ foo******bar*********baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9176,11 +9176,11 @@ foo******bar*********baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9193,11 +9193,11 @@ foo******bar*********baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9210,11 +9210,11 @@ foo******bar*********baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9229,11 +9229,11 @@ bar</strong></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9246,11 +9246,11 @@ __foo _bar_ baz__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9263,11 +9263,11 @@ __foo __bar__ baz__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9280,11 +9280,11 @@ ____foo__ bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9297,11 +9297,11 @@ ____foo__ bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9314,11 +9314,11 @@ ____foo__ bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9331,11 +9331,11 @@ ____foo__ bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9348,11 +9348,11 @@ ____foo__ bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9365,11 +9365,11 @@ ____foo__ bar__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9384,11 +9384,11 @@ bim</em> bop</strong></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9401,11 +9401,11 @@ bim</em> bop</strong></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9418,11 +9418,11 @@ __ is not an empty emphasis
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9435,11 +9435,11 @@ ____ is not an empty strong emphasis
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9452,11 +9452,11 @@ foo ***
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9469,11 +9469,11 @@ foo *\\**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9486,11 +9486,11 @@ foo *_*
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9503,11 +9503,11 @@ foo *****
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9520,11 +9520,11 @@ foo **\\***
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9537,11 +9537,11 @@ foo **_**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9554,11 +9554,11 @@ foo **_**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9571,11 +9571,11 @@ foo **_**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9588,11 +9588,11 @@ foo **_**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9605,11 +9605,11 @@ foo **_**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9622,11 +9622,11 @@ foo **_**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9639,11 +9639,11 @@ foo **_**
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9656,11 +9656,11 @@ foo ___
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9673,11 +9673,11 @@ foo _\\__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9690,11 +9690,11 @@ foo _*_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9707,11 +9707,11 @@ foo _____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9724,11 +9724,11 @@ foo __\\___
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9741,11 +9741,11 @@ foo __*__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9758,11 +9758,11 @@ __foo_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9775,11 +9775,11 @@ _foo__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9792,11 +9792,11 @@ ___foo__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9809,11 +9809,11 @@ ____foo_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9826,11 +9826,11 @@ __foo___
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9843,11 +9843,11 @@ _foo____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9860,11 +9860,11 @@ _foo____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9877,11 +9877,11 @@ _foo____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9894,11 +9894,11 @@ __foo__
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9911,11 +9911,11 @@ _*foo*_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9928,11 +9928,11 @@ _*foo*_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9945,11 +9945,11 @@ ____foo____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9962,11 +9962,11 @@ ____foo____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9979,11 +9979,11 @@ ____foo____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -9996,11 +9996,11 @@ _____foo_____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10013,11 +10013,11 @@ _____foo_____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10030,11 +10030,11 @@ _____foo_____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10047,11 +10047,11 @@ _____foo_____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10064,11 +10064,11 @@ _____foo_____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10081,11 +10081,11 @@ _____foo_____
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10098,11 +10098,11 @@ _foo [bar_](/url)
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10115,11 +10115,11 @@ _foo [bar_](/url)
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10132,11 +10132,11 @@ _foo [bar_](/url)
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10149,11 +10149,11 @@ __<a href="__">
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10166,11 +10166,11 @@ __<a href="__">
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10183,11 +10183,11 @@ _a \`_\`_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10200,11 +10200,11 @@ _a \`_\`_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10217,11 +10217,11 @@ __a<http://foo.bar/?q=__>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10234,11 +10234,11 @@ __a<http://foo.bar/?q=__>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10254,11 +10254,11 @@ new paragraph~~.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10271,11 +10271,11 @@ This will ~~~not~~~ strike.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10288,11 +10288,11 @@ This will ~~~not~~~ strike.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10305,11 +10305,11 @@ This will ~~~not~~~ strike.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10322,11 +10322,11 @@ This will ~~~not~~~ strike.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10339,11 +10339,11 @@ This will ~~~not~~~ strike.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10356,11 +10356,11 @@ This will ~~~not~~~ strike.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10373,11 +10373,11 @@ This will ~~~not~~~ strike.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10392,11 +10392,11 @@ bar)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10411,11 +10411,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10428,11 +10428,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10445,11 +10445,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10466,11 +10466,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10483,11 +10483,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10500,11 +10500,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10517,11 +10517,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10534,11 +10534,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10551,11 +10551,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10574,11 +10574,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10591,11 +10591,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10608,11 +10608,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10625,11 +10625,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10646,11 +10646,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10663,11 +10663,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10680,11 +10680,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10697,11 +10697,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10714,11 +10714,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10732,11 +10732,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10749,11 +10749,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10766,11 +10766,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10783,11 +10783,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10800,11 +10800,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10817,11 +10817,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10834,11 +10834,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10851,11 +10851,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10868,11 +10868,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10885,11 +10885,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10902,11 +10902,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10919,11 +10919,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10936,11 +10936,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10954,11 +10954,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10971,11 +10971,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -10988,11 +10988,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11005,11 +11005,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11024,11 +11024,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11043,11 +11043,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11062,11 +11062,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11081,11 +11081,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11100,11 +11100,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11119,11 +11119,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11138,11 +11138,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11157,11 +11157,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11176,11 +11176,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11195,11 +11195,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11214,11 +11214,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11233,11 +11233,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11252,11 +11252,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11271,11 +11271,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11291,11 +11291,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11310,11 +11310,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11331,11 +11331,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11352,11 +11352,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11371,11 +11371,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11391,11 +11391,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11411,11 +11411,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11431,11 +11431,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11450,11 +11450,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11469,11 +11469,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11489,11 +11489,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11513,11 +11513,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11532,11 +11532,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11551,11 +11551,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11570,11 +11570,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11591,11 +11591,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11610,11 +11610,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11629,11 +11629,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11648,11 +11648,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11667,11 +11667,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11686,11 +11686,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11705,11 +11705,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11724,11 +11724,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11743,11 +11743,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11763,11 +11763,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11782,11 +11782,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11801,11 +11801,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11820,11 +11820,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11839,11 +11839,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11859,11 +11859,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11879,11 +11879,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11896,11 +11896,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11915,11 +11915,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11932,11 +11932,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11949,11 +11949,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11968,11 +11968,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -11987,11 +11987,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12004,11 +12004,11 @@ bar>)</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12021,11 +12021,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12038,11 +12038,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12055,11 +12055,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12074,11 +12074,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12093,11 +12093,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12112,11 +12112,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12131,11 +12131,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12150,11 +12150,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12171,11 +12171,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12190,11 +12190,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12209,11 +12209,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12229,11 +12229,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12248,11 +12248,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12267,11 +12267,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12286,11 +12286,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12303,11 +12303,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12320,11 +12320,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12337,11 +12337,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12354,11 +12354,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12371,11 +12371,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12388,11 +12388,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12405,11 +12405,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12422,11 +12422,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12439,11 +12439,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12456,11 +12456,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12473,11 +12473,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12490,11 +12490,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12507,11 +12507,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12524,11 +12524,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12541,11 +12541,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12558,11 +12558,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12575,11 +12575,11 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12592,11 +12592,11 @@ http://example.com
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12609,11 +12609,11 @@ foo@bar.example.com
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12626,11 +12626,11 @@ www.commonmark.org
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12643,11 +12643,11 @@ Visit www.commonmark.org/help for more information.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12663,11 +12663,11 @@ Visit www.commonmark.org/a.b.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12689,11 +12689,11 @@ www.google.com/search?q=Markup+(business)))
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12706,11 +12706,11 @@ www.google.com/search?q=(business))+ok
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12726,11 +12726,11 @@ www.google.com/search?q=commonmark&hl;
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12743,11 +12743,11 @@ www.commonmark.org/he<lp
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12766,11 +12766,11 @@ Anonymous FTP is available at ftp://foo.bar.baz.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12783,11 +12783,11 @@ foo@bar.baz
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12800,11 +12800,11 @@ hello@mail+xyz.example isn't valid, but hello+xyz@mail.example is.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12826,11 +12826,11 @@ a.b-c_d@a.b_
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12864,11 +12864,11 @@ xmpp:foo@bar.baz.
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12887,11 +12887,11 @@ xmpp:foo@bar.baz/txt@bin.com
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12904,11 +12904,11 @@ xmpp:foo@bar.baz/txt/bin
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12921,11 +12921,11 @@ xmpp:foo@bar.baz/txt/bin
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12938,11 +12938,11 @@ xmpp:foo@bar.baz/txt/bin
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12957,11 +12957,11 @@ data="foo" ></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12976,11 +12976,11 @@ _boolean zoop:33=zoop:33 /></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -12993,11 +12993,11 @@ Foo <responsive-image src="foo.jpg" />
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13010,11 +13010,11 @@ Foo <responsive-image src="foo.jpg" />
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13027,11 +13027,11 @@ Foo <responsive-image src="foo.jpg" />
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13044,11 +13044,11 @@ Foo <responsive-image src="foo.jpg" />
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13067,11 +13067,11 @@ bim!bop /&gt;</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13084,11 +13084,11 @@ bim!bop /&gt;</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13101,11 +13101,11 @@ bim!bop /&gt;</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13118,11 +13118,11 @@ bim!bop /&gt;</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13137,11 +13137,11 @@ comment - with hyphens --></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13156,11 +13156,11 @@ comment - with hyphens --></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13176,11 +13176,11 @@ foo <!---> foo -->
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13193,11 +13193,11 @@ foo <?php echo $a; ?>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13210,11 +13210,11 @@ foo <!ELEMENT br EMPTY>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13227,11 +13227,11 @@ foo <![CDATA[>&<]]>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13244,11 +13244,11 @@ foo <a href="&ouml;">
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13261,11 +13261,11 @@ foo <a href="\\*">
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13278,11 +13278,11 @@ foo <a href="\\*">
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13302,11 +13302,11 @@ foo <a href="\\*">
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13321,11 +13321,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13340,11 +13340,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13359,11 +13359,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13378,11 +13378,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13397,11 +13397,11 @@ bar</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13416,11 +13416,11 @@ bar</em></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13435,11 +13435,11 @@ bar</em></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13453,11 +13453,11 @@ span\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13471,11 +13471,11 @@ span\`
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13490,11 +13490,11 @@ bar"></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13509,11 +13509,11 @@ bar"></p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13526,11 +13526,11 @@ foo\\
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13543,11 +13543,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13560,11 +13560,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13577,11 +13577,11 @@ foo
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13596,11 +13596,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13615,11 +13615,11 @@ baz</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13632,11 +13632,11 @@ hello $.;'there
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13649,11 +13649,11 @@ Foo χρῆν
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -13666,11 +13666,11 @@ Multiple     spaces
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 });

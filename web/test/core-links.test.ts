@@ -11,7 +11,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -21,7 +21,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -31,7 +31,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -41,7 +41,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -51,7 +51,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -61,7 +61,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -71,7 +71,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -81,7 +81,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -93,7 +93,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -103,7 +103,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -115,7 +115,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -127,7 +127,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -139,7 +139,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -152,7 +152,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -162,7 +162,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -172,7 +172,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -182,7 +182,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -192,7 +192,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -202,7 +202,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -212,7 +212,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -222,7 +222,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -232,7 +232,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -242,7 +242,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -252,7 +252,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -262,7 +262,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 
@@ -272,7 +272,7 @@ describe("links", () => {
 `;
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc, core.renderers);
+		const html = renderHtml(doc);
 		expect(html).toBe(expected);
 	});
 });

@@ -6,10 +6,10 @@ namespace Allmark.Tests;
 [TestClass]
 public class ParserTests
 {
-	[TestMethod]
-	public void BasicParse()
-	{
-		var input = @"
+    [TestMethod]
+    public void BasicParse()
+    {
+        var input = @"
 # Test
 
 Here is some text
@@ -22,7 +22,7 @@ Here is some text
 - Loose item 2
 ";
 
-		var expected = @"
+        var expected = @"
 <h1>Test</h1>
 <p>Here is some text</p>
 <ul>
@@ -39,8 +39,8 @@ Here is some text
 </ul>
 ".TrimStart();
 
-		var doc = Parser.Execute(input[1..^1], Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input[1..^1], Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 }

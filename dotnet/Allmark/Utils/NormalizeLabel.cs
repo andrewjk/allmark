@@ -9,8 +9,8 @@ using System.Text.RegularExpressions;
 /// </summary>
 public static partial class Utils
 {
-	public static string NormalizeLabel(string text)
-	{
-		return Regex.Replace(text.ToLower().ToUpper().Trim(), @"\s+", " ");
-	}
+    public static string NormalizeLabel(string text)
+    {
+        return Regex.Replace(text.ToLower().ToUpper().Trim(), @"\s+", " ");
+    }
 }

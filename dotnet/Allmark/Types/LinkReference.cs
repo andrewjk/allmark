@@ -5,6 +5,6 @@ namespace Allmark.Types;
 /// </summary>
 public record LinkReference
 {
-	public required string Url { get; init; }
-	public required string Title { get; init; }
+    public required string Url { get; init; }
+    public required string Title { get; init; }
 }

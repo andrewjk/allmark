@@ -1,23 +1,38 @@
-import type RuleSet from "../types/RuleSet";
 import { readFileSync, writeFileSync } from "node:fs";
 import parse from "../parse";
 import renderHtml from "../renderHtml";
+import renderToConsole from "../renderToConsole";
 import core from "../rulesets/core";
 import extended from "../rulesets/extended";
 import gfm from "../rulesets/gfm";
+import type RuleSet from "../types/RuleSet";
 
 type Ruleset = "core" | "gfm" | "extended";
+type Format = "html" | "console";
 
 export function printUsage(): void {
-	console.error("Usage: allmark <input-file> [-o <file>] [-r <core|gfm|extended>]");
+	console.error(
+		"Usage: allmark <input-file> [-o <file>] [-r <core|gfm|extended>] [-f <html|console>]",
+	);
 	console.error("  input-file   Path to the markdown file to convert");
-	console.error("  -o, --output Path to output HTML file (optional, prints to stdout by default)");
+	console.error("  -o, --output Path to output file (optional, prints to stdout by default)");
 	console.error("  -r, --ruleset Ruleset to use: core, gfm, or extended (default: extended)");
+	console.error("  -f, --format Output format: html or console (default: html)");
 	console.error("  -h, --help   Show this help message");
 }
 
-export function parseArgs(args: string[]): { input: string; output: string | null; ruleset: Ruleset } {
-	const result = { input: "", output: null as string | null, ruleset: "extended" as Ruleset };
+export function parseArgs(args: string[]): {
+	input: string;
+	output: string | null;
+	ruleset: Ruleset;
+	format: Format;
+} {
+	const result = {
+		input: "",
+		output: null as string | null,
+		ruleset: "extended" as Ruleset,
+		format: "html" as Format,
+	};
 	let i = 0;
 
 	while (i < args.length) {
@@ -44,6 +59,20 @@ export function parseArgs(args: string[]): { input: string; output: string | nul
 				process.exit(1);
 			}
 			result.ruleset = ruleset;
+			i += 2;
+		} else if (arg === "--format" || arg === "-f") {
+			if (i + 1 >= args.length) {
+				console.error(`Error: ${arg} requires a value (html or console)`);
+				printUsage();
+				process.exit(1);
+			}
+			const format = args[i + 1] as Format;
+			if (format !== "html" && format !== "console") {
+				console.error(`Error: Invalid format '${format}'. Must be html or console`);
+				printUsage();
+				process.exit(1);
+			}
+			result.format = format;
 			i += 2;
 		} else if (arg === "--help" || arg === "-h") {
 			printUsage();
@@ -94,12 +123,18 @@ export function main(): void {
 		const markdown = readFileSync(args.input, "utf-8");
 		const ruleset = getRuleset(args.ruleset);
 		const document = parse(markdown, ruleset, false);
-		const html = renderHtml(document, ruleset.renderers);
+		let output: string;
+
+		if (args.format === "console") {
+			output = renderToConsole(document);
+		} else {
+			output = renderHtml(document);
+		}
 
 		if (args.output) {
-			writeFileSync(args.output, html, "utf-8");
+			writeFileSync(args.output, output, "utf-8");
 		} else {
-			console.log(html);
+			console.log(output);
 		}
 	} catch (error) {
 		if (error instanceof Error) {

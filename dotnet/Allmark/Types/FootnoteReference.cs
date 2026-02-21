@@ -5,6 +5,6 @@ namespace Allmark.Types;
 /// </summary>
 public record FootnoteReference
 {
-	public required string Label { get; init; }
-	public required MarkdownNode Content { get; init; }
+    public required string Label { get; init; }
+    public required MarkdownNode Content { get; init; }
 }

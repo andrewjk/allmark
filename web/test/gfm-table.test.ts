@@ -24,11 +24,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -42,11 +42,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -61,11 +61,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -79,11 +79,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -96,11 +96,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -112,11 +112,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -130,11 +130,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -147,11 +147,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -164,11 +164,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -184,11 +184,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -202,11 +202,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -220,11 +220,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced, gfm.renderers);
+		const htmlSpaced = renderHtml(docSpaced);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed, gfm.renderers);
+		const htmlTrimmed = renderHtml(docTrimmed);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 });

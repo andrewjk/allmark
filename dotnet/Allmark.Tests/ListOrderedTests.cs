@@ -6,217 +6,217 @@ namespace Allmark.Tests;
 [TestClass]
 public class ListOrderedTests
 {
-	[TestMethod]
-	public void SimpleOrderedListWithPeriodDelimiter()
-	{
-		var input = "1. Item";
-		var expected = """
+    [TestMethod]
+    public void SimpleOrderedListWithPeriodDelimiter()
+    {
+        var input = "1. Item";
+        var expected = """
 		<ol>
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void SimpleOrderedListWithParenDelimiter()
-	{
-		var input = "1) Item";
-		var expected = """
+    [TestMethod]
+    public void SimpleOrderedListWithParenDelimiter()
+    {
+        var input = "1) Item";
+        var expected = """
 		<ol>
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListStartingAt1()
-	{
-		var input = "1. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListStartingAt1()
+    {
+        var input = "1. Item";
+        var expected = """
 		<ol>
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListStartingAt2()
-	{
-		var input = "2. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListStartingAt2()
+    {
+        var input = "2. Item";
+        var expected = """
 		<ol start="2">
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListStartingAt10()
-	{
-		var input = "10. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListStartingAt10()
+    {
+        var input = "10. Item";
+        var expected = """
 		<ol start="10">
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListStartingAt0()
-	{
-		var input = "0. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListStartingAt0()
+    {
+        var input = "0. Item";
+        var expected = """
 		<ol start="0">
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithLargeStartNumber()
-	{
-		var input = "123456789. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithLargeStartNumber()
+    {
+        var input = "123456789. Item";
+        var expected = """
 		<ol start="123456789">
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithTooLargeNumber()
-	{
-		var input = "1234567890. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithTooLargeNumber()
+    {
+        var input = "1234567890. Item";
+        var expected = """
 		<p>1234567890. Item</p>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithLeadingZeros()
-	{
-		var input = "003. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithLeadingZeros()
+    {
+        var input = "003. Item";
+        var expected = """
 		<ol start="3">
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithMultipleItems()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListWithMultipleItems()
+    {
+        var input = """
 		1. Item 1
 		2. Item 2
 		3. Item 3
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		<li>Item 3</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithSequentialNumbersDisregarded()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListWithSequentialNumbersDisregarded()
+    {
+        var input = """
 		1. Item 1
 		1. Item 2
 		1. Item 3
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		<li>Item 3</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithMixedNumbersDisregarded()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListWithMixedNumbersDisregarded()
+    {
+        var input = """
 		1. Item 1
 		5. Item 2
 		3. Item 3
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		<li>Item 3</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void TightOrderedList()
-	{
-		var input = """
+    [TestMethod]
+    public void TightOrderedList()
+    {
+        var input = """
 		1. Item 1
 		2. Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void LooseOrderedListWithBlankLines()
-	{
-		var input = """
+    [TestMethod]
+    public void LooseOrderedListWithBlankLines()
+    {
+        var input = """
 		1. Item 1
 
 		2. Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>
 		<p>Item 1</p>
@@ -226,20 +226,20 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void NestedOrderedList()
-	{
-		var input = """
+    [TestMethod]
+    public void NestedOrderedList()
+    {
+        var input = """
 		1. Item 1
 		   1. Nested item
 		2. Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1
 		<ol>
@@ -249,20 +249,20 @@ public class ListOrderedTests
 		<li>Item 2</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void DeepNestedOrderedList()
-	{
-		var input = """
+    [TestMethod]
+    public void DeepNestedOrderedList()
+    {
+        var input = """
 		1. Level 1
 		   1. Level 2
 		      1. Level 3
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Level 1
 		<ol>
@@ -275,19 +275,19 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListInBlockquote()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListInBlockquote()
+    {
+        var input = """
 		> 1. Item 1
 		> 2. Item 2
 		""";
-		var expected = """
+        var expected = """
 		<blockquote>
 		<ol>
 		<li>Item 1</li>
@@ -295,36 +295,36 @@ public class ListOrderedTests
 		</ol>
 		</blockquote>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void EmptyOrderedListItem()
-	{
-		var input = "1.";
-		var expected = """
+    [TestMethod]
+    public void EmptyOrderedListItem()
+    {
+        var input = "1.";
+        var expected = """
 		<ol>
 		<li></li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithParagraphs()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListWithParagraphs()
+    {
+        var input = """
 		1. Item 1
 
 		   Paragraph in item 1
 
 		2. Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>
 		<p>Item 1</p>
@@ -335,57 +335,57 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListPrecededByParagraph()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListPrecededByParagraph()
+    {
+        var input = """
 		Paragraph
 
 		1. Item
 		""";
-		var expected = """
+        var expected = """
 		<p>Paragraph</p>
 		<ol>
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListFollowedByParagraph()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListFollowedByParagraph()
+    {
+        var input = """
 		1. Item
 
 		Paragraph
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item</li>
 		</ol>
 		<p>Paragraph</p>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void MixedDelimitersShouldNotBeSameList()
-	{
-		var input = """
+    [TestMethod]
+    public void MixedDelimitersShouldNotBeSameList()
+    {
+        var input = """
 		1. Item 1
 		1) Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1</li>
 		</ol>
@@ -393,22 +393,22 @@ public class ListOrderedTests
 		<li>Item 2</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithCodeBlock()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListWithCodeBlock()
+    {
+        var input = """
 		1. Item
 
 		   ```
 		   code
 		   ```
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>
 		<p>Item</p>
@@ -417,50 +417,50 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithInlineFormatting()
-	{
-		var input = "1. Item with *emphasis*";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithInlineFormatting()
+    {
+        var input = "1. Item with *emphasis*";
+        var expected = """
 		<ol>
 		<li>Item with <em>emphasis</em></li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithBold()
-	{
-		var input = "1. Item with **bold**";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithBold()
+    {
+        var input = "1. Item with **bold**";
+        var expected = """
 		<ol>
 		<li>Item with <strong>bold</strong></li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListItemWithMultipleParagraphs()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListItemWithMultipleParagraphs()
+    {
+        var input = """
 		1. Item 1
 
 		   Second paragraph
 
 		2. Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>
 		<p>Item 1</p>
@@ -471,68 +471,68 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithLinks()
-	{
-		var input = "1. [Link](https://example.com)";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithLinks()
+    {
+        var input = "1. [Link](https://example.com)";
+        var expected = """
 		<ol>
 		<li><a href="https://example.com">Link</a></li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithCodeSpan()
-	{
-		var input = "1. `inline code`";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithCodeSpan()
+    {
+        var input = "1. `inline code`";
+        var expected = """
 		<ol>
 		<li><code>inline code</code></li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListAtEndOfDocument()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListAtEndOfDocument()
+    {
+        var input = """
 		1. Item 1
 		2. Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void MultipleSeparateOrderedLists()
-	{
-		var input = """
+    [TestMethod]
+    public void MultipleSeparateOrderedLists()
+    {
+        var input = """
 		1. List 1 item 1
 		2. List 1 item 2
 
 		1. List 2 item 1
 		2. List 2 item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>
 		<p>List 1 item 1</p>
@@ -548,61 +548,61 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListItemWithLeadingSpaces()
-	{
-		var input = "   1. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListItemWithLeadingSpaces()
+    {
+        var input = "   1. Item";
+        var expected = """
 		<ol>
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListItemWith4SpacesIndentShouldBeCode()
-	{
-		var input = "    1. Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListItemWith4SpacesIndentShouldBeCode()
+    {
+        var input = "    1. Item";
+        var expected = """
 		<pre><code>1. Item
 		</code></pre>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithOnlySpacesAfterMarker()
-	{
-		var input = "1.    Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithOnlySpacesAfterMarker()
+    {
+        var input = "1.    Item";
+        var expected = """
 		<ol>
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html =	RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void NestedOrderedAndBulletedLists()
-	{
-		var input = """
+    [TestMethod]
+    public void NestedOrderedAndBulletedLists()
+    {
+        var input = """
 		1. Ordered
 		   - Bulleted
 		      1. Nested ordered
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Ordered
 		<ul>
@@ -615,21 +615,21 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListFollowedByBulletedList()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListFollowedByBulletedList()
+    {
+        var input = """
 		1. Item 1
 		2. Item 2
 		- Bullet 1
 		- Bullet 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1</li>
 		<li>Item 2</li>
@@ -639,54 +639,54 @@ public class ListOrderedTests
 		<li>Bullet 2</li>
 		</ul>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithParenDelimiterMultipleItems()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListWithParenDelimiterMultipleItems()
+    {
+        var input = """
 		1) Item 1
 		2) Item 2
 		3) Item 3
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item 1</li>
 		<li>Item 2</li>
 		<li>Item 3</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithParenDelimiterStartingAt5()
-	{
-		var input = "5) Item";
-		var expected = """
+    [TestMethod]
+    public void OrderedListWithParenDelimiterStartingAt5()
+    {
+        var input = "5) Item";
+        var expected = """
 		<ol start="5">
 		<li>Item</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListItemWithNestedBulletedList()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListItemWithNestedBulletedList()
+    {
+        var input = """
 		1. Item
 		   - Nested bullet
 		   - Another bullet
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>Item
 		<ul>
@@ -696,60 +696,60 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void NotAnOrderedListTextAfterNumber()
-	{
-		var input = "1.5 is a number";
-		var expected = """
+    [TestMethod]
+    public void NotAnOrderedListTextAfterNumber()
+    {
+        var input = "1.5 is a number";
+        var expected = """
 		<p>1.5 is a number</p>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void NotAnOrderedListNoSpaceAfterDelimiter()
-	{
-		var input = "1.Item";
-		var expected = """
+    [TestMethod]
+    public void NotAnOrderedListNoSpaceAfterDelimiter()
+    {
+        var input = "1.Item";
+        var expected = """
 		<p>1.Item</p>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListAtEndOfLineWithoutSpace()
-	{
-		var input = "1.";
-		var expected = """
+    [TestMethod]
+    public void OrderedListAtEndOfLineWithoutSpace()
+    {
+        var input = "1.";
+        var expected = """
 		<ol>
 		<li></li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 
-	[TestMethod]
-	public void OrderedListWithThematicBreakInItem()
-	{
-		var input = """
+    [TestMethod]
+    public void OrderedListWithThematicBreakInItem()
+    {
+        var input = """
 		1. Item 1
 
 		   ---
 
 		2. Item 2
 		""";
-		var expected = """
+        var expected = """
 		<ol>
 		<li>
 		<p>Item 1</p>
@@ -760,8 +760,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-		var doc = Parser.Execute(input, Core.RuleSet, false);
-		var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
-		Assert.AreEqual(expected.Trim(), html.Trim());
-	}
+        var doc = Parser.Execute(input, Core.RuleSet, false);
+        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 }

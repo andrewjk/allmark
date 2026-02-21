@@ -5,6 +5,6 @@ const Renderer = @import("../types/Renderer.zig").Renderer;
 const render = @import("headingRenderer.zig").render;
 
 pub const headingUnderlineRenderer = Renderer{
-    .name = "html_underline",
+    .name = "heading_underline",
     .render = render,
 };

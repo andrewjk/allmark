@@ -5,6 +5,6 @@ namespace Allmark.Types;
 /// </summary>
 public record Renderer
 {
-	public required string Name { get; init; }
-	public required Action<MarkdownNode, RendererState, bool?, bool?, bool?> Render { get; init; }
+    public required string Name { get; init; }
+    public required Action<MarkdownNode, RendererState, bool?, bool?, bool?> Render { get; init; }
 }

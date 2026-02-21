@@ -2,6 +2,6 @@ import Foundation
 
 @MainActor
 let headingUnderlineRenderer = Renderer(
-	name: "html_underline",
+	name: "heading_underline",
 	render: renderHeading
 )
