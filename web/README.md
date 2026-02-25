@@ -1,3 +1,3 @@
-# Allmark for the web
+# Allmark
 
-An implementation of Allmark built in TypeScript.
+A full-featured Markdown parser for the web.
