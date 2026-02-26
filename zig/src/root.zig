@@ -13,7 +13,7 @@ pub const parse = struct {
 
 pub const render = struct {
     pub const renderHtml = @import("render/renderHtml.zig").renderHtml;
-    pub const renderToConsole = @import("render/renderToConsole.zig").renderToConsole;
+    pub const renderToConsole = @import("render-console/renderToConsole.zig").renderToConsole;
     pub const textRenderer = @import("render/textRenderer.zig").textRenderer;
     pub const emphasisRenderer = @import("render/emphasisRenderer.zig").emphasisRenderer;
     pub const strongRenderer = @import("render/strongRenderer.zig").strongRenderer;

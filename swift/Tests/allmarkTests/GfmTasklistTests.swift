@@ -15,7 +15,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -33,7 +33,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -51,7 +51,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -69,7 +69,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -89,7 +89,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -107,7 +107,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -125,7 +125,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -150,7 +150,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -172,7 +172,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -190,7 +190,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -208,7 +208,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -226,7 +226,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -246,7 +246,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -271,7 +271,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -296,7 +296,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -314,7 +314,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -334,7 +334,7 @@ struct GfmTasklistTests {
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}

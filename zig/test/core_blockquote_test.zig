@@ -19,12 +19,11 @@ test "Simple blockquote" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -49,12 +48,11 @@ test "Blockquote with multiple lines" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -79,12 +77,11 @@ test "Blockquote with lazy continuation" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -105,12 +102,11 @@ test "Blockquote with space after >" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -131,12 +127,11 @@ test "Blockquote without space after >" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -160,12 +155,11 @@ test "Blockquote with multiple paragraphs" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -189,12 +183,11 @@ test "Blockquote with code block" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -219,12 +212,11 @@ test "Blockquote with list" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -253,12 +245,11 @@ test "Blockquote with nested blockquote" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -279,12 +270,11 @@ test "Blockquote with heading" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -305,12 +295,11 @@ test "Blockquote with inline emphasis" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -331,12 +320,11 @@ test "Blockquote with inline code" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -357,12 +345,11 @@ test "Blockquote with link" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -383,12 +370,11 @@ test "Blockquote with 1 space indent" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -409,12 +395,11 @@ test "Blockquote with 3 space indent" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -434,12 +419,11 @@ test "Blockquote with 4 space indent should be code" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -465,12 +449,11 @@ test "Multiple consecutive blockquotes" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -493,12 +476,11 @@ test "Blockquote preceded by paragraph without blank line" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -522,12 +504,11 @@ test "Blockquote with thematic break" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -558,12 +539,11 @@ test "Blockquote with multiple blocks" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -596,12 +576,11 @@ test "Blockquote with complex nested content" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -621,12 +600,11 @@ test "Empty blockquote" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -646,12 +624,11 @@ test "Blockquote with only space" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -672,12 +649,11 @@ test "Blockquote at end of document" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -701,12 +677,11 @@ test "Blockquote with fenced code block" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -731,12 +706,11 @@ test "Blockquote with ordered list" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -758,12 +732,11 @@ test "Blockquote with setext heading" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -783,12 +756,11 @@ test "Blockquote with HTML block" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -811,12 +783,11 @@ test "Blockquote with hard line breaks" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -837,12 +808,11 @@ test "Blockquote with image" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -875,12 +845,11 @@ test "Deeply nested blockquotes" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -907,12 +876,11 @@ test "Blockquote with mixed lazy continuation" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -942,12 +910,11 @@ test "Blockquote with loose list" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -972,12 +939,11 @@ test "Blockquote with tight list" {
     var rules = try core.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

@@ -40,26 +40,5 @@ public static class Core
             [LineBreakRule.Create().Name] = LineBreakRule.Create(),
             [TextRule.Create().Name] = TextRule.Create(),
         },
-        Renderers = new Dictionary<string, Renderer>
-        {
-            [BlockQuoteRenderer.Create().Name] = BlockQuoteRenderer.Create(),
-            [CodeBlockRenderer.Create().Name] = CodeBlockRenderer.Create(),
-            [CodeFenceRenderer.Create().Name] = CodeFenceRenderer.Create(),
-            [CodeSpanRenderer.Create().Name] = CodeSpanRenderer.Create(),
-            [EmphasisRenderer.Create().Name] = EmphasisRenderer.Create(),
-            [HardBreakRenderer.Create().Name] = HardBreakRenderer.Create(),
-            [HeadingRenderer.Create().Name] = HeadingRenderer.Create(),
-            [HeadingUnderlineRenderer.Create().Name] = HeadingUnderlineRenderer.Create(),
-            [HtmlBlockRenderer.Create().Name] = HtmlBlockRenderer.Create(),
-            [HtmlSpanRenderer.Create().Name] = HtmlSpanRenderer.Create(),
-            [ImageRenderer.Create().Name] = ImageRenderer.Create(),
-            [LinkRenderer.Create().Name] = LinkRenderer.Create(),
-            [ListBulletedRenderer.Create().Name] = ListBulletedRenderer.Create(),
-            [ListOrderedRenderer.Create().Name] = ListOrderedRenderer.Create(),
-            [ParagraphRenderer.Create().Name] = ParagraphRenderer.Create(),
-            [StrongRenderer.Create().Name] = StrongRenderer.Create(),
-            [TextRenderer.Create().Name] = TextRenderer.Create(),
-            [ThematicBreakRenderer.Create().Name] = ThematicBreakRenderer.Create(),
-        },
     };
 }

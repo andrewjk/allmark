@@ -10,20 +10,16 @@ const renderer: Renderer = {
 };
 export default renderer;
 
-export function createRenderer(ordered: boolean, bullets: string[]): Renderer {
-	return {
-		name: ordered ? "list_ordered" : "list_bulleted",
-		render(node: MarkdownNode, state: RendererState) {
-			renderNode(node, state, ordered, bullets);
-		},
-	};
-}
-
 function render(node: MarkdownNode, state: RendererState): void {
 	renderNode(node, state, true, []);
 }
 
-function renderNode(node: MarkdownNode, state: RendererState, ordered: boolean, bullets: string[]): void {
+function renderNode(
+	node: MarkdownNode,
+	state: RendererState,
+	ordered: boolean,
+	bullets: string[],
+): void {
 	const s = state as ConsoleRendererState;
 	s.depth++;
 

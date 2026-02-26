@@ -2,23 +2,14 @@ import type ConsoleRendererState from "../types/ConsoleRendererState";
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
-import renderChildren from "./renderChildren";
 import type { Styles } from "./ansi";
+import renderChildren from "./renderChildren";
 
 const renderer: Renderer = {
 	name: "alert",
 	render,
 };
 export default renderer;
-
-export function createRenderer(styles: Styles, reset: string): Renderer {
-	return {
-		name: "alert",
-		render(node: MarkdownNode, state: RendererState) {
-			renderNode(node, state, styles, reset);
-		},
-	};
-}
 
 function render(node: MarkdownNode, state: RendererState): void {
 	const styles = defaultStyles();

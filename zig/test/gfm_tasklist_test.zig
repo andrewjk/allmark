@@ -19,12 +19,11 @@ test "spec tasklist" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -45,12 +44,11 @@ test "tasklist with asterisk marker" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -71,12 +69,11 @@ test "tasklist with plus marker" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -97,12 +94,11 @@ test "tasklist in ordered list" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -124,12 +120,11 @@ test "tasklist with inline formatting" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -150,12 +145,11 @@ test "tasklist with code" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -176,12 +170,11 @@ test "tasklist with links" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -207,12 +200,11 @@ test "nested tasklist" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -235,12 +227,11 @@ test "mixed tasks and regular items" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -261,12 +252,11 @@ test "tasklist with single character" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -287,12 +277,11 @@ test "tasklist with empty brackets" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -313,12 +302,11 @@ test "tasklist with uppercase X" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -341,12 +329,11 @@ test "tasklist in blockquote" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -372,12 +359,11 @@ test "tasklist with multiple paragraphs" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -403,12 +389,11 @@ test "tasklist with sublist" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -429,12 +414,11 @@ test "tasklist with html entities" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -456,12 +440,11 @@ test "tasklist with various whitespace" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

@@ -10,7 +10,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -23,7 +23,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -42,7 +42,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -54,7 +54,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -67,7 +67,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -80,7 +80,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -99,7 +99,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -117,7 +117,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -133,7 +133,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -146,7 +146,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -163,7 +163,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -176,7 +176,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -189,7 +189,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -202,7 +202,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -217,7 +217,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -234,7 +234,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -251,7 +251,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -269,7 +269,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -287,7 +287,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -306,7 +306,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -319,7 +319,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -338,7 +338,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -356,7 +356,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -374,7 +374,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -392,7 +392,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -410,7 +410,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -430,7 +430,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -450,7 +450,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -468,7 +468,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -486,7 +486,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -505,7 +505,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -524,7 +524,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -540,7 +540,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -557,7 +557,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -570,7 +570,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -594,7 +594,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -607,7 +607,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -626,7 +626,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -639,7 +639,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -652,7 +652,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -664,7 +664,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -677,7 +677,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -690,7 +690,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -703,7 +703,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -716,7 +716,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -729,7 +729,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -742,7 +742,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -755,7 +755,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -768,7 +768,7 @@ struct IndentedCodeTests {
 		"""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -778,7 +778,7 @@ struct IndentedCodeTests {
 		let expected = ""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected)
 		}
 	}
@@ -788,7 +788,7 @@ struct IndentedCodeTests {
 		let expected = ""
 		await MainActor.run {
 			let root = parse(src: input, rules: coreRuleSet, debug: false)
-			let html = renderHtml(doc: root, renderers: coreRuleSet.renderers)
+			let html = renderHtml(doc: root)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected)
 		}
 	}

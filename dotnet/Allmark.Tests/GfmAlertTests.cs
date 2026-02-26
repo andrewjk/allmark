@@ -20,7 +20,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -39,7 +39,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -58,7 +58,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -77,7 +77,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -96,7 +96,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -118,7 +118,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -137,7 +137,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -164,7 +164,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -188,7 +188,7 @@ public class GfmAlertTests
 </code></pre>
 </div>";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -207,7 +207,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -226,7 +226,7 @@ public class GfmAlertTests
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -245,7 +245,7 @@ It should not be treated as an alert.</p>
 </blockquote>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -264,7 +264,7 @@ It should be a regular blockquote.</p>
 </blockquote>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -288,7 +288,7 @@ It should be a regular blockquote.</p>
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -314,7 +314,7 @@ It should be a regular blockquote.</p>
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -335,7 +335,7 @@ It should be a regular blockquote.</p>
 </div>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }

@@ -18,12 +18,11 @@ test "spec strikethrough" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -41,12 +40,11 @@ test "strikethrough single word" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -64,12 +62,11 @@ test "strikethrough multiple words" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -87,12 +84,11 @@ test "strikethrough with spaces inside" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -110,12 +106,11 @@ test "strikethrough with emphasis" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -133,12 +128,11 @@ test "strikethrough inside emphasis" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -156,12 +150,11 @@ test "strikethrough with code" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -179,12 +172,11 @@ test "strikethrough with link" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -202,12 +194,11 @@ test "multiple strikethroughs in one line" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -225,12 +216,11 @@ test "strikethrough at start of paragraph" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -248,12 +238,11 @@ test "strikethrough at end of paragraph" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -274,12 +263,11 @@ test "strikethrough in list item" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -297,12 +285,11 @@ test "strikethrough with tildes inside" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -320,12 +307,11 @@ test "strikethrough with multiple tildes" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -344,12 +330,11 @@ test "strikethrough across lines" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -367,12 +352,11 @@ test "strikethrough with punctuation" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -390,12 +374,11 @@ test "strikethrough with numbers" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -426,12 +409,11 @@ test "strikethrough in table cell" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -449,12 +431,11 @@ test "strikethrough adjacent to regular text" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -472,12 +453,11 @@ test "strikethrough with escaped characters" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

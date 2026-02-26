@@ -21,8 +21,8 @@ public class SpecGfmTests
 <pre><code>foo	baz		bim
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -36,8 +36,8 @@ public class SpecGfmTests
 <pre><code>foo	baz		bim
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -53,8 +53,8 @@ public class SpecGfmTests
 ὐ	a
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -74,8 +74,8 @@ public class SpecGfmTests
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -96,8 +96,8 @@ public class SpecGfmTests
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -113,8 +113,8 @@ public class SpecGfmTests
 </code></pre>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -132,8 +132,8 @@ public class SpecGfmTests
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -149,8 +149,8 @@ public class SpecGfmTests
 bar
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -175,8 +175,8 @@ bar
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -189,8 +189,8 @@ bar
         var expected = @"
 <h1>Foo</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -203,8 +203,8 @@ bar
         var expected = @"
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -221,8 +221,8 @@ bar
 <li>two`</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -239,8 +239,8 @@ ___
 <hr />
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -253,8 +253,8 @@ ___
         var expected = @"
 <p>+++</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -267,8 +267,8 @@ ___
         var expected = @"
 <p>===</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -285,8 +285,8 @@ __
 **
 __</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -303,8 +303,8 @@ __</p>
 <hr />
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -318,8 +318,8 @@ __</p>
 <pre><code>***
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -334,8 +334,8 @@ Foo
 <p>Foo
 ***</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -348,8 +348,8 @@ _____________________________________
         var expected = @"
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -362,8 +362,8 @@ _____________________________________
         var expected = @"
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -376,8 +376,8 @@ _____________________________________
         var expected = @"
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -390,8 +390,8 @@ _____________________________________
         var expected = @"
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -404,8 +404,8 @@ _____________________________________
         var expected = @"
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -424,8 +424,8 @@ a------
 <p>a------</p>
 <p>---a---</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -438,8 +438,8 @@ a------
         var expected = @"
 <p><em>-</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -460,8 +460,8 @@ a------
 <li>bar</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -478,8 +478,8 @@ bar
 <hr />
 <p>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -495,8 +495,8 @@ bar
 <h2>Foo</h2>
 <p>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -517,8 +517,8 @@ bar
 <li>Bar</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -537,8 +537,8 @@ bar
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -561,8 +561,8 @@ bar
 <h5>foo</h5>
 <h6>foo</h6>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -575,8 +575,8 @@ bar
         var expected = @"
 <p>####### foo</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -592,8 +592,8 @@ bar
 <p>#5 bolt</p>
 <p>#hashtag</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -606,8 +606,8 @@ bar
         var expected = @"
 <p>## foo</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -620,8 +620,8 @@ bar
         var expected = @"
 <h1>foo <em>bar</em> *baz*</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -634,8 +634,8 @@ bar
         var expected = @"
 <h1>foo</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -652,8 +652,8 @@ bar
 <h2>foo</h2>
 <h1>foo</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -667,8 +667,8 @@ bar
 <pre><code># foo
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -683,8 +683,8 @@ foo
 <p>foo
 # bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -699,8 +699,8 @@ foo
 <h2>foo</h2>
 <h3>bar</h3>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -715,8 +715,8 @@ foo
 <h1>foo</h1>
 <h5>foo</h5>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -729,8 +729,8 @@ foo
         var expected = @"
 <h3>foo</h3>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -743,8 +743,8 @@ foo
         var expected = @"
 <h3>foo ### b</h3>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -757,8 +757,8 @@ foo
         var expected = @"
 <h1>foo#</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -775,8 +775,8 @@ foo
 <h2>foo ###</h2>
 <h1>foo #</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -793,8 +793,8 @@ foo
 <h2>foo</h2>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -811,8 +811,8 @@ Bar foo
 <h1>baz</h1>
 <p>Bar foo</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -829,8 +829,8 @@ Bar foo
 <h1></h1>
 <h3></h3>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -848,8 +848,8 @@ Foo *bar*
 <h1>Foo <em>bar</em></h1>
 <h2>Foo <em>bar</em></h2>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -865,8 +865,8 @@ baz*
 <h1>Foo <em>bar
 baz</em></h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -882,8 +882,8 @@ baz*
 <h1>Foo <em>bar
 baz</em></h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -901,8 +901,8 @@ Foo
 <h2>Foo</h2>
 <h1>Foo</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -924,8 +924,8 @@ Foo
 <h2>Foo</h2>
 <h1>Foo</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -947,8 +947,8 @@ Foo
 </code></pre>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -962,8 +962,8 @@ Foo
         var expected = @"
 <h2>Foo</h2>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -978,8 +978,8 @@ Foo
 <p>Foo
 ---</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -999,8 +999,8 @@ Foo
 <p>Foo</p>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1014,8 +1014,8 @@ Foo
         var expected = @"
 <h2>Foo</h2>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1029,8 +1029,8 @@ Foo\
         var expected = @"
 <h2>Foo\</h2>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1052,8 +1052,8 @@ of dashes""/>
 <h2>&lt;a title=&quot;a lot</h2>
 <p>of dashes&quot;/&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1070,8 +1070,8 @@ of dashes""/>
 </blockquote>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1090,8 +1090,8 @@ bar
 ===</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1108,8 +1108,8 @@ bar
 </ul>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1125,8 +1125,8 @@ Bar
 <h2>Foo
 Bar</h2>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1147,8 +1147,8 @@ Baz
 <h2>Bar</h2>
 <p>Baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1162,8 +1162,8 @@ Baz
         var expected = @"
 <p>====</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1178,8 +1178,8 @@ Baz
 <hr />
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1196,8 +1196,8 @@ Baz
 </ul>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1213,8 +1213,8 @@ Baz
 </code></pre>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1231,8 +1231,8 @@ Baz
 </blockquote>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1246,8 +1246,8 @@ Baz
         var expected = @"
 <h2>&gt; foo</h2>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1266,8 +1266,8 @@ baz
 <h2>bar</h2>
 <p>baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1288,8 +1288,8 @@ bar</p>
 <hr />
 <p>baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1308,8 +1308,8 @@ bar</p>
 <hr />
 <p>baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1328,8 +1328,8 @@ bar
 ---
 baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1345,8 +1345,8 @@ baz</p>
   indented code block
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1366,8 +1366,8 @@ baz</p>
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1389,8 +1389,8 @@ baz</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1410,8 +1410,8 @@ baz</p>
 - one
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1437,8 +1437,8 @@ chunk2
 chunk3
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1456,8 +1456,8 @@ chunk3
   chunk2
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1473,8 +1473,8 @@ Foo
 <p>Foo
 bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1490,8 +1490,8 @@ bar
 </code></pre>
 <p>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1515,8 +1515,8 @@ Heading
 </code></pre>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1532,8 +1532,8 @@ Heading
 bar
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1551,8 +1551,8 @@ bar
 <pre><code>foo
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1566,8 +1566,8 @@ bar
 <pre><code>foo  
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1585,8 +1585,8 @@ bar
  &gt;
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1604,8 +1604,8 @@ bar
  &gt;
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1620,8 +1620,8 @@ foo
         var expected = @"
 <p><code>foo</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1639,8 +1639,8 @@ aaa
 ~~~
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1658,8 +1658,8 @@ aaa
 ```
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1677,8 +1677,8 @@ aaa
 ```
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1696,8 +1696,8 @@ aaa
 ~~~
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1710,8 +1710,8 @@ aaa
         var expected = @"
 <pre><code></code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1730,8 +1730,8 @@ aaa
 aaa
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1751,8 +1751,8 @@ bbb
 </blockquote>
 <p>bbb</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1770,8 +1770,8 @@ bbb
   
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1785,8 +1785,8 @@ bbb
         var expected = @"
 <pre><code></code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1804,8 +1804,8 @@ aaa
 aaa
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1825,8 +1825,8 @@ aaa
 aaa
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1846,8 +1846,8 @@ aaa
 aaa
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1865,8 +1865,8 @@ aaa
 ```
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1882,8 +1882,8 @@ aaa
 <pre><code>aaa
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1899,8 +1899,8 @@ aaa
 <pre><code>aaa
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1917,8 +1917,8 @@ aaa
     ```
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1933,8 +1933,8 @@ aaa
 <p><code> </code>
 aaa</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1951,8 +1951,8 @@ aaa
 ~~~ ~~
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1972,8 +1972,8 @@ baz
 </code></pre>
 <p>baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -1994,8 +1994,8 @@ bar
 </code></pre>
 <h1>baz</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2015,8 +2015,8 @@ end
 end
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2036,8 +2036,8 @@ end
 end
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2051,8 +2051,8 @@ end
         var expected = @"
 <pre><code class=""language-;""></code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2067,8 +2067,8 @@ foo
 <p><code>aa</code>
 foo</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2084,8 +2084,8 @@ foo
 <pre><code class=""language-aa"">foo
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2101,8 +2101,8 @@ foo
 <pre><code>``` aaa
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2126,8 +2126,8 @@ _world_.
 </pre></p>
 </td></tr></table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2155,8 +2155,8 @@ okay.
 </table>
 <p>okay.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2173,8 +2173,8 @@ okay.
   *hello*
          <foo><a>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2189,8 +2189,8 @@ okay.
 </div>
 *foo*
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2209,8 +2209,8 @@ okay.
 <p><em>Markdown</em></p>
 </DIV>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2227,8 +2227,8 @@ okay.
   class=""bar"">
 </div>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2245,8 +2245,8 @@ okay.
   baz"">
 </div>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2264,8 +2264,8 @@ okay.
 *foo*
 <p><em>bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2280,8 +2280,8 @@ okay.
 <div id=""foo""
 *hi*
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2296,8 +2296,8 @@ foo
 <div class
 foo
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2312,8 +2312,8 @@ foo
 <div *???-&&&-<---
 *foo*
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2326,8 +2326,8 @@ foo
         var expected = @"
 <div><a href=""bar"">*foo*</a></div>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2344,8 +2344,8 @@ foo
 foo
 </td></tr></table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2364,8 +2364,8 @@ int x = 33;
 int x = 33;
 ```
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2382,8 +2382,8 @@ int x = 33;
 *bar*
 </a>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2400,8 +2400,8 @@ int x = 33;
 *bar*
 </Warning>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2418,8 +2418,8 @@ int x = 33;
 *bar*
 </i>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2434,8 +2434,8 @@ int x = 33;
 </ins>
 *bar*
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2452,8 +2452,8 @@ int x = 33;
 *foo*
 </del>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2472,8 +2472,8 @@ int x = 33;
 <p><em>foo</em></p>
 </del>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2486,8 +2486,8 @@ int x = 33;
         var expected = @"
 <p><del><em>foo</em></del></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2512,8 +2512,8 @@ main = print $ parseTags tags
 </code></pre>
 <p>okay</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2536,8 +2536,8 @@ document.getElementById(""demo"").innerHTML = ""Hello JavaScript!"";
 </script>
 <p>okay</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2562,8 +2562,8 @@ p {color:blue;}
 </style>
 <p>okay</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2582,8 +2582,8 @@ foo
 
 foo
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2603,8 +2603,8 @@ foo
 </blockquote>
 <p>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2623,8 +2623,8 @@ foo
 <li>foo</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2639,8 +2639,8 @@ foo
 <style>p{color:red;}</style>
 <p><em>foo</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2655,8 +2655,8 @@ foo
 <!-- foo -->*bar*
 <p><em>baz</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2673,8 +2673,8 @@ foo
 foo
 </script>1. *bar*
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2695,8 +2695,8 @@ bar
    baz -->
 <p>okay</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2719,8 +2719,8 @@ okay
 ?>
 <p>okay</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2733,8 +2733,8 @@ okay
         var expected = @"
 <!DOCTYPE html>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2771,8 +2771,8 @@ function matchwo(a,b)
 ]]>
 <p>okay</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2789,8 +2789,8 @@ function matchwo(a,b)
 <pre><code>&lt;!-- foo --&gt;
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2807,8 +2807,8 @@ function matchwo(a,b)
 <pre><code>&lt;div&gt;
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2827,8 +2827,8 @@ bar
 bar
 </div>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2847,8 +2847,8 @@ bar
 </div>
 *foo*
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2865,8 +2865,8 @@ baz
 <a href=""bar"">
 baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2885,8 +2885,8 @@ baz</p>
 <p><em>Emphasized</em> text.</p>
 </div>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2903,8 +2903,8 @@ baz</p>
 *Emphasized* text.
 </div>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2933,8 +2933,8 @@ Hi
 </tr>
 </table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2964,8 +2964,8 @@ Hi
   </tr>
 </table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2980,8 +2980,8 @@ Hi
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -2998,8 +2998,8 @@ Hi
         var expected = @"
 <p><a href=""/url"" title=""the title"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3014,8 +3014,8 @@ Hi
         var expected = @"
 <p><a href=""my_(url)"" title=""title (with parens)"">Foo*bar]</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3032,8 +3032,8 @@ Hi
         var expected = @"
 <p><a href=""my%20url"" title=""title"">Foo bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3056,8 +3056,8 @@ line1
 line2
 "">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3076,8 +3076,8 @@ with blank line'
 <p>with blank line'</p>
 <p>[foo]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3093,8 +3093,8 @@ with blank line'
         var expected = @"
 <p><a href=""/url"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3110,8 +3110,8 @@ with blank line'
 <p>[foo]:</p>
 <p>[foo]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3126,8 +3126,8 @@ with blank line'
         var expected = @"
 <p><a href="""">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3143,8 +3143,8 @@ with blank line'
 <p>[foo]: <bar>(baz)</p>
 <p>[foo]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3159,8 +3159,8 @@ with blank line'
         var expected = @"
 <p><a href=""/url%5Cbar*baz"" title=""foo&quot;bar\baz"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3175,8 +3175,8 @@ with blank line'
         var expected = @"
 <p><a href=""url"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3192,8 +3192,8 @@ with blank line'
         var expected = @"
 <p><a href=""first"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3208,8 +3208,8 @@ with blank line'
         var expected = @"
 <p><a href=""/url"">Foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3224,8 +3224,8 @@ with blank line'
         var expected = @"
 <p><a href=""/%CF%86%CE%BF%CF%85"">αγω</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3238,8 +3238,8 @@ with blank line'
         var expected = @"
 
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3255,8 +3255,8 @@ bar
         var expected = @"
 <p>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3269,8 +3269,8 @@ bar
         var expected = @"
 <p>[foo]: /url &quot;title&quot; ok</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3284,8 +3284,8 @@ bar
         var expected = @"
 <p>&quot;title&quot; ok</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3302,8 +3302,8 @@ bar
 </code></pre>
 <p>[foo]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3322,8 +3322,8 @@ bar
 </code></pre>
 <p>[foo]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3341,8 +3341,8 @@ Foo
 [bar]: /baz</p>
 <p>[bar]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3360,8 +3360,8 @@ Foo
 <p>bar</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3378,8 +3378,8 @@ bar
 <h1>bar</h1>
 <p><a href=""/url"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3395,8 +3395,8 @@ bar
 <p>===
 <a href=""/url"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3418,8 +3418,8 @@ bar
 <a href=""/bar-url"" title=""bar"">bar</a>,
 <a href=""/baz-url"">baz</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3436,8 +3436,8 @@ bar
 <blockquote>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3450,8 +3450,8 @@ bar
         var expected = @"
 
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3467,8 +3467,8 @@ bbb
 <p>aaa</p>
 <p>bbb</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3488,8 +3488,8 @@ bbb</p>
 <p>ccc
 ddd</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3506,8 +3506,8 @@ bbb
 <p>aaa</p>
 <p>bbb</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3522,8 +3522,8 @@ bbb
 <p>aaa
 bbb</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3540,8 +3540,8 @@ aaa
 bbb
 ccc</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3556,8 +3556,8 @@ bbb
 <p>aaa
 bbb</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3573,8 +3573,8 @@ bbb
 </code></pre>
 <p>bbb</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3589,8 +3589,8 @@ bbb
 <p>aaa<br />
 bbb</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3611,8 +3611,8 @@ aaa
 <p>aaa</p>
 <h1>aaa</h1>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3640,8 +3640,8 @@ aaa
 </tbody>
 </table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3669,8 +3669,8 @@ bar | baz
 </tbody>
 </table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3700,8 +3700,8 @@ bar | baz
 </tbody>
 </table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3733,8 +3733,8 @@ bar | baz
 <p>bar</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3770,8 +3770,8 @@ bar
 </table>
 <p>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3788,8 +3788,8 @@ bar
 | --- |
 | bar |</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3822,8 +3822,8 @@ bar
 </tbody>
 </table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3844,8 +3844,8 @@ bar
 </thead>
 </table>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3864,8 +3864,8 @@ bar
 baz</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3884,8 +3884,8 @@ baz</p>
 baz</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3904,8 +3904,8 @@ baz</p>
 baz</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3923,8 +3923,8 @@ baz</p>
 &gt; baz
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3943,8 +3943,8 @@ baz
 baz</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3963,8 +3963,8 @@ baz
 foo</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -3981,8 +3981,8 @@ foo</p>
 </blockquote>
 <hr />
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4003,8 +4003,8 @@ foo</p>
 <li>bar</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4023,8 +4023,8 @@ foo</p>
 <pre><code>bar
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4043,8 +4043,8 @@ foo
 <p>foo</p>
 <pre><code></code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4061,8 +4061,8 @@ foo
 - bar</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4076,8 +4076,8 @@ foo
 <blockquote>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4093,8 +4093,8 @@ foo
 <blockquote>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4111,8 +4111,8 @@ foo
 <p>foo</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4132,8 +4132,8 @@ foo
 <p>bar</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4150,8 +4150,8 @@ foo
 bar</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4169,8 +4169,8 @@ bar</p>
 <p>bar</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4187,8 +4187,8 @@ foo
 <p>bar</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4209,8 +4209,8 @@ foo
 <p>bbb</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4227,8 +4227,8 @@ baz
 baz</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4246,8 +4246,8 @@ baz
 </blockquote>
 <p>baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4265,8 +4265,8 @@ baz
 </blockquote>
 <p>baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4287,8 +4287,8 @@ bar</p>
 </blockquote>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4311,8 +4311,8 @@ baz</p>
 </blockquote>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4333,8 +4333,8 @@ baz</p>
 <p>not code</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4358,8 +4358,8 @@ with two lines.</p>
 <p>A block quote.</p>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4387,8 +4387,8 @@ with two lines.</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4406,8 +4406,8 @@ with two lines.</p>
 </ul>
 <p>two</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4427,8 +4427,8 @@ with two lines.</p>
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4447,8 +4447,8 @@ with two lines.</p>
 <pre><code> two
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4468,8 +4468,8 @@ with two lines.</p>
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4493,8 +4493,8 @@ with two lines.</p>
 </blockquote>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4516,8 +4516,8 @@ with two lines.</p>
 </blockquote>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4533,8 +4533,8 @@ with two lines.</p>
 <p>-one</p>
 <p>2.two</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4555,8 +4555,8 @@ with two lines.</p>
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4587,8 +4587,8 @@ with two lines.</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4615,8 +4615,8 @@ baz
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4631,8 +4631,8 @@ baz
 <li>ok</li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4645,8 +4645,8 @@ baz
         var expected = @"
 <p>1234567890. not ok</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4661,8 +4661,8 @@ baz
 <li>ok</li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4677,8 +4677,8 @@ baz
 <li>ok</li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4691,8 +4691,8 @@ baz
         var expected = @"
 <p>-1. not ok</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4713,8 +4713,8 @@ baz
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4735,8 +4735,8 @@ baz
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4757,8 +4757,8 @@ paragraph
 <pre><code>more code
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4783,8 +4783,8 @@ paragraph
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4809,8 +4809,8 @@ paragraph
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4826,8 +4826,8 @@ bar
 <p>foo</p>
 <p>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4845,8 +4845,8 @@ bar
 </ul>
 <p>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4866,8 +4866,8 @@ bar
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4897,8 +4897,8 @@ bar
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4914,8 +4914,8 @@ bar
 <li>foo</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4933,8 +4933,8 @@ bar
 </ul>
 <p>foo</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4953,8 +4953,8 @@ bar
 <li>bar</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4973,8 +4973,8 @@ bar
 <li>bar</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -4993,8 +4993,8 @@ bar
 <li>bar</li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5009,8 +5009,8 @@ bar
 <li></li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5030,8 +5030,8 @@ foo
 <p>foo
 1.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5059,8 +5059,8 @@ with two lines.</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5088,8 +5088,8 @@ with two lines.</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5117,8 +5117,8 @@ with two lines.</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5142,8 +5142,8 @@ with two lines.</p>
     &gt; A block quote.
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5171,8 +5171,8 @@ with two lines.</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5189,8 +5189,8 @@ with two lines.</p>
 with two lines.</li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5213,8 +5213,8 @@ continued here.</p>
 </ol>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5237,8 +5237,8 @@ continued here.</p>
 </ol>
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5268,8 +5268,8 @@ continued here.</p>
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5290,8 +5290,8 @@ continued here.</p>
 <li>boo</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5311,8 +5311,8 @@ continued here.</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5331,8 +5331,8 @@ continued here.</p>
 <li>bar</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5351,8 +5351,8 @@ continued here.</p>
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5375,8 +5375,8 @@ continued here.</p>
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5399,8 +5399,8 @@ continued here.</p>
 baz</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5417,8 +5417,8 @@ baz</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> bar</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5442,8 +5442,8 @@ baz</li>
 <li><input type=""checkbox"" disabled="""" /> bim</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5464,8 +5464,8 @@ baz</li>
 <li>baz</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5486,8 +5486,8 @@ baz</li>
 <li>baz</li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5506,8 +5506,8 @@ Foo
 <li>baz</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5522,8 +5522,8 @@ The number of windows in my house is
 <p>The number of windows in my house is
 14.  The number of doors is 6.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5540,8 +5540,8 @@ The number of windows in my house is
 <li>The number of doors is 6.</li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5569,8 +5569,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5601,8 +5601,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5629,8 +5629,8 @@ The number of windows in my house is
 <li>bim</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5662,8 +5662,8 @@ The number of windows in my house is
 <pre><code>code
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5690,8 +5690,8 @@ The number of windows in my house is
 <li>g</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5718,8 +5718,8 @@ The number of windows in my house is
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5742,8 +5742,8 @@ The number of windows in my house is
 - e</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5769,8 +5769,8 @@ The number of windows in my house is
 <pre><code>3. c
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5796,8 +5796,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5821,8 +5821,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5850,8 +5850,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5878,8 +5878,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5907,8 +5907,8 @@ The number of windows in my house is
 <li>c</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5935,8 +5935,8 @@ The number of windows in my house is
 <li>d</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5959,8 +5959,8 @@ The number of windows in my house is
 <li>c</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -5987,8 +5987,8 @@ The number of windows in my house is
 <li>d</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6003,8 +6003,8 @@ The number of windows in my house is
 <li>a</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6024,8 +6024,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6048,8 +6048,8 @@ The number of windows in my house is
 </li>
 </ol>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6073,8 +6073,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6108,8 +6108,8 @@ The number of windows in my house is
 </li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6122,8 +6122,8 @@ The number of windows in my house is
         var expected = @"
 <p><code>hi</code>lo`</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6136,8 +6136,8 @@ The number of windows in my house is
         var expected = @"
 <p>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6150,8 +6150,8 @@ The number of windows in my house is
         var expected = @"
 <p>\	\A\a\ \3\φ\«</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6180,8 +6180,8 @@ The number of windows in my house is
 [foo]: /url &quot;not a reference&quot;
 &amp;ouml; not a character entity</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6194,8 +6194,8 @@ The number of windows in my house is
         var expected = @"
 <p>\\<em>emphasis</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6210,8 +6210,8 @@ bar
 <p>foo<br />
 bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6224,8 +6224,8 @@ bar</p>
         var expected = @"
 <p><code>\\[\\`</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6239,8 +6239,8 @@ bar</p>
 <pre><code>\\[\\]
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6256,8 +6256,8 @@ bar</p>
 <pre><code>\\[\\]
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6270,8 +6270,8 @@ bar</p>
         var expected = @"
 <p><a href=""http://example.com?find=%5C*"">http://example.com?find=\*</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6284,8 +6284,8 @@ bar</p>
         var expected = @"
 <a href=""/bar\\/)"">
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6298,8 +6298,8 @@ bar</p>
         var expected = @"
 <p><a href=""/bar*"" title=""ti*tle"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6314,8 +6314,8 @@ bar</p>
         var expected = @"
 <p><a href=""/bar*"" title=""ti*tle"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6331,8 +6331,8 @@ foo
 <pre><code class=""language-foo+bar"">foo
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6349,8 +6349,8 @@ foo
 ¾ ℋ ⅆ
 ∲ ≧̸</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6363,8 +6363,8 @@ foo
         var expected = @"
 <p># Ӓ Ϡ �</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6377,8 +6377,8 @@ foo
         var expected = @"
 <p>&quot; ആ ಫ</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6397,8 +6397,8 @@ foo
 &amp;#abcdef0;
 &amp;ThisIsNotDefined; &amp;hi?;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6411,8 +6411,8 @@ foo
         var expected = @"
 <p>&amp;copy</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6425,8 +6425,8 @@ foo
         var expected = @"
 <p>&amp;MadeUpEntity;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6439,8 +6439,8 @@ foo
         var expected = @"
 <a href=""&ouml;&ouml;.html"">
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6453,8 +6453,8 @@ foo
         var expected = @"
 <p><a href=""/f%C3%B6%C3%B6"" title=""föö"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6469,8 +6469,8 @@ foo
         var expected = @"
 <p><a href=""/f%C3%B6%C3%B6"" title=""föö"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6486,8 +6486,8 @@ foo
 <pre><code class=""language-föö"">foo
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6500,8 +6500,8 @@ foo
         var expected = @"
 <p><code>f&amp;ouml;&amp;ouml;</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6515,8 +6515,8 @@ foo
 <pre><code>f&amp;ouml;f&amp;ouml;
 </code></pre>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6531,8 +6531,8 @@ foo
 <p>*foo*
 <em>foo</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6550,8 +6550,8 @@ foo
 <li>foo</li>
 </ul>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6566,8 +6566,8 @@ foo&#10;&#10;bar
 
 bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6580,8 +6580,8 @@ bar</p>
         var expected = @"
 <p>	foo</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6594,8 +6594,8 @@ bar</p>
         var expected = @"
 <p>[a](url &quot;tit&quot;)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6608,8 +6608,8 @@ bar</p>
         var expected = @"
 <p><code>foo</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6622,8 +6622,8 @@ bar</p>
         var expected = @"
 <p><code>foo ` bar</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6636,8 +6636,8 @@ bar</p>
         var expected = @"
 <p><code>``</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6650,8 +6650,8 @@ bar</p>
         var expected = @"
 <p><code> `` </code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6664,8 +6664,8 @@ bar</p>
         var expected = @"
 <p><code> a</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6678,8 +6678,8 @@ bar</p>
         var expected = @"
 <p><code> b </code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6694,8 +6694,8 @@ bar</p>
 <p><code> </code>
 <code>  </code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6712,8 +6712,8 @@ baz
         var expected = @"
 <p><code>foo bar   baz</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6728,8 +6728,8 @@ foo
         var expected = @"
 <p><code>foo </code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6743,8 +6743,8 @@ baz`
         var expected = @"
 <p><code>foo   bar  baz</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6757,8 +6757,8 @@ baz`
         var expected = @"
 <p><code>foo\\</code>bar`</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6771,8 +6771,8 @@ baz`
         var expected = @"
 <p><code>foo`bar</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6785,8 +6785,8 @@ baz`
         var expected = @"
 <p><code>foo `` bar</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6799,8 +6799,8 @@ baz`
         var expected = @"
 <p>*foo<code>*</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6813,8 +6813,8 @@ baz`
         var expected = @"
 <p>[not a <code>link](/foo</code>)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6827,8 +6827,8 @@ baz`
         var expected = @"
 <p><code>&lt;a href=&quot;</code>&quot;&gt;`</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6841,8 +6841,8 @@ baz`
         var expected = @"
 <p><a href=""`"">`</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6855,8 +6855,8 @@ baz`
         var expected = @"
 <p><code>&lt;http://foo.bar.</code>baz&gt;`</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6869,8 +6869,8 @@ baz`
         var expected = @"
 <p><a href=""http://foo.bar.%60baz"">http://foo.bar.`baz</a>`</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6883,8 +6883,8 @@ baz`
         var expected = @"
 <p>```foo``</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6897,8 +6897,8 @@ baz`
         var expected = @"
 <p>`foo</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6911,8 +6911,8 @@ baz`
         var expected = @"
 <p>`foo<code>bar</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6925,8 +6925,8 @@ baz`
         var expected = @"
 <p><em>foo bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6939,8 +6939,8 @@ a * foo bar*
         var expected = @"
 <p>a * foo bar*</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6953,8 +6953,8 @@ a*""foo""*
         var expected = @"
 <p>a*&quot;foo&quot;*</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6967,8 +6967,8 @@ a*""foo""*
         var expected = @"
 <p>* a *</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6981,8 +6981,8 @@ foo*bar*
         var expected = @"
 <p>foo<em>bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -6995,8 +6995,8 @@ foo*bar*
         var expected = @"
 <p>5<em>6</em>78</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7009,8 +7009,8 @@ _foo bar_
         var expected = @"
 <p><em>foo bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7023,8 +7023,8 @@ _ foo bar_
         var expected = @"
 <p>_ foo bar_</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7037,8 +7037,8 @@ a_""foo""_
         var expected = @"
 <p>a_&quot;foo&quot;_</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7051,8 +7051,8 @@ foo_bar_
         var expected = @"
 <p>foo_bar_</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7065,8 +7065,8 @@ foo_bar_
         var expected = @"
 <p>5_6_78</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7079,8 +7079,8 @@ foo_bar_
         var expected = @"
 <p>пристаням_стремятся_</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7093,8 +7093,8 @@ aa_""bb""_cc
         var expected = @"
 <p>aa_&quot;bb&quot;_cc</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7107,8 +7107,8 @@ foo-_(bar)_
         var expected = @"
 <p>foo-<em>(bar)</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7121,8 +7121,8 @@ _foo*
         var expected = @"
 <p>_foo*</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7135,8 +7135,8 @@ _foo*
         var expected = @"
 <p>*foo bar *</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7151,8 +7151,8 @@ _foo*
 <p>*foo bar
 *</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7165,8 +7165,8 @@ _foo*
         var expected = @"
 <p>*(*foo)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7179,8 +7179,8 @@ _foo*
         var expected = @"
 <p><em>(<em>foo</em>)</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7193,8 +7193,8 @@ _foo*
         var expected = @"
 <p><em>foo</em>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7207,8 +7207,8 @@ _foo bar _
         var expected = @"
 <p>_foo bar _</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7221,8 +7221,8 @@ _(_foo)
         var expected = @"
 <p>_(_foo)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7235,8 +7235,8 @@ _(_foo_)_
         var expected = @"
 <p><em>(<em>foo</em>)</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7249,8 +7249,8 @@ _foo_bar
         var expected = @"
 <p>_foo_bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7263,8 +7263,8 @@ _пристаням_стремятся
         var expected = @"
 <p>_пристаням_стремятся</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7277,8 +7277,8 @@ _foo_bar_baz_
         var expected = @"
 <p><em>foo_bar_baz</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7291,8 +7291,8 @@ _(bar)_.
         var expected = @"
 <p><em>(bar)</em>.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7305,8 +7305,8 @@ _(bar)_.
         var expected = @"
 <p><strong>foo bar</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7319,8 +7319,8 @@ _(bar)_.
         var expected = @"
 <p>** foo bar**</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7333,8 +7333,8 @@ a**""foo""**
         var expected = @"
 <p>a**&quot;foo&quot;**</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7347,8 +7347,8 @@ foo**bar**
         var expected = @"
 <p>foo<strong>bar</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7361,8 +7361,8 @@ __foo bar__
         var expected = @"
 <p><strong>foo bar</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7375,8 +7375,8 @@ __ foo bar__
         var expected = @"
 <p>__ foo bar__</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7391,8 +7391,8 @@ foo bar__
 <p>__
 foo bar__</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7405,8 +7405,8 @@ a__""foo""__
         var expected = @"
 <p>a__&quot;foo&quot;__</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7419,8 +7419,8 @@ foo__bar__
         var expected = @"
 <p>foo__bar__</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7433,8 +7433,8 @@ foo__bar__
         var expected = @"
 <p>5__6__78</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7447,8 +7447,8 @@ foo__bar__
         var expected = @"
 <p>пристаням__стремятся__</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7461,8 +7461,8 @@ __foo, __bar__, baz__
         var expected = @"
 <p><strong>foo, <strong>bar</strong>, baz</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7475,8 +7475,8 @@ foo-__(bar)__
         var expected = @"
 <p>foo-<strong>(bar)</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7489,8 +7489,8 @@ foo-__(bar)__
         var expected = @"
 <p>**foo bar **</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7503,8 +7503,8 @@ foo-__(bar)__
         var expected = @"
 <p>**(**foo)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7517,8 +7517,8 @@ foo-__(bar)__
         var expected = @"
 <p><em>(<strong>foo</strong>)</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7533,8 +7533,8 @@ foo-__(bar)__
 <p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.
 <em>Asclepias physocarpa</em>)</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7547,8 +7547,8 @@ foo-__(bar)__
         var expected = @"
 <p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7561,8 +7561,8 @@ foo-__(bar)__
         var expected = @"
 <p><strong>foo</strong>bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7575,8 +7575,8 @@ __foo bar __
         var expected = @"
 <p>__foo bar __</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7589,8 +7589,8 @@ __(__foo)
         var expected = @"
 <p>__(__foo)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7603,8 +7603,8 @@ _(__foo__)_
         var expected = @"
 <p><em>(<strong>foo</strong>)</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7617,8 +7617,8 @@ __foo__bar
         var expected = @"
 <p>__foo__bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7631,8 +7631,8 @@ __пристаням__стремятся
         var expected = @"
 <p>__пристаням__стремятся</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7645,8 +7645,8 @@ __foo__bar__baz__
         var expected = @"
 <p><strong>foo__bar__baz</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7659,8 +7659,8 @@ __(bar)__.
         var expected = @"
 <p><strong>(bar)</strong>.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7673,8 +7673,8 @@ __(bar)__.
         var expected = @"
 <p><em>foo <a href=""/url"">bar</a></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7689,8 +7689,8 @@ bar*
 <p><em>foo
 bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7703,8 +7703,8 @@ _foo __bar__ baz_
         var expected = @"
 <p><em>foo <strong>bar</strong> baz</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7717,8 +7717,8 @@ _foo _bar_ baz_
         var expected = @"
 <p><em>foo <em>bar</em> baz</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7731,8 +7731,8 @@ __foo_ bar_
         var expected = @"
 <p><em><em>foo</em> bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7745,8 +7745,8 @@ __foo_ bar_
         var expected = @"
 <p><em>foo <em>bar</em></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7759,8 +7759,8 @@ __foo_ bar_
         var expected = @"
 <p><em>foo <strong>bar</strong> baz</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7773,8 +7773,8 @@ __foo_ bar_
         var expected = @"
 <p><em>foo<strong>bar</strong>baz</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7787,8 +7787,8 @@ __foo_ bar_
         var expected = @"
 <p><em>foo**bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7801,8 +7801,8 @@ __foo_ bar_
         var expected = @"
 <p><em><strong>foo</strong> bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7815,8 +7815,8 @@ __foo_ bar_
         var expected = @"
 <p><em>foo <strong>bar</strong></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7829,8 +7829,8 @@ __foo_ bar_
         var expected = @"
 <p><em>foo<strong>bar</strong></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7843,8 +7843,8 @@ foo***bar***baz
         var expected = @"
 <p>foo<em><strong>bar</strong></em>baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7857,8 +7857,8 @@ foo******bar*********baz
         var expected = @"
 <p>foo<strong><strong><strong>bar</strong></strong></strong>***baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7871,8 +7871,8 @@ foo******bar*********baz
         var expected = @"
 <p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7885,8 +7885,8 @@ foo******bar*********baz
         var expected = @"
 <p><em>foo <a href=""/url""><em>bar</em></a></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7899,8 +7899,8 @@ foo******bar*********baz
         var expected = @"
 <p>** is not an empty emphasis</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7913,8 +7913,8 @@ foo******bar*********baz
         var expected = @"
 <p>**** is not an empty strong emphasis</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7927,8 +7927,8 @@ foo******bar*********baz
         var expected = @"
 <p><strong>foo <a href=""/url"">bar</a></strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7943,8 +7943,8 @@ bar**
 <p><strong>foo
 bar</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7957,8 +7957,8 @@ __foo _bar_ baz__
         var expected = @"
 <p><strong>foo <em>bar</em> baz</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7971,8 +7971,8 @@ __foo __bar__ baz__
         var expected = @"
 <p><strong>foo <strong>bar</strong> baz</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7985,8 +7985,8 @@ ____foo__ bar__
         var expected = @"
 <p><strong><strong>foo</strong> bar</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -7999,8 +7999,8 @@ ____foo__ bar__
         var expected = @"
 <p><strong>foo <strong>bar</strong></strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8013,8 +8013,8 @@ ____foo__ bar__
         var expected = @"
 <p><strong>foo <em>bar</em> baz</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8027,8 +8027,8 @@ ____foo__ bar__
         var expected = @"
 <p><strong>foo<em>bar</em>baz</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8041,8 +8041,8 @@ ____foo__ bar__
         var expected = @"
 <p><strong><em>foo</em> bar</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8055,8 +8055,8 @@ ____foo__ bar__
         var expected = @"
 <p><strong>foo <em>bar</em></strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8071,8 +8071,8 @@ bim* bop**
 <p><strong>foo <em>bar <strong>baz</strong>
 bim</em> bop</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8085,8 +8085,8 @@ bim</em> bop</strong></p>
         var expected = @"
 <p><strong>foo <a href=""/url""><em>bar</em></a></strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8099,8 +8099,8 @@ __ is not an empty emphasis
         var expected = @"
 <p>__ is not an empty emphasis</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8113,8 +8113,8 @@ ____ is not an empty strong emphasis
         var expected = @"
 <p>____ is not an empty strong emphasis</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8127,8 +8127,8 @@ foo ***
         var expected = @"
 <p>foo ***</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8141,8 +8141,8 @@ foo *\**
         var expected = @"
 <p>foo <em>*</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8155,8 +8155,8 @@ foo *_*
         var expected = @"
 <p>foo <em>_</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8169,8 +8169,8 @@ foo *****
         var expected = @"
 <p>foo *****</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8183,8 +8183,8 @@ foo **\***
         var expected = @"
 <p>foo <strong>*</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8197,8 +8197,8 @@ foo **_**
         var expected = @"
 <p>foo <strong>_</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8211,8 +8211,8 @@ foo **_**
         var expected = @"
 <p>*<em>foo</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8225,8 +8225,8 @@ foo **_**
         var expected = @"
 <p><em>foo</em>*</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8239,8 +8239,8 @@ foo **_**
         var expected = @"
 <p>*<strong>foo</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8253,8 +8253,8 @@ foo **_**
         var expected = @"
 <p>***<em>foo</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8267,8 +8267,8 @@ foo **_**
         var expected = @"
 <p><strong>foo</strong>*</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8281,8 +8281,8 @@ foo **_**
         var expected = @"
 <p><em>foo</em>***</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8295,8 +8295,8 @@ foo ___
         var expected = @"
 <p>foo ___</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8309,8 +8309,8 @@ foo _\__
         var expected = @"
 <p>foo <em>_</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8323,8 +8323,8 @@ foo _*_
         var expected = @"
 <p>foo <em>*</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8337,8 +8337,8 @@ foo _____
         var expected = @"
 <p>foo _____</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8351,8 +8351,8 @@ foo __\___
         var expected = @"
 <p>foo <strong>_</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8365,8 +8365,8 @@ foo __*__
         var expected = @"
 <p>foo <strong>*</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8379,8 +8379,8 @@ __foo_
         var expected = @"
 <p>_<em>foo</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8393,8 +8393,8 @@ _foo__
         var expected = @"
 <p><em>foo</em>_</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8407,8 +8407,8 @@ ___foo__
         var expected = @"
 <p>_<strong>foo</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8421,8 +8421,8 @@ ____foo_
         var expected = @"
 <p>___<em>foo</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8435,8 +8435,8 @@ __foo___
         var expected = @"
 <p><strong>foo</strong>_</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8449,8 +8449,8 @@ _foo____
         var expected = @"
 <p><em>foo</em>___</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8463,8 +8463,8 @@ _foo____
         var expected = @"
 <p><strong>foo</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8477,8 +8477,8 @@ _foo____
         var expected = @"
 <p><em><em>foo</em></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8491,8 +8491,8 @@ __foo__
         var expected = @"
 <p><strong>foo</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8505,8 +8505,8 @@ _*foo*_
         var expected = @"
 <p><em><em>foo</em></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8519,8 +8519,8 @@ _*foo*_
         var expected = @"
 <p><strong><strong>foo</strong></strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8533,8 +8533,8 @@ ____foo____
         var expected = @"
 <p><strong><strong>foo</strong></strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8547,8 +8547,8 @@ ____foo____
         var expected = @"
 <p><strong><strong><strong>foo</strong></strong></strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8561,8 +8561,8 @@ ____foo____
         var expected = @"
 <p><em><strong>foo</strong></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8575,8 +8575,8 @@ _____foo_____
         var expected = @"
 <p><em><strong><strong>foo</strong></strong></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8589,8 +8589,8 @@ _____foo_____
         var expected = @"
 <p><em>foo _bar</em> baz_</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8603,8 +8603,8 @@ _____foo_____
         var expected = @"
 <p><em>foo <strong>bar *baz bim</strong> bam</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8617,8 +8617,8 @@ _____foo_____
         var expected = @"
 <p>**foo <strong>bar baz</strong></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8631,8 +8631,8 @@ _____foo_____
         var expected = @"
 <p>*foo <em>bar baz</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8645,8 +8645,8 @@ _____foo_____
         var expected = @"
 <p>*<a href=""/url"">bar*</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8659,8 +8659,8 @@ _foo [bar_](/url)
         var expected = @"
 <p>_foo <a href=""/url"">bar_</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8673,8 +8673,8 @@ _foo [bar_](/url)
         var expected = @"
 <p>*<img src=""foo"" title=""*""/></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8687,8 +8687,8 @@ _foo [bar_](/url)
         var expected = @"
 <p>**<a href=""**""></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8701,8 +8701,8 @@ __<a href=""__"">
         var expected = @"
 <p>__<a href=""__""></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8715,8 +8715,8 @@ __<a href=""__"">
         var expected = @"
 <p><em>a <code>*</code></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8729,8 +8729,8 @@ _a `_`_
         var expected = @"
 <p><em>a <code>_</code></em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8743,8 +8743,8 @@ _a `_`_
         var expected = @"
 <p>**a<a href=""http://foo.bar/?q=**"">http://foo.bar/?q=**</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8757,8 +8757,8 @@ __a<http://foo.bar/?q=__>
         var expected = @"
 <p>__a<a href=""http://foo.bar/?q=__"">http://foo.bar/?q=__</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8771,8 +8771,8 @@ __a<http://foo.bar/?q=__>
         var expected = @"
 <p><del>Hi</del> Hello, world!</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8788,8 +8788,8 @@ new paragraph~~.
 <p>This ~~has a</p>
 <p>new paragraph~~.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8802,8 +8802,8 @@ This will ~~~not~~~ strike.
         var expected = @"
 <p>This will ~~~not~~~ strike.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8816,8 +8816,8 @@ This will ~~~not~~~ strike.
         var expected = @"
 <p><a href=""/uri"" title=""title"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8830,8 +8830,8 @@ This will ~~~not~~~ strike.
         var expected = @"
 <p><a href=""/uri"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8844,8 +8844,8 @@ This will ~~~not~~~ strike.
         var expected = @"
 <p><a href="""">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8858,8 +8858,8 @@ This will ~~~not~~~ strike.
         var expected = @"
 <p><a href="""">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8872,8 +8872,8 @@ This will ~~~not~~~ strike.
         var expected = @"
 <p>[link](/my uri)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8886,8 +8886,8 @@ This will ~~~not~~~ strike.
         var expected = @"
 <p><a href=""/my%20uri"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8902,8 +8902,8 @@ bar)
 <p>[link](foo
 bar)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8918,8 +8918,8 @@ bar>)
 <p>[link](<foo
 bar>)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8932,8 +8932,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""b)c"">a</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8946,8 +8946,8 @@ bar>)</p>
         var expected = @"
 <p>[link](&lt;foo&gt;)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8964,8 +8964,8 @@ bar>)</p>
 [a](&lt;b)c&gt;
 [a](<b>c)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8978,8 +8978,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""(foo)"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -8992,8 +8992,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""foo(and(bar))"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9006,8 +9006,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""foo(and(bar)"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9020,8 +9020,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""foo(and(bar)"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9034,8 +9034,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""foo):"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9054,8 +9054,8 @@ bar>)</p>
 <p><a href=""http://example.com#fragment"">link</a></p>
 <p><a href=""http://example.com?foo=3#frag"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9068,8 +9068,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""foo%5Cbar"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9082,8 +9082,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""foo%20b%C3%A4"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9096,8 +9096,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""%22title%22"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9114,8 +9114,8 @@ bar>)</p>
 <a href=""/url"" title=""title"">link</a>
 <a href=""/url"" title=""title"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9128,8 +9128,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title &quot;&quot;"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9142,8 +9142,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url%C2%A0%22title%22"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9156,8 +9156,8 @@ bar>)</p>
         var expected = @"
 <p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9170,8 +9170,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title &quot;and&quot; title"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9185,8 +9185,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"" title=""title"">link</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9199,8 +9199,8 @@ bar>)</p>
         var expected = @"
 <p>[link] (/uri)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9213,8 +9213,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">link [foo [bar]]</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9227,8 +9227,8 @@ bar>)</p>
         var expected = @"
 <p>[link] bar](/uri)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9241,8 +9241,8 @@ bar>)</p>
         var expected = @"
 <p>[link <a href=""/uri"">bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9255,8 +9255,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">link [bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9269,8 +9269,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9283,8 +9283,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri""><img src=""moon.jpg"" alt=""moon"" /></a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9297,8 +9297,8 @@ bar>)</p>
         var expected = @"
 <p>[foo <a href=""/uri"">bar</a>](/uri)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9311,8 +9311,8 @@ bar>)</p>
         var expected = @"
 <p>[foo <em>[bar <a href=""/uri"">baz</a>](/uri)</em>](/uri)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9325,8 +9325,8 @@ bar>)</p>
         var expected = @"
 <p><img src=""uri3"" alt=""[foo](uri2)"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9339,8 +9339,8 @@ bar>)</p>
         var expected = @"
 <p>*<a href=""/uri"">foo*</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9353,8 +9353,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""baz*"">foo *bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9367,8 +9367,8 @@ bar>)</p>
         var expected = @"
 <p><em>foo [bar</em> baz]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9381,8 +9381,8 @@ bar>)</p>
         var expected = @"
 <p>[foo <bar attr=""](baz)""></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9395,8 +9395,8 @@ bar>)</p>
         var expected = @"
 <p>[foo<code>](/uri)</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9409,8 +9409,8 @@ bar>)</p>
         var expected = @"
 <p>[foo<a href=""http://example.com/?search=%5D(uri)"">http://example.com/?search=](uri)</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9425,8 +9425,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9441,8 +9441,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">link [foo [bar]]</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9457,8 +9457,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">link [bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9473,8 +9473,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9489,8 +9489,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri""><img src=""moon.jpg"" alt=""moon"" /></a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9505,8 +9505,8 @@ bar>)</p>
         var expected = @"
 <p>[foo <a href=""/uri"">bar</a>]<a href=""/uri"">ref</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9521,8 +9521,8 @@ bar>)</p>
         var expected = @"
 <p>[foo <em>bar <a href=""/uri"">baz</a></em>]<a href=""/uri"">ref</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9537,8 +9537,8 @@ bar>)</p>
         var expected = @"
 <p>*<a href=""/uri"">foo*</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9553,8 +9553,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">foo *bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9569,8 +9569,8 @@ bar>)</p>
         var expected = @"
 <p>[foo <bar attr=""][ref]""></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9585,8 +9585,8 @@ bar>)</p>
         var expected = @"
 <p>[foo<code>][ref]</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9601,8 +9601,8 @@ bar>)</p>
         var expected = @"
 <p>[foo<a href=""http://example.com/?search=%5D%5Bref%5D"">http://example.com/?search=][ref]</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9617,8 +9617,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9633,8 +9633,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"">Толпой</a> is a Russian word.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9650,8 +9650,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"">Baz</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9666,8 +9666,8 @@ bar>)</p>
         var expected = @"
 <p>[foo] <a href=""/url"" title=""title"">bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9684,8 +9684,8 @@ bar>)</p>
 <p>[foo]
 <a href=""/url"" title=""title"">bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9702,8 +9702,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url1"">bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9718,8 +9718,8 @@ bar>)</p>
         var expected = @"
 <p>[bar][foo!]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9735,8 +9735,8 @@ bar>)</p>
 <p>[foo][ref[]</p>
 <p>[ref[]: /uri</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9752,8 +9752,8 @@ bar>)</p>
 <p>[foo][ref[bar]]</p>
 <p>[ref[bar]]: /uri</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9769,8 +9769,8 @@ bar>)</p>
 <p>[[[foo]]]</p>
 <p>[[[foo]]]: /url</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9785,8 +9785,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9801,8 +9801,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/uri"">bar\\</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9818,8 +9818,8 @@ bar>)</p>
 <p>[]</p>
 <p>[]: /uri</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9839,8 +9839,8 @@ bar>)</p>
 <p>[
 ]: /uri</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9855,8 +9855,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9871,8 +9871,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title""><em>foo</em> bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9887,8 +9887,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title"">Foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9905,8 +9905,8 @@ bar>)</p>
 <p><a href=""/url"" title=""title"">foo</a>
 []</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9921,8 +9921,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9937,8 +9937,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title""><em>foo</em> bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9953,8 +9953,8 @@ bar>)</p>
         var expected = @"
 <p>[<a href=""/url"" title=""title""><em>foo</em> bar</a>]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9969,8 +9969,8 @@ bar>)</p>
         var expected = @"
 <p>[[bar <a href=""/url"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -9985,8 +9985,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title"">Foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10001,8 +10001,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"">foo</a> bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10017,8 +10017,8 @@ bar>)</p>
         var expected = @"
 <p>[foo]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10033,8 +10033,8 @@ bar>)</p>
         var expected = @"
 <p>*<a href=""/url"">foo*</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10050,8 +10050,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url2"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10066,8 +10066,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url1"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10082,8 +10082,8 @@ bar>)</p>
         var expected = @"
 <p><a href="""">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10098,8 +10098,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url1"">foo</a>(not a link)</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10114,8 +10114,8 @@ bar>)</p>
         var expected = @"
 <p>[foo]<a href=""/url"">bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10131,8 +10131,8 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url2"">foo</a><a href=""/url1"">baz</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10148,8 +10148,8 @@ bar>)</p>
         var expected = @"
 <p>[foo]<a href=""/url1"">bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10162,8 +10162,8 @@ bar>)</p>
         var expected = @"
 <p><img src=""/url"" alt=""foo"" title=""title"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10178,8 +10178,8 @@ bar>)</p>
         var expected = @"
 <p><img src=""train.jpg"" alt=""foo bar"" title=""train &amp; tracks"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10192,8 +10192,8 @@ bar>)</p>
         var expected = @"
 <p><img src=""/url2"" alt=""foo bar"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10206,8 +10206,8 @@ bar>)</p>
         var expected = @"
 <p><img src=""/url2"" alt=""foo bar"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10222,8 +10222,8 @@ bar>)</p>
         var expected = @"
 <p><img src=""train.jpg"" alt=""foo bar"" title=""train &amp; tracks"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10238,8 +10238,8 @@ bar>)</p>
         var expected = @"
 <p><img src=""train.jpg"" alt=""foo bar"" title=""train &amp; tracks"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10252,8 +10252,8 @@ bar>)</p>
         var expected = @"
 <p><img src=""train.jpg"" alt=""foo"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10266,8 +10266,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>My <img src=""/path/to/train.jpg"" alt=""foo bar"" title=""title"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10280,8 +10280,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""url"" alt=""foo"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10294,8 +10294,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt="""" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10310,8 +10310,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""foo"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10326,8 +10326,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""foo"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10342,8 +10342,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""foo"" title=""title"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10358,8 +10358,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""foo bar"" title=""title"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10374,8 +10374,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""Foo"" title=""title"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10392,8 +10392,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 <p><img src=""/url"" alt=""foo"" title=""title"" />
 []</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10408,8 +10408,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""foo"" title=""title"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10424,8 +10424,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""foo bar"" title=""title"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10441,8 +10441,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 <p>![[foo]]</p>
 <p>[[foo]]: /url &quot;title&quot;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10457,8 +10457,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""Foo"" title=""title"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10473,8 +10473,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>![foo]</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10489,8 +10489,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>!<a href=""/url"" title=""title"">foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10503,8 +10503,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""http://foo.bar.baz"">http://foo.bar.baz</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10517,8 +10517,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean"">http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10531,8 +10531,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""irc://foo.bar:2233/baz"">irc://foo.bar:2233/baz</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10545,8 +10545,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""MAILTO:FOO@BAR.BAZ"">MAILTO:FOO@BAR.BAZ</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10559,8 +10559,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""a+b+c:d"">a+b+c:d</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10573,8 +10573,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""made-up-scheme://foo,bar"">made-up-scheme://foo,bar</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10587,8 +10587,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""http://../"">http://../</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10601,8 +10601,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""localhost:5001/foo"">localhost:5001/foo</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10615,8 +10615,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>&lt;http://foo.bar/baz bim&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10629,8 +10629,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""http://example.com/%5C%5B%5C"">http://example.com/\[\</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10643,8 +10643,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""mailto:foo@bar.example.com"">foo@bar.example.com</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10657,8 +10657,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><a href=""mailto:foo+special@Bar.baz-bar0.com"">foo+special@Bar.baz-bar0.com</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10671,8 +10671,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>&lt;foo+@bar.example.com&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10685,8 +10685,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>&lt;&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10699,8 +10699,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>&lt; http://foo.bar &gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10713,8 +10713,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>&lt;m:abc&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10727,8 +10727,8 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>&lt;foo.bar.baz&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10741,8 +10741,8 @@ http://example.com
         var expected = @"
 <p><a href=""http://example.com"">http://example.com</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10755,8 +10755,8 @@ foo@bar.example.com
         var expected = @"
 <p><a href=""mailto:foo@bar.example.com"">foo@bar.example.com</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10769,8 +10769,8 @@ www.commonmark.org
         var expected = @"
 <p><a href=""http://www.commonmark.org"">www.commonmark.org</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10783,8 +10783,8 @@ Visit www.commonmark.org/help for more information.
         var expected = @"
 <p>Visit <a href=""http://www.commonmark.org/help"">www.commonmark.org/help</a> for more information.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10800,8 +10800,8 @@ Visit www.commonmark.org/a.b.
 <p>Visit <a href=""http://www.commonmark.org"">www.commonmark.org</a>.</p>
 <p>Visit <a href=""http://www.commonmark.org/a.b"">www.commonmark.org/a.b</a>.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10823,8 +10823,8 @@ www.google.com/search?q=Markup+(business)))
 <p>(<a href=""http://www.google.com/search?q=Markup+(business)"">www.google.com/search?q=Markup+(business)</a>)</p>
 <p>(<a href=""http://www.google.com/search?q=Markup+(business)"">www.google.com/search?q=Markup+(business)</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10837,8 +10837,8 @@ www.google.com/search?q=(business))+ok
         var expected = @"
 <p><a href=""http://www.google.com/search?q=(business))+ok"">www.google.com/search?q=(business))+ok</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10854,8 +10854,8 @@ www.google.com/search?q=commonmark&hl;
 <p><a href=""http://www.google.com/search?q=commonmark&amp;hl=en"">www.google.com/search?q=commonmark&amp;hl=en</a></p>
 <p><a href=""http://www.google.com/search?q=commonmark"">www.google.com/search?q=commonmark</a>&amp;hl;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10868,8 +10868,8 @@ www.commonmark.org/he<lp
         var expected = @"
 <p><a href=""http://www.commonmark.org/he"">www.commonmark.org/he</a>&lt;lp</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10888,8 +10888,8 @@ Anonymous FTP is available at ftp://foo.bar.baz.
 <p>(Visit <a href=""https://encrypted.google.com/search?q=Markup+(business)"">https://encrypted.google.com/search?q=Markup+(business)</a>)</p>
 <p>Anonymous FTP is available at <a href=""ftp://foo.bar.baz"">ftp://foo.bar.baz</a>.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10902,8 +10902,8 @@ foo@bar.baz
         var expected = @"
 <p><a href=""mailto:foo@bar.baz"">foo@bar.baz</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10916,8 +10916,8 @@ hello@mail+xyz.example isn't valid, but hello+xyz@mail.example is.
         var expected = @"
 <p>hello@mail+xyz.example isn't valid, but <a href=""mailto:hello+xyz@mail.example"">hello+xyz@mail.example</a> is.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10939,8 +10939,8 @@ a.b-c_d@a.b_
 <p>a.b-c_d@a.b-</p>
 <p>a.b-c_d@a.b_</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10974,8 +10974,8 @@ xmpp:foo@bar.baz.
 <p><a href=""xmpp:foo@bar.baz"">xmpp:foo@bar.baz</a></p>
 <p><a href=""xmpp:foo@bar.baz"">xmpp:foo@bar.baz</a>.</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -10994,8 +10994,8 @@ xmpp:foo@bar.baz/txt@bin.com
 <p><a href=""xmpp:foo@bar.baz/txt@bin"">xmpp:foo@bar.baz/txt@bin</a></p>
 <p><a href=""xmpp:foo@bar.baz/txt@bin.com"">xmpp:foo@bar.baz/txt@bin.com</a></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11008,8 +11008,8 @@ xmpp:foo@bar.baz/txt/bin
         var expected = @"
 <p><a href=""xmpp:foo@bar.baz/txt"">xmpp:foo@bar.baz/txt</a>/bin</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11022,8 +11022,8 @@ xmpp:foo@bar.baz/txt/bin
         var expected = @"
 <p><a><bab><c2c></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11036,8 +11036,8 @@ xmpp:foo@bar.baz/txt/bin
         var expected = @"
 <p><a/><b2/></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11052,8 +11052,8 @@ data=""foo"" >
 <p><a  /><b2
 data=""foo"" ></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11068,8 +11068,8 @@ _boolean zoop:33=zoop:33 />
 <p><a foo=""bar"" bam = 'baz <em>""</em>'
 _boolean zoop:33=zoop:33 /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11082,8 +11082,8 @@ Foo <responsive-image src=""foo.jpg"" />
         var expected = @"
 <p>Foo <responsive-image src=""foo.jpg"" /></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11096,8 +11096,8 @@ Foo <responsive-image src=""foo.jpg"" />
         var expected = @"
 <p>&lt;33&gt; &lt;__&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11110,8 +11110,8 @@ Foo <responsive-image src=""foo.jpg"" />
         var expected = @"
 <p>&lt;a h*#ref=&quot;hi&quot;&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11124,8 +11124,8 @@ Foo <responsive-image src=""foo.jpg"" />
         var expected = @"
 <p>&lt;a href=&quot;hi'&gt; &lt;a href=hi'&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11144,8 +11144,8 @@ foo&gt;&lt;bar/ &gt;
 &lt;foo bar=baz
 bim!bop /&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11158,8 +11158,8 @@ bim!bop /&gt;</p>
         var expected = @"
 <p>&lt;a href='bar'title=title&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11172,8 +11172,8 @@ bim!bop /&gt;</p>
         var expected = @"
 <p></a></foo ></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11186,8 +11186,8 @@ bim!bop /&gt;</p>
         var expected = @"
 <p>&lt;/a href=&quot;foo&quot;&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11202,8 +11202,8 @@ comment - with hyphens -->
 <p>foo <!-- this is a --
 comment - with hyphens --></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11218,8 +11218,8 @@ comment - with hyphens -->
 <p>foo <!-- this is a --
 comment - with hyphens --></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11235,8 +11235,8 @@ foo <!---> foo -->
 <p>foo <!--> foo --&gt;</p>
 <p>foo <!---> foo --&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11249,8 +11249,8 @@ foo <?php echo $a; ?>
         var expected = @"
 <p>foo <?php echo $a; ?></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11263,8 +11263,8 @@ foo <!ELEMENT br EMPTY>
         var expected = @"
 <p>foo <!ELEMENT br EMPTY></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11277,8 +11277,8 @@ foo <![CDATA[>&<]]>
         var expected = @"
 <p>foo <![CDATA[>&<]]></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11291,8 +11291,8 @@ foo <a href=""&ouml;"">
         var expected = @"
 <p>foo <a href=""&ouml;""></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11305,8 +11305,8 @@ foo <a href=""\\*"">
         var expected = @"
 <p>foo <a href=""\\*""></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11319,8 +11319,8 @@ foo <a href=""\\*"">
         var expected = @"
 <p>&lt;a href=&quot;&quot;&quot;&gt;</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11340,8 +11340,8 @@ foo <a href=""\\*"">
   &lt;xmp> is disallowed.  &lt;XMP> is also disallowed.
 </blockquote>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11356,8 +11356,8 @@ baz
 <p>foo<br />
 baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11372,8 +11372,8 @@ baz
 <p>foo<br />
 baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11388,8 +11388,8 @@ baz
 <p>foo<br />
 baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11404,8 +11404,8 @@ foo
 <p>foo<br />
 bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11420,8 +11420,8 @@ foo\
 <p>foo<br />
 bar</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11436,8 +11436,8 @@ bar*
 <p><em>foo<br />
 bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11452,8 +11452,8 @@ bar*
 <p><em>foo<br />
 bar</em></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11467,8 +11467,8 @@ span`
         var expected = @"
 <p><code>code   span</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11482,8 +11482,8 @@ span`
         var expected = @"
 <p><code>code\\ span</code></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11498,8 +11498,8 @@ bar"">
 <p><a href=""foo  
 bar""></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11514,8 +11514,8 @@ bar"">
 <p><a href=""foo\\
 bar""></p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11528,8 +11528,8 @@ foo\
         var expected = @"
 <p>foo\</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11542,8 +11542,8 @@ foo
         var expected = @"
 <p>foo</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11556,8 +11556,8 @@ foo
         var expected = @"
 <h3>foo\</h3>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11570,8 +11570,8 @@ foo
         var expected = @"
 <h3>foo</h3>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11586,8 +11586,8 @@ baz
 <p>foo
 baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11602,8 +11602,8 @@ foo
 <p>foo
 baz</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11616,8 +11616,8 @@ hello $.;'there
         var expected = @"
 <p>hello $.;'there</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11630,8 +11630,8 @@ Foo χρῆν
         var expected = @"
 <p>Foo χρῆν</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
@@ -11644,8 +11644,8 @@ Multiple     spaces
         var expected = @"
 <p>Multiple     spaces</p>
 ";
-        var doc = Parser.Execute(input[1..^1], Extended.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Extended.RuleSet.Renderers);
+        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet, false);
+        var html = RenderHtml.Execute(doc);
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 

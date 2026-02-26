@@ -7,5 +7,4 @@ public record RuleSet
 {
     public required Dictionary<string, BlockRule> Blocks { get; init; }
     public required Dictionary<string, InlineRule> Inlines { get; init; }
-    public required Dictionary<string, Renderer> Renderers { get; init; }
 }

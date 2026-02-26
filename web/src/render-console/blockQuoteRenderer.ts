@@ -9,15 +9,6 @@ const renderer: Renderer = {
 };
 export default renderer;
 
-export function createRenderer(style: string, reset: string): Renderer {
-	return {
-		name: "block_quote",
-		render(node: MarkdownNode, state: RendererState) {
-			renderNode(node, state, style, reset);
-		},
-	};
-}
-
 function render(node: MarkdownNode, state: RendererState): void {
 	const style = "\x1b[90m";
 	const reset = "\x1b[0m";
@@ -48,7 +39,11 @@ function renderNode(node: MarkdownNode, state: RendererState, style: string, res
 	s.quoteDepth--;
 }
 
-function renderNodeToString(node: MarkdownNode, state: ConsoleRendererState, _depth: number): string {
+function renderNodeToString(
+	node: MarkdownNode,
+	state: ConsoleRendererState,
+	_depth: number,
+): string {
 	const output = state.output;
 	state.output = "";
 	const renderer = state.renderers.get(node.type);

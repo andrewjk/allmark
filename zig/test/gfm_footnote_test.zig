@@ -28,12 +28,11 @@ test "spec footnote" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -58,12 +57,11 @@ test "simple footnote reference" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -91,12 +89,11 @@ test "multiple footnote references" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -121,12 +118,11 @@ test "footnote with inline formatting" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -151,12 +147,11 @@ test "footnote with code" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -181,12 +176,11 @@ test "footnote with link" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -204,12 +198,11 @@ test "footnote reference not at definition" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -236,12 +229,11 @@ test "footnote with multiline content" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -266,12 +258,11 @@ test "repeated footnote reference" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -302,12 +293,11 @@ test "footnote in list" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -334,12 +324,11 @@ test "footnote in blockquote" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -357,12 +346,11 @@ test "footnote with special characters in label" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -387,12 +375,11 @@ test "case insensitive footnote labels" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -420,12 +407,11 @@ test "footnote then list" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -450,12 +436,11 @@ test "title after footnote label" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -480,12 +465,11 @@ test "link then footnote" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -511,12 +495,11 @@ test "footnote then link" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -541,12 +524,11 @@ test "swallow following brackets" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -564,12 +546,11 @@ test "link reference takes precedence" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -595,12 +576,11 @@ test "multiple paragraphs" {
     var rules = try gfm.init(gpa);
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
-    defer rules.renderers.deinit();
 
     const root = try parse.execute(gpa, input, rules, null);
     defer root.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, rules);
+    const html = try render.renderHtml(gpa, root, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

@@ -1,0 +1,98 @@
+namespace Allmark.Render;
+
+using Allmark.Types;
+
+public static class ConsoleHeadingRenderer
+{
+    public static Renderer Create()
+    {
+        return new Renderer
+        {
+            Name = "heading",
+            Render = (node, state, first, last, decode) => Render(node, state),
+        };
+    }
+
+    public static void Render(MarkdownNode node, RendererState state)
+    {
+        var styles = RenderToConsole.Styles;
+        var level = 0;
+        var isSetext = node.Markup.Contains("=") || node.Markup.Contains("-");
+        if (node.Markup.StartsWith("#"))
+        {
+            level = node.Markup.Length;
+        }
+        else if (isSetext)
+        {
+            if (node.Markup.Contains("="))
+            {
+                level = 1;
+            }
+            else
+            {
+                level = 2;
+            }
+        }
+
+        var style = styles.TryGetValue($"heading{level}", out var s) ? s : "";
+        if (state.Output.Length > 0 && state.Output[^1] != '\n')
+        {
+            state.Output.Append('\n');
+        }
+
+        if (isSetext)
+        {
+            var headingText = GetHeadingText(node, state);
+            var plainText = StripAnsiCodes(headingText);
+            var plainTextLength = plainText.Length;
+            var underlineChar = level == 1 ? '=' : '-';
+            state.Output.Append(style);
+            state.Output.Append(headingText);
+            state.Output.Append($"\n{new string(underlineChar, plainTextLength)}{RenderToConsole.AnsiReset}\n");
+        }
+        else
+        {
+            state.Output.Append($"{style}{new string('#', level)} ");
+            RenderChildren.Execute(node, state);
+            state.Output.Append($"{RenderToConsole.AnsiReset}\n");
+        }
+    }
+
+    private static string GetHeadingText(MarkdownNode node, RendererState state)
+    {
+        var text = new System.Text.StringBuilder();
+        foreach (var child in node.Children ?? [])
+        {
+            if (child.Type == "text")
+            {
+                text.Append(child.Markup ?? "");
+            }
+            else
+            {
+                text.Append(RenderNodeToString(child, state));
+            }
+        }
+        return text.ToString();
+    }
+
+    private static string RenderNodeToString(MarkdownNode node, RendererState state)
+    {
+        var originalOutput = state.Output.ToString();
+        state.Output.Clear();
+
+        if (state.Renderers != null && state.Renderers.TryGetValue(node.Type, out var renderer))
+        {
+            renderer.Render(node, state, false, false, true);
+        }
+
+        var result = state.Output.ToString();
+        state.Output.Clear();
+        state.Output.Append(originalOutput);
+        return result;
+    }
+
+    private static string StripAnsiCodes(string text)
+    {
+        return System.Text.RegularExpressions.Regex.Replace(text, @"\x1b\[[0-9;]*m", "");
+    }
+}

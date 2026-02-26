@@ -22,4 +22,5 @@ comptime {
     _ = @import("ext_superscript_test.zig");
     _ = @import("spec_cm_test.zig");
     _ = @import("spec_gfm_test.zig");
+    _ = @import("render_console_test.zig");
 }

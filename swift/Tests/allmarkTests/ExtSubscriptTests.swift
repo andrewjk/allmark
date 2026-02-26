@@ -11,7 +11,7 @@ This should be ~down~ below everything else.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -26,7 +26,7 @@ This should be ~~down~~ below everything else.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -40,7 +40,7 @@ This should be ~~~down~~~ below everything else.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -50,7 +50,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>H<sub>2</sub>O</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -60,7 +60,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>x<sub>1</sub> + x<sub>2</sub></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -70,7 +70,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>a<sub>i</sub> + b<sub>j</sub> = c<sub>k</sub></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -80,7 +80,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p><sub>note</sub> This is important.</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -90,7 +90,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>See index<sub>1</sub></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -100,7 +100,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>Hello<sub>world!</sub></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -110,7 +110,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text <sub>with spaces</sub> more</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -120,7 +120,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>math<sub>i+j</sub></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -130,7 +130,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>test<sub>ing</sub>test</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -140,7 +140,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text~~text</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -150,7 +150,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text <sub><strong>bold</strong></sub></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -160,7 +160,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text <sub><code>code</code></sub></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -170,7 +170,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text ~not subscript~</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -180,7 +180,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text ~not closed</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -190,7 +190,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text not opened~</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -204,7 +204,7 @@ This should be ~~~down~~~ below everything else.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -218,7 +218,7 @@ This should be ~~~down~~~ below everything else.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -228,7 +228,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>This is <del>deleted</del> text.</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -238,7 +238,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text <sub>tilde ~ inside</sub></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -248,7 +248,7 @@ This should be ~~~down~~~ below everything else.
 		let expected = "<p>text <del>struck</del>, not subscripted</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}

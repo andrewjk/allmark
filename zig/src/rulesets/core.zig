@@ -2,7 +2,6 @@ const std = @import("std");
 const RuleSet = @import("../types/RuleSet.zig").RuleSet;
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const InlineRule = @import("../types/InlineRule.zig").InlineRule;
-const Renderer = @import("../types/Renderer.zig").Renderer;
 
 const headingRule = @import("../block/headingRule.zig").headingRule;
 const headingUnderlineRule = @import("../block/headingUnderlineRule.zig").headingUnderlineRule;
@@ -26,35 +25,15 @@ const htmlSpanRule = @import("../inline/htmlSpanRule.zig").htmlSpanRule;
 const lineBreakRule = @import("../inline/lineBreakRule.zig").lineBreakRule;
 const linkRule = @import("../inline/linkRule.zig").linkRule;
 const textRule = @import("../inline/textRule.zig").textRule;
-const blockQuoteRenderer = @import("../render/blockQuoteRenderer.zig").blockQuoteRenderer;
-const codeBlockRenderer = @import("../render/codeBlockRenderer.zig").codeBlockRenderer;
-const codeFenceRenderer = @import("../render/codeFenceRenderer.zig").codeFenceRenderer;
-const codeSpanRenderer = @import("../render/codeSpanRenderer.zig").codeSpanRenderer;
-const emphasisRenderer = @import("../render/emphasisRenderer.zig").emphasisRenderer;
-const hardBreakRenderer = @import("../render/hardBreakRenderer.zig").hardBreakRenderer;
-const headingRenderer = @import("../render/headingRenderer.zig").headingRenderer;
-const headingUnderlineRenderer = @import("../render/headingUnderlineRenderer.zig").headingUnderlineRenderer;
-const htmlBlockRenderer = @import("../render/htmlBlockRenderer.zig").htmlBlockRenderer;
-const htmlSpanRenderer = @import("../render/htmlSpanRenderer.zig").htmlSpanRenderer;
-const imageRenderer = @import("../render/imageRenderer.zig").imageRenderer;
-const linkRenderer = @import("../render/linkRenderer.zig").linkRenderer;
-const listBulletedRenderer = @import("../render/listRenderer.zig").listBulletedRenderer;
-const listOrderedRenderer = @import("../render/listRenderer.zig").listOrderedRenderer;
-const paragraphRenderer = @import("../render/paragraphRenderer.zig").paragraphRenderer;
-const strongRenderer = @import("../render/strongRenderer.zig").strongRenderer;
-const textRenderer = @import("../render/textRenderer.zig").textRenderer;
-const thematicBreakRenderer = @import("../render/thematicBreakRenderer.zig").thematicBreakRenderer;
 
 pub const core = RuleSet{
     .blocks = std.StringArrayHashMap(*const BlockRule).init(std.heap.page_allocator),
     .inlines = std.StringArrayHashMap(*const InlineRule).init(std.heap.page_allocator) catch unreachable,
-    .renderers = std.StringArrayHashMap(*const Renderer).init(std.heap.page_allocator) catch unreachable,
 };
 
 pub fn init(allocator: std.mem.Allocator) !RuleSet {
     var blocks = std.StringArrayHashMap(*const BlockRule).init(allocator);
     var inlines = std.StringArrayHashMap(*const InlineRule).init(allocator);
-    var renderers = std.StringArrayHashMap(*const Renderer).init(allocator);
 
     // Add block rules in priority order (higher priority first)
     try blocks.put(indentRule.name, &indentRule);
@@ -81,34 +60,13 @@ pub fn init(allocator: std.mem.Allocator) !RuleSet {
     try inlines.put(lineBreakRule.name, &lineBreakRule);
     try inlines.put(textRule.name, &textRule);
 
-    try renderers.put(blockQuoteRenderer.name, &blockQuoteRenderer);
-    try renderers.put(codeBlockRenderer.name, &codeBlockRenderer);
-    try renderers.put(codeFenceRenderer.name, &codeFenceRenderer);
-    try renderers.put(codeSpanRenderer.name, &codeSpanRenderer);
-    try renderers.put(emphasisRenderer.name, &emphasisRenderer);
-    try renderers.put(hardBreakRenderer.name, &hardBreakRenderer);
-    try renderers.put(headingRenderer.name, &headingRenderer);
-    try renderers.put(headingUnderlineRenderer.name, &headingUnderlineRenderer);
-    try renderers.put(htmlBlockRenderer.name, &htmlBlockRenderer);
-    try renderers.put(htmlSpanRenderer.name, &htmlSpanRenderer);
-    try renderers.put(imageRenderer.name, &imageRenderer);
-    try renderers.put(linkRenderer.name, &linkRenderer);
-    try renderers.put(listBulletedRenderer.name, &listBulletedRenderer);
-    try renderers.put(listOrderedRenderer.name, &listOrderedRenderer);
-    try renderers.put(paragraphRenderer.name, &paragraphRenderer);
-    try renderers.put(strongRenderer.name, &strongRenderer);
-    try renderers.put(textRenderer.name, &textRenderer);
-    try renderers.put(thematicBreakRenderer.name, &thematicBreakRenderer);
-
     return RuleSet{
         .blocks = blocks,
         .inlines = inlines,
-        .renderers = renderers,
     };
 }
 
 pub fn deinit(rules: *RuleSet) void {
     rules.blocks.deinit();
     rules.inlines.deinit();
-    rules.renderers.deinit();
 }

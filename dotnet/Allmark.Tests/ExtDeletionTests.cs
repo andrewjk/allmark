@@ -16,7 +16,7 @@ This text was {-deleted-} recently.
 <p>This text was <del class=""markdown-deletion"">deleted</del> recently.</p>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -31,7 +31,7 @@ This text was {--deleted--} recently.
 <p>This text was <del class=""markdown-deletion"">deleted</del> recently.</p>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -46,7 +46,7 @@ This text was {---deleted---} recently.
 <p>This text was {---deleted---} recently.</p>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -57,7 +57,7 @@ This text was {---deleted---} recently.
         var input = @"text {-a-} more";
         var expected = @"<p>text <del class=""markdown-deletion"">a</del> more</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -68,7 +68,7 @@ This text was {---deleted---} recently.
         var input = @"text {-with spaces-} more";
         var expected = @"<p>text <del class=""markdown-deletion"">with spaces</del> more</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -79,7 +79,7 @@ This text was {---deleted---} recently.
         var input = @"{-deleted-} This is new.";
         var expected = @"<p><del class=""markdown-deletion"">deleted</del> This is new.</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -90,7 +90,7 @@ This text was {---deleted---} recently.
         var input = @"This is {-deleted-}";
         var expected = @"<p>This is <del class=""markdown-deletion"">deleted</del></p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -101,7 +101,7 @@ This text was {---deleted---} recently.
         var input = @"text {-word!-} more";
         var expected = @"<p>text <del class=""markdown-deletion"">word!</del> more</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -112,7 +112,7 @@ This text was {---deleted---} recently.
         var input = @"text {-a-b-} more";
         var expected = @"<p>text <del class=""markdown-deletion"">a-b</del> more</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -123,7 +123,7 @@ This text was {---deleted---} recently.
         var input = @"test{-ing-}test";
         var expected = @"<p>test<del class=""markdown-deletion"">ing</del>test</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -134,7 +134,7 @@ This text was {---deleted---} recently.
         var input = @"text{--}text";
         var expected = @"<p>text{--}text</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -145,7 +145,7 @@ This text was {---deleted---} recently.
         var input = @"text {-**bold**-}";
         var expected = @"<p>text <del class=""markdown-deletion""><strong>bold</strong></del></p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -156,7 +156,7 @@ This text was {---deleted---} recently.
         var input = @"text {-`code`-}";
         var expected = @"<p>text <del class=""markdown-deletion""><code>code</code></del></p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -167,7 +167,7 @@ This text was {---deleted---} recently.
         var input = @"text \{-not deletion\-\}";
         var expected = @"<p>text {-not deletion-}</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -178,7 +178,7 @@ This text was {---deleted---} recently.
         var input = @"text {-not closed";
         var expected = @"<p>text {-not closed</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -189,7 +189,7 @@ This text was {---deleted---} recently.
         var input = @"text not opened-}";
         var expected = @"<p>text not opened-}</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -202,7 +202,7 @@ This text was {---deleted---} recently.
 <li>Item with <del class=""markdown-deletion"">deletion</del></li>
 </ul>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -215,7 +215,7 @@ This text was {---deleted---} recently.
 <p>Quote with <del class=""markdown-deletion"">deletion</del></p>
 </blockquote>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -226,7 +226,7 @@ This text was {---deleted---} recently.
         var input = @"text {-plus - inside-}";
         var expected = @"<p>text <del class=""markdown-deletion"">plus - inside</del></p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -237,7 +237,7 @@ This text was {---deleted---} recently.
         var input = @"{-Start-} of document.";
         var expected = @"<p><del class=""markdown-deletion"">Start</del> of document.</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -248,7 +248,7 @@ This text was {---deleted---} recently.
         var input = @"End of {-document-}";
         var expected = @"<p>End of <del class=""markdown-deletion"">document</del></p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -259,7 +259,7 @@ This text was {---deleted---} recently.
         var input = @"{-first-} and {-second-} and {-third-}";
         var expected = @"<p><del class=""markdown-deletion"">first</del> and <del class=""markdown-deletion"">second</del> and <del class=""markdown-deletion"">third</del></p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -270,7 +270,7 @@ This text was {---deleted---} recently.
         var input = @"{-deleted *text-} that shouldn't be bold*";
         var expected = @"<p><del class=""markdown-deletion"">deleted *text</del> that shouldn't be bold*</p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -281,7 +281,7 @@ This text was {---deleted---} recently.
         var input = @"*this text should be {-deleted but not bold*-}";
         var expected = @"<p>*this text should be <del class=""markdown-deletion"">deleted but not bold*</del></p>";
         var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root, Extended.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }

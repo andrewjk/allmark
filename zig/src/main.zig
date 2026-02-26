@@ -4,10 +4,11 @@ const allmark = @import("allmark");
 
 const printUsage = struct {
     pub fn print(writer: anytype) !void {
-        try writer.print("Usage: allmark <input-file> [-o <file>] [-r <core|gfm|extended>]\n", .{});
+        try writer.print("Usage: allmark <input-file> [-o <file>] [-r <core|gfm|extended>] [-f <html|console>]\n", .{});
         try writer.print("  input-file   Path to the markdown file to convert\n", .{});
         try writer.print("  -o, --output Path to output HTML file (optional, prints to stdout by default)\n", .{});
         try writer.print("  -r, --ruleset Ruleset to use: core, gfm, or extended (default: extended)\n", .{});
+        try writer.print("  -f, --format Output format: html or console (default: html)\n", .{});
         try writer.print("  -h, --help   Show this help message\n", .{});
     }
 };
@@ -16,6 +17,7 @@ const Args = struct {
     input: []const u8,
     output: ?[]const u8,
     ruleset: []const u8,
+    format: []const u8,
 };
 
 pub fn parseArgs(allocator: std.mem.Allocator, args: []const []const u8, io: std.Io) !Args {
@@ -25,6 +27,7 @@ pub fn parseArgs(allocator: std.mem.Allocator, args: []const []const u8, io: std
         .input = "",
         .output = null,
         .ruleset = "extended",
+        .format = "html",
     };
 
     var i: usize = 0;
@@ -59,6 +62,25 @@ pub fn parseArgs(allocator: std.mem.Allocator, args: []const []const u8, io: std
                 std.process.exit(1);
             }
             result.ruleset = ruleset;
+            i += 2;
+            continue;
+        } else if (std.mem.eql(u8, arg, "--format") or std.mem.eql(u8, arg, "-f")) {
+            if (i + 1 >= args.len) {
+                var stderr = std.Io.File.stderr().writer(io, &buffer);
+                try stderr.interface.print("Error: {s} requires a value (html or console)\n", .{arg});
+                try printUsage.print(&stderr.interface);
+                try stderr.interface.flush();
+                std.process.exit(1);
+            }
+            const format = args[i + 1];
+            if (!std.mem.eql(u8, format, "html") and !std.mem.eql(u8, format, "console")) {
+                var stderr = std.Io.File.stderr().writer(io, &buffer);
+                try stderr.interface.print("Error: Invalid format '{s}'. Must be html or console\n", .{format});
+                try printUsage.print(&stderr.interface);
+                try stderr.interface.flush();
+                std.process.exit(1);
+            }
+            result.format = format;
             i += 2;
             continue;
         } else if (std.mem.eql(u8, arg, "--help") or std.mem.eql(u8, arg, "-h")) {
@@ -132,20 +154,22 @@ pub fn main(init: std.process.Init) !void {
         try allmark.extended.init(allocator);
     defer ruleset.blocks.deinit();
     defer ruleset.inlines.deinit();
-    defer ruleset.renderers.deinit();
 
     const document = try allmark.parse.execute(allocator, markdown, ruleset, false);
     defer document.deinit(allocator);
 
-    const html = try allmark.render.renderHtml(allocator, document, ruleset);
-    defer allocator.free(html);
+    const output = if (std.mem.eql(u8, parsed_args.format, "console"))
+        try allmark.render.renderToConsole(allocator, document, null)
+    else
+        try allmark.render.renderHtml(allocator, document, null);
+    defer allocator.free(output);
 
     if (parsed_args.output) |output_path| {
-        try cwd.writeFile(io, .{ .sub_path = output_path, .data = html });
+        try cwd.writeFile(io, .{ .sub_path = output_path, .data = output });
     } else {
         var buffer: [4096]u8 = undefined;
         var stdout = std.Io.File.stdout().writer(io, &buffer);
-        try stdout.interface.print("{s}\n", .{html});
+        try stdout.interface.print("{s}\n", .{output});
         try stdout.interface.flush();
     }
 }

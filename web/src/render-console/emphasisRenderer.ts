@@ -10,17 +10,8 @@ const renderer: Renderer = {
 };
 export default renderer;
 
-export function createRenderer(style: string, reset: string): Renderer {
-	return {
-		name: "emphasis",
-		render(node: MarkdownNode, state: RendererState) {
-			renderNode(node, state, style, reset);
-		},
-	};
-}
-
 function render(node: MarkdownNode, state: RendererState): void {
-	const style = "\x1b[33m";
+	const style = "\x1b[3m\x1b[33m";
 	const reset = "\x1b[0m";
 	renderNode(node, state, style, reset);
 }

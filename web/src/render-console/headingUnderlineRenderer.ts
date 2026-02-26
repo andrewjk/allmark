@@ -2,23 +2,14 @@ import type ConsoleRendererState from "../types/ConsoleRendererState";
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
-import renderChildren from "./renderChildren";
 import type { Styles } from "./ansi";
+import renderChildren from "./renderChildren";
 
 const renderer: Renderer = {
 	name: "heading_underline",
 	render,
 };
 export default renderer;
-
-export function createRenderer(styles: Styles): Renderer {
-	return {
-		name: "heading_underline",
-		render(node: MarkdownNode, state: RendererState) {
-			renderNode(node, state, styles);
-		},
-	};
-}
 
 function render(node: MarkdownNode, state: RendererState): void {
 	const styles = defaultStyles();

@@ -9,15 +9,6 @@ const renderer: Renderer = {
 };
 export default renderer;
 
-export function createRenderer(style: string, reset: string): Renderer {
-	return {
-		name: "table",
-		render(node: MarkdownNode, state: RendererState) {
-			renderNode(node, state, style, reset);
-		},
-	};
-}
-
 function render(node: MarkdownNode, state: RendererState): void {
 	const style = "\x1b[2m";
 	const reset = "\x1b[0m";
@@ -39,10 +30,7 @@ function renderNode(node: MarkdownNode, state: RendererState, style: string, res
 	const headerCells = headerRow.children ?? [];
 	const cellTexts: string[][] = [];
 
-	const maxColumns = Math.max(
-		headerCells.length,
-		...dataRows.map((r) => r.children?.length ?? 0),
-	);
+	const maxColumns = Math.max(headerCells.length, ...dataRows.map((r) => r.children?.length ?? 0));
 	const columnWidths = new Array(maxColumns).fill(0);
 
 	for (let i = 0; i < headerCells.length; i++) {

@@ -21,7 +21,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -38,7 +38,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -55,7 +55,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -72,7 +72,7 @@ public class GfmTasklistTests
 </ol>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -91,7 +91,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -108,7 +108,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -125,7 +125,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -149,7 +149,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -170,7 +170,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -187,7 +187,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -204,7 +204,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -221,7 +221,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -240,7 +240,7 @@ public class GfmTasklistTests
 </blockquote>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -263,7 +263,7 @@ public class GfmTasklistTests
 </li>
 </ul>".Trim();
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers).Trim();
+        var html = RenderHtml.Execute(root).Trim();
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -286,7 +286,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -303,7 +303,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -322,7 +322,7 @@ public class GfmTasklistTests
 </ul>
 ";
         var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root, Gfm.RuleSet.Renderers);
+        var html = RenderHtml.Execute(root);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }

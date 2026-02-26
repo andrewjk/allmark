@@ -40,7 +40,7 @@ Here is some text
 ".TrimStart();
 
         var doc = Parser.Execute(input[1..^1], Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

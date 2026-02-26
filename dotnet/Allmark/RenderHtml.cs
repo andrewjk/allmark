@@ -2,12 +2,15 @@ namespace Allmark;
 
 using System.Text;
 using Allmark.Render;
+using Allmark.Rulesets;
 using Allmark.Types;
 
 public static class RenderHtml
 {
-    public static string Execute(MarkdownNode doc, Dictionary<string, Renderer> renderers)
+    public static string Execute(MarkdownNode doc, Dictionary<string, Renderer>? renderers = null)
     {
+        renderers ??= HtmlRenderers.Renderers;
+
         var state = new RendererState
         {
             Renderers = renderers,

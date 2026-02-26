@@ -19,7 +19,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -36,7 +36,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -53,7 +53,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -70,7 +70,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -87,7 +87,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -104,7 +104,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -119,7 +119,7 @@ public class FencedCodeTests
 		<pre><code></code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -140,7 +140,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -157,7 +157,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -174,7 +174,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -193,7 +193,7 @@ public class FencedCodeTests
 		<pre><code></code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -212,7 +212,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -227,7 +227,7 @@ public class FencedCodeTests
 		<pre><code class="language-code"></code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -248,7 +248,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -264,7 +264,7 @@ public class FencedCodeTests
 		<p><code>code</code></p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -282,7 +282,7 @@ public class FencedCodeTests
 		~~</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -300,7 +300,7 @@ public class FencedCodeTests
 		<code>~</code></p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -318,7 +318,7 @@ public class FencedCodeTests
 		<pre><code></code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -335,7 +335,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -352,7 +352,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -371,7 +371,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -390,7 +390,7 @@ public class FencedCodeTests
 		<p>Paragraph</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -413,7 +413,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -432,7 +432,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -449,7 +449,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -466,7 +466,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -483,7 +483,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -501,7 +501,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -519,7 +519,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -536,7 +536,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -553,7 +553,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -576,7 +576,7 @@ public class FencedCodeTests
 		<p>Paragraph 2</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -593,7 +593,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -612,7 +612,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -628,7 +628,7 @@ public class FencedCodeTests
 		<p><code> </code> <code>code</code> <code> </code></p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -643,7 +643,7 @@ public class FencedCodeTests
 		<pre><code class="language-javascript"></code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -663,7 +663,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -680,7 +680,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -697,7 +697,7 @@ public class FencedCodeTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -716,7 +716,7 @@ public class FencedCodeTests
 		<h1>Heading</h1>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

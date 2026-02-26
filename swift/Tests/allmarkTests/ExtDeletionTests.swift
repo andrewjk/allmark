@@ -11,7 +11,7 @@ This text was {-deleted-} recently.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -25,7 +25,7 @@ This text was {--deleted--} recently.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -39,7 +39,7 @@ This text was {---deleted---} recently.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -49,7 +49,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text <del class=\"markdown-deletion\">a</del> more</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -59,7 +59,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text <del class=\"markdown-deletion\">with spaces</del> more</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -69,7 +69,7 @@ This text was {---deleted---} recently.
 		let expected = "<p><del class=\"markdown-deletion\">deleted</del> This is new.</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -79,7 +79,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>This is <del class=\"markdown-deletion\">deleted</del></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -89,7 +89,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text <del class=\"markdown-deletion\">word!</del> more</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -99,7 +99,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text <del class=\"markdown-deletion\">a-b</del> more</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -109,7 +109,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>test<del class=\"markdown-deletion\">ing</del>test</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -119,7 +119,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text{--}text</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -129,7 +129,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text <del class=\"markdown-deletion\"><strong>bold</strong></del></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -139,7 +139,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text <del class=\"markdown-deletion\"><code>code</code></del></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -149,7 +149,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text {-not deletion-}</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -159,7 +159,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text {-not closed</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -169,7 +169,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text not opened-}</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -183,7 +183,7 @@ This text was {---deleted---} recently.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -197,7 +197,7 @@ This text was {---deleted---} recently.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -207,7 +207,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>text <del class=\"markdown-deletion\">plus - inside</del></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -217,7 +217,7 @@ This text was {---deleted---} recently.
 		let expected = "<p><del class=\"markdown-deletion\">Start</del> of document.</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -227,7 +227,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>End of <del class=\"markdown-deletion\">document</del></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -237,7 +237,7 @@ This text was {---deleted---} recently.
 		let expected = "<p><del class=\"markdown-deletion\">first</del> and <del class=\"markdown-deletion\">second</del> and <del class=\"markdown-deletion\">third</del></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -247,7 +247,7 @@ This text was {---deleted---} recently.
 		let expected = "<p><del class=\"markdown-deletion\">deleted *text</del> that shouldn't be bold*</p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -257,7 +257,7 @@ This text was {---deleted---} recently.
 		let expected = "<p>*this text should be <del class=\"markdown-deletion\">deleted but not bold*</del></p>"
 		await MainActor.run {
 			let doc = parse(src: input, rules: extendedRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: extendedRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}

@@ -16,7 +16,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -30,7 +30,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -44,7 +44,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -64,7 +64,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -82,7 +82,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -105,7 +105,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -128,7 +128,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -154,7 +154,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -174,7 +174,7 @@ public class ListBulletedTests
 		</blockquote>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -188,7 +188,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -214,7 +214,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -233,7 +233,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -252,7 +252,7 @@ public class ListBulletedTests
 		<p>Paragraph</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -272,7 +272,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -296,7 +296,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -317,7 +317,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -331,7 +331,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -345,7 +345,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -371,7 +371,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -385,7 +385,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -399,7 +399,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -417,7 +417,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -448,7 +448,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -462,7 +462,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -475,7 +475,7 @@ public class ListBulletedTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -489,7 +489,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -515,7 +515,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -539,7 +539,7 @@ public class ListBulletedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -565,7 +565,7 @@ public class ListBulletedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

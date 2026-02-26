@@ -14,7 +14,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -26,7 +26,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -38,7 +38,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -50,7 +50,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -62,7 +62,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -74,7 +74,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -86,7 +86,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -98,7 +98,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -110,7 +110,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -123,7 +123,7 @@ public class ThematicBreakTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -139,7 +139,7 @@ public class ThematicBreakTests
 		<p>Paragraph</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -156,7 +156,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -168,7 +168,7 @@ public class ThematicBreakTests
 		<p>--</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -180,7 +180,7 @@ public class ThematicBreakTests
 		<p>**</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -192,7 +192,7 @@ public class ThematicBreakTests
 		<p>__</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -204,7 +204,7 @@ public class ThematicBreakTests
 		<p>-*-</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -216,7 +216,7 @@ public class ThematicBreakTests
 		<p>---***</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -230,7 +230,7 @@ public class ThematicBreakTests
 		</blockquote>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -248,7 +248,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -260,7 +260,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -272,7 +272,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -292,7 +292,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -310,7 +310,7 @@ public class ThematicBreakTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -328,7 +328,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -348,7 +348,7 @@ public class ThematicBreakTests
 		<p>Paragraph 2</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -367,7 +367,7 @@ public class ThematicBreakTests
 		<p>Paragraph 2</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -383,7 +383,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -399,7 +399,7 @@ public class ThematicBreakTests
 		<h1>Heading</h1>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -418,7 +418,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -437,7 +437,7 @@ public class ThematicBreakTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -458,7 +458,7 @@ public class ThematicBreakTests
 		</blockquote>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -470,7 +470,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -482,7 +482,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -499,7 +499,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -515,7 +515,7 @@ public class ThematicBreakTests
 		<p>Text with <strong>bold</strong></p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -539,7 +539,7 @@ public class ThematicBreakTests
 		</blockquote>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -556,7 +556,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -576,7 +576,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -588,7 +588,7 @@ public class ThematicBreakTests
 		<p>--- text</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -607,7 +607,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -625,7 +625,7 @@ public class ThematicBreakTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -650,7 +650,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -667,7 +667,7 @@ public class ThematicBreakTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -679,7 +679,7 @@ public class ThematicBreakTests
 		<hr />
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -691,7 +691,7 @@ public class ThematicBreakTests
 		<p>---   text</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -701,7 +701,7 @@ public class ThematicBreakTests
         var input = "";
         var expected = "";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected, html.Trim());
     }
 }

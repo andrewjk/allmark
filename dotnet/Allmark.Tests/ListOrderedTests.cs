@@ -16,7 +16,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -30,7 +30,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -44,7 +44,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -58,7 +58,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -72,7 +72,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -86,7 +86,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -100,7 +100,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -112,7 +112,7 @@ public class ListOrderedTests
 		<p>1234567890. Item</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -126,7 +126,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -146,7 +146,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -166,7 +166,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -186,7 +186,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -204,7 +204,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -227,7 +227,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -250,7 +250,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -276,7 +276,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -296,7 +296,7 @@ public class ListOrderedTests
 		</blockquote>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -310,7 +310,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -336,7 +336,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -355,7 +355,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -374,7 +374,7 @@ public class ListOrderedTests
 		<p>Paragraph</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -394,7 +394,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -418,7 +418,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -432,7 +432,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -446,7 +446,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -472,7 +472,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -486,7 +486,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -500,7 +500,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -518,7 +518,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -549,7 +549,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -563,7 +563,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -576,7 +576,7 @@ public class ListOrderedTests
 		</code></pre>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -590,7 +590,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -616,7 +616,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -640,7 +640,7 @@ public class ListOrderedTests
 		</ul>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -660,7 +660,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -674,7 +674,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -697,7 +697,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -709,7 +709,7 @@ public class ListOrderedTests
 		<p>1.5 is a number</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -721,7 +721,7 @@ public class ListOrderedTests
 		<p>1.Item</p>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -735,7 +735,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -761,7 +761,7 @@ public class ListOrderedTests
 		</ol>
 		""";
         var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc, Core.RuleSet.Renderers);
+        var html = RenderHtml.Execute(doc);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

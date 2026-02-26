@@ -9,16 +9,7 @@ const renderer: Renderer = {
 };
 export default renderer;
 
-export function createRenderer(style: string, reset: string): Renderer {
-	return {
-		name: "code_block",
-		render(node: MarkdownNode, state: RendererState) {
-			renderNode(node, state, style, reset);
-		},
-	};
-}
-
-function render(node: MarkdownNode, state: RendererState): void {
+export function render(node: MarkdownNode, state: RendererState): void {
 	const style = "\x1b[2m";
 	const reset = "\x1b[0m";
 	renderNode(node, state, style, reset);
@@ -30,7 +21,11 @@ function renderNode(node: MarkdownNode, state: RendererState, style: string, res
 		s.output += "\n";
 	}
 	s.output += `${style}┌─${reset}\n`;
-	for (const line of node.content.split("\n")) {
+	let lines = node.content.split("\n");
+	if (lines.length && !lines[lines.length - 1].length) {
+		lines.pop();
+	}
+	for (const line of lines) {
 		s.output += `${style}│${reset} ${line}\n`;
 	}
 	s.output += `${style}└─${reset}\n`;

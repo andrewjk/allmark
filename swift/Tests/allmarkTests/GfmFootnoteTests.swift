@@ -29,7 +29,7 @@ This is a second line. <a href="#fnref2" class="footnote-backref">↩</a></p>
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -52,7 +52,7 @@ Text with a footnote[^1].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -79,7 +79,7 @@ First reference[^1] and second[^2].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -102,7 +102,7 @@ Text[^1].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -125,7 +125,7 @@ Code reference[^1].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -148,7 +148,7 @@ Link reference[^1].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -160,7 +160,7 @@ Link reference[^1].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -187,7 +187,7 @@ Third line <a href="#fnref1" class="footnote-backref">↩</a></p>
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -210,7 +210,7 @@ First[^1] and second[^1] use same footnote.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -241,7 +241,7 @@ First[^1] and second[^1] use same footnote.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -266,7 +266,7 @@ First[^1] and second[^1] use same footnote.
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -282,7 +282,7 @@ Special label[^a-b_c].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -305,7 +305,7 @@ Mixed case[^ABC].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -332,7 +332,7 @@ Text[^1]
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -355,7 +355,7 @@ Text[^1]
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -379,7 +379,7 @@ Text[^1] [foo]
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -404,7 +404,7 @@ Text[^1] [foo]
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -427,7 +427,7 @@ Text[^1] [foo]
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -445,7 +445,7 @@ Text[^1] [foo]
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
@@ -471,7 +471,7 @@ Footnote 1 link[^first].
 """
 		await MainActor.run {
 			let doc = parse(src: input, rules: gfmRuleSet, debug: false)
-			let html = renderHtml(doc: doc, renderers: gfmRuleSet.renderers)
+			let html = renderHtml(doc: doc)
 			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}

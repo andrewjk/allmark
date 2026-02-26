@@ -2,7 +2,7 @@ import Foundation
 import Collections
 
 @MainActor
-func renderHtml(doc: MarkdownNode, renderers: OrderedDictionary<String, Renderer>) -> String {
+func renderHtml(doc: MarkdownNode, renderers: OrderedDictionary<String, Renderer> = htmlRenderers) -> String {
 	var state = RendererState(
 		renderers: renderers,
 		output: "",

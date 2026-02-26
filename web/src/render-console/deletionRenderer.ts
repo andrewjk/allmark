@@ -10,15 +10,6 @@ const renderer: Renderer = {
 };
 export default renderer;
 
-export function createRenderer(style: string, reset: string): Renderer {
-	return {
-		name: "deletion",
-		render(node: MarkdownNode, state: RendererState) {
-			renderNode(node, state, style, reset);
-		},
-	};
-}
-
 function render(node: MarkdownNode, state: RendererState): void {
 	const style = "\x1b[31m";
 	const reset = "\x1b[0m";
