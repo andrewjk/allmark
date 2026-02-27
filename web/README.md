@@ -1,19 +1,19 @@
 # Allmark for the Web
 
-TypeScript implementation of Allmark, a Markdown parser supporting CommonMark and GitHub Flavored Markdown (GFM).
+A full-featured Markdown parser for the web.
 
 ## Features
 
-- **CommonMark support**: Full compliance with the CommonMark spec
+- **CommonMark support**: Almost full compliance with the CommonMark spec
 - **GFM extensions**: Tables, task lists, strikethrough, autolinks, footnotes, alerts
-- **Extended ruleset**: Additional markdown features
+- **Extended ruleset**: Additional markdown features (comments, insertions, deletions, etc)
 - **CLI tool**: Convert markdown files from the command line
 - **Multiple output formats**: HTML or console rendering
 
 ## Installation
 
 ```bash
-pnpm install
+pnpm add allmark
 ```
 
 ## Usage
@@ -24,21 +24,21 @@ pnpm install
 import { core, extended, gfm, parse, renderHtml } from "allmark";
 
 const markdown = "# Hello, world!";
-const document = parse(markdown, gfm, false);
+const document = parse(markdown, gfm);
 const html = renderHtml(document);
 ```
 
 ### CLI
 
 ```bash
-# Build the CLI
-pnpm build
+# Install globally
+pnpm add -g allmark
 
 # Convert markdown to HTML
-pnpm cli input.md
+allmark input.md
 
 # With options
-pnpm cli input.md -o output.html -r gfm -f html
+allmark input.md -o output.html -r gfm -f html
 ```
 
 CLI options:
