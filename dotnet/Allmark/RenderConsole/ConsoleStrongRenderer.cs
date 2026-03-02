@@ -15,8 +15,8 @@ public static class ConsoleStrongRenderer
 
     public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
     {
-        state.Output.Append($"{RenderToConsole.Styles["strong"]}");
+        state.Output.Append($"{Ansi.Bold}{Ansi.Yellow}");
         RenderChildren.Execute(node, state);
-        state.Output.Append($"{RenderToConsole.AnsiReset}");
+        state.Output.Append($"{Ansi.Reset}");
     }
 }

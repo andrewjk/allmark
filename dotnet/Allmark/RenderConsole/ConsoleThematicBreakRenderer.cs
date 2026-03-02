@@ -15,7 +15,7 @@ public static class ConsoleThematicBreakRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.Styles["thematicBreak"];
+        var style = Ansi.Dim;
         if (state.Output.Length > 0 && state.Output[^1] != '\n')
         {
             state.Output.Append('\n');
@@ -25,6 +25,6 @@ public static class ConsoleThematicBreakRenderer
             state.Output.Append("\n");
         }
         var count = Math.Max(3, node.Markup.Length);
-        state.Output.Append($"{style}{new string('─', count)}{RenderToConsole.AnsiReset}\n");
+        state.Output.Append($"{style}{new string('─', count)}{Ansi.Reset}\n");
     }
 }

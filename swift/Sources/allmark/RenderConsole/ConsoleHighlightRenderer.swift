@@ -8,7 +8,9 @@ let consoleHighlightRenderer = Renderer(
 
 @MainActor
 func renderConsoleHighlight(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
-	state.output += "\u{001B}[43m\u{001B}[30m"
+	let style = ansiYellowBack + ansiBlack
+	let reset = ansiReset
+	state.output += style
 	renderChildren(node: node, state: &state)
-	state.output += "\u{001B}[0m"
+	state.output += reset
 }

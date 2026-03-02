@@ -15,7 +15,7 @@ public static class ConsoleImageRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.AnsiDim;
+        var style = Ansi.Gray;
         var alt = "";
         if (node.Children != null)
         {
@@ -28,6 +28,6 @@ public static class ConsoleImageRenderer
             }
         }
         var altText = string.IsNullOrEmpty(alt) ? node.Info ?? "" : alt;
-        state.Output.Append($"{style}[Image: {altText}]{RenderToConsole.AnsiReset}");
+        state.Output.Append($"{style}[Image: {altText}]{Ansi.Reset}");
     }
 }

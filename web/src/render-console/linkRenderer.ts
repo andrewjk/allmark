@@ -2,6 +2,7 @@ import type ConsoleRendererState from "../types/ConsoleRendererState";
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
+import ANSI from "./ansi";
 import renderChildren from "./renderChildren";
 
 const renderer: Renderer = {
@@ -11,17 +12,13 @@ const renderer: Renderer = {
 export default renderer;
 
 function render(node: MarkdownNode, state: RendererState): void {
-	const style = "\x1b[34m\x1b[4m";
-	const reset = "\x1b[0m";
-	renderNode(node, state, style, reset);
-}
-
-function renderNode(node: MarkdownNode, state: RendererState, style: string, reset: string): void {
 	const s = state as ConsoleRendererState;
+	const style = ANSI.underline + ANSI.blue;
+	const reset = ANSI.reset;
 	s.output += style;
 	renderChildren(node, state);
 	if (node.info) {
-		s.output += `${reset} (${node.info})`;
+		s.output += `${reset} ${ANSI.dim}(${node.info})${reset}`;
 	} else {
 		s.output += reset;
 	}

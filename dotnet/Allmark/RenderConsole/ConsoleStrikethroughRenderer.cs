@@ -15,9 +15,9 @@ public static class ConsoleStrikethroughRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.Styles["strikethrough"];
-        state.Output.Append($"{style}{RenderToConsole.AnsiStrikethrough}");
+        var style = Ansi.Dim;
+        state.Output.Append($"{style}{Ansi.Strikethrough}");
         RenderChildren.Execute(node, state);
-        state.Output.Append($"{RenderToConsole.AnsiStrikethroughReset}{RenderToConsole.AnsiReset}");
+        state.Output.Append($"{Ansi.StrikethroughReset}{Ansi.Reset}");
     }
 }

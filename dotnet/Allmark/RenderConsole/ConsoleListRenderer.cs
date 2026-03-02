@@ -8,6 +8,8 @@ public static class ConsoleListRenderer
     public static void Render(MarkdownNode node, RendererState state, bool ordered)
     {
         state.Depth++;
+        var style = Ansi.Dim;
+        var reset = Ansi.Reset;
 
         var loose = IsLooseList(node);
 
@@ -41,7 +43,7 @@ public static class ConsoleListRenderer
                             var indent = new string(' ', (state.Depth - 1) * 2);
                             if (i == 0)
                             {
-                                state.Output.Append($"{indent}{prefix} ");
+                                state.Output.Append($"{indent}{style}{prefix}{reset} ");
                             }
                             RenderChildren.Execute(child, state);
                             state.Output.Append('\n');
@@ -51,7 +53,7 @@ public static class ConsoleListRenderer
                             var indent = new string(' ', (state.Depth - 1) * 2);
                             if (i == 0)
                             {
-                                state.Output.Append($"{indent}{prefix} ");
+                                state.Output.Append($"{indent}{style}{prefix}{reset} ");
                             }
                             if (state.Renderers.TryGetValue(child.Type, out var renderer))
                             {

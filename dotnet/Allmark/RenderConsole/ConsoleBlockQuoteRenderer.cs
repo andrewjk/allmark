@@ -15,7 +15,7 @@ public static class ConsoleBlockQuoteRenderer
 
     public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
     {
-        var style = RenderToConsole.Styles.TryGetValue("blockQuote", out var s) ? s : "";
+        var style = Ansi.Dim;
         state.QuoteDepth++;
         if (state.Output.Length > 0 && state.Output[^1] != '\n')
         {
@@ -29,7 +29,7 @@ public static class ConsoleBlockQuoteRenderer
             {
                 if (!string.IsNullOrEmpty(line))
                 {
-                    state.Output.Append($"{style}┃{RenderToConsole.AnsiReset} {line}\n");
+                    state.Output.Append($"{style}┃{Ansi.Reset} {line}\n");
                 }
             }
         }
@@ -44,7 +44,7 @@ public static class ConsoleBlockQuoteRenderer
                 {
                     if (!string.IsNullOrEmpty(line))
                     {
-                        state.Output.Append($"{style}┃{RenderToConsole.AnsiReset} {line}\n");
+                        state.Output.Append($"{style}┃{Ansi.Reset} {line}\n");
                     }
                 }
             }

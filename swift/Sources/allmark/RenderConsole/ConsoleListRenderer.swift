@@ -29,14 +29,14 @@ func renderConsoleList(_ node: MarkdownNode, _ state: inout RendererState, order
 					if !loose && child.type == "paragraph" {
 						let indent = String(repeating: "  ", count: state.depth - 1)
 						if i == 0 {
-							state.output += "\(indent)\(prefix) "
+							state.output += "\(indent)\(ansiDim)\(prefix)\(ansiReset) "
 						}
 						renderChildren(node: child, state: &state)
 						state.output += "\n"
 					} else {
 						let indent = String(repeating: "  ", count: state.depth - 1)
 						if i == 0 {
-							state.output += "\(indent)\(prefix) "
+							state.output += "\(indent)\(ansiDim)\(prefix)\(ansiReset) "
 						}
 						if let renderer = state.renderers[child.type] {
 							renderer.render(child, &state, false, false, true)

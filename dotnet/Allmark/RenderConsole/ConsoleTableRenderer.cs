@@ -16,7 +16,7 @@ public static class ConsoleTableRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.Styles["table"];
+        var style = Ansi.Dim;
         if (state.Output.Length > 0 && state.Output[^1] != '\n')
         {
             state.Output.Append('\n');
@@ -83,19 +83,19 @@ public static class ConsoleTableRenderer
                 }
             }
             line.Append(right);
-            return $"{style}{line}{RenderToConsole.AnsiReset}\n";
+            return $"{style}{line}{Ansi.Reset}\n";
         }
 
         state.Output.Append(MakeLine("┌", "┬", "┐", "┬"));
 
         if (headerCells.Count > 0)
         {
-            state.Output.Append($"{style}│{RenderToConsole.AnsiReset}");
+            state.Output.Append($"{style}│{Ansi.Reset}");
             for (int i = 0; i < headerCells.Count; i++)
             {
                 var text = cellTexts.Count > 0 && i < cellTexts[0].Count ? cellTexts[0][i] : "";
                 var padding = new string(' ', columnWidths[i] - text.Length - 1);
-                state.Output.Append($" {text}{padding}{style}│{RenderToConsole.AnsiReset}");
+                state.Output.Append($" {text}{padding}{style}│{Ansi.Reset}");
             }
             state.Output.Append('\n');
         }
@@ -104,12 +104,12 @@ public static class ConsoleTableRenderer
 
         for (int r = 0; r < dataRows.Count; r++)
         {
-            state.Output.Append($"{style}│{RenderToConsole.AnsiReset}");
+            state.Output.Append($"{style}│{Ansi.Reset}");
             for (int c = 0; c < columnWidths.Count; c++)
             {
                 var text = (r + 1) < cellTexts.Count && c < cellTexts[r + 1].Count ? cellTexts[r + 1][c] : "";
                 var padding = new string(' ', columnWidths[c] - text.Length - 1);
-                state.Output.Append($" {text}{padding}{style}│{RenderToConsole.AnsiReset}");
+                state.Output.Append($" {text}{padding}{style}│{Ansi.Reset}");
             }
             state.Output.Append('\n');
         }

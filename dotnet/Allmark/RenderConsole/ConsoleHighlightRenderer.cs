@@ -15,9 +15,9 @@ public static class ConsoleHighlightRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.Styles["highlight"];
+        var style = Ansi.YellowBg + Ansi.Black;
         state.Output.Append(style);
         RenderChildren.Execute(node, state);
-        state.Output.Append(RenderToConsole.AnsiReset);
+        state.Output.Append(Ansi.Reset);
     }
 }

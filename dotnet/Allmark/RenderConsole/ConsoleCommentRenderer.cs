@@ -13,11 +13,11 @@ public static class ConsoleCommentRenderer
         };
     }
 
-	public static void Render(MarkdownNode node, RendererState state)
-	{
-        var style = RenderToConsole.Styles["comment"];
-		state.Output.Append($"{style}>>");
-		RenderChildren.Execute(node, state);
-		state.Output.Append($">>{RenderToConsole.AnsiReset}");
-	}
+    public static void Render(MarkdownNode node, RendererState state)
+    {
+        var style = Ansi.Blue;
+        state.Output.Append($"{style}>>");
+        RenderChildren.Execute(node, state);
+        state.Output.Append($">>{Ansi.Reset}");
+    }
 }

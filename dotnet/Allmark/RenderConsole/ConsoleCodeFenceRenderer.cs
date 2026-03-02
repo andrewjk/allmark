@@ -20,21 +20,21 @@ public static class ConsoleCodeFenceRenderer
 
         if (lines.Length == 0 || (lines.Length == 1 && string.IsNullOrEmpty(lines[0])))
         {
-            state.Output.Append($"{RenderToConsole.AnsiDim}┌─{RenderToConsole.AnsiReset}\n{RenderToConsole.AnsiDim}└─{RenderToConsole.AnsiReset}");
+            state.Output.Append($"{Ansi.Dim}┌─{Ansi.Reset}\n{Ansi.Dim}└─{Ansi.Reset}\n");
         }
         else
         {
-            state.Output.Append($"{RenderToConsole.AnsiDim}┌─{RenderToConsole.AnsiReset}\n");
+            state.Output.Append($"{Ansi.Dim}┌─{Ansi.Reset}\n");
             for (int i = 0; i < lines.Length; i++)
             {
-                // Skip the last empty line
+                // Skip last empty line
                 if (i == lines.Length - 1 && string.IsNullOrEmpty(lines[i]))
                 {
                     continue;
                 }
-                state.Output.Append($"{RenderToConsole.AnsiDim}│{RenderToConsole.AnsiReset} {lines[i].TrimEnd('\r')}\n");
+                state.Output.Append($"{Ansi.Dim}│{Ansi.Reset} {lines[i].TrimEnd('\r')}\n");
             }
-            state.Output.Append($"{RenderToConsole.AnsiDim}└─{RenderToConsole.AnsiReset}");
+            state.Output.Append($"{Ansi.Dim}└─{Ansi.Reset}\n");
         }
     }
 }

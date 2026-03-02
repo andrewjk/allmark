@@ -15,9 +15,9 @@ public static class ConsoleInsertionRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.Styles["insertion"];
+        var style = Ansi.Green;
         state.Output.Append($"{style}++");
         RenderChildren.Execute(node, state);
-        state.Output.Append($"++{RenderToConsole.AnsiReset}");
+        state.Output.Append($"++{Ansi.Reset}");
     }
 }

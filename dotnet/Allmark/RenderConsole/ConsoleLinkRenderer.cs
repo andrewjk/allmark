@@ -15,16 +15,16 @@ public static class ConsoleLinkRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.Styles["link"];
+        var style = Ansi.Blue + Ansi.Underline;
         state.Output.Append(style);
         RenderChildren.Execute(node, state);
         if (!string.IsNullOrEmpty(node.Info))
         {
-            state.Output.Append($"{RenderToConsole.AnsiReset} ({node.Info})");
+            state.Output.Append($"{Ansi.Reset} {Ansi.Dim}({node.Info}){Ansi.Reset}");
         }
         else
         {
-            state.Output.Append(RenderToConsole.AnsiReset);
+            state.Output.Append(Ansi.Reset);
         }
     }
 }

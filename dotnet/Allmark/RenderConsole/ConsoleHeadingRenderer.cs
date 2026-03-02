@@ -15,7 +15,6 @@ public static class ConsoleHeadingRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var styles = RenderToConsole.Styles;
         var level = 0;
         var isSetext = node.Markup.Contains("=") || node.Markup.Contains("-");
         if (node.Markup.StartsWith("#"))
@@ -34,7 +33,7 @@ public static class ConsoleHeadingRenderer
             }
         }
 
-        var style = styles.TryGetValue($"heading{level}", out var s) ? s : "";
+        var style = Ansi.Bold + Ansi.Magenta;
         if (state.Output.Length > 0 && state.Output[^1] != '\n')
         {
             state.Output.Append('\n');
@@ -48,13 +47,13 @@ public static class ConsoleHeadingRenderer
             var underlineChar = level == 1 ? '=' : '-';
             state.Output.Append(style);
             state.Output.Append(headingText);
-            state.Output.Append($"\n{new string(underlineChar, plainTextLength)}{RenderToConsole.AnsiReset}\n");
+            state.Output.Append($"\n{Ansi.Reset}{Ansi.Dim}{new string(underlineChar, plainTextLength)}{Ansi.Reset}\n");
         }
         else
         {
-            state.Output.Append($"{style}{new string('#', level)} ");
+            state.Output.Append($"{Ansi.Dim}{new string('#', level)}{Ansi.Reset} {style}");
             RenderChildren.Execute(node, state);
-            state.Output.Append($"{RenderToConsole.AnsiReset}\n");
+            state.Output.Append($"{Ansi.Reset}\n");
         }
     }
 
@@ -91,8 +90,8 @@ public static class ConsoleHeadingRenderer
         return result;
     }
 
-    private static string StripAnsiCodes(string text)
+    private static string StripAnsiCodes(string input)
     {
-        return System.Text.RegularExpressions.Regex.Replace(text, @"\x1b\[[0-9;]*m", "");
+        return System.Text.RegularExpressions.Regex.Replace(input, @"\x1b\\[[0-9;]*m", "");
     }
 }

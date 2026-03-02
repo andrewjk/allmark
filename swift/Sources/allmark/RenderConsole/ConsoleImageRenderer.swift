@@ -8,7 +8,8 @@ let consoleImageRenderer = Renderer(
 
 @MainActor
 func renderConsoleImage(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
-	let style = ansiDim
+	let style = ansiGray
+	let reset = ansiReset
 	var alt = ""
 	if let children = node.children {
 		for child in children {
@@ -17,5 +18,5 @@ func renderConsoleImage(_ node: MarkdownNode, _ state: inout RendererState, _ fi
 			}
 		}
 	}
-	state.output += "\(style)[Image: \(alt.isEmpty ? (node.info ?? "") : alt)]\(ansiReset)"
+	state.output += "\(style)[Image: \(alt.isEmpty ? (node.info ?? "") : alt)]\(reset)"
 }

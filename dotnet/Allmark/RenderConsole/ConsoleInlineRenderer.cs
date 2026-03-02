@@ -15,9 +15,8 @@ public static class ConsoleInlineRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.Styles["inline"];
-        state.Output.Append(style);
+        state.Output.Append(Ansi.Reset);
         RenderChildren.Execute(node, state);
-        state.Output.Append(RenderToConsole.AnsiReset);
+        state.Output.Append(Ansi.Reset);
     }
 }

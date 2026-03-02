@@ -6,50 +6,32 @@ using Allmark.Types;
 
 public static class RenderToConsole
 {
-    public const string AnsiReset = "\x1b[0m";
-    public const string AnsiBold = "\x1b[1m";
-    public const string AnsiItalic = "\x1b[3m";
-    public const string AnsiDim = "\x1b[2m";
-    public const string AnsiGray = "\x1b[90m";
-    public const string AnsiRed = "\x1b[31m";
-    public const string AnsiGreen = "\x1b[32m";
-    public const string AnsiYellow = "\x1b[33m";
-    public const string AnsiBlue = "\x1b[34m";
-    public const string AnsiMagenta = "\x1b[35m";
-    public const string AnsiCyan = "\x1b[36m";
-    public const string AnsiOrange = "\x1b[38;5;208m";
-    public const string AnsiUnderline = "\x1b[4m";
-    public const string AnsiBlack = "\x1b[30m";
-    public const string AnsiYellowBg = "\x1b[43m";
-    public const string AnsiStrikethrough = "\x1b[9m";
-    public const string AnsiStrikethroughReset = "\x1b[29m";
-
     public static readonly string[] ConsoleBullets = ["•", "◦", "▪", "‣"];
 
     public static readonly Dictionary<string, string> Styles = new Dictionary<string, string>
     {
-        ["heading1"] = $"{AnsiBold}{AnsiCyan}",
-        ["heading2"] = $"{AnsiBold}{AnsiBlue}",
-        ["heading3"] = $"{AnsiBold}{AnsiMagenta}",
-        ["heading4"] = AnsiBold,
-        ["heading5"] = $"{AnsiDim}{AnsiBold}",
-        ["heading6"] = $"{AnsiDim}{AnsiBold}",
-        ["strong"] = $"{AnsiBold}{AnsiYellow}",
-        ["emphasis"] = AnsiYellow,
-        ["code"] = AnsiGreen,
-        ["link"] = $"{AnsiBlue}{AnsiUnderline}",
-        ["blockQuote"] = AnsiGray,
-        ["codeBlock"] = AnsiDim,
-        ["thematicBreak"] = AnsiDim,
-        ["alertNote"] = AnsiBlue,
-        ["alertTip"] = AnsiGreen,
-        ["alertImportant"] = AnsiMagenta,
-        ["alertWarning"] = AnsiYellow,
-        ["alertCaution"] = AnsiRed,
-        ["highlight"] = $"{AnsiYellowBg}{AnsiBlack}",
-        ["strikethrough"] = AnsiDim,
-        ["footnote"] = AnsiDim,
-        ["table"] = AnsiDim,
+        ["heading1"] = $"{Ansi.Bold}{Ansi.Blue}",
+        ["heading2"] = $"{Ansi.Bold}{Ansi.Blue}",
+        ["heading3"] = $"{Ansi.Bold}{Ansi.Blue}",
+        ["heading4"] = $"{Ansi.Bold}{Ansi.Blue}",
+        ["heading5"] = $"{Ansi.Bold}{Ansi.Blue}",
+        ["heading6"] = $"{Ansi.Bold}{Ansi.Blue}",
+        ["strong"] = $"{Ansi.Bold}{Ansi.Yellow}",
+        ["emphasis"] = Ansi.Italic + Ansi.Yellow,
+        ["code"] = Ansi.Green,
+        ["link"] = $"{Ansi.Blue}{Ansi.Underline}",
+        ["blockQuote"] = Ansi.Gray,
+        ["codeBlock"] = Ansi.Dim,
+        ["thematicBreak"] = Ansi.Dim,
+        ["alertNote"] = Ansi.Blue,
+        ["alertTip"] = Ansi.Green,
+        ["alertImportant"] = Ansi.Magenta,
+        ["alertWarning"] = Ansi.Yellow,
+        ["alertCaution"] = Ansi.Red,
+        ["highlight"] = $"{Ansi.YellowBg}{Ansi.Black}",
+        ["strikethrough"] = Ansi.Dim,
+        ["footnote"] = Ansi.Dim,
+        ["table"] = Ansi.Dim,
     };
 
     public static string Execute(MarkdownNode doc, Dictionary<string, Renderer>? renderers = null)

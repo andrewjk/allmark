@@ -2,7 +2,7 @@ import type ConsoleRendererState from "../types/ConsoleRendererState";
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
-import type { Styles } from "./ansi";
+import ANSI from "./ansi";
 import renderChildren from "./renderChildren";
 
 const renderer: Renderer = {
@@ -12,18 +12,17 @@ const renderer: Renderer = {
 export default renderer;
 
 function render(node: MarkdownNode, state: RendererState): void {
-	const styles = defaultStyles();
-	const reset = "\x1b[0m";
-	renderNode(node, state, styles, reset);
-}
-
-function renderNode(node: MarkdownNode, state: RendererState, styles: Styles, reset: string): void {
 	const s = state as ConsoleRendererState;
+	const reset = ANSI.reset;
 	const type = node.markup?.toLowerCase() || "note";
-	const style =
-		(styles[
-			`alert${type.charAt(0).toUpperCase() + type.slice(1)}` as keyof typeof styles
-		] as string) || styles.alertNote;
+	const styles: Record<string, string> = {
+		note: ANSI.blue,
+		tip: ANSI.green,
+		important: ANSI.magenta,
+		warning: ANSI.yellow,
+		caution: ANSI.red,
+	};
+	const style = styles[type] || styles.note;
 	const icons: Record<string, string> = {
 		note: "📝",
 		tip: "💡",
@@ -37,28 +36,4 @@ function renderNode(node: MarkdownNode, state: RendererState, styles: Styles, re
 	}
 	s.output += `${style}${icon} ${type.charAt(0).toUpperCase() + type.slice(1)}:${reset}\n`;
 	renderChildren(node, state);
-}
-
-function defaultStyles(): Styles {
-	return {
-		heading1: "",
-		heading2: "",
-		heading3: "",
-		heading4: "",
-		heading5: "",
-		heading6: "",
-		strong: "",
-		emphasis: "",
-		code: "",
-		link: "",
-		blockQuote: "",
-		codeBlock: "",
-		thematicBreak: "",
-		alertNote: "\x1b[34m",
-		alertTip: "\x1b[32m",
-		alertImportant: "\x1b[35m",
-		alertWarning: "\x1b[33m",
-		alertCaution: "\x1b[31m",
-		reset: "\x1b[0m",
-	};
 }

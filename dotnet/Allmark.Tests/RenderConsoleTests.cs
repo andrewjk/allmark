@@ -20,7 +20,7 @@ public class RenderConsoleTests
     public void RendersHeadingToConsoleWithColor()
     {
         var input = "# Heading 1\n## Heading 2";
-        var expected = "\x1b[1m\x1b[36m# Heading 1\x1b[0m\n\x1b[1m\x1b[34m## Heading 2\x1b[0m";
+        var expected = "\x1b[2m#\x1b[0m \x1b[1m\x1b[35mHeading 1\x1b[0m\n\x1b[2m##\x1b[0m \x1b[1m\x1b[35mHeading 2\x1b[0m";
         var doc = Parser.Execute(input, Core.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);
@@ -30,7 +30,7 @@ public class RenderConsoleTests
     public void RendersBulletedListWithUnicodeBullets()
     {
         var input = "- Item 1\n- Item 2";
-        var expected = "• Item 1\n• Item 2";
+        var expected = "\x1b[2m•\x1b[0m Item 1\n\x1b[2m•\x1b[0m Item 2";
         var doc = Parser.Execute(input, Core.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);
@@ -40,7 +40,7 @@ public class RenderConsoleTests
     public void RendersOrderedList()
     {
         var input = "1. First\n2. Second";
-        var expected = "1. First\n2. Second";
+        var expected = "\x1b[2m1.\x1b[0m First\n\x1b[2m2.\x1b[0m Second";
         var doc = Parser.Execute(input, Core.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);
@@ -60,7 +60,7 @@ public class RenderConsoleTests
     public void RendersInlineCode()
     {
         var input = "`code`";
-        var expected = "\x1b[32m`code`\x1b[0m";
+        var expected = "\x1b[32mcode\x1b[0m";
         var doc = Parser.Execute(input, Core.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);
@@ -91,7 +91,7 @@ public class RenderConsoleTests
     public void RendersTaskListWithEmojis()
     {
         var input = "- [x] Done\n- [ ] Todo";
-        var expected = "• [✓] Done\n• [ ] Todo";
+        var expected = "\x1b[2m•\x1b[0m [✓] Done\n\x1b[2m•\x1b[0m [ ] Todo";
         var doc = Parser.Execute(input, Gfm.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);
@@ -131,7 +131,7 @@ public class RenderConsoleTests
     public void RendersLink()
     {
         var input = "[text](url)";
-        var expected = "\x1b[34m\x1b[4mtext\x1b[0m (url)";
+        var expected = "\x1b[34m\x1b[4mtext\x1b[0m \x1b[2m(url)\x1b[0m";
         var doc = Parser.Execute(input, Core.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);
@@ -141,7 +141,7 @@ public class RenderConsoleTests
     public void RendersImage()
     {
         var input = "![alt](url)";
-        var expected = "\x1b[2m[Image: alt]\x1b[0m";
+        var expected = "\x1b[90m[Image: alt]\x1b[0m";
         var doc = Parser.Execute(input, Core.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);
@@ -171,7 +171,7 @@ public class RenderConsoleTests
     public void RendersNestedListWithDifferentBullets()
     {
         var input = "- Level 1\n  - Level 2\n    - Level 3";
-        var expected = "• Level 1\n  ◦ Level 2\n    ▪ Level 3";
+        var expected = "\x1b[2m•\x1b[0m Level 1\n  \x1b[2m◦\x1b[0m Level 2\n    \x1b[2m▪\x1b[0m Level 3";
         var doc = Parser.Execute(input, Core.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);
@@ -191,7 +191,7 @@ public class RenderConsoleTests
     public void RendersHeadingWithUnderlineSetextStyle()
     {
         var input = "Heading\n=======\n\nSubheading\n-------";
-        var expected = "\x1b[1m\x1b[36mHeading\n=======\x1b[0m\n\x1b[1m\x1b[34mSubheading\n----------\x1b[0m";
+        var expected = "\x1B[1m\x1B[35mHeading\n\x1B[0m\x1B[2m=======\x1B[0m\n\x1B[1m\x1B[35mSubheading\n\x1B[0m\x1B[2m----------\x1B[0m";
         var doc = Parser.Execute(input, Core.RuleSet, false);
         var output = RenderToConsole.Execute(doc, Allmark.Rulesets.ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);

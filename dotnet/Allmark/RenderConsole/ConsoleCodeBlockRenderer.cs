@@ -15,16 +15,16 @@ public static class ConsoleCodeBlockRenderer
 
     public static void Render(MarkdownNode node, RendererState state)
     {
-        var style = RenderToConsole.Styles["codeblock"];
+        var style = Ansi.Dim;
         if (state.Output.Length > 0 && state.Output[^1] != '\n')
         {
             state.Output.Append('\n');
         }
-        state.Output.Append($"{style}┌─{RenderToConsole.AnsiReset}\n");
+        state.Output.Append($"{style}┌─{Ansi.Reset}\n");
         foreach (var line in node.Content.Split('\n'))
         {
-            state.Output.Append($"{style}│{RenderToConsole.AnsiReset} {line}\n");
+            state.Output.Append($"{style}│{Ansi.Reset} {line}\n");
         }
-        state.Output.Append($"{style}└─{RenderToConsole.AnsiReset}\n");
+        state.Output.Append($"{style}└─{Ansi.Reset}\n");
     }
 }

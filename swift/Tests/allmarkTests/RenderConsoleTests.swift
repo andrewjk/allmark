@@ -14,8 +14,8 @@ import Testing
 
 @Test func rendersHeadingToConsoleWithColor() async {
 	let input = "# Heading 1\n## Heading 2"
-	let expected = "\u{001B}[1m\u{001B}[36m# Heading 1\u{001B}[0m\n\u{001B}[1m\u{001B}[34m## Heading 2\u{001B}[0m"
-
+	let expected = "\u{001B}[2m#\u{001B}[0m \u{001B}[1m\u{001B}[35mHeading 1\u{001B}[0m\n\u{001B}[2m##\u{001B}[0m \u{001B}[1m\u{001B}[35mHeading 2\u{001B}[0m"
+	
 	await MainActor.run {
 		let root = parse(src: input, rules: coreRuleSet, debug: false)
 		let output = renderToConsole(doc: root, renderers: consoleRenderers)
@@ -25,8 +25,8 @@ import Testing
 
 @Test func rendersBulletedListWithUnicodeBullets() async {
 	let input = "- Item 1\n- Item 2"
-	let expected = "• Item 1\n• Item 2"
-
+	let expected = "\u{001B}[2m•\u{001B}[0m Item 1\n\u{001B}[2m•\u{001B}[0m Item 2"
+	
 	await MainActor.run {
 		let root = parse(src: input, rules: coreRuleSet, debug: false)
 		let output = renderToConsole(doc: root, renderers: consoleRenderers)
@@ -36,8 +36,8 @@ import Testing
 
 @Test func rendersOrderedList() async {
 	let input = "1. First\n2. Second"
-	let expected = "1. First\n2. Second"
-
+	let expected = "\u{001B}[2m1.\u{001B}[0m First\n\u{001B}[2m2.\u{001B}[0m Second"
+	
 	await MainActor.run {
 		let root = parse(src: input, rules: coreRuleSet, debug: false)
 		let output = renderToConsole(doc: root, renderers: consoleRenderers)
@@ -58,8 +58,8 @@ import Testing
 
 @Test func rendersInlineCode() async {
 	let input = "`code`"
-	let expected = "\u{001B}[32m`code`\u{001B}[0m"
-
+	let expected = "\u{001B}[32mcode\u{001B}[0m"
+	
 	await MainActor.run {
 		let root = parse(src: input, rules: coreRuleSet, debug: false)
 		let output = renderToConsole(doc: root, renderers: consoleRenderers)
@@ -104,8 +104,8 @@ import Testing
 
 @Test func rendersTaskListWithEmojis() async {
 	let input = "- [x] Done\n- [ ] Todo"
-	let expected = "• [✓] Done\n• [ ] Todo"
-
+	let expected = "\u{001B}[2m•\u{001B}[0m [✓] Done\n\u{001B}[2m•\u{001B}[0m [ ] Todo"
+	
 	await MainActor.run {
 		let root = parse(src: input, rules: gfmRuleSet, debug: false)
 		let output = renderToConsole(doc: root, renderers: consoleRenderers)
@@ -148,8 +148,8 @@ import Testing
 
 @Test func rendersLink() async {
 	let input = "[text](url)"
-	let expected = "\u{001B}[34m\u{001B}[4mtext\u{001B}[0m (url)"
-
+	let expected = "\u{001B}[34m\u{001B}[4mtext\u{001B}[0m \u{001B}[2m(url)\u{001B}[0m"
+	
 	await MainActor.run {
 		let root = parse(src: input, rules: coreRuleSet, debug: false)
 		let output = renderToConsole(doc: root, renderers: consoleRenderers)
@@ -159,7 +159,7 @@ import Testing
 
 @Test func rendersImage() async {
 	let input = "![alt](url)"
-	let expected = "\u{001B}[2m[Image: alt]\u{001B}[0m"
+	let expected = "\u{001B}[90m[Image: alt]\u{001B}[0m"
 
 	await MainActor.run {
 		let root = parse(src: input, rules: coreRuleSet, debug: false)
@@ -192,8 +192,8 @@ import Testing
 
 @Test func rendersNestedListWithDifferentBullets() async {
 	let input = "- Level 1\n  - Level 2\n    - Level 3"
-	let expected = "• Level 1\n  ◦ Level 2\n    ▪ Level 3"
-
+	let expected = "\u{001B}[2m•\u{001B}[0m Level 1\n  \u{001B}[2m◦\u{001B}[0m Level 2\n    \u{001B}[2m▪\u{001B}[0m Level 3"
+	
 	await MainActor.run {
 		let root = parse(src: input, rules: coreRuleSet, debug: false)
 		let output = renderToConsole(doc: root, renderers: consoleRenderers)
@@ -214,8 +214,8 @@ import Testing
 
 @Test func rendersHeadingWithUnderlineSetextStyle() async {
 	let input = "Heading\n=======\n\nSubheading\n-------"
-	let expected = "\u{001B}[1m\u{001B}[36mHeading\n=======\u{001B}[0m\n\u{001B}[1m\u{001B}[34mSubheading\n----------\u{001B}[0m"
-
+	let expected = "\u{001B}[1m\u{001B}[35mHeading\n\u{001B}[0m\u{001B}[2m=======\u{001B}[0m\n\u{001B}[1m\u{001B}[35mSubheading\n\u{001B}[0m\u{001B}[2m----------\u{001B}[0m"
+	
 	await MainActor.run {
 		let root = parse(src: input, rules: coreRuleSet, debug: false)
 		let output = renderToConsole(doc: root, renderers: consoleRenderers)

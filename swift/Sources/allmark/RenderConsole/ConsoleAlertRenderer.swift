@@ -8,9 +8,16 @@ let consoleAlertRenderer = Renderer(
 
 @MainActor
 func renderConsoleAlert(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
-	let styles = getConsoleStyles()
+	let reset = ansiReset
 	let type = node.markup.lowercased()
-	let style = styles["alert\(type.capitalized)"] ?? styles["alertNote"] ?? ""
+	let styles: [String: String] = [
+		"note": ansiBlue,
+		"tip": ansiGreen,
+		"important": ansiMagenta,
+		"warning": ansiYellow,
+		"caution": ansiRed,
+	]
+	let style = styles[type] ?? ansiBlue
 	let icons: [String: String] = [
 		"note": "📝",
 		"tip": "💡",
@@ -18,10 +25,10 @@ func renderConsoleAlert(_ node: MarkdownNode, _ state: inout RendererState, _ fi
 		"warning": "⚠️",
 		"caution": "🚨",
 	]
-	let icon = icons[type] ?? icons["note"]
+	let icon = icons[type] ?? "📝"
 	if !state.output.isEmpty && !state.output.hasSuffix("\n") {
 		state.output += "\n"
 	}
-	state.output += "\(style)\(icon ?? "📝") \(type.capitalized):\(ansiReset)\n"
+	state.output += "\(style)\(icon) \(type.capitalized):\(reset)\n"
 	renderChildren(node: node, state: &state)
 }

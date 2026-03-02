@@ -8,13 +8,13 @@ let consoleLinkRenderer = Renderer(
 
 @MainActor
 func renderConsoleLink(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
-	let styles = getConsoleStyles()
-	let style = styles["link"] ?? ""
+	let style = ansiBlue + ansiUnderline
+	let reset = ansiReset
 	state.output += style
 	renderChildren(node: node, state: &state)
 	if let info = node.info {
-		state.output += "\(ansiReset) (\(info))"
+		state.output += "\(reset) \(ansiDim)(\(info))\(ansiReset)"
 	} else {
-		state.output += ansiReset
+		state.output += reset
 	}
 }

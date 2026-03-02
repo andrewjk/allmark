@@ -2,6 +2,7 @@ import type ConsoleRendererState from "../types/ConsoleRendererState";
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
+import ANSI from "./ansi";
 import renderChildren from "./renderChildren";
 
 const renderer: Renderer = {
@@ -22,6 +23,9 @@ function renderNode(
 ): void {
 	const s = state as ConsoleRendererState;
 	s.depth++;
+
+	const style = ANSI.dim;
+	const reset = ANSI.reset;
 
 	const loose = isLooseList(node);
 
@@ -44,14 +48,14 @@ function renderNode(
 				if (!loose && child.type === "paragraph") {
 					const indent = "  ".repeat(s.depth - 1);
 					if (i === 0) {
-						s.output += `${indent}${prefix} `;
+						s.output += `${indent}${style}${prefix}${reset} `;
 					}
 					renderChildren(child, state);
 					s.output += "\n";
 				} else {
 					const indent = "  ".repeat(s.depth - 1);
 					if (i === 0) {
-						s.output += `${indent}${prefix} `;
+						s.output += `${indent}${style}${prefix}${reset} `;
 					}
 					const renderer = state.renderers.get(child.type);
 					if (renderer) {
