@@ -3,6 +3,8 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
+const ansiDim = @import("./renderToConsole.zig").ansiDim;
+const ansiReset = @import("./renderToConsole.zig").ansiReset;
 const consoleBullets = @import("./renderToConsole.zig").consoleBullets;
 const renderChildrenConsole = @import("./renderToConsole.zig").renderChildrenConsole;
 
@@ -57,7 +59,9 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
                             const indent = indentBuf[0..spaces];
 
                             state.output.appendSlice(state.allocator, indent) catch unreachable;
+                            state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
                             state.output.appendSlice(state.allocator, prefix) catch unreachable;
+                            state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
                             state.output.append(state.allocator, ' ') catch unreachable;
                         }
                         renderChildrenConsole(child, state, true) catch unreachable;
@@ -70,7 +74,9 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
                             const indent = indentBuf[0..spaces];
 
                             state.output.appendSlice(state.allocator, indent) catch unreachable;
+                            state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
                             state.output.appendSlice(state.allocator, prefix) catch unreachable;
+                            state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
                             state.output.append(state.allocator, ' ') catch unreachable;
                         }
                         if (state.renderers.get(child.type)) |renderer| {

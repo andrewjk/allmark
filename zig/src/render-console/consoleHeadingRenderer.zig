@@ -39,8 +39,8 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
     }
 
     const style = switch (level) {
-        1 => ansiBold ++ ansiCyan,
-        2 => ansiBold ++ ansiBlue,
+        1 => ansiBold ++ ansiMagenta,
+        2 => ansiBold ++ ansiMagenta,
         3 => ansiBold ++ ansiMagenta,
         4 => ansiBold,
         5 => ansiDim ++ ansiBold,
@@ -76,6 +76,8 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
 
         state.output.appendSlice(state.allocator, headingText.items) catch unreachable;
         state.output.append(state.allocator, '\n') catch unreachable;
+        state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
+        state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
         state.output.appendSlice(state.allocator, underline) catch unreachable;
         state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
         state.output.append(state.allocator, '\n') catch unreachable;
@@ -87,9 +89,11 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
         }
         const hashes = hashesBuf.items;
 
-        state.output.appendSlice(state.allocator, style) catch unreachable;
+        state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
         state.output.appendSlice(state.allocator, hashes) catch unreachable;
+        state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
         state.output.appendSlice(state.allocator, " ") catch unreachable;
+        state.output.appendSlice(state.allocator, style) catch unreachable;
         renderChildrenConsole(node, state, true) catch unreachable;
         state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
         state.output.append(state.allocator, '\n') catch unreachable;

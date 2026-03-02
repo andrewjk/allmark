@@ -18,8 +18,6 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
     _ = decode;
 
     state.output.appendSlice(state.allocator, ansiGreen) catch unreachable;
-    state.output.append(state.allocator, '`') catch unreachable;
     renderChildrenConsole(node, state, true) catch unreachable;
-    state.output.append(state.allocator, '`') catch unreachable;
     state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
 }

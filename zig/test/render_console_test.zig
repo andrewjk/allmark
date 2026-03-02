@@ -26,7 +26,7 @@ test "renders paragraph to console" {
 
 test "renders heading to console with color" {
     const input = "# Heading 1\n## Heading 2";
-    const expected = "\x1b[1m\x1b[36m# Heading 1\x1b[0m\n\x1b[1m\x1b[34m## Heading 2\x1b[0m";
+    const expected = "\x1b[2m#\x1b[0m \x1b[1m\x1b[35mHeading 1\x1b[0m\n\x1b[2m##\x1b[0m \x1b[1m\x1b[35mHeading 2\x1b[0m";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);
@@ -44,7 +44,7 @@ test "renders heading to console with color" {
 
 test "renders bulleted list with Unicode bullets" {
     const input = "- Item 1\n- Item 2";
-    const expected = "• Item 1\n• Item 2";
+    const expected = "\x1b[2m•\x1b[0m Item 1\n\x1b[2m•\x1b[0m Item 2";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);
@@ -62,7 +62,7 @@ test "renders bulleted list with Unicode bullets" {
 
 test "renders ordered list" {
     const input = "1. First\n2. Second";
-    const expected = "1. First\n2. Second";
+    const expected = "\x1b[2m1.\x1b[0m First\n\x1b[2m2.\x1b[0m Second";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);
@@ -98,7 +98,7 @@ test "renders code fence with box drawing" {
 
 test "renders inline code" {
     const input = "`code`";
-    const expected = "\x1b[32m`code`\x1b[0m";
+    const expected = "\x1b[32mcode\x1b[0m";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);
@@ -155,7 +155,7 @@ test "renders thematic break" {
 
 test "renders task list" {
     const input = "- [x] Done\n- [ ] Todo";
-    const expected = "• [✓] Done\n• [ ] Todo";
+    const expected = "\x1b[2m•\x1b[0m \x1b[2m[\x1b[0m✓\x1b[2m]\x1b[0m Done\n\x1b[2m•\x1b[0m \x1b[2m[\x1b[0m \x1b[2m]\x1b[0m Todo";
 
     const gpa = std.testing.allocator;
     var rules = try gfm.init(gpa);
@@ -227,7 +227,7 @@ test "renders emphasis text" {
 
 test "renders link" {
     const input = "[text](url)";
-    const expected = "\x1b[34m\x1b[4mtext\x1b[0m (url)";
+    const expected = "\x1b[4m\x1b[34mtext\x1b[0m \x1b[2m(url)\x1b[0m";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);
@@ -245,7 +245,7 @@ test "renders link" {
 
 test "renders image" {
     const input = "![alt](url)";
-    const expected = "\x1b[2m[Image: alt]\x1b[0m";
+    const expected = "\x1b[90m[Image: alt]\x1b[0m";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);
@@ -299,7 +299,7 @@ test "renders alert with emoji" {
 
 test "renders nested list with different bullets" {
     const input = "- Level 1\n  - Level 2\n    - Level 3";
-    const expected = "• Level 1\n  ◦ Level 2\n    ▪ Level 3";
+    const expected = "\x1b[2m•\x1b[0m Level 1\n  \x1b[2m◦\x1b[0m Level 2\n    \x1b[2m▪\x1b[0m Level 3";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);
@@ -335,7 +335,7 @@ test "renders hard break" {
 
 test "renders heading with underline Setext style" {
     const input = "Heading\n=======\n\nSubheading\n-------";
-    const expected = "\x1b[1m\x1b[36mHeading\n=======\x1b[0m\n\x1b[1m\x1b[34mSubheading\n----------\x1b[0m";
+    const expected = "\x1b[1m\x1b[35mHeading\n\x1b[0m\x1b[2m=======\x1b[0m\n\x1b[1m\x1b[35mSubheading\n\x1b[0m\x1b[2m----------\x1b[0m";
 
     const gpa = std.testing.allocator;
     var rules = try core.init(gpa);
