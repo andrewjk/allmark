@@ -1140,14 +1140,14 @@ test "Code fence with trailing spaces after opening" {
 
 test "Code fence with HTML entities in info" {
     const input =
-        \\\```&lt;test&gt;
-        \\\code
-        \\\```
+        \\```&lt;test&gt;
+        \\code
+        \\```
     ;
     const expected =
-        \\\<pre><code class="language-&lt;test&gt;">code
-        \\\</code></pre>
-        \\\\
+        \\<pre><code class="language-&lt;test&gt;">code
+        \\</code></pre>
+        \\
     ;
 
     const gpa = std.testing.allocator;

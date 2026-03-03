@@ -57,7 +57,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             }
 
             if (effective_parent.delimiter.len > 0) {
-                if (std.mem.eql(u8, effective_parent.type, "list_item") and !effective_parent.blankAfter and char == effective_parent.delimiter[0]) {
+                if (std.mem.eql(u8, effective_parent.type, "list_item") and !state.hasBlankLine and char == effective_parent.delimiter[0]) {
                     if (state.openNodes.items.len >= 2) {
                         _ = state.openNodes.pop();
                         closed_node = state.openNodes.pop();
