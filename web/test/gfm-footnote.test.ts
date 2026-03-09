@@ -1,8 +1,9 @@
 import { renderHtmlSync } from "cmark-gfm";
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import gfm from "../src/rulesets/gfm";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 const options = {
 	footnotes: true,
@@ -28,7 +29,7 @@ This is a second line.
 `;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input.substring(1, input.length - 1), gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -43,11 +44,11 @@ Text with a footnote[^1].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -63,11 +64,11 @@ First reference[^1] and second[^2].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -82,11 +83,11 @@ Text[^1].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -101,11 +102,11 @@ Code reference[^1].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -120,11 +121,11 @@ Link reference[^1].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -137,11 +138,11 @@ Unknown footnote[^99].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -158,11 +159,11 @@ Multiline[^1].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -177,11 +178,11 @@ First[^1] and second[^1] use same footnote.
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -198,11 +199,11 @@ First[^1] and second[^1] use same footnote.
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -217,11 +218,11 @@ First[^1] and second[^1] use same footnote.
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -236,11 +237,11 @@ Special label[^a-b_c].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -255,11 +256,11 @@ Mixed case[^ABC].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -275,11 +276,11 @@ Text[^1]
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -294,11 +295,11 @@ Text[^1]
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -314,11 +315,11 @@ Text[^1] [foo]
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -334,11 +335,11 @@ Text[^1] [foo]
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -353,11 +354,11 @@ Text[^1] [foo]
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -376,11 +377,11 @@ Text[^1] [foo]
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -397,11 +398,11 @@ Footnote 1 link[^first].
 		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 });

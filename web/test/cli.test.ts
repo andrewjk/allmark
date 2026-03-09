@@ -3,7 +3,11 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import type { Mock } from "vitest";
 import { getRuleset, parseArgs } from "../src/bin/index";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
+import core from "../src/rulesets/core";
+import extended from "../src/rulesets/extended";
+import gfm from "../src/rulesets/gfm";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 vi.mock("node:fs", () => ({
 	readFileSync: vi.fn(),
@@ -218,28 +222,25 @@ describe("CLI main integration", () => {
 	});
 
 	test("parses markdown to HTML with core ruleset", () => {
-		const ruleset = getRuleset("core");
 		const markdown = "# Heading\n\nParagraph text";
-		const document = parse(markdown, ruleset, false);
-		const html = renderHtml(document);
+		const document = parse(markdown, core);
+		const html = render(document, htmlRenderers);
 		expect(html).toContain("<h1>Heading</h1>");
 		expect(html).toContain("<p>Paragraph text</p>");
 	});
 
 	test("parses markdown to HTML with gfm ruleset", () => {
-		const ruleset = getRuleset("gfm");
 		const markdown = "# Heading\n\n- List item 1\n- List item 2";
-		const document = parse(markdown, ruleset, false);
-		const html = renderHtml(document);
+		const document = parse(markdown, gfm);
+		const html = render(document, htmlRenderers);
 		expect(html).toContain("<h1>Heading</h1>");
 		expect(html).toContain("<ul>");
 	});
 
 	test("parses markdown to HTML with extended ruleset", () => {
-		const ruleset = getRuleset("extended");
 		const markdown = "# Heading\n\n**bold** text";
-		const document = parse(markdown, ruleset, false);
-		const html = renderHtml(document);
+		const document = parse(markdown, extended);
+		const html = render(document, htmlRenderers);
 		expect(html).toContain("<h1>Heading</h1>");
 		expect(html).toContain("<strong>bold</strong>");
 	});

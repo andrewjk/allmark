@@ -20,12 +20,23 @@ pnpm add allmark
 
 ### API
 
+The simple approach:
+
 ```ts
-import { core, extended, gfm, parse, renderHtml } from "allmark";
+import { consoleRenderers, core, extended, gfm, htmlRenderers, transform } from "allmark";
+
+const markdown = "# Hello, world!";
+const html = transform(markdown, gfm, htmlRenderers);
+```
+
+For more control:
+
+```ts
+import { consoleRenderers, core, extended, gfm, htmlRenderers, parse, render } from "allmark";
 
 const markdown = "# Hello, world!";
 const document = parse(markdown, gfm);
-const html = renderHtml(document);
+const html = render(document, htmlRenderers);
 ```
 
 ### CLI

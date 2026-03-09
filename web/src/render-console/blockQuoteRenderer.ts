@@ -14,7 +14,6 @@ function render(node: MarkdownNode, state: RendererState): void {
 	const s = state as ConsoleRendererState;
 	const style = ANSI.dim;
 	const reset = ANSI.reset;
-	s.quoteDepth++;
 	if (s.output.length && !s.output.endsWith("\n")) {
 		s.output += "\n";
 	}
@@ -25,7 +24,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 	}
 	if (node.children) {
 		for (const child of node.children) {
-			const lines = renderNodeToString(child, s, s.quoteDepth);
+			const lines = renderNodeToString(child, s);
 			for (const line of lines.split("\n")) {
 				if (line) {
 					s.output += `${style}┃${reset} ${line}\n`;
@@ -33,14 +32,9 @@ function render(node: MarkdownNode, state: RendererState): void {
 			}
 		}
 	}
-	s.quoteDepth--;
 }
 
-function renderNodeToString(
-	node: MarkdownNode,
-	state: ConsoleRendererState,
-	_depth: number,
-): string {
+function renderNodeToString(node: MarkdownNode, state: ConsoleRendererState): string {
 	const output = state.output;
 	state.output = "";
 	const renderer = state.renderers.get(node.type);

@@ -1,7 +1,8 @@
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import extended from "../src/rulesets/extended";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 describe("deletion", () => {
 	test("deletion single", () => {
@@ -12,11 +13,11 @@ This text was {-deleted-} recently.
 <p>This text was <del class="markdown-deletion">deleted</del> recently.</p>
 `;
 		const docSpaced = parse(input, extended);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -28,11 +29,11 @@ This text was {--deleted--} recently.
 <p>This text was <del class="markdown-deletion">deleted</del> recently.</p>
 `;
 		const docSpaced = parse(input, extended);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -44,11 +45,11 @@ This text was {---deleted---} recently.
 <p>This text was {---deleted---} recently.</p>
 `;
 		const docSpaced = parse(input, extended);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -56,7 +57,7 @@ This text was {---deleted---} recently.
 		const input = `text {-a-} more`;
 		const expected = `<p>text <del class="markdown-deletion">a</del> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -64,7 +65,7 @@ This text was {---deleted---} recently.
 		const input = `text {-with spaces-} more`;
 		const expected = `<p>text <del class="markdown-deletion">with spaces</del> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -72,7 +73,7 @@ This text was {---deleted---} recently.
 		const input = `{-deleted-} This is new.`;
 		const expected = `<p><del class="markdown-deletion">deleted</del> This is new.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -80,7 +81,7 @@ This text was {---deleted---} recently.
 		const input = `This is {-deleted-}`;
 		const expected = `<p>This is <del class="markdown-deletion">deleted</del></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -88,7 +89,7 @@ This text was {---deleted---} recently.
 		const input = `text {-word!-} more`;
 		const expected = `<p>text <del class="markdown-deletion">word!</del> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -96,7 +97,7 @@ This text was {---deleted---} recently.
 		const input = `text {-a-b-} more`;
 		const expected = `<p>text <del class="markdown-deletion">a-b</del> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -104,7 +105,7 @@ This text was {---deleted---} recently.
 		const input = `test{-ing-}test`;
 		const expected = `<p>test<del class="markdown-deletion">ing</del>test</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -112,7 +113,7 @@ This text was {---deleted---} recently.
 		const input = `text{--}text`;
 		const expected = `<p>text{--}text</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -120,7 +121,7 @@ This text was {---deleted---} recently.
 		const input = `text {-**bold**-}`;
 		const expected = `<p>text <del class="markdown-deletion"><strong>bold</strong></del></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -128,7 +129,7 @@ This text was {---deleted---} recently.
 		const input = `text {-\`code\`-}`;
 		const expected = `<p>text <del class="markdown-deletion"><code>code</code></del></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -136,7 +137,7 @@ This text was {---deleted---} recently.
 		const input = `text \\{-not deletion\\-}`;
 		const expected = `<p>text {-not deletion-}</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -144,7 +145,7 @@ This text was {---deleted---} recently.
 		const input = `text {-not closed`;
 		const expected = `<p>text {-not closed</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -152,7 +153,7 @@ This text was {---deleted---} recently.
 		const input = `text not opened-}`;
 		const expected = `<p>text not opened-}</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -162,7 +163,7 @@ This text was {---deleted---} recently.
 <li>Item with <del class="markdown-deletion">deletion</del></li>
 </ul>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -172,7 +173,7 @@ This text was {---deleted---} recently.
 <p>Quote with <del class="markdown-deletion">deletion</del></p>
 </blockquote>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -180,7 +181,7 @@ This text was {---deleted---} recently.
 		const input = `text {-plus - inside-}`;
 		const expected = `<p>text <del class="markdown-deletion">plus - inside</del></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -188,7 +189,7 @@ This text was {---deleted---} recently.
 		const input = `{-Start-} of document.`;
 		const expected = `<p><del class="markdown-deletion">Start</del> of document.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -196,7 +197,7 @@ This text was {---deleted---} recently.
 		const input = `End of {-document-}`;
 		const expected = `<p>End of <del class="markdown-deletion">document</del></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -204,7 +205,7 @@ This text was {---deleted---} recently.
 		const input = `{-first-} and {-second-} and {-third-}`;
 		const expected = `<p><del class="markdown-deletion">first</del> and <del class="markdown-deletion">second</del> and <del class="markdown-deletion">third</del></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -212,7 +213,7 @@ This text was {---deleted---} recently.
 		const input = `{-deleted *text-} that shouldn't be bold*`;
 		const expected = `<p><del class="markdown-deletion">deleted *text</del> that shouldn't be bold*</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -220,7 +221,7 @@ This text was {---deleted---} recently.
 		const input = `*this text should be {-deleted but not bold*-}`;
 		const expected = `<p>*this text should be <del class="markdown-deletion">deleted but not bold*</del></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 });

@@ -1,10 +1,11 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import parse from "../parse";
-import renderHtml from "../renderHtml";
-import renderToConsole from "../renderToConsole";
+import render from "../render";
+import consoleRenderers from "../rulesets/consoleRenderers";
 import core from "../rulesets/core";
 import extended from "../rulesets/extended";
 import gfm from "../rulesets/gfm";
+import htmlRenderers from "../rulesets/htmlRenderers";
 import type RuleSet from "../types/RuleSet";
 
 type Ruleset = "core" | "gfm" | "extended";
@@ -122,13 +123,13 @@ export function main(): void {
 	try {
 		const markdown = readFileSync(args.input, "utf-8");
 		const ruleset = getRuleset(args.ruleset);
-		const document = parse(markdown, ruleset, false);
+		const document = parse(markdown, ruleset);
 		let output: string;
 
 		if (args.format === "console") {
-			output = renderToConsole(document);
+			output = render(document, consoleRenderers);
 		} else {
-			output = renderHtml(document);
+			output = render(document, htmlRenderers);
 		}
 
 		if (args.output) {

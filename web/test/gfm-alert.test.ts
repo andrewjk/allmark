@@ -1,7 +1,8 @@
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import gfm from "../src/rulesets/gfm";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 describe("alert", () => {
 	test("spec alert", () => {
@@ -17,11 +18,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -38,11 +39,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -59,11 +60,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -80,11 +81,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -101,11 +102,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -125,11 +126,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -146,11 +147,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -175,11 +176,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -202,11 +203,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -223,11 +224,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -244,11 +245,11 @@ describe("alert", () => {
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -265,11 +266,11 @@ It should not be treated as an alert.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -286,11 +287,11 @@ It should be a regular blockquote.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -312,11 +313,11 @@ It should be a regular blockquote.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -340,11 +341,11 @@ It should be a regular blockquote.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -362,11 +363,11 @@ It should be a regular blockquote.</p>
 `;
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 });

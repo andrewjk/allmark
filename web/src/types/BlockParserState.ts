@@ -16,7 +16,4 @@ export default interface BlockParserState {
 	hasBlankLine: boolean;
 	refs: Record<string, LinkReference>;
 	footnotes: Record<string, FootnoteReference>;
-
-	// HACK:
-	debug?: boolean;
 }

@@ -130,12 +130,13 @@ All implementations share similar structure:
 ```typescript
 import { expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import core from "../src/rulesets/core";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 test("description", () => {
-    const root = parse(input, core, false);
-    const html = renderHtml(root);
+    const root = parse(input, core);
+    const html = render(root, htmlRenderers);
     expect(html).toBe(expected);
 });
 ```

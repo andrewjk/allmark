@@ -7,7 +7,7 @@ import isNewLine from "./utils/isNewLine";
 import isSpace from "./utils/isSpace";
 import newNode from "./utils/newNode";
 
-export default function parse(src: string, rules: RuleSet, debug = false): MarkdownNode {
+export default function parse(src: string, rules: RuleSet): MarkdownNode {
 	let document = newNode("document", true, 0, 1, 1, "", 0, []);
 
 	// Skip empty lines at the start
@@ -33,7 +33,6 @@ export default function parse(src: string, rules: RuleSet, debug = false): Markd
 		openNodes: [document],
 		refs: {},
 		footnotes: {},
-		debug,
 	};
 
 	// Stage 1 -- parse each line into blocks

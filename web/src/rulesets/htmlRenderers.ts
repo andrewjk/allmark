@@ -6,6 +6,7 @@ import codeSpanRenderer from "../render/codeSpanRenderer";
 import commentRenderer from "../render/commentRenderer";
 import deletionRenderer from "../render/deletionRenderer";
 import emphasisRenderer from "../render/emphasisRenderer";
+import footnoteListRenderer from "../render/footnoteListRenderer";
 import footnoteRenderer from "../render/footnoteRenderer";
 import hardBreakRenderer from "../render/hardBreakRenderer";
 import headingRenderer from "../render/headingRenderer";
@@ -42,6 +43,7 @@ const renderers: Map<string, Renderer> = new Map([
 	[deletionRenderer.name, deletionRenderer],
 	[emphasisRenderer.name, emphasisRenderer],
 	[footnoteRenderer.name, footnoteRenderer],
+	[footnoteListRenderer.name, footnoteListRenderer],
 	[hardBreakRenderer.name, hardBreakRenderer],
 	[headingRenderer.name, headingRenderer],
 	[headingUnderlineRenderer.name, headingUnderlineRenderer],

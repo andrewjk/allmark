@@ -1,8 +1,9 @@
 import { renderHtmlSync } from "cmark-gfm";
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import core from "../src/rulesets/core";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 const options = { unsafe: true };
 
@@ -14,7 +15,7 @@ describe("html blocks", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -32,7 +33,7 @@ alert('bye');
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -43,7 +44,7 @@ alert('bye');
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -54,7 +55,7 @@ alert('bye');
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -66,7 +67,7 @@ alert('bye');
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -77,7 +78,7 @@ alert('bye');
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -95,7 +96,7 @@ multi-line comment
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -106,7 +107,7 @@ multi-line comment
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -117,7 +118,7 @@ multi-line comment
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -128,7 +129,7 @@ multi-line comment
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -139,7 +140,7 @@ multi-line comment
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -154,7 +155,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -165,7 +166,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -176,7 +177,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -192,7 +193,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -203,7 +204,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -214,7 +215,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -226,7 +227,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -237,7 +238,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -248,7 +249,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -259,7 +260,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -270,7 +271,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -285,7 +286,7 @@ Next paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -299,7 +300,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -310,7 +311,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -325,7 +326,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -336,7 +337,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -347,7 +348,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -358,7 +359,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -369,7 +370,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -380,7 +381,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -391,7 +392,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -402,7 +403,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -413,7 +414,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -424,7 +425,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -435,7 +436,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -446,7 +447,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -457,7 +458,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -468,7 +469,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -479,7 +480,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -490,7 +491,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -501,7 +502,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -512,7 +513,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -523,7 +524,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -534,7 +535,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -545,7 +546,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -556,7 +557,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -567,7 +568,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -578,7 +579,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -589,7 +590,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -603,7 +604,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -614,7 +615,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -625,7 +626,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -636,7 +637,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -647,7 +648,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -658,7 +659,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -669,7 +670,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -680,7 +681,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -691,7 +692,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -702,7 +703,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -713,7 +714,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -724,7 +725,7 @@ Paragraph text
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -744,7 +745,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -763,7 +764,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -776,7 +777,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -787,7 +788,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -798,7 +799,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -809,7 +810,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -820,7 +821,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -831,7 +832,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -842,7 +843,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -853,7 +854,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -865,7 +866,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -884,7 +885,7 @@ Line 3
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input, options));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 });

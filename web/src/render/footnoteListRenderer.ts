@@ -1,7 +1,15 @@
+import type MarkdownNode from "../types/MarkdownNode";
+import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
 import renderChildren from "./renderChildren";
 
-export default function renderFootnoteList(state: RendererState): void {
+const renderer: Renderer = {
+	name: "footnote_list",
+	render,
+};
+export default renderer;
+
+function render(_node: MarkdownNode, state: RendererState): void {
 	state.output += `<section class="footnotes">\n<ol>\n`;
 	let number = 1;
 	for (let node of state.footnotes) {

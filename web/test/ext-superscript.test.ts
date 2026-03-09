@@ -1,7 +1,8 @@
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import extended from "../src/rulesets/extended";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 describe("superscript", () => {
 	test("superscript single", () => {
@@ -12,11 +13,11 @@ This should be ^up^ above everything else.
 <p>This should be <sup>up</sup> above everything else.</p>
 `;
 		const docSpaced = parse(input, extended);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -28,11 +29,11 @@ This should be ^^up^^ above everything else.
 <p>This should be <sup>up</sup> above everything else.</p>
 `;
 		const docSpaced = parse(input, extended);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -44,11 +45,11 @@ This should be ^^^up^^^ above everything else.
 <p>This should be ^^^up^^^ above everything else.</p>
 `;
 		const docSpaced = parse(input, extended);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), extended);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -56,7 +57,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `x^2^`;
 		const expected = `<p>x<sup>2</sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -64,7 +65,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `E=mc^2^`;
 		const expected = `<p>E=mc<sup>2</sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -72,7 +73,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `x^2^ + y^2^ = z^2^`;
 		const expected = `<p>x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -80,7 +81,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `^note^ This is important.`;
 		const expected = `<p><sup>note</sup> This is important.</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -88,7 +89,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `See footnote^1^`;
 		const expected = `<p>See footnote<sup>1</sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -96,7 +97,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `Hello^world!^`;
 		const expected = `<p>Hello<sup>world!</sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -104,7 +105,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `text ^with spaces^ more`;
 		const expected = `<p>text <sup>with spaces</sup> more</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -112,7 +113,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `math^2+3^`;
 		const expected = `<p>math<sup>2+3</sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -120,7 +121,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `test^ing^test`;
 		const expected = `<p>test<sup>ing</sup>test</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -128,7 +129,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `text^^text`;
 		const expected = `<p>text^^text</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -136,7 +137,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `text ^**bold**^`;
 		const expected = `<p>text <sup><strong>bold</strong></sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -144,7 +145,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `text ^\`code\`^`;
 		const expected = `<p>text <sup><code>code</code></sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -152,7 +153,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `text \\^not superscript\\^`;
 		const expected = `<p>text ^not superscript^</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -160,7 +161,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `text ^not closed`;
 		const expected = `<p>text ^not closed</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -168,7 +169,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `text not opened^`;
 		const expected = `<p>text not opened^</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -178,7 +179,7 @@ This should be ^^^up^^^ above everything else.
 <li>Item with <sup>superscript</sup></li>
 </ul>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -188,7 +189,7 @@ This should be ^^^up^^^ above everything else.
 <p>Quote with <sup>superscript</sup></p>
 </blockquote>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -197,7 +198,7 @@ This should be ^^^up^^^ above everything else.
 		// The first pair of carets creates a superscript, leaving ^z^ as text
 		const expected = `<p>x<sup>y</sup>z^</p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -205,7 +206,7 @@ This should be ^^^up^^^ above everything else.
 		const input = `text ^caret ^ inside^`;
 		const expected = `<p>text <sup>caret ^ inside</sup></p>`;
 		const doc = parse(input, extended);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 });

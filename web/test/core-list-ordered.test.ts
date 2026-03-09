@@ -1,8 +1,9 @@
 import { renderHtmlSync } from "cmark-gfm";
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import core from "../src/rulesets/core";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 describe("ordered lists", () => {
 	test("Simple ordered list with period delimiter", () => {
@@ -14,7 +15,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -27,7 +28,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -40,7 +41,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -53,7 +54,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -66,7 +67,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -79,7 +80,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -92,7 +93,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -103,7 +104,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -116,7 +117,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -134,7 +135,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -152,7 +153,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -170,7 +171,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -186,7 +187,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -207,7 +208,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -228,7 +229,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -252,7 +253,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -270,7 +271,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -283,7 +284,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -307,7 +308,7 @@ describe("ordered lists", () => {
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -324,7 +325,7 @@ Paragraph
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -341,7 +342,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -359,7 +360,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -381,7 +382,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -394,7 +395,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -407,7 +408,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -431,7 +432,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -444,7 +445,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -457,7 +458,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -473,7 +474,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -502,7 +503,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -515,7 +516,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -527,7 +528,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -540,7 +541,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -564,7 +565,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -586,7 +587,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -610,7 +611,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -628,7 +629,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -641,7 +642,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -662,7 +663,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -673,7 +674,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -684,7 +685,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 
@@ -697,7 +698,7 @@ Paragraph`.substring(1);
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 		const doc = parse(input, core);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html).toBe(expected);
 	});
 });

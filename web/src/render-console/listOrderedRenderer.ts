@@ -22,7 +22,7 @@ function renderNode(
 	bullets: string[],
 ): void {
 	const s = state as ConsoleRendererState;
-	s.depth++;
+	s.listDepth++;
 
 	const style = ANSI.dim;
 	const reset = ANSI.reset;
@@ -40,20 +40,20 @@ function renderNode(
 	for (const item of node.children ?? []) {
 		const prefix = ordered
 			? `${counter}.`
-			: bullets[Math.min(s.depth - 1, bullets.length - 1)] || "•";
+			: bullets[Math.min(s.listDepth - 1, bullets.length - 1)] || "•";
 		if (ordered) counter++;
 
 		if (item.children) {
 			for (const [i, child] of item.children.entries()) {
 				if (!loose && child.type === "paragraph") {
-					const indent = "  ".repeat(s.depth - 1);
+					const indent = "  ".repeat(s.listDepth - 1);
 					if (i === 0) {
 						s.output += `${indent}${style}${prefix}${reset} `;
 					}
 					renderChildren(child, state);
 					s.output += "\n";
 				} else {
-					const indent = "  ".repeat(s.depth - 1);
+					const indent = "  ".repeat(s.listDepth - 1);
 					if (i === 0) {
 						s.output += `${indent}${style}${prefix}${reset} `;
 					}
@@ -66,7 +66,7 @@ function renderNode(
 		}
 	}
 
-	s.depth--;
+	s.listDepth--;
 }
 
 function isLooseList(node: MarkdownNode): boolean {

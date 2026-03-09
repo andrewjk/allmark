@@ -1,8 +1,9 @@
 import { renderHtmlSync } from "cmark-gfm";
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import gfm from "../src/rulesets/gfm";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 const options = {
 	footnotes: true,
@@ -24,11 +25,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -42,11 +43,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -61,11 +62,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -79,11 +80,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -96,11 +97,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -112,11 +113,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -130,11 +131,11 @@ describe("table", () => {
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -147,11 +148,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -164,11 +165,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -184,11 +185,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -202,11 +203,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
@@ -220,11 +221,11 @@ a | b | c
 		const expected = renderHtmlSync(input, options);
 
 		const docSpaced = parse(input, gfm);
-		const htmlSpaced = renderHtml(docSpaced);
+		const htmlSpaced = render(docSpaced, htmlRenderers);
 		expect(htmlSpaced.trim()).toBe(expected.trim());
 
 		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = renderHtml(docTrimmed);
+		const htmlTrimmed = render(docTrimmed, htmlRenderers);
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 });

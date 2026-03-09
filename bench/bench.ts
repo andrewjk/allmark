@@ -7,8 +7,9 @@ import { gfm, gfmHtml } from "micromark-extension-gfm";
 import fs from "node:fs";
 import { Bench } from "tinybench";
 import parse from "../web/src/parse";
-import renderHtml from "../web/src/renderHtml";
+import render from "../web/src/render";
 import gfmx from "../web/src/rulesets/gfm"
+import htmlRenderers from "../web/src/rulesets/htmlRenderers"
 import { renderHtmlSync } from "cmark-gfm"
 
 // Markdown file from https://gist.github.com/allysonsilva/85fff14a22bbdf55485be947566cc09e
@@ -46,9 +47,8 @@ fs.writeFileSync(
 
 // ALLMARK
 const allmarkHtmlFile = "./full-allmark.html";
-const root = parse(markdownSource, gfmx);
-fs.writeFileSync(allmarkHtmlFile, renderHtml(root, gfmx.renderers)
-);
+const doc = parse(markdownSource, gfmx);
+fs.writeFileSync(allmarkHtmlFile, render(doc, htmlRenderers));
 
 // MARKDOWN-IT
 const md = markdownit().use(mditfootnote).use(mdittasklist);
@@ -80,7 +80,7 @@ bench
 	})
 	.add("allmark", () => {
 		const doc = parse(markdownSource, gfmx);
-		renderHtml(doc, gfmx.renderers);
+		render(doc, htmlRenderers);
 	})
 	.add("cmark-gfm", () => {
 		renderHtmlSync(markdownSource, cmarkOptions);

@@ -1,7 +1,8 @@
 import { expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import core from "../src/rulesets/core";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 test("basic parse", () => {
 	const input = `
@@ -15,6 +16,10 @@ Here is some text
 - Loose item 1
 
 - Loose item 2
+
+## Subtest
+
+Here is some more text
 `;
 	const expected = `
 <h1>Test</h1>
@@ -31,9 +36,10 @@ Here is some text
 <p>Loose item 2</p>
 </li>
 </ul>
+<h2>Subtest</h2>
+<p>Here is some more text</p>
 `.trimStart();
-	const root = parse(input, core, false);
-	//console.log(JSON.stringify(root, null, 2));
-	const html = renderHtml(root);
+	const doc = parse(input, core);
+	const html = render(doc, htmlRenderers);
 	expect(html).toBe(expected);
 });

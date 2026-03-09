@@ -1,8 +1,9 @@
 import { renderHtmlSync } from "cmark-gfm";
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 import gfm from "../src/rulesets/gfm";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 const options = {
 	footnotes: true,
@@ -21,7 +22,7 @@ describe("strikethrough", () => {
 `;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input.substring(1, input.length - 1), gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -29,7 +30,7 @@ describe("strikethrough", () => {
 		const input = `~~deleted~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -37,7 +38,7 @@ describe("strikethrough", () => {
 		const input = `~~this is deleted~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -45,7 +46,7 @@ describe("strikethrough", () => {
 		const input = `~~  spaces  ~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -53,7 +54,7 @@ describe("strikethrough", () => {
 		const input = `~~*bold and deleted*~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -61,7 +62,7 @@ describe("strikethrough", () => {
 		const input = `*~~deleted in italic~~*`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -69,7 +70,7 @@ describe("strikethrough", () => {
 		const input = `~~code: \`var x\` here~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -77,7 +78,7 @@ describe("strikethrough", () => {
 		const input = `~~[link text](http://example.com)~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -85,7 +86,7 @@ describe("strikethrough", () => {
 		const input = `~~first~~ and ~~second~~ and ~~third~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -93,7 +94,7 @@ describe("strikethrough", () => {
 		const input = `~~deleted~~ followed by normal text.`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -101,7 +102,7 @@ describe("strikethrough", () => {
 		const input = `Normal text followed by ~~deleted~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -110,7 +111,7 @@ describe("strikethrough", () => {
 - normal item`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -118,7 +119,7 @@ describe("strikethrough", () => {
 		const input = `~~text with ~ tilde~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -126,7 +127,7 @@ describe("strikethrough", () => {
 		const input = `~~~~double~~~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -135,7 +136,7 @@ describe("strikethrough", () => {
 line two~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -143,7 +144,7 @@ line two~~`;
 		const input = `~~Hello, world!~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -151,7 +152,7 @@ line two~~`;
 		const input = `~~12345~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -161,7 +162,7 @@ line two~~`;
 | ~~deleted~~ | normal |`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -169,7 +170,7 @@ line two~~`;
 		const input = `normal~~deleted~~normal`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 
@@ -177,7 +178,7 @@ line two~~`;
 		const input = `~~text with \\*asterisk\\*~~`;
 		const expected = renderHtmlSync(input, options);
 		const doc = parse(input, gfm);
-		const html = renderHtml(doc);
+		const html = render(doc, htmlRenderers);
 		expect(html.trim()).toBe(expected.trim());
 	});
 });

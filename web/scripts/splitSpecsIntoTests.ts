@@ -41,7 +41,7 @@ async function splitSpecsIntoTests(specFile: string) {
 	const output = `
 import { describe, expect, test } from "vitest";
 import parse from "../src/parse";
-import renderHtml from "../src/renderHtml";
+import render from "../src/render";
 
 describe("${testName}", () => {
 ${tests
@@ -51,7 +51,7 @@ ${tests
 		const input = \`\n${t.input.replaceAll("\\", "\\\\").replaceAll("`", "\\`")}\n\`;
 		const expected = \`\n${t.expected.replaceAll("\\", "\\\\").replaceAll("`", "\\`")}\n\`;
 		const doc = parse(input.substring(1, input.length -1));
-		const html = renderHtml(doc);
+		const html = render(doc);
 		expect(html.trim()).toBe(expected.trim());
 	});
 `.slice(1);
