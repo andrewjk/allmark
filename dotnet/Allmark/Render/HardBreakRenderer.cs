@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class HardBreakRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "hard_break",
             Render = Render,

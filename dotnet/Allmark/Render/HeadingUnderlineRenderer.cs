@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class HeadingUnderlineRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "heading_underline",
             Render = HeadingRenderer.Render,

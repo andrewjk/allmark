@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class ConsoleStrikethroughRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "strikethrough",
             Render = (node, state, first, last, decode) => Render(node, state),

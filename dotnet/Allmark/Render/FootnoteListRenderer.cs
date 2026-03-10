@@ -2,19 +2,28 @@ namespace Allmark.Render;
 
 using Allmark.Types;
 
-public static class RenderFootnoteList
+public static class FootnoteListRenderer
 {
-    public static void Execute(RendererState state)
+    public static OutputRenderer Create()
+    {
+        return new OutputRenderer
+        {
+            Name = "footnote_list",
+            Render = Render,
+        };
+    }
+
+    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
     {
         state.Output.Append("<section class=\"footnotes\">\n<ol>\n");
         var number = 1;
-        foreach (var node in state.Footnotes)
+        foreach (var footnote in state.Footnotes)
         {
             var label = number++;
             var id = $"fn{label}";
             var href = $"#fnref{label}";
             state.Output.Append($"<li id=\"{id}\">");
-            RenderChildren.Execute(node, state);
+            RenderChildren.Execute(footnote, state);
             var output = state.Output.ToString();
             if (output.EndsWith("</p>\n"))
             {

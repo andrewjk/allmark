@@ -20,8 +20,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> bar</li>
 </ul>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -37,8 +37,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -54,8 +54,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -71,8 +71,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked item</li>
 </ol>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -90,8 +90,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" disabled="""" /> <del>strikethrough</del> task</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -107,8 +107,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> another <code>code</code> task</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -124,8 +124,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked <a href=""http://example.com"">link</a> task</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -148,8 +148,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> another parent</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -169,8 +169,8 @@ public class GfmTasklistTests
 <li>another regular item</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -186,8 +186,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> b</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -203,8 +203,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> </li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -220,8 +220,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked with uppercase</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -239,8 +239,8 @@ public class GfmTasklistTests
 </ul>
 </blockquote>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -262,8 +262,8 @@ public class GfmTasklistTests
 <p>another task</p>
 </li>
 </ul>".Trim();
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root).Trim();
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers).Trim();
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -285,8 +285,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked task</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -302,8 +302,8 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> task with &lt;HTML&gt;</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -321,8 +321,8 @@ public class GfmTasklistTests
 <li>[ x] three</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }

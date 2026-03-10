@@ -15,8 +15,8 @@ public class BlockquoteTests
 		<p>Simple quote</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -35,8 +35,8 @@ public class BlockquoteTests
 		Line 3</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -55,8 +55,8 @@ public class BlockquoteTests
 		Line 3</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -69,8 +69,8 @@ public class BlockquoteTests
 		<p>With space</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -83,8 +83,8 @@ public class BlockquoteTests
 		<p>Without space</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -102,8 +102,8 @@ public class BlockquoteTests
 		<p>Paragraph 2</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -121,8 +121,8 @@ public class BlockquoteTests
 		</code></pre>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -141,8 +141,8 @@ public class BlockquoteTests
 		</ul>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -165,8 +165,8 @@ public class BlockquoteTests
 		</blockquote>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -179,8 +179,8 @@ public class BlockquoteTests
 		<h1>Heading</h1>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -193,8 +193,8 @@ public class BlockquoteTests
 		<p><em>italic</em> and <strong>bold</strong></p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -207,8 +207,8 @@ public class BlockquoteTests
 		<p><code>code</code> inside quote</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -221,8 +221,8 @@ public class BlockquoteTests
 		<p><a href="https://example.com">link</a></p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -235,8 +235,8 @@ public class BlockquoteTests
 		<p>Indented quote</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -249,8 +249,8 @@ public class BlockquoteTests
 		<p>Indented quote</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -262,8 +262,8 @@ public class BlockquoteTests
 		<pre><code>&gt; Not a quote
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -283,8 +283,8 @@ public class BlockquoteTests
 		<p>Quote 2</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -301,8 +301,8 @@ public class BlockquoteTests
 		<p>Quote</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -320,8 +320,8 @@ public class BlockquoteTests
 		<hr />
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -346,8 +346,8 @@ public class BlockquoteTests
 		code</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -374,8 +374,8 @@ public class BlockquoteTests
 		</blockquote>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -387,8 +387,8 @@ public class BlockquoteTests
 		<blockquote>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -400,8 +400,8 @@ public class BlockquoteTests
 		<blockquote>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -414,8 +414,8 @@ public class BlockquoteTests
 		<p>Last quote</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -433,8 +433,8 @@ public class BlockquoteTests
 		</code></pre>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -453,8 +453,8 @@ public class BlockquoteTests
 		</ol>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -470,8 +470,8 @@ public class BlockquoteTests
 		<h1>Heading</h1>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -488,8 +488,8 @@ public class BlockquoteTests
 		Line 2</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -502,8 +502,8 @@ public class BlockquoteTests
 		<p><img src="image.png" alt="alt" /></p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -530,8 +530,8 @@ public class BlockquoteTests
 		</blockquote>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -552,8 +552,8 @@ public class BlockquoteTests
 		Line 4</p>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -577,8 +577,8 @@ public class BlockquoteTests
 		</ul>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -591,8 +591,8 @@ public class BlockquoteTests
 		<div>HTML</div>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -611,8 +611,8 @@ public class BlockquoteTests
 		</ul>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

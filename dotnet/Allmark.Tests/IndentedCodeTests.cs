@@ -14,8 +14,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -27,8 +27,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -46,8 +46,8 @@ public class IndentedCodeTests
 		line 3
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -58,8 +58,8 @@ public class IndentedCodeTests
         var expected = """
 		<p>code here</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -71,8 +71,8 @@ public class IndentedCodeTests
 		<pre><code> code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -84,8 +84,8 @@ public class IndentedCodeTests
 		<pre><code>    code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -103,8 +103,8 @@ public class IndentedCodeTests
 		line 2
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -121,8 +121,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -137,8 +137,8 @@ public class IndentedCodeTests
 		<p>Paragraph
 		code here</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -150,8 +150,8 @@ public class IndentedCodeTests
 		<pre><code>code here  
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -167,8 +167,8 @@ public class IndentedCodeTests
 		    line 2
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -180,8 +180,8 @@ public class IndentedCodeTests
 		<pre><code>`code`
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -193,8 +193,8 @@ public class IndentedCodeTests
 		<pre><code>~code~
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -206,8 +206,8 @@ public class IndentedCodeTests
 		<pre><code>**bold**
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -221,8 +221,8 @@ public class IndentedCodeTests
 		</code></pre>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -238,8 +238,8 @@ public class IndentedCodeTests
 		</li>
 		</ul>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -255,8 +255,8 @@ public class IndentedCodeTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -273,8 +273,8 @@ public class IndentedCodeTests
 		</code></pre>
 		<p>Paragraph</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -291,8 +291,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -310,8 +310,8 @@ public class IndentedCodeTests
 		code 2
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -323,8 +323,8 @@ public class IndentedCodeTests
 		<pre><code>&lt;&gt;&amp; &quot;'\
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -342,8 +342,8 @@ public class IndentedCodeTests
 		</code></pre>
 		<p>line 3</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -360,8 +360,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -378,8 +378,8 @@ public class IndentedCodeTests
 		</code></pre>
 		<h1>Heading</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -396,8 +396,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -414,8 +414,8 @@ public class IndentedCodeTests
 		</code></pre>
 		<hr />
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -434,8 +434,8 @@ public class IndentedCodeTests
 		<pre><code>indented code
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -454,8 +454,8 @@ public class IndentedCodeTests
 		<pre><code> fenced code
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -472,8 +472,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -490,8 +490,8 @@ public class IndentedCodeTests
 		</code></pre>
 		<h1>Heading</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -509,8 +509,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -528,8 +528,8 @@ public class IndentedCodeTests
 		</code></pre>
 		<h1>Heading</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -544,8 +544,8 @@ public class IndentedCodeTests
 		<p>Paragraph
 		code here</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -561,8 +561,8 @@ public class IndentedCodeTests
 		</code></pre>
 		<p>Paragraph</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -574,8 +574,8 @@ public class IndentedCodeTests
 		<pre><code>&amp;lt;code&amp;gt;
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -598,8 +598,8 @@ public class IndentedCodeTests
 		</li>
 		</ul>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -611,8 +611,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -630,8 +630,8 @@ public class IndentedCodeTests
 		</code></pre>
 		<p>level 3</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -643,8 +643,8 @@ public class IndentedCodeTests
 		<pre><code>code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -656,8 +656,8 @@ public class IndentedCodeTests
 		<pre><code>    code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -668,8 +668,8 @@ public class IndentedCodeTests
         var expected = """
 		<p>code here</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -681,8 +681,8 @@ public class IndentedCodeTests
 		<pre><code>  code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -694,8 +694,8 @@ public class IndentedCodeTests
 		<pre><code>        code here
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -707,8 +707,8 @@ public class IndentedCodeTests
 		<pre><code>hello 世界
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -720,8 +720,8 @@ public class IndentedCodeTests
 		<pre><code>[link](https://example.com)
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -733,8 +733,8 @@ public class IndentedCodeTests
 		<pre><code>![alt](image.png)
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -746,8 +746,8 @@ public class IndentedCodeTests
 		<pre><code>*italic*
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -759,8 +759,8 @@ public class IndentedCodeTests
 		<pre><code>**bold**
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -769,8 +769,8 @@ public class IndentedCodeTests
     {
         var input = "    \n    ";
         var expected = "";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, html.Trim());
     }
 
@@ -779,8 +779,8 @@ public class IndentedCodeTests
     {
         var input = "    \n    \n    ";
         var expected = "";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, html.Trim());
     }
 
@@ -792,8 +792,8 @@ public class IndentedCodeTests
 		<pre><code>`inline code`
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

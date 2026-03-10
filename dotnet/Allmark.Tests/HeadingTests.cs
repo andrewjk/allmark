@@ -13,8 +13,8 @@ public class HeadingTests
         var expected = """
 		<h1>Heading 1</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -25,8 +25,8 @@ public class HeadingTests
         var expected = """
 		<h2>Heading 2</h2>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -37,8 +37,8 @@ public class HeadingTests
         var expected = """
 		<h3>Heading 3</h3>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -49,8 +49,8 @@ public class HeadingTests
         var expected = """
 		<h4>Heading 4</h4>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -61,8 +61,8 @@ public class HeadingTests
         var expected = """
 		<h5>Heading 5</h5>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -73,8 +73,8 @@ public class HeadingTests
         var expected = """
 		<h6>Heading 6</h6>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -85,8 +85,8 @@ public class HeadingTests
         var expected = """
 		<h1>Heading 1</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -97,8 +97,8 @@ public class HeadingTests
         var expected = """
 		<h2>Heading 2</h2>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -109,8 +109,8 @@ public class HeadingTests
         var expected = """
 		<h1>Heading 1</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -121,8 +121,8 @@ public class HeadingTests
         var expected = """
 		<h1><em>Heading</em> with <strong>emphasis</strong></h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -133,8 +133,8 @@ public class HeadingTests
         var expected = """
 		<h1>Heading with <code>code</code></h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -145,8 +145,8 @@ public class HeadingTests
         var expected = """
 		<h1>Heading with <a href="https://example.com">link</a></h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -160,8 +160,8 @@ public class HeadingTests
         var expected = """
 		<h1>Heading 1</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -175,8 +175,8 @@ public class HeadingTests
         var expected = """
 		<h2>Heading 2</h2>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -192,8 +192,8 @@ public class HeadingTests
 		<h1>Heading 1
 		line 2</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -207,8 +207,8 @@ public class HeadingTests
         var expected = """
 		<h1><em>Heading</em> 1</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -219,8 +219,8 @@ public class HeadingTests
         var expected = """
 		<h1>Heading 1</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -232,8 +232,8 @@ public class HeadingTests
 		<pre><code># Heading 1
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -244,8 +244,8 @@ public class HeadingTests
         var expected = """
 		<p>#Not a heading</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -256,8 +256,8 @@ public class HeadingTests
         var expected = """
 		<p>####### Not a heading</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -268,8 +268,8 @@ public class HeadingTests
         var expected = """
 		<h1></h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -280,8 +280,8 @@ public class HeadingTests
         var expected = """
 		<h2></h2>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -298,8 +298,8 @@ public class HeadingTests
 		========</li>
 		</ul>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -310,8 +310,8 @@ public class HeadingTests
         var expected = """
 		<h1>Heading with # escaped</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -322,8 +322,8 @@ public class HeadingTests
         var expected = """
 		<h1>Last heading</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -340,8 +340,8 @@ public class HeadingTests
 		<h2>Heading 2</h2>
 		<h3>Heading 3</h3>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -359,8 +359,8 @@ public class HeadingTests
 		<h1>Heading 1</h1>
 		<h2>Heading 2</h2>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -375,8 +375,8 @@ public class HeadingTests
 		<p>Paragraph</p>
 		<h1>Heading</h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -387,8 +387,8 @@ public class HeadingTests
         var expected = """
 		<h1><strong>Bold</strong> text, <em>italic</em> text, <code>code</code>, and <a href="https://example.com">link</a></h1>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

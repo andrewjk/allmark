@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class CommentRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer { Name = "comment", Render = Execute };
+        return new OutputRenderer { Name = "comment", Render = Execute };
     }
 
     public static void Execute(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)

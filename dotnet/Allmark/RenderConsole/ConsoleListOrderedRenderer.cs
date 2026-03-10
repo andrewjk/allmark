@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class ConsoleListOrderedRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "list_ordered",
             Render = (node, state, first, last, decode) => ConsoleListRenderer.Render(node, state, true),

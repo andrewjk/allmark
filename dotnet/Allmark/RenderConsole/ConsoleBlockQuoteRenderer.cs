@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class ConsoleBlockQuoteRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "block_quote",
             Render = Render,
@@ -16,7 +16,6 @@ public static class ConsoleBlockQuoteRenderer
     public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
     {
         var style = Ansi.Dim;
-        state.QuoteDepth++;
         if (state.Output.Length > 0 && state.Output[^1] != '\n')
         {
             state.Output.Append('\n');
@@ -49,8 +48,6 @@ public static class ConsoleBlockQuoteRenderer
                 }
             }
         }
-
-        state.QuoteDepth--;
     }
 
     private static string RenderNodeToString(MarkdownNode node, RendererState state)

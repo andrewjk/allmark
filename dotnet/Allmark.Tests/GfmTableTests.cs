@@ -30,8 +30,8 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -68,8 +68,8 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -108,8 +108,8 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -146,8 +146,8 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -176,8 +176,8 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -199,8 +199,8 @@ public class GfmTableTests
 </thead>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -237,8 +237,8 @@ public class GfmTableTests
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -258,8 +258,8 @@ a | b | c
 1 | 2 | 3</li>
 </ul>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -290,8 +290,8 @@ a | b | c
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -335,8 +335,8 @@ a | b | c
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -367,8 +367,8 @@ a | b | c
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -414,8 +414,8 @@ a | b | c
 </tbody>
 </table>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }

@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class EmphasisRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "emphasis",
             Render = Render,

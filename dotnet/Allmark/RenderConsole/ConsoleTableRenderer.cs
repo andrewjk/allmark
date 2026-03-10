@@ -5,9 +5,9 @@ using System.Text;
 
 public static class ConsoleTableRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "table",
             Render = (node, state, first, last, decode) => Render(node, state),

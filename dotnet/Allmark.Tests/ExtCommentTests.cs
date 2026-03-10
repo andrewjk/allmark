@@ -15,8 +15,8 @@ This text was {>>commented<<} recently.
         var expected = @"
 <p>This text was <span class=""markdown-comment"">commented</span> recently.</p>
 ";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -26,8 +26,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>a<<} more";
         var expected = @"<p>text <span class=""markdown-comment"">a</span> more</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -37,8 +37,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>with spaces<<} more";
         var expected = @"<p>text <span class=""markdown-comment"">with spaces</span> more</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -48,8 +48,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"{>>commented<<} This is new.";
         var expected = @"<p><span class=""markdown-comment"">commented</span> This is new.</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -59,8 +59,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"This is {>>commented<<}";
         var expected = @"<p>This is <span class=""markdown-comment"">commented</span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -70,8 +70,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>word!<<} more";
         var expected = @"<p>text <span class=""markdown-comment"">word!</span> more</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -81,8 +81,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>a-b<<} more";
         var expected = @"<p>text <span class=""markdown-comment"">a-b</span> more</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -92,8 +92,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"test{>>ing<<}test";
         var expected = @"<p>test<span class=""markdown-comment"">ing</span>test</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -103,8 +103,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text{>><<}text";
         var expected = @"<p>text{&gt;&gt;&lt;&lt;}text</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -114,8 +114,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>**bold**<<}";
         var expected = @"<p>text <span class=""markdown-comment""><strong>bold</strong></span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -125,8 +125,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>`code`<<}";
         var expected = @"<p>text <span class=""markdown-comment""><code>code</code></span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -136,8 +136,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text \{>>not comment<<\}";
         var expected = @"<p>text {&gt;&gt;not comment&lt;&lt;}</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -147,8 +147,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>not closed";
         var expected = @"<p>text {&gt;&gt;not closed</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -158,8 +158,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text not opened<<}";
         var expected = @"<p>text not opened&lt;&lt;}</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -171,8 +171,8 @@ This text was {>>commented<<} recently.
         var expected = @"<ul>
 <li>Item with <span class=""markdown-comment"">comment</span></li>
 </ul>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -184,8 +184,8 @@ This text was {>>commented<<} recently.
         var expected = @"<blockquote>
 <p>Quote with <span class=""markdown-comment"">comment</span></p>
 </blockquote>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -195,8 +195,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>some <text> inside<<}";
         var expected = @"<p>text <span class=""markdown-comment"">some <text> inside</span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -206,8 +206,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"{>>Start<<} of document.";
         var expected = @"<p><span class=""markdown-comment"">Start</span> of document.</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -217,8 +217,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"End of {>>document<<}";
         var expected = @"<p>End of <span class=""markdown-comment"">document</span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -228,8 +228,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"{>>first<<} and {>>second<<} and {>>third<<}";
         var expected = @"<p><span class=""markdown-comment"">first</span> and <span class=""markdown-comment"">second</span> and <span class=""markdown-comment"">third</span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -239,8 +239,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"{>>comment *text<<} that shouldn't be bold*";
         var expected = @"<p><span class=""markdown-comment"">comment *text</span> that shouldn't be bold*</p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -250,8 +250,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"*this text should be {>>commented but not bold*<<}";
         var expected = @"<p>*this text should be <span class=""markdown-comment"">commented but not bold*</span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -261,8 +261,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>plus + sign<<}";
         var expected = @"<p>text <span class=""markdown-comment"">plus + sign</span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -272,8 +272,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {>>minus - sign<<}";
         var expected = @"<p>text <span class=""markdown-comment"">minus - sign</span></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -283,8 +283,8 @@ This text was {>>commented<<} recently.
     {
         var input = @"text {+insertion {>>comment<<} end+}";
         var expected = @"<p>text <ins class=""markdown-insertion"">insertion <span class=""markdown-comment"">comment</span> end</ins></p>";
-        var root = Parser.Execute(input, Extended.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }

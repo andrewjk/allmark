@@ -15,8 +15,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -29,8 +29,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -43,8 +43,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -57,8 +57,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -71,8 +71,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -85,8 +85,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -99,8 +99,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -111,8 +111,8 @@ public class ListOrderedTests
         var expected = """
 		<p>1234567890. Item</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -125,8 +125,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -145,8 +145,8 @@ public class ListOrderedTests
 		<li>Item 3</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -165,8 +165,8 @@ public class ListOrderedTests
 		<li>Item 3</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -185,8 +185,8 @@ public class ListOrderedTests
 		<li>Item 3</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -203,8 +203,8 @@ public class ListOrderedTests
 		<li>Item 2</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -226,8 +226,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -249,8 +249,8 @@ public class ListOrderedTests
 		<li>Item 2</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -275,8 +275,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -295,8 +295,8 @@ public class ListOrderedTests
 		</ol>
 		</blockquote>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -309,8 +309,8 @@ public class ListOrderedTests
 		<li></li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -335,8 +335,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -354,8 +354,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -373,8 +373,8 @@ public class ListOrderedTests
 		</ol>
 		<p>Paragraph</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -393,8 +393,8 @@ public class ListOrderedTests
 		<li>Item 2</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -417,8 +417,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -431,8 +431,8 @@ public class ListOrderedTests
 		<li>Item with <em>emphasis</em></li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -445,8 +445,8 @@ public class ListOrderedTests
 		<li>Item with <strong>bold</strong></li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -471,8 +471,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -485,8 +485,8 @@ public class ListOrderedTests
 		<li><a href="https://example.com">Link</a></li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -499,8 +499,8 @@ public class ListOrderedTests
 		<li><code>inline code</code></li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -517,8 +517,8 @@ public class ListOrderedTests
 		<li>Item 2</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -548,8 +548,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -562,8 +562,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -575,8 +575,8 @@ public class ListOrderedTests
 		<pre><code>1. Item
 		</code></pre>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -589,8 +589,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -615,8 +615,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -639,8 +639,8 @@ public class ListOrderedTests
 		<li>Bullet 2</li>
 		</ul>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -659,8 +659,8 @@ public class ListOrderedTests
 		<li>Item 3</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -673,8 +673,8 @@ public class ListOrderedTests
 		<li>Item</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -696,8 +696,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -708,8 +708,8 @@ public class ListOrderedTests
         var expected = """
 		<p>1.5 is a number</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -720,8 +720,8 @@ public class ListOrderedTests
         var expected = """
 		<p>1.Item</p>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -734,8 +734,8 @@ public class ListOrderedTests
 		<li></li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 
@@ -760,8 +760,8 @@ public class ListOrderedTests
 		</li>
 		</ol>
 		""";
-        var doc = Parser.Execute(input, Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

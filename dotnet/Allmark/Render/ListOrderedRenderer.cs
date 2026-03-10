@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class ListOrderedRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "list_ordered",
             Render = ListRenderer.Render,

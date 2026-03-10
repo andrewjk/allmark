@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class ConsoleListBulletedRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "list_bulleted",
             Render = (node, state, first, last, decode) => ConsoleListRenderer.Render(node, state, false),

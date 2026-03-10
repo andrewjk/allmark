@@ -5,7 +5,7 @@ using Allmark.Types;
 
 public static class Parser
 {
-    public static MarkdownNode Execute(string src, RuleSet rules, bool debug = false)
+    public static MarkdownNode Execute(string src, RuleSet rules)
     {
         var document = Utils.NewNode("document", true, 0, 1, 1, "", 0, []);
 
@@ -37,7 +37,6 @@ public static class Parser
             OpenNodes = new Stack<MarkdownNode>(new[] { document }),
             Refs = new Dictionary<string, LinkReference>(),
             Footnotes = new Dictionary<string, FootnoteReference>(),
-            Debug = debug
         };
 
         // Stage 1 -- parse each line into blocks

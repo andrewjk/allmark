@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class ConsoleInlineRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "inline",
             Render = (node, state, first, last, decode) => Render(node, state),

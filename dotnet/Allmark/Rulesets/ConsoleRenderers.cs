@@ -5,7 +5,7 @@ using Allmark.Types;
 
 public static class ConsoleRenderers
 {
-    public static Dictionary<string, Renderer> Renderers => new Dictionary<string, Renderer>
+    public static Dictionary<string, OutputRenderer> Renderers => new Dictionary<string, OutputRenderer>
     {
         [ConsoleAlertRenderer.Create().Name] = ConsoleAlertRenderer.Create(),
         [ConsoleBlockQuoteRenderer.Create().Name] = ConsoleBlockQuoteRenderer.Create(),

@@ -7,10 +7,9 @@ using System.Text;
 /// </summary>
 public record RendererState
 {
-    public required Dictionary<string, Renderer> Renderers { get; set; }
+    public required Dictionary<string, OutputRenderer> Renderers { get; set; }
 
     public required StringBuilder Output { get; set; }
     public required List<MarkdownNode> Footnotes { get; set; }
-    public required int Depth { get; set; }
-    public required int QuoteDepth { get; set; }
+    public required int ListDepth { get; set; }
 }

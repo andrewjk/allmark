@@ -33,8 +33,8 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -55,8 +55,8 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -81,8 +81,8 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -103,8 +103,8 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -125,8 +125,8 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -147,8 +147,8 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -160,8 +160,8 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
         var expected = @"
 <p>Unknown footnote[^99].</p>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -186,8 +186,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -208,8 +208,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -238,8 +238,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -262,8 +262,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -277,8 +277,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
         var expected = @"
 <p>Special label[^a-b_c].</p>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -299,8 +299,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -325,8 +325,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -347,8 +347,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -370,8 +370,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -394,8 +394,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -416,8 +416,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -433,8 +433,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
         var expected = @"
 <p><a href=""/url"">^1</a></p>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -458,8 +458,8 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </ol>
 </section>
 ";
-        var root = Parser.Execute(input, Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }

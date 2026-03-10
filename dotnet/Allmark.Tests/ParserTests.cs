@@ -39,8 +39,8 @@ Here is some text
 </ul>
 ".TrimStart();
 
-        var doc = Parser.Execute(input[1..^1], Core.RuleSet, false);
-        var html = RenderHtml.Execute(doc);
+        var doc = Parser.Execute(input[1..^1], Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
 }

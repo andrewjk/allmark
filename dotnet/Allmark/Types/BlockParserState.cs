@@ -17,7 +17,4 @@ public record BlockParserState
     public required bool HasBlankLine { get; set; }
     public required Dictionary<string, LinkReference> Refs { get; set; }
     public required Dictionary<string, FootnoteReference> Footnotes { get; set; }
-
-    // HACK:
-    public bool? Debug { get; set; }
 }

@@ -4,9 +4,9 @@ using Allmark.Types;
 
 public static class ConsoleCodeBlockRenderer
 {
-    public static Renderer Create()
+    public static OutputRenderer Create()
     {
-        return new Renderer
+        return new OutputRenderer
         {
             Name = "code_block",
             Render = (node, state, first, last, decode) => Render(node, state),

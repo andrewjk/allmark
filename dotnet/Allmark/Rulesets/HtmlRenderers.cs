@@ -5,7 +5,7 @@ using Allmark.Types;
 
 public static class HtmlRenderers
 {
-    public static Dictionary<string, Renderer> Renderers => new Dictionary<string, Renderer>
+    public static Dictionary<string, OutputRenderer> Renderers => new Dictionary<string, OutputRenderer>
     {
         [AlertRenderer.Create().Name] = AlertRenderer.Create(),
         [BlockQuoteRenderer.Create().Name] = BlockQuoteRenderer.Create(),
@@ -16,6 +16,7 @@ public static class HtmlRenderers
         [DeletionRenderer.Create().Name] = DeletionRenderer.Create(),
         [EmphasisRenderer.Create().Name] = EmphasisRenderer.Create(),
         [FootnoteRenderer.Create().Name] = FootnoteRenderer.Create(),
+        [FootnoteListRenderer.Create().Name] = FootnoteListRenderer.Create(),
         [HardBreakRenderer.Create().Name] = HardBreakRenderer.Create(),
         [HeadingRenderer.Create().Name] = HeadingRenderer.Create(),
         [HeadingUnderlineRenderer.Create().Name] = HeadingUnderlineRenderer.Create(),

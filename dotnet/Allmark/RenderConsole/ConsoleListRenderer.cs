@@ -5,9 +5,11 @@ using System.Text.RegularExpressions;
 
 public static class ConsoleListRenderer
 {
+    public static readonly string[] ConsoleBullets = ["•", "◦", "▪", "‣"];
+
     public static void Render(MarkdownNode node, RendererState state, bool ordered)
     {
-        state.Depth++;
+        state.ListDepth++;
         var style = Ansi.Dim;
         var reset = Ansi.Reset;
 
@@ -27,7 +29,7 @@ public static class ConsoleListRenderer
         {
             foreach (var item in node.Children)
             {
-                var prefix = ordered ? $"{counter}." : RenderToConsole.ConsoleBullets[Math.Min(state.Depth - 1, RenderToConsole.ConsoleBullets.Length - 1)];
+                var prefix = ordered ? $"{counter}." : ConsoleBullets[Math.Min(state.ListDepth - 1, ConsoleBullets.Length - 1)];
                 if (ordered)
                 {
                     counter++;
@@ -40,7 +42,7 @@ public static class ConsoleListRenderer
                         var child = item.Children[i];
                         if (!loose && child.Type == "paragraph")
                         {
-                            var indent = new string(' ', (state.Depth - 1) * 2);
+                            var indent = new string(' ', (state.ListDepth - 1) * 2);
                             if (i == 0)
                             {
                                 state.Output.Append($"{indent}{style}{prefix}{reset} ");
@@ -50,7 +52,7 @@ public static class ConsoleListRenderer
                         }
                         else
                         {
-                            var indent = new string(' ', (state.Depth - 1) * 2);
+                            var indent = new string(' ', (state.ListDepth - 1) * 2);
                             if (i == 0)
                             {
                                 state.Output.Append($"{indent}{style}{prefix}{reset} ");
@@ -65,7 +67,7 @@ public static class ConsoleListRenderer
             }
         }
 
-        state.Depth--;
+        state.ListDepth--;
     }
 
     private static bool IsLooseList(MarkdownNode node)

@@ -19,8 +19,8 @@ public class GfmAlertTests
 <p>Useful information that users should know, even when skimming content.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -38,8 +38,8 @@ public class GfmAlertTests
 <p>Helpful advice for doing things better or more easily.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -57,8 +57,8 @@ public class GfmAlertTests
 <p>Key information users need to know to achieve their goal.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -76,8 +76,8 @@ public class GfmAlertTests
 <p>Urgent info that needs immediate user attention to avoid problems.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -95,8 +95,8 @@ public class GfmAlertTests
 <p>Advises about risks or negative outcomes of certain actions.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -117,8 +117,8 @@ public class GfmAlertTests
 <p>Second paragraph of note.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -136,8 +136,8 @@ public class GfmAlertTests
 <p>This is <strong>bold</strong> and this is <em>italic</em> and this is <code>code</code>.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -163,8 +163,8 @@ public class GfmAlertTests
 </ul>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -187,8 +187,8 @@ public class GfmAlertTests
 <pre><code>console.log(&quot;Hello World&quot;);
 </code></pre>
 </div>";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -206,8 +206,8 @@ public class GfmAlertTests
 <p>Check out <a href=""https://example.com"">documentation</a> for more info.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -225,8 +225,8 @@ public class GfmAlertTests
 <p>This should work with lowercase.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -244,8 +244,8 @@ public class GfmAlertTests
 It should not be treated as an alert.</p>
 </blockquote>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -263,8 +263,8 @@ It should not be treated as an alert.</p>
 It should be a regular blockquote.</p>
 </blockquote>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -287,8 +287,8 @@ It should be a regular blockquote.</p>
 </blockquote>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -313,8 +313,8 @@ It should be a regular blockquote.</p>
 <p>Second alert.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
@@ -334,8 +334,8 @@ It should be a regular blockquote.</p>
 <p>Content after empty line.</p>
 </div>
 ";
-        var root = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = RenderHtml.Execute(root);
+        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
 
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
