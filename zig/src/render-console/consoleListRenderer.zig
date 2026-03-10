@@ -3,10 +3,10 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const ansiDim = @import("./renderToConsole.zig").ansiDim;
-const ansiReset = @import("./renderToConsole.zig").ansiReset;
-const consoleBullets = @import("./renderToConsole.zig").consoleBullets;
-const renderChildrenConsole = @import("./renderToConsole.zig").renderChildrenConsole;
+const ansiDim = @import("console.zig").ansiDim;
+const ansiReset = @import("console.zig").ansiReset;
+const consoleBullets = @import("console.zig").consoleBullets;
+const renderChildrenConsole = @import("console.zig").renderChildrenConsole;
 
 pub const consoleListRenderer = Renderer{
     .name = "list",
@@ -18,7 +18,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
     _ = last;
     _ = decode;
 
-    state.depth += 1;
+    state.listDepth += 1;
 
     const ordered = std.mem.eql(u8, node.type, "list_ordered");
     const loose = isLooseList(node);
@@ -43,7 +43,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
             const prefix: []const u8 = if (ordered)
                 std.fmt.bufPrint(&prefixBuf, "{d}.", .{counter}) catch "1."
             else
-                consoleBullets[@min(state.depth - 1, consoleBullets.len - 1)];
+                consoleBullets[@min(state.listDepth - 1, consoleBullets.len - 1)];
 
             if (ordered) {
                 counter += 1;
@@ -54,7 +54,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
                     if (!loose and std.mem.eql(u8, child.type, "paragraph")) {
                         if (i == 0) {
                             var indentBuf: [200]u8 = undefined;
-                            const spaces = (state.depth - 1) * 2;
+                            const spaces = (state.listDepth - 1) * 2;
                             @memset(indentBuf[0..spaces], ' ');
                             const indent = indentBuf[0..spaces];
 
@@ -69,7 +69,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
                     } else {
                         if (i == 0) {
                             var indentBuf: [200]u8 = undefined;
-                            const spaces = (state.depth - 1) * 2;
+                            const spaces = (state.listDepth - 1) * 2;
                             @memset(indentBuf[0..spaces], ' ');
                             const indent = indentBuf[0..spaces];
 
@@ -88,7 +88,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
         }
     }
 
-    state.depth -= 1;
+    state.listDepth -= 1;
 }
 
 fn isLooseList(node: *const MarkdownNode) bool {

@@ -19,10 +19,10 @@ test "superscript single" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -43,10 +43,10 @@ test "superscript double" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -67,10 +67,10 @@ test "superscript triple" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -89,10 +89,10 @@ test "superscript single character" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -111,10 +111,10 @@ test "superscript with numbers" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -133,10 +133,10 @@ test "multiple superscripts in one line" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -155,10 +155,10 @@ test "superscript at start of paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -177,10 +177,10 @@ test "superscript at end of paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -199,10 +199,10 @@ test "superscript with punctuation" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -221,10 +221,10 @@ test "superscript with spaces" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -243,10 +243,10 @@ test "superscript with special characters" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -265,10 +265,10 @@ test "superscript adjacent to text" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -287,10 +287,10 @@ test "empty superscript" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -309,10 +309,10 @@ test "superscript with markdown inside" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -331,10 +331,10 @@ test "superscript with code inside" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -353,10 +353,10 @@ test "escaped caret should not be superscript" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -375,10 +375,10 @@ test "unmatched opening caret" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -397,10 +397,10 @@ test "unmatched closing caret" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -421,10 +421,10 @@ test "superscript in list item" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -445,10 +445,10 @@ test "superscript in blockquote" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -467,10 +467,10 @@ test "nested superscript" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -489,10 +489,10 @@ test "superscript with caret inside" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

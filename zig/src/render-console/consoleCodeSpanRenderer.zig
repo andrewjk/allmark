@@ -3,9 +3,9 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const ansiGreen = @import("./renderToConsole.zig").ansiGreen;
-const ansiReset = @import("./renderToConsole.zig").ansiReset;
-const renderChildrenConsole = @import("./renderToConsole.zig").renderChildrenConsole;
+const ansiGreen = @import("console.zig").ansiGreen;
+const ansiReset = @import("console.zig").ansiReset;
+const renderChildrenConsole = @import("console.zig").renderChildrenConsole;
 
 pub const consoleCodeSpanRenderer = Renderer{
     .name = "code_span",

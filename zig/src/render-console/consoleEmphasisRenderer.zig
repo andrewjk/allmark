@@ -3,10 +3,10 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const ansiItalic = @import("./renderToConsole.zig").ansiItalic;
-const ansiYellow = @import("./renderToConsole.zig").ansiYellow;
-const ansiReset = @import("./renderToConsole.zig").ansiReset;
-const renderChildrenConsole = @import("./renderToConsole.zig").renderChildrenConsole;
+const ansiItalic = @import("console.zig").ansiItalic;
+const ansiYellow = @import("console.zig").ansiYellow;
+const ansiReset = @import("console.zig").ansiReset;
+const renderChildrenConsole = @import("console.zig").renderChildrenConsole;
 
 pub const consoleEmphasisRenderer = Renderer{
     .name = "emphasis",

@@ -155,13 +155,11 @@ pub fn main(init: std.process.Init) !void {
     defer ruleset.blocks.deinit();
     defer ruleset.inlines.deinit();
 
-    const document = try allmark.parse.execute(allocator, markdown, ruleset, false);
+    const document = try allmark.parse.execute(allocator, markdown, ruleset);
     defer document.deinit(allocator);
 
-    const output = if (std.mem.eql(u8, parsed_args.format, "console"))
-        try allmark.render.renderToConsole(allocator, document, null)
-    else
-        try allmark.render.renderHtml(allocator, document, null);
+    const useConsole = std.mem.eql(u8, parsed_args.format, "console");
+    const output = try allmark.render(allocator, document, null, useConsole);
     defer allocator.free(output);
 
     if (parsed_args.output) |output_path| {

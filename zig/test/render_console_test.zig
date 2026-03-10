@@ -15,10 +15,10 @@ test "renders paragraph to console" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -33,10 +33,10 @@ test "renders heading to console with color" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -51,10 +51,10 @@ test "renders bulleted list with Unicode bullets" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -69,10 +69,10 @@ test "renders ordered list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -87,10 +87,10 @@ test "renders code fence with box drawing" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -105,10 +105,10 @@ test "renders inline code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -123,10 +123,10 @@ test "renders block quote with vertical line" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -144,10 +144,10 @@ test "renders thematic break" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -162,10 +162,10 @@ test "renders task list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -180,10 +180,10 @@ test "renders table with Unicode borders" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -198,10 +198,10 @@ test "renders strong text" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -216,10 +216,10 @@ test "renders emphasis text" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -234,10 +234,10 @@ test "renders link" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -252,10 +252,10 @@ test "renders image" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -270,10 +270,10 @@ test "renders strikethrough" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -288,10 +288,10 @@ test "renders alert with emoji" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -306,10 +306,10 @@ test "renders nested list with different bullets" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -324,10 +324,10 @@ test "renders hard break" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -342,10 +342,10 @@ test "renders heading with underline Setext style" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -360,10 +360,10 @@ test "renders HTML block" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -378,10 +378,10 @@ test "renders HTML span inline" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -396,10 +396,10 @@ test "renders comment" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -414,10 +414,10 @@ test "renders deletion (strikethrough alternative)" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -432,10 +432,10 @@ test "renders footnote" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -450,10 +450,10 @@ test "renders highlight" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -468,10 +468,10 @@ test "renders insertion" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const output = try render.renderToConsole(gpa, root, null);
+    const output = try render(gpa, doc, null, true);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);

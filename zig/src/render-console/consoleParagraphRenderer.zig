@@ -4,7 +4,7 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const RuleSet = @import("../types/RuleSet.zig").RuleSet;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const renderChildrenConsole = @import("./renderToConsole.zig").renderChildrenConsole;
+const renderChildrenConsole = @import("console.zig").renderChildrenConsole;
 
 pub const consoleParagraphRenderer = Renderer{
     .name = "paragraph",

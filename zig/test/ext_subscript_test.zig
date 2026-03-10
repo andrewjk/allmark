@@ -19,10 +19,10 @@ test "subscript single" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -43,10 +43,10 @@ test "subscript double" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -67,10 +67,10 @@ test "subscript triple" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -89,10 +89,10 @@ test "subscript single character" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -111,10 +111,10 @@ test "subscript with numbers" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -133,10 +133,10 @@ test "multiple subscripts in one line" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -155,10 +155,10 @@ test "subscript at start of paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -177,10 +177,10 @@ test "subscript at end of paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -199,10 +199,10 @@ test "subscript with punctuation" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -221,10 +221,10 @@ test "subscript with spaces" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -243,10 +243,10 @@ test "subscript with special characters" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -265,10 +265,10 @@ test "subscript adjacent to text" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -287,10 +287,10 @@ test "empty subscript" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -309,10 +309,10 @@ test "subscript with markdown inside" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -331,10 +331,10 @@ test "subscript with code inside" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -353,10 +353,10 @@ test "escaped tilde should not be subscript" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -375,10 +375,10 @@ test "unmatched opening tilde" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -397,10 +397,10 @@ test "unmatched closing tilde" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -421,10 +421,10 @@ test "subscript in list item" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -445,10 +445,10 @@ test "subscript in blockquote" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -467,10 +467,10 @@ test "strikethrough vs subscript precedence" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -489,10 +489,10 @@ test "subscript with tilde inside" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -511,10 +511,10 @@ test "strikethrough still works" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

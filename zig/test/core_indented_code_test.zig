@@ -19,10 +19,10 @@ test "Simple 4-space indented code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -42,10 +42,10 @@ test "Tab-indented code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -70,10 +70,10 @@ test "Multi-line indented code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -93,10 +93,10 @@ test "Less than 4 spaces should be paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -117,10 +117,10 @@ test "5-space indented code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -141,10 +141,10 @@ test "8-space indented code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -169,10 +169,10 @@ test "Indented code block with blank line in middle" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -196,10 +196,10 @@ test "Indented code block interrupts paragraph with blank line" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -221,10 +221,10 @@ test "Indented code block does not interrupt paragraph without blank line" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -245,10 +245,10 @@ test "Indented code block with trailing spaces" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -271,10 +271,10 @@ test "Mixed 4-space and 8-space indentation" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -295,10 +295,10 @@ test "Indented code with backticks" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -319,10 +319,10 @@ test "Indented code with tildes" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -343,10 +343,10 @@ test "Indented code with asterisks" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -369,10 +369,10 @@ test "Indented code in blockquote" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -397,10 +397,10 @@ test "Indented code in list item" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -425,10 +425,10 @@ test "Indented code in ordered list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -452,10 +452,10 @@ test "Indented code followed by paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -479,10 +479,10 @@ test "Paragraph followed by indented code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -507,10 +507,10 @@ test "Multiple indented code blocks" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -531,10 +531,10 @@ test "Indented code with special characters" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -559,10 +559,10 @@ test "Indented code with mixed indentation" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -586,10 +586,10 @@ test "Indented code block after heading" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -613,10 +613,10 @@ test "Indented code block before heading" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -640,10 +640,10 @@ test "Indented code block after thematic break" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -667,10 +667,10 @@ test "Indented code block before thematic break" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -696,10 +696,10 @@ test "Indented code with fenced code block above" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -725,10 +725,10 @@ test "Indented code with fenced code block below" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -752,10 +752,10 @@ test "Indented code with ATX heading above" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -779,10 +779,10 @@ test "Indented code with ATX heading below" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -807,10 +807,10 @@ test "Indented code with setext heading above" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -835,10 +835,10 @@ test "Indented code with setext heading below" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -860,10 +860,10 @@ test "Indented code preceded by paragraph without blank line" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -886,10 +886,10 @@ test "Paragraph preceded by indented code without blank line" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -910,10 +910,10 @@ test "Indented code with HTML entities" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -943,10 +943,10 @@ test "Indented code block in nested list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -967,10 +967,10 @@ test "Indented code block at end of document" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -995,10 +995,10 @@ test "Indented code block with varying indentation" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1018,10 +1018,10 @@ test "Single tab indented" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1041,10 +1041,10 @@ test "Mixed tab and space indentation" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1064,10 +1064,10 @@ test "3 spaces - should be paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1088,10 +1088,10 @@ test "6 spaces indented code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1112,10 +1112,10 @@ test "12 spaces indented code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1136,10 +1136,10 @@ test "Code block with unicode characters" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1160,10 +1160,10 @@ test "Indented code with inline link" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1184,10 +1184,10 @@ test "Indented code with inline image" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1208,10 +1208,10 @@ test "Indented code with emphasis" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1232,10 +1232,10 @@ test "Indented code with strong" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1256,10 +1256,10 @@ test "Indented code with inline code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1275,10 +1275,10 @@ test "Empty indented code block" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1294,10 +1294,10 @@ test "Indented code block with only whitespace" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

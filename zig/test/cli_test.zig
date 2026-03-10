@@ -228,10 +228,10 @@ test "CLI integration - parse markdown with core ruleset" {
     defer ruleset.inlines.deinit();
     defer ruleset.renderers.deinit();
 
-    const root = try allmark.parse.execute(allocator, markdown, ruleset, null);
-    defer root.deinit(allocator);
+    const doc = try allmark.parse.execute(allocator, markdown, ruleset);
+    defer doc.deinit(allocator);
 
-    const html = try allmark.render.renderHtml(allocator, root, ruleset);
+    const html = try allmark.render(allocator, doc, null, false);
     defer allocator.free(html);
 
     try std.testing.expect(html.len > 0);
@@ -248,10 +248,10 @@ test "CLI integration - parse markdown with gfm ruleset" {
     defer ruleset.inlines.deinit();
     defer ruleset.renderers.deinit();
 
-    const root = try allmark.parse.execute(allocator, markdown, ruleset, null);
-    defer root.deinit(allocator);
+    const doc = try allmark.parse.execute(allocator, markdown, ruleset);
+    defer doc.deinit(allocator);
 
-    const html = try allmark.render.renderHtml(allocator, root, ruleset);
+    const html = try allmark.render(allocator, doc, null, false);
     defer allocator.free(html);
 
     try std.testing.expect(html.len > 0);
@@ -268,10 +268,10 @@ test "CLI integration - parse markdown with extended ruleset" {
     defer ruleset.inlines.deinit();
     defer ruleset.renderers.deinit();
 
-    const root = try allmark.parse.execute(allocator, markdown, ruleset, null);
-    defer root.deinit(allocator);
+    const doc = try allmark.parse.execute(allocator, markdown, ruleset);
+    defer doc.deinit(allocator);
 
-    const html = try allmark.render.renderHtml(allocator, root, ruleset);
+    const html = try allmark.render(allocator, doc, null, false);
     defer allocator.free(html);
 
     try std.testing.expect(html.len > 0);
@@ -288,10 +288,10 @@ test "CLI integration - write output to file" {
     defer ruleset.inlines.deinit();
     defer ruleset.renderers.deinit();
 
-    const root = try allmark.parse.execute(allocator, markdown, ruleset, null);
-    defer root.deinit(allocator);
+    const doc = try allmark.parse.execute(allocator, markdown, ruleset);
+    defer doc.deinit(allocator);
 
-    const html = try allmark.render.renderHtml(allocator, root, ruleset);
+    const html = try allmark.render(allocator, doc, null, false);
     defer allocator.free(html);
 
     try std.testing.expect(html.len > 0);

@@ -3,11 +3,11 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const ansiBlue = @import("./renderToConsole.zig").ansiBlue;
-const ansiUnderline = @import("./renderToConsole.zig").ansiUnderline;
-const ansiDim = @import("./renderToConsole.zig").ansiDim;
-const ansiReset = @import("./renderToConsole.zig").ansiReset;
-const renderChildrenConsole = @import("./renderToConsole.zig").renderChildrenConsole;
+const ansiBlue = @import("console.zig").ansiBlue;
+const ansiUnderline = @import("console.zig").ansiUnderline;
+const ansiDim = @import("console.zig").ansiDim;
+const ansiReset = @import("console.zig").ansiReset;
+const renderChildrenConsole = @import("console.zig").renderChildrenConsole;
 
 pub const consoleLinkRenderer = Renderer{
     .name = "link",

@@ -20,10 +20,10 @@ test "Simple ordered list with period delimiter" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -45,10 +45,10 @@ test "Simple ordered list with paren delimiter" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -70,10 +70,10 @@ test "Ordered list starting at 1" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -95,10 +95,10 @@ test "Ordered list starting at 2" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -120,10 +120,10 @@ test "Ordered list starting at 10" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -145,10 +145,10 @@ test "Ordered list starting at 0" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -170,10 +170,10 @@ test "Ordered list with large start number" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -193,10 +193,10 @@ test "Ordered list with too large number (10+ digits)" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -218,10 +218,10 @@ test "Ordered list with leading zeros" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -247,10 +247,10 @@ test "Ordered list with multiple items" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -276,10 +276,10 @@ test "Ordered list with sequential numbers disregarded" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -305,10 +305,10 @@ test "Ordered list with mixed numbers disregarded" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -332,10 +332,10 @@ test "Tight ordered list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -364,10 +364,10 @@ test "Loose ordered list with blank lines" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -396,10 +396,10 @@ test "Nested ordered lists" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -431,10 +431,10 @@ test "Deep nested ordered lists" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -460,10 +460,10 @@ test "Ordered list in blockquote" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -485,10 +485,10 @@ test "Empty ordered list item" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -520,10 +520,10 @@ test "Ordered list with paragraphs" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -548,10 +548,10 @@ test "Ordered list preceded by paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -576,10 +576,10 @@ test "Ordered list followed by paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -605,10 +605,10 @@ test "Mixed delimiters should not be same list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -638,10 +638,10 @@ test "Ordered list with code block" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -663,10 +663,10 @@ test "Ordered list with inline formatting" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -688,10 +688,10 @@ test "Ordered list with bold" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -723,10 +723,10 @@ test "Ordered list item with multiple paragraphs (loose)" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -748,10 +748,10 @@ test "Ordered list with links" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -773,10 +773,10 @@ test "Ordered list with code span" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -800,10 +800,10 @@ test "Ordered list at end of document" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -840,10 +840,10 @@ test "Multiple separate ordered lists" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -865,10 +865,10 @@ test "Ordered list item with leading spaces (still a list)" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -889,10 +889,10 @@ test "Ordered list item with 4 spaces indent should be code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -914,10 +914,10 @@ test "Ordered list with only spaces after marker" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -949,10 +949,10 @@ test "Nested ordered and bulleted lists" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -982,10 +982,10 @@ test "Ordered list followed immediately by bulleted list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1011,10 +1011,10 @@ test "Ordered list with paren delimiter multiple items" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1036,10 +1036,10 @@ test "Ordered list with paren delimiter starting at 5" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1068,10 +1068,10 @@ test "Ordered list item with nested bulleted list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1091,10 +1091,10 @@ test "Not an ordered list - text after number" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1114,10 +1114,10 @@ test "Not an ordered list - no space after delimiter" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1139,10 +1139,10 @@ test "Ordered list at end of line without space" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -1174,10 +1174,10 @@ test "Ordered list with thematic break in item" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

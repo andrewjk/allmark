@@ -3,11 +3,11 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const ansiDim = @import("./renderToConsole.zig").ansiDim;
-const ansiStrikethrough = @import("./renderToConsole.zig").ansiStrikethrough;
-const ansiStrikethroughReset = @import("./renderToConsole.zig").ansiStrikethroughReset;
-const ansiReset = @import("./renderToConsole.zig").ansiReset;
-const renderChildrenConsole = @import("./renderToConsole.zig").renderChildrenConsole;
+const ansiDim = @import("console.zig").ansiDim;
+const ansiStrikethrough = @import("console.zig").ansiStrikethrough;
+const ansiStrikethroughReset = @import("console.zig").ansiStrikethroughReset;
+const ansiReset = @import("console.zig").ansiReset;
+const renderChildrenConsole = @import("console.zig").renderChildrenConsole;
 
 pub const consoleDeletionRenderer = Renderer{
     .name = "deletion",

@@ -3,8 +3,8 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const ansiGray = @import("./renderToConsole.zig").ansiGray;
-const ansiReset = @import("./renderToConsole.zig").ansiReset;
+const ansiGray = @import("console.zig").ansiGray;
+const ansiReset = @import("console.zig").ansiReset;
 
 pub const consoleBlockQuoteRenderer = Renderer{
     .name = "block_quote",
@@ -15,8 +15,6 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
     _ = first;
     _ = last;
     _ = decode;
-
-    state.quoteDepth += 1;
 
     if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] != '\n') {
         state.output.append(state.allocator, '\n') catch unreachable;
@@ -51,8 +49,6 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
             }
         }
     }
-
-    state.quoteDepth -= 1;
 }
 
 fn renderNodeToString(node: *const MarkdownNode, state: *ConsoleRendererState) []const u8 {

@@ -20,10 +20,10 @@ test "Simple bulleted list with dashes" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -45,10 +45,10 @@ test "Simple bulleted list with plus" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -70,10 +70,10 @@ test "Simple bulleted list with asterisks" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -99,10 +99,10 @@ test "Bulleted list with multiple items" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -126,10 +126,10 @@ test "Tight bulleted list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -158,10 +158,10 @@ test "Loose bulleted list with blank lines" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -190,10 +190,10 @@ test "Nested bulleted lists" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -225,10 +225,10 @@ test "Deep nested bulleted lists" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -254,10 +254,10 @@ test "Bulleted list in blockquote" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -279,10 +279,10 @@ test "Empty list item" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -314,10 +314,10 @@ test "Bulleted list with paragraphs" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -342,10 +342,10 @@ test "Bulleted list preceded by paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -370,10 +370,10 @@ test "Bulleted list followed by paragraph" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -399,10 +399,10 @@ test "Mixed bullet markers should not be same list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -432,10 +432,10 @@ test "Bulleted list with code block" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -457,10 +457,10 @@ test "Bulleted list with inline formatting" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -482,10 +482,10 @@ test "Bulleted list with bold" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -517,10 +517,10 @@ test "Bulleted list item with multiple paragraphs (loose)" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -542,10 +542,10 @@ test "Bulleted list with links" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -567,10 +567,10 @@ test "Bulleted list with code span" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -594,10 +594,10 @@ test "Bulleted list at end of document" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -634,10 +634,10 @@ test "Multiple separate bulleted lists" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -659,10 +659,10 @@ test "Bulleted list item with leading spaces (still a list)" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -683,10 +683,10 @@ test "Bulleted list item with 4 spaces indent should be code" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -708,10 +708,10 @@ test "Bulleted list with only spaces after marker" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -743,10 +743,10 @@ test "Nested lists with different markers" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -776,10 +776,10 @@ test "Bulleted list followed immediately by ordered list" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
@@ -811,10 +811,10 @@ test "Bulleted list with thematic break in item" {
     defer rules.blocks.deinit();
     defer rules.inlines.deinit();
 
-    const root = try parse.execute(gpa, input, rules, null);
-    defer root.deinit(gpa);
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
 
-    const html = try render.renderHtml(gpa, root, null);
+    const html = try render(gpa, doc, null, false);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

@@ -11,9 +11,9 @@ pub const parse = struct {
     pub const parseLine = @import("parse/parseLine.zig").parseLine;
 };
 
-pub const render = struct {
-    pub const renderHtml = @import("render/renderHtml.zig").renderHtml;
-    pub const renderToConsole = @import("render-console/renderToConsole.zig").renderToConsole;
+pub const render = @import("render.zig").render;
+pub const transform = @import("transform.zig").transform;
+pub const renderHtml = struct {
     pub const textRenderer = @import("render/textRenderer.zig").textRenderer;
     pub const emphasisRenderer = @import("render/emphasisRenderer.zig").emphasisRenderer;
     pub const strongRenderer = @import("render/strongRenderer.zig").strongRenderer;

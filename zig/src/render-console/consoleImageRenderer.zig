@@ -3,8 +3,8 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const ansiGray = @import("./renderToConsole.zig").ansiGray;
-const ansiReset = @import("./renderToConsole.zig").ansiReset;
+const ansiGray = @import("console.zig").ansiGray;
+const ansiReset = @import("console.zig").ansiReset;
 
 pub const consoleImageRenderer = Renderer{
     .name = "image",

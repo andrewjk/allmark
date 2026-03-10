@@ -7,7 +7,7 @@ const newNode = @import("../utils/newNode.zig").newNode;
 const parseLine = @import("./parseLine.zig").parseLine;
 const parseBlockInlines = @import("./parseBlockInlines.zig").parseBlockInlines;
 
-pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet, debug: ?bool) !*MarkdownNode {
+pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*MarkdownNode {
     const document = newNode(allocator, "document", true, 0, 1, 1, "", 0, null) catch unreachable;
 
     var i: usize = 0;
@@ -33,7 +33,6 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet, debu
         .openNodes = openNodes,
         .refs = std.StringHashMap(@import("../types/LinkReference.zig").LinkReference).init(allocator),
         .footnotes = std.StringHashMap(@import("../types/FootnoteReference.zig").FootnoteReference).init(allocator),
-        .debug = debug,
     };
     defer state.openNodes.deinit(allocator);
     defer {

@@ -1,10 +1,7 @@
 const std = @import("std");
-
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
-const RendererSet = @import("../types/RendererSet.zig").RendererSet;
 const RendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const consoleRenderers = @import("../rulesets/consoleRenderers.zig");
 
 pub const ansiReset = "\x1b[0m";
 pub const ansiBold = "\x1b[1m";
@@ -30,42 +27,6 @@ pub const consoleBullets = [4][]const u8{
     "▪",
     "‣",
 };
-
-pub fn renderToConsole(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers: ?RendererSet) ![]const u8 {
-    var createdRenderers = false;
-    var localRenderers: RendererSet = undefined;
-    var renderersToUse: *const RendererSet = undefined;
-
-    if (renderers) |r| {
-        renderersToUse = &r;
-    } else {
-        localRenderers = try consoleRenderers.init(allocator);
-        renderersToUse = &localRenderers;
-        createdRenderers = true;
-    }
-    defer if (createdRenderers) {
-        consoleRenderers.deinit(@constCast(renderersToUse));
-    };
-
-    var state = RendererState{
-        .allocator = allocator,
-        .renderers = renderersToUse.renderers,
-        .output = std.ArrayList(u8).initCapacity(allocator, 4096) catch unreachable,
-        .footnotes = std.ArrayList(*const MarkdownNode).initCapacity(allocator, 8) catch unreachable,
-        .depth = 0,
-        .quoteDepth = 0,
-    };
-    defer state.output.deinit(allocator);
-    defer state.footnotes.deinit(allocator);
-
-    try renderChildrenConsole(doc, &state, true);
-
-    while (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\n') {
-        _ = state.output.pop();
-    }
-
-    return state.output.toOwnedSlice(allocator);
-}
 
 pub fn renderChildrenConsole(node: *const MarkdownNode, state: *RendererState, decode: bool) !void {
     if (node.children) |children| {

@@ -3,8 +3,8 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const RendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
-const ansiDim = @import("../render-console/renderToConsole.zig").ansiDim;
-const ansiReset = @import("../render-console/renderToConsole.zig").ansiReset;
+const ansiDim = @import("console.zig").ansiDim;
+const ansiReset = @import("console.zig").ansiReset;
 
 pub fn render(node: *const MarkdownNode, state: *RendererState, first: ?bool, last: ?bool, decode: ?bool) void {
     _ = first;

@@ -13,9 +13,6 @@ pub const BlockParserState = struct {
     hasBlankLine: bool,
     refs: std.StringHashMap(LinkReference),
     footnotes: std.StringHashMap(FootnoteReference),
-
-    // HACK:
-    debug: ?bool = null,
 };
 
 const BlockRule = @import("BlockRule.zig").BlockRule;

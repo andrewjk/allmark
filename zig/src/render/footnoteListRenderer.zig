@@ -1,9 +1,23 @@
 const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const RendererState = @import("../types/RendererState.zig").RendererState;
+const Renderer = @import("../types/Renderer.zig").Renderer;
 const renderChildrenFn = @import("renderChildren.zig").renderChildren;
 
+pub const footnoteListRenderer = Renderer{
+    .name = "footnote_list",
+    .render = render,
+};
+
 pub fn renderFootnoteList(state: *RendererState) void {
+    render(null, state, null, null, null);
+}
+
+pub fn render(_node: ?*const MarkdownNode, state: *RendererState, first: ?bool, last: ?bool, decode: ?bool) void {
+    _ = _node;
+    _ = first;
+    _ = last;
+    _ = decode;
     state.output.appendSlice(state.allocator, "<section class=\"footnotes\">\n<ol>\n") catch unreachable;
 
     var number: usize = 1;

@@ -11,6 +11,7 @@ const commentRenderer = @import("../render/commentRenderer.zig").commentRenderer
 const deletionRenderer = @import("../render/deletionRenderer.zig").deletionRenderer;
 const emphasisRenderer = @import("../render/emphasisRenderer.zig").emphasisRenderer;
 const footnoteRenderer = @import("../render/footnoteRenderer.zig").footnoteRenderer;
+const footnoteListRenderer = @import("../render/footnoteListRenderer.zig").footnoteListRenderer;
 const hardBreakRenderer = @import("../render/hardBreakRenderer.zig").hardBreakRenderer;
 const headingRenderer = @import("../render/headingRenderer.zig").headingRenderer;
 const headingUnderlineRenderer = @import("../render/headingUnderlineRenderer.zig").headingUnderlineRenderer;
@@ -51,6 +52,7 @@ pub fn init(allocator: std.mem.Allocator) !RendererSet {
     try renderers.put(deletionRenderer.name, &deletionRenderer);
     try renderers.put(emphasisRenderer.name, &emphasisRenderer);
     try renderers.put(footnoteRenderer.name, &footnoteRenderer);
+    try renderers.put(footnoteListRenderer.name, &footnoteListRenderer);
     try renderers.put(hardBreakRenderer.name, &hardBreakRenderer);
     try renderers.put(headingRenderer.name, &headingRenderer);
     try renderers.put(headingUnderlineRenderer.name, &headingUnderlineRenderer);
