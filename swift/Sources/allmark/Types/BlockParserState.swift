@@ -14,7 +14,4 @@ struct BlockParserState {
 	var hasBlankLine: Bool
 	var refs: [String: LinkReference]
 	var footnotes: [String: FootnoteReference]
-	
-	// HACK:
-	var debug: Bool?
 }

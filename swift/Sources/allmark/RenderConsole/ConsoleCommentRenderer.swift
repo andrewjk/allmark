@@ -8,5 +8,5 @@ let consoleCommentRenderer = Renderer(
 
 @MainActor
 func renderConsoleComment(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
-	state.output += "<!--\(node.content ?? "")-->"
+	state.output += "<!--\(node.content)-->"
 }

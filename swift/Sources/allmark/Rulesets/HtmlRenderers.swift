@@ -12,6 +12,7 @@ let htmlRenderers: OrderedDictionary<String, Renderer> = [
 	deletionRenderer.name: deletionRenderer,
 	emphasisRenderer.name: emphasisRenderer,
 	footnoteRenderer.name: footnoteRenderer,
+	footnoteListRenderer.name: footnoteListRenderer,
 	hardBreakRenderer.name: hardBreakRenderer,
 	headingRenderer.name: headingRenderer,
 	headingUnderlineRenderer.name: headingUnderlineRenderer,

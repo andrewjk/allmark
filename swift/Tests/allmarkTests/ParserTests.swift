@@ -33,8 +33,8 @@ import Testing
 		"""
 
 	await MainActor.run {
-		let root = parse(src: input, rules: coreRuleSet, debug: false)
-		let html = renderHtml(doc: root)
+		let doc = parse(src: input, rules: coreRuleSet)
+		let html = render(doc: doc, renderers: htmlRenderers)
 		#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 	}
 }

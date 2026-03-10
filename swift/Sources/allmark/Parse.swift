@@ -1,7 +1,7 @@
 import Foundation
 
 @MainActor
-func parse(src: String, rules: RuleSet, debug: Bool = false) -> MarkdownNode {
+func parse(src: String, rules: RuleSet) -> MarkdownNode {
 	var document = MarkdownNode(
 		type: "document",
 		block: true,
@@ -37,8 +37,7 @@ func parse(src: String, rules: RuleSet, debug: Bool = false) -> MarkdownNode {
 		maybeContinue: false,
 		hasBlankLine: false,
 		refs: [:],
-		footnotes: [:],
-		debug: debug
+		footnotes: [:]
 	)
 
 	while state.i < state.src.count {

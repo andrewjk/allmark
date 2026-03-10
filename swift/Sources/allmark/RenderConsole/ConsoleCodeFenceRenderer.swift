@@ -8,7 +8,7 @@ let consoleCodeFenceRenderer = Renderer(
 
 @MainActor
 func renderConsoleCodeFence(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
-	let content = node.content ?? ""
+	let content = node.content
 	let lines = content.split(separator: "\n", omittingEmptySubsequences: false)
 
 	if lines.isEmpty {
