@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let imageRenderer = Renderer(
 	name: "image",
 	render: renderImage

@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let listTaskItemRenderer = Renderer(
 	name: "list_task_item",
 	render: renderListTaskItem

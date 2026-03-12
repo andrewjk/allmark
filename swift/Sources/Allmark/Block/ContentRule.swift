@@ -1,7 +1,7 @@
 import Foundation
 
 /// Raw content capture for blocks that accept content
-@MainActor
+
 let contentRule = BlockRule(
 	name: "content",
 	testStart: testContentStart,

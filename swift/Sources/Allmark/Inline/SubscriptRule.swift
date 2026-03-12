@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let subscriptRule = InlineRule(
 	name: "subscript",
 	test: testSubscript

@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let consoleHeadingRenderer = Renderer(
 	name: "heading",
 	render: renderConsoleHeading
 )
 
-@MainActor
+
 func renderConsoleHeading(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	var level = 0
 	var isUnderline = false

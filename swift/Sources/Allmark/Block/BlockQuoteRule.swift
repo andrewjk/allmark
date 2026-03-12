@@ -3,7 +3,7 @@ import Foundation
 /// A block quote marker consists of 0-3 spaces of initial indent, plus (a) the
 /// character > together with a following space, or (b) a single character > not
 /// followed by a space.
-@MainActor
+
 let blockQuoteRule = BlockRule(
 	name: "block_quote",
 	testStart: testBlockQuoteStart,
@@ -15,7 +15,7 @@ func hasBlockQuoteMarkup(char: Character, state: BlockParserState) -> Bool {
 	return state.indent <= 3 && char == ">"
 }
 
-@MainActor
+
 func testBlockQuoteStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

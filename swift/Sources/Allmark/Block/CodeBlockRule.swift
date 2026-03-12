@@ -3,7 +3,7 @@ import Foundation
 /// An indented code block is composed of one or more indented chunks separated
 /// by blank lines. An indented chunk is a sequence of non-blank lines, each
 /// indented four or more spaces.
-@MainActor
+
 let codeBlockRule = BlockRule(
 	name: "code_block",
 	testStart: testCodeBlockStart,
@@ -11,7 +11,7 @@ let codeBlockRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-@MainActor
+
 func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

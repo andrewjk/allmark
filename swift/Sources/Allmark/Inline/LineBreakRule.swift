@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let lineBreakRule = InlineRule(
 	name: "line_break",
 	test: testLineBreak

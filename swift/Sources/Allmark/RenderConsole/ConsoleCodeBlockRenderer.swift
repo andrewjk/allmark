@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let consoleCodeBlockRenderer = Renderer(
 	name: "code_block",
 	render: renderConsoleCodeBlock
 )
 
-@MainActor
+
 func renderConsoleCodeBlock(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	let style = ansiDim
 	let reset = ansiReset

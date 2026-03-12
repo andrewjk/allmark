@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let textRenderer = Renderer(
 	name: "text",
 	render: renderText

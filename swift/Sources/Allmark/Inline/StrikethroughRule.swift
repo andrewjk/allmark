@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let strikethroughRule = InlineRule(
 	name: "strikethrough",
 	test: testStrikethrough

@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let consoleTableRenderer = Renderer(
 	name: "table",
 	render: renderConsoleTable
 )
 
-@MainActor
+
 func renderConsoleTable(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	let style = ansiDim
 	if !state.output.isEmpty && !state.output.hasSuffix("\n") {
@@ -90,7 +90,7 @@ func renderConsoleTable(_ node: MarkdownNode, _ state: inout RendererState, _ fi
 	state.output += makeLine(left: "└", mid: "┴", right: "┘", sep: "┴")
 }
 
-@MainActor
+
 func getTextFromConsoleNode(node: MarkdownNode) -> String {
 	if node.type == "text" {
 		return node.markup

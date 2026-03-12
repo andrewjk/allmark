@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let footnoteRule = InlineRule(
 	name: "footnote",
 	test: testFootnote
 )
 
-@MainActor
+
 func testFootnote(state: inout InlineParserState, parent: inout MarkdownNode) -> Bool {
 	let src = state.src
 	guard state.i < src.count else { return false }
@@ -62,7 +62,7 @@ func testFootnoteOpen(state: inout InlineParserState, parent: inout MarkdownNode
 	return true
 }
 
-@MainActor
+
 func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNode) -> Bool {
 	// Find the matching footnote delimiter
 	var startDelimiter: Delimiter?

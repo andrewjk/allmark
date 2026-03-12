@@ -1,7 +1,7 @@
 import Foundation
 
 /// Indentation handling for spaces and tabs
-@MainActor
+
 let indentRule = BlockRule(
 	name: "indent",
 	testStart: testIndentStart,

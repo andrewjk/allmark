@@ -2,7 +2,7 @@ import Foundation
 
 /// A code fence is a sequence of at least three consecutive backtick characters
 /// (`) or tildes (~).
-@MainActor
+
 let codeFenceRule = BlockRule(
 	name: "code_fence",
 	testStart: testCodeFenceStart,
@@ -10,7 +10,7 @@ let codeFenceRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-@MainActor
+
 func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	// A fenced code block can't be started in a block that accepts content
 	if parent.acceptsContent {

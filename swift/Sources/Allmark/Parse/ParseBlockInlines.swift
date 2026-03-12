@@ -7,7 +7,7 @@ import OrderedCollections
 ///   - rules: The inline rules to apply
 ///   - refs: Link references
 ///   - footnotes: Footnote references
-@MainActor
+
 func parseBlockInlines(
 	parent: inout MarkdownNode,
 	rules: OrderedDictionary<String, InlineRule>,

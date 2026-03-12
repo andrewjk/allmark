@@ -1,7 +1,7 @@
 import Foundation
 
 /// An ordered list is a list of items that start with a number and delimiter
-@MainActor
+
 let listOrderedRule = BlockRule(
 	name: "list_ordered",
 	testStart: testListOrderedStart,
@@ -51,7 +51,7 @@ func getOrderedListMarkup(state: BlockParserState) -> ListInfo? {
 	return nil
 }
 
-@MainActor
+
 func testListOrderedStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

@@ -3,7 +3,7 @@ import Foundation
 /// An ATX heading consists of a string of characters, parsed as inline content,
 /// between an opening sequence of 1-6 unescaped # characters and an optional
 /// closing sequence of any number of unescaped # characters.
-@MainActor
+
 let headingRule = BlockRule(
 	name: "heading",
 	testStart: testHeadingStart,
@@ -11,7 +11,7 @@ let headingRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-@MainActor
+
 func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

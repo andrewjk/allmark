@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let extendedAutolinkRule = InlineRule(
 	name: "extended_autolink",
 	test: testExtendedAutolink

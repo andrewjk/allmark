@@ -3,7 +3,7 @@ import Foundation
 /// A link reference definition consists of a link label, indented up to three
 /// spaces, followed by a colon (:), optional whitespace, a link destination,
 /// optional whitespace, and an optional link title.
-@MainActor
+
 let linkReferenceRule = BlockRule(
 	name: "link_ref",
 	testStart: testLinkReferenceStart,

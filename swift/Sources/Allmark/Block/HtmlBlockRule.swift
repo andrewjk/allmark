@@ -1,7 +1,7 @@
 import Foundation
 
 /// An HTML block is a group of lines that is treated as raw HTML.
-@MainActor
+
 let htmlBlockRule = BlockRule(
 	name: "html_block",
 	testStart: testHtmlBlockStart,
@@ -21,7 +21,7 @@ let htmlRegex6 = try! NSRegularExpression(
 )
 let htmlRegex7 = try! NSRegularExpression(pattern: "^(?:\(openTag)|\(closeTag))(?:\\s|$)")
 
-@MainActor
+
 func testHtmlBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false
@@ -50,7 +50,7 @@ func testHtmlBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 	return false
 }
 
-@MainActor
+
 func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	let range = NSRange(location: 0, length: tail.utf16.count)
 	
@@ -115,7 +115,7 @@ func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode, tai
 	return false
 }
 
-@MainActor
+
 func testHtmlCondition2(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	let range = NSRange(location: 0, length: tail.utf16.count)
 	
@@ -159,7 +159,7 @@ func testHtmlCondition2(state: inout BlockParserState, parent: MarkdownNode, tai
 	return false
 }
 
-@MainActor
+
 func testHtmlCondition3(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	let range = NSRange(location: 0, length: tail.utf16.count)
 	
@@ -203,7 +203,7 @@ func testHtmlCondition3(state: inout BlockParserState, parent: MarkdownNode, tai
 	return false
 }
 
-@MainActor
+
 func testHtmlCondition4(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	let range = NSRange(location: 0, length: tail.utf16.count)
 	
@@ -247,7 +247,7 @@ func testHtmlCondition4(state: inout BlockParserState, parent: MarkdownNode, tai
 	return false
 }
 
-@MainActor
+
 func testHtmlCondition5(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	let range = NSRange(location: 0, length: tail.utf16.count)
 	
@@ -291,7 +291,7 @@ func testHtmlCondition5(state: inout BlockParserState, parent: MarkdownNode, tai
 	return false
 }
 
-@MainActor
+
 func testHtmlCondition6(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	let range = NSRange(location: 0, length: tail.utf16.count)
 	

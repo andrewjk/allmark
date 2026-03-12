@@ -4,7 +4,7 @@ import Foundation
 // The TypeScript version has this commented out, so we leave it empty for now
 
 /*
-@MainActor
+
 let escapedRule = BlockRule(
 	name: "escaped",
 	testStart: testEscapedStart,

@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let codeBlockRenderer = Renderer(
 	name: "code_block",
 	render: renderCodeBlock
 )
 
-@MainActor
+
 func renderCodeBlock(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	if node.type == "code_block" && node.content.isEmpty {
 		return

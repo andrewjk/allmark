@@ -2,7 +2,7 @@ import Foundation
 
 /// Parses a single line, handling continuation of open nodes and starting new blocks
 /// - Parameter state: The block parser state (modified in place)
-@MainActor
+
 func parseLine(state: inout BlockParserState) {
 	state.indent = 0
 	state.line += 1

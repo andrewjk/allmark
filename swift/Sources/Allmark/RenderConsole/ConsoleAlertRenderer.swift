@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let consoleAlertRenderer = Renderer(
 	name: "alert",
 	render: renderConsoleAlert
 )
 
-@MainActor
+
 func renderConsoleAlert(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	let reset = ansiReset
 	let type = node.markup.lowercased()

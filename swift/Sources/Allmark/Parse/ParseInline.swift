@@ -4,7 +4,7 @@ import Foundation
 /// - Parameters:
 ///   - state: The inline parser state
 ///   - parent: The parent markdown node
-@MainActor
+
 func parseInline(state: inout InlineParserState, parent: MarkdownNode) {
 	let src = state.src
 	

@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let superscriptRule = InlineRule(
 	name: "superscript",
 	test: testSuperscript

@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let footnoteRenderer = Renderer(
 	name: "footnote",
 	render: renderFootnote

@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let deletionRule = InlineRule(
 	name: "deletion",
 	test: testDeletion

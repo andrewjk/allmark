@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let codeSpanRule = InlineRule(
 	name: "code_span",
 	test: testCodeSpan

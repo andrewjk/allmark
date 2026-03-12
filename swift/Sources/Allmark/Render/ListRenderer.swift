@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let listRenderer = Renderer(
 	name: "list",
 	render: renderList
 )
 
-@MainActor
+
 func renderList(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	let ordered = node.type == "list_ordered"
 	var start = ""

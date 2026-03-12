@@ -2,7 +2,7 @@ import Foundation
 
 /// A footnote definition has a label that starts with ^, followed by a colon
 /// and the footnote content.
-@MainActor
+
 let footnoteReferenceRule = BlockRule(
 	name: "footnote_ref",
 	testStart: testFootnoteReferenceStart,
@@ -10,7 +10,7 @@ let footnoteReferenceRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-@MainActor
+
 func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

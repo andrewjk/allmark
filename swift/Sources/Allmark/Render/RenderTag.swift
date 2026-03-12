@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 func renderTag(node: MarkdownNode, state: inout RendererState, tag: String, decode: Bool = true) {
 	startNewLine(node: node, state: &state)
 	state.output += "<\(tag)>"

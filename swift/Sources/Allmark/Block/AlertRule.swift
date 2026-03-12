@@ -2,7 +2,7 @@ import Foundation
 
 /// Alerts, also sometimes known as callouts or admonitions, are a Markdown
 /// extension based on the blockquote syntax.
-@MainActor
+
 let alertRule = BlockRule(
 	name: "alert",
 	testStart: testAlertStart,
@@ -19,7 +19,7 @@ func hasAlertMarkup(char: Character, state: BlockParserState) -> Bool {
 	return state.indent <= 3 && char == ">"
 }
 
-@MainActor
+
 func testAlertStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

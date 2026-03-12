@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let consoleHardBreakRenderer = Renderer(
 	name: "hard_break",
 	render: renderConsoleHardBreak

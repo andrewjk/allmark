@@ -1,7 +1,7 @@
 import Foundation
 
 /// The extended ruleset with additional features.
-@MainActor
+
 public let extendedRuleSet = RuleSet(
 	blocks: [
 		indentRule.name: indentRule,

@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let headingRenderer = Renderer(
 	name: "heading",
 	render: renderHeading
 )
 
-@MainActor
+
 func renderHeading(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	startNewLine(node: node, state: &state)
 	var level = 0

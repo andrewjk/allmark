@@ -2,11 +2,10 @@ import OrderedCollections
 import Foundation
 
 /// The main entry point for the Allmark Markdown parser.
-@MainActor
+
 public struct Allmark {
     /// Available rulesets for parsing different Markdown flavors.
-    @MainActor
-    public struct Rules {
+    public struct Rules: Sendable {
         public static let core = coreRuleSet
         public static let gfm = gfmRuleSet
         public static let extended = extendedRuleSet
@@ -14,8 +13,7 @@ public struct Allmark {
     public static let rules = Rules()
 
     /// Available renderers for converting the parsed AST to output formats.
-    @MainActor
-    public struct Renderers {
+    public struct Renderers: Sendable {
         public static let html = htmlRenderers
         public static let console = consoleRenderers
     }

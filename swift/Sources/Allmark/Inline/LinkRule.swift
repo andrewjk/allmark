@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let linkRule = InlineRule(
 	name: "link",
 	test: testLink

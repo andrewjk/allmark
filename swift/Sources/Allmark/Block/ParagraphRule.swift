@@ -2,7 +2,7 @@ import Foundation
 
 /// A sequence of non-blank lines that cannot be interpreted as other kinds of
 /// blocks forms a paragraph.
-@MainActor
+
 let paragraphRule = BlockRule(
 	name: "paragraph",
 	testStart: testParagraphStart,

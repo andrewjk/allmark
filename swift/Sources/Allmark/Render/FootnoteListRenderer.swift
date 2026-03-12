@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let footnoteListRenderer = Renderer(
 	name: "footnote_list",
 	render: renderFootnoteList
 )
 
-@MainActor
+
 func renderFootnoteList(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	state.output += "<section class=\"footnotes\">\n<ol>\n"
 	var number = 1

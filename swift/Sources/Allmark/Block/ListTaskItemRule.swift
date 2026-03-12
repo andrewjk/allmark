@@ -1,7 +1,7 @@
 import Foundation
 
 /// GFM task list items (checkboxes in list items)
-@MainActor
+
 let listTaskItemRule = BlockRule(
 	name: "list_task_item",
 	testStart: testListTaskItemStart,

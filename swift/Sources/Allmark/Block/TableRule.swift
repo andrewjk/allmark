@@ -1,7 +1,7 @@
 import Foundation
 
 /// GFM tables (pipe-delimited)
-@MainActor
+
 let tableRule = BlockRule(
 	name: "table",
 	testStart: testTableStart,
@@ -9,7 +9,7 @@ let tableRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-@MainActor
+
 func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

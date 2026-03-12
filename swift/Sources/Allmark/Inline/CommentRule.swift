@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let commentRule = InlineRule(
 	name: "comment",
 	test: testComment

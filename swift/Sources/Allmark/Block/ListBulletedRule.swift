@@ -1,7 +1,7 @@
 import Foundation
 
 /// A bullet list is a list of items that start with a bullet marker (-, +, or *)
-@MainActor
+
 let listBulletedRule = BlockRule(
 	name: "list_bulleted",
 	testStart: testListBulletedStart,
@@ -44,7 +44,7 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 	return nil
 }
 
-@MainActor
+
 func testListBulletedStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

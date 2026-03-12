@@ -1,7 +1,7 @@
 import Foundation
 
 /// List item continuation logic
-@MainActor
+
 let listItemRule = BlockRule(
 	name: "list_item",
 	testStart: testListItemStart,

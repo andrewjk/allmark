@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 func _parse(src: String, rules: RuleSet) -> MarkdownNode {
 	var document = MarkdownNode(
 		type: "document",

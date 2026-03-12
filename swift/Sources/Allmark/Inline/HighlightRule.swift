@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let highlightRule = InlineRule(
 	name: "highlight",
 	test: testHighlight

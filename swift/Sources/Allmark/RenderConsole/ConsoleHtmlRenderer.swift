@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let consoleHtmlRenderer = Renderer(
 	name: "html",
 	render: renderConsoleHtml

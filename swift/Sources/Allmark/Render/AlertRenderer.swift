@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let alertRenderer = Renderer(
 	name: "alert",
 	render: renderAlert
 )
 
-@MainActor
+
 func renderAlert(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	startNewLine(node: node, state: &state)
 	let title = String(node.markup.prefix(1)).uppercased() + String(node.markup.dropFirst())

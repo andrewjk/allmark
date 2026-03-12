@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 func renderConsoleList(_ node: MarkdownNode, _ state: inout RendererState, ordered: Bool) {
 	state.depth += 1
 
@@ -50,7 +50,7 @@ func renderConsoleList(_ node: MarkdownNode, _ state: inout RendererState, order
 	state.depth -= 1
 }
 
-@MainActor
+
 func isLooseList(node: MarkdownNode) -> Bool {
 	if let children = node.children {
 		for i in 0..<(children.count - 1) {

@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let hardBreakRule = InlineRule(
 	name: "hard_break",
 	test: testHardBreak

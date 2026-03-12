@@ -2,7 +2,7 @@ import Foundation
 
 /// A line consisting of 0-3 spaces of indentation, followed by a sequence of
 /// three or more matching -, _, or * characters, forms a thematic break.
-@MainActor
+
 let thematicBreakRule = BlockRule(
 	name: "thematic_break",
 	testStart: testThematicBreakStart,
@@ -10,7 +10,7 @@ let thematicBreakRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-@MainActor
+
 func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false

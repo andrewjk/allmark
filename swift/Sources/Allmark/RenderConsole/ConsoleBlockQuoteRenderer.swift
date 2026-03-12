@@ -1,12 +1,12 @@
 import Foundation
 
-@MainActor
+
 let consoleBlockQuoteRenderer = Renderer(
 	name: "block_quote",
 	render: renderConsoleBlockQuote
 )
 
-@MainActor
+
 func renderConsoleBlockQuote(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
 	let style = ansiDim
 	let reset = ansiReset
@@ -32,7 +32,7 @@ func renderConsoleBlockQuote(_ node: MarkdownNode, _ state: inout RendererState,
 	state.quoteDepth -= 1
 }
 
-@MainActor
+
 func renderNodeToStringConsole(node: MarkdownNode, state: inout RendererState) -> String {
 	let output = state.output
 	state.output = ""

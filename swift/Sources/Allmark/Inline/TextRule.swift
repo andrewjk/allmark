@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let textRule = InlineRule(
 	name: "text",
 	test: testText

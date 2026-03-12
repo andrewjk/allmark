@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let emphasisRule = InlineRule(
 	name: "emphasis",
 	test: testEmphasis

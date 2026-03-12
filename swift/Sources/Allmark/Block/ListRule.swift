@@ -8,7 +8,7 @@ struct ListInfo {
 	var type: String
 }
 
-@MainActor
+
 func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: ListInfo?) -> Bool {
 	guard let info = info else {
 		return false

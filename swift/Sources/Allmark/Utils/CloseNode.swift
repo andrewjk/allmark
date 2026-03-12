@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 func closeNode(state: inout BlockParserState, node: MarkdownNode) {
 	var i = state.openNodes.count - 1
 	while i > 0 {

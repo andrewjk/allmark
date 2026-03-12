@@ -3,7 +3,7 @@ import Foundation
 /// A setext heading consists of one or more lines of text, each containing at
 /// least one non-whitespace character, with no more than 3 spaces indentation,
 /// followed by a setext heading underline.
-@MainActor
+
 let headingUnderlineRule = BlockRule(
 	name: "heading_underline",
 	testStart: testHeadingUnderlineStart,

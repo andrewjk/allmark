@@ -1,6 +1,6 @@
 import Foundation
 
-@MainActor
+
 let htmlSpanRule = InlineRule(
 	name: "html_span",
 	test: testHtmlSpan
