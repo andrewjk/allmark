@@ -1,6 +1,6 @@
 {
 	"name": "allmark",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A full-featured Markdown parser for web, desktop and mobile",
 	"type": "module",
 	"bin": {
@@ -17,6 +17,7 @@
 		"test": "vitest",
 		"test:split": "tsx ./scripts/splitSpecsIntoTests.ts",
 		"test:dl": "tsx ./scripts/downloadGitHubTop.ts",
+		"package": "tsx ./scripts/package.ts",
 		"cli": "node dist/bin/index.mjs"
 	},
 	"keywords": [],
