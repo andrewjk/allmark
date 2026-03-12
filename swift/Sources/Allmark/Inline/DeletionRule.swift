@@ -1,6 +1,5 @@
 import Foundation
 
-
 let deletionRule = InlineRule(
 	name: "deletion",
 	test: testDeletion

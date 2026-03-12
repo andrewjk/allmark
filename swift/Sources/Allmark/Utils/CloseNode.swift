@@ -1,6 +1,5 @@
 import Foundation
 
-
 func closeNode(state: inout BlockParserState, node: MarkdownNode) {
 	var i = state.openNodes.count - 1
 	while i > 0 {
@@ -9,7 +8,7 @@ func closeNode(state: inout BlockParserState, node: MarkdownNode) {
 			rule.closeNode(&state, openNode)
 		}
 		// Compare nodes by index and type since we can't use ==
-		if openNode.index == node.index && openNode.type == node.type {
+		if openNode.index == node.index, openNode.type == node.type {
 			break
 		}
 		i -= 1

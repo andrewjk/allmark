@@ -10,24 +10,23 @@ let thematicBreakRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-
 func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
-	
+
 	let src = state.src
 	if state.i >= src.count {
 		return false
 	}
-	
+
 	let index = src.index(src.startIndex, offsetBy: state.i)
 	let char = src[index]
-	
+
 	if state.indent <= 3 && (char == "-" || char == "_" || char == "*") {
 		var matched = 1
 		var end = state.i + 1
-		
+
 		while end < src.count {
 			let endIndex = src.index(src.startIndex, offsetBy: end)
 			let nextChar = src[endIndex]
@@ -44,11 +43,11 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 			}
 			end += 1
 		}
-		
+
 		if matched >= 3 {
 			var closedNode: MarkdownNode? = nil
 			var currentParent = parent
-			
+
 			if state.maybeContinue {
 				state.maybeContinue = false
 				var i = state.openNodes.count - 1
@@ -64,12 +63,12 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 				}
 				currentParent = state.openNodes.last!
 			}
-			
+
 			if currentParent.type == "paragraph" {
 				closedNode = state.openNodes.popLast()
 				currentParent = state.openNodes.last!
 			}
-			
+
 			// HACK: Special case for a thematic break in a list
 			if currentParent.type == "list_item" && !state.hasBlankLine && String(char) == currentParent.delimiter {
 				state.openNodes.removeLast()
@@ -80,15 +79,15 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 				state.openNodes.removeLast()
 				currentParent = state.openNodes.last!
 			}
-			
+
 			if closedNode != nil {
 				closeNode(state: &state, node: closedNode!)
 			}
-			
+
 			let markupStart = src.index(src.startIndex, offsetBy: state.i)
 			let markupEnd = src.index(src.startIndex, offsetBy: end)
-			let markup = String(src[markupStart..<markupEnd])
-			
+			let markup = String(src[markupStart ..< markupEnd])
+
 			let tbr = MarkdownNode(
 				type: "thematic_break",
 				block: true,
@@ -104,10 +103,10 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 			return true
 		}
 	}
-	
+
 	return false
 }
 
-func testThematicBreakContinue(state: inout BlockParserState, node: MarkdownNode) -> Bool {
+func testThematicBreakContinue(state _: inout BlockParserState, node _: MarkdownNode) -> Bool {
 	return false
 }

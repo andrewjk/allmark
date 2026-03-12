@@ -52,13 +52,13 @@ public class MarkdownNode {
 		self.line = line
 		self.column = column
 		self.markup = markup
-		self.delimiter = ""
-		self.content = ""
+		delimiter = ""
+		content = ""
 		self.indent = indent
-		self.subindent = 0
-		self.acceptsContent = false
-		self.maybeContinuing = false
-		self.blankAfter = false
+		subindent = 0
+		acceptsContent = false
+		maybeContinuing = false
+		blankAfter = false
 		self.children = children
 	}
 }

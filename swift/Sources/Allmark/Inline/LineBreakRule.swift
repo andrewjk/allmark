@@ -1,6 +1,5 @@
 import Foundation
 
-
 let lineBreakRule = InlineRule(
 	name: "line_break",
 	test: testLineBreak
@@ -14,13 +13,13 @@ let lineBreakRule = InlineRule(
 func testLineBreak(state: inout InlineParserState, parent: inout MarkdownNode) -> Bool {
 	let src = state.src
 	guard state.i < src.count else { return false }
-	
+
 	let index = src.index(src.startIndex, offsetBy: state.i)
 	let char = src[index]
-	
+
 	if char == " " {
 		var end = state.i
-		for i in (state.i + 1)..<src.count {
+		for i in (state.i + 1) ..< src.count {
 			let iIndex = src.index(src.startIndex, offsetBy: i)
 			if isNewLine(char: String(src[iIndex])) {
 				end = i
@@ -31,7 +30,7 @@ func testLineBreak(state: inout InlineParserState, parent: inout MarkdownNode) -
 				return false
 			}
 		}
-		
+
 		if end - state.i >= 2 {
 			let html = MarkdownNode(
 				type: "html_span",
@@ -49,6 +48,6 @@ func testLineBreak(state: inout InlineParserState, parent: inout MarkdownNode) -
 			return true
 		}
 	}
-	
+
 	return false
 }

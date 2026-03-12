@@ -8,7 +8,7 @@ import Foundation
 func parseBlock(state: inout BlockParserState, parent: MarkdownNode) {
 	for (_, rule) in state.rules {
 		let handled = rule.testStart(&state, parent)
-		
+
 		if handled {
 			return
 		}

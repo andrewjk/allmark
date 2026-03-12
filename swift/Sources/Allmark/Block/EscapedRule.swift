@@ -5,22 +5,22 @@ import Foundation
 
 /*
 
-let escapedRule = BlockRule(
-	name: "escaped",
-	testStart: testEscapedStart,
-	testContinue: testEscapedContinue,
-	closeNode: { _, _ in }
-)
+ let escapedRule = BlockRule(
+ 	name: "escaped",
+ 	testStart: testEscapedStart,
+ 	testContinue: testEscapedContinue,
+ 	closeNode: { _, _ in }
+ )
 
-func testEscapedStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
-	if isEscaped(text: state.src, i: state.i) {
-		state.i += 1
-		return true
-	}
-	return false
-}
+ func testEscapedStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+ 	if isEscaped(text: state.src, i: state.i) {
+ 		state.i += 1
+ 		return true
+ 	}
+ 	return false
+ }
 
-func testEscapedContinue(state: inout BlockParserState, node: MarkdownNode) -> Bool {
-	return false
-}
-*/
+ func testEscapedContinue(state: inout BlockParserState, node: MarkdownNode) -> Bool {
+ 	return false
+ }
+ */

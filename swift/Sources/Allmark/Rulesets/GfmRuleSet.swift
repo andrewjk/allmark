@@ -35,5 +35,5 @@ public let gfmRuleSet = RuleSet(
 		hardBreakRule.name: hardBreakRule,
 		lineBreakRule.name: lineBreakRule,
 		textRule.name: textRule,
-	],
+	]
 )

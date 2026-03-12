@@ -8,17 +8,17 @@ func parseLine(state: inout BlockParserState) {
 	state.line += 1
 	state.lineStart = state.i
 	state.maybeContinue = false
-	
+
 	parseIndent(state: &state)
-	
+
 	// Skip document -- it's always going to continue
-	for i in 1..<state.openNodes.count {
+	for i in 1 ..< state.openNodes.count {
 		let node = state.openNodes[i]
-		
+
 		guard let rule = state.rules[node.type] else {
 			continue
 		}
-		
+
 		if rule.testContinue(&state, node) {
 			parseIndent(state: &state)
 		} else {
@@ -27,7 +27,7 @@ func parseLine(state: inout BlockParserState) {
 			break
 		}
 	}
-	
+
 	let parent = state.openNodes.last!
 	parseBlock(state: &state, parent: parent)
 }

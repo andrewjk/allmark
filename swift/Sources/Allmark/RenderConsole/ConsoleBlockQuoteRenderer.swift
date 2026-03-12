@@ -1,17 +1,15 @@
 import Foundation
 
-
 let consoleBlockQuoteRenderer = Renderer(
 	name: "block_quote",
 	render: renderConsoleBlockQuote
 )
 
-
-func renderConsoleBlockQuote(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
+func renderConsoleBlockQuote(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?, _: Bool?, _: Bool?) {
 	let style = ansiDim
 	let reset = ansiReset
 	state.quoteDepth += 1
-	if !state.output.isEmpty && !state.output.hasSuffix("\n") {
+	if !state.output.isEmpty, !state.output.hasSuffix("\n") {
 		state.output += "\n"
 	}
 	for line in node.content.split(separator: "\n", omittingEmptySubsequences: false) {
@@ -31,7 +29,6 @@ func renderConsoleBlockQuote(_ node: MarkdownNode, _ state: inout RendererState,
 	}
 	state.quoteDepth -= 1
 }
-
 
 func renderNodeToStringConsole(node: MarkdownNode, state: inout RendererState) -> String {
 	let output = state.output

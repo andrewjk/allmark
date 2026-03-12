@@ -1,6 +1,5 @@
 import Foundation
 
-
 let commentRule = InlineRule(
 	name: "comment",
 	test: testComment

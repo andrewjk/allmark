@@ -41,5 +41,5 @@ public let extendedRuleSet = RuleSet(
 		deletionRule.name: deletionRule,
 		commentRule.name: commentRule,
 		textRule.name: textRule,
-	],
+	]
 )

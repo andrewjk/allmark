@@ -1,13 +1,11 @@
 import Foundation
 
-
 let linkRenderer = Renderer(
 	name: "link",
 	render: renderLink
 )
 
-
-func renderLink(_ node: MarkdownNode, _ state: inout RendererState, _ first: Bool?, _ last: Bool?, _ decode: Bool?) {
+func renderLink(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?, _: Bool?, _: Bool?) {
 	startNewLine(node: node, state: &state)
 	var title = ""
 	if let nodeTitle = node.title, !nodeTitle.isEmpty {

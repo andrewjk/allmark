@@ -28,5 +28,5 @@ public let coreRuleSet = RuleSet(
 		hardBreakRule.name: hardBreakRule,
 		lineBreakRule.name: lineBreakRule,
 		textRule.name: textRule,
-	],
+	]
 )

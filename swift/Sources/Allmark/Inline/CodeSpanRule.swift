@@ -1,6 +1,5 @@
 import Foundation
 
-
 let codeSpanRule = InlineRule(
 	name: "code_span",
 	test: testCodeSpan
@@ -9,14 +8,14 @@ let codeSpanRule = InlineRule(
 func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) -> Bool {
 	let src = state.src
 	guard state.i < src.count else { return false }
-	
+
 	let index = src.index(src.startIndex, offsetBy: state.i)
 	let char = src[index]
-	
+
 	if char == "`" && !isEscaped(text: src, i: state.i) {
 		var openMatched = 1
 		var openEnd = state.i + 1
-		
+
 		while openEnd < src.count {
 			let endIndex = src.index(src.startIndex, offsetBy: openEnd)
 			if src[endIndex] == char {
@@ -26,13 +25,13 @@ func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				break
 			}
 		}
-		
+
 		let markup = String(repeating: "`", count: openMatched)
-		
+
 		// "The contents of a code block are literal text, and do not get parsed as Markdown"
 		var closeEnd = state.i + openMatched
 		closeEnd = skipSpaces(text: src, start: closeEnd)
-		
+
 		var closeMatched = 0
 		while closeEnd < src.count {
 			let endIndex = src.index(src.startIndex, offsetBy: closeEnd)
@@ -57,20 +56,20 @@ func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				closeEnd += 1
 			}
 		}
-		
+
 		if closeMatched == openMatched {
 			state.i += openMatched
-			
+
 			let contentStart = state.i
 			let contentEnd = closeEnd - closeMatched
 			let contentStartIndex = src.index(src.startIndex, offsetBy: contentStart)
 			let contentEndIndex = src.index(src.startIndex, offsetBy: contentEnd)
-			var content = String(src[contentStartIndex..<contentEndIndex])
-			
+			var content = String(src[contentStartIndex ..< contentEndIndex])
+
 			// "[L]ine endings are converted to spaces"
 			content = content.replacingOccurrences(of: "\r", with: " ")
 			content = content.replacingOccurrences(of: "\n", with: " ")
-			
+
 			// "If the resulting string both begins and ends with a space
 			// character, but does not consist entirely of space characters, a
 			// single space character is removed from the front and back. This
@@ -83,11 +82,11 @@ func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 			let hasNonSpace = content.range(of: "[^\\s]", options: .regularExpression) != nil
 			let firstChar = content.first
 			let lastChar = content.last
-			
+
 			if hasNonSpace && firstChar == " " && lastChar == " " {
 				content = String(content.dropFirst().dropLast())
 			}
-			
+
 			let textNode = MarkdownNode(
 				type: "text",
 				block: false,
@@ -98,7 +97,7 @@ func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				indent: 0,
 				children: nil
 			)
-			
+
 			let codeNode = MarkdownNode(
 				type: "code_span",
 				block: false,
@@ -109,16 +108,16 @@ func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				indent: 0,
 				children: [textNode]
 			)
-			
+
 			parent.children?.append(codeNode)
 			state.i = closeEnd
-			
+
 			return true
 		}
-		
+
 		addMarkupAsText(markup: markup, state: &state, parent: &parent)
 		return true
 	}
-	
+
 	return false
 }

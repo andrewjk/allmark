@@ -14,10 +14,10 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 	if state.i >= src.count {
 		return nil
 	}
-	
+
 	let index = src.index(src.startIndex, offsetBy: state.i)
 	let char = src[index]
-	
+
 	if char == "-" || char == "+" || char == "*" {
 		// Check if next char is space or end of line
 		if state.i == src.count - 1 {
@@ -28,7 +28,7 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 				type: "list_bulleted"
 			)
 		}
-		
+
 		let nextIndex = src.index(src.startIndex, offsetBy: state.i + 1)
 		if isSpace(code: Int(src[nextIndex].asciiValue ?? 0)) {
 			let isBlank = isNewLine(char: String(src[nextIndex]))
@@ -40,20 +40,19 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 			)
 		}
 	}
-	
+
 	return nil
 }
-
 
 func testListBulletedStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
-	
+
 	guard let info = getBulletedListMarkup(state: state) else {
 		return false
 	}
-	
+
 	return testListStart(state: &state, parent: parent, info: info)
 }
 

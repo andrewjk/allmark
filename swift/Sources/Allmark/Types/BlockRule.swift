@@ -41,8 +41,8 @@ public struct BlockRule: Sendable {
 		name: String,
 		testStart: @escaping @Sendable (inout BlockParserState, MarkdownNode) -> Bool,
 		testContinue: @escaping @Sendable (inout BlockParserState, MarkdownNode) -> Bool,
-		closeNode: @escaping @Sendable (inout BlockParserState, MarkdownNode) -> Void)
-	{
+		closeNode: @escaping @Sendable (inout BlockParserState, MarkdownNode) -> Void
+	) {
 		self.name = name
 		self.testStart = testStart
 		self.testContinue = testContinue
