@@ -43,9 +43,10 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 } else false;
 
                 if (hasSpace) {
-                    const text = newNode(state.allocator, "text", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                    const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
                     text.*.markup = escapeHtml(state.allocator, tail[0..urlMatch.?.end]) catch return false;
                     text.*.markup_allocated = true;
+                    text.*.length = urlMatch.?.end;
 
                     if (parent.children == null) {
                         const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
@@ -70,7 +71,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const escapedUrl = escapeHtml(state.allocator, url) catch return false;
                 defer state.allocator.free(escapedUrl);
 
-                const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
 
                 var href = std.ArrayList(u8).initCapacity(state.allocator, url.len + 14) catch return false;
                 defer href.deinit(state.allocator);
@@ -82,6 +83,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                 html.*.content = href.toOwnedSlice(state.allocator) catch return false;
                 html.*.content_allocated = true;
+                html.*.length = url.len;
 
                 if (parent.children == null) {
                     const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
@@ -116,9 +118,10 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 } else false;
 
                 if (hasSpace) {
-                    const text = newNode(state.allocator, "text", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                    const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
                     text.*.markup = escapeHtml(state.allocator, tail[0..urlMatch.?.end]) catch return false;
                     text.*.markup_allocated = true;
+                    text.*.length = urlMatch.?.end;
 
                     if (parent.children == null) {
                         const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
@@ -143,7 +146,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const escapedUrl = escapeHtml(state.allocator, url) catch return false;
                 defer state.allocator.free(escapedUrl);
 
-                const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
 
                 var href = std.ArrayList(u8).initCapacity(state.allocator, url.len + 10) catch return false;
                 defer href.deinit(state.allocator);
@@ -155,6 +158,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                 html.*.content = href.toOwnedSlice(state.allocator) catch return false;
                 html.*.content_allocated = true;
+                html.*.length = url.len;
 
                 if (parent.children == null) {
                     const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
@@ -188,9 +192,10 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const plus_idx = std.mem.indexOf(u8, url, "+");
                 const hasPlusAfterAt = at_idx != null and plus_idx != null and plus_idx.? > at_idx.?;
                 if (url.len > 0 and (url[url.len - 1] == '-' or url[url.len - 1] == '_' or hasPlusAfterAt)) {
-                    const text = newNode(state.allocator, "text", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                    const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
                     text.*.markup = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
                     text.*.markup_allocated = true;
+                    text.*.length = emailMatch.?.end;
 
                     if (parent.children == null) {
                         const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
@@ -214,7 +219,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                     url = url[0 .. url.len - 1];
                 }
 
-                const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
 
                 var href = std.ArrayList(u8).initCapacity(state.allocator, url.len + 15) catch return false;
                 defer href.deinit(state.allocator);
@@ -228,6 +233,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                 html.*.content = href.toOwnedSlice(state.allocator) catch return false;
                 html.*.content_allocated = true;
+                html.*.length = url.len;
 
                 if (parent.children == null) {
                     const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
@@ -261,9 +267,10 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const plus_idx = std.mem.indexOf(u8, url, "+");
                 const hasPlusAfterAt = at_idx != null and plus_idx != null and plus_idx.? > at_idx.?;
                 if (url.len > 0 and (url[url.len - 1] == '-' or url[url.len - 1] == '_' or hasPlusAfterAt)) {
-                    const text = newNode(state.allocator, "text", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                    const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
                     text.*.markup = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
                     text.*.markup_allocated = true;
+                    text.*.length = emailMatch.?.end;
 
                     if (parent.children == null) {
                         const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
@@ -287,7 +294,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                     url = url[0 .. url.len - 1];
                 }
 
-                const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
 
                 var href = std.ArrayList(u8).initCapacity(state.allocator, url.len + 10) catch return false;
                 defer href.deinit(state.allocator);
@@ -301,6 +308,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                 html.*.content = href.toOwnedSlice(state.allocator) catch return false;
                 html.*.content_allocated = true;
+                html.*.length = url.len;
 
                 if (parent.children == null) {
                     const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;

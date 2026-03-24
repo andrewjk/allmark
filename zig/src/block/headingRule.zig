@@ -88,6 +88,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 heading.content = "";
             }
             state.i = eol;
+            heading.length = state.i - heading.index;
 
             return true;
         }

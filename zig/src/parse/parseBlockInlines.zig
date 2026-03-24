@@ -100,6 +100,7 @@ pub fn parseBlockInlines(
         .delimiters = delimiters_list,
         .refs = refs,
         .footnotes = footnotes,
+        .parentIndex = parent.index,
     };
     defer inline_state.delimiters.deinit(allocator);
 

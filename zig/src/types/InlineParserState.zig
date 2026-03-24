@@ -12,6 +12,7 @@ pub const InlineParserState = struct {
     delimiters: std.ArrayList(Delimiter),
     refs: std.StringHashMap(LinkReference),
     footnotes: std.StringHashMap(FootnoteReference),
+    parentIndex: usize,
 
     // HACK:
     debug: ?bool = null,

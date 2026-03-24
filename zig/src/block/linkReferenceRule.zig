@@ -24,14 +24,15 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             return false;
         }
 
-        const start = state.i + 1;
+        const start = state.i;
+        const linkStart = state.i + 1;
 
         var label: []const u8 = "";
-        var i = start;
+        var i = linkStart;
         while (i < state.src.len) : (i += 1) {
             if (!isEscaped(state.src, i)) {
                 if (state.src[i] == ']') {
-                    label = state.src[start..i];
+                    label = state.src[linkStart..i];
                     i += 1;
                     break;
                 }
@@ -75,7 +76,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         const dupe = state.allocator.dupe(u8, normalized) catch unreachable;
         state.refs.put(dupe, linkInfo.?) catch return false;
 
-        const ref = newNode(state.allocator, "link_ref", true, state.i, state.line, 1, "", 0, null) catch unreachable;
+        const ref = newNode(state.allocator, "link_ref", true, start, state.line, 1, "", 0, null) catch unreachable;
 
         if (state.hasBlankLine and parent.children != null and parent.children.?.len > 0) {
             const last_child = parent.children.?[parent.children.?.len - 1];
@@ -85,9 +86,11 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
         appendChild(state.allocator, parent, ref) catch unreachable;
 
-        if (!isNewLine(state.src[state.i - 1])) {
+        if (state.i > 0 and !isNewLine(state.src[state.i - 1])) {
             state.i = getEndOfLine(state);
         }
+
+        ref.length = state.i - ref.index;
 
         return true;
     }

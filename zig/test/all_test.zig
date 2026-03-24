@@ -23,4 +23,5 @@ comptime {
     _ = @import("spec_cm_test.zig");
     _ = @import("spec_gfm_test.zig");
     _ = @import("render_console_test.zig");
+    _ = @import("source_mapping_test.zig");
 }

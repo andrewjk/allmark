@@ -58,7 +58,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         }
 
         const code_indent = state.indent - 4;
-        const code = newNode(state.allocator, "code_block", true, state.i, state.line, 1, "    ", code_indent, null) catch unreachable;
+        const code = newNode(state.allocator, "code_block", true, state.lineStart, state.line, 1, "    ", code_indent, null) catch unreachable;
         code.acceptsContent = true;
 
         if (code_indent > 0) {

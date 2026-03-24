@@ -82,12 +82,13 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
             while (child_i > 0) {
                 child_i -= 1;
                 const lastNode = children[child_i];
-                if (lastNode.index == startDelimiter.?.start) {
+                if (lastNode.index == state.parentIndex + startDelimiter.?.start) {
                     const closeLen = @min(markup_len, @min(startDelimiter.?.length, @as(usize, 2)));
                     const closeMarkup = markup_buf[0..closeLen];
 
                     const textChildMarkup = if (startDelimiter.?.length < lastNode.markup.len) lastNode.markup[startDelimiter.?.length..] else "";
                     const text = newNode(state.allocator, "text", false, lastNode.index, lastNode.line, 1, textChildMarkup, 0, null) catch return false;
+                    text.*.length = text.markup.len;
 
                     const moved_len = children.len - child_i - 1;
                     const emphasisChildren = state.allocator.alloc(*MarkdownNode, moved_len + 1) catch return false;
@@ -121,6 +122,7 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
                             0,
                             emphasisChildren,
                         ) catch return false;
+                        emph.*.length = state.parentIndex + state.i - (lastNode.index + remainingLen) + closeLen;
 
                         const new_parent_children_len = child_i + 2;
                         const new_parent_children = state.allocator.alloc(*MarkdownNode, new_parent_children_len) catch return false;
@@ -142,6 +144,7 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
                         }
                         lastNode.markup_allocated = true;
                         lastNode.children = emphasisChildren;
+                        lastNode.*.length = state.parentIndex + state.i - lastNode.index + closeLen;
 
                         const new_parent_children_len = child_i + 1;
                         const new_parent_children = state.allocator.alloc(*MarkdownNode, new_parent_children_len) catch return false;
@@ -177,7 +180,7 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     if (canOpen) {
         const markup = markup_buf[0..markup_len];
-        const text = newNode(state.allocator, "text", false, start, state.line, 1, markup, 0, null) catch return false;
+        const text = newNode(state.allocator, "text", false, state.parentIndex + start, state.line, 1, markup, 0, null) catch return false;
 
         if (parent.children == null) {
             const newChildren = state.allocator.alloc(*MarkdownNode, 1) catch return false;

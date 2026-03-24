@@ -55,7 +55,7 @@ pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, paren
                 var child_i = children.len;
                 while (child_i > 0) : (child_i -= 1) {
                     const lastNode = children[child_i - 1];
-                    if (lastNode.index == startDelimiter.?.start) {
+                    if (lastNode.index == state.parentIndex + startDelimiter.?.start) {
                         //const text = newNode(state.allocator, "text", false, lastNode.index, lastNode.line, 1, "", 0, null) catch return false;
                         //const start_markup = startDelimiter.?.getMarkup();
                         //if (startDelimiter.?.length < start_markup.len) {
@@ -65,6 +65,7 @@ pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, paren
                         //}
                         const newText = lastNode.markup[startDelimiter.?.length..];
                         const text = newNode(state.allocator, "text", false, lastNode.index, lastNode.line, 1, newText, 0, null) catch return false;
+                        text.*.length = text.markup.len;
 
                         const oldType = lastNode.*.type;
                         lastNode.*.type = state.allocator.dupe(u8, name) catch return false;
@@ -76,6 +77,7 @@ pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, paren
                             state.allocator.free(oldMarkup);
                         }
                         lastNode.*.markup_allocated = true;
+                        lastNode.*.length = state.parentIndex + state.i - lastNode.index + markup_len;
 
                         const moved_len = children.len - child_i;
                         lastNode.*.children = state.allocator.alloc(*MarkdownNode, moved_len + 1) catch return false;
@@ -110,7 +112,7 @@ pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, paren
         }
 
         if (leftFlanking) {
-            const text = newNode(state.allocator, "text", false, start, state.line, 1, markup, 0, null) catch return false;
+            const text = newNode(state.allocator, "text", false, state.parentIndex + start, state.line, 1, markup, 0, null) catch return false;
             if (parent.children == null) {
                 const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
                 children[0] = text;

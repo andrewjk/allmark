@@ -14,12 +14,12 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     var lastNode: *MarkdownNode = undefined;
     if (parent.children == null or parent.children.?.len == 0) {
-        lastNode = newNode(state.allocator, "text", false, state.i, state.line, 1, "", 0, null) catch return false;
+        lastNode = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", 0, null) catch return false;
         appendChild(state.allocator, parent, lastNode) catch return false;
     } else {
         lastNode = parent.children.?[parent.children.?.len - 1];
         if (!std.mem.eql(u8, lastNode.type, "text")) {
-            lastNode = newNode(state.allocator, "text", false, state.i, state.line, 1, "", 0, null) catch return false;
+            lastNode = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", 0, null) catch return false;
             appendChild(state.allocator, parent, lastNode) catch return false;
         } else if (isNewLine(char)) {
             var end = lastNode.markup.len;
@@ -63,6 +63,7 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
         lastNode.*.markup = new_markup;
         lastNode.*.markup_allocated = true;
     }
+    lastNode.*.length = lastNode.markup.len;
 
     return true;
 }

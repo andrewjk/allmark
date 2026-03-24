@@ -168,6 +168,7 @@ fn testHtmlCondition2(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 2, null) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
+        html.length = end_of_line - start;
 
         if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
             const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];
@@ -206,6 +207,7 @@ fn testHtmlCondition3(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 3, null) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
+        html.length = end_of_line - start;
 
         if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
             const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];
@@ -244,6 +246,7 @@ fn testHtmlCondition4(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 4, null) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
+        html.length = end_of_line - start;
 
         if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
             const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];
@@ -282,6 +285,7 @@ fn testHtmlCondition5(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 5, null) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
+        html.length = end_of_line - start;
 
         if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
             const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];

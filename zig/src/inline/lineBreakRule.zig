@@ -25,8 +25,9 @@ pub fn testLineBreak(state: *InlineParserState, parent: *MarkdownNode) bool {
         }
 
         if (end - state.i >= 2) {
-            const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch unreachable;
+            const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch unreachable;
             html.*.content = "<br />\n";
+            html.*.length = end - state.i;
             appendChild(state.allocator, parent, html) catch unreachable;
             state.i = end + 1;
             return true;

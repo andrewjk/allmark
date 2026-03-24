@@ -35,7 +35,7 @@ fn testLinkOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
     const start = state.i;
     const markup = "[";
 
-    const text = newNode(state.allocator, "text", false, start, state.line, 1, markup, 0, null) catch return false;
+    const text = newNode(state.allocator, "text", false, state.parentIndex + start, state.line, 1, markup, 0, null) catch return false;
     appendChild(state.allocator, parent, text) catch return false;
 
     state.i += 1;
@@ -57,7 +57,7 @@ fn testImageOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
     const start = state.i;
     const markup = "![";
 
-    const text = newNode(state.allocator, "text", false, start, state.line, 1, markup, 0, null) catch return false;
+    const text = newNode(state.allocator, "text", false, state.parentIndex + start, state.line, 1, markup, 0, null) catch return false;
     appendChild(state.allocator, parent, text) catch return false;
 
     state.i += markup.len;
@@ -100,7 +100,7 @@ fn testLinkClose(state: *InlineParserState, parent: *MarkdownNode) bool {
         var child_i: usize = children.len;
         while (child_i > 0) : (child_i -= 1) {
             const lastNode = children[child_i - 1];
-            if (lastNode.index == startDelimiter.?.start) {
+            if (lastNode.index == state.parentIndex + startDelimiter.?.start) {
                 const start = state.i + 1;
                 const start_markup = startDelimiter.?.getMarkup();
                 var label = state.src[startDelimiter.?.start + start_markup.len .. state.i];
@@ -161,6 +161,7 @@ fn testLinkClose(state: *InlineParserState, parent: *MarkdownNode) bool {
                 if (link != null) {
                     const linkText = lastNode.*.markup[start_markup.len..];
                     const text = newNode(state.allocator, "text", false, lastNode.index, lastNode.line, 1, linkText, 0, null) catch unreachable;
+                    text.*.length = text.markup.len;
 
                     const oldType = lastNode.*.type;
                     const newType = if (isLink) "link" else "image";
@@ -170,6 +171,7 @@ fn testLinkClose(state: *InlineParserState, parent: *MarkdownNode) bool {
                     if (link.?.title.len > 0) {
                         lastNode.*.title = state.allocator.dupe(u8, link.?.title) catch unreachable;
                     }
+                    lastNode.*.length = state.parentIndex + state.i - lastNode.index;
 
                     // Free link reference URL and title if they were allocated by parseLinkInline
                     // (not from refs hashmap which is freed in parse.zig)

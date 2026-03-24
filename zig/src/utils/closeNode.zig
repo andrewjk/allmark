@@ -4,6 +4,8 @@ pub fn closeNode(
     state: *@import("../types/BlockParserState.zig").BlockParserState,
     node: *@import("../types/MarkdownNode.zig").MarkdownNode,
 ) void {
+    node.length = state.i - node.index;
+
     var i = state.openNodes.items.len;
     while (i > 1) : (i -= 1) {
         const openNode = state.openNodes.items[i - 1];

@@ -63,6 +63,17 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*Ma
         }
     }
 
+    var j = state.openNodes.items.len;
+    while (j > 0) : (j -= 1) {
+        const openNode = state.openNodes.items[j - 1];
+        openNode.length = state.i - openNode.index;
+        if (state.rules.get(openNode.type)) |rule| {
+            if (rule.closeNode) |closeFn| {
+                closeFn(&state, openNode);
+            }
+        }
+    }
+
     parseBlockInlines(allocator, document, rules.inlines, state.refs, state.footnotes) catch |err| {
         std.debug.print("Error parsing block inlines: {s}\n", .{@errorName(err)});
     };

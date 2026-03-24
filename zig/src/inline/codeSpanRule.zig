@@ -69,10 +69,12 @@ pub fn testCodeSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
                 content = content[1 .. content.len - 1];
             }
 
-            const text = newNode(state.allocator, "text", false, state.i, state.line, 1, content, 0, null) catch unreachable;
+            const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, content, 0, null) catch unreachable;
+            text.*.length = content.len;
             const children_slice = state.allocator.alloc(*MarkdownNode, 1) catch unreachable;
             children_slice[0] = text;
-            const code = newNode(state.allocator, "code_span", false, state.i, state.line, 1, markup.items, 0, children_slice) catch unreachable;
+            const code = newNode(state.allocator, "code_span", false, state.parentIndex + state.i - openMatched, state.line, 1, markup.items, 0, children_slice) catch unreachable;
+            code.*.length = closeEnd - (state.i - openMatched);
 
             appendChild(state.allocator, parent, code) catch unreachable;
 

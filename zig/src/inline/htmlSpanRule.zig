@@ -39,9 +39,10 @@ pub fn testHtmlSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
         }
 
         const content = match.?.slice;
-        const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+        const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
         html.*.content = state.allocator.dupe(u8, content) catch return false;
         html.*.content_allocated = true;
+        html.*.length = content.len;
 
         appendChild(state.allocator, parent, html) catch return false;
 

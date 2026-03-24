@@ -89,6 +89,8 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 appendChild(state.allocator, row, cell) catch unreachable;
             }
 
+            lastNode.length = endOfLine - lastNode.index;
+
             state.i = endOfLine;
             return true;
         }

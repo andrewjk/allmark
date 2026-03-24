@@ -33,7 +33,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
             const markup = markup_buf[0..markup_len];
 
             if (markup_len == 2 or markup_len == 3) {
-                const text = newNode(state.allocator, "text", false, start, state.line, 1, markup, 0, null) catch return false;
+                const text = newNode(state.allocator, "text", false, state.parentIndex + start, state.line, 1, markup, 0, null) catch return false;
                 const old_children = parent.children orelse &[_]*MarkdownNode{};
                 const new_children = state.allocator.alloc(*MarkdownNode, old_children.len + 1) catch return false;
                 if (parent.children) |children| {
@@ -48,7 +48,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
                 var delim: Delimiter = .{
                     .markup = undefined,
                     .markup_len = @intCast(markup_len),
-                    .start = start,
+                    .start = state.parentIndex + start,
                     .length = markup_len,
                     .handled = false,
                 };
@@ -110,6 +110,8 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
                                 state.allocator.free(oldMarkup);
                             }
                             lastNode.*.markup_allocated = true;
+
+                            lastNode.length = state.parentIndex + state.i - lastNode.index + markup.len;
 
                             const moved_len = children.len - child_i;
                             lastNode.*.children = state.allocator.alloc(*MarkdownNode, moved_len + 1) catch return false;

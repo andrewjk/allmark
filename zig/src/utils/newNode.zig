@@ -17,6 +17,7 @@ pub fn newNode(
         .type = try allocator.dupe(u8, type_str),
         .block = block,
         .index = index,
+        .length = 0,
         .line = line,
         .column = column,
         .markup = try allocator.dupe(u8, markup),

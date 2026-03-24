@@ -104,11 +104,11 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 closeNode(state, closedNode.?);
             }
 
-            state.i = end;
-
             const code = newNode(state.allocator, "code_fence", true, state.i, state.line, 1, markup, state.indent, null) catch unreachable;
             code.*.acceptsContent = true;
             code.*.info = state.allocator.dupe(u8, info) catch unreachable;
+
+            state.i = end;
 
             if (state.hasBlankLine) {
                 if (effective_parent.children) |children| {

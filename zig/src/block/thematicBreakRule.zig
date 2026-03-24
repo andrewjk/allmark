@@ -85,9 +85,9 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
             const markup = state.src[state.i..end];
             const tbr = newNode(state.allocator, "thematic_break", true, state.i, state.line, 1, markup, 0, null) catch unreachable;
+            tbr.length = end - state.i;
 
             appendChild(state.allocator, effective_parent, tbr) catch unreachable;
-            state.openNodes.append(state.allocator, tbr) catch unreachable;
 
             state.i = end;
 

@@ -8,7 +8,8 @@ const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testHardBreak(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i < state.src.len and state.src[state.i] == '\\' and state.i + 1 < state.src.len and isNewLine(state.src[state.i + 1])) {
-        const hb = newNode(state.allocator, "hard_break", false, state.i, state.line, 1, "\\", 0, null) catch unreachable;
+        const hb = newNode(state.allocator, "hard_break", false, state.parentIndex + state.i, state.line, 1, "\\", 0, null) catch unreachable;
+        hb.*.length = 2;
         state.i += 2;
         appendChild(state.allocator, parent, hb) catch unreachable;
         return true;

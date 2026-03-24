@@ -35,9 +35,10 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             } else false;
 
             if (hasSpace) {
-                const text = newNode(state.allocator, "text", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
                 text.*.markup = escapeHtml(state.allocator, tail[0..linkMatch.?.end]) catch return false;
                 text.*.markup_allocated = true;
+                text.*.length = linkMatch.?.end;
 
                 appendChild(state.allocator, parent, text) catch return false;
 
@@ -47,7 +48,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             }
 
             const encodeUri = @import("../utils/encodeUri.zig").encodeUri;
-            const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+            const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
 
             const escapedUrl = escapeHtml(state.allocator, rawUrl) catch return false;
             const encoded_url = encodeUri(state.allocator, escapedUrl) catch return false;
@@ -56,6 +57,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             state.allocator.free(encoded_url);
             html.*.content = content;
             html.*.content_allocated = true;
+            html.*.length = linkMatch.?.end;
 
             appendChild(state.allocator, parent, html) catch return false;
 
@@ -75,9 +77,10 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             } else false;
 
             if (hasSpace) {
-                const text = newNode(state.allocator, "text", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+                const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
                 text.*.markup = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
                 text.*.markup_allocated = true;
+                text.*.length = emailMatch.?.end;
 
                 appendChild(state.allocator, parent, text) catch return false;
 
@@ -87,7 +90,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             }
 
             const encodeUri = @import("../utils/encodeUri.zig").encodeUri;
-            const html = newNode(state.allocator, "html_span", false, state.i, state.line, 1, "", state.indent, null) catch return false;
+            const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
 
             const escapedUrl = escapeHtml(state.allocator, rawUrl) catch return false;
             const encoded_url = encodeUri(state.allocator, escapedUrl) catch return false;
@@ -96,6 +99,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             state.allocator.free(encoded_url);
             html.*.content = content;
             html.*.content_allocated = true;
+            html.*.length = emailMatch.?.end;
 
             appendChild(state.allocator, parent, html) catch return false;
 

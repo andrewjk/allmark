@@ -24,21 +24,22 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             return false;
         }
 
-        var start = state.i + 1;
+        const start = state.i;
+        var footnoteStart = state.i + 1;
 
         // Check for ^ that indicates a footnote (not a regular link reference)
-        if (state.src[start] != '^') {
+        if (state.src[footnoteStart] != '^') {
             return false;
         }
-        start += 1;
+        footnoteStart += 1;
 
         var label: []const u8 = "";
-        var label_end: usize = start;
-        var i = start;
+        var label_end: usize = footnoteStart;
+        var i = footnoteStart;
         while (i < state.src.len) : (i += 1) {
             if (!isEscaped(state.src, i)) {
                 if (state.src[i] == ']') {
-                    label = state.src[start..i];
+                    label = state.src[footnoteStart..i];
                     label_end = i;
                     i += 1; // Move past ']'
                     break;
@@ -80,7 +81,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             return true;
         }
 
-        const ref = newNode(state.allocator, "footnote_ref", true, state.i, state.line, 1, "", 0, null) catch unreachable;
+        const ref = newNode(state.allocator, "footnote_ref", true, start, state.line, 1, "", 0, null) catch unreachable;
 
         const footnoteRef = @import("../types/FootnoteReference.zig").FootnoteReference{
             .label = normalized,
@@ -100,6 +101,8 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
         state.hasBlankLine = false;
         parseBlock(state, ref);
+
+        ref.length = state.i - ref.index;
 
         return true;
     }

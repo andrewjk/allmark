@@ -37,7 +37,7 @@ fn testFootnoteOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     const markup = "[^";
 
-    const text = newNode(state.allocator, "text", false, start, state.line, 1, markup, 0, null) catch return false;
+    const text = newNode(state.allocator, "text", false, state.parentIndex + start, state.line, 1, markup, 0, null) catch return false;
     appendChild(state.allocator, parent, text) catch return false;
 
     state.i += 2;
@@ -75,7 +75,7 @@ fn testFootnoteClose(state: *InlineParserState, parent: *MarkdownNode) bool {
         var child_i: usize = children.len;
         while (child_i > 0) : (child_i -= 1) {
             const lastNode = children[child_i - 1];
-            if (lastNode.index == startDelimiter.?.start) {
+            if (lastNode.index == state.parentIndex + startDelimiter.?.start) {
                 const start_markup = startDelimiter.?.getMarkup();
                 var label = state.src[startDelimiter.?.start + start_markup.len .. state.i];
 
@@ -175,6 +175,7 @@ fn testFootnoteClose(state: *InlineParserState, parent: *MarkdownNode) bool {
                         .delimiters = delimiters_list,
                         .refs = state.refs,
                         .footnotes = state.footnotes,
+                        .parentIndex = lastNode.index,
                     };
                     defer temp_state.delimiters.deinit(state.allocator);
 

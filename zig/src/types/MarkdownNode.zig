@@ -4,6 +4,7 @@ pub const MarkdownNode = struct {
     type: []const u8,
     block: bool,
     index: usize,
+    length: usize,
 
     line: i32,
     column: i32,
