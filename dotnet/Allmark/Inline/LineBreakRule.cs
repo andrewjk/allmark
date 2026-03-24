@@ -37,7 +37,7 @@ public static class LineBreakRule
             }
             if (end - state.I >= 2)
             {
-                var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
+                var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                 html.Content += "<br />\n";
                 html.Length = end - state.I;
                 parent.Children!.Add(html);

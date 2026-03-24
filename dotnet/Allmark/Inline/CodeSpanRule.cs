@@ -90,9 +90,9 @@ public static class CodeSpanRule
                     content = content.Substring(1, content.Length - 2);
                 }
 
-                var text = Utils.NewNode("text", false, state.I, state.Line, 1, content, 0);
+                var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, content, 0);
                 text.Length = content.Length;
-                var code = Utils.NewNode("code_span", false, state.I - openMatched, state.Line, 1, markup, 0, [text]);
+                var code = Utils.NewNode("code_span", false, state.ParentIndex + state.I - openMatched, state.Line, 1, markup, 0, [text]);
                 code.Length = closeEnd - (state.I - openMatched);
                 parent.Children!.Add(code);
 

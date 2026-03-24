@@ -266,251 +266,284 @@ public class SourceMappingTests
     [TestMethod]
     public void AutolinkURL()
     {
-        var input = "<https://example.com>";
+        var input = "# Test\n\n<https://example.com>";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var autolink = paragraph.Children![0];
         Assert.AreEqual("html_span", autolink.Type);
-        Assert.AreEqual(0, autolink.Index);
+        Assert.AreEqual(8, autolink.Index);
         Assert.AreEqual(21, autolink.Length);
     }
 
     [TestMethod]
     public void AutolinkEmail()
     {
-        var input = "<user@example.com>";
+        var input = "# Test\n\n<user@example.com>";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var autolink = paragraph.Children![0];
         Assert.AreEqual("html_span", autolink.Type);
-        Assert.AreEqual(0, autolink.Index);
+        Assert.AreEqual(8, autolink.Index);
         Assert.AreEqual(18, autolink.Length);
     }
 
     [TestMethod]
     public void ExtendedAutolinkWww()
     {
-        var input = "www.example.com";
+        var input = "# Test\n\nwww.example.com";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var extendedAutolink = paragraph.Children![0];
         Assert.AreEqual("html_span", extendedAutolink.Type);
-        Assert.AreEqual(0, extendedAutolink.Index);
+        Assert.AreEqual(8, extendedAutolink.Index);
         Assert.AreEqual(15, extendedAutolink.Length);
     }
 
     [TestMethod]
     public void CodeSpan()
     {
-        var input = "`code`";
+        var input = "# Test\n\n`code`";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var codeSpan = paragraph.Children![0];
         Assert.AreEqual("code_span", codeSpan.Type);
-        Assert.AreEqual(0, codeSpan.Index);
+        Assert.AreEqual(8, codeSpan.Index);
         Assert.AreEqual(6, codeSpan.Length);
     }
 
     [TestMethod]
     public void EmphasisAsterisk()
     {
-        var input = "*emphasis*";
+        var input = "# Test\n\n*emphasis*";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var emphasis = paragraph.Children![0];
         Assert.AreEqual("emphasis", emphasis.Type);
-        Assert.AreEqual(0, emphasis.Index);
+        Assert.AreEqual(8, emphasis.Index);
         Assert.AreEqual(10, emphasis.Length);
     }
 
     [TestMethod]
     public void EmphasisUnderscore()
     {
-        var input = "here: _emphasis_";
+        var input = "# Test\n\nhere: _emphasis_";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var emphasis = paragraph.Children![1];
         Assert.AreEqual("emphasis", emphasis.Type);
-        Assert.AreEqual(6, emphasis.Index);
+        Assert.AreEqual(14, emphasis.Index);
         Assert.AreEqual(10, emphasis.Length);
     }
 
     [TestMethod]
     public void Strong()
     {
-        var input = "**strong**";
+        var input = "# Test\n\n**strong**";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var strong = paragraph.Children![0];
         Assert.AreEqual("strong", strong.Type);
-        Assert.AreEqual(0, strong.Index);
+        Assert.AreEqual(8, strong.Index);
         Assert.AreEqual(10, strong.Length);
     }
 
     [TestMethod]
     public void Link()
     {
-        var input = "[link](url)";
+        var input = "# Test\n\n[link](url)";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var link = paragraph.Children![0];
         Assert.AreEqual("link", link.Type);
-        Assert.AreEqual(0, link.Index);
+        Assert.AreEqual(8, link.Index);
         Assert.AreEqual(11, link.Length);
     }
 
     [TestMethod]
     public void LinkWithTitle()
     {
-        var input = "[link](url \"title\")";
+        var input = "# Test\n\n[link](url \"title\")";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var link = paragraph.Children![0];
         Assert.AreEqual("link", link.Type);
-        Assert.AreEqual(0, link.Index);
+        Assert.AreEqual(8, link.Index);
         Assert.AreEqual(19, link.Length);
     }
 
     [TestMethod]
     public void Footnote()
     {
-        var input = "[^1]";
+        var input = "# Test\n\n[^1]";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var footnote = paragraph.Children![0];
-        Assert.AreEqual(0, footnote.Index);
+        Assert.AreEqual(8, footnote.Index);
         Assert.AreEqual(4, footnote.Length);
     }
 
     [TestMethod]
     public void HardBreak()
     {
-        var input = "line  \nbreak";
+        var input = "# Test\n\nline  \nbreak";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var hardBreak = paragraph.Children![1];
+        Assert.AreEqual(12, hardBreak.Index);
         Assert.AreEqual(2, hardBreak.Length);
     }
 
     [TestMethod]
     public void Strikethrough()
     {
-        var input = "~~strikethrough~~";
+        var input = "# Test\n\n~~strikethrough~~";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var strikethrough = paragraph.Children![0];
         Assert.AreEqual("strikethrough", strikethrough.Type);
-        Assert.AreEqual(0, strikethrough.Index);
+        Assert.AreEqual(8, strikethrough.Index);
         Assert.AreEqual(17, strikethrough.Length);
     }
 
     [TestMethod]
     public void Highlight()
     {
-        var input = "==highlight==";
+        var input = "# Test\n\n==highlight==";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var highlight = paragraph.Children![0];
         Assert.AreEqual("highlight", highlight.Type);
-        Assert.AreEqual(0, highlight.Index);
+        Assert.AreEqual(8, highlight.Index);
         Assert.AreEqual(13, highlight.Length);
     }
 
     [TestMethod]
     public void Subscript()
     {
-        var input = "~subscript~";
+        var input = "# Test\n\n~subscript~";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var subscript = paragraph.Children![0];
         Assert.AreEqual("subscript", subscript.Type);
-        Assert.AreEqual(0, subscript.Index);
+        Assert.AreEqual(8, subscript.Index);
         Assert.AreEqual(11, subscript.Length);
     }
 
     [TestMethod]
     public void Superscript()
     {
-        var input = "^superscript^";
+        var input = "# Test\n\n^superscript^";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var superscript = paragraph.Children![0];
         Assert.AreEqual("superscript", superscript.Type);
-        Assert.AreEqual(0, superscript.Index);
+        Assert.AreEqual(8, superscript.Index);
         Assert.AreEqual(13, superscript.Length);
     }
 
     [TestMethod]
     public void Insertion()
     {
-        var input = "{++inserted++}";
+        var input = "# Test\n\n{++inserted++}";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var insertion = paragraph.Children![0];
         Assert.AreEqual("insertion", insertion.Type);
-        Assert.AreEqual(0, insertion.Index);
+        Assert.AreEqual(8, insertion.Index);
         Assert.AreEqual(14, insertion.Length);
     }
 
     [TestMethod]
     public void Deletion()
     {
-        var input = "del: {--deleted--}";
+        var input = "# Test\n\ndel: {--deleted--}";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var deletion = paragraph.Children![1];
         Assert.AreEqual("deletion", deletion.Type);
-        Assert.AreEqual(5, deletion.Index);
+        Assert.AreEqual(13, deletion.Index);
         Assert.AreEqual(13, deletion.Length);
     }
 
     [TestMethod]
     public void HtmlSpan()
     {
-        var input = "<span>content</span>";
+        var input = "# Test\n\n<span>content</span>";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var htmlStart = paragraph.Children![0];
         var htmlEnd = paragraph.Children![2];
         Assert.AreEqual("html_span", htmlStart.Type);
-        Assert.AreEqual(0, htmlStart.Index);
+        Assert.AreEqual(8, htmlStart.Index);
         Assert.AreEqual(6, htmlStart.Length);
         Assert.AreEqual("html_span", htmlEnd.Type);
-        Assert.AreEqual(13, htmlEnd.Index);
+        Assert.AreEqual(21, htmlEnd.Index);
         Assert.AreEqual(7, htmlEnd.Length);
     }
 
     [TestMethod]
     public void Comment()
     {
-        var input = "<!-- comment -->";
+        var input = "# Test\n\n<!-- comment -->";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var comment = doc.Children![0];
-        Assert.AreEqual(0, comment.Index);
+        var comment = doc.Children![1];
+        Assert.AreEqual(8, comment.Index);
         Assert.AreEqual(16, comment.Length);
     }
 
     [TestMethod]
     public void Text()
     {
-        var input = "plain text";
+        var input = "# Test\n\nplain text";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var text = paragraph.Children![0];
         Assert.AreEqual("text", text.Type);
-        Assert.AreEqual(0, text.Index);
+        Assert.AreEqual(8, text.Index);
         Assert.AreEqual(10, text.Length);
     }
 
     [TestMethod]
     public void TextWithSpecialChars()
     {
-        var input = "text with & chars";
+        var input = "# Test\n\ntext with & chars";
         var doc = Parser.Execute(input, Extended.RuleSet);
-        var paragraph = doc.Children![0];
+        var paragraph = doc.Children![1];
         var text = paragraph.Children![0];
         Assert.AreEqual("text", text.Type);
-        Assert.AreEqual(0, text.Index);
+        Assert.AreEqual(8, text.Index);
         Assert.AreEqual(17, text.Length);
+    }
+
+    [TestMethod]
+    public void VariousFormattings()
+    {
+        var input = "# Heading 1\n\nSome **bold** text, I'm ~~deleted~~, really {+gone+}";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+
+        var heading = doc.Children![0];
+        Assert.AreEqual("heading", heading.Type);
+        Assert.AreEqual(0, heading.Index);
+        Assert.AreEqual(12, heading.Length);
+
+		var paragraph = doc.Children![1];
+		Assert.AreEqual("paragraph", paragraph.Type);
+		Assert.AreEqual(13, paragraph.Index);
+		Assert.AreEqual(52, paragraph.Length);
+
+		var strong = paragraph.Children![1];
+		Assert.AreEqual("strong", strong.Type);
+		Assert.AreEqual(18, strong.Index);
+		Assert.AreEqual(8, strong.Length);
+
+		var strikethrough = paragraph.Children![3];
+		Assert.AreEqual("strikethrough", strikethrough.Type);
+		Assert.AreEqual(37, strikethrough.Index);
+		Assert.AreEqual(11, strikethrough.Length);
+
+		var deletion = paragraph.Children![5];
+		Assert.AreEqual("insertion", deletion.Type);
+		Assert.AreEqual(57, deletion.Index);
+		Assert.AreEqual(8, deletion.Length);
     }
 }

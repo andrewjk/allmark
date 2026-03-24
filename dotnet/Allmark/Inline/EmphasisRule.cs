@@ -126,7 +126,7 @@ public static class EmphasisRule
                     while (j-- > 0)
                     {
                         var lastNode = parent.Children?[j];
-                        if (lastNode?.Index == startDelimiter.Start)
+                        if (lastNode?.Index == state.ParentIndex + startDelimiter.Start)
                         {
                             // If it's longer than the last delimiter, or longer
                             // than two, save some for the next go-round
@@ -199,7 +199,7 @@ public static class EmphasisRule
             if (canOpen)
             {
                 // Add a new text node which may turn into emphasis
-                var text = Utils.NewNode("text", false, start, state.Line, 1, markup, 0);
+                var text = Utils.NewNode("text", false, state.ParentIndex + start, state.Line, 1, markup, 0);
                 parent.Children!.Add(text);
 
                 state.I += markup.Length;

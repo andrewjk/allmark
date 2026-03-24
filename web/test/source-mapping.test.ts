@@ -248,221 +248,244 @@ describe("source mapping - block rules", () => {
 
 describe("source mapping - inline rules", () => {
 	test("autolink - URL", () => {
-		const input = "<https://example.com>";
+		const input = "# Test\n\n<https://example.com>";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const autolink = paragraph.children![0];
 		expect(autolink.type).toBe("html_span");
-		expect(autolink.index).toBe(0);
+		expect(autolink.index).toBe(8);
 		expect(autolink.length).toBe(21);
 	});
 
 	test("autolink - email", () => {
-		const input = "<user@example.com>";
+		const input = "# Test\n\n<user@example.com>";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const autolink = paragraph.children![0];
 		expect(autolink.type).toBe("html_span");
-		expect(autolink.index).toBe(0);
+		expect(autolink.index).toBe(8);
 		expect(autolink.length).toBe(18);
 	});
 
 	test("extended autolink - www", () => {
-		const input = "www.example.com";
+		const input = "# Test\n\nwww.example.com";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const extendedAutolink = paragraph.children![0];
 		expect(extendedAutolink.type).toBe("html_span");
-		expect(extendedAutolink.index).toBe(0);
+		expect(extendedAutolink.index).toBe(8);
 		expect(extendedAutolink.length).toBe(15);
 	});
 
 	test("code span", () => {
-		const input = "`code`";
+		const input = "# Test\n\n`code`";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const codeSpan = paragraph.children![0];
 		expect(codeSpan.type).toBe("code_span");
-		expect(codeSpan.index).toBe(0);
+		expect(codeSpan.index).toBe(8);
 		expect(codeSpan.length).toBe(6);
 	});
 
 	test("emphasis - asterisk", () => {
-		const input = "*emphasis*";
+		const input = "# Test\n\n*emphasis*";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const emphasis = paragraph.children![0];
 		expect(emphasis.type).toBe("emphasis");
-		expect(emphasis.index).toBe(0);
+		expect(emphasis.index).toBe(8);
 		expect(emphasis.length).toBe(10);
 	});
 
 	test("emphasis - underscore", () => {
-		const input = "here: _emphasis_";
+		const input = "# Test\n\nhere: _emphasis_";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const emphasis = paragraph.children![1];
 		expect(emphasis.type).toBe("emphasis");
-		expect(emphasis.index).toBe(6);
+		expect(emphasis.index).toBe(14);
 		expect(emphasis.length).toBe(10);
 	});
 
 	test("strong", () => {
-		const input = "**strong**";
+		const input = "# Test\n\n**strong**";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const strong = paragraph.children![0];
 		expect(strong.type).toBe("strong");
-		expect(strong.index).toBe(0);
+		expect(strong.index).toBe(8);
 		expect(strong.length).toBe(10);
 	});
 
 	test("link", () => {
-		const input = "[link](url)";
+		const input = "# Test\n\n[link](url)";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const link = paragraph.children![0];
 		expect(link.type).toBe("link");
-		expect(link.index).toBe(0);
+		expect(link.index).toBe(8);
 		expect(link.length).toBe(11);
 	});
 
 	test("link with title", () => {
-		const input = '[link](url "title")';
+		const input = '# Test\n\n[link](url "title")';
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const link = paragraph.children![0];
 		expect(link.type).toBe("link");
-		expect(link.index).toBe(0);
+		expect(link.index).toBe(8);
 		expect(link.length).toBe(19);
 	});
 
 	test("footnote", () => {
-		const input = "[^1]";
+		const input = "# Test\n\n[^1]";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const footnote = paragraph.children![0];
-		expect(footnote.index).toBe(0);
+		expect(footnote.index).toBe(8);
 		expect(footnote.length).toBe(4);
 	});
 
 	test("hard break", () => {
-		const input = "line  \nbreak";
+		const input = "# Test\n\nline  \nbreak";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const hardBreak = paragraph.children![1];
-		expect(hardBreak.index).toBe(4);
+		expect(hardBreak.index).toBe(12);
 		expect(hardBreak.length).toBe(2);
 	});
 
-	//test("line break", () => {
-	//	const input = "line\nbreak";
-	//	const doc = parse(input, extended);
-	//	const paragraph = doc.children![0];
-	//	const lineBreak = paragraph.children![1];
-	//	expect(lineBreak.index).toBe(4);
-	//	expect(lineBreak.length).toBe(1);
-	//});
-
 	test("strikethrough", () => {
-		const input = "~~strikethrough~~";
+		const input = "# Test\n\n~~strikethrough~~";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const strikethrough = paragraph.children![0];
 		expect(strikethrough.type).toBe("strikethrough");
-		expect(strikethrough.index).toBe(0);
+		expect(strikethrough.index).toBe(8);
 		expect(strikethrough.length).toBe(17);
 	});
 
 	test("highlight", () => {
-		const input = "==highlight==";
+		const input = "# Test\n\n==highlight==";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const highlight = paragraph.children![0];
 		expect(highlight.type).toBe("highlight");
-		expect(highlight.index).toBe(0);
+		expect(highlight.index).toBe(8);
 		expect(highlight.length).toBe(13);
 	});
 
 	test("subscript", () => {
-		const input = "~subscript~";
+		const input = "# Test\n\n~subscript~";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const subscript = paragraph.children![0];
 		expect(subscript.type).toBe("subscript");
-		expect(subscript.index).toBe(0);
+		expect(subscript.index).toBe(8);
 		expect(subscript.length).toBe(11);
 	});
 
 	test("superscript", () => {
-		const input = "^superscript^";
+		const input = "# Test\n\n^superscript^";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const superscript = paragraph.children![0];
 		expect(superscript.type).toBe("superscript");
-		expect(superscript.index).toBe(0);
+		expect(superscript.index).toBe(8);
 		expect(superscript.length).toBe(13);
 	});
 
 	test("insertion", () => {
-		const input = "{++inserted++}";
+		const input = "# Test\n\n{++inserted++}";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const insertion = paragraph.children![0];
 		expect(insertion.type).toBe("insertion");
-		expect(insertion.index).toBe(0);
+		expect(insertion.index).toBe(8);
 		expect(insertion.length).toBe(14);
 	});
 
 	test("deletion", () => {
-		const input = "del: {--deleted--}";
+		const input = "# Test\n\ndel: {--deleted--}";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const deletion = paragraph.children![1];
 		expect(deletion.type).toBe("deletion");
-		expect(deletion.index).toBe(5);
+		expect(deletion.index).toBe(13);
 		expect(deletion.length).toBe(13);
 	});
 
 	test("html span", () => {
-		const input = "<span>content</span>";
+		const input = "# Test\n\n<span>content</span>";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const htmlStart = paragraph.children![0];
 		const htmlEnd = paragraph.children![2];
 		expect(htmlStart.type).toBe("html_span");
-		expect(htmlStart.index).toBe(0);
+		expect(htmlStart.index).toBe(8);
 		expect(htmlStart.length).toBe(6);
 		expect(htmlEnd.type).toBe("html_span");
-		expect(htmlEnd.index).toBe(13);
+		expect(htmlEnd.index).toBe(21);
 		expect(htmlEnd.length).toBe(7);
 	});
 
 	test("comment", () => {
-		const input = "<!-- comment -->";
+		const input = "# Test\n\n<!-- comment -->";
 		const doc = parse(input, extended);
-		const comment = doc.children![0];
-		expect(comment.index).toBe(0);
+		const comment = doc.children![1];
+		expect(comment.index).toBe(8);
 		expect(comment.length).toBe(16);
 	});
 
 	test("text", () => {
-		const input = "plain text";
+		const input = "# Test\n\nplain text";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const text = paragraph.children![0];
 		expect(text.type).toBe("text");
-		expect(text.index).toBe(0);
+		expect(text.index).toBe(8);
 		expect(text.length).toBe(10);
 	});
 
 	test("text with special chars", () => {
-		const input = "text with & chars";
+		const input = "# Test\n\ntext with & chars";
 		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
+		const paragraph = doc.children![1];
 		const text = paragraph.children![0];
 		expect(text.type).toBe("text");
-		expect(text.index).toBe(0);
+		expect(text.index).toBe(8);
 		expect(text.length).toBe(17);
+	});
+});
+
+describe("source mapping - block and inline rules", () => {
+	test("various formattings", () => {
+		const input = "# Heading 1\n\nSome **bold** text, I'm ~~deleted~~, really {+gone+}";
+		const doc = parse(input, extended);
+
+		const heading = doc.children![0];
+		expect(heading.type).toBe("heading");
+		expect(heading.index).toBe(0);
+		expect(heading.length).toBe(12);
+
+		const paragraph = doc.children![1];
+		expect(paragraph.type).toBe("paragraph");
+		expect(paragraph.index).toBe(13);
+		expect(paragraph.length).toBe(52);
+
+		const strong = paragraph.children![1];
+		expect(strong.type).toBe("strong");
+		expect(strong.index).toBe(18);
+		expect(strong.length).toBe(8);
+
+		const strikethrough = paragraph.children![3];
+		expect(strikethrough.type).toBe("strikethrough");
+		expect(strikethrough.index).toBe(37);
+		expect(strikethrough.length).toBe(11);
+
+		const deletion = paragraph.children![5];
+		expect(deletion.type).toBe("insertion");
+		expect(deletion.index).toBe(57);
+		expect(deletion.length).toBe(8);
 	});
 });

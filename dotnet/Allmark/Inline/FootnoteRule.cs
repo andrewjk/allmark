@@ -46,7 +46,7 @@ public static class FootnoteRule
         var markup = "[^";
 
         // Add a new text node which may turn into a footnote
-        var text = Utils.NewNode("text", false, start, state.Line, 1, markup, 0);
+        var text = Utils.NewNode("text", false, state.ParentIndex + start, state.Line, 1, markup, 0);
         parent.Children!.Add(text);
 
         state.I += 2;
@@ -80,7 +80,7 @@ public static class FootnoteRule
             while (j-- > 0)
             {
                 var lastNode = parent.Children?[j];
-                if (lastNode?.Index == startDelimiter.Start)
+                if (lastNode?.Index == state.ParentIndex + startDelimiter.Start)
                 {
                     var label = state.Src.Substring(
                         startDelimiter.Start + startDelimiter.Markup.Length,

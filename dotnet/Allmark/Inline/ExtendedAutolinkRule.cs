@@ -45,7 +45,7 @@ public static class ExtendedAutolinkRule
                     if (SpaceRegex.IsMatch(url))
                     {
                         var originalLength = urlMatch.Groups[0].Length;
-                        var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
+                        var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(urlMatch.Groups[0].Value);
                         text.Length = originalLength;
                         parent.Children!.Add(text);
@@ -58,7 +58,7 @@ public static class ExtendedAutolinkRule
                     url = Utils.EscapeHtml(url);
 
                     var originalLength2 = urlMatch.Groups[0].Length;
-                    var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
+                    var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                     html.Content = $"<a href=\"http://{Utils.EscapeUriString(url)}\">{url}</a>";
                     html.Length = originalLength2;
                     parent.Children!.Add(html);
@@ -79,7 +79,7 @@ public static class ExtendedAutolinkRule
 
                     if (SpaceRegex.IsMatch(url))
                     {
-                        var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
+                        var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(urlMatch.Groups[0].Value);
                         parent.Children!.Add(text);
                         state.I += urlMatch.Groups[0].Length;
@@ -90,7 +90,7 @@ public static class ExtendedAutolinkRule
                     url = ExtendedValidation(url);
                     url = Utils.EscapeHtml(url);
 
-                    var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
+                    var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                     html.Content = $"<a href=\"{Utils.EscapeUriString(url)}\">{url}</a>";
                     parent.Children!.Add(html);
                     state.I += url.Length;
@@ -116,7 +116,7 @@ public static class ExtendedAutolinkRule
                     // part of the address"
                     if (Regex.IsMatch(url, @"[-_]$") || url.IndexOf("+", url.IndexOf("@")) != -1)
                     {
-                        var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
+                        var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(emailMatch.Groups[0].Value);
                         parent.Children!.Add(text);
                         state.I += emailMatch.Groups[0].Length;
@@ -126,7 +126,7 @@ public static class ExtendedAutolinkRule
 
                     url = Regex.Replace(url, @"\.$", "");
 
-                    var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
+                    var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                     html.Content = $"<a href=\"mailto:{Utils.EscapeUriString(url)}\">{url}</a>";
                     parent.Children!.Add(html);
                     state.I += url.Length;
@@ -150,7 +150,7 @@ public static class ExtendedAutolinkRule
                     // part of the address"
                     if (Regex.IsMatch(url, @"[-_]$") || url.IndexOf("+", url.IndexOf("@")) != -1)
                     {
-                        var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
+                        var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(emailMatch.Groups[0].Value);
                         parent.Children!.Add(text);
                         state.I += emailMatch.Groups[0].Length;
@@ -160,7 +160,7 @@ public static class ExtendedAutolinkRule
 
                     url = Regex.Replace(url, @"\.$", "");
 
-                    var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
+                    var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                     html.Content = $"<a href=\"{Utils.EscapeUriString(url)}\">{url}</a>";
                     parent.Children!.Add(html);
                     state.I += url.Length;

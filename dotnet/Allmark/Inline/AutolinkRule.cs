@@ -40,7 +40,7 @@ public static class AutolinkRule
 
                 if (SpaceRegex.IsMatch(url))
                 {
-                    var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
+                    var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                     text.Markup = Utils.EscapeHtml(linkMatch.Groups[0].Value);
                     text.Length = linkMatch.Groups[0].Length;
                     parent.Children!.Add(text);
@@ -49,7 +49,7 @@ public static class AutolinkRule
                     return true;
                 }
 
-                var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
+                var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                 html.Content = $"<a href=\"{Utils.EscapeUriString(url)}\">{url}</a>";
                 html.Length = linkMatch.Groups[0].Length;
                 parent.Children!.Add(html);
@@ -65,7 +65,7 @@ public static class AutolinkRule
 
                 if (SpaceRegex.IsMatch(url))
                 {
-                    var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
+                    var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                     text.Markup = Utils.EscapeHtml(emailMatch.Groups[0].Value);
                     text.Length = emailMatch.Groups[0].Length;
                     parent.Children!.Add(text);
@@ -74,7 +74,7 @@ public static class AutolinkRule
                     return true;
                 }
 
-                var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
+                var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
                 html.Content = $"<a href=\"mailto:{Utils.EscapeUriString(url)}\">{url}</a>";
                 html.Length = emailMatch.Groups[0].Length;
                 parent.Children!.Add(html);

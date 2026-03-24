@@ -20,7 +20,7 @@ public static class TextRule
         var lastNode = parent.Children!.LastOrDefault();
         if (lastNode == null || lastNode.Type != "text")
         {
-            lastNode = Utils.NewNode("text", false, state.I, state.Line, 1, "", 0);
+            lastNode = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", 0);
             parent.Children!.Add(lastNode);
         }
         else if (Utils.IsNewLine(ch))
