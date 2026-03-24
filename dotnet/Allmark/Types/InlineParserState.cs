@@ -15,6 +15,7 @@ public record InlineParserState
     public required List<Delimiter> Delimiters { get; set; }
     public required Dictionary<string, LinkReference> Refs { get; set; }
     public required Dictionary<string, FootnoteReference> Footnotes { get; set; }
+    public required int ParentIndex { get; set; }
 
     // HACK:
     public bool? Debug { get; set; }

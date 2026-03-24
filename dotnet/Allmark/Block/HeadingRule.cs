@@ -89,6 +89,7 @@ public static class HeadingRule
                     }
                 }
                 heading.Content = state.Src.Substring(state.I, end + 1 - state.I);
+                heading.Length = endOfLine - heading.Index;
                 state.I = endOfLine;
 
                 return true;

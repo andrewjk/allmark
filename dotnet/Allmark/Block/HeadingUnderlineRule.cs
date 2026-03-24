@@ -68,6 +68,7 @@ public static class HeadingUnderlineRule
             {
                 parent.Type = "heading";
                 parent.Markup = state.Src.Substring(state.I, end - state.I);
+                parent.Length = end - parent.Index;
                 state.I = end;
                 return true;
             }

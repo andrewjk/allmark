@@ -22,16 +22,17 @@ public static class FootnoteReferenceRule
             return false;
         }
 
-        var ch = Utils.GetChar(state.Src, state.I);
-        if (state.Indent <= 3 && ch == '[' && !Utils.IsEscaped(state.Src, state.I))
-        {
-            // "A footnote definition cannot interrupt a paragraph"
-            if (parent.Type == "paragraph" && !parent.BlankAfter)
+            var ch = Utils.GetChar(state.Src, state.I);
+            if (state.Indent <= 3 && ch == '[' && !Utils.IsEscaped(state.Src, state.I))
             {
-                return false;
-            }
+                // "A footnote definition cannot interrupt a paragraph"
+                if (parent.Type == "paragraph" && !parent.BlankAfter)
+                {
+                    return false;
+                }
 
-            var start = state.I + 1;
+                var originalStart = state.I;
+                var start = state.I + 1;
 
             // Check for ^ that indicates a footnote (not a regular link reference)
             if (Utils.GetChar(state.Src, start) != '^')
@@ -91,7 +92,7 @@ public static class FootnoteReferenceRule
                 return true;
             }
 
-            var refNode = Utils.NewNode("footnote_ref", true, state.I, state.Line, 1, "", 0, []);
+            var refNode = Utils.NewNode("footnote_ref", true, originalStart, state.Line, 1, "", 0, []);
             state.Footnotes[label] = new FootnoteReference
             {
                 Label = label,
@@ -109,6 +110,8 @@ public static class FootnoteReferenceRule
 
             state.HasBlankLine = false;
             Parse.ParseBlock.Execute(state, refNode);
+
+            refNode.Length = state.I - refNode.Index;
 
             return true;
         }

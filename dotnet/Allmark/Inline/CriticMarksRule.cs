@@ -97,6 +97,7 @@ public static class CriticMarksRule
 
                             lastNode.Type = name;
                             lastNode.Markup = markup;
+                            lastNode.Length = state.ParentIndex + state.I - lastNode.Index + markup.Length;
                             var movedNodes = parent.Children!.Skip(j + 1).ToList() ?? [];
                             parent.Children!.RemoveRange(j + 1, movedNodes.Count);
                             lastNode.Children = [text, .. movedNodes];

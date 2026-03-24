@@ -42,6 +42,7 @@ public static class AutolinkRule
                 {
                     var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
                     text.Markup = Utils.EscapeHtml(linkMatch.Groups[0].Value);
+                    text.Length = linkMatch.Groups[0].Length;
                     parent.Children!.Add(text);
                     state.I += linkMatch.Groups[0].Length;
 
@@ -50,6 +51,7 @@ public static class AutolinkRule
 
                 var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
                 html.Content = $"<a href=\"{Utils.EscapeUriString(url)}\">{url}</a>";
+                html.Length = linkMatch.Groups[0].Length;
                 parent.Children!.Add(html);
                 state.I += linkMatch.Groups[0].Length;
 
@@ -65,6 +67,7 @@ public static class AutolinkRule
                 {
                     var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
                     text.Markup = Utils.EscapeHtml(emailMatch.Groups[0].Value);
+                    text.Length = emailMatch.Groups[0].Length;
                     parent.Children!.Add(text);
                     state.I += emailMatch.Groups[0].Length;
 
@@ -73,6 +76,7 @@ public static class AutolinkRule
 
                 var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
                 html.Content = $"<a href=\"mailto:{Utils.EscapeUriString(url)}\">{url}</a>";
+                html.Length = emailMatch.Groups[0].Length;
                 parent.Children!.Add(html);
                 state.I += emailMatch.Groups[0].Length;
 

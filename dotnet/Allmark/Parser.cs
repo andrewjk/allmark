@@ -9,7 +9,7 @@ public static class Parser
     {
         var document = Utils.NewNode("document", true, 0, 1, 1, "", 0, []);
 
-        // Skip empty lines at the start
+        // Skip empty lines at start
         var start = 0;
         var i = 0;
         for (; i < src.Length; i++)
@@ -45,9 +45,18 @@ public static class Parser
             ParseLine.Execute(state);
         }
 
-        // TODO: Close the open nodes?
+        // Close remaining open nodes
+        for (int j = state.OpenNodes.Count - 1; j >= 0; j--)
+        {
+            var openNode = state.OpenNodes.ElementAt(j);
+            openNode.Length = state.I - openNode.Index;
+            if (state.Rules.ContainsKey(openNode.Type)) {
+                var rule = state.Rules[openNode.Type];
+                rule.CloseNode?.Invoke(state, openNode);
+            }
+        }
 
-        // Stage 2 -- parse the inlines for each block
+        // Stage 2 -- parse inlines for each block
         ParseBlockInlines.Execute(document, rules.Inlines, state.Refs, state.Footnotes);
 
         return document;

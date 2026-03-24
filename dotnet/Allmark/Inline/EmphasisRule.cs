@@ -133,7 +133,8 @@ public static class EmphasisRule
                             markup = markup.Substring(0, Math.Min(markup.Length, Math.Min(startDelimiter.Length, 2)));
 
                             var text = Utils.NewNode("text", false, lastNode.Index, lastNode.Line, 1, ch.ToString(), 0);
-                            text.Markup = lastNode.Markup.Substring(startDelimiter.Length) ?? "";
+                            text.Markup = lastNode.Markup.Substring(startDelimiter.Length);
+                            text.Length = text.Markup.Length;
 
                             var movedNodes = parent.Children!.Skip(j + 1).ToList() ?? [];
                             parent.Children!.RemoveRange(j + 1, movedNodes.Count);
@@ -141,6 +142,7 @@ public static class EmphasisRule
                             if (markup.Length < startDelimiter.Length)
                             {
                                 lastNode.Markup = lastNode.Markup.Substring(0, startDelimiter.Length - markup.Length);
+                                lastNode.Length = lastNode.Markup.Length;
                                 var emphasis = Utils.NewNode(
                                     markup.Length == 2 ? "strong" : "emphasis",
                                     false,
@@ -150,12 +152,14 @@ public static class EmphasisRule
                                     markup,
                                     0,
                                     [text, .. movedNodes]);
+                                emphasis.Length = state.ParentIndex + state.I - emphasis.Index + markup.Length;
                                 parent.Children!.Add(emphasis);
                             }
                             else
                             {
                                 lastNode.Type = markup.Length == 2 ? "strong" : "emphasis";
                                 lastNode.Markup = markup;
+                                lastNode.Length = state.ParentIndex + state.I - lastNode.Index + markup.Length;
                                 lastNode.Children = [text, .. movedNodes];
                             }
 

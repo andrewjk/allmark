@@ -44,10 +44,12 @@ public static class ExtendedAutolinkRule
 
                     if (SpaceRegex.IsMatch(url))
                     {
+                        var originalLength = urlMatch.Groups[0].Length;
                         var text = Utils.NewNode("text", false, state.I, state.Line, 1, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(urlMatch.Groups[0].Value);
+                        text.Length = originalLength;
                         parent.Children!.Add(text);
-                        state.I += urlMatch.Groups[0].Length;
+                        state.I += originalLength;
 
                         return true;
                     }
@@ -55,8 +57,10 @@ public static class ExtendedAutolinkRule
                     url = ExtendedValidation(url);
                     url = Utils.EscapeHtml(url);
 
+                    var originalLength2 = urlMatch.Groups[0].Length;
                     var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
                     html.Content = $"<a href=\"http://{Utils.EscapeUriString(url)}\">{url}</a>";
+                    html.Length = originalLength2;
                     parent.Children!.Add(html);
                     state.I += url.Length;
 

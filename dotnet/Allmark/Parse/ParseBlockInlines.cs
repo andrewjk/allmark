@@ -73,6 +73,7 @@ public static class ParseBlockInlines
             Delimiters = [],
             Refs = refs,
             Footnotes = footnotes,
+            ParentIndex = parent.Index,
         };
 
         ParseInline.Execute(state, parent);

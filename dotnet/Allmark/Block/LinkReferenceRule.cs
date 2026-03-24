@@ -31,6 +31,7 @@ public static class LinkReferenceRule
                 return false;
             }
 
+            var originalIndex = state.I;
             var start = state.I + 1;
 
             // Get the label
@@ -86,7 +87,7 @@ public static class LinkReferenceRule
 
             state.Refs[label] = linkInfo;
 
-            var refNode = Utils.NewNode("link_ref", true, state.I, state.Line, 1, "", 0, []);
+            var refNode = Utils.NewNode("link_ref", true, originalIndex, state.Line, 1, "", 0, []);
 
             if (state.HasBlankLine && parent.Children!.Count > 0)
             {
@@ -100,6 +101,8 @@ public static class LinkReferenceRule
             {
                 state.I = Utils.GetEndOfLine(state);
             }
+
+            refNode.Length = state.I - refNode.Index;
 
             return true;
         }

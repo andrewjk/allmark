@@ -53,6 +53,8 @@ public static class TableRule
                 row.Children!.Add(cell);
             }
 
+            lastNode.Length = endOfLine - lastNode.Index;
+
             state.I = endOfLine;
             return true;
         }
@@ -176,6 +178,7 @@ public static class TableRule
                 parent.Type = "table";
                 parent.Content = "";
                 parent.Markup = state.Src.Substring(state.I, end - state.I);
+                parent.Length = end - parent.Index;
                 state.I = end;
                 return true;
             }

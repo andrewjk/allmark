@@ -36,6 +36,7 @@ public static class HtmlSpanRule
                 var content = match.Groups[0].Value;
                 var html = Utils.NewNode("html_span", false, state.I, state.Line, 1, "", state.Indent);
                 html.Content = content;
+                html.Length = match.Groups[0].Length;
                 parent.Children!.Add(html);
                 state.I += match.Groups[0].Length;
                 return true;

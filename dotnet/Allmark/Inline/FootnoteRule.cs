@@ -147,6 +147,7 @@ public static class FootnoteRule
                         lastNode.Type = "footnote";
                         lastNode.Info = label;
                         lastNode.Markup = $"[^{label}]";
+                        lastNode.Length = state.ParentIndex + state.I - lastNode.Index;
                         lastNode.Children = footnote.Content.Children;
 
                         // Parse the footnote content for inline elements
@@ -161,6 +162,7 @@ public static class FootnoteRule
                             Delimiters = [],
                             Refs = state.Refs,
                             Footnotes = state.Footnotes,
+                            ParentIndex = lastNode.Index,
                         };
                         Parse.ParseInline.Execute(tempState, lastNode);
 

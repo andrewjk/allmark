@@ -48,6 +48,8 @@ public static class TextRule
             lastNode.Markup += ch;
         }
 
+        lastNode.Length = lastNode.Markup.Length;
+
         return true;
     }
 }

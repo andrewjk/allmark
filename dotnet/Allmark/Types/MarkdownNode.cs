@@ -1,13 +1,14 @@
 namespace Allmark.Types;
 
 /// <summary>
-/// Represents a node in the markdown abstract syntax tree (AST).
+/// Represents a node in markdown abstract syntax tree (AST).
 /// </summary>
 public record MarkdownNode
 {
     public required string Type { get; set; }
     public required bool Block { get; set; }
     public required int Index { get; set; }
+    public required int Length { get; set; }
 
     /// <summary>
     /// The line number.

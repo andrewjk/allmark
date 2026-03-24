@@ -14,6 +14,7 @@ public static partial class Utils
             Type = type,
             Block = block,
             Index = index,
+            Length = 0,
             Line = line,
             Column = column,
             Markup = markup,

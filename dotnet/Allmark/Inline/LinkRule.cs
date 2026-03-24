@@ -181,10 +181,12 @@ public static class LinkRule
                     {
                         var text = Utils.NewNode("text", false, lastNode.Index, lastNode.Line, 1, markup, 0);
                         text.Markup = lastNode.Markup.Substring(startDelimiter.Markup.Length) ?? "";
+                        text.Length = text.Markup.Length;
 
                         lastNode.Type = isLink ? "link" : "image";
                         lastNode.Info = link.Url;
                         lastNode.Title = link.Title;
+                        lastNode.Length = state.ParentIndex + state.I - lastNode.Index;
                         var movedNodes = parent.Children!.Skip(j + 1).ToList() ?? [];
                         parent.Children!.RemoveRange(j + 1, movedNodes.Count);
                         lastNode.Children = [text, .. movedNodes];

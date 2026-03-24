@@ -7,6 +7,8 @@ public static partial class Utils
 {
     public static void CloseNode(BlockParserState state, MarkdownNode node)
     {
+        node.Length = state.I - node.Index;
+
         // Call the close function of each open child after (and including) this one
         for (int i = 0; i < state.OpenNodes.Count - 1; i++)
         {
