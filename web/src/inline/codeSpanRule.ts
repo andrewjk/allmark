@@ -76,7 +76,16 @@ function testCodeSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 
 			let text = newNode("text", false, state.parentIndex + state.i, state.line, 1, content, 0);
 			text.length = content.length;
-			let code = newNode("code_span", false, state.parentIndex + state.i - openMatched, state.line, 1, markup, 0, [text]);
+			let code = newNode(
+				"code_span",
+				false,
+				state.parentIndex + state.i - openMatched,
+				state.line,
+				1,
+				markup,
+				0,
+				[text],
+			);
 			code.length = closeEnd - (state.i - openMatched);
 			parent.children!.push(code);
 

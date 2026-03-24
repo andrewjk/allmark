@@ -1,6 +1,8 @@
 import * as fs from "node:fs";
-import { beforeEach, describe, expect, test, vi } from "vitest";
-import type { Mock } from "vitest";
+
+import { beforeEach, describe, expect, test, vi } from "vite-plus/test";
+import type { Mock } from "vite-plus/test";
+
 import { getRuleset, parseArgs } from "../src/bin/index";
 import parse from "../src/parse";
 import render from "../src/render";

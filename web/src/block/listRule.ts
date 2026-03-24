@@ -105,8 +105,8 @@ export function testListStart(
 
 	// If there's an open list of a different type, and this node is not nested, close it
 	// TODO: Is there a better way to do this??
-	if (isList(parent.type) && parent.delimiter !== info.delimiter) {
-		let lastItem = parent.children?.at(-1)!;
+	if (isList(parent.type) && parent.delimiter !== info.delimiter && parent.children !== undefined) {
+		let lastItem = parent.children.at(-1)!;
 		if (lastItem.type === "list_item" && state.indent < lastItem.subindent) {
 			closedNode = state.openNodes.pop();
 			parent = state.openNodes.at(-1)!;

@@ -28,7 +28,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 	const cellTexts: string[][] = [];
 
 	const maxColumns = Math.max(headerCells.length, ...dataRows.map((r) => r.children?.length ?? 0));
-	const columnWidths = new Array(maxColumns).fill(0);
+	const columnWidths = Array.from({ length: maxColumns }).fill(0) as number[];
 
 	for (let i = 0; i < headerCells.length; i++) {
 		const text = getTextFromNode(headerCells[i]);

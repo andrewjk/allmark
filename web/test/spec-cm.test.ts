@@ -1,4 +1,5 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
+
 import parse from "../src/parse";
 import render from "../src/render";
 import core from "../src/rulesets/core";

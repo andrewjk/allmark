@@ -1,5 +1,6 @@
 import { renderHtmlSync } from "cmark-gfm";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
+
 import parse from "../src/parse";
 import render from "../src/render";
 import core from "../src/rulesets/core";
@@ -182,7 +183,7 @@ more code
 	});
 
 	test("Blockquote with inline code", () => {
-		const input = "> \`code\` inside quote";
+		const input = "> `code` inside quote";
 		const expected = `
 <blockquote>
 <p><code>code</code> inside quote</p>

@@ -37,7 +37,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				let url = urlMatch[1];
 
 				if (SPACE_REGEX.test(url)) {
-					let text = newNode("text", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
+					let text = newNode(
+						"text",
+						false,
+						state.parentIndex + state.i,
+						state.line,
+						1,
+						"",
+						state.indent,
+					);
 					text.markup = escapeHtml(urlMatch[0]);
 					text.length = urlMatch[0].length;
 					parent.children!.push(text);
@@ -49,7 +57,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				url = extendedValidation(url);
 				url = escapeHtml(url);
 
-				let html = newNode("html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
+				let html = newNode(
+					"html_span",
+					false,
+					state.parentIndex + state.i,
+					state.line,
+					1,
+					"",
+					state.indent,
+				);
 				html.content = `<a href="http://${encodeURI(url)}">${url}</a>`;
 				html.length = url.length;
 				parent.children!.push(html);
@@ -67,7 +83,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				let url = urlMatch[1];
 
 				if (SPACE_REGEX.test(url)) {
-					let text = newNode("text", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
+					let text = newNode(
+						"text",
+						false,
+						state.parentIndex + state.i,
+						state.line,
+						1,
+						"",
+						state.indent,
+					);
 					text.markup = escapeHtml(urlMatch[0]);
 					text.length = urlMatch[0].length;
 					parent.children!.push(text);
@@ -79,7 +103,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				url = extendedValidation(url);
 				url = escapeHtml(url);
 
-				let html = newNode("html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
+				let html = newNode(
+					"html_span",
+					false,
+					state.parentIndex + state.i,
+					state.line,
+					1,
+					"",
+					state.indent,
+				);
 				html.content = `<a href="${encodeURI(url)}">${url}</a>`;
 				html.length = url.length;
 				parent.children!.push(html);
@@ -103,7 +135,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				// of the email address, in which case it will not be considered
 				// part of the address"
 				if (/[-_]$/.test(url) || url.indexOf("+", url.indexOf("@")) !== -1) {
-					let text = newNode("text", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
+					let text = newNode(
+						"text",
+						false,
+						state.parentIndex + state.i,
+						state.line,
+						1,
+						"",
+						state.indent,
+					);
 					text.markup = escapeHtml(emailMatch[0]);
 					text.length = emailMatch[0].length;
 					parent.children!.push(text);
@@ -114,7 +154,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 
 				url = url.replaceAll(/\.$/g, "");
 
-				let html = newNode("html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
+				let html = newNode(
+					"html_span",
+					false,
+					state.parentIndex + state.i,
+					state.line,
+					1,
+					"",
+					state.indent,
+				);
 				html.content = `<a href="mailto:${encodeURI(url)}">${url}</a>`;
 				html.length = url.length;
 				parent.children!.push(html);
@@ -136,7 +184,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				// of the email address, in which case it will not be considered
 				// part of the address"
 				if (/[-_]$/.test(url) || url.indexOf("+", url.indexOf("@")) !== -1) {
-					let text = newNode("text", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
+					let text = newNode(
+						"text",
+						false,
+						state.parentIndex + state.i,
+						state.line,
+						1,
+						"",
+						state.indent,
+					);
 					text.markup = escapeHtml(emailMatch[0]);
 					text.length = emailMatch[0].length;
 					parent.children!.push(text);
@@ -147,7 +203,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 
 				url = url.replaceAll(/\.$/g, "");
 
-				let html = newNode("html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
+				let html = newNode(
+					"html_span",
+					false,
+					state.parentIndex + state.i,
+					state.line,
+					1,
+					"",
+					state.indent,
+				);
 				html.content = `<a href="${encodeURI(url)}">${url}</a>`;
 				html.length = url.length;
 				parent.children!.push(html);

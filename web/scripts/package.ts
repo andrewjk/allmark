@@ -19,18 +19,16 @@ await updateZigVersion(version);
 // 2. Copy Swift files to sibling allmark-swift
 const swiftSrc = path.join(rootDir, "swift");
 const swiftDest = path.join(rootDir, "..", "allmark-swift");
+console.log(`Copying ${swiftSrc} to ${swiftDest}`);
 await clearDest(swiftDest);
 await copyDirectory(swiftSrc, swiftDest, [".build"]);
-
-console.log(`Copied ${swiftSrc} to ${swiftDest}`);
 
 // 3. Copy Zig files to sibling allmark-zig
 const zigSrc = path.join(rootDir, "zig");
 const zigDest = path.join(rootDir, "..", "allmark-zig");
+console.log(`Copying ${zigSrc} to ${zigDest}`);
 await clearDest(zigDest);
 await copyDirectory(zigSrc, zigDest, [".zig-cache", "zig-out", "zig-pkg"]);
-
-console.log(`Copied ${zigSrc} to ${zigDest}`);
 
 console.log("Packaging complete!");
 

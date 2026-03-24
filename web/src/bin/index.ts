@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from "node:fs";
+
 import parse from "../parse";
 import render from "../render";
 import consoleRenderers from "../rulesets/consoleRenderers";
@@ -55,7 +56,9 @@ export function parseArgs(args: string[]): {
 			}
 			const ruleset = args[i + 1] as Ruleset;
 			if (ruleset !== "core" && ruleset !== "gfm" && ruleset !== "extended") {
-				console.error(`Error: Invalid ruleset '${ruleset}'. Must be core, gfm, or extended`);
+				console.error(
+					`Error: Invalid ruleset '${ruleset as string}'. Must be core, gfm, or extended`,
+				);
 				printUsage();
 				process.exit(1);
 			}
@@ -69,7 +72,7 @@ export function parseArgs(args: string[]): {
 			}
 			const format = args[i + 1] as Format;
 			if (format !== "html" && format !== "console") {
-				console.error(`Error: Invalid format '${format}'. Must be html or console`);
+				console.error(`Error: Invalid format '${format as string}'. Must be html or console`);
 				printUsage();
 				process.exit(1);
 			}

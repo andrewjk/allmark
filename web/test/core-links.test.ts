@@ -1,5 +1,6 @@
 import { renderHtmlSync } from "cmark-gfm";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
+
 import parse from "../src/parse";
 import render from "../src/render";
 import core from "../src/rulesets/core";
@@ -228,7 +229,7 @@ describe("links", () => {
 	});
 
 	test("link with escaped brackets in text", () => {
-		const input = `[\[link\]](https://example.com)`;
+		const input = `[[link]](https://example.com)`;
 		const expected = `<p><a href="https://example.com">[link]</a></p>
 `;
 		expect(expected).toBe(renderHtmlSync(input));

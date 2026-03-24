@@ -1,5 +1,6 @@
 import { renderHtmlSync } from "cmark-gfm";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
+
 import parse from "../src/parse";
 import render from "../src/render";
 import core from "../src/rulesets/core";
@@ -117,7 +118,7 @@ describe("headings", () => {
 	});
 
 	test("ATX heading with inline code", () => {
-		const input = "# Heading with \`code\`";
+		const input = "# Heading with `code`";
 		const expected = `
 <h1>Heading with <code>code</code></h1>
 `.substring(1);
@@ -345,7 +346,7 @@ Paragraph
 	});
 
 	test("ATX heading with mixed inline elements", () => {
-		const input = "# **Bold** text, *italic* text, \`code\`, and [link](https://example.com)";
+		const input = "# **Bold** text, *italic* text, `code`, and [link](https://example.com)";
 		const expected = `
 <h1><strong>Bold</strong> text, <em>italic</em> text, <code>code</code>, and <a href="https://example.com">link</a></h1>
 `.substring(1);

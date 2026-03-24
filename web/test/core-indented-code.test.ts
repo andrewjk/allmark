@@ -1,5 +1,6 @@
 import { renderHtmlSync } from "cmark-gfm";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
+
 import parse from "../src/parse";
 import render from "../src/render";
 import core from "../src/rulesets/core";
@@ -181,7 +182,7 @@ code here</p>
 	});
 
 	test("Indented code with backticks", () => {
-		const input = "    \`code\`";
+		const input = "    `code`";
 		const expected = `
 <pre><code>\`code\`
 </code></pre>
@@ -743,7 +744,7 @@ Paragraph`.substring(1);
 	});
 
 	test("Indented code with inline code", () => {
-		const input = "    \`inline code\`";
+		const input = "    `inline code`";
 		const expected = `
 <pre><code>\`inline code\`
 </code></pre>

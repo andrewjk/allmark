@@ -1,5 +1,6 @@
 import { renderHtmlSync } from "cmark-gfm";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
+
 import parse from "../src/parse";
 import render from "../src/render";
 import core from "../src/rulesets/core";
@@ -338,7 +339,7 @@ Paragraph`.substring(1);
 	});
 
 	test("Bulleted list with code span", () => {
-		const input = "- \`inline code\`";
+		const input = "- `inline code`";
 		const expected = `
 <ul>
 <li><code>inline code</code></li>
