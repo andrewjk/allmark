@@ -53,6 +53,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							children: nil
 						)
 						text.markup = markup
+						text.length = tail[fullRange].count
 						parent.children?.append(text)
 						state.i += tail[fullRange].count
 						return true
@@ -75,8 +76,10 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 				let fullMatchRange = linkMatch.range(at: 0)
 				if let fullRange = Range(fullMatchRange, in: tail) {
+					html.length = tail[fullRange].count
 					state.i += tail[fullRange].count
 				}
+
 				return true
 			}
 		}
@@ -105,6 +108,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							children: nil
 						)
 						text.markup = markup
+						text.length = tail[fullRange].count
 						parent.children?.append(text)
 						state.i += tail[fullRange].count
 						return true
@@ -127,8 +131,10 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 				let fullMatchRange = emailMatch.range(at: 0)
 				if let fullRange = Range(fullMatchRange, in: tail) {
+					html.length = tail[fullRange].count
 					state.i += tail[fullRange].count
 				}
+
 				return true
 			}
 		}

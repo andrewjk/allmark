@@ -73,6 +73,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 			ri += 1
 		}
 
+		lastNode.length = endOfLine - lastNode.index
 		state.i = endOfLine
 		return true
 	}
@@ -211,6 +212,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 			let markupStart = state.src.index(state.src.startIndex, offsetBy: state.i)
 			let markupEndIndex = state.src.index(state.src.startIndex, offsetBy: markupEnd)
 			mutableParent.markup = String(state.src[markupStart ..< markupEndIndex])
+			mutableParent.length = end - mutableParent.index
 			state.i = end
 			return true
 		}

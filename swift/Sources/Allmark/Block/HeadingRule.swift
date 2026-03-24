@@ -100,6 +100,7 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bo
 				let contentStart = src.index(src.startIndex, offsetBy: state.i)
 				let contentEnd = src.index(src.startIndex, offsetBy: end + 1)
 				heading.content = String(src[contentStart ..< contentEnd])
+				heading.length = endOfLine - heading.index
 				state.i = endOfLine
 
 				return true

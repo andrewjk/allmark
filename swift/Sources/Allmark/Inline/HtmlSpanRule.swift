@@ -43,6 +43,7 @@ func testHtmlSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					children: nil
 				)
 				html.content = content
+				html.length = content.count
 				parent.children?.append(html)
 				state.i += content.count
 				return true

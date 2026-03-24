@@ -100,7 +100,8 @@ func parseBlockInlines(
 		indent: 0,
 		delimiters: [],
 		refs: refs,
-		footnotes: footnotes
+		footnotes: footnotes,
+		parentIndex: parent.index
 	)
 
 	parseInline(state: &state, parent: parent)

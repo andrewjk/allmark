@@ -98,6 +98,7 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 				indent: 0,
 				children: []
 			)
+			tbr.length = end - state.i
 			currentParent.children?.append(tbr)
 			state.i = end
 			return true

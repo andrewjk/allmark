@@ -29,6 +29,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 			return false
 		}
 
+		let originalIndex = state.i
 		var start = state.i + 1
 
 		// Check for ^ that indicates a footnote (not a regular link reference)
@@ -92,7 +93,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 		let ref = MarkdownNode(
 			type: "footnote_ref",
 			block: true,
-			index: state.i,
+			index: originalIndex,
 			line: state.line,
 			column: 1,
 			markup: "",

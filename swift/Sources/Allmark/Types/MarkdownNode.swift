@@ -6,8 +6,10 @@ public class MarkdownNode {
 	public var type: String
 	/// Whether this is a block-level node.
 	public var block: Bool
-	/// The index of this node in the parent's children array.
+	/// The starting index of the source text for this node.
 	public var index: Int
+	/// The length of the source text for this node.
+	public var length: Int
 	/// The line number where this node starts.
 	public var line: Int
 	/// The column number where this node starts.
@@ -49,6 +51,7 @@ public class MarkdownNode {
 		self.type = type
 		self.block = block
 		self.index = index
+		length = 0
 		self.line = line
 		self.column = column
 		self.markup = markup

@@ -1,6 +1,8 @@
 import Foundation
 
 func closeNode(state: inout BlockParserState, node: MarkdownNode) {
+	node.length = state.i - node.index
+
 	var i = state.openNodes.count - 1
 	while i > 0 {
 		let openNode = state.openNodes[i]

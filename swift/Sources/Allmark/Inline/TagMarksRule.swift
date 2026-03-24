@@ -96,6 +96,7 @@ func testTagMarks(
 
 						lastNode.type = name
 						lastNode.markup = markup
+						lastNode.length = state.parentIndex + state.i - lastNode.index + markup.count
 
 						let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
 						if let childCount = parent.children?.count {

@@ -142,10 +142,12 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 								indent: 0,
 								children: [text] + movedNodes
 							)
+							emphasis.length = state.parentIndex + state.i - emphasis.index + useMarkup.count
 							parent.children?.append(emphasis)
 						} else {
 							lastNode.type = useMarkup.count == 2 ? "strong" : "emphasis"
 							lastNode.markup = useMarkup
+							lastNode.length = state.parentIndex + state.i - lastNode.index + useMarkup.count
 							lastNode.children = [text] + movedNodes
 							parent.children?[i] = lastNode
 						}

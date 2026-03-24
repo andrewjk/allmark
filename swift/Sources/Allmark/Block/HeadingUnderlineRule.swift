@@ -68,6 +68,7 @@ func testHeadingUnderlineStart(state: inout BlockParserState, parent: MarkdownNo
 			let markupStart = src.index(src.startIndex, offsetBy: state.i)
 			let markupEnd = src.index(src.startIndex, offsetBy: end)
 			parent.markup = String(src[markupStart ..< markupEnd])
+			parent.length = end - parent.index
 			state.i = end
 			return true
 		}

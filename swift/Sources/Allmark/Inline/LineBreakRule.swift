@@ -43,6 +43,7 @@ func testLineBreak(state: inout InlineParserState, parent: inout MarkdownNode) -
 				children: nil
 			)
 			html.content = "<br />\n"
+			html.length = end - state.i
 			parent.children?.append(html)
 			state.i = end + 1
 			return true

@@ -81,5 +81,12 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		}
 	}
 
+	if let last = lastNode {
+		last.length = last.markup.count
+		if let count = parent.children?.count, count > 0 {
+			parent.children?[count - 1] = last
+		}
+	}
+
 	return true
 }

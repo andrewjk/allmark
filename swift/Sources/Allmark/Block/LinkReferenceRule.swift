@@ -30,6 +30,7 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 			return false
 		}
 
+		let originalIndex = state.i
 		var start = state.i + 1
 
 		// Get the label
@@ -82,7 +83,7 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 		let ref = MarkdownNode(
 			type: "link_ref",
 			block: true,
-			index: state.i,
+			index: originalIndex,
 			line: state.line,
 			column: 1,
 			markup: "",
@@ -104,6 +105,8 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 				state.i = getEndOfLine(state: &state)
 			}
 		}
+
+		ref.length = state.i - ref.index
 
 		return true
 	}

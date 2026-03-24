@@ -153,6 +153,7 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 					lastNode.type = "footnote"
 					lastNode.info = label
 					lastNode.markup = "[^\(label)]"
+					lastNode.length = state.parentIndex + state.i - lastNode.index
 					lastNode.children = footnote.content.children
 					parent.children?[i] = lastNode
 
@@ -166,7 +167,8 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 						indent: 0,
 						delimiters: [],
 						refs: state.refs,
-						footnotes: state.footnotes
+						footnotes: state.footnotes,
+						parentIndex: lastNode.index
 					)
 					parseInline(state: &tempState, parent: lastNode)
 

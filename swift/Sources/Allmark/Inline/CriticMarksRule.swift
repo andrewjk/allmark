@@ -101,8 +101,7 @@ func testCriticMarks(
 
 						lastNode.type = name
 						lastNode.markup = markup
-
-						// Get children after the start node
+						lastNode.length = state.parentIndex + state.i - lastNode.index + markup.count
 						let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
 						lastNode.children = [text] + movedNodes
 
@@ -111,7 +110,7 @@ func testCriticMarks(
 							parent.children?.removeSubrange((i + 1) ..< childCount)
 						}
 
-						// Replace the node
+						// Replace node
 						parent.children?[i] = lastNode
 
 						state.i += markup.count

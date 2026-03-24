@@ -24,6 +24,7 @@ func testHardBreak(state: inout InlineParserState, parent: inout MarkdownNode) -
 				indent: 0,
 				children: nil
 			)
+			hb.length = 2
 			state.i += 2
 			parent.children?.append(hb)
 			return true

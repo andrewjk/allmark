@@ -64,7 +64,7 @@ func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		let code = MarkdownNode(
 			type: "code_block",
 			block: true,
-			index: state.i,
+			index: state.i - state.indent,
 			line: state.line,
 			column: 1,
 			markup: "    ",

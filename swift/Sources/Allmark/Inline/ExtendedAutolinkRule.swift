@@ -50,6 +50,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					if spaceRegexExt.firstMatch(in: url, options: [], range: spaceRange) != nil {
 						let fullMatchRange = urlMatch.range(at: 0)
 						if let fullRange = Range(fullMatchRange, in: tail) {
+							let originalLength = tail[fullRange].count
 							let markup = escapeHtml(text: String(tail[fullRange]))
 							let text = MarkdownNode(
 								type: "text",
@@ -62,8 +63,9 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 								children: nil
 							)
 							text.markup = markup
+							text.length = originalLength
 							parent.children?.append(text)
-							state.i += tail[fullRange].count
+							state.i += originalLength
 							return true
 						}
 					}
@@ -71,20 +73,25 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					url = extendedValidation(url: url)
 					url = escapeHtml(text: url)
 
-					let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? url
-					let html = MarkdownNode(
-						type: "html_span",
-						block: false,
-						index: state.i,
-						line: state.line,
-						column: 1,
-						markup: "",
-						indent: state.indent,
-						children: nil
-					)
-					html.content = "<a href=\"http://\(encodedUrl)\">\(url)</a>"
-					parent.children?.append(html)
-					state.i += url.count
+					let fullMatchRange = urlMatch.range(at: 0)
+					if let fullRange = Range(fullMatchRange, in: tail) {
+						let originalLength = tail[fullRange].count
+						let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? url
+						let html = MarkdownNode(
+							type: "html_span",
+							block: false,
+							index: state.i,
+							line: state.line,
+							column: 1,
+							markup: "",
+							indent: state.indent,
+							children: nil
+						)
+						html.content = "<a href=\"http://\(encodedUrl)\">\(url)</a>"
+						html.length = originalLength
+						parent.children?.append(html)
+						state.i += url.count
+					}
 
 					return true
 				}

@@ -183,10 +183,12 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 						children: nil
 					)
 					text.markup = String(lastNode.markup.dropFirst(startDel.markup.count))
+					text.length = text.markup.count
 
 					lastNode.type = isLink ? "link" : "image"
 					lastNode.info = foundLink.url
 					lastNode.title = foundLink.title
+					lastNode.length = state.parentIndex + state.i - lastNode.index
 
 					let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
 					if let childCount = parent.children?.count {
