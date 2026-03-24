@@ -36,10 +36,10 @@ export default function testCriticMarks(
 
 		if (markup.length === 2 || markup.length === 3) {
 			// Add a new text node which may turn into a critic mark
-			let text = newNode("text", false, start, state.line, 1, markup, 0);
+			let text = newNode("text", false, state.parentIndex + start, state.line, 1, markup, 0);
 			parent.children!.push(text);
 
-			// Add the start delimiter
+			// Add start delimiter
 			state.i += markup.length;
 			state.delimiters.push({ markup, start, length: markup.length });
 
@@ -78,13 +78,14 @@ export default function testCriticMarks(
 				let i = parent.children!.length;
 				while (i--) {
 					let lastNode = parent.children![i];
-					if (lastNode.index === startDelimiter.start) {
+					if (lastNode.index === state.parentIndex + startDelimiter.start) {
 						const newText = lastNode.markup.slice(startDelimiter.length);
 						let text = newNode("text", false, lastNode.index, lastNode.line, 1, newText, 0);
 
 						lastNode.type = name;
 						lastNode.markup = markup;
 						lastNode.children = [text, ...parent.children!.splice(i + 1)];
+						lastNode.length = state.parentIndex + state.i - lastNode.index + markup.length;
 
 						state.i += markup.length;
 						startDelimiter.handled = true;

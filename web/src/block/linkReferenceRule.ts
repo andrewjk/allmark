@@ -41,15 +41,16 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			return false;
 		}
 
-		let start = state.i + 1;
+		let start = state.i;
+		let linkStart = state.i + 1;
 
 		// Get the label
 		let label = "";
-		for (let i = start; i < state.src.length; i++) {
+		for (let i = linkStart; i < state.src.length; i++) {
 			if (!isEscaped(state.src, i)) {
 				if (state.src[i] === "]") {
-					label = state.src.substring(start, i);
-					start = i + 1;
+					label = state.src.substring(linkStart, i);
+					linkStart = i + 1;
 					break;
 				}
 
@@ -65,13 +66,13 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			return false;
 		}
 
-		if (state.src[start] !== ":") {
+		if (state.src[linkStart] !== ":") {
 			return false;
 		}
 
-		start++;
+		linkStart++;
 
-		let linkInfo = parseLinkBlock(state, start, "\n");
+		let linkInfo = parseLinkBlock(state, linkStart, "\n");
 		if (linkInfo === undefined) {
 			return false;
 		}
@@ -88,7 +89,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		state.refs[label] = linkInfo;
 
-		let ref = newNode("link_ref", true, state.i, state.line, 1, "", 0, []);
+		let ref = newNode("link_ref", true, start, state.line, 1, "", 0, []);
 
 		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
 			parent.children.at(-1)!.blankAfter = true;
@@ -100,6 +101,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		if (!isNewLine(state.src[state.i - 1])) {
 			state.i = getEndOfLine(state);
 		}
+
+		ref.length = state.i - ref.index;
 
 		return true;
 	}

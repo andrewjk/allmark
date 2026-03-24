@@ -66,7 +66,16 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let codeIndent = state.indent - 4;
 
-		let code = newNode("code_block", true, state.i, state.line, 1, "    ", codeIndent, []);
+		let code = newNode(
+			"code_block",
+			true,
+			state.i - state.indent,
+			state.line,
+			1,
+			"    ",
+			codeIndent,
+			[],
+		);
 		code.acceptsContent = true;
 		code.content += " ".repeat(codeIndent);
 

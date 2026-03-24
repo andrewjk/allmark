@@ -74,6 +74,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		if (haveParagraph) {
 			parent.type = "heading";
 			parent.markup = state.src.substring(state.i, end);
+			parent.length = end - parent.index;
 			state.i = end;
 			return true;
 		}

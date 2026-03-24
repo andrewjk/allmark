@@ -63,6 +63,7 @@ export default function parseBlockInlines(
 		delimiters: [],
 		refs,
 		footnotes,
+		parentIndex: parent.index,
 	};
 
 	parseInline(state, parent);

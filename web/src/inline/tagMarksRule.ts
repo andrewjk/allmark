@@ -84,13 +84,15 @@ export default function testTagMarks(
 				let i = parent.children!.length;
 				while (i--) {
 					let lastNode = parent.children![i];
-					if (lastNode.index === startDelimiter.start) {
+					if (lastNode.index === state.parentIndex + startDelimiter.start) {
 						let text = newNode("text", false, lastNode.index, lastNode.line, 1, char, 0);
 						text.markup = lastNode.markup.slice(startDelimiter.length);
+						text.length = text.markup.length;
 
 						lastNode.type = name;
 						lastNode.markup = markup;
 						lastNode.children = [text, ...parent.children!.splice(i + 1)];
+						lastNode.length = state.parentIndex + state.i - lastNode.index + markup.length;
 
 						state.i += markup.length;
 						startDelimiter.handled = true;
@@ -103,7 +105,7 @@ export default function testTagMarks(
 
 		if (leftFlanking) {
 			// Add a new text node which may turn into a delimiter
-			let text = newNode("text", false, start, state.line, 1, markup, 0);
+			let text = newNode("text", false, state.parentIndex + start, state.line, 1, markup, 0);
 			parent.children!.push(text);
 
 			state.i += markup.length;

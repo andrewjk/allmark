@@ -34,21 +34,22 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			return false;
 		}
 
-		let start = state.i + 1;
+		let start = state.i;
+		let footnoteStart = state.i + 1;
 
 		// Check for ^ that indicates a footnote (not a regular link reference)
-		if (state.src[start] !== "^") {
+		if (state.src[footnoteStart] !== "^") {
 			return false;
 		}
-		start++;
+		footnoteStart++;
 
 		// Get the label
 		let label = "";
-		for (let i = start; i < state.src.length; i++) {
+		for (let i = footnoteStart; i < state.src.length; i++) {
 			if (!isEscaped(state.src, i)) {
 				if (state.src[i] === "]") {
-					label = state.src.substring(start, i);
-					start = i + 1;
+					label = state.src.substring(footnoteStart, i);
+					footnoteStart = i + 1;
 					break;
 				}
 
@@ -64,17 +65,17 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			return false;
 		}
 
-		if (state.src[start] !== ":") {
+		if (state.src[footnoteStart] !== ":") {
 			return false;
 		}
-		start++;
+		footnoteStart++;
 
 		// Skip whitespace after colon
-		while (start < state.src.length && isSpace(state.src.charCodeAt(start))) {
-			start++;
+		while (footnoteStart < state.src.length && isSpace(state.src.charCodeAt(footnoteStart))) {
+			footnoteStart++;
 		}
 
-		state.i = start;
+		state.i = footnoteStart;
 
 		// "Matching of labels is case-insensitive"
 		label = normalizeLabel(label);
@@ -85,7 +86,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			return true;
 		}
 
-		let ref = newNode("footnote_ref", true, state.i, state.line, 1, "", 0, []);
+		let ref = newNode("footnote_ref", true, start, state.line, 1, "", 0, []);
 		state.footnotes[label] = {
 			label,
 			content: ref,
@@ -101,6 +102,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		state.hasBlankLine = false;
 		parseBlock(state, ref);
+
+		ref.length = state.i - ref.index;
 
 		return true;
 	}

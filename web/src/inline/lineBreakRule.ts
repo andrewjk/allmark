@@ -30,8 +30,9 @@ function testLineBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 			}
 		}
 		if (end - state.i >= 2) {
-			let html = newNode("html_span", false, state.i, state.line, 1, "", state.indent);
+			let html = newNode("html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent);
 			html.content += `<br />\n`;
+			html.length = end - state.i;
 			parent.children!.push(html);
 			state.i = end + 1;
 			return true;

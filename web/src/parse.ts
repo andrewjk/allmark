@@ -40,7 +40,16 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 		parseLine(state);
 	}
 
-	// TODO: Close the open nodes?
+	// Close the remaining open nodes
+	let j = state.openNodes.length;
+	while (j--) {
+		let openNode = state.openNodes[j];
+		openNode.length = state.i - openNode.index;
+		let rule = state.rules.get(openNode.type);
+		if (rule?.closeNode !== undefined) {
+			rule.closeNode(state, openNode);
+		}
+	}
 
 	// Stage 2 -- parse the inlines for each block
 	parseBlockInlines(document, rules.inlines, state.refs, state.footnotes);

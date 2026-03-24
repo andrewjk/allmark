@@ -82,6 +82,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			let markup = state.src.substring(state.i, end);
 			let tbr = newNode("thematic_break", true, state.i, state.line, 1, markup, 0, []);
+			tbr.length = end - state.i;
 			parent.children!.push(tbr);
 			state.i = end;
 			return true;

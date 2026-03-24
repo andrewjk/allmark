@@ -12,7 +12,8 @@ export default rule;
 
 function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean {
 	if (state.src[state.i] === "\\" && isNewLine(state.src[state.i + 1])) {
-		let hb = newNode("hard_break", false, state.i, state.line, 1, "\\", 0);
+		let hb = newNode("hard_break", false, state.parentIndex + state.i, state.line, 1, "\\", 0);
+		hb.length = 2;
 		state.i += 2;
 		parent.children!.push(hb);
 		return true;

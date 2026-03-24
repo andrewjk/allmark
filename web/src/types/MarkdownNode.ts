@@ -1,7 +1,10 @@
 export default interface MarkdownNode {
 	type: string;
 	block: boolean;
+	/** The starting index of the source text for this node */
 	index: number;
+	/** The length of the source text for this node */
+	length: number;
 	/** The line number */
 	line: number;
 	/** The column number */

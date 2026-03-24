@@ -27,7 +27,7 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 
 	let lastNode = parent.children!.at(-1);
 	if (lastNode === undefined || lastNode.type !== "text") {
-		lastNode = newNode("text", false, state.i, state.line, 1, "", 0);
+		lastNode = newNode("text", false, state.parentIndex + state.i, state.line, 1, "", 0);
 		parent.children!.push(lastNode);
 	} else if (isNewLine(char)) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
@@ -35,7 +35,7 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 	}
 
 	if (isAlphaNumeric(state.src.charCodeAt(state.i))) {
-		// If this an alphanumeric character, we can just process the whole
+		// If this an alphanumeric character, we can just process whole
 		// word, and save checking a bunch of characters that are never going to
 		// match anything
 		const start = state.i;
@@ -48,6 +48,8 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 		state.i++;
 		lastNode.markup += char;
 	}
+
+	lastNode.length = lastNode.markup.length;
 
 	return true;
 }

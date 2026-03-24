@@ -45,6 +45,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			row.children!.push(cell);
 		}
 
+		lastNode.length = endOfLine - lastNode.index;
+
 		state.i = endOfLine;
 		return true;
 	}
@@ -138,6 +140,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			parent.type = "table";
 			parent.content = "";
 			parent.markup = state.src.substring(state.i, end);
+			parent.length = end - parent.index;
 			state.i = end;
 			return true;
 		}

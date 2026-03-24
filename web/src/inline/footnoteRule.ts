@@ -40,7 +40,7 @@ function testFootnoteOpen(state: InlineParserState, parent: MarkdownNode) {
 	let markup = "[^";
 
 	// Add a new text node which may turn into a footnote
-	let text = newNode("text", false, start, state.line, 1, markup, 0);
+	let text = newNode("text", false, state.parentIndex + start, state.line, 1, markup, 0);
 	parent.children!.push(text);
 
 	state.i += 2;
@@ -68,7 +68,7 @@ function testFootnoteClose(state: InlineParserState, parent: MarkdownNode) {
 		let i = parent.children!.length;
 		while (i--) {
 			let lastNode = parent.children![i];
-			if (lastNode.index === startDelimiter.start) {
+			if (lastNode.index === state.parentIndex + startDelimiter.start) {
 				let label = state.src.substring(
 					startDelimiter.start + startDelimiter.markup.length,
 					state.i,
@@ -120,11 +120,12 @@ function testFootnoteClose(state: InlineParserState, parent: MarkdownNode) {
 					state.i++;
 					startDelimiter.handled = true;
 
-					// Create the footnote reference node with parsed children
+					// Create a footnote reference node with parsed children
 					lastNode.type = "footnote";
 					lastNode.info = label;
 					lastNode.markup = `[^${label}]`;
 					lastNode.children = footnote.content.children;
+					lastNode.length = state.parentIndex + state.i - lastNode.index;
 
 					// Parse the footnote content for inline elements
 					let tempState: InlineParserState = {
@@ -137,6 +138,7 @@ function testFootnoteClose(state: InlineParserState, parent: MarkdownNode) {
 						delimiters: [],
 						refs: state.refs,
 						footnotes: state.footnotes,
+						parentIndex: lastNode.index,
 					};
 					parseInline(tempState, lastNode);
 

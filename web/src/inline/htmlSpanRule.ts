@@ -36,8 +36,17 @@ function testHtmlSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 		let match = tail.match(HTML_TAG_REGEX);
 		if (match !== null) {
 			let content = match[0];
-			let html = newNode("html_span", false, state.i, state.line, 1, "", state.indent);
+			let html = newNode(
+				"html_span",
+				false,
+				state.parentIndex + state.i,
+				state.line,
+				1,
+				"",
+				state.indent,
+			);
 			html.content = content;
+			html.length = match[0].length;
 			parent.children!.push(html);
 			state.i += match[0].length;
 			return true;

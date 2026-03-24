@@ -1,0 +1,468 @@
+import { describe, expect, test } from "vitest";
+import parse from "../src/parse";
+import extended from "../src/rulesets/extended";
+
+describe("source mapping - block rules", () => {
+	test("heading - ATX", () => {
+		const input = "# Heading 1";
+		const doc = parse(input, extended);
+		const heading = doc.children![0];
+		expect(heading.type).toBe("heading");
+		expect(heading.index).toBe(0);
+		expect(heading.length).toBe(11);
+	});
+
+	test("heading - ATX with multiple hashes", () => {
+		const input = "### Heading 3";
+		const doc = parse(input, extended);
+		const heading = doc.children![0];
+		expect(heading.type).toBe("heading");
+		expect(heading.index).toBe(0);
+		expect(heading.length).toBe(13);
+	});
+
+	test("heading - underline", () => {
+		const input = "Heading\n=====";
+		const doc = parse(input, extended);
+		const heading = doc.children![0];
+		expect(heading.type).toBe("heading");
+		expect(heading.index).toBe(0);
+		expect(heading.length).toBe(13);
+	});
+
+	test("thematic break", () => {
+		const input = "---";
+		const doc = parse(input, extended);
+		const thematicBreak = doc.children![0];
+		expect(thematicBreak.type).toBe("thematic_break");
+		expect(thematicBreak.index).toBe(0);
+		expect(thematicBreak.length).toBe(3);
+	});
+
+	test("alert", () => {
+		const input = "> [!NOTE]\n> Alert content";
+		const doc = parse(input, extended);
+		const alert = doc.children![0];
+		// TODO:
+		expect(alert.index).toBe(0);
+		expect(alert.length).toBe(25);
+	});
+
+	test("block quote", () => {
+		const input = "> Quote content";
+		const doc = parse(input, extended);
+		const blockQuote = doc.children![0];
+		expect(blockQuote.type).toBe("block_quote");
+		expect(blockQuote.index).toBe(0);
+		expect(blockQuote.length).toBe(15);
+	});
+
+	test("code block - indented", () => {
+		const input = "\n    code\n    here";
+		const doc = parse(input, extended);
+		const codeBlock = doc.children![0];
+		expect(codeBlock.type).toBe("code_block");
+		expect(codeBlock.index).toBe(1);
+		expect(codeBlock.length).toBe(17);
+	});
+
+	test("code fence - backticks", () => {
+		const input = "```\ncode\n```";
+		const doc = parse(input, extended);
+		const codeFence = doc.children![0];
+		expect(codeFence.type).toBe("code_fence");
+		expect(codeFence.index).toBe(0);
+		expect(codeFence.length).toBe(12);
+	});
+
+	test("code fence - tildes", () => {
+		const input = "~~~\ncode\n~~~";
+		const doc = parse(input, extended);
+		const codeFence = doc.children![0];
+		expect(codeFence.type).toBe("code_fence");
+		expect(codeFence.index).toBe(0);
+		expect(codeFence.length).toBe(12);
+	});
+
+	test("code fence with language", () => {
+		const input = "```javascript\ncode\n```";
+		const doc = parse(input, extended);
+		const codeFence = doc.children![0];
+		expect(codeFence.type).toBe("code_fence");
+		expect(codeFence.index).toBe(0);
+		expect(codeFence.length).toBe(22);
+	});
+
+	test("html block", () => {
+		const input = "<div>content</div>";
+		const doc = parse(input, extended);
+		const htmlBlock = doc.children![0];
+		expect(htmlBlock.type).toBe("html_block");
+		expect(htmlBlock.index).toBe(0);
+		expect(htmlBlock.length).toBe(18);
+	});
+
+	test("html block multiline", () => {
+		const input = "<div>\ncontent\n</div>";
+		const doc = parse(input, extended);
+		const htmlBlock = doc.children![0];
+		expect(htmlBlock.type).toBe("html_block");
+		expect(htmlBlock.index).toBe(0);
+		expect(htmlBlock.length).toBe(20);
+	});
+
+	test("link reference definition", () => {
+		const input = "[link]: url";
+		const doc = parse(input, extended);
+		const linkReference = doc.children![0];
+		expect(linkReference.type).toBe("link_ref");
+		expect(linkReference.index).toBe(0);
+		expect(linkReference.length).toBe(11);
+	});
+
+	test("list - ordered", () => {
+		const input = "1. Item one";
+		const doc = parse(input, extended);
+		const list = doc.children![0];
+		expect(list.type).toBe("list_ordered");
+		expect(list.index).toBe(0);
+		expect(list.length).toBe(11);
+	});
+
+	test("list - bulleted", () => {
+		const input = "- Item one";
+		const doc = parse(input, extended);
+		const list = doc.children![0];
+		expect(list.type).toBe("list_bulleted");
+		expect(list.index).toBe(0);
+		expect(list.length).toBe(10);
+	});
+
+	test("list item", () => {
+		const input = "1. Item one";
+		const doc = parse(input, extended);
+		const list = doc.children![0];
+		const listItem = list.children![0];
+		expect(listItem.type).toBe("list_item");
+		expect(listItem.index).toBe(0);
+		expect(listItem.length).toBe(11);
+	});
+
+	test("list task item - checked", () => {
+		const input = "- [x] Done task";
+		const doc = parse(input, extended);
+		const list = doc.children![0];
+		const taskItem = list.children![0];
+		expect(taskItem.type).toBe("list_item");
+		expect(taskItem.index).toBe(0);
+		expect(taskItem.length).toBe(15);
+	});
+
+	test("list task item - unchecked", () => {
+		const input = "- [ ] Todo task";
+		const doc = parse(input, extended);
+		const list = doc.children![0];
+		const taskItem = list.children![0];
+		expect(taskItem.type).toBe("list_item");
+		expect(taskItem.index).toBe(0);
+		expect(taskItem.length).toBe(15);
+	});
+
+	test("footnote reference", () => {
+		const input = "[^1]: Footnote content";
+		const doc = parse(input, extended);
+		const footnoteReference = doc.children![0];
+		expect(footnoteReference.type).toBe("footnote_ref");
+		expect(footnoteReference.index).toBe(0);
+		expect(footnoteReference.length).toBe(22);
+	});
+
+	test("table", () => {
+		const input = "| A | B |\n|---|---|\n| 1 | 2 |";
+		const doc = parse(input, extended);
+		const table = doc.children![0];
+		expect(table.type).toBe("table");
+		expect(table.index).toBe(0);
+		expect(table.length).toBe(29);
+	});
+
+	test("paragraph", () => {
+		const input = "A paragraph.";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		expect(paragraph.type).toBe("paragraph");
+		expect(paragraph.index).toBe(0);
+		expect(paragraph.length).toBe(12);
+	});
+
+	test("indent", () => {
+		const input = "  indented paragraph";
+		const doc = parse(input, extended);
+		const indent = doc.children![0];
+		expect(indent.type).toBe("paragraph");
+		expect(indent.index).toBe(2);
+		expect(indent.length).toBe(18);
+	});
+
+	test("escaped block", () => {
+		const input = "\\# Not a heading";
+		const doc = parse(input, extended);
+		const escaped = doc.children![0];
+		expect(escaped.type).toBe("paragraph");
+		expect(escaped.index).toBe(0);
+		expect(escaped.length).toBe(16);
+	});
+
+	test("table", () => {
+		const input = "| A | B |\n|---|---|\n| 1 | 2 |";
+		const doc = parse(input, extended);
+		const table = doc.children![0];
+		expect(table.index).toBe(0);
+		expect(table.length).toBe(29);
+	});
+
+	test("paragraph", () => {
+		const input = "A paragraph.";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		expect(paragraph.index).toBe(0);
+		expect(paragraph.length).toBe(12);
+	});
+
+	test("indent", () => {
+		const input = "  indented paragraph";
+		const doc = parse(input, extended);
+		const indent = doc.children![0];
+		expect(indent.index).toBe(2);
+		expect(indent.length).toBe(18);
+	});
+
+	test("escaped block", () => {
+		const input = "\\# Not a heading";
+		const doc = parse(input, extended);
+		const escaped = doc.children![0];
+		expect(escaped.index).toBe(0);
+		expect(escaped.length).toBe(16);
+	});
+});
+
+describe("source mapping - inline rules", () => {
+	test("autolink - URL", () => {
+		const input = "<https://example.com>";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const autolink = paragraph.children![0];
+		expect(autolink.type).toBe("html_span");
+		expect(autolink.index).toBe(0);
+		expect(autolink.length).toBe(21);
+	});
+
+	test("autolink - email", () => {
+		const input = "<user@example.com>";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const autolink = paragraph.children![0];
+		expect(autolink.type).toBe("html_span");
+		expect(autolink.index).toBe(0);
+		expect(autolink.length).toBe(18);
+	});
+
+	test("extended autolink - www", () => {
+		const input = "www.example.com";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const extendedAutolink = paragraph.children![0];
+		expect(extendedAutolink.type).toBe("html_span");
+		expect(extendedAutolink.index).toBe(0);
+		expect(extendedAutolink.length).toBe(15);
+	});
+
+	test("code span", () => {
+		const input = "`code`";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const codeSpan = paragraph.children![0];
+		expect(codeSpan.type).toBe("code_span");
+		expect(codeSpan.index).toBe(0);
+		expect(codeSpan.length).toBe(6);
+	});
+
+	test("emphasis - asterisk", () => {
+		const input = "*emphasis*";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const emphasis = paragraph.children![0];
+		expect(emphasis.type).toBe("emphasis");
+		expect(emphasis.index).toBe(0);
+		expect(emphasis.length).toBe(10);
+	});
+
+	test("emphasis - underscore", () => {
+		const input = "here: _emphasis_";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const emphasis = paragraph.children![1];
+		expect(emphasis.type).toBe("emphasis");
+		expect(emphasis.index).toBe(6);
+		expect(emphasis.length).toBe(10);
+	});
+
+	test("strong", () => {
+		const input = "**strong**";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const strong = paragraph.children![0];
+		expect(strong.type).toBe("strong");
+		expect(strong.index).toBe(0);
+		expect(strong.length).toBe(10);
+	});
+
+	test("link", () => {
+		const input = "[link](url)";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const link = paragraph.children![0];
+		expect(link.type).toBe("link");
+		expect(link.index).toBe(0);
+		expect(link.length).toBe(11);
+	});
+
+	test("link with title", () => {
+		const input = '[link](url "title")';
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const link = paragraph.children![0];
+		expect(link.type).toBe("link");
+		expect(link.index).toBe(0);
+		expect(link.length).toBe(19);
+	});
+
+	test("footnote", () => {
+		const input = "[^1]";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const footnote = paragraph.children![0];
+		expect(footnote.index).toBe(0);
+		expect(footnote.length).toBe(4);
+	});
+
+	test("hard break", () => {
+		const input = "line  \nbreak";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const hardBreak = paragraph.children![1];
+		expect(hardBreak.index).toBe(4);
+		expect(hardBreak.length).toBe(2);
+	});
+
+	//test("line break", () => {
+	//	const input = "line\nbreak";
+	//	const doc = parse(input, extended);
+	//	const paragraph = doc.children![0];
+	//	const lineBreak = paragraph.children![1];
+	//	expect(lineBreak.index).toBe(4);
+	//	expect(lineBreak.length).toBe(1);
+	//});
+
+	test("strikethrough", () => {
+		const input = "~~strikethrough~~";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const strikethrough = paragraph.children![0];
+		expect(strikethrough.type).toBe("strikethrough");
+		expect(strikethrough.index).toBe(0);
+		expect(strikethrough.length).toBe(17);
+	});
+
+	test("highlight", () => {
+		const input = "==highlight==";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const highlight = paragraph.children![0];
+		expect(highlight.type).toBe("highlight");
+		expect(highlight.index).toBe(0);
+		expect(highlight.length).toBe(13);
+	});
+
+	test("subscript", () => {
+		const input = "~subscript~";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const subscript = paragraph.children![0];
+		expect(subscript.type).toBe("subscript");
+		expect(subscript.index).toBe(0);
+		expect(subscript.length).toBe(11);
+	});
+
+	test("superscript", () => {
+		const input = "^superscript^";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const superscript = paragraph.children![0];
+		expect(superscript.type).toBe("superscript");
+		expect(superscript.index).toBe(0);
+		expect(superscript.length).toBe(13);
+	});
+
+	test("insertion", () => {
+		const input = "{++inserted++}";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const insertion = paragraph.children![0];
+		expect(insertion.type).toBe("insertion");
+		expect(insertion.index).toBe(0);
+		expect(insertion.length).toBe(14);
+	});
+
+	test("deletion", () => {
+		const input = "del: {--deleted--}";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const deletion = paragraph.children![1];
+		expect(deletion.type).toBe("deletion");
+		expect(deletion.index).toBe(5);
+		expect(deletion.length).toBe(13);
+	});
+
+	test("html span", () => {
+		const input = "<span>content</span>";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const htmlStart = paragraph.children![0];
+		const htmlEnd = paragraph.children![2];
+		expect(htmlStart.type).toBe("html_span");
+		expect(htmlStart.index).toBe(0);
+		expect(htmlStart.length).toBe(6);
+		expect(htmlEnd.type).toBe("html_span");
+		expect(htmlEnd.index).toBe(13);
+		expect(htmlEnd.length).toBe(7);
+	});
+
+	test("comment", () => {
+		const input = "<!-- comment -->";
+		const doc = parse(input, extended);
+		const comment = doc.children![0];
+		expect(comment.index).toBe(0);
+		expect(comment.length).toBe(16);
+	});
+
+	test("text", () => {
+		const input = "plain text";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const text = paragraph.children![0];
+		expect(text.type).toBe("text");
+		expect(text.index).toBe(0);
+		expect(text.length).toBe(10);
+	});
+
+	test("text with special chars", () => {
+		const input = "text with & chars";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		const text = paragraph.children![0];
+		expect(text.type).toBe("text");
+		expect(text.index).toBe(0);
+		expect(text.length).toBe(17);
+	});
+});

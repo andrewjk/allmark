@@ -33,16 +33,34 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			let url = escapeHtml(linkMatch[1]);
 
 			if (SPACE_REGEX.test(url)) {
-				let text = newNode("text", false, state.i, state.line, 1, "", state.indent);
+				let text = newNode(
+					"text",
+					false,
+					state.parentIndex + state.i,
+					state.line,
+					1,
+					"",
+					state.indent,
+				);
 				text.markup = escapeHtml(linkMatch[0]);
+				text.length = linkMatch[0].length;
 				parent.children!.push(text);
 				state.i += linkMatch[0].length;
 
 				return true;
 			}
 
-			let html = newNode("html_span", false, state.i, state.line, 1, "", state.indent);
+			let html = newNode(
+				"html_span",
+				false,
+				state.parentIndex + state.i,
+				state.line,
+				1,
+				"",
+				state.indent,
+			);
 			html.content = `<a href="${encodeURI(url)}">${url}</a>`;
+			html.length = linkMatch[0].length;
 			parent.children!.push(html);
 			state.i += linkMatch[0].length;
 
@@ -54,16 +72,34 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			let url = escapeHtml(emailMatch[1]);
 
 			if (SPACE_REGEX.test(url)) {
-				let text = newNode("text", false, state.i, state.line, 1, "", state.indent);
+				let text = newNode(
+					"text",
+					false,
+					state.parentIndex + state.i,
+					state.line,
+					1,
+					"",
+					state.indent,
+				);
 				text.markup = escapeHtml(emailMatch[0]);
+				text.length = emailMatch[0].length;
 				parent.children!.push(text);
 				state.i += emailMatch[0].length;
 
 				return true;
 			}
 
-			let html = newNode("html_span", false, state.i, state.line, 1, "", state.indent);
+			let html = newNode(
+				"html_span",
+				false,
+				state.parentIndex + state.i,
+				state.line,
+				1,
+				"",
+				state.indent,
+			);
 			html.content = `<a href="mailto:${encodeURI(url)}">${url}</a>`;
+			html.length = emailMatch[0].length;
 			parent.children!.push(html);
 			state.i += emailMatch[0].length;
 

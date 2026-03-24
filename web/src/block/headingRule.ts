@@ -66,8 +66,10 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			parent.children!.push(heading);
 
-			// HACK: ignore optional end heading marks and spaces, destructively
 			state.i += level;
+
+			// Ignore optional end heading marks and spaces for content, but put
+			// them in info so that they aren't lost
 			let endOfLine = getEndOfLine(state);
 			let end = endOfLine - 1;
 			for (; end >= state.i; end--) {
@@ -81,8 +83,15 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 					break;
 				}
 			}
-			heading.content = state.src.substring(state.i, end + 1);
+			end++;
+
+			heading.content = state.src.substring(state.i, end);
+			if (end < endOfLine) {
+				heading.info = state.src.substring(end, endOfLine);
+			}
+
 			state.i = endOfLine;
+			heading.length = state.i - heading.index;
 
 			return true;
 		}

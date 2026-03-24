@@ -15,6 +15,8 @@ export default interface InlineParserState {
 	refs: Record<string, LinkReference>;
 	footnotes: Record<string, FootnoteReference>;
 
+	parentIndex: number;
+
 	// HACK:
 	debug?: boolean;
 }

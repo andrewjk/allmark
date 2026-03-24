@@ -108,33 +108,38 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 				let i = parent.children!.length;
 				while (i--) {
 					let lastNode = parent.children![i];
-					if (lastNode.index === startDelimiter.start) {
+					if (lastNode.index === state.parentIndex + startDelimiter.start) {
 						// If it's longer than the last delimiter, or longer
 						// than two, save some for the next go-round
 						markup = markup.substring(0, Math.min(startDelimiter.length, 2));
 
 						let text = newNode("text", false, lastNode.index, lastNode.line, 1, char, 0);
 						text.markup = lastNode.markup.slice(startDelimiter.length);
+						text.length = text.markup.length;
 
 						let movedNodes = parent.children!.splice(i + 1);
 
 						if (markup.length < startDelimiter.length) {
+							let remainingStart = lastNode.index + startDelimiter.length - markup.length;
 							lastNode.markup = lastNode.markup.substring(0, startDelimiter.length - markup.length);
+							lastNode.length = lastNode.markup.length;
 							let emphasis = newNode(
 								markup.length === 2 ? "strong" : "emphasis",
 								false,
-								lastNode.index + markup.length,
+								remainingStart,
 								lastNode.line,
 								1,
 								markup,
 								0,
 								[text, ...movedNodes],
 							);
+							emphasis.length = state.parentIndex + state.i - remainingStart + markup.length;
 							parent.children!.push(emphasis);
 						} else {
 							lastNode.type = markup.length === 2 ? "strong" : "emphasis";
 							lastNode.markup = markup;
 							lastNode.children = [text, ...movedNodes];
+							lastNode.length = state.parentIndex + state.i - lastNode.index + markup.length;
 						}
 
 						state.i += markup.length;
@@ -169,7 +174,7 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 			(char !== "_" || spaceBefore || punctuationBefore);
 		if (canOpen) {
 			// Add a new text node which may turn into emphasis
-			let text = newNode("text", false, start, state.line, 1, markup, 0);
+			let text = newNode("text", false, state.parentIndex + start, state.line, 1, markup, 0);
 			parent.children!.push(text);
 
 			state.i += markup.length;

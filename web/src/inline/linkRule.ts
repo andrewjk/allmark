@@ -39,7 +39,7 @@ function testLinkOpen(state: InlineParserState, parent: MarkdownNode) {
 	let markup = "[";
 
 	// Add a new text node which may turn into a link
-	let text = newNode("text", false, start, state.line, 1, markup, 0);
+	let text = newNode("text", false, state.parentIndex + start, state.line, 1, markup, 0);
 	parent.children!.push(text);
 
 	state.i++;
@@ -53,7 +53,7 @@ function testImageOpen(state: InlineParserState, parent: MarkdownNode) {
 	let markup = "![";
 
 	// Add a new text node which may turn into an image
-	let text = newNode("text", false, start, state.line, 1, markup, 0);
+	let text = newNode("text", false, state.parentIndex + start, state.line, 1, markup, 0);
 	parent.children!.push(text);
 
 	state.i += markup.length;
@@ -88,7 +88,7 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 		let i = parent.children!.length;
 		while (i--) {
 			let lastNode = parent.children![i];
-			if (lastNode.index === startDelimiter.start) {
+			if (lastNode.index === state.parentIndex + startDelimiter.start) {
 				let start = state.i + 1;
 				let label = state.src.substring(
 					startDelimiter.start + startDelimiter.markup.length,
@@ -129,7 +129,7 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 					start++;
 					for (let i = start; i < state.src.length; i++) {
 						if (state.src[i] === "]") {
-							// Lookup using the text between the [], or if there
+							// Lookup using the text between [], or if there
 							// is no text, use the label
 							label = i - start > 0 ? state.src.substring(start, i) : label;
 							label = normalizeLabel(label);
@@ -153,11 +153,13 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 				if (link !== undefined) {
 					let text = newNode("text", false, lastNode.index, lastNode.line, 1, markup, 0);
 					text.markup = lastNode.markup.slice(startDelimiter.markup.length);
+					text.length = text.markup.length;
 
 					lastNode.type = isLink ? "link" : "image";
 					lastNode.info = link.url;
 					lastNode.title = link.title;
 					lastNode.children = [text, ...parent.children!.splice(i + 1)];
+					lastNode.length = state.parentIndex + state.i - lastNode.index;
 
 					// "[L]inks may not contain other links, at any level of nesting"
 					if (isLink) {
@@ -176,7 +178,7 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 				}
 
 				// TODO: If it's not a link, go back and close delimiters that
-				// weren't closed between the start and end
+				// weren't closed between start and end
 
 				startDelimiter.handled = true;
 				break;

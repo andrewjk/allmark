@@ -140,6 +140,7 @@ function testHtmlCondition2(state: BlockParserState, parent: MarkdownNode, tail:
 		let endOfLine = getEndOfLine(state);
 		let html = newNode("html_block", true, start, state.line, 1, "", 2, []);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
+		html.length = endOfLine - start;
 
 		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
 			parent.children.at(-1)!.blankAfter = true;
@@ -174,6 +175,7 @@ function testHtmlCondition3(state: BlockParserState, parent: MarkdownNode, tail:
 		let endOfLine = getEndOfLine(state);
 		let html = newNode("html_block", true, start, state.line, 1, "", 3, []);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
+		html.length = endOfLine - start;
 
 		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
 			parent.children.at(-1)!.blankAfter = true;
@@ -209,6 +211,7 @@ function testHtmlCondition4(state: BlockParserState, parent: MarkdownNode, tail:
 		let endOfLine = getEndOfLine(state);
 		let html = newNode("html_block", true, start, state.line, 1, "", 4, []);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
+		html.length = endOfLine - start;
 
 		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
 			parent.children.at(-1)!.blankAfter = true;
@@ -243,6 +246,7 @@ function testHtmlCondition5(state: BlockParserState, parent: MarkdownNode, tail:
 		let endOfLine = getEndOfLine(state);
 		let html = newNode("html_block", true, start, state.line, 1, "", 5, []);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
+		html.length = endOfLine - start;
 
 		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
 			parent.children.at(-1)!.blankAfter = true;

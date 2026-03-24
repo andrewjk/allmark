@@ -17,6 +17,7 @@ export default function newNode(
 		type,
 		block,
 		index,
+		length: 0,
 		line,
 		column,
 		markup,
