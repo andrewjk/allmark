@@ -23,7 +23,6 @@ import extendedAutolinkRule from "../inline/extendedAutolinkRule";
 import footnoteRule from "../inline/footnoteRule";
 import hardBreakRule from "../inline/hardBreakRule";
 import htmlSpanRule from "../inline/htmlSpanRule";
-import lineBreakRule from "../inline/lineBreakRule";
 import linkRule from "../inline/linkRule";
 import strikethroughRule from "../inline/strikethroughRule";
 import textRule from "../inline/textRule";
@@ -64,7 +63,6 @@ const gfm: RuleSet = {
 		[footnoteRule.name, footnoteRule],
 		[linkRule.name, linkRule],
 		[hardBreakRule.name, hardBreakRule],
-		[lineBreakRule.name, lineBreakRule],
 		[textRule.name, textRule],
 	]),
 };

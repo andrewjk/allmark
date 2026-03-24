@@ -37,7 +37,6 @@ public static class Core
             [EmphasisRule.Create().Name] = EmphasisRule.Create(),
             [LinkRule.Create().Name] = LinkRule.Create(),
             [HardBreakRule.Create().Name] = HardBreakRule.Create(),
-            [LineBreakRule.Create().Name] = LineBreakRule.Create(),
             [TextRule.Create().Name] = TextRule.Create(),
         },
     };

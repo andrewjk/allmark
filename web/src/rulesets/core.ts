@@ -17,7 +17,6 @@ import codeSpanRule from "../inline/codeSpanRule";
 import emphasisRule from "../inline/emphasisRule";
 import hardBreakRule from "../inline/hardBreakRule";
 import htmlSpanRule from "../inline/htmlSpanRule";
-import lineBreakRule from "../inline/lineBreakRule";
 import linkRule from "../inline/linkRule";
 import textRule from "../inline/textRule";
 import type RuleSet from "../types/RuleSet";
@@ -49,7 +48,6 @@ const core: RuleSet = {
 		[emphasisRule.name, emphasisRule],
 		[linkRule.name, linkRule],
 		[hardBreakRule.name, hardBreakRule],
-		[lineBreakRule.name, lineBreakRule],
 		[textRule.name, textRule],
 	]),
 };

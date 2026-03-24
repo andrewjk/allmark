@@ -10,6 +10,12 @@ const rule: InlineRule = {
 };
 export default rule;
 
+/**
+ * "A line break (not in a code span or HTML tag) that is preceded by two or
+ * more spaces and does not occur at the end of a block is parsed as a hard line
+ * break (rendered in HTML as a <br /> tag)"
+ */
+
 function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean {
 	if (state.src[state.i] === "\\" && isNewLine(state.src[state.i + 1])) {
 		let hb = newNode("hard_break", false, state.parentIndex + state.i, state.line, 1, "\\", 0);
@@ -17,6 +23,25 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 		state.i += 2;
 		parent.children!.push(hb);
 		return true;
+	} else if (state.src[state.i] === " ") {
+		let end = state.i;
+		for (let i = state.i + 1; i < state.src.length; i++) {
+			if (isNewLine(state.src[i])) {
+				end = i;
+				break;
+			} else if (state.src[i] === " ") {
+				continue;
+			} else {
+				return false;
+			}
+		}
+		if (end - state.i >= 2) {
+			let hb = newNode("hard_break", false, state.parentIndex + state.i, state.line, 1, "  ", 0);
+			hb.length = end - state.i;
+			state.i = end + 1;
+			parent.children!.push(hb);
+			return true;
+		}
 	}
 
 	return false;

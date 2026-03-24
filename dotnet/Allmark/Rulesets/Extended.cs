@@ -49,7 +49,6 @@ public static class Extended
             [FootnoteRule.Create().Name] = FootnoteRule.Create(),
             [LinkRule.Create().Name] = LinkRule.Create(),
             [HardBreakRule.Create().Name] = HardBreakRule.Create(),
-            [LineBreakRule.Create().Name] = LineBreakRule.Create(),
             [InsertionRule.Create().Name] = InsertionRule.Create(),
             [DeletionRule.Create().Name] = DeletionRule.Create(),
             [CommentRule.Create().Name] = CommentRule.Create(),

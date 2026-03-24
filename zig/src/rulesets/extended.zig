@@ -32,7 +32,6 @@ const highlightRule = @import("../inline/highlightRule.zig").highlightRule;
 const hardBreakRule = @import("../inline/hardBreakRule.zig").hardBreakRule;
 const htmlSpanRule = @import("../inline/htmlSpanRule.zig").htmlSpanRule;
 const insertionRule = @import("../inline/insertionRule.zig").insertionRule;
-const lineBreakRule = @import("../inline/lineBreakRule.zig").lineBreakRule;
 const linkRule = @import("../inline/linkRule.zig").linkRule;
 const strikethroughRule = @import("../inline/strikethroughRule.zig").strikethroughRule;
 const subscriptRule = @import("../inline/subscriptRule.zig").subscriptRule;
@@ -79,7 +78,6 @@ pub fn init(allocator: std.mem.Allocator) !RuleSet {
     try inlines.put(footnoteRule.name, &footnoteRule);
     try inlines.put(linkRule.name, &linkRule);
     try inlines.put(hardBreakRule.name, &hardBreakRule);
-    try inlines.put(lineBreakRule.name, &lineBreakRule);
     try inlines.put(insertionRule.name, &insertionRule);
     try inlines.put(deletionRule.name, &deletionRule);
     try inlines.put(commentRule.name, &commentRule);

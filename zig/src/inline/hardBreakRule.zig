@@ -7,12 +7,37 @@ const newNode = @import("../utils/newNode.zig").newNode;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testHardBreak(state: *InlineParserState, parent: *MarkdownNode) bool {
-    if (state.i < state.src.len and state.src[state.i] == '\\' and state.i + 1 < state.src.len and isNewLine(state.src[state.i + 1])) {
-        const hb = newNode(state.allocator, "hard_break", false, state.parentIndex + state.i, state.line, 1, "\\", 0, null) catch unreachable;
-        hb.*.length = 2;
-        state.i += 2;
-        appendChild(state.allocator, parent, hb) catch unreachable;
-        return true;
+    if (state.i < state.src.len) {
+        if (state.src[state.i] == '\\' and state.i + 1 < state.src.len and isNewLine(state.src[state.i + 1])) {
+            const hb = newNode(state.allocator, "hard_break", false, state.parentIndex + state.i, state.line, 1, "\\", 0, null) catch unreachable;
+            hb.*.length = 2;
+            state.i += 2;
+            appendChild(state.allocator, parent, hb) catch unreachable;
+            return true;
+        } else if (state.src[state.i] == ' ') {
+            var end = state.i;
+            var i = state.i + 1;
+            while (i < state.src.len) {
+                if (isNewLine(state.src[i])) {
+                    end = i;
+                    break;
+                } else if (state.src[i] == ' ') {
+                    i += 1;
+                    continue;
+                } else {
+                    return false;
+                }
+                i += 1;
+            }
+
+            if (end - state.i >= 2) {
+                const hb = newNode(state.allocator, "hard_break", false, state.parentIndex + state.i, state.line, 1, "\\", 0, null) catch unreachable;
+                hb.*.length = end - state.i;
+                state.i = end + 1;
+                appendChild(state.allocator, parent, hb) catch unreachable;
+                return true;
+            }
+        }
     }
 
     return false;

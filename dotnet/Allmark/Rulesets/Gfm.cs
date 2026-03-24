@@ -45,7 +45,6 @@ public static class Gfm
             [FootnoteRule.Create().Name] = FootnoteRule.Create(),
             [LinkRule.Create().Name] = LinkRule.Create(),
             [HardBreakRule.Create().Name] = HardBreakRule.Create(),
-            [LineBreakRule.Create().Name] = LineBreakRule.Create(),
             [TextRule.Create().Name] = TextRule.Create(),
         },
     };

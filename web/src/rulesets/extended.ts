@@ -27,7 +27,6 @@ import hardBreakRule from "../inline/hardBreakRule";
 import highlightRule from "../inline/highlightRule";
 import htmlSpanRule from "../inline/htmlSpanRule";
 import insertionRule from "../inline/insertionRule";
-import lineBreakRule from "../inline/lineBreakRule";
 import linkRule from "../inline/linkRule";
 import strikethroughRule from "../inline/strikethroughRule";
 import subscriptRule from "../inline/subscriptRule";
@@ -74,7 +73,6 @@ const gfm: RuleSet = {
 		[footnoteRule.name, footnoteRule],
 		[linkRule.name, linkRule],
 		[hardBreakRule.name, hardBreakRule],
-		[lineBreakRule.name, lineBreakRule],
 		[insertionRule.name, insertionRule],
 		[deletionRule.name, deletionRule],
 		[commentRule.name, commentRule],
