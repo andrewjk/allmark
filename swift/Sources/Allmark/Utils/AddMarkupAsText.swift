@@ -7,15 +7,12 @@ func addMarkupAsText(
 ) {
 	let lastNode = parent.children?.last
 	let haveText = lastNode?.type == "text"
-	let text = haveText ? lastNode! : MarkdownNode(
+	let text = haveText ? lastNode! : newInline(
 		type: "text",
-		block: false,
 		index: state.i,
 		line: state.line,
-		column: 1,
 		markup: "",
-		indent: 0,
-		children: nil
+		indent: 0
 	)
 	text.markup += markup
 	if !haveText {

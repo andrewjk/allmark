@@ -7,7 +7,7 @@ import escapeBackslashes from "../utils/escapeBackslashes";
 import getEndOfLine from "../utils/getEndOfLine";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
 	name: "code_fence",
@@ -133,7 +133,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 				closeNode(state, closedNode);
 			}
 
-			let code = newNode("code_fence", true, state.i, state.line, 1, markup, state.indent, []);
+			let code = newBlock("code_fence", state.i, state.line, markup, state.indent);
 			code.acceptsContent = true;
 			code.info = info;
 

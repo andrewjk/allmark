@@ -18,7 +18,7 @@ public static class HardBreakRule
         if (state.I + 1 < state.Src.Length) {
             if (state.Src[state.I] == '\\' && Utils.IsNewLine(state.Src[state.I + 1]))
             {
-                var hb = Utils.NewNode("hard_break", false, state.ParentIndex + state.I, state.Line, 1, "\\", 0);
+                var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);
                 hb.Length = 2;
                 state.I += 2;
                 parent.Children!.Add(hb);
@@ -45,7 +45,7 @@ public static class HardBreakRule
                 }
                 if (end - state.I >= 2)
                 {
-                    var hb = Utils.NewNode("hard_break", false, state.ParentIndex + state.I, state.Line, 1, "\\", 0);
+                    var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);
                     hb.Length = end - state.I;
                     state.I = end + 1;
                     parent.Children!.Add(hb);

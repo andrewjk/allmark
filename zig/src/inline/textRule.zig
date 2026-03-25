@@ -4,7 +4,7 @@ const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isAlphaNumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
@@ -14,12 +14,12 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     var lastNode: *MarkdownNode = undefined;
     if (parent.children == null or parent.children.?.len == 0) {
-        lastNode = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", 0, null) catch return false;
+        lastNode = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", 0) catch return false;
         appendChild(state.allocator, parent, lastNode) catch return false;
     } else {
         lastNode = parent.children.?[parent.children.?.len - 1];
         if (!std.mem.eql(u8, lastNode.type, "text")) {
-            lastNode = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", 0, null) catch return false;
+            lastNode = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", 0) catch return false;
             appendChild(state.allocator, parent, lastNode) catch return false;
         } else if (isNewLine(char)) {
             var end = lastNode.markup.len;

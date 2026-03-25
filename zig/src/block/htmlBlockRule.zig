@@ -3,7 +3,7 @@ const BlockParserState = @import("../types/BlockParserState.zig").BlockParserSta
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
@@ -165,7 +165,7 @@ fn testHtmlCondition2(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 
         state.i += match.?.end;
         const end_of_line = getEndOfLine(state);
-        const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 2, null) catch unreachable;
+        const html = newBlock(state.allocator, "html_block", start, state.line, "", 2) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
         html.length = end_of_line - start;
@@ -204,7 +204,7 @@ fn testHtmlCondition3(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 
         state.i += match.?.end;
         const end_of_line = getEndOfLine(state);
-        const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 3, null) catch unreachable;
+        const html = newBlock(state.allocator, "html_block", start, state.line, "", 3) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
         html.length = end_of_line - start;
@@ -243,7 +243,7 @@ fn testHtmlCondition4(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 
         state.i += match.?.end;
         const end_of_line = getEndOfLine(state);
-        const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 4, null) catch unreachable;
+        const html = newBlock(state.allocator, "html_block", start, state.line, "", 4) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
         html.length = end_of_line - start;
@@ -282,7 +282,7 @@ fn testHtmlCondition5(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 
         state.i += match.?.end;
         const end_of_line = getEndOfLine(state);
-        const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 5, null) catch unreachable;
+        const html = newBlock(state.allocator, "html_block", start, state.line, "", 5) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
         html.length = end_of_line - start;
@@ -359,7 +359,7 @@ fn testHtmlCondition6(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         }
 
         const end_of_line = getEndOfLine(state);
-        const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 6, null) catch unreachable;
+        const html = newBlock(state.allocator, "html_block", start, state.line, "", 6) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
         html.acceptsContent = true;
@@ -427,7 +427,7 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         }
 
         const end_of_line = getEndOfLine(state);
-        const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", 7, null) catch unreachable;
+        const html = newBlock(state.allocator, "html_block", start, state.line, "", 7) catch unreachable;
         html.content = createHtmlContent(state, start, end_of_line);
         html.content_allocated = true;
         html.acceptsContent = true;
@@ -448,7 +448,7 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 }
 
 fn createHtmlBlock(state: *BlockParserState, parent: *MarkdownNode, start: usize, end: usize, html_type: i32) void {
-    const html = newNode(state.allocator, "html_block", true, start, state.line, 1, "", html_type, null) catch unreachable;
+    const html = newBlock(state.allocator, "html_block", start, state.line, "", html_type) catch unreachable;
 
     const base_content = state.src[start..end];
     if (state.indent > 0) {

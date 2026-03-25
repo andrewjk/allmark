@@ -26,15 +26,12 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 
 	var lastNode = parent.children?.last
 	if lastNode == nil || lastNode?.type != "text" {
-		let newTextNode = MarkdownNode(
+		let newTextNode = newInline(
 			type: "text",
-			block: false,
 			index: state.parentIndex + state.i,
 			line: state.line,
-			column: 1,
 			markup: "",
-			indent: 0,
-			children: nil
+			indent: 0
 		)
 		parent.children?.append(newTextNode)
 		lastNode = newTextNode

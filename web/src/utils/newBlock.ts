@@ -1,25 +1,18 @@
 import type MarkdownNode from "../types/MarkdownNode";
 
-// TODO: Move a lot of functionality into here
-// e.g. checking maybeContinue, checking if last node needs closing etc
-
-export default function newNode(
+export default function newBlock(
 	type: string,
-	block: boolean,
 	index: number,
 	line: number,
-	column: number,
 	markup: string,
 	indent: number,
-	children?: MarkdownNode[],
 ): MarkdownNode {
 	return {
 		type,
-		block,
+		block: true,
 		index,
 		length: 0,
 		line,
-		column,
 		markup,
 		delimiter: "",
 		content: "",
@@ -28,6 +21,6 @@ export default function newNode(
 		acceptsContent: false,
 		maybeContinuing: false,
 		blankAfter: false,
-		children,
+		children: [],
 	};
 }

@@ -4,7 +4,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import movePastMarker from "../utils/movePastMarker";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
 	name: "alert",
@@ -58,16 +58,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			let quoteIndent = state.indent + 1;
 
-			let quote = newNode(
-				"alert",
-				true,
-				state.i,
-				state.line,
-				1,
-				match[1].toLowerCase(),
-				quoteIndent,
-				[],
-			);
+			let quote = newBlock("alert", state.i, state.line, match[1].toLowerCase(), quoteIndent);
 
 			parent.children!.push(quote);
 			state.openNodes.push(quote);

@@ -9,7 +9,7 @@ const INSTRUCTION = @import("../utils/htmlPatterns.zig").INSTRUCTION;
 const DECLARATION = @import("../utils/htmlPatterns.zig").DECLARATION;
 const CDATA = @import("../utils/htmlPatterns.zig").CDATA;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 const mvzr = @import("mvzr");
@@ -39,7 +39,7 @@ pub fn testHtmlSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
         }
 
         const content = match.?.slice;
-        const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
+        const html = newInline(state.allocator, "html_span", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
         html.*.content = state.allocator.dupe(u8, content) catch return false;
         html.*.content_allocated = true;
         html.*.length = content.len;

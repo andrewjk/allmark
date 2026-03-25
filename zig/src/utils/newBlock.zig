@@ -1,25 +1,21 @@
 const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 
-pub fn newNode(
+pub fn newBlock(
     allocator: std.mem.Allocator,
     type_str: []const u8,
-    block: bool,
     index: usize,
     line: i32,
-    column: i32,
     markup: []const u8,
     indent: i32,
-    children: ?[]*MarkdownNode,
 ) !*MarkdownNode {
     const node = try allocator.create(MarkdownNode);
     node.* = MarkdownNode{
         .type = try allocator.dupe(u8, type_str),
-        .block = block,
+        .block = true,
         .index = index,
         .length = 0,
         .line = line,
-        .column = column,
         .markup = try allocator.dupe(u8, markup),
         .markup_allocated = true,
         .delimiter = "",
@@ -31,7 +27,7 @@ pub fn newNode(
         .blankAfter = false,
         .info = null,
         .title = null,
-        .children = children,
+        .children = null,
     };
     return node;
 }

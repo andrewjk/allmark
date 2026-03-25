@@ -7,7 +7,7 @@ public static class Parser
 {
     public static MarkdownNode Execute(string src, RuleSet rules)
     {
-        var document = Utils.NewNode("document", true, 0, 1, 1, "", 0, []);
+        var document = Utils.NewBlock("document", 0, 1, "", 0);
 
         // Skip empty lines at start
         var start = 0;

@@ -34,7 +34,7 @@ public static class HtmlSpanRule
             if (match.Success)
             {
                 var content = match.Groups[0].Value;
-                var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
+                var html = Utils.NewInline("html_span", state.ParentIndex + state.I, state.Line, "", state.Indent);
                 html.Content = content;
                 html.Length = match.Groups[0].Length;
                 parent.Children!.Add(html);

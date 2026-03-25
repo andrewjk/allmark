@@ -122,7 +122,7 @@ public static class HtmlBlockRule
                 }
             }
 
-            var html = Utils.NewNode("html_block", true, start, state.Line, 1, "", 1, null);
+            var html = Utils.NewBlock("html_block", start, state.Line, "", 1);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, end - start);
 
             if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
@@ -162,7 +162,7 @@ public static class HtmlBlockRule
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewNode("html_block", true, start, state.Line, 1, "", 2, null);
+            var html = Utils.NewBlock("html_block", start, state.Line, "", 2);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
 
             if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
@@ -202,7 +202,7 @@ public static class HtmlBlockRule
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewNode("html_block", true, start, state.Line, 1, "", 3, null);
+            var html = Utils.NewBlock("html_block", start, state.Line, "", 3);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
 
             if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
@@ -243,7 +243,7 @@ public static class HtmlBlockRule
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewNode("html_block", true, start, state.Line, 1, "", 4, null);
+            var html = Utils.NewBlock("html_block", start, state.Line, "", 4);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
 
             if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
@@ -283,7 +283,7 @@ public static class HtmlBlockRule
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewNode("html_block", true, start, state.Line, 1, "", 5, null);
+            var html = Utils.NewBlock("html_block", start, state.Line, "", 5);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
 
             if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
@@ -328,7 +328,7 @@ public static class HtmlBlockRule
             }
 
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewNode("html_block", true, state.I, state.Line, 1, "", 6, null);
+            var html = Utils.NewBlock("html_block", state.I, state.Line, "", 6);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(state.I, endOfLine - state.I);
             html.AcceptsContent = true;
 
@@ -387,7 +387,7 @@ public static class HtmlBlockRule
             }
 
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewNode("html_block", true, state.I, state.Line, 1, "", 7, null);
+            var html = Utils.NewBlock("html_block", state.I, state.Line, "", 7);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(state.I, endOfLine - state.I);
             html.AcceptsContent = true;
 

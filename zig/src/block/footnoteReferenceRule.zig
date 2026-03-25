@@ -6,7 +6,7 @@ const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
 const parseBlock = @import("../parse/parseBlock.zig").parseBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
@@ -81,7 +81,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             return true;
         }
 
-        const ref = newNode(state.allocator, "footnote_ref", true, start, state.line, 1, "", 0, null) catch unreachable;
+        const ref = newBlock(state.allocator, "footnote_ref", start, state.line, "", 0) catch unreachable;
 
         const footnoteRef = @import("../types/FootnoteReference.zig").FootnoteReference{
             .label = normalized,

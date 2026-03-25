@@ -7,7 +7,7 @@ const addMarkupAsText = @import("../utils/addMarkupAsText.zig").addMarkupAsText;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isUnicodePunctuation = @import("../utils/isUnicodePunctuation.zig").isUnicodePunctuation;
 const isUnicodeSpace = @import("../utils/isUnicodeSpace.zig").isUnicodeSpace;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newInline = @import("../utils/newInline.zig").newInline;
 
 fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
     const char = state.src[state.i];
@@ -87,7 +87,7 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
                     const closeMarkup = markup_buf[0..closeLen];
 
                     const textChildMarkup = if (startDelimiter.?.length < lastNode.markup.len) lastNode.markup[startDelimiter.?.length..] else "";
-                    const text = newNode(state.allocator, "text", false, lastNode.index, lastNode.line, 1, textChildMarkup, 0, null) catch return false;
+                    const text = newInline(state.allocator, "text", lastNode.index, lastNode.line, textChildMarkup, 0) catch return false;
                     text.*.length = text.markup.len;
 
                     const moved_len = children.len - child_i - 1;
@@ -111,17 +111,15 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
                         lastNode.markup = newMarkup;
                         lastNode.markup_allocated = true;
 
-                        const emph = newNode(
+                        const emph = newInline(
                             state.allocator,
                             if (closeLen == 2) "strong" else "emphasis",
-                            false,
                             lastNode.index + remainingLen,
                             lastNode.line,
-                            1,
                             closeMarkup,
                             0,
-                            emphasisChildren,
                         ) catch return false;
+                        emph.*.children = emphasisChildren;
                         emph.*.length = state.parentIndex + state.i - (lastNode.index + remainingLen) + closeLen;
 
                         const new_parent_children_len = child_i + 2;
@@ -180,7 +178,7 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     if (canOpen) {
         const markup = markup_buf[0..markup_len];
-        const text = newNode(state.allocator, "text", false, state.parentIndex + start, state.line, 1, markup, 0, null) catch return false;
+        const text = newInline(state.allocator, "text", state.parentIndex + start, state.line, markup, 0) catch return false;
 
         if (parent.children == null) {
             const newChildren = state.allocator.alloc(*MarkdownNode, 1) catch return false;

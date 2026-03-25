@@ -119,7 +119,7 @@ public static class CodeFenceRule
                     Utils.CloseNode(state, closedNode);
                 }
 
-                var code = Utils.NewNode("code_fence", true, state.I, state.Line, 1, markup, state.Indent, []);
+                var code = Utils.NewBlock("code_fence", state.I, state.Line, markup, state.Indent);
                 code.AcceptsContent = true;
                 code.Info = info;
 

@@ -4,7 +4,7 @@ const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 
@@ -65,7 +65,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         closeNode(state, cn);
     }
 
-    const quote = newNode(state.allocator, "alert", true, state.i, state.line, 1, found_alert.?, state.indent + 1, null) catch unreachable;
+    const quote = newBlock(state.allocator, "alert", state.i, state.line, found_alert.?, state.indent + 1) catch unreachable;
     appendChild(state.allocator, effective_parent, quote) catch unreachable;
     state.openNodes.append(state.allocator, quote) catch unreachable;
 

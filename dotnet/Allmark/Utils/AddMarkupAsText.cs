@@ -8,7 +8,7 @@ public static partial class Utils
     {
         var lastNode = parent.Children!.LastOrDefault();
         var haveText = lastNode != null && lastNode.Type == "text";
-        var text = haveText ? lastNode! : NewNode("text", false, state.I, state.Line, 1, "", 0, null);
+        var text = haveText ? lastNode! : NewInline("text", state.I, state.Line, "", 0);
         text.Markup += markup;
         if (!haveText)
         {

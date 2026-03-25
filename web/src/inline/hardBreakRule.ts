@@ -2,7 +2,7 @@ import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import isNewLine from "../utils/isNewLine";
-import newNode from "../utils/newNode";
+import newInline from "../utils/newInline";
 
 const rule: InlineRule = {
 	name: "hard_break",
@@ -18,7 +18,7 @@ export default rule;
 
 function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean {
 	if (state.src[state.i] === "\\" && isNewLine(state.src[state.i + 1])) {
-		let hb = newNode("hard_break", false, state.parentIndex + state.i, state.line, 1, "\\", 0);
+		let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "\\", 0);
 		hb.length = 2;
 		state.i += 2;
 		parent.children!.push(hb);
@@ -36,7 +36,7 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 			}
 		}
 		if (end - state.i >= 2) {
-			let hb = newNode("hard_break", false, state.parentIndex + state.i, state.line, 1, "  ", 0);
+			let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "  ", 0);
 			hb.length = end - state.i;
 			state.i = end + 1;
 			parent.children!.push(hb);

@@ -6,7 +6,7 @@ const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const parseBlock = @import("../parse/parseBlock.zig").parseBlock;
 
 fn appendToSlice(allocator: std.mem.Allocator, slice: []*MarkdownNode, item: *MarkdownNode) ![]*MarkdownNode {
@@ -39,7 +39,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             closeNode(state, cn);
         }
 
-        const quote = newNode(state.allocator, "block_quote", true, state.i, state.line, 1, &[_]u8{'>'}, state.indent + 1, null) catch unreachable;
+        const quote = newBlock(state.allocator, "block_quote", state.i, state.line, &[_]u8{'>'}, state.indent + 1) catch unreachable;
         if (effective_parent.children == null) {
             effective_parent.children = state.allocator.alloc(*MarkdownNode, 0) catch unreachable;
         }

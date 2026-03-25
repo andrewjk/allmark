@@ -1,6 +1,7 @@
 const std = @import("std");
 const appendChild = @import("appendChild.zig").appendChild;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
+const newInline = @import("newInline.zig").newInline;
 
 pub fn addMarkupAsText(
     allocator: std.mem.Allocator,
@@ -8,10 +9,8 @@ pub fn addMarkupAsText(
     state: *@import("../types/InlineParserState.zig").InlineParserState,
     parent: *@import("../types/MarkdownNode.zig").MarkdownNode,
 ) !void {
-    const newNode = @import("newNode.zig").newNode;
-
     if (parent.children == null or parent.children.?.len == 0) {
-        const text_node = try newNode(allocator, "text", false, state.i, state.line, 1, "", 0, null);
+        const text_node = try newInline(allocator, "text", state.i, state.line, "", 0);
         try appendChild(allocator, parent, text_node);
     }
 
@@ -19,7 +18,7 @@ pub fn addMarkupAsText(
     const lastNode = children[children.len - 1];
     const haveText = std.mem.eql(u8, lastNode.type, "text");
     const text_node = if (haveText) lastNode else blk: {
-        const tn = try newNode(allocator, "text", false, state.i, state.line, 1, "", 0, null);
+        const tn = try newInline(allocator, "text", state.i, state.line, "", 0);
         try appendChild(allocator, parent, tn);
         break :blk tn;
     };

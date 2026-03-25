@@ -55,7 +55,7 @@ public static class AlertRule
 
                 int quoteIndent = state.Indent + 1;
 
-                var quote = Utils.NewNode("alert", true, state.I, state.Line, 1, match.Groups[1].Value.ToLowerInvariant(), quoteIndent, new List<MarkdownNode>());
+                var quote = Utils.NewBlock("alert", state.I, state.Line, match.Groups[1].Value.ToLowerInvariant(), quoteIndent);
 
                 parent.Children!.Add(quote);
                 state.OpenNodes.Push(quote);

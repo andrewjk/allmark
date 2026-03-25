@@ -16,11 +16,6 @@ public record MarkdownNode
     public required int Line { get; set; }
 
     /// <summary>
-    /// The column number.
-    /// </summary>
-    public required int Column { get; set; }
-
-    /// <summary>
     /// The markdown-specific markup for this node as it has been entered by the user.
     /// </summary>
     public required string Markup { get; set; }

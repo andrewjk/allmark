@@ -4,19 +4,15 @@ using Allmark.Types;
 
 public static partial class Utils
 {
-    // TODO: Move a lot of functionality into here
-    // e.g. checking maybeContinue, checking if last node needs closing etc
-
-    public static MarkdownNode NewNode(string type, bool block, int index, int line, int column, string markup, int indent, List<MarkdownNode>? children = null)
+    public static MarkdownNode NewBlock(string type, int index, int line, string markup, int indent)
     {
         return new MarkdownNode
         {
             Type = type,
-            Block = block,
+            Block = true,
             Index = index,
             Length = 0,
             Line = line,
-            Column = column,
             Markup = markup,
             Delimiter = "",
             Content = "",
@@ -25,7 +21,7 @@ public static partial class Utils
             AcceptsContent = false,
             MaybeContinuing = false,
             BlankAfter = false,
-            Children = children
+            Children = []
         };
     }
 }

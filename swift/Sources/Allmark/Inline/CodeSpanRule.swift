@@ -87,29 +87,24 @@ func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				content = String(content.dropFirst().dropLast())
 			}
 
-			let textNode = MarkdownNode(
+			let textNode = newInline(
 				type: "text",
-				block: false,
 				index: state.parentIndex + state.i,
 				line: state.line,
-				column: 1,
 				markup: content,
-				indent: 0,
-				children: nil
+				indent: 0
 			)
 			textNode.length = content.count
 
-			let codeNode = MarkdownNode(
+			let codeNode = newInline(
 				type: "code_span",
-				block: false,
 				index: state.parentIndex + state.i - openMatched,
 				line: state.line,
-				column: 1,
 				markup: markup,
-				indent: 0,
-				children: [textNode]
+				indent: 0
 			)
 			codeNode.length = closeEnd - (state.i - openMatched)
+			codeNode.children = [textNode]
 
 			parent.children?.append(codeNode)
 			state.i = closeEnd

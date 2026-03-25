@@ -4,7 +4,7 @@ const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isSpaceFn = @import("../utils/isSpace.zig").isSpace;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
@@ -27,7 +27,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         return false;
     }
 
-    const paragraph = newNode(state.allocator, "paragraph", true, state.i, state.line, 1, "", 0, null) catch unreachable;
+    const paragraph = newBlock(state.allocator, "paragraph", state.i, state.line, "", 0) catch unreachable;
     paragraph.*.content = state.allocator.dupe(u8, content) catch unreachable;
     paragraph.*.content_allocated = true;
     paragraph.*.children = state.allocator.alloc(*MarkdownNode, 0) catch unreachable;

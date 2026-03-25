@@ -82,15 +82,12 @@ func testTagMarks(
 				var i = (parent.children?.count ?? 0) - 1
 				while i >= 0 {
 					if let lastNode = parent.children?[i], lastNode.index == state.parentIndex + startDel.start {
-						let text = MarkdownNode(
+						let text = newInline(
 							type: "text",
-							block: false,
 							index: lastNode.index,
 							line: lastNode.line,
-							column: 1,
 							markup: char,
-							indent: 0,
-							children: nil
+							indent: 0
 						)
 						text.markup = String(lastNode.markup.dropFirst(startDel.length))
 
@@ -126,15 +123,12 @@ func testTagMarks(
 
 		if leftFlanking {
 			// Add a new text node which may turn into a delimiter
-			let text = MarkdownNode(
+			let text = newInline(
 				type: "text",
-				block: false,
 				index: state.parentIndex + start,
 				line: state.line,
-				column: 1,
 				markup: markup,
-				indent: 0,
-				children: nil
+				indent: 0
 			)
 			parent.children?.append(text)
 

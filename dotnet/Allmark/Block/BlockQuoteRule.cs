@@ -49,7 +49,7 @@ public static class BlockQuoteRule
 
             int quoteIndent = state.Indent + 1;
 
-            var quote = Utils.NewNode("block_quote", true, state.I, state.Line, 1, c.ToString(), quoteIndent, new List<MarkdownNode>());
+            var quote = Utils.NewBlock("block_quote", state.I, state.Line, c.ToString(), quoteIndent);
 
             parent.Children!.Add(quote);
             state.OpenNodes.Push(quote);

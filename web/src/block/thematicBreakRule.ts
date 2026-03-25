@@ -4,7 +4,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import closeNode from "../utils/closeNode";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
 	name: "thematic_break",
@@ -81,7 +81,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			}
 
 			let markup = state.src.substring(state.i, end);
-			let tbr = newNode("thematic_break", true, state.i, state.line, 1, markup, 0, []);
+			let tbr = newBlock("thematic_break", state.i, state.line, markup, 0);
 			tbr.length = end - state.i;
 			parent.children!.push(tbr);
 			state.i = end;

@@ -6,7 +6,7 @@ import addMarkupAsText from "../utils/addMarkupAsText";
 import isEscaped from "../utils/isEscaped";
 import isUnicodePunctuation from "../utils/isUnicodePunctuation";
 import isUnicodeSpace from "../utils/isUnicodeSpace";
-import newNode from "../utils/newNode";
+import newInline from "../utils/newInline";
 
 const rule: InlineRule = {
 	name: "emphasis",
@@ -113,7 +113,7 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 						// than two, save some for the next go-round
 						markup = markup.substring(0, Math.min(startDelimiter.length, 2));
 
-						let text = newNode("text", false, lastNode.index, lastNode.line, 1, char, 0);
+						let text = newInline("text", lastNode.index, lastNode.line, char, 0);
 						text.markup = lastNode.markup.slice(startDelimiter.length);
 						text.length = text.markup.length;
 
@@ -123,16 +123,14 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 							let remainingStart = lastNode.index + startDelimiter.length - markup.length;
 							lastNode.markup = lastNode.markup.substring(0, startDelimiter.length - markup.length);
 							lastNode.length = lastNode.markup.length;
-							let emphasis = newNode(
+							let emphasis = newInline(
 								markup.length === 2 ? "strong" : "emphasis",
-								false,
 								remainingStart,
 								lastNode.line,
-								1,
 								markup,
 								0,
-								[text, ...movedNodes],
 							);
+							emphasis.children = [text, ...movedNodes];
 							emphasis.length = state.parentIndex + state.i - remainingStart + markup.length;
 							parent.children!.push(emphasis);
 						} else {
@@ -174,7 +172,7 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 			(char !== "_" || spaceBefore || punctuationBefore);
 		if (canOpen) {
 			// Add a new text node which may turn into emphasis
-			let text = newNode("text", false, state.parentIndex + start, state.line, 1, markup, 0);
+			let text = newInline("text", state.parentIndex + start, state.line, markup, 0);
 			parent.children!.push(text);
 
 			state.i += markup.length;

@@ -4,7 +4,7 @@ import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import closeNode from "../utils/closeNode";
 import isNewLine from "../utils/isNewLine";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
 	name: "code_block",
@@ -66,16 +66,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let codeIndent = state.indent - 4;
 
-		let code = newNode(
-			"code_block",
-			true,
-			state.i - state.indent,
-			state.line,
-			1,
-			"    ",
-			codeIndent,
-			[],
-		);
+		let code = newBlock("code_block", state.i - state.indent, state.line, "    ", codeIndent);
 		code.acceptsContent = true;
 		code.content += " ".repeat(codeIndent);
 

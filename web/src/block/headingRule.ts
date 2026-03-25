@@ -5,7 +5,7 @@ import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
 import isSpace from "../utils/isSpace";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
 	name: "heading",
@@ -57,7 +57,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 				closeNode(state, closedNode);
 			}
 
-			let heading = newNode("heading", true, state.i, state.line, 1, "#".repeat(level), 0, []);
+			let heading = newBlock("heading", state.i, state.line, "#".repeat(level), 0);
 
 			if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
 				parent.children.at(-1)!.blankAfter = true;

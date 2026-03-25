@@ -95,7 +95,7 @@ public static class TagMarksRule
                         var lastNode = parent.Children?[j];
                         if (lastNode?.Index == state.ParentIndex + startDelimiter.Start)
                         {
-                            var text = Utils.NewNode("text", false, lastNode.Index, lastNode.Line, 1, ch, 0);
+                            var text = Utils.NewInline("text", lastNode.Index, lastNode.Line, ch, 0);
                             text.Markup = lastNode.Markup.Substring(startDelimiter.Length) ?? "";
 
                             lastNode.Type = name;
@@ -117,7 +117,7 @@ public static class TagMarksRule
             if (leftFlanking)
             {
                 // Add a new text node which may turn into a delimiter
-                var text = Utils.NewNode("text", false, state.ParentIndex + start, state.Line, 1, markup, 0);
+                var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
                 parent.Children!.Add(text);
 
                 state.I += markup.Length;

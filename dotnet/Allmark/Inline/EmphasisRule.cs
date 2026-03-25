@@ -132,7 +132,7 @@ public static class EmphasisRule
                             // than two, save some for the next go-round
                             markup = markup.Substring(0, Math.Min(markup.Length, Math.Min(startDelimiter.Length, 2)));
 
-                            var text = Utils.NewNode("text", false, lastNode.Index, lastNode.Line, 1, ch.ToString(), 0);
+                            var text = Utils.NewInline("text", lastNode.Index, lastNode.Line, ch.ToString(), 0);
                             text.Markup = lastNode.Markup.Substring(startDelimiter.Length);
                             text.Length = text.Markup.Length;
 
@@ -143,16 +143,14 @@ public static class EmphasisRule
                             {
                                 lastNode.Markup = lastNode.Markup.Substring(0, startDelimiter.Length - markup.Length);
                                 lastNode.Length = lastNode.Markup.Length;
-                                var emphasis = Utils.NewNode(
+                                var emphasis = Utils.NewInline(
                                     markup.Length == 2 ? "strong" : "emphasis",
-                                    false,
                                     lastNode.Index + markup.Length,
                                     lastNode.Line,
-                                    1,
                                     markup,
-                                    0,
-                                    [text, .. movedNodes]);
+                                    0);
                                 emphasis.Length = state.ParentIndex + state.I - emphasis.Index + markup.Length;
+                                emphasis.Children = [text, .. movedNodes];
                                 parent.Children!.Add(emphasis);
                             }
                             else
@@ -199,7 +197,7 @@ public static class EmphasisRule
             if (canOpen)
             {
                 // Add a new text node which may turn into emphasis
-                var text = Utils.NewNode("text", false, state.ParentIndex + start, state.Line, 1, markup, 0);
+                var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
                 parent.Children!.Add(text);
 
                 state.I += markup.Length;

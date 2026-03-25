@@ -7,7 +7,6 @@ pub const MarkdownNode = struct {
     length: usize,
 
     line: i32,
-    column: i32,
 
     markup: []const u8,
     markup_allocated: bool = false,

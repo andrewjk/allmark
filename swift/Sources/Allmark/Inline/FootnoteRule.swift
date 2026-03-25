@@ -42,15 +42,12 @@ func testFootnoteOpen(state: inout InlineParserState, parent: inout MarkdownNode
 	let markup = "[^"
 
 	// Add a new text node which may turn into a footnote
-	let text = MarkdownNode(
+	let text = newInline(
 		type: "text",
-		block: false,
 		index: state.parentIndex + start,
 		line: state.line,
-		column: 1,
 		markup: markup,
-		indent: 0,
-		children: nil
+		indent: 0
 	)
 	parent.children?.append(text)
 

@@ -2,7 +2,7 @@ import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import getEndOfLine from "../utils/getEndOfLine";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
 	name: "paragraph",
@@ -36,7 +36,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return true;
 	}
 
-	let paragraph = newNode("paragraph", true, state.i, state.line, 1, "", 0, []);
+	let paragraph = newBlock("paragraph", state.i, state.line, "", 0);
 	paragraph.content = content;
 	state.i = endOfLine;
 

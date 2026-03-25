@@ -7,7 +7,7 @@ const isNumeric = @import("../utils/isAlphaNumeric.zig").isNumeric;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
@@ -132,8 +132,8 @@ fn testStartWithInfo(state: *BlockParserState, parent: *MarkdownNode, info: List
     }
 
     const has_list = std.mem.eql(u8, effective_parent.type, info.type);
-    const list = if (has_list) effective_parent else newNode(state.allocator, info.type, true, state.i, state.line, 1, info.markup, state.indent, null) catch unreachable;
-    const item = newNode(state.allocator, "list_item", true, state.i, state.line, 1, info.markup, state.indent, null) catch unreachable;
+    const list = if (has_list) effective_parent else newBlock(state.allocator, info.type, state.i, state.line, info.markup, state.indent) catch unreachable;
+    const item = newBlock(state.allocator, "list_item", state.i, state.line, info.markup, state.indent) catch unreachable;
 
     if (!has_list) {
         const delimiter_char = &[_]u8{info.delimiter};

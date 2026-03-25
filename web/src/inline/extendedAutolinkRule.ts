@@ -5,7 +5,7 @@ import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
 import isEscaped from "../utils/isEscaped";
-import newNode from "../utils/newNode";
+import newInline from "../utils/newInline";
 
 const rule: InlineRule = {
 	name: "extended_autolink",
@@ -38,15 +38,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				let url = urlMatch[1];
 
 				if (SPACE_REGEX.test(url)) {
-					let text = newNode(
-						"text",
-						false,
-						state.parentIndex + state.i,
-						state.line,
-						1,
-						"",
-						state.indent,
-					);
+					let text = newInline("text", state.parentIndex + state.i, state.line, "", state.indent);
 					text.markup = escapeHtml(urlMatch[0]);
 					text.length = urlMatch[0].length;
 					parent.children!.push(text);
@@ -76,15 +68,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				let url = urlMatch[1];
 
 				if (SPACE_REGEX.test(url)) {
-					let text = newNode(
-						"text",
-						false,
-						state.parentIndex + state.i,
-						state.line,
-						1,
-						"",
-						state.indent,
-					);
+					let text = newInline("text", state.parentIndex + state.i, state.line, "", state.indent);
 					text.markup = escapeHtml(urlMatch[0]);
 					text.length = urlMatch[0].length;
 					parent.children!.push(text);
@@ -119,15 +103,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				// of the email address, in which case it will not be considered
 				// part of the address"
 				if (/[-_]$/.test(url) || url.indexOf("+", url.indexOf("@")) !== -1) {
-					let text = newNode(
-						"text",
-						false,
-						state.parentIndex + state.i,
-						state.line,
-						1,
-						"",
-						state.indent,
-					);
+					let text = newInline("text", state.parentIndex + state.i, state.line, "", state.indent);
 					text.markup = escapeHtml(emailMatch[0]);
 					text.length = emailMatch[0].length;
 					parent.children!.push(text);
@@ -160,15 +136,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				// of the email address, in which case it will not be considered
 				// part of the address"
 				if (/[-_]$/.test(url) || url.indexOf("+", url.indexOf("@")) !== -1) {
-					let text = newNode(
-						"text",
-						false,
-						state.parentIndex + state.i,
-						state.line,
-						1,
-						"",
-						state.indent,
-					);
+					let text = newInline("text", state.parentIndex + state.i, state.line, "", state.indent);
 					text.markup = escapeHtml(emailMatch[0]);
 					text.length = emailMatch[0].length;
 					parent.children!.push(text);
@@ -240,18 +208,15 @@ function extendedValidation(url: string) {
 }
 
 function newLink(url: string, state: InlineParserState) {
-	let text = newNode(
+	let text = newInline(
 		"text",
-		false,
 		state.parentIndex + state.i,
 		state.line,
-		1,
 		url.replaceAll("\\", "\\\\"),
 		state.indent,
 	);
-	let link = newNode("link", false, state.parentIndex + state.i, state.line, 1, "", state.indent, [
-		text,
-	]);
+	let link = newInline("link", state.parentIndex + state.i, state.line, "", state.indent);
+	link.children = [text];
 
 	url = decodeEntities(url);
 	url = encodeURI(decodeURI(url));

@@ -3,7 +3,7 @@ const BlockParserState = @import("../types/BlockParserState.zig").BlockParserSta
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const parseBlock = @import("../parse/parseBlock.zig").parseBlock;
 
@@ -58,7 +58,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         }
 
         const code_indent = state.indent - 4;
-        const code = newNode(state.allocator, "code_block", true, state.lineStart, state.line, 1, "    ", code_indent, null) catch unreachable;
+        const code = newBlock(state.allocator, "code_block", state.lineStart, state.line, "    ", code_indent) catch unreachable;
         code.acceptsContent = true;
 
         if (code_indent > 0) {

@@ -10,7 +10,7 @@ import {
 	OPEN_TAG,
 } from "../utils/htmlPatterns";
 import isEscaped from "../utils/isEscaped";
-import newNode from "../utils/newNode";
+import newInline from "../utils/newInline";
 
 const rule: InlineRule = {
 	name: "html_span",
@@ -36,15 +36,7 @@ function testHtmlSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 		let match = tail.match(HTML_TAG_REGEX);
 		if (match !== null) {
 			let content = match[0];
-			let html = newNode(
-				"html_span",
-				false,
-				state.parentIndex + state.i,
-				state.line,
-				1,
-				"",
-				state.indent,
-			);
+			let html = newInline("html_span", state.parentIndex + state.i, state.line, "", state.indent);
 			html.content = content;
 			html.length = match[0].length;
 			parent.children!.push(html);

@@ -5,7 +5,7 @@ import closeNode from "../utils/closeNode";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import movePastMarker from "../utils/movePastMarker";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 /**
  * "A list is a sequence of one or more list items of the same type. The list
@@ -146,9 +146,9 @@ export function testListStart(
 	let haveList = parent.type === info.type;
 	let list = haveList
 		? parent
-		: newNode(info.type, true, state.i, state.line, 1, info.markup, state.indent, []);
+		: newBlock(info.type, state.i, state.line, info.markup, state.indent);
 	list.delimiter = info.delimiter;
-	let item = newNode("list_item", true, state.i, state.line, 1, info.markup, state.indent, []);
+	let item = newBlock("list_item", state.i, state.line, info.markup, state.indent);
 	item.delimiter = info.delimiter;
 	item.subindent = state.indent + info.markup.length + spaces;
 

@@ -35,15 +35,12 @@ func parseBlockInlines(
 				content += "\n"
 			}
 		}
-		let text = MarkdownNode(
+		let text = newInline(
 			type: "text",
-			block: false,
 			index: parent.index,
 			line: parent.line,
-			column: 1,
 			markup: content,
-			indent: 0,
-			children: nil
+			indent: 0
 		)
 		text.content = content
 		parent.children?.append(text)
@@ -75,15 +72,12 @@ func parseBlockInlines(
 				content += "\n"
 			}
 		}
-		let text = MarkdownNode(
+		let text = newInline(
 			type: "text",
-			block: false,
 			index: parent.index,
 			line: parent.line,
-			column: 1,
 			markup: content,
-			indent: 0,
-			children: nil
+			indent: 0
 		)
 		text.content = content
 		parent.children?.append(text)

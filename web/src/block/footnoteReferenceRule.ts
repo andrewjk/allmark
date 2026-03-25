@@ -3,7 +3,7 @@ import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import isEscaped from "../utils/isEscaped";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 import normalizeLabel from "../utils/normalizeLabel";
 
 const rule: BlockRule = {
@@ -86,7 +86,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			return true;
 		}
 
-		let ref = newNode("footnote_ref", true, start, state.line, 1, "", 0, []);
+		let ref = newBlock("footnote_ref", start, state.line, "", 0);
 		state.footnotes[label] = {
 			label,
 			content: ref,

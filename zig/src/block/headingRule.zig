@@ -6,7 +6,7 @@ const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
@@ -41,7 +41,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             defer state.allocator.free(markup);
             @memset(markup[0..level], '#');
 
-            const heading = newNode(state.allocator, "heading", true, state.i, state.line, 1, markup, 0, null) catch unreachable;
+            const heading = newBlock(state.allocator, "heading", state.i, state.line, markup, 0) catch unreachable;
 
             if (state.hasBlankLine) {
                 if (effective_parent.children) |children| {

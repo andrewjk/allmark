@@ -6,7 +6,7 @@ import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
 	name: "table",
@@ -27,7 +27,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let headers = lastNode.children![0].children!.map((c) => c.info);
 
-		let row = newNode("table_row", true, state.i, state.line, 1, "", 0, []);
+		let row = newBlock("table_row", state.i, state.line, "", 0);
 		lastNode.children!.push(row);
 
 		let rowContent = state.src
@@ -39,7 +39,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let ri = 0;
 		for (let text of rowParts) {
-			let cell = newNode("table_cell", true, state.i, state.line, 1, "", 0, []);
+			let cell = newBlock("table_cell", state.i, state.line, "", 0);
 			cell.content = (text ?? "").trim().replaceAll("\\\|", "|");
 			cell.info = headers[ri++];
 			row.children!.push(cell);
@@ -125,13 +125,13 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 				closeNode(state, closedNode);
 			}
 
-			let header = newNode("table_header", true, state.i, state.line, 1, "", 0, []);
+			let header = newBlock("table_header", state.i, state.line, "", 0);
 			parent.children!.push(header);
 
 			let headerParts = headerContent.split(/(?<!\\)\|/);
 			let hi = 0;
 			for (let text of headerParts) {
-				let cell = newNode("table_cell", true, state.i, state.line, 1, "", 0, []);
+				let cell = newBlock("table_cell", state.i, state.line, "", 0);
 				cell.content = text.trim().replaceAll("\\\|", "|");
 				cell.info = cells[hi++];
 				header.children!.push(cell);

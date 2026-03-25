@@ -8,7 +8,7 @@ const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapeBackslashes = @import("../utils/escapeBackslashes.zig").escapeBackslashes;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 
 fn appendToSlice(allocator: std.mem.Allocator, slice: []*MarkdownNode, item: *MarkdownNode) ![]*MarkdownNode {
     const new_slice = try allocator.alloc(*MarkdownNode, slice.len + 1);
@@ -104,7 +104,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 closeNode(state, closedNode.?);
             }
 
-            const code = newNode(state.allocator, "code_fence", true, state.i, state.line, 1, markup, state.indent, null) catch unreachable;
+            const code = newBlock(state.allocator, "code_fence", state.i, state.line, markup, state.indent) catch unreachable;
             code.*.acceptsContent = true;
             code.*.info = state.allocator.dupe(u8, info) catch unreachable;
 

@@ -42,15 +42,12 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					let fullMatchRange = linkMatch.range(at: 0)
 					if let fullRange = Range(fullMatchRange, in: tail) {
 						let markup = escapeHtml(text: String(tail[fullRange]))
-						let text = MarkdownNode(
+						let text = newInline(
 							type: "text",
-							block: false,
 							index: state.parentIndex + state.i,
 							line: state.line,
-							column: 1,
 							markup: "",
-							indent: state.indent,
-							children: nil
+							indent: state.indent
 						)
 						text.markup = markup
 						text.length = tail[fullRange].count
@@ -64,26 +61,20 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				let decodedUrl = decodeEntities(text: url)
 				let encodedUrl = decodedUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? decodedUrl
 
-				let text = MarkdownNode(
+				let text = newInline(
 					type: "text",
-					block: false,
 					index: state.parentIndex + state.i,
 					line: state.line,
-					column: 1,
 					markup: escapedUrl,
-					indent: state.indent,
-					children: nil
+					indent: state.indent
 				)
 
-				let link = MarkdownNode(
+				let link = newInline(
 					type: "link",
-					block: false,
 					index: state.parentIndex + state.i,
 					line: state.line,
-					column: 1,
 					markup: "",
-					indent: state.indent,
-					children: [text]
+					indent: state.indent
 				)
 				link.info = encodedUrl
 
@@ -93,6 +84,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					state.i += tail[fullRange].count
 				}
 
+				link.children = [text]
 				parent.children?.append(link)
 
 				return true
@@ -112,15 +104,12 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					let fullMatchRange = emailMatch.range(at: 0)
 					if let fullRange = Range(fullMatchRange, in: tail) {
 						let markup = escapeHtml(text: String(tail[fullRange]))
-						let text = MarkdownNode(
+						let text = newInline(
 							type: "text",
-							block: false,
 							index: state.parentIndex + state.i,
 							line: state.line,
-							column: 1,
 							markup: "",
-							indent: state.indent,
-							children: nil
+							indent: state.indent
 						)
 						text.markup = markup
 						text.length = tail[fullRange].count
@@ -133,26 +122,20 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				let decodedUrl = decodeEntities(text: url)
 				let encodedUrl = decodedUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? decodedUrl
 
-				let text = MarkdownNode(
+				let text = newInline(
 					type: "text",
-					block: false,
 					index: state.parentIndex + state.i,
 					line: state.line,
-					column: 1,
 					markup: url,
-					indent: state.indent,
-					children: nil
+					indent: state.indent
 				)
 
-				let link = MarkdownNode(
+				let link = newInline(
 					type: "link",
-					block: false,
 					index: state.parentIndex + state.i,
 					line: state.line,
-					column: 1,
 					markup: "",
-					indent: state.indent,
-					children: [text]
+					indent: state.indent
 				)
 				link.info = "mailto:\(encodedUrl)"
 
@@ -162,6 +145,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					state.i += tail[fullRange].count
 				}
 
+				link.children = [text]
 				parent.children?.append(link)
 
 				return true

@@ -45,7 +45,7 @@ public static class ExtendedAutolinkRule
                     if (SpaceRegex.IsMatch(url))
                     {
                         var originalLength = urlMatch.Groups[0].Length;
-                        var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
+                        var text = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(urlMatch.Groups[0].Value);
                         text.Length = originalLength;
                         parent.Children!.Add(text);
@@ -77,7 +77,7 @@ public static class ExtendedAutolinkRule
 
                     if (SpaceRegex.IsMatch(url))
                     {
-                        var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
+                        var text = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(urlMatch.Groups[0].Value);
                         parent.Children!.Add(text);
                         state.I += urlMatch.Groups[0].Length;
@@ -113,7 +113,7 @@ public static class ExtendedAutolinkRule
                     // part of the address"
                     if (Regex.IsMatch(url, @"[-_]$") || url.IndexOf("+", url.IndexOf("@")) != -1)
                     {
-                        var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
+                        var text = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(emailMatch.Groups[0].Value);
                         parent.Children!.Add(text);
                         state.I += emailMatch.Groups[0].Length;
@@ -147,7 +147,7 @@ public static class ExtendedAutolinkRule
                     // part of the address"
                     if (Regex.IsMatch(url, @"[-_]$") || url.IndexOf("+", url.IndexOf("@")) != -1)
                     {
-                        var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
+                        var text = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", state.Indent);
                         text.Markup = Utils.EscapeHtml(emailMatch.Groups[0].Value);
                         parent.Children!.Add(text);
                         state.I += emailMatch.Groups[0].Length;
@@ -231,9 +231,10 @@ public static class ExtendedAutolinkRule
         var decodedUrl = Utils.DecodeEntities(url);
         var encodedUrl = Utils.EscapeUriString(decodedUrl);
 
-        var linkText = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, escapedUrl, state.Indent);
+        var linkText = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, escapedUrl, state.Indent);
 
-        var link = Utils.NewNode("link", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent, [linkText]);
+        var link = Utils.NewInline("link", state.ParentIndex + state.I, state.Line, "", state.Indent);
+        link.Children = [linkText];
         link.Info = encodedUrl;
         link.Length = url.Length;
 

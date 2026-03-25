@@ -14,15 +14,12 @@ func testHardBreak(state: inout InlineParserState, parent: inout MarkdownNode) -
 	if src[index] == "\\" && state.i + 1 < src.count {
 		let nextIndex = src.index(src.startIndex, offsetBy: state.i + 1)
 		if isNewLine(char: String(src[nextIndex])) {
-			let hb = MarkdownNode(
+			let hb = newInline(
 				type: "hard_break",
-				block: false,
 				index: state.parentIndex + state.i,
 				line: state.line,
-				column: 1,
 				markup: "\\",
-				indent: 0,
-				children: nil
+				indent: 0
 			)
 			hb.length = 2
 			state.i += 2
@@ -44,15 +41,12 @@ func testHardBreak(state: inout InlineParserState, parent: inout MarkdownNode) -
 		}
 
 		if end - state.i >= 2 {
-			let hb = MarkdownNode(
+			let hb = newInline(
 				type: "hard_break",
-				block: false,
 				index: state.parentIndex + state.i,
 				line: state.line,
-				column: 1,
 				markup: "\\",
-				indent: 0,
-				children: nil
+				indent: 0
 			)
 			hb.length = end - state.i
 			state.i = end + 1

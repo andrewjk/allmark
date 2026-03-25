@@ -4,7 +4,7 @@ const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isNumeric = @import("../utils/isAlphaNumeric.zig").isNumeric;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
@@ -30,7 +30,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
             const markup = std.fmt.allocPrint(state.allocator, "[{c}]", .{x}) catch return false;
             defer state.allocator.free(markup);
-            const task = newNode(state.allocator, "list_task_item", false, state.i, state.line, 1, markup, 0, null) catch unreachable;
+            const task = newInline(state.allocator, "list_task_item", state.i, state.line, markup, 0) catch unreachable;
 
             appendChild(state.allocator, parent, task) catch unreachable;
             state.i += 3;

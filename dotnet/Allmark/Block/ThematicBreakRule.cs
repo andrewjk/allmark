@@ -102,7 +102,7 @@ public static class ThematicBreakRule
                 }
 
                 var markup = state.Src.Substring(state.I, end - state.I);
-                var tbr = Utils.NewNode("thematic_break", true, state.I, state.Line, 1, markup, 0, []);
+                var tbr = Utils.NewBlock("thematic_break", state.I, state.Line, markup, 0);
                 tbr.Length = end - state.I;
                 parent.Children!.Add(tbr);
                 state.I = end;

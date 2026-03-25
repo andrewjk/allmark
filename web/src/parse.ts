@@ -5,10 +5,10 @@ import type MarkdownNode from "./types/MarkdownNode";
 import type RuleSet from "./types/RuleSet";
 import isNewLine from "./utils/isNewLine";
 import isSpace from "./utils/isSpace";
-import newNode from "./utils/newNode";
+import newBlock from "./utils/newBlock";
 
 export default function parse(src: string, rules: RuleSet): MarkdownNode {
-	let document = newNode("document", true, 0, 1, 1, "", 0, []);
+	let document = newBlock("document", 0, 1, "", 0);
 
 	// Skip empty lines at the start
 	let i = 0;

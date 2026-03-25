@@ -5,7 +5,7 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapeHtml = @import("../utils/escapeHtml.zig").escapeHtml;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 const mvzr = @import("mvzr");
@@ -36,7 +36,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             } else false;
 
             if (hasSpace) {
-                const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
+                const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
                 text.*.markup = escapeHtml(state.allocator, tail[0..linkMatch.?.end]) catch return false;
                 text.*.markup_allocated = true;
                 text.*.length = linkMatch.?.end;
@@ -67,7 +67,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             };
             defer state.allocator.free(backslashEscaped);
 
-            const linkText = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, backslashEscaped, state.indent, null) catch {
+            const linkText = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, backslashEscaped, state.indent) catch {
                 state.allocator.free(uriEncodedUrl);
                 return false;
             };
@@ -78,11 +78,12 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             };
             children[0] = linkText;
 
-            const link = newNode(state.allocator, "link", false, state.parentIndex + state.i, state.line, 1, "", state.indent, children) catch {
+            const link = newInline(state.allocator, "link", state.parentIndex + state.i, state.line, "", state.indent) catch {
                 state.allocator.free(uriEncodedUrl);
                 state.allocator.free(children);
                 return false;
             };
+            link.*.children = children;
 
             // Transfer ownership of uriEncodedUrl to the link node
             link.*.info = uriEncodedUrl;
@@ -110,7 +111,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             } else false;
 
             if (hasSpace) {
-                const text = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
+                const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
                 text.*.markup = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
                 text.*.markup_allocated = true;
                 text.*.length = emailMatch.?.end;
@@ -142,7 +143,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             state.allocator.free(uriEncodedUrl);
 
             // Create text node with raw email URL for display
-            const linkText = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, rawUrl, state.indent, null) catch {
+            const linkText = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, rawUrl, state.indent) catch {
                 state.allocator.free(mailtoUrl);
                 return false;
             };
@@ -153,11 +154,12 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             };
             children[0] = linkText;
 
-            const link = newNode(state.allocator, "link", false, state.parentIndex + state.i, state.line, 1, "", state.indent, children) catch {
+            const link = newInline(state.allocator, "link", state.parentIndex + state.i, state.line, "", state.indent) catch {
                 state.allocator.free(mailtoUrl);
                 state.allocator.free(children);
                 return false;
             };
+            link.*.children = children;
 
             // Transfer ownership of mailtoUrl to the link node
             link.*.info = mailtoUrl;

@@ -9,7 +9,6 @@ const getMarkup = @import("./listRule.zig").getMarkup;
 const testListStart = @import("./listRule.zig").testListStart;
 const testListContinue = @import("./listRule.zig").testListContinue;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
-const newNode = @import("../utils/newNode.zig").newNode;
 
 pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     if (parent.acceptsContent) {

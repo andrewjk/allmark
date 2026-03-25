@@ -56,7 +56,7 @@ public static class HeadingRule
                     Utils.CloseNode(state, closedNode);
                 }
 
-                var heading = Utils.NewNode("heading", true, state.I, state.Line, 1, new string('#', level), 0, []);
+                var heading = Utils.NewBlock("heading", state.I, state.Line, new string('#', level), 0);
 
                 if (state.HasBlankLine && parent.Children!.Count > 0)
                 {

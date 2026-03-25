@@ -68,7 +68,7 @@ public static class CodeBlockRule
 
             var codeIndent = state.Indent - 4;
 
-            var code = Utils.NewNode("code_block", true, state.I - state.Indent, state.Line, 1, "    ", codeIndent, []);
+            var code = Utils.NewBlock("code_block", state.I - state.Indent, state.Line, "    ", codeIndent);
             code.AcceptsContent = true;
             code.Content += new string(' ', codeIndent);
 

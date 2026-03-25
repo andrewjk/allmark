@@ -4,7 +4,6 @@ const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isNumeric = @import("../utils/isAlphaNumeric.zig").isNumeric;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
-const newNode = @import("../utils/newNode.zig").newNode;
 
 pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     _ = state;

@@ -7,7 +7,7 @@ const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
@@ -32,7 +32,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 headers[hi] = cell.info orelse "";
             }
 
-            const row = newNode(state.allocator, "table_row", true, state.i, state.line, 1, "", 0, null) catch unreachable;
+            const row = newBlock(state.allocator, "table_row", state.i, state.line, "", 0) catch unreachable;
             appendChild(state.allocator, lastNode, row) catch unreachable;
 
             var rowContent = state.src[state.i..endOfLine];
@@ -68,7 +68,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             const numParts = headers.len;
             var ri: usize = 0;
             while (ri < numParts) : (ri += 1) {
-                const cell = newNode(state.allocator, "table_cell", true, state.i, state.line, 1, "", 0, null) catch unreachable;
+                const cell = newBlock(state.allocator, "table_cell", state.i, state.line, "", 0) catch unreachable;
                 var text = if (ri < rowParts.items.len) rowParts.items[ri] else "";
                 text = std.mem.trim(u8, text, &std.ascii.whitespace);
 
@@ -179,7 +179,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 closeNode(state, closedNode.?);
             }
 
-            const header = newNode(state.allocator, "table_header", true, state.i, state.line, 1, "", 0, null) catch unreachable;
+            const header = newBlock(state.allocator, "table_header", state.i, state.line, "", 0) catch unreachable;
             appendChild(state.allocator, parent, header) catch unreachable;
 
             var headerParts = std.ArrayList([]const u8).initCapacity(state.allocator, 0) catch return false;
@@ -199,7 +199,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
             var hci: usize = 0;
             while (hci < headerParts.items.len) : (hci += 1) {
-                const cell = newNode(state.allocator, "table_cell", true, state.i, state.line, 1, "", 0, null) catch unreachable;
+                const cell = newBlock(state.allocator, "table_cell", state.i, state.line, "", 0) catch unreachable;
                 var text = std.mem.trim(u8, headerParts.items[hci], &std.ascii.whitespace);
 
                 var escapedText = std.ArrayList(u8).initCapacity(state.allocator, 0) catch return false;

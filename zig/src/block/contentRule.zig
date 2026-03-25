@@ -3,7 +3,6 @@ const BlockParserState = @import("../types/BlockParserState.zig").BlockParserSta
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
-const newNode = @import("../utils/newNode.zig").newNode;
 
 pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     const end_of_line = getEndOfLine(state);

@@ -147,9 +147,10 @@ public static class ListRule
         var haveList = parent.Type == info.Type;
         var list = haveList
             ? parent
-            : Utils.NewNode(info.Type, true, state.I, state.Line, 1, info.Markup, state.Indent, []);
+            : Utils.NewBlock(info.Type, state.I, state.Line, info.Markup, state.Indent);
         list.Delimiter = info.Delimiter;
-        var item = Utils.NewNode("list_item", true, state.I, state.Line, 1, info.Markup, state.Indent, []);
+
+        var item = Utils.NewBlock("list_item", state.I, state.Line, info.Markup, state.Indent);
         item.Delimiter = info.Delimiter;
         item.Subindent = state.Indent + info.Markup.Length + spaces;
 

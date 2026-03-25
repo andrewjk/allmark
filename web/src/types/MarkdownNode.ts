@@ -7,8 +7,6 @@ export default interface MarkdownNode {
 	length: number;
 	/** The line number */
 	line: number;
-	/** The column number */
-	column: number;
 	/** The markdown-specific markup for this node as it has been entered by the user */
 	markup: string;
 	/** The delimiter that has determined this node's type */

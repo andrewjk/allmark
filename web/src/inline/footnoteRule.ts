@@ -4,7 +4,7 @@ import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import isEscaped from "../utils/isEscaped";
-import newNode from "../utils/newNode";
+import newInline from "../utils/newInline";
 import normalizeLabel from "../utils/normalizeLabel";
 
 const rule: InlineRule = {
@@ -40,7 +40,7 @@ function testFootnoteOpen(state: InlineParserState, parent: MarkdownNode) {
 	let markup = "[^";
 
 	// Add a new text node which may turn into a footnote
-	let text = newNode("text", false, state.parentIndex + start, state.line, 1, markup, 0);
+	let text = newInline("text", state.parentIndex + start, state.line, markup, 0);
 	parent.children!.push(text);
 
 	state.i += 2;

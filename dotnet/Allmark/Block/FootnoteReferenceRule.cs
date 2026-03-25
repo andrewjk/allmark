@@ -92,7 +92,7 @@ public static class FootnoteReferenceRule
                 return true;
             }
 
-            var refNode = Utils.NewNode("footnote_ref", true, originalStart, state.Line, 1, "", 0, []);
+            var refNode = Utils.NewBlock("footnote_ref", originalStart, state.Line, "", 0);
             state.Footnotes[label] = new FootnoteReference
             {
                 Label = label,

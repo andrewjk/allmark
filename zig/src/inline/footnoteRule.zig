@@ -6,7 +6,7 @@ const parseBlockInlines = @import("../parse/parseBlockInlines.zig").parseBlockIn
 const parseInline = @import("../parse/parseInline.zig").parseInline;
 const isAlphanumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newInline = @import("../utils/newInline.zig").newInline;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
@@ -37,7 +37,7 @@ fn testFootnoteOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     const markup = "[^";
 
-    const text = newNode(state.allocator, "text", false, state.parentIndex + start, state.line, 1, markup, 0, null) catch return false;
+    const text = newInline(state.allocator, "text", state.parentIndex + start, state.line, markup, 0) catch return false;
     appendChild(state.allocator, parent, text) catch return false;
 
     state.i += 2;

@@ -40,7 +40,7 @@ public static class AutolinkRule
 
                 if (SpaceRegex.IsMatch(url))
                 {
-                    var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
+                    var text = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", state.Indent);
                     text.Markup = Utils.EscapeHtml(linkMatch.Groups[0].Value);
                     text.Length = linkMatch.Groups[0].Length;
                     parent.Children!.Add(text);
@@ -53,11 +53,12 @@ public static class AutolinkRule
                 var decodedUrl = Utils.DecodeEntities(url);
                 var encodedUrl = Utils.EscapeUriString(decodedUrl);
 
-                var linkText = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, escapedUrl, state.Indent);
+                var linkText = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, escapedUrl, state.Indent);
 
-                var link = Utils.NewNode("link", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent, [linkText]);
+                var link = Utils.NewInline("link", state.ParentIndex + state.I, state.Line, "", state.Indent);
                 link.Info = encodedUrl;
                 link.Length = linkMatch.Groups[0].Length;
+                link.Children = [linkText];
                 parent.Children!.Add(link);
                 state.I += linkMatch.Groups[0].Length;
 
@@ -71,7 +72,7 @@ public static class AutolinkRule
 
                 if (SpaceRegex.IsMatch(url))
                 {
-                    var text = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
+                    var text = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", state.Indent);
                     text.Markup = Utils.EscapeHtml(emailMatch.Groups[0].Value);
                     text.Length = emailMatch.Groups[0].Length;
                     parent.Children!.Add(text);
@@ -83,11 +84,13 @@ public static class AutolinkRule
                 var decodedUrl = Utils.DecodeEntities(url);
                 var encodedUrl = Utils.EscapeUriString(decodedUrl);
 
-                var linkText = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, url, state.Indent);
+                var linkText = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, url, state.Indent);
 
-                var link = Utils.NewNode("link", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent, [linkText]);
+                var link = Utils.NewInline("link", state.ParentIndex + state.I, state.Line, "", state.Indent);
                 link.Info = $"mailto:{encodedUrl}";
                 link.Length = emailMatch.Groups[0].Length;
+                link.Children = [linkText];
+                link.Children = [linkText];
                 parent.Children!.Add(link);
                 state.I += emailMatch.Groups[0].Length;
 

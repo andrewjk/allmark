@@ -6,7 +6,7 @@ const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
@@ -84,7 +84,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             }
 
             const markup = state.src[state.i..end];
-            const tbr = newNode(state.allocator, "thematic_break", true, state.i, state.line, 1, markup, 0, null) catch unreachable;
+            const tbr = newBlock(state.allocator, "thematic_break", state.i, state.line, markup, 0) catch unreachable;
             tbr.length = end - state.i;
 
             appendChild(state.allocator, effective_parent, tbr) catch unreachable;

@@ -34,7 +34,7 @@ public static class TableRule
 
             var headers = lastNode.Children?[0].Children!.Select((c) => c.Info ?? "").ToList() ?? [];
 
-            var row = Utils.NewNode("table_row", true, state.I, state.Line, 1, "", 0, []);
+            var row = Utils.NewBlock("table_row", state.I, state.Line, "", 0);
             lastNode.Children!.Add(row);
 
             var rowContent = TrimPipesRegex.Replace(state.Src.Substring(state.I, endOfLine - state.I).Trim(), "");
@@ -47,7 +47,7 @@ public static class TableRule
             var ri = 0;
             foreach (var text in rowParts.Take(headers.Count))
             {
-                var cell = Utils.NewNode("table_cell", true, state.I, state.Line, 1, "", 0, []);
+                    var cell = Utils.NewBlock("table_cell", state.I, state.Line, "", 0);
                 cell.Content = (text ?? "").Trim().Replace("\\|", "|");
                 cell.Info = headers[ri++];
                 row.Children!.Add(cell);
@@ -162,14 +162,14 @@ public static class TableRule
                     Utils.CloseNode(state, closedNode);
                 }
 
-                var header = Utils.NewNode("table_header", true, state.I, state.Line, 1, "", 0, []);
+                var header = Utils.NewBlock("table_header", state.I, state.Line, "", 0);
                 parent.Children!.Add(header);
 
                 var headerParts = PipeRegex.Split(headerContent);
                 var hi = 0;
                 foreach (var text in headerParts)
                 {
-                    var cell = Utils.NewNode("table_cell", true, state.I, state.Line, 1, "", 0, []);
+                var cell = Utils.NewBlock("table_cell", state.I, state.Line, "", 0);
                     cell.Content = text.Trim().Replace("\\|", "|");
                     cell.Info = cells[hi++];
                     header.Children!.Add(cell);

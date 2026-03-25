@@ -5,7 +5,7 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
-const newNode = @import("../utils/newNode.zig").newNode;
+const newBlock = @import("../utils/newBlock.zig").newBlock;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
 const parseLinkBlock = @import("../utils/parseLinkBlock.zig").parseLinkBlock;
 const isSpaceFn = @import("../utils/isSpace.zig").isSpace;
@@ -76,7 +76,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         const dupe = state.allocator.dupe(u8, normalized) catch unreachable;
         state.refs.put(dupe, linkInfo.?) catch return false;
 
-        const ref = newNode(state.allocator, "link_ref", true, start, state.line, 1, "", 0, null) catch unreachable;
+        const ref = newBlock(state.allocator, "link_ref", start, state.line, "", 0) catch unreachable;
 
         if (state.hasBlankLine and parent.children != null and parent.children.?.len > 0) {
             const last_child = parent.children.?[parent.children.?.len - 1];

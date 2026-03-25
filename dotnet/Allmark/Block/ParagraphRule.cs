@@ -36,7 +36,7 @@ public static class ParagraphRule
             return true;
         }
 
-        var paragraph = Utils.NewNode("paragraph", true, state.I, state.Line, 1, "", 0, []);
+        var paragraph = Utils.NewBlock("paragraph", state.I, state.Line, "", 0);
         paragraph.Content = content;
         state.I = endOfLine;
 

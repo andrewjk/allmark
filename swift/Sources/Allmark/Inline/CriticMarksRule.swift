@@ -34,15 +34,12 @@ func testCriticMarks(
 
 		if markup.count == 2 || markup.count == 3 {
 			// Add a new text node which may turn into deletion
-			let text = MarkdownNode(
+			let text = newInline(
 				type: "text",
-				block: false,
 				index: state.parentIndex + start,
 				line: state.line,
-				column: 1,
 				markup: markup,
-				indent: 0,
-				children: nil
+				indent: 0
 			)
 			parent.children?.append(text)
 
@@ -88,15 +85,12 @@ func testCriticMarks(
 				while i >= 0 {
 					if let lastNode = parent.children?[i], lastNode.index == state.parentIndex + startDel.start {
 						let newText = String(lastNode.markup.dropFirst(startDel.length))
-						let text = MarkdownNode(
+						let text = newInline(
 							type: "text",
-							block: false,
 							index: lastNode.index,
 							line: lastNode.line,
-							column: 1,
 							markup: newText,
-							indent: 0,
-							children: nil
+							indent: 0
 						)
 
 						lastNode.type = name

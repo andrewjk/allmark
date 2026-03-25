@@ -5,7 +5,7 @@ import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import { CLOSE_TAG, OPEN_TAG } from "../utils/htmlPatterns";
 import isEscaped from "../utils/isEscaped";
-import newNode from "../utils/newNode";
+import newBlock from "../utils/newBlock";
 
 // TODO: de-duplicate a lot of this code
 // TODO: Should we split it up into seven different node types??
@@ -104,7 +104,7 @@ function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail:
 			}
 		}
 
-		let html = newNode("html_block", true, start, state.line, 1, "", 1, []);
+		let html = newBlock("html_block", start, state.line, "", 1);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, end);
 
 		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
@@ -138,7 +138,7 @@ function testHtmlCondition2(state: BlockParserState, parent: MarkdownNode, tail:
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
-		let html = newNode("html_block", true, start, state.line, 1, "", 2, []);
+		let html = newBlock("html_block", start, state.line, "", 2);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
 
@@ -173,7 +173,7 @@ function testHtmlCondition3(state: BlockParserState, parent: MarkdownNode, tail:
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
-		let html = newNode("html_block", true, start, state.line, 1, "", 3, []);
+		let html = newBlock("html_block", start, state.line, "", 3);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
 
@@ -209,7 +209,7 @@ function testHtmlCondition4(state: BlockParserState, parent: MarkdownNode, tail:
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
-		let html = newNode("html_block", true, start, state.line, 1, "", 4, []);
+		let html = newBlock("html_block", start, state.line, "", 4);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
 
@@ -244,7 +244,7 @@ function testHtmlCondition5(state: BlockParserState, parent: MarkdownNode, tail:
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
-		let html = newNode("html_block", true, start, state.line, 1, "", 5, []);
+		let html = newBlock("html_block", start, state.line, "", 5);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
 
@@ -285,7 +285,7 @@ function testHtmlCondition6(state: BlockParserState, parent: MarkdownNode, tail:
 		}
 
 		let endOfLine = getEndOfLine(state);
-		let html = newNode("html_block", true, state.i, state.line, 1, "", 6, []);
+		let html = newBlock("html_block", state.i, state.line, "", 6);
 		html.content = " ".repeat(state.indent) + state.src.substring(state.i, endOfLine);
 		html.acceptsContent = true;
 
@@ -338,7 +338,7 @@ function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail:
 		}
 
 		let endOfLine = getEndOfLine(state);
-		let html = newNode("html_block", true, state.i, state.line, 1, "", 7, []);
+		let html = newBlock("html_block", state.i, state.line, "", 7);
 		html.content = " ".repeat(state.indent) + state.src.substring(state.i, endOfLine);
 		html.acceptsContent = true;
 

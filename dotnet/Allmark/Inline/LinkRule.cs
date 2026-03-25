@@ -44,7 +44,7 @@ public static class LinkRule
         var markup = "[";
 
         // Add a new text node which may turn into a link
-        var text = Utils.NewNode("text", false, state.ParentIndex + start, state.Line, 1, markup, 0);
+        var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
         parent.Children!.Add(text);
 
         state.I++;
@@ -59,7 +59,7 @@ public static class LinkRule
         var markup = "![";
 
         // Add a new text node which may turn into an image
-        var text = Utils.NewNode("text", false, state.ParentIndex + start, state.Line, 1, markup, 0);
+        var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
         parent.Children!.Add(text);
 
         state.I += markup.Length;
@@ -179,7 +179,7 @@ public static class LinkRule
 
                     if (link != null)
                     {
-                        var text = Utils.NewNode("text", false, lastNode.Index, lastNode.Line, 1, markup, 0);
+                        var text = Utils.NewInline("text", lastNode.Index, lastNode.Line, markup, 0);
                         text.Markup = lastNode.Markup.Substring(startDelimiter.Markup.Length) ?? "";
                         text.Length = text.Markup.Length;
 

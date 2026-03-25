@@ -4,7 +4,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import addMarkupAsText from "../utils/addMarkupAsText";
 import isEscaped from "../utils/isEscaped";
 import isSpace from "../utils/isSpace";
-import newNode from "../utils/newNode";
+import newInline from "../utils/newInline";
 import skipSpaces from "../utils/skipSpaces";
 
 const rule: InlineRule = {
@@ -74,18 +74,16 @@ function testCodeSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 				content = content.substring(1, content.length - 1);
 			}
 
-			let text = newNode("text", false, state.parentIndex + state.i, state.line, 1, content, 0);
+			let text = newInline("text", state.parentIndex + state.i, state.line, content, 0);
 			text.length = content.length;
-			let code = newNode(
+			let code = newInline(
 				"code_span",
-				false,
 				state.parentIndex + state.i - openMatched,
 				state.line,
-				1,
 				markup,
 				0,
-				[text],
 			);
+			code.children = [text];
 			code.length = closeEnd - (state.i - openMatched);
 			parent.children!.push(code);
 

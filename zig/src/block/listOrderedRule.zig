@@ -8,7 +8,6 @@ const isSpace = @import("../utils/isSpace.zig").isSpace;
 const testListStart = @import("./listRule.zig").testListStart;
 const testListContinue = @import("./listRule.zig").testListContinue;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
-const newNode = @import("../utils/newNode.zig").newNode;
 const ListInfo = @import("./listRule.zig").ListInfo;
 
 pub fn getMarkup(state: *BlockParserState) ?ListInfo {

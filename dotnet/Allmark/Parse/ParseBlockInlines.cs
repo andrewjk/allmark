@@ -33,7 +33,7 @@ public static class ParseBlockInlines
                     content += "\n";
                 }
             }
-            var text = Utils.NewNode("text", false, parent.Index, parent.Line, 1, content, 0, null);
+            var text = Utils.NewInline("text", parent.Index, parent.Line, content, 0);
             parent.Children!.Add(text);
             return;
         }
@@ -56,7 +56,7 @@ public static class ParseBlockInlines
                     content += "\n";
                 }
             }
-            var text = Utils.NewNode("text", false, parent.Index, parent.Line, 1, content, 0, null);
+            var text = Utils.NewInline("text", parent.Index, parent.Line, content, 0);
             parent.Children!.Add(text);
             return;
         }
