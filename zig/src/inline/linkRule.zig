@@ -4,7 +4,7 @@ const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const LinkReference = @import("../types/LinkReference.zig").LinkReference;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
-const newInline = @import("../utils/newInline.zig").newInline;
+const newText = @import("../utils/newText.zig").newText;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
 const parseLinkInline = @import("../utils/parseLinkInline.zig").parseLinkInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
@@ -35,7 +35,7 @@ fn testLinkOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
     const start = state.i;
     const markup = "[";
 
-    const text = newInline(state.allocator, "text", state.parentIndex + start, state.line, markup, 0) catch return false;
+    const text = newText(state.allocator, state.parentIndex + start, state.line, markup, 0) catch return false;
     appendChild(state.allocator, parent, text) catch return false;
 
     state.i += 1;
@@ -57,7 +57,7 @@ fn testImageOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
     const start = state.i;
     const markup = "![";
 
-    const text = newInline(state.allocator, "text", state.parentIndex + start, state.line, markup, 0) catch return false;
+    const text = newText(state.allocator, state.parentIndex + start, state.line, markup, 0) catch return false;
     appendChild(state.allocator, parent, text) catch return false;
 
     state.i += markup.len;
@@ -159,9 +159,9 @@ fn testLinkClose(state: *InlineParserState, parent: *MarkdownNode) bool {
                 }
 
                 if (link != null) {
-                    const linkText = lastNode.*.markup[start_markup.len..];
-                    const text = newInline(state.allocator, "text", lastNode.index, lastNode.line, linkText, 0) catch unreachable;
-                    text.*.length = text.markup.len;
+                    const linkText = lastNode.*.content[start_markup.len..];
+                    const text = newText(state.allocator, lastNode.index, lastNode.line, linkText, 0) catch unreachable;
+                    text.*.length = text.content.len;
 
                     const oldType = lastNode.*.type;
                     const newType = if (isLink) "link" else "image";

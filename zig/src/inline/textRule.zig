@@ -4,7 +4,7 @@ const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isAlphaNumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
-const newInline = @import("../utils/newInline.zig").newInline;
+const newText = @import("../utils/newText.zig").newText;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
@@ -14,23 +14,23 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     var lastNode: *MarkdownNode = undefined;
     if (parent.children == null or parent.children.?.len == 0) {
-        lastNode = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", 0) catch return false;
+        lastNode = newText(state.allocator, state.parentIndex + state.i, state.line, "", 0) catch return false;
         appendChild(state.allocator, parent, lastNode) catch return false;
     } else {
         lastNode = parent.children.?[parent.children.?.len - 1];
         if (!std.mem.eql(u8, lastNode.type, "text")) {
-            lastNode = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", 0) catch return false;
+            lastNode = newText(state.allocator, state.parentIndex + state.i, state.line, "", 0) catch return false;
             appendChild(state.allocator, parent, lastNode) catch return false;
         } else if (isNewLine(char)) {
-            var end = lastNode.markup.len;
-            while (end > 0 and (lastNode.markup[end - 1] == ' ' or lastNode.markup[end - 1] == '\t')) {
+            var end = lastNode.content.len;
+            while (end > 0 and (lastNode.content[end - 1] == ' ' or lastNode.content[end - 1] == '\t')) {
                 end -= 1;
             }
-            if (end < lastNode.markup.len) {
-                const trimmed = state.allocator.dupe(u8, lastNode.markup[0..end]) catch unreachable;
-                state.allocator.free(lastNode.markup);
-                lastNode.*.markup = trimmed;
-                lastNode.*.markup_allocated = true;
+            if (end < lastNode.content.len) {
+                const trimmed = state.allocator.dupe(u8, lastNode.content[0..end]) catch unreachable;
+                state.allocator.free(lastNode.content);
+                lastNode.*.content = trimmed;
+                lastNode.*.content_allocated = true;
             }
         }
     }
@@ -42,28 +42,28 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
             state.i += 1;
         }
         const slice = state.src[start..state.i];
-        const old_markup = lastNode.markup;
-        const new_markup = state.allocator.alloc(u8, old_markup.len + slice.len) catch return false;
-        @memcpy(new_markup[0..old_markup.len], old_markup);
-        @memcpy(new_markup[old_markup.len..], slice);
-        if (lastNode.markup_allocated) {
-            state.allocator.free(old_markup);
+        const old_content = lastNode.content;
+        const new_content = state.allocator.alloc(u8, old_content.len + slice.len) catch return false;
+        @memcpy(new_content[0..old_content.len], old_content);
+        @memcpy(new_content[old_content.len..], slice);
+        if (lastNode.content_allocated) {
+            state.allocator.free(old_content);
         }
-        lastNode.*.markup = new_markup;
-        lastNode.*.markup_allocated = true;
+        lastNode.*.content = new_content;
+        lastNode.*.content_allocated = true;
     } else {
         state.i += 1;
-        const old_markup = lastNode.markup;
-        const new_markup = state.allocator.alloc(u8, old_markup.len + 1) catch return false;
-        @memcpy(new_markup[0..old_markup.len], old_markup);
-        new_markup[old_markup.len] = char;
-        if (lastNode.markup_allocated) {
-            state.allocator.free(old_markup);
+        const old_content = lastNode.content;
+        const new_content = state.allocator.alloc(u8, old_content.len + 1) catch return false;
+        @memcpy(new_content[0..old_content.len], old_content);
+        new_content[old_content.len] = char;
+        if (lastNode.content_allocated) {
+            state.allocator.free(old_content);
         }
-        lastNode.*.markup = new_markup;
-        lastNode.*.markup_allocated = true;
+        lastNode.*.content = new_content;
+        lastNode.*.content_allocated = true;
     }
-    lastNode.*.length = lastNode.markup.len;
+    lastNode.*.length = lastNode.content.len;
 
     return true;
 }

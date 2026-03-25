@@ -44,7 +44,7 @@ public static class LinkRule
         var markup = "[";
 
         // Add a new text node which may turn into a link
-        var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
+        var text = Utils.NewText(state.ParentIndex + start, state.Line, markup, 0);
         parent.Children!.Add(text);
 
         state.I++;
@@ -59,7 +59,7 @@ public static class LinkRule
         var markup = "![";
 
         // Add a new text node which may turn into an image
-        var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
+        var text = Utils.NewText(state.ParentIndex + start, state.Line, markup, 0);
         parent.Children!.Add(text);
 
         state.I += markup.Length;
@@ -70,8 +70,6 @@ public static class LinkRule
 
     private static bool TestLinkClose(InlineParserState state, MarkdownNode parent)
     {
-        var markup = "]";
-
         // TODO: Standardize precedence
         Delimiter? startDelimiter = null;
         var i = state.Delimiters.Count;
@@ -179,9 +177,9 @@ public static class LinkRule
 
                     if (link != null)
                     {
-                        var text = Utils.NewInline("text", lastNode.Index, lastNode.Line, markup, 0);
-                        text.Markup = lastNode.Markup.Substring(startDelimiter.Markup.Length) ?? "";
-                        text.Length = text.Markup.Length;
+                        var content = lastNode.Content.Substring(startDelimiter.Markup.Length) ?? "";
+                        var text = Utils.NewText(lastNode.Index, lastNode.Line, content, 0);
+                        text.Length = text.Content.Length;
 
                         lastNode.Type = isLink ? "link" : "image";
                         lastNode.Info = link.Url;

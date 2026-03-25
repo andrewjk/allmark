@@ -46,7 +46,7 @@ public static class FootnoteRule
         var markup = "[^";
 
         // Add a new text node which may turn into a footnote
-        var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
+        var text = Utils.NewText(state.ParentIndex + start, state.Line, markup, 0);
         parent.Children!.Add(text);
 
         state.I += 2;
@@ -154,7 +154,7 @@ public static class FootnoteRule
                         var tempState = new InlineParserState
                         {
                             Rules = state.Rules,
-                            Src = lastNode.Content?.TrimEnd() ?? "",
+                            Src = footnote.Content.Content?.TrimEnd() ?? "",
                             I = 0,
                             Line = lastNode.Line,
                             LineStart = 0,

@@ -6,6 +6,6 @@ let consoleTextRenderer = Renderer(
 )
 
 func renderConsoleText(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?) {
-	let text = node.markup
+	let text = node.content
 	state.output += text
 }

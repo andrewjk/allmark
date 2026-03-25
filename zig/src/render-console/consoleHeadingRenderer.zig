@@ -55,7 +55,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
 
         for (node.children orelse &.{}) |child| {
             if (std.mem.eql(u8, child.type, "text")) {
-                headingText.appendSlice(state.allocator, child.markup) catch unreachable;
+                headingText.appendSlice(state.allocator, child.content) catch unreachable;
             } else {
                 renderChildToString(child, state, &headingText) catch unreachable;
             }

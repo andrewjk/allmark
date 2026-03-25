@@ -29,7 +29,7 @@ func renderConsoleHeading(_ node: MarkdownNode, _ state: inout RendererState, _:
 		var headingText = ""
 		for child in node.children ?? [] {
 			if child.type == "text" {
-				headingText += child.markup
+				headingText += child.content
 			} else {
 				var childState = RendererState(
 					renderers: state.renderers,

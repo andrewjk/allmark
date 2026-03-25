@@ -157,7 +157,7 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
 
 fn getTextFromNode(node: *const MarkdownNode, allocator: std.mem.Allocator) []const u8 {
     if (std.mem.eql(u8, node.type, "text")) {
-        return node.markup;
+        return node.content;
     }
     if (node.content.len > 0) {
         return allocator.dupe(u8, node.content) catch unreachable;

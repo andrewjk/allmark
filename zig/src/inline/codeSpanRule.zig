@@ -6,6 +6,7 @@ const addMarkupAsText = @import("../utils/addMarkupAsText.zig").addMarkupAsText;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const newInline = @import("../utils/newInline.zig").newInline;
+const newText = @import("../utils/newText.zig").newText;
 const skipSpaces = @import("../utils/skipSpaces.zig").skipSpaces;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
@@ -69,7 +70,7 @@ pub fn testCodeSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
                 content = content[1 .. content.len - 1];
             }
 
-            const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, content, 0) catch unreachable;
+            const text = newText(state.allocator, state.parentIndex + state.i, state.line, content, 0) catch unreachable;
             text.*.length = content.len;
             const children_slice = state.allocator.alloc(*MarkdownNode, 1) catch unreachable;
             children_slice[0] = text;

@@ -7,10 +7,10 @@ const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapePunctuation = @import("../utils/escapePunctuation.zig").escapePunctuation;
 
 pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) void {
-    const markup: []const u8 = node.markup;
+    const content: []const u8 = node.content;
 
     if (decode orelse false) {
-        const decoded = decodeEntities(state.allocator, markup) catch unreachable;
+        const decoded = decodeEntities(state.allocator, content) catch unreachable;
         defer state.allocator.free(decoded);
         const escaped = escapePunctuation(state.allocator, decoded) catch unreachable;
         defer state.allocator.free(escaped);
@@ -18,7 +18,7 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
         defer state.allocator.free(html);
         state.output.appendSlice(state.allocator, html) catch unreachable;
     } else {
-        const html = escapeHtml(state.allocator, markup) catch unreachable;
+        const html = escapeHtml(state.allocator, content) catch unreachable;
         defer state.allocator.free(html);
         state.output.appendSlice(state.allocator, html) catch unreachable;
     }

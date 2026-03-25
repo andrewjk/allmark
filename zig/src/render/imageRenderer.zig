@@ -36,7 +36,7 @@ fn getChildText(allocator: std.mem.Allocator, node: *const MarkdownNode) []const
     if (node.children) |children| {
         for (children) |child| {
             if (std.mem.eql(u8, child.type, "text")) {
-                buffer.appendSlice(allocator, child.markup) catch unreachable;
+                buffer.appendSlice(allocator, child.content) catch unreachable;
             } else {
                 const text = getChildText(allocator, child);
                 defer allocator.free(text);

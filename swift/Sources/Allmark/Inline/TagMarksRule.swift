@@ -82,14 +82,12 @@ func testTagMarks(
 				var i = (parent.children?.count ?? 0) - 1
 				while i >= 0 {
 					if let lastNode = parent.children?[i], lastNode.index == state.parentIndex + startDel.start {
-						let text = newInline(
-							type: "text",
+						let text = newText(
 							index: lastNode.index,
 							line: lastNode.line,
-							markup: char,
+							content: String(lastNode.content.dropFirst(startDel.length)),
 							indent: 0
 						)
-						text.markup = String(lastNode.markup.dropFirst(startDel.length))
 
 						lastNode.type = name
 						lastNode.markup = markup
@@ -123,11 +121,10 @@ func testTagMarks(
 
 		if leftFlanking {
 			// Add a new text node which may turn into a delimiter
-			let text = newInline(
-				type: "text",
+			let text = newText(
 				index: state.parentIndex + start,
 				line: state.line,
-				markup: markup,
+				content: markup,
 				indent: 0
 			)
 			parent.children?.append(text)

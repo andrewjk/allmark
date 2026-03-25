@@ -12,6 +12,6 @@ pub const consoleTextRenderer = Renderer{
 pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
-    const text = node.markup;
+    const text = node.content;
     state.output.appendSlice(state.allocator, text) catch unreachable;
 }

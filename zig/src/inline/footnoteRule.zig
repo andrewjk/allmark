@@ -6,6 +6,7 @@ const parseBlockInlines = @import("../parse/parseBlockInlines.zig").parseBlockIn
 const parseInline = @import("../parse/parseInline.zig").parseInline;
 const isAlphanumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
+const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
@@ -37,7 +38,7 @@ fn testFootnoteOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     const markup = "[^";
 
-    const text = newInline(state.allocator, "text", state.parentIndex + start, state.line, markup, 0) catch return false;
+    const text = newText(state.allocator, state.parentIndex + start, state.line, markup, 0) catch return false;
     appendChild(state.allocator, parent, text) catch return false;
 
     state.i += 2;
@@ -142,6 +143,13 @@ fn testFootnoteClose(state: *InlineParserState, parent: *MarkdownNode) bool {
                     }
                     lastNode.*.markup = std.fmt.allocPrint(state.allocator, "[^{s}]", .{normalized}) catch return false;
                     lastNode.*.markup_allocated = true;
+
+                    // Clear the content field
+                    if (lastNode.*.content_allocated) {
+                        state.allocator.free(lastNode.*.content);
+                    }
+                    lastNode.*.content = "";
+                    lastNode.*.content_allocated = false;
 
                     // Transfer children from the footnote definition node to prevent double-free
                     if (footnote.?.content.children) |contentChildren| {

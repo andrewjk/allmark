@@ -12,7 +12,7 @@ func renderConsoleImage(_ node: MarkdownNode, _ state: inout RendererState, _: B
 	if let children = node.children {
 		for child in children {
 			if child.type == "text" {
-				alt += child.markup
+				alt += child.content
 			}
 		}
 	}

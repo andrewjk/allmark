@@ -3,7 +3,7 @@ import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
 import isNewLine from "../utils/isNewLine";
-import newInline from "../utils/newInline";
+import newText from "../utils/newText";
 
 const rule: InlineRule = {
 	name: "text",
@@ -27,11 +27,11 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 
 	let lastNode = parent.children!.at(-1);
 	if (lastNode === undefined || lastNode.type !== "text") {
-		lastNode = newInline("text", state.parentIndex + state.i, state.line, "", 0);
+		lastNode = newText(state.parentIndex + state.i, state.line, "", 0);
 		parent.children!.push(lastNode);
 	} else if (isNewLine(char)) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
-		lastNode.markup = lastNode.markup.trimEnd();
+		lastNode.content = lastNode.content.trimEnd();
 	}
 
 	if (isAlphaNumeric(state.src.charCodeAt(state.i))) {
@@ -43,13 +43,13 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 		while (isAlphaNumeric(state.src.charCodeAt(state.i))) {
 			state.i++;
 		}
-		lastNode.markup += state.src.substring(start, state.i);
+		lastNode.content += state.src.substring(start, state.i);
 	} else {
 		state.i++;
-		lastNode.markup += char;
+		lastNode.content += char;
 	}
 
-	lastNode.length = lastNode.markup.length;
+	lastNode.length = lastNode.content.length;
 
 	return true;
 }

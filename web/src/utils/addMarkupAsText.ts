@@ -1,6 +1,6 @@
 import type InlineParserState from "../types/InlineParserState";
 import type MarkdownNode from "../types/MarkdownNode";
-import newInline from "./newInline";
+import newText from "./newText";
 
 export default function addMarkupAsText(
 	markup: string,
@@ -9,8 +9,8 @@ export default function addMarkupAsText(
 ): void {
 	let lastNode = parent.children!.at(-1);
 	let haveText = lastNode && lastNode.type === "text";
-	let text = haveText ? lastNode! : newInline("text", state.i, state.line, "", 0);
-	text.markup += markup;
+	let text = haveText ? lastNode! : newText(state.i, state.line, "", 0);
+	text.content += markup;
 	if (!haveText) {
 		parent.children!.push(text);
 	}

@@ -31,7 +31,7 @@ public static class ImageRenderer
             {
                 if (child.Type == "text")
                 {
-                    text += child.Markup;
+                    text += child.Content;
                 }
                 else
                 {

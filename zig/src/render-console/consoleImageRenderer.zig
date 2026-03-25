@@ -19,7 +19,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
     if (node.children) |children| {
         for (children) |child| {
             if (std.mem.eql(u8, child.type, "text")) {
-                altBuffer.appendSlice(state.allocator, child.markup) catch unreachable;
+                altBuffer.appendSlice(state.allocator, child.content) catch unreachable;
             }
         }
     }

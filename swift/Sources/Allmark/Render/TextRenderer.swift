@@ -6,11 +6,11 @@ let textRenderer = Renderer(
 )
 
 func renderText(_ node: MarkdownNode, _ state: inout RendererState, _ decode: Bool?) {
-	var markup = node.markup
+	var content = node.content
 	if decode == true {
-		markup = decodeEntities(text: markup)
-		markup = escapePunctuation(text: markup)
+		content = decodeEntities(text: content)
+		content = escapePunctuation(text: content)
 	}
-	markup = escapeHtml(text: markup)
-	state.output += markup
+	content = escapeHtml(text: content)
+	state.output += content
 }

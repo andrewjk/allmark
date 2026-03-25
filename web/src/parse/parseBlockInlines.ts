@@ -3,7 +3,7 @@ import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type LinkReference from "../types/LinkReference";
 import type MarkdownNode from "../types/MarkdownNode";
-import newInline from "../utils/newInline";
+import newText from "../utils/newText";
 import parseInline from "./parseInline";
 
 export default function parseBlockInlines(
@@ -29,7 +29,7 @@ export default function parseBlockInlines(
 				content += "\n";
 			}
 		}
-		let text = newInline("text", parent.index, parent.line, content, 0);
+		let text = newText(parent.index, parent.line, content, 0);
 		parent.children!.push(text);
 		return;
 	} else if (parent.type === "code_fence") {
@@ -47,7 +47,7 @@ export default function parseBlockInlines(
 				content += "\n";
 			}
 		}
-		let text = newInline("text", parent.index, parent.line, content, 0);
+		let text = newText(parent.index, parent.line, content, 0);
 		parent.children!.push(text);
 		return;
 	}

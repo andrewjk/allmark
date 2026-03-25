@@ -35,14 +35,12 @@ func parseBlockInlines(
 				content += "\n"
 			}
 		}
-		let text = newInline(
-			type: "text",
+		let text = newText(
 			index: parent.index,
 			line: parent.line,
-			markup: content,
+			content: content,
 			indent: 0
 		)
-		text.content = content
 		parent.children?.append(text)
 		return
 	}
@@ -72,14 +70,12 @@ func parseBlockInlines(
 				content += "\n"
 			}
 		}
-		let text = newInline(
-			type: "text",
+		let text = newText(
 			index: parent.index,
 			line: parent.line,
-			markup: content,
+			content: content,
 			indent: 0
 		)
-		text.content = content
 		parent.children?.append(text)
 		return
 	}

@@ -8,8 +8,8 @@ public static partial class Utils
     {
         var lastNode = parent.Children!.LastOrDefault();
         var haveText = lastNode != null && lastNode.Type == "text";
-        var text = haveText ? lastNode! : NewInline("text", state.I, state.Line, "", 0);
-        text.Markup += markup;
+        var text = haveText ? lastNode! : NewText(state.I, state.Line, "", 0);
+        text.Content += markup;
         if (!haveText)
         {
             parent.Children ??= new List<MarkdownNode>();

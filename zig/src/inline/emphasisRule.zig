@@ -7,6 +7,7 @@ const addMarkupAsText = @import("../utils/addMarkupAsText.zig").addMarkupAsText;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isUnicodePunctuation = @import("../utils/isUnicodePunctuation.zig").isUnicodePunctuation;
 const isUnicodeSpace = @import("../utils/isUnicodeSpace.zig").isUnicodeSpace;
+const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
 
 fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
@@ -86,9 +87,8 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
                     const closeLen = @min(markup_len, @min(startDelimiter.?.length, @as(usize, 2)));
                     const closeMarkup = markup_buf[0..closeLen];
 
-                    const textChildMarkup = if (startDelimiter.?.length < lastNode.markup.len) lastNode.markup[startDelimiter.?.length..] else "";
-                    const text = newInline(state.allocator, "text", lastNode.index, lastNode.line, textChildMarkup, 0) catch return false;
-                    text.*.length = text.markup.len;
+                    const textChildContent = if (startDelimiter.?.length < lastNode.content.len) lastNode.content[startDelimiter.?.length..] else "";
+                    const text = newText(state.allocator, lastNode.index, lastNode.line, textChildContent, 0) catch return false;
 
                     const moved_len = children.len - child_i - 1;
                     const emphasisChildren = state.allocator.alloc(*MarkdownNode, moved_len + 1) catch return false;
@@ -104,12 +104,12 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                     if (closeLen < startDelimiter.?.length) {
                         const remainingLen = startDelimiter.?.length - closeLen;
-                        const newMarkup = state.allocator.dupe(u8, lastNode.markup[0..remainingLen]) catch return false;
-                        if (lastNode.markup_allocated) {
-                            state.allocator.free(lastNode.markup);
+                        const newContent = state.allocator.dupe(u8, lastNode.content[0..remainingLen]) catch return false;
+                        if (lastNode.content_allocated) {
+                            state.allocator.free(lastNode.content);
                         }
-                        lastNode.markup = newMarkup;
-                        lastNode.markup_allocated = true;
+                        lastNode.content = newContent;
+                        lastNode.content_allocated = true;
 
                         const emph = newInline(
                             state.allocator,
@@ -135,12 +135,12 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
                         lastNode.type = state.allocator.dupe(u8, if (closeLen == 2) "strong" else "emphasis") catch return false;
                         state.allocator.free(oldType);
 
-                        const oldMarkup = lastNode.markup;
-                        lastNode.markup = state.allocator.dupe(u8, closeMarkup) catch return false;
-                        if (lastNode.markup_allocated) {
-                            state.allocator.free(oldMarkup);
+                        const oldContent = lastNode.content;
+                        lastNode.content = state.allocator.dupe(u8, closeMarkup) catch return false;
+                        if (lastNode.content_allocated) {
+                            state.allocator.free(oldContent);
                         }
-                        lastNode.markup_allocated = true;
+                        lastNode.content_allocated = true;
                         lastNode.children = emphasisChildren;
                         lastNode.*.length = state.parentIndex + state.i - lastNode.index + closeLen;
 
@@ -178,7 +178,7 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     if (canOpen) {
         const markup = markup_buf[0..markup_len];
-        const text = newInline(state.allocator, "text", state.parentIndex + start, state.line, markup, 0) catch return false;
+        const text = newText(state.allocator, state.parentIndex + start, state.line, markup, 0) catch return false;
 
         if (parent.children == null) {
             const newChildren = state.allocator.alloc(*MarkdownNode, 1) catch return false;

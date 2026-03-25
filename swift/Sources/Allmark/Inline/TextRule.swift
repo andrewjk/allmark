@@ -26,11 +26,10 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 
 	var lastNode = parent.children?.last
 	if lastNode == nil || lastNode?.type != "text" {
-		let newTextNode = newInline(
-			type: "text",
+		let newTextNode = newText(
 			index: state.parentIndex + state.i,
 			line: state.line,
-			markup: "",
+			content: "",
 			indent: 0
 		)
 		parent.children?.append(newTextNode)
@@ -38,7 +37,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	} else if isNewLine(char: String(char)) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
 		if let last = lastNode {
-			last.markup = last.markup.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
+			last.content = last.content.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
 			if let count = parent.children?.count, count > 0 {
 				parent.children?[count - 1] = last
 			}
@@ -48,8 +47,8 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	let code = Int(char.asciiValue ?? 0)
 	if isAlphaNumeric(code: code) {
 		// If this an alphanumeric character, we can just process the whole
-		// word, and save checking a bunch of characters that are never going to
-		// match anything
+		// word, and save checking a bunch of characters that are never going
+		// to match anything
 		let start = state.i
 		state.i += 1
 		while state.i < src.count {
@@ -63,7 +62,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		let startIndex = src.index(src.startIndex, offsetBy: start)
 		let endIndex = src.index(src.startIndex, offsetBy: state.i)
 		if let last = lastNode {
-			last.markup += String(src[startIndex ..< endIndex])
+			last.content += String(src[startIndex ..< endIndex])
 			if let count = parent.children?.count, count > 0 {
 				parent.children?[count - 1] = last
 			}
@@ -71,7 +70,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	} else {
 		state.i += 1
 		if let last = lastNode {
-			last.markup += String(char)
+			last.content += String(char)
 			if let count = parent.children?.count, count > 0 {
 				parent.children?[count - 1] = last
 			}
@@ -79,7 +78,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	}
 
 	if let last = lastNode {
-		last.length = last.markup.count
+		last.length = last.content.count
 		if let count = parent.children?.count, count > 0 {
 			parent.children?[count - 1] = last
 		}

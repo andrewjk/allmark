@@ -18,7 +18,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 	if (node.children) {
 		for (const child of node.children) {
 			if (child.type === "text") {
-				alt += child.markup;
+				alt += child.content;
 			}
 		}
 	}

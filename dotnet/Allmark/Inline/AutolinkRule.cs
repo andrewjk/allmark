@@ -40,8 +40,8 @@ public static class AutolinkRule
 
                 if (SpaceRegex.IsMatch(url))
                 {
-                    var text = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", state.Indent);
-                    text.Markup = Utils.EscapeHtml(linkMatch.Groups[0].Value);
+                    var content = Utils.EscapeHtml(linkMatch.Groups[0].Value);
+                    var text = Utils.NewText(state.ParentIndex + state.I, state.Line, content, state.Indent);
                     text.Length = linkMatch.Groups[0].Length;
                     parent.Children!.Add(text);
                     state.I += linkMatch.Groups[0].Length;
@@ -53,7 +53,7 @@ public static class AutolinkRule
                 var decodedUrl = Utils.DecodeEntities(url);
                 var encodedUrl = Utils.EscapeUriString(decodedUrl);
 
-                var linkText = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, escapedUrl, state.Indent);
+                var linkText = Utils.NewText(state.ParentIndex + state.I, state.Line, escapedUrl, state.Indent);
 
                 var link = Utils.NewInline("link", state.ParentIndex + state.I, state.Line, "", state.Indent);
                 link.Info = encodedUrl;
@@ -72,8 +72,8 @@ public static class AutolinkRule
 
                 if (SpaceRegex.IsMatch(url))
                 {
-                    var text = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", state.Indent);
-                    text.Markup = Utils.EscapeHtml(emailMatch.Groups[0].Value);
+                    var content = Utils.EscapeHtml(emailMatch.Groups[0].Value);
+                    var text = Utils.NewText(state.ParentIndex + state.I, state.Line, content, state.Indent);
                     text.Length = emailMatch.Groups[0].Length;
                     parent.Children!.Add(text);
                     state.I += emailMatch.Groups[0].Length;
@@ -84,7 +84,7 @@ public static class AutolinkRule
                 var decodedUrl = Utils.DecodeEntities(url);
                 var encodedUrl = Utils.EscapeUriString(decodedUrl);
 
-                var linkText = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, url, state.Indent);
+                var linkText = Utils.NewText(state.ParentIndex + state.I, state.Line, url, state.Indent);
 
                 var link = Utils.NewInline("link", state.ParentIndex + state.I, state.Line, "", state.Indent);
                 link.Info = $"mailto:{encodedUrl}";

@@ -5,6 +5,7 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapeHtml = @import("../utils/escapeHtml.zig").escapeHtml;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
+const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
@@ -36,10 +37,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             } else false;
 
             if (hasSpace) {
-                const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
-                text.*.markup = escapeHtml(state.allocator, tail[0..linkMatch.?.end]) catch return false;
-                text.*.markup_allocated = true;
-                text.*.length = linkMatch.?.end;
+                const text = newText(state.allocator, state.parentIndex + state.i, state.line, tail[0..linkMatch.?.end], state.indent) catch return false;
 
                 appendChild(state.allocator, parent, text) catch return false;
 
@@ -67,7 +65,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             };
             defer state.allocator.free(backslashEscaped);
 
-            const linkText = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, backslashEscaped, state.indent) catch {
+            const linkText = newText(state.allocator, state.parentIndex + state.i, state.line, backslashEscaped, state.indent) catch {
                 state.allocator.free(uriEncodedUrl);
                 return false;
             };
@@ -111,10 +109,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             } else false;
 
             if (hasSpace) {
-                const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
-                text.*.markup = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
-                text.*.markup_allocated = true;
-                text.*.length = emailMatch.?.end;
+                const text = newText(state.allocator, state.parentIndex + state.i, state.line, tail[0..emailMatch.?.end], state.indent) catch return false;
 
                 appendChild(state.allocator, parent, text) catch return false;
 
@@ -143,7 +138,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             state.allocator.free(uriEncodedUrl);
 
             // Create text node with raw email URL for display
-            const linkText = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, rawUrl, state.indent) catch {
+            const linkText = newText(state.allocator, state.parentIndex + state.i, state.line, rawUrl, state.indent) catch {
                 state.allocator.free(mailtoUrl);
                 return false;
             };

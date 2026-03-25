@@ -8,6 +8,7 @@ const encodeUri = @import("../utils/encodeUri.zig").encodeUri;
 const isAlphaNumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
+const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
 
 const mvzr = @import("mvzr");
@@ -45,9 +46,9 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 } else false;
 
                 if (hasSpace) {
-                    const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
-                    text.*.markup = escapeHtml(state.allocator, tail[0..urlMatch.?.end]) catch return false;
-                    text.*.markup_allocated = true;
+                    const text = newText(state.allocator, state.parentIndex + state.i, state.line, "", state.indent) catch return false;
+                    text.*.content = escapeHtml(state.allocator, tail[0..urlMatch.?.end]) catch return false;
+                    text.*.content_allocated = true;
                     text.*.length = urlMatch.?.end;
 
                     if (parent.children == null) {
@@ -119,9 +120,9 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 } else false;
 
                 if (hasSpace) {
-                    const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
-                    text.*.markup = escapeHtml(state.allocator, tail[0..urlMatch.?.end]) catch return false;
-                    text.*.markup_allocated = true;
+                    const text = newText(state.allocator, state.parentIndex + state.i, state.line, "", state.indent) catch return false;
+                    text.*.content = escapeHtml(state.allocator, tail[0..urlMatch.?.end]) catch return false;
+                    text.*.content_allocated = true;
                     text.*.length = urlMatch.?.end;
 
                     if (parent.children == null) {
@@ -182,9 +183,9 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const plus_idx = std.mem.indexOf(u8, url, "+");
                 const hasPlusAfterAt = at_idx != null and plus_idx != null and plus_idx.? > at_idx.?;
                 if (url.len > 0 and (url[url.len - 1] == '-' or url[url.len - 1] == '_' or hasPlusAfterAt)) {
-                    const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
-                    text.*.markup = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
-                    text.*.markup_allocated = true;
+                    const text = newText(state.allocator, state.parentIndex + state.i, state.line, "", state.indent) catch return false;
+                    text.*.content = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
+                    text.*.content_allocated = true;
                     text.*.length = emailMatch.?.end;
 
                     if (parent.children == null) {
@@ -253,9 +254,9 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const plus_idx = std.mem.indexOf(u8, url, "+");
                 const hasPlusAfterAt = at_idx != null and plus_idx != null and plus_idx.? > at_idx.?;
                 if (url.len > 0 and (url[url.len - 1] == '-' or url[url.len - 1] == '_' or hasPlusAfterAt)) {
-                    const text = newInline(state.allocator, "text", state.parentIndex + state.i, state.line, "", state.indent) catch return false;
-                    text.*.markup = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
-                    text.*.markup_allocated = true;
+                    const text = newText(state.allocator, state.parentIndex + state.i, state.line, "", state.indent) catch return false;
+                    text.*.content = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
+                    text.*.content_allocated = true;
                     text.*.length = emailMatch.?.end;
 
                     if (parent.children == null) {
@@ -386,7 +387,7 @@ fn newLink(allocator: std.mem.Allocator, url: []const u8, state: *InlineParserSt
     };
 
     // Create text child node
-    const linkText = newInline(allocator, "text", state.parentIndex + state.i, state.line, backslashEscaped, state.indent) catch {
+    const linkText = newText(allocator, state.parentIndex + state.i, state.line, backslashEscaped, state.indent) catch {
         allocator.free(encodedUrl);
         return error.OutOfMemory;
     };
@@ -399,7 +400,7 @@ fn newLink(allocator: std.mem.Allocator, url: []const u8, state: *InlineParserSt
     };
     children[0] = linkText;
 
-    // Create link node
+    // Create link node using newInline
     const link = newInline(allocator, "link", state.parentIndex + state.i, state.line, "", state.indent) catch {
         allocator.free(backslashEscaped);
         allocator.free(encodedUrl);

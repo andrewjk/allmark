@@ -23,7 +23,7 @@ public static class ConsoleImageRenderer
             {
                 if (child.Type == "text")
                 {
-                    alt += child.Markup;
+                    alt += child.Content;
                 }
             }
         }

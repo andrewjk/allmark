@@ -37,11 +37,10 @@ func testLinkOpen(state: inout InlineParserState, parent: inout MarkdownNode) ->
 	let markup = "["
 
 	// Add a new text node which may turn into a link
-	let text = newInline(
-		type: "text",
+	let text = newText(
 		index: state.parentIndex + start,
 		line: state.line,
-		markup: markup,
+		content: markup,
 		indent: 0
 	)
 	parent.children?.append(text)
@@ -57,11 +56,10 @@ func testImageOpen(state: inout InlineParserState, parent: inout MarkdownNode) -
 	let markup = "!["
 
 	// Add a new text node which may turn into an image
-	let text = newInline(
-		type: "text",
+	let text = newText(
 		index: state.parentIndex + start,
 		line: state.line,
-		markup: markup,
+		content: markup,
 		indent: 0
 	)
 	parent.children?.append(text)
@@ -166,15 +164,13 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 				}
 
 				if let foundLink = link {
-					let text = newInline(
-						type: "text",
+					let text = newText(
 						index: lastNode.index,
 						line: lastNode.line,
-						markup: markup,
+						content: String(lastNode.content.dropFirst(startDel.markup.count)),
 						indent: 0
 					)
-					text.markup = String(lastNode.markup.dropFirst(startDel.markup.count))
-					text.length = text.markup.count
+					text.length = text.content.count
 
 					lastNode.type = isLink ? "link" : "image"
 					lastNode.info = foundLink.url

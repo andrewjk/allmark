@@ -21,7 +21,7 @@ func getChildText(node: MarkdownNode) -> String {
 	if let children = node.children {
 		for child in children {
 			if child.type == "text" {
-				text += child.markup
+				text += child.content
 			} else {
 				text += getChildText(node: child)
 			}

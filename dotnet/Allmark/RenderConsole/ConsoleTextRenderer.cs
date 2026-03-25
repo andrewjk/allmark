@@ -15,7 +15,7 @@ public static class ConsoleTextRenderer
 
     public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
-        var text = node.Markup;
+        var text = node.Content;
         state.Output.Append(text);
     }
 }

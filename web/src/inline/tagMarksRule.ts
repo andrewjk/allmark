@@ -4,7 +4,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import addMarkupAsText from "../utils/addMarkupAsText";
 import isUnicodePunctuation from "../utils/isUnicodePunctuation";
 import isUnicodeSpace from "../utils/isUnicodeSpace";
-import newInline from "../utils/newInline";
+import newText from "../utils/newText";
 
 export default function testTagMarks(
 	name: string,
@@ -85,9 +85,9 @@ export default function testTagMarks(
 				while (i--) {
 					let lastNode = parent.children![i];
 					if (lastNode.index === state.parentIndex + startDelimiter.start) {
-						let text = newInline("text", lastNode.index, lastNode.line, char, 0);
-						text.markup = lastNode.markup.slice(startDelimiter.length);
-						text.length = text.markup.length;
+						let content = lastNode.content.slice(startDelimiter.length);
+						let text = newText(lastNode.index, lastNode.line, content, 0);
+						text.length = text.content.length;
 
 						lastNode.type = name;
 						lastNode.markup = markup;
@@ -105,7 +105,7 @@ export default function testTagMarks(
 
 		if (leftFlanking) {
 			// Add a new text node which may turn into a delimiter
-			let text = newInline("text", state.parentIndex + start, state.line, markup, 0);
+			let text = newText(state.parentIndex + start, state.line, markup, 0);
 			parent.children!.push(text);
 
 			state.i += markup.length;

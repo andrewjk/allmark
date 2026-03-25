@@ -132,16 +132,16 @@ public static class EmphasisRule
                             // than two, save some for the next go-round
                             markup = markup.Substring(0, Math.Min(markup.Length, Math.Min(startDelimiter.Length, 2)));
 
-                            var text = Utils.NewInline("text", lastNode.Index, lastNode.Line, ch.ToString(), 0);
-                            text.Markup = lastNode.Markup.Substring(startDelimiter.Length);
-                            text.Length = text.Markup.Length;
+                            var content = lastNode.Content.Substring(startDelimiter.Length);
+                            var text = Utils.NewText(lastNode.Index, lastNode.Line, content, 0);
+                            text.Length = text.Content.Length;
 
                             var movedNodes = parent.Children!.Skip(j + 1).ToList() ?? [];
                             parent.Children!.RemoveRange(j + 1, movedNodes.Count);
 
                             if (markup.Length < startDelimiter.Length)
                             {
-                                lastNode.Markup = lastNode.Markup.Substring(0, startDelimiter.Length - markup.Length);
+                                lastNode.Content = lastNode.Content.Substring(0, startDelimiter.Length - markup.Length);
                                 lastNode.Length = lastNode.Markup.Length;
                                 var emphasis = Utils.NewInline(
                                     markup.Length == 2 ? "strong" : "emphasis",
@@ -197,7 +197,7 @@ public static class EmphasisRule
             if (canOpen)
             {
                 // Add a new text node which may turn into emphasis
-                var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
+                var text = Utils.NewText(state.ParentIndex + start, state.Line, markup, 0);
                 parent.Children!.Add(text);
 
                 state.I += markup.Length;

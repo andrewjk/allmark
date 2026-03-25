@@ -12,11 +12,11 @@ const renderer: Renderer = {
 export default renderer;
 
 function render(node: MarkdownNode, state: RendererState, decode?: boolean): void {
-	let markup = node.markup;
+	let content = node.content;
 	if (decode === true) {
-		markup = decodeEntities(markup);
-		markup = escapePunctuation(markup);
+		content = decodeEntities(content);
+		content = escapePunctuation(content);
 	}
-	markup = escapeHtml(markup);
-	state.output += markup;
+	content = escapeHtml(content);
+	state.output += content;
 }

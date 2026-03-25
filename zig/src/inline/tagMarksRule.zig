@@ -4,7 +4,7 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const addMarkupAsText = @import("../utils/addMarkupAsText.zig").addMarkupAsText;
 const isUnicodePunctuation = @import("../utils/isUnicodePunctuation.zig").isUnicodePunctuation;
 const isUnicodeSpace = @import("../utils/isUnicodeSpace.zig").isUnicodeSpace;
-const newInline = @import("../utils/newInline.zig").newInline;
+const newText = @import("../utils/newText.zig").newText;
 
 pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, parent: *MarkdownNode) bool {
     const start = state.i;
@@ -56,27 +56,20 @@ pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, paren
                 while (child_i > 0) : (child_i -= 1) {
                     const lastNode = children[child_i - 1];
                     if (lastNode.index == state.parentIndex + startDelimiter.?.start) {
-                        //const text = newInline(state.allocator, "text", lastNode.index, lastNode.line, "", 0) catch return false;
-                        //const start_markup = startDelimiter.?.getMarkup();
-                        //if (startDelimiter.?.length < start_markup.len) {
-                        //    const remaining = start_markup[startDelimiter.?.length..];
-                        //    text.*.markup = state.allocator.dupe(u8, remaining) catch return false;
-                        //    text.*.markup_allocated = true;
-                        //}
-                        const newText = lastNode.markup[startDelimiter.?.length..];
-                        const text = newInline(state.allocator, "text", lastNode.index, lastNode.line, newText, 0) catch return false;
-                        text.*.length = text.markup.len;
+                        const newContent = lastNode.content[startDelimiter.?.length..];
+                        const text = newText(state.allocator, lastNode.index, lastNode.line, newContent, 0) catch return false;
+                        text.*.length = text.content.len;
 
                         const oldType = lastNode.*.type;
                         lastNode.*.type = state.allocator.dupe(u8, name) catch return false;
                         state.allocator.free(oldType);
 
-                        const oldMarkup = lastNode.*.markup;
-                        lastNode.*.markup = state.allocator.dupe(u8, markup) catch return false;
-                        if (lastNode.markup_allocated) {
-                            state.allocator.free(oldMarkup);
+                        const oldContent = lastNode.*.content;
+                        lastNode.*.content = state.allocator.dupe(u8, markup) catch return false;
+                        if (lastNode.content_allocated) {
+                            state.allocator.free(oldContent);
                         }
-                        lastNode.*.markup_allocated = true;
+                        lastNode.*.content_allocated = true;
                         lastNode.*.length = state.parentIndex + state.i - lastNode.index + markup_len;
 
                         const moved_len = children.len - child_i;
@@ -112,7 +105,7 @@ pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, paren
         }
 
         if (leftFlanking) {
-            const text = newInline(state.allocator, "text", state.parentIndex + start, state.line, markup, 0) catch return false;
+            const text = newText(state.allocator, state.parentIndex + start, state.line, markup, 0) catch return false;
             if (parent.children == null) {
                 const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
                 children[0] = text;

@@ -11,5 +11,5 @@ export default renderer;
 
 function render(node: MarkdownNode, state: RendererState): void {
 	const s = state as ConsoleRendererState;
-	s.output += node.markup;
+	s.output += node.content;
 }

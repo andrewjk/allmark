@@ -42,14 +42,12 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					let fullMatchRange = linkMatch.range(at: 0)
 					if let fullRange = Range(fullMatchRange, in: tail) {
 						let markup = escapeHtml(text: String(tail[fullRange]))
-						let text = newInline(
-							type: "text",
+						let text = newText(
 							index: state.parentIndex + state.i,
 							line: state.line,
-							markup: "",
+							content: markup,
 							indent: state.indent
 						)
-						text.markup = markup
 						text.length = tail[fullRange].count
 						parent.children?.append(text)
 						state.i += tail[fullRange].count
@@ -61,11 +59,10 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				let decodedUrl = decodeEntities(text: url)
 				let encodedUrl = decodedUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? decodedUrl
 
-				let text = newInline(
-					type: "text",
+				let text = newText(
 					index: state.parentIndex + state.i,
 					line: state.line,
-					markup: escapedUrl,
+					content: escapedUrl,
 					indent: state.indent
 				)
 
@@ -104,14 +101,12 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					let fullMatchRange = emailMatch.range(at: 0)
 					if let fullRange = Range(fullMatchRange, in: tail) {
 						let markup = escapeHtml(text: String(tail[fullRange]))
-						let text = newInline(
-							type: "text",
+						let text = newText(
 							index: state.parentIndex + state.i,
 							line: state.line,
-							markup: "",
+							content: markup,
 							indent: state.indent
 						)
-						text.markup = markup
 						text.length = tail[fullRange].count
 						parent.children?.append(text)
 						state.i += tail[fullRange].count
@@ -122,11 +117,10 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				let decodedUrl = decodeEntities(text: url)
 				let encodedUrl = decodedUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? decodedUrl
 
-				let text = newInline(
-					type: "text",
+				let text = newText(
 					index: state.parentIndex + state.i,
 					line: state.line,
-					markup: url,
+					content: url,
 					indent: state.indent
 				)
 

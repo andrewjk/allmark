@@ -2,7 +2,7 @@ import type Delimiter from "../types/Delimiter";
 import type InlineParserState from "../types/InlineParserState";
 import type MarkdownNode from "../types/MarkdownNode";
 import isEscaped from "../utils/isEscaped";
-import newInline from "../utils/newInline";
+import newText from "../utils/newText";
 
 export default function testCriticMarks(
 	name: string,
@@ -36,7 +36,7 @@ export default function testCriticMarks(
 
 		if (markup.length === 2 || markup.length === 3) {
 			// Add a new text node which may turn into a critic mark
-			let text = newInline("text", state.parentIndex + start, state.line, markup, 0);
+			let text = newText(state.parentIndex + start, state.line, markup, 0);
 			parent.children!.push(text);
 
 			// Add start delimiter
@@ -79,8 +79,8 @@ export default function testCriticMarks(
 				while (i--) {
 					let lastNode = parent.children![i];
 					if (lastNode.index === state.parentIndex + startDelimiter.start) {
-						const newText = lastNode.markup.slice(startDelimiter.length);
-						let text = newInline("text", lastNode.index, lastNode.line, newText, 0);
+						const content = lastNode.content.slice(startDelimiter.length);
+						let text = newText(lastNode.index, lastNode.line, content, 0);
 
 						lastNode.type = name;
 						lastNode.markup = markup;

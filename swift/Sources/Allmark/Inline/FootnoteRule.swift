@@ -42,11 +42,10 @@ func testFootnoteOpen(state: inout InlineParserState, parent: inout MarkdownNode
 	let markup = "[^"
 
 	// Add a new text node which may turn into a footnote
-	let text = newInline(
-		type: "text",
+	let text = newText(
 		index: state.parentIndex + start,
 		line: state.line,
-		markup: markup,
+		content: markup,
 		indent: 0
 	)
 	parent.children?.append(text)
@@ -157,7 +156,7 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 					// Parse the footnote content for inline elements
 					var tempState = InlineParserState(
 						rules: state.rules,
-						src: lastNode.content.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression),
+						src: footnote.content.content,
 						i: 0,
 						line: lastNode.line,
 						lineStart: 0,

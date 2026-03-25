@@ -5,6 +5,7 @@ import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
 import isEscaped from "../utils/isEscaped";
 import newInline from "../utils/newInline";
+import newText from "../utils/newText";
 
 const rule: InlineRule = {
 	name: "autolink",
@@ -34,8 +35,8 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			let url = escapeHtml(linkMatch[1]);
 
 			if (SPACE_REGEX.test(url)) {
-				let text = newInline("text", state.parentIndex + state.i, state.line, "", state.indent);
-				text.markup = escapeHtml(linkMatch[0]);
+				let content = escapeHtml(linkMatch[0]);
+				let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
 				text.length = linkMatch[0].length;
 				parent.children!.push(text);
 				state.i += linkMatch[0].length;
@@ -43,8 +44,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				return true;
 			}
 
-			let text = newInline(
-				"text",
+			let text = newText(
 				state.parentIndex + state.i,
 				state.line,
 				url.replaceAll("\\", "\\\\"),
@@ -70,8 +70,8 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			let url = escapeHtml(emailMatch[1]);
 
 			if (SPACE_REGEX.test(url)) {
-				let text = newInline("text", state.parentIndex + state.i, state.line, "", state.indent);
-				text.markup = escapeHtml(emailMatch[0]);
+				let content = escapeHtml(emailMatch[0]);
+				let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
 				text.length = emailMatch[0].length;
 				parent.children!.push(text);
 				state.i += emailMatch[0].length;
@@ -79,8 +79,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				return true;
 			}
 
-			let text = newInline(
-				"text",
+			let text = newText(
 				state.parentIndex + state.i,
 				state.line,
 				url.replaceAll("\\", "\\\\"),

@@ -64,7 +64,7 @@ public static class ConsoleHeadingRenderer
         {
             if (child.Type == "text")
             {
-                text.Append(child.Markup ?? "");
+                text.Append(child.Content);
             }
             else
             {

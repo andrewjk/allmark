@@ -47,7 +47,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 
 function getPlainTextLength(node: MarkdownNode): number {
 	if (node.type === "text") {
-		return node.markup?.length || 0;
+		return node.content.length || 0;
 	}
 	if (node.children) {
 		return node.children.reduce((sum, child) => sum + getPlainTextLength(child), 0);

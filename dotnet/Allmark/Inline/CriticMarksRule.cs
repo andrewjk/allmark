@@ -35,7 +35,7 @@ public static class CriticMarksRule
             if (markup.Length == 2 || markup.Length == 3)
             {
                 // Add a new text node which may turn into deletion
-                 var text = Utils.NewInline("text", state.ParentIndex + start, state.Line, markup, 0);
+                 var text = Utils.NewText(state.ParentIndex + start, state.Line, markup, 0);
                 parent.Children!.Add(text);
 
                 // Add the start delimiter
@@ -92,8 +92,8 @@ public static class CriticMarksRule
                         var lastNode = parent.Children?[j];
                         if (lastNode?.Index == state.ParentIndex + startDelimiter.Start)
                         {
-                            var newText = lastNode.Markup.Substring(startDelimiter.Length) ?? "";
-                            var text = Utils.NewInline("text", lastNode.Index, lastNode.Line, newText, 0);
+                            var newText = lastNode.Content.Substring(startDelimiter.Length) ?? "";
+                            var text = Utils.NewText(lastNode.Index, lastNode.Line, newText, 0);
 
                             lastNode.Type = name;
                             lastNode.Markup = markup;

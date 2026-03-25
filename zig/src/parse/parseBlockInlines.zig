@@ -3,7 +3,7 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const InlineParserState = @import("../types/InlineParserState.zig").InlineParserState;
 const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const parseInline = @import("./parseInline.zig").parseInline;
-const newInline = @import("../utils/newInline.zig").newInline;
+const newText = @import("../utils/newText.zig").newText;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
 pub fn parseBlockInlines(
@@ -37,7 +37,7 @@ pub fn parseBlockInlines(
                 should_free_stripped = true;
             }
         }
-        const text = try newInline(allocator, "text", parent.index, parent.line, content, 0);
+        const text = try newText(allocator, parent.index, parent.line, content, 0);
         if (parent.children == null) {
             parent.children = try allocator.alloc(*MarkdownNode, 0);
         }
@@ -71,7 +71,7 @@ pub fn parseBlockInlines(
             content = new_content;
             should_free_content = true;
         }
-        const text = try newInline(allocator, "text", parent.index, parent.line, content, 0);
+        const text = try newText(allocator, parent.index, parent.line, content, 0);
         if (parent.children == null) {
             parent.children = try allocator.alloc(*MarkdownNode, 0);
         }

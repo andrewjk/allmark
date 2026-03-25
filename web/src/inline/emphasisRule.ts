@@ -7,6 +7,7 @@ import isEscaped from "../utils/isEscaped";
 import isUnicodePunctuation from "../utils/isUnicodePunctuation";
 import isUnicodeSpace from "../utils/isUnicodeSpace";
 import newInline from "../utils/newInline";
+import newText from "../utils/newText";
 
 const rule: InlineRule = {
 	name: "emphasis",
@@ -113,16 +114,19 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 						// than two, save some for the next go-round
 						markup = markup.substring(0, Math.min(startDelimiter.length, 2));
 
-						let text = newInline("text", lastNode.index, lastNode.line, char, 0);
-						text.markup = lastNode.markup.slice(startDelimiter.length);
-						text.length = text.markup.length;
+						let content = lastNode.content.slice(startDelimiter.length);
+						let text = newText(lastNode.index, lastNode.line, content, 0);
+						text.length = text.content.length;
 
 						let movedNodes = parent.children!.splice(i + 1);
 
 						if (markup.length < startDelimiter.length) {
 							let remainingStart = lastNode.index + startDelimiter.length - markup.length;
-							lastNode.markup = lastNode.markup.substring(0, startDelimiter.length - markup.length);
-							lastNode.length = lastNode.markup.length;
+							lastNode.content = lastNode.content.substring(
+								0,
+								startDelimiter.length - markup.length,
+							);
+							lastNode.length = lastNode.content.length;
 							let emphasis = newInline(
 								markup.length === 2 ? "strong" : "emphasis",
 								remainingStart,
@@ -172,7 +176,7 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 			(char !== "_" || spaceBefore || punctuationBefore);
 		if (canOpen) {
 			// Add a new text node which may turn into emphasis
-			let text = newInline("text", state.parentIndex + start, state.line, markup, 0);
+			let text = newText(state.parentIndex + start, state.line, markup, 0);
 			parent.children!.push(text);
 
 			state.i += markup.length;

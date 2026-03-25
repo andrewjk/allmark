@@ -4,7 +4,7 @@ import type InlineRule from "../types/InlineRule";
 import type LinkReference from "../types/LinkReference";
 import type MarkdownNode from "../types/MarkdownNode";
 import isEscaped from "../utils/isEscaped";
-import newInline from "../utils/newInline";
+import newText from "../utils/newText";
 import normalizeLabel from "../utils/normalizeLabel";
 import parseLinkInline from "../utils/parseLinkInline";
 
@@ -39,7 +39,7 @@ function testLinkOpen(state: InlineParserState, parent: MarkdownNode) {
 	let markup = "[";
 
 	// Add a new text node which may turn into a link
-	let text = newInline("text", state.parentIndex + start, state.line, markup, 0);
+	let text = newText(state.parentIndex + start, state.line, markup, 0);
 	parent.children!.push(text);
 
 	state.i++;
@@ -53,7 +53,7 @@ function testImageOpen(state: InlineParserState, parent: MarkdownNode) {
 	let markup = "![";
 
 	// Add a new text node which may turn into an image
-	let text = newInline("text", state.parentIndex + start, state.line, markup, 0);
+	let text = newText(state.parentIndex + start, state.line, markup, 0);
 	parent.children!.push(text);
 
 	state.i += markup.length;
@@ -63,8 +63,6 @@ function testImageOpen(state: InlineParserState, parent: MarkdownNode) {
 }
 
 function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
-	let markup = "]";
-
 	// TODO: Standardize precedence
 	let startDelimiter: Delimiter | undefined;
 	let i = state.delimiters.length;
@@ -151,9 +149,9 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 				}
 
 				if (link !== undefined) {
-					let text = newInline("text", lastNode.index, lastNode.line, markup, 0);
-					text.markup = lastNode.markup.slice(startDelimiter.markup.length);
-					text.length = text.markup.length;
+					let content = lastNode.content.slice(startDelimiter.markup.length);
+					let text = newText(lastNode.index, lastNode.line, content, 0);
+					text.length = text.content.length;
 
 					lastNode.type = isLink ? "link" : "image";
 					lastNode.info = link.url;

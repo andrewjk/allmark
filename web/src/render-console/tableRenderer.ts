@@ -87,7 +87,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 
 function getTextFromNode(node: MarkdownNode): string {
 	if (node.type === "text") {
-		return node.markup;
+		return node.content;
 	}
 	if (node.children) {
 		return node.children.map(getTextFromNode).join("");

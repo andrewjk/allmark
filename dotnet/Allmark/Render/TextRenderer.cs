@@ -15,14 +15,14 @@ public static class TextRenderer
 
     public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
-        var markup = node.Markup;
+        var content = node.Content;
         if (decode == true)
         {
-            markup = Utils.DecodeEntities(markup);
-            markup = Utils.EscapePunctuation(markup);
+            content = Utils.DecodeEntities(content);
+            content = Utils.EscapePunctuation(content);
         }
-        markup = Utils.EscapeHtml(markup);
-
-        state.Output.Append(markup);
+        content = Utils.EscapeHtml(content);
+ 
+        state.Output.Append(content);
     }
 }

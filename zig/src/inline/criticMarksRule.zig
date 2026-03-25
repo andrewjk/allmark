@@ -2,6 +2,7 @@ const std = @import("std");
 const InlineParserState = @import("../types/InlineParserState.zig").InlineParserState;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
+const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
 
 pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserState, parent: *MarkdownNode, closingDelimiter: ?u8) bool {
@@ -33,7 +34,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
             const markup = markup_buf[0..markup_len];
 
             if (markup_len == 2 or markup_len == 3) {
-                const text = newInline(state.allocator, "text", state.parentIndex + start, state.line, markup, 0) catch return false;
+                const text = newText(state.allocator, state.parentIndex + start, state.line, markup, 0) catch return false;
                 const old_children = parent.children orelse &[_]*MarkdownNode{};
                 const new_children = state.allocator.alloc(*MarkdownNode, old_children.len + 1) catch return false;
                 if (parent.children) |children| {
@@ -97,8 +98,8 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
                     while (child_i > 0) : (child_i -= 1) {
                         const lastNode = children[child_i - 1];
                         if (lastNode.index == startDelimiter.?.start) {
-                            const newText = lastNode.markup[startDelimiter.?.length..];
-                            const text = newInline(state.allocator, "text", lastNode.index, lastNode.line, newText, 0) catch return false;
+                            const newContent = lastNode.content[startDelimiter.?.length..];
+                            const text = newText(state.allocator, lastNode.index, lastNode.line, newContent, 0) catch return false;
 
                             const oldType = lastNode.*.type;
                             lastNode.*.type = state.allocator.dupe(u8, name) catch return false;

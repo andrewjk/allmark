@@ -113,14 +113,12 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 						let useLength = min(startDel.length, 2)
 						let useMarkup = String(markup.prefix(useLength))
 
-						let text = newInline(
-							type: "text",
+						let text = newText(
 							index: lastNode.index,
 							line: lastNode.line,
-							markup: String(char),
+							content: String(lastNode.content.dropFirst(startDel.length)),
 							indent: 0
 						)
-						text.markup = String(lastNode.markup.dropFirst(startDel.length))
 
 						let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
 						if let childCount = parent.children?.count {
@@ -128,7 +126,7 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 						}
 
 						if useMarkup.count < startDel.length {
-							lastNode.markup = String(lastNode.markup.prefix(startDel.length - useMarkup.count))
+							lastNode.content = String(lastNode.content.prefix(startDel.length - useMarkup.count))
 							let emphasis = newInline(
 								type: useMarkup.count == 2 ? "strong" : "emphasis",
 								index: lastNode.index + useMarkup.count,
@@ -185,11 +183,10 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 		if canOpen {
 			// Add a new text node which may turn into emphasis
-			let text = newInline(
-				type: "text",
+			let text = newText(
 				index: state.parentIndex + start,
 				line: state.line,
-				markup: markup,
+				content: markup,
 				indent: 0
 			)
 			parent.children?.append(text)

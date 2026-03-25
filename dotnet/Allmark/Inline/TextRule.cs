@@ -20,13 +20,13 @@ public static class TextRule
         var lastNode = parent.Children!.LastOrDefault();
         if (lastNode == null || lastNode.Type != "text")
         {
-            lastNode = Utils.NewInline("text", state.ParentIndex + state.I, state.Line, "", 0);
+            lastNode = Utils.NewText(state.ParentIndex + state.I, state.Line, "", 0);
             parent.Children!.Add(lastNode);
         }
         else if (Utils.IsNewLine(ch))
         {
             // "Spaces at the end of the line and beginning of the next line are removed"
-            lastNode.Markup = lastNode.Markup.TrimEnd();
+            lastNode.Content = lastNode.Content.TrimEnd();
         }
 
         if (Utils.IsAlphaNumeric(ch))
@@ -40,15 +40,15 @@ public static class TextRule
             {
                 state.I++;
             }
-            lastNode.Markup += state.Src.Substring(start, state.I - start);
+            lastNode.Content += state.Src.Substring(start, state.I - start);
         }
         else
         {
             state.I++;
-            lastNode.Markup += ch;
+            lastNode.Content += ch;
         }
 
-        lastNode.Length = lastNode.Markup.Length;
+        lastNode.Length = lastNode.Content.Length;
 
         return true;
     }

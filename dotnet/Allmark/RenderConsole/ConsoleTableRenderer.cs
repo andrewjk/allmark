@@ -121,7 +121,7 @@ public static class ConsoleTableRenderer
     {
         if (node.Type == "text")
         {
-            return node.Markup;
+            return node.Content;
         }
         if (node.Children != null)
         {

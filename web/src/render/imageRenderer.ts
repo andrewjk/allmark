@@ -22,7 +22,7 @@ function getChildText(node: MarkdownNode): string {
 	if (node.children) {
 		for (let child of node.children) {
 			if (child.type === "text") {
-				text += child.markup;
+				text += child.content;
 			} else {
 				text += getChildText(child);
 			}
