@@ -1,6 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
 import isEscaped from "../utils/isEscaped";
 import newNode from "../utils/newNode";
@@ -50,18 +51,33 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				return true;
 			}
 
-			let html = newNode(
-				"html_span",
+			let text = newNode(
+				"text",
+				false,
+				state.parentIndex + state.i,
+				state.line,
+				1,
+				url.replaceAll("\\", "\\\\"),
+				state.indent,
+			);
+			let link = newNode(
+				"link",
 				false,
 				state.parentIndex + state.i,
 				state.line,
 				1,
 				"",
 				state.indent,
+				[text],
 			);
-			html.content = `<a href="${encodeURI(url)}">${url}</a>`;
-			html.length = linkMatch[0].length;
-			parent.children!.push(html);
+
+			url = decodeEntities(url);
+			url = encodeURI(decodeURI(url));
+
+			link.info = url;
+			link.length = linkMatch[0].length;
+			parent.children!.push(link);
+
 			state.i += linkMatch[0].length;
 
 			return true;

@@ -57,11 +57,9 @@ public static class ExtendedAutolinkRule
                     url = ExtendedValidation(url);
                     url = Utils.EscapeHtml(url);
 
-                    var originalLength2 = urlMatch.Groups[0].Length;
-                    var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
-                    html.Content = $"<a href=\"http://{Utils.EscapeUriString(url)}\">{url}</a>";
-                    html.Length = originalLength2;
-                    parent.Children!.Add(html);
+                    var link = NewLink(url, state);
+                    link.Info = $"http://{link.Info}";
+                    parent.Children!.Add(link);
                     state.I += url.Length;
 
                     return true;
@@ -90,9 +88,8 @@ public static class ExtendedAutolinkRule
                     url = ExtendedValidation(url);
                     url = Utils.EscapeHtml(url);
 
-                    var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
-                    html.Content = $"<a href=\"{Utils.EscapeUriString(url)}\">{url}</a>";
-                    parent.Children!.Add(html);
+                    var link = NewLink(url, state);
+                    parent.Children!.Add(link);
                     state.I += url.Length;
 
                     return true;
@@ -126,9 +123,9 @@ public static class ExtendedAutolinkRule
 
                     url = Regex.Replace(url, @"\.$", "");
 
-                    var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
-                    html.Content = $"<a href=\"mailto:{Utils.EscapeUriString(url)}\">{url}</a>";
-                    parent.Children!.Add(html);
+                    var link = NewLink(url, state);
+                    link.Info = $"mailto:{link.Info}";
+                    parent.Children!.Add(link);
                     state.I += url.Length;
 
                     return true;
@@ -160,9 +157,8 @@ public static class ExtendedAutolinkRule
 
                     url = Regex.Replace(url, @"\.$", "");
 
-                    var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
-                    html.Content = $"<a href=\"{Utils.EscapeUriString(url)}\">{url}</a>";
-                    parent.Children!.Add(html);
+                    var link = NewLink(url, state);
+                    parent.Children!.Add(link);
                     state.I += url.Length;
 
                     return true;
@@ -227,5 +223,20 @@ public static class ExtendedAutolinkRule
         }
 
         return url;
+    }
+
+    private static MarkdownNode NewLink(string url, InlineParserState state)
+    {
+        var escapedUrl = url.Replace("\\", "\\\\");
+        var decodedUrl = Utils.DecodeEntities(url);
+        var encodedUrl = Utils.EscapeUriString(decodedUrl);
+
+        var linkText = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, escapedUrl, state.Indent);
+
+        var link = Utils.NewNode("link", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent, [linkText]);
+        link.Info = encodedUrl;
+        link.Length = url.Length;
+
+        return link;
     }
 }

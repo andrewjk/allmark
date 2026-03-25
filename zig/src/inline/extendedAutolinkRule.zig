@@ -2,7 +2,9 @@ const std = @import("std");
 const InlineParserState = @import("../types/InlineParserState.zig").InlineParserState;
 const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
+const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapeHtml = @import("../utils/escapeHtml.zig").escapeHtml;
+const encodeUri = @import("../utils/encodeUri.zig").encodeUri;
 const isAlphaNumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
@@ -68,32 +70,31 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                 url = extendedValidation(state.allocator, url) catch return false;
                 defer state.allocator.free(url);
+
                 const escapedUrl = escapeHtml(state.allocator, url) catch return false;
                 defer state.allocator.free(escapedUrl);
 
-                const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
+                const link = newLink(state.allocator, url, state) catch return false;
 
-                var href = std.ArrayList(u8).initCapacity(state.allocator, url.len + 14) catch return false;
-                defer href.deinit(state.allocator);
-                href.appendSlice(state.allocator, "<a href=\"http://") catch return false;
-                href.appendSlice(state.allocator, escapedUrl) catch return false;
-                href.appendSlice(state.allocator, "\">") catch return false;
-                href.appendSlice(state.allocator, escapedUrl) catch return false;
-                href.appendSlice(state.allocator, "</a>") catch return false;
-
-                html.*.content = href.toOwnedSlice(state.allocator) catch return false;
-                html.*.content_allocated = true;
-                html.*.length = url.len;
+                // Prepend "http://" to the info field
+                if (link.*.info) |info| {
+                    const httpPrefix = std.fmt.allocPrint(state.allocator, "http://{s}", .{info}) catch {
+                        state.allocator.free(info);
+                        return false;
+                    };
+                    state.allocator.free(info);
+                    link.*.info = httpPrefix;
+                }
 
                 if (parent.children == null) {
                     const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
-                    children[0] = html;
+                    children[0] = link;
                     parent.children = children;
                 } else {
                     const old_children = parent.children.?;
                     const new_children = state.allocator.alloc(*MarkdownNode, old_children.len + 1) catch return false;
                     std.mem.copyForwards(*MarkdownNode, new_children, old_children);
-                    new_children[old_children.len] = html;
+                    new_children[old_children.len] = link;
                     state.allocator.free(old_children);
                     parent.children = new_children;
                 }
@@ -143,32 +144,21 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                 url = extendedValidation(state.allocator, url) catch return false;
                 defer state.allocator.free(url);
+
                 const escapedUrl = escapeHtml(state.allocator, url) catch return false;
                 defer state.allocator.free(escapedUrl);
 
-                const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
-
-                var href = std.ArrayList(u8).initCapacity(state.allocator, url.len + 10) catch return false;
-                defer href.deinit(state.allocator);
-                href.appendSlice(state.allocator, "<a href=\"") catch return false;
-                href.appendSlice(state.allocator, escapedUrl) catch return false;
-                href.appendSlice(state.allocator, "\">") catch return false;
-                href.appendSlice(state.allocator, escapedUrl) catch return false;
-                href.appendSlice(state.allocator, "</a>") catch return false;
-
-                html.*.content = href.toOwnedSlice(state.allocator) catch return false;
-                html.*.content_allocated = true;
-                html.*.length = url.len;
+                const link = newLink(state.allocator, url, state) catch return false;
 
                 if (parent.children == null) {
                     const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
-                    children[0] = html;
+                    children[0] = link;
                     parent.children = children;
                 } else {
                     const old_children = parent.children.?;
                     const new_children = state.allocator.alloc(*MarkdownNode, old_children.len + 1) catch return false;
                     std.mem.copyForwards(*MarkdownNode, new_children, old_children);
-                    new_children[old_children.len] = html;
+                    new_children[old_children.len] = link;
                     state.allocator.free(old_children);
                     parent.children = new_children;
                 }
@@ -219,31 +209,27 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                     url = url[0 .. url.len - 1];
                 }
 
-                const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
+                const link = newLink(state.allocator, url, state) catch return false;
 
-                var href = std.ArrayList(u8).initCapacity(state.allocator, url.len + 15) catch return false;
-                defer href.deinit(state.allocator);
-                href.appendSlice(state.allocator, "<a href=\"mailto:") catch return false;
-                const escapedMailUrl = escapeHtml(state.allocator, url) catch return false;
-                defer state.allocator.free(escapedMailUrl);
-                href.appendSlice(state.allocator, escapedMailUrl) catch return false;
-                href.appendSlice(state.allocator, "\">") catch return false;
-                href.appendSlice(state.allocator, url) catch return false;
-                href.appendSlice(state.allocator, "</a>") catch return false;
-
-                html.*.content = href.toOwnedSlice(state.allocator) catch return false;
-                html.*.content_allocated = true;
-                html.*.length = url.len;
+                // Prepend "mailto:" to the info field
+                if (link.*.info) |info| {
+                    const mailtoPrefix = std.fmt.allocPrint(state.allocator, "mailto:{s}", .{info}) catch {
+                        state.allocator.free(info);
+                        return false;
+                    };
+                    state.allocator.free(info);
+                    link.*.info = mailtoPrefix;
+                }
 
                 if (parent.children == null) {
                     const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
-                    children[0] = html;
+                    children[0] = link;
                     parent.children = children;
                 } else {
                     const old_children = parent.children.?;
                     const new_children = state.allocator.alloc(*MarkdownNode, old_children.len + 1) catch return false;
                     std.mem.copyForwards(*MarkdownNode, new_children, old_children);
-                    new_children[old_children.len] = html;
+                    new_children[old_children.len] = link;
                     state.allocator.free(old_children);
                     parent.children = new_children;
                 }
@@ -294,31 +280,17 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                     url = url[0 .. url.len - 1];
                 }
 
-                const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
-
-                var href = std.ArrayList(u8).initCapacity(state.allocator, url.len + 10) catch return false;
-                defer href.deinit(state.allocator);
-                href.appendSlice(state.allocator, "<a href=\"") catch return false;
-                const escapedXmppUrl = escapeHtml(state.allocator, url) catch return false;
-                defer state.allocator.free(escapedXmppUrl);
-                href.appendSlice(state.allocator, escapedXmppUrl) catch return false;
-                href.appendSlice(state.allocator, "\">") catch return false;
-                href.appendSlice(state.allocator, url) catch return false;
-                href.appendSlice(state.allocator, "</a>") catch return false;
-
-                html.*.content = href.toOwnedSlice(state.allocator) catch return false;
-                html.*.content_allocated = true;
-                html.*.length = url.len;
+                const link = newLink(state.allocator, url, state) catch return false;
 
                 if (parent.children == null) {
                     const children = state.allocator.alloc(*MarkdownNode, 1) catch return false;
-                    children[0] = html;
+                    children[0] = link;
                     parent.children = children;
                 } else {
                     const old_children = parent.children.?;
                     const new_children = state.allocator.alloc(*MarkdownNode, old_children.len + 1) catch return false;
                     std.mem.copyForwards(*MarkdownNode, new_children, old_children);
-                    new_children[old_children.len] = html;
+                    new_children[old_children.len] = link;
                     state.allocator.free(old_children);
                     parent.children = new_children;
                 }
@@ -386,6 +358,60 @@ fn extendedValidation(allocator: std.mem.Allocator, url: []const u8) ![]const u8
     }
 
     return allocator.dupe(u8, trimmed);
+}
+
+/// Creates a new link node with a text child.
+/// The link's info field will contain the URL (caller can modify if needed).
+fn newLink(allocator: std.mem.Allocator, url: []const u8, state: *InlineParserState) !*MarkdownNode {
+    // Create backslash-escaped version of URL for display text
+    const backslashEscaped = std.mem.replaceOwned(u8, allocator, url, "\\", "\\\\") catch {
+        return error.OutOfMemory;
+    };
+    defer allocator.free(backslashEscaped);
+
+    // Process URL for href: escape HTML, decode entities, then encode for URI
+    const escapedUrl = escapeHtml(allocator, url) catch {
+        return error.OutOfMemory;
+    };
+    defer allocator.free(escapedUrl);
+
+    const decodedUrl = decodeEntities(allocator, escapedUrl) catch {
+        return error.OutOfMemory;
+    };
+    defer allocator.free(decodedUrl);
+
+    // encodedUrl will be owned by the link node
+    const encodedUrl = encodeUri(allocator, decodedUrl) catch {
+        return error.OutOfMemory;
+    };
+
+    // Create text child node
+    const linkText = newNode(allocator, "text", false, state.parentIndex + state.i, state.line, 1, backslashEscaped, state.indent, null) catch {
+        allocator.free(encodedUrl);
+        return error.OutOfMemory;
+    };
+
+    // Create children array
+    const children = allocator.alloc(*MarkdownNode, 1) catch {
+        allocator.free(backslashEscaped);
+        allocator.free(encodedUrl);
+        return error.OutOfMemory;
+    };
+    children[0] = linkText;
+
+    // Create link node
+    const link = newNode(allocator, "link", false, state.parentIndex + state.i, state.line, 1, "", state.indent, children) catch {
+        allocator.free(backslashEscaped);
+        allocator.free(encodedUrl);
+        allocator.free(children);
+        return error.OutOfMemory;
+    };
+
+    // Transfer ownership of encodedUrl to link node
+    link.*.info = encodedUrl;
+    link.*.length = url.len;
+
+    return link;
 }
 
 pub const extendedAutolinkRule = InlineRule{

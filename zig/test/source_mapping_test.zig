@@ -416,7 +416,7 @@ test "source mapping - autolink URL" {
     try std.testing.expect(paragraph.children != null);
     try std.testing.expectEqual(@as(usize, 1), paragraph.children.?.len);
     const autolink = paragraph.children.?[0];
-    try std.testing.expectEqualStrings("html_span", autolink.type);
+    try std.testing.expectEqualStrings("link", autolink.type);
     try std.testing.expectEqual(@as(usize, 8), autolink.index);
     try std.testing.expectEqual(@as(usize, 21), autolink.length);
 }
@@ -436,7 +436,7 @@ test "source mapping - autolink email" {
     try std.testing.expect(paragraph.children != null);
     try std.testing.expectEqual(@as(usize, 1), paragraph.children.?.len);
     const autolink = paragraph.children.?[0];
-    try std.testing.expectEqualStrings("html_span", autolink.type);
+    try std.testing.expectEqualStrings("link", autolink.type);
     try std.testing.expectEqual(@as(usize, 8), autolink.index);
     try std.testing.expectEqual(@as(usize, 18), autolink.length);
 }
@@ -456,7 +456,7 @@ test "source mapping - extended autolink www" {
     try std.testing.expect(paragraph.children != null);
     try std.testing.expectEqual(@as(usize, 1), paragraph.children.?.len);
     const extendedAutolink = paragraph.children.?[0];
-    try std.testing.expectEqualStrings("html_span", extendedAutolink.type);
+    try std.testing.expectEqualStrings("link", extendedAutolink.type);
     try std.testing.expectEqual(@as(usize, 8), extendedAutolink.index);
     try std.testing.expectEqual(@as(usize, 15), extendedAutolink.length);
 }

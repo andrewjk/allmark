@@ -60,25 +60,40 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					}
 				}
 
-				let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? url
-				let html = MarkdownNode(
-					type: "html_span",
+				let escapedUrl = url.replacingOccurrences(of: "\\", with: "\\\\")
+				let decodedUrl = decodeEntities(text: url)
+				let encodedUrl = decodedUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? decodedUrl
+
+				let text = MarkdownNode(
+					type: "text",
+					block: false,
+					index: state.parentIndex + state.i,
+					line: state.line,
+					column: 1,
+					markup: escapedUrl,
+					indent: state.indent,
+					children: nil
+				)
+
+				let link = MarkdownNode(
+					type: "link",
 					block: false,
 					index: state.parentIndex + state.i,
 					line: state.line,
 					column: 1,
 					markup: "",
 					indent: state.indent,
-					children: nil
+					children: [text]
 				)
-				html.content = "<a href=\"\(encodedUrl)\">\(url)</a>"
-				parent.children?.append(html)
+				link.info = encodedUrl
 
 				let fullMatchRange = linkMatch.range(at: 0)
 				if let fullRange = Range(fullMatchRange, in: tail) {
-					html.length = tail[fullRange].count
+					link.length = tail[fullRange].count
 					state.i += tail[fullRange].count
 				}
+
+				parent.children?.append(link)
 
 				return true
 			}
@@ -115,25 +130,39 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 					}
 				}
 
-				let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? url
-				let html = MarkdownNode(
-					type: "html_span",
+				let decodedUrl = decodeEntities(text: url)
+				let encodedUrl = decodedUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? decodedUrl
+
+				let text = MarkdownNode(
+					type: "text",
+					block: false,
+					index: state.parentIndex + state.i,
+					line: state.line,
+					column: 1,
+					markup: url,
+					indent: state.indent,
+					children: nil
+				)
+
+				let link = MarkdownNode(
+					type: "link",
 					block: false,
 					index: state.parentIndex + state.i,
 					line: state.line,
 					column: 1,
 					markup: "",
 					indent: state.indent,
-					children: nil
+					children: [text]
 				)
-				html.content = "<a href=\"mailto:\(encodedUrl)\">\(url)</a>"
-				parent.children?.append(html)
+				link.info = "mailto:\(encodedUrl)"
 
 				let fullMatchRange = emailMatch.range(at: 0)
 				if let fullRange = Range(fullMatchRange, in: tail) {
-					html.length = tail[fullRange].count
+					link.length = tail[fullRange].count
 					state.i += tail[fullRange].count
 				}
+
+				parent.children?.append(link)
 
 				return true
 			}

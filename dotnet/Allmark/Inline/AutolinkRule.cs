@@ -49,10 +49,16 @@ public static class AutolinkRule
                     return true;
                 }
 
-                var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
-                html.Content = $"<a href=\"{Utils.EscapeUriString(url)}\">{url}</a>";
-                html.Length = linkMatch.Groups[0].Length;
-                parent.Children!.Add(html);
+                var escapedUrl = url.Replace("\\", "\\\\");
+                var decodedUrl = Utils.DecodeEntities(url);
+                var encodedUrl = Utils.EscapeUriString(decodedUrl);
+
+                var linkText = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, escapedUrl, state.Indent);
+
+                var link = Utils.NewNode("link", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent, [linkText]);
+                link.Info = encodedUrl;
+                link.Length = linkMatch.Groups[0].Length;
+                parent.Children!.Add(link);
                 state.I += linkMatch.Groups[0].Length;
 
                 return true;
@@ -74,10 +80,15 @@ public static class AutolinkRule
                     return true;
                 }
 
-                var html = Utils.NewNode("html_span", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent);
-                html.Content = $"<a href=\"mailto:{Utils.EscapeUriString(url)}\">{url}</a>";
-                html.Length = emailMatch.Groups[0].Length;
-                parent.Children!.Add(html);
+                var decodedUrl = Utils.DecodeEntities(url);
+                var encodedUrl = Utils.EscapeUriString(decodedUrl);
+
+                var linkText = Utils.NewNode("text", false, state.ParentIndex + state.I, state.Line, 1, url, state.Indent);
+
+                var link = Utils.NewNode("link", false, state.ParentIndex + state.I, state.Line, 1, "", state.Indent, [linkText]);
+                link.Info = $"mailto:{encodedUrl}";
+                link.Length = emailMatch.Groups[0].Length;
+                parent.Children!.Add(link);
                 state.I += emailMatch.Groups[0].Length;
 
                 return true;

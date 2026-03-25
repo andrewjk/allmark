@@ -1,6 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
 import isEscaped from "../utils/isEscaped";
@@ -57,18 +58,10 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				url = extendedValidation(url);
 				url = escapeHtml(url);
 
-				let html = newNode(
-					"html_span",
-					false,
-					state.parentIndex + state.i,
-					state.line,
-					1,
-					"",
-					state.indent,
-				);
-				html.content = `<a href="http://${encodeURI(url)}">${url}</a>`;
-				html.length = url.length;
-				parent.children!.push(html);
+				let link = newLink(url, state);
+				link.info = `http://${link.info}`;
+				parent.children!.push(link);
+
 				state.i += url.length;
 
 				return true;
@@ -103,18 +96,9 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				url = extendedValidation(url);
 				url = escapeHtml(url);
 
-				let html = newNode(
-					"html_span",
-					false,
-					state.parentIndex + state.i,
-					state.line,
-					1,
-					"",
-					state.indent,
-				);
-				html.content = `<a href="${encodeURI(url)}">${url}</a>`;
-				html.length = url.length;
-				parent.children!.push(html);
+				let link = newLink(url, state);
+				parent.children!.push(link);
+
 				state.i += url.length;
 
 				return true;
@@ -154,18 +138,10 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 
 				url = url.replaceAll(/\.$/g, "");
 
-				let html = newNode(
-					"html_span",
-					false,
-					state.parentIndex + state.i,
-					state.line,
-					1,
-					"",
-					state.indent,
-				);
-				html.content = `<a href="mailto:${encodeURI(url)}">${url}</a>`;
-				html.length = url.length;
-				parent.children!.push(html);
+				let link = newLink(url, state);
+				link.info = `mailto:${link.info}`;
+				parent.children!.push(link);
+
 				state.i += url.length;
 
 				return true;
@@ -203,18 +179,9 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 
 				url = url.replaceAll(/\.$/g, "");
 
-				let html = newNode(
-					"html_span",
-					false,
-					state.parentIndex + state.i,
-					state.line,
-					1,
-					"",
-					state.indent,
-				);
-				html.content = `<a href="${encodeURI(url)}">${url}</a>`;
-				html.length = url.length;
-				parent.children!.push(html);
+				let link = newLink(url, state);
+				parent.children!.push(link);
+
 				state.i += url.length;
 
 				return true;
@@ -270,4 +237,27 @@ function extendedValidation(url: string) {
 	}
 
 	return url;
+}
+
+function newLink(url: string, state: InlineParserState) {
+	let text = newNode(
+		"text",
+		false,
+		state.parentIndex + state.i,
+		state.line,
+		1,
+		url.replaceAll("\\", "\\\\"),
+		state.indent,
+	);
+	let link = newNode("link", false, state.parentIndex + state.i, state.line, 1, "", state.indent, [
+		text,
+	]);
+
+	url = decodeEntities(url);
+	url = encodeURI(decodeURI(url));
+
+	link.info = url;
+	link.length = url.length;
+
+	return link;
 }

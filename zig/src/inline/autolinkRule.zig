@@ -2,6 +2,7 @@ const std = @import("std");
 const InlineParserState = @import("../types/InlineParserState.zig").InlineParserState;
 const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
+const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapeHtml = @import("../utils/escapeHtml.zig").escapeHtml;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const newNode = @import("../utils/newNode.zig").newNode;
@@ -48,18 +49,50 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             }
 
             const encodeUri = @import("../utils/encodeUri.zig").encodeUri;
-            const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
 
+            // Process URL: decode entities, then encode for URI
             const escapedUrl = escapeHtml(state.allocator, rawUrl) catch return false;
-            const encoded_url = encodeUri(state.allocator, escapedUrl) catch return false;
-            const content = std.fmt.allocPrint(state.allocator, "<a href=\"{s}\">{s}</a>", .{ encoded_url, escapedUrl }) catch return false;
-            state.allocator.free(escapedUrl);
-            state.allocator.free(encoded_url);
-            html.*.content = content;
-            html.*.content_allocated = true;
-            html.*.length = linkMatch.?.end;
+            defer state.allocator.free(escapedUrl);
 
-            appendChild(state.allocator, parent, html) catch return false;
+            const decodedUrl = decodeEntities(state.allocator, escapedUrl) catch return false;
+            defer state.allocator.free(decodedUrl);
+
+            // uriEncodedUrl will be owned by the link node (not freed here)
+            const uriEncodedUrl = encodeUri(state.allocator, decodedUrl) catch return false;
+
+            // Create text node with backslash-escaped URL for display
+            const backslashEscaped = std.mem.replaceOwned(u8, state.allocator, rawUrl, "\\", "\\\\") catch {
+                state.allocator.free(uriEncodedUrl);
+                return false;
+            };
+            defer state.allocator.free(backslashEscaped);
+
+            const linkText = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, backslashEscaped, state.indent, null) catch {
+                state.allocator.free(uriEncodedUrl);
+                return false;
+            };
+
+            const children = state.allocator.alloc(*MarkdownNode, 1) catch {
+                state.allocator.free(uriEncodedUrl);
+                return false;
+            };
+            children[0] = linkText;
+
+            const link = newNode(state.allocator, "link", false, state.parentIndex + state.i, state.line, 1, "", state.indent, children) catch {
+                state.allocator.free(uriEncodedUrl);
+                state.allocator.free(children);
+                return false;
+            };
+
+            // Transfer ownership of uriEncodedUrl to the link node
+            link.*.info = uriEncodedUrl;
+            link.*.length = linkMatch.?.end;
+
+            appendChild(state.allocator, parent, link) catch {
+                state.allocator.free(uriEncodedUrl);
+                state.allocator.free(children);
+                return false;
+            };
 
             state.i += linkMatch.?.end;
 
@@ -90,18 +123,51 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             }
 
             const encodeUri = @import("../utils/encodeUri.zig").encodeUri;
-            const html = newNode(state.allocator, "html_span", false, state.parentIndex + state.i, state.line, 1, "", state.indent, null) catch return false;
 
+            // Process email URL
             const escapedUrl = escapeHtml(state.allocator, rawUrl) catch return false;
-            const encoded_url = encodeUri(state.allocator, escapedUrl) catch return false;
-            const content = std.fmt.allocPrint(state.allocator, "<a href=\"mailto:{s}\">{s}</a>", .{ encoded_url, escapedUrl }) catch return false;
-            state.allocator.free(escapedUrl);
-            state.allocator.free(encoded_url);
-            html.*.content = content;
-            html.*.content_allocated = true;
-            html.*.length = emailMatch.?.end;
+            defer state.allocator.free(escapedUrl);
 
-            appendChild(state.allocator, parent, html) catch return false;
+            const decodedUrl = decodeEntities(state.allocator, escapedUrl) catch return false;
+            defer state.allocator.free(decodedUrl);
+
+            // uriEncodedUrl will be owned by the link node
+            const uriEncodedUrl = encodeUri(state.allocator, decodedUrl) catch return false;
+
+            // Create mailto URL (owned by link node)
+            const mailtoUrl = std.fmt.allocPrint(state.allocator, "mailto:{s}", .{uriEncodedUrl}) catch {
+                state.allocator.free(uriEncodedUrl);
+                return false;
+            };
+            state.allocator.free(uriEncodedUrl);
+
+            // Create text node with raw email URL for display
+            const linkText = newNode(state.allocator, "text", false, state.parentIndex + state.i, state.line, 1, rawUrl, state.indent, null) catch {
+                state.allocator.free(mailtoUrl);
+                return false;
+            };
+
+            const children = state.allocator.alloc(*MarkdownNode, 1) catch {
+                state.allocator.free(mailtoUrl);
+                return false;
+            };
+            children[0] = linkText;
+
+            const link = newNode(state.allocator, "link", false, state.parentIndex + state.i, state.line, 1, "", state.indent, children) catch {
+                state.allocator.free(mailtoUrl);
+                state.allocator.free(children);
+                return false;
+            };
+
+            // Transfer ownership of mailtoUrl to the link node
+            link.*.info = mailtoUrl;
+            link.*.length = emailMatch.?.end;
+
+            appendChild(state.allocator, parent, link) catch {
+                state.allocator.free(mailtoUrl);
+                state.allocator.free(children);
+                return false;
+            };
 
             state.i += emailMatch.?.end;
 

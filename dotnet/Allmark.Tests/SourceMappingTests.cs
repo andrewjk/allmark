@@ -270,7 +270,7 @@ public class SourceMappingTests
         var doc = Parser.Execute(input, Extended.RuleSet);
         var paragraph = doc.Children![1];
         var autolink = paragraph.Children![0];
-        Assert.AreEqual("html_span", autolink.Type);
+        Assert.AreEqual("link", autolink.Type);
         Assert.AreEqual(8, autolink.Index);
         Assert.AreEqual(21, autolink.Length);
     }
@@ -282,7 +282,7 @@ public class SourceMappingTests
         var doc = Parser.Execute(input, Extended.RuleSet);
         var paragraph = doc.Children![1];
         var autolink = paragraph.Children![0];
-        Assert.AreEqual("html_span", autolink.Type);
+        Assert.AreEqual("link", autolink.Type);
         Assert.AreEqual(8, autolink.Index);
         Assert.AreEqual(18, autolink.Length);
     }
@@ -294,7 +294,7 @@ public class SourceMappingTests
         var doc = Parser.Execute(input, Extended.RuleSet);
         var paragraph = doc.Children![1];
         var extendedAutolink = paragraph.Children![0];
-        Assert.AreEqual("html_span", extendedAutolink.Type);
+        Assert.AreEqual("link", extendedAutolink.Type);
         Assert.AreEqual(8, extendedAutolink.Index);
         Assert.AreEqual(15, extendedAutolink.Length);
     }
