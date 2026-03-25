@@ -263,7 +263,7 @@ describe("source mapping - inline rules", () => {
 		const doc = parse(input, extended);
 		const paragraph = doc.children![1];
 		const autolink = paragraph.children![0];
-		expect(autolink.type).toBe("html_span");
+		expect(autolink.type).toBe("link");
 		expect(autolink.index).toBe(8);
 		expect(autolink.length).toBe(18);
 	});

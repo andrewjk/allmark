@@ -79,10 +79,22 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				return true;
 			}
 
-			let html = newInline("html_span", state.parentIndex + state.i, state.line, "", state.indent);
-			html.content = `<a href="mailto:${encodeURI(url)}">${url}</a>`;
-			html.length = emailMatch[0].length;
-			parent.children!.push(html);
+			let text = newInline(
+				"text",
+				state.parentIndex + state.i,
+				state.line,
+				url.replaceAll("\\", "\\\\"),
+				state.indent,
+			);
+			let link = newInline("link", state.parentIndex + state.i, state.line, "", state.indent);
+			link.children = [text];
+
+			url = `mailto:${encodeURI(url)}`;
+
+			link.info = url;
+			link.length = emailMatch[0].length;
+			parent.children!.push(link);
+
 			state.i += emailMatch[0].length;
 
 			return true;
