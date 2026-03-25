@@ -4,7 +4,8 @@ func testTagMarks(
 	name: String,
 	char: String,
 	state: inout InlineParserState,
-	parent: inout MarkdownNode
+	parent: inout MarkdownNode,
+	precedence: Int
 ) -> Bool {
 	let src = state.src
 	let start = state.i
@@ -54,7 +55,6 @@ func testTagMarks(
 			(!punctuationBefore || (punctuationBefore && (spaceAfter || punctuationAfter)))
 
 		if rightFlanking {
-			// TODO: Precedence
 			// Loop backwards through delimiters to find a matching one that does
 			// not take precedence
 			var startDelimiter: Delimiter?
@@ -65,10 +65,12 @@ func testTagMarks(
 					if prevDelimiter.markup == char && prevDelimiter.length == markup.count {
 						startDelimiter = prevDelimiter
 						break
-					} else if prevDelimiter.markup == "*" || prevDelimiter.markup == "_" {
+					} else if (prevDelimiter.precedence ?? 0) <= precedence {
+						// Same or lower precedence delimiters can be skipped over
 						i -= 1
 						continue
 					} else {
+						// Higher precedence delimiters block
 						break
 					}
 				}
@@ -130,7 +132,7 @@ func testTagMarks(
 			parent.children?.append(text)
 
 			state.i += markup.count
-			state.delimiters.append(Delimiter(markup: char, start: start, length: markup.count, handled: nil))
+			state.delimiters.append(Delimiter(markup: char, start: start, length: markup.count, handled: nil, precedence: precedence))
 
 			return true
 		}

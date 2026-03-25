@@ -7,6 +7,7 @@ import testTagMarks from "./tagMarksRule";
 const rule: InlineRule = {
 	name: "subscript",
 	test: testSubscript,
+	precedence: 5,
 };
 export default rule;
 
@@ -17,7 +18,7 @@ function testSubscript(state: InlineParserState, parent: MarkdownNode): boolean 
 		if (state.src[state.i + 1] === "~") {
 			return false;
 		}
-		return testTagMarks(rule.name, char, state, parent);
+		return testTagMarks(rule.name, char, state, parent, rule.precedence!);
 	}
 	return false;
 }

@@ -5,10 +5,11 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const testCriticMarks = @import("criticMarksRule.zig").testCriticMarks;
 
 pub fn testInsertion(state: *InlineParserState, parent: *MarkdownNode) bool {
-    return testCriticMarks("insertion", '+', state, parent, null);
+    return testCriticMarks("insertion", '+', state, parent, insertionRule.precedence.?, null);
 }
 
 pub const insertionRule = InlineRule{
     .name = "insertion",
     .@"test" = testInsertion,
+    .precedence = 20,
 };

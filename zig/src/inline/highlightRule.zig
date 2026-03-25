@@ -7,7 +7,7 @@ const testTagMarks = @import("tagMarksRule.zig").testTagMarks;
 
 pub fn testHighlight(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i < state.src.len and state.src[state.i] == '=' and !isEscaped(state.src, state.i)) {
-        return testTagMarks("highlight", '=', state, parent);
+        return testTagMarks("highlight", '=', state, parent, highlightRule.precedence.?);
     }
     return false;
 }
@@ -15,4 +15,5 @@ pub fn testHighlight(state: *InlineParserState, parent: *MarkdownNode) bool {
 pub const highlightRule = InlineRule{
     .name = "highlight",
     .@"test" = testHighlight,
+    .precedence = 5,
 };

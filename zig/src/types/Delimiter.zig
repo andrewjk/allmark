@@ -6,6 +6,8 @@ pub const Delimiter = struct {
     start: usize,
     length: usize,
     handled: bool = false,
+    /// Precedence for delimiter matching (higher = takes precedence).
+    precedence: ?u8 = null,
 
     pub fn getMarkup(self: *const Delimiter) []const u8 {
         return self.markup[0..self.markup_len];

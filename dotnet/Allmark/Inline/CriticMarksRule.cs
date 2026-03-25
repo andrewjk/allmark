@@ -4,7 +4,7 @@ using Allmark.Types;
 
 public static class CriticMarksRule
 {
-    public static bool Execute(string name, string delimiter, InlineParserState state, MarkdownNode parent, string? closingDelimiter = null)
+    public static bool Execute(string name, string delimiter, InlineParserState state, MarkdownNode parent, int precedence, string? closingDelimiter = null)
     {
         var closeDel = closingDelimiter ?? delimiter;
         var ch = Utils.GetChar(state.Src, state.I);
@@ -40,7 +40,7 @@ public static class CriticMarksRule
 
                 // Add the start delimiter
                 state.I += markup.Length;
-                state.Delimiters.Add(new Delimiter { Markup = markup, Start = start, Length = markup.Length });
+                state.Delimiters.Add(new Delimiter { Markup = markup, Start = start, Length = markup.Length, Precedence = precedence });
 
                 return true;
             }

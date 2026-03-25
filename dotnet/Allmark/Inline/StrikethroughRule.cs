@@ -10,6 +10,7 @@ public static class StrikethroughRule
         {
             Name = "strikethrough",
             Test = TestStrikethrough,
+            Precedence = 5,
         };
     }
 
@@ -18,7 +19,8 @@ public static class StrikethroughRule
         var ch = Utils.GetChar(state.Src, state.I);
         if (ch == '~' && !Utils.IsEscaped(state.Src, state.I))
         {
-            return TagMarksRule.Execute("strikethrough", ch.ToString(), state, parent);
+            var rule = Create();
+            return TagMarksRule.Execute("strikethrough", ch.ToString(), state, parent, rule.Precedence!.Value);
         }
         return false;
     }

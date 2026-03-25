@@ -11,6 +11,7 @@ import parseLinkInline from "../utils/parseLinkInline";
 const rule: InlineRule = {
 	name: "link",
 	test: testLink,
+	precedence: 15,
 };
 export default rule;
 
@@ -43,7 +44,7 @@ function testLinkOpen(state: InlineParserState, parent: MarkdownNode) {
 	parent.children!.push(text);
 
 	state.i++;
-	state.delimiters.push({ markup, start, length: 1 });
+	state.delimiters.push({ markup, start, length: 1, precedence: rule.precedence });
 
 	return true;
 }
@@ -57,13 +58,14 @@ function testImageOpen(state: InlineParserState, parent: MarkdownNode) {
 	parent.children!.push(text);
 
 	state.i += markup.length;
-	state.delimiters.push({ markup, start, length: 1 });
+	state.delimiters.push({ markup, start, length: 1, precedence: rule.precedence });
 
 	return true;
 }
 
 function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
-	// TODO: Standardize precedence
+	// Loop backwards through delimiters to find a matching one that does
+	// not take precedence
 	let startDelimiter: Delimiter | undefined;
 	let i = state.delimiters.length;
 	while (i--) {
@@ -72,9 +74,11 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 			if (prevDelimiter.markup === "[" || prevDelimiter.markup === "![") {
 				startDelimiter = prevDelimiter;
 				break;
-			} else if (prevDelimiter.markup === "*" || prevDelimiter.markup === "_") {
+			} else if ((prevDelimiter.precedence ?? 0) <= rule.precedence!) {
+				// Same or lower precedence delimiters can be skipped over
 				continue;
 			} else {
+				// Higher precedence delimiters block
 				break;
 			}
 		}

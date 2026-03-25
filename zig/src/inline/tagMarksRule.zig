@@ -6,7 +6,7 @@ const isUnicodePunctuation = @import("../utils/isUnicodePunctuation.zig").isUnic
 const isUnicodeSpace = @import("../utils/isUnicodeSpace.zig").isUnicodeSpace;
 const newText = @import("../utils/newText.zig").newText;
 
-pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, parent: *MarkdownNode) bool {
+pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, parent: *MarkdownNode, precedence: u8) bool {
     const start = state.i;
     var end = state.i;
 
@@ -45,6 +45,12 @@ pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, paren
                 if (!prevDelimiter.handled) {
                     if (std.mem.eql(u8, prevDelimiter.getMarkup(), &.{char}) and prevDelimiter.length == markup_len) {
                         startDelimiter = prevDelimiter;
+                        break;
+                    } else if ((prevDelimiter.precedence orelse 0) <= precedence) {
+                        // Same or lower precedence delimiters can be skipped over
+                        continue;
+                    } else {
+                        // Higher precedence delimiters block
                         break;
                     }
                 }
@@ -127,6 +133,7 @@ pub fn testTagMarks(name: []const u8, char: u8, state: *InlineParserState, paren
                 .start = start,
                 .length = markup_len,
                 .handled = false,
+                .precedence = precedence,
             };
             delim.markup[0] = char;
             state.delimiters.append(state.allocator, delim) catch return false;

@@ -4,4 +4,5 @@ import type MarkdownNode from "./MarkdownNode";
 export default interface InlineRule {
 	name: string;
 	test: (state: InlineParserState, parent: MarkdownNode) => boolean;
+	precedence?: number;
 }

@@ -9,4 +9,8 @@ public record Delimiter
     public required int Start { get; set; }
     public required int Length { get; set; }
     public bool Handled { get; set; }
+    /// <summary>
+    /// Precedence for delimiter matching (higher = takes precedence).
+    /// </summary>
+    public int? Precedence { get; set; }
 }

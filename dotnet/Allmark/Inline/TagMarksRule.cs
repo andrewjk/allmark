@@ -4,7 +4,7 @@ using Allmark.Types;
 
 public static class TagMarksRule
 {
-    public static bool Execute(string name, string ch, InlineParserState state, MarkdownNode parent)
+    public static bool Execute(string name, string ch, InlineParserState state, MarkdownNode parent, int precedence)
     {
         var start = state.I;
         var end = state.I;
@@ -58,7 +58,6 @@ public static class TagMarksRule
 
             if (rightFlanking)
             {
-                // TODO: Precedence
                 // Loop backwards through delimiters to find a matching one that does
                 // not take precedence
                 Delimiter? startDelimiter = null;
@@ -73,12 +72,14 @@ public static class TagMarksRule
                             startDelimiter = prevDelimiter;
                             break;
                         }
-                        else if (prevDelimiter.Markup == "*" || prevDelimiter.Markup == "_")
+                        else if ((prevDelimiter.Precedence ?? 0) <= precedence)
                         {
+                            // Same or lower precedence delimiters can be skipped over
                             continue;
                         }
                         else
                         {
+                            // Higher precedence delimiters block
                             break;
                         }
                     }
@@ -121,7 +122,7 @@ public static class TagMarksRule
                 parent.Children!.Add(text);
 
                 state.I += markup.Length;
-                state.Delimiters.Add(new Delimiter { Markup = ch, Start = start, Length = markup.Length });
+                state.Delimiters.Add(new Delimiter { Markup = ch, Start = start, Length = markup.Length, Precedence = precedence });
 
                 return true;
             }

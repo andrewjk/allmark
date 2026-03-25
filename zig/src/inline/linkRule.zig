@@ -46,6 +46,7 @@ fn testLinkOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
         .start = start,
         .length = 1,
         .handled = false,
+        .precedence = linkRule.precedence,
     };
     delim.markup[0] = '[';
     state.delimiters.append(state.allocator, delim) catch return false;
@@ -68,6 +69,7 @@ fn testImageOpen(state: *InlineParserState, parent: *MarkdownNode) bool {
         .start = start,
         .length = 1,
         .handled = false,
+        .precedence = linkRule.precedence,
     };
     delim.markup[0] = '!';
     delim.markup[1] = '[';
@@ -87,9 +89,11 @@ fn testLinkClose(state: *InlineParserState, parent: *MarkdownNode) bool {
             if (std.mem.eql(u8, prev_markup, "[") or std.mem.eql(u8, prev_markup, "![")) {
                 startDelimiter = prevDelimiter;
                 break;
-            } else if (std.mem.eql(u8, prev_markup, "*") or std.mem.eql(u8, prev_markup, "_")) {
+            } else if ((prevDelimiter.precedence orelse 0) <= linkRule.precedence.?) {
+                // Same or lower precedence delimiters can be skipped over
                 continue;
             } else {
+                // Higher precedence delimiters block
                 break;
             }
         }
@@ -236,4 +240,5 @@ fn testLinkClose(state: *InlineParserState, parent: *MarkdownNode) bool {
 pub const linkRule = InlineRule{
     .name = "link",
     .@"test" = testLink,
+    .precedence = 15,
 };

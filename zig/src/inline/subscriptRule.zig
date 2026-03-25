@@ -10,7 +10,7 @@ pub fn testSubscript(state: *InlineParserState, parent: *MarkdownNode) bool {
         if (state.i + 1 < state.src.len and state.src[state.i + 1] == '~') {
             return false;
         }
-        return testTagMarks("subscript", '~', state, parent);
+        return testTagMarks("subscript", '~', state, parent, subscriptRule.precedence.?);
     }
     return false;
 }
@@ -18,4 +18,5 @@ pub fn testSubscript(state: *InlineParserState, parent: *MarkdownNode) bool {
 pub const subscriptRule = InlineRule{
     .name = "subscript",
     .@"test" = testSubscript,
+    .precedence = 5,
 };

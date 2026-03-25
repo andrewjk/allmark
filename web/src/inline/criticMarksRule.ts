@@ -9,6 +9,7 @@ export default function testCriticMarks(
 	delimiter: string,
 	state: InlineParserState,
 	parent: MarkdownNode,
+	precedence: number,
 	closingDelimiter?: string,
 ): boolean {
 	closingDelimiter ??= delimiter;
@@ -41,7 +42,7 @@ export default function testCriticMarks(
 
 			// Add start delimiter
 			state.i += markup.length;
-			state.delimiters.push({ markup, start, length: markup.length });
+			state.delimiters.push({ markup, start, length: markup.length, precedence });
 
 			return true;
 		}
@@ -93,9 +94,6 @@ export default function testCriticMarks(
 						return true;
 					}
 				}
-
-				// TODO: Precedence!
-				// TODO: Should mark all delimiters between the tags as handled...
 			}
 		}
 	}

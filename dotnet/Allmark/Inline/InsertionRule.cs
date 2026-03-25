@@ -10,11 +10,13 @@ public static class InsertionRule
         {
             Name = "insertion",
             Test = TestInsertion,
+            Precedence = 20,
         };
     }
 
     private static bool TestInsertion(InlineParserState state, MarkdownNode parent)
     {
-        return CriticMarksRule.Execute("insertion", "+", state, parent);
+        var rule = Create();
+        return CriticMarksRule.Execute("insertion", "+", state, parent, rule.Precedence!.Value);
     }
 }

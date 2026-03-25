@@ -2,7 +2,8 @@ import Foundation
 
 let emphasisRule = InlineRule(
 	name: "emphasis",
-	test: testEmphasis
+	test: testEmphasis,
+	precedence: 10
 )
 
 func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) -> Bool {
@@ -57,7 +58,6 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 			!spaceBefore &&
 			(!punctuationBefore || (punctuationBefore && (spaceAfter || punctuationAfter)))
 
-		// TODO: Precedence
 		// Loop backwards through delimiters to find a matching one that does
 		// not take precedence, and ideally has the same length
 		var startDelimiter: Delimiter?
@@ -75,10 +75,12 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 						startDelimiter = prevDelimiter
 						startIndex = i
 					}
-				} else if prevDelimiter.markup == "*" || prevDelimiter.markup == "_" {
+				} else if (prevDelimiter.precedence ?? 0) <= emphasisRule.precedence! {
+					// Same or lower precedence delimiters can be skipped over
 					i -= 1
 					continue
 				} else {
+					// Higher precedence delimiters block
 					break
 				}
 			}
@@ -192,7 +194,7 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 			parent.children?.append(text)
 
 			state.i += markup.count
-			state.delimiters.append(Delimiter(markup: String(char), start: start, length: markup.count, handled: nil))
+			state.delimiters.append(Delimiter(markup: String(char), start: start, length: markup.count, handled: nil, precedence: emphasisRule.precedence))
 
 			return true
 		}

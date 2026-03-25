@@ -10,6 +10,7 @@ public static class LinkRule
         {
             Name = "link",
             Test = TestLink,
+            Precedence = 15,
         };
     }
 
@@ -48,7 +49,7 @@ public static class LinkRule
         parent.Children!.Add(text);
 
         state.I++;
-        state.Delimiters.Add(new Delimiter { Markup = markup, Start = start, Length = 1 });
+        state.Delimiters.Add(new Delimiter { Markup = markup, Start = start, Length = 1, Precedence = Create().Precedence!.Value });
 
         return true;
     }
@@ -63,14 +64,15 @@ public static class LinkRule
         parent.Children!.Add(text);
 
         state.I += markup.Length;
-        state.Delimiters.Add(new Delimiter { Markup = markup, Start = start, Length = 1 });
+        state.Delimiters.Add(new Delimiter { Markup = markup, Start = start, Length = 1, Precedence = Create().Precedence!.Value });
 
         return true;
     }
 
     private static bool TestLinkClose(InlineParserState state, MarkdownNode parent)
     {
-        // TODO: Standardize precedence
+        // Loop backwards through delimiters to find a matching one that does
+        // not take precedence
         Delimiter? startDelimiter = null;
         var i = state.Delimiters.Count;
         while (i-- > 0)
@@ -83,12 +85,14 @@ public static class LinkRule
                     startDelimiter = prevDelimiter;
                     break;
                 }
-                else if (prevDelimiter.Markup == "*" || prevDelimiter.Markup == "_")
+                else if ((prevDelimiter.Precedence ?? 0) <= Create().Precedence!.Value)
                 {
+                    // Same or lower precedence delimiters can be skipped over
                     continue;
                 }
                 else
                 {
+                    // Higher precedence delimiters block
                     break;
                 }
             }

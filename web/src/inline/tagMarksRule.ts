@@ -11,6 +11,7 @@ export default function testTagMarks(
 	char: string,
 	state: InlineParserState,
 	parent: MarkdownNode,
+	precedence: number,
 ): boolean {
 	let start = state.i;
 	let end = state.i;
@@ -58,7 +59,6 @@ export default function testTagMarks(
 			(!punctuationBefore || (punctuationBefore && (spaceAfter || punctuationAfter)));
 
 		if (rightFlanking) {
-			// TODO: Precedence
 			// Loop backwards through delimiters to find a matching one that does
 			// not take precedence
 			let startDelimiter: Delimiter | undefined;
@@ -69,9 +69,11 @@ export default function testTagMarks(
 					if (prevDelimiter.markup === char && prevDelimiter.length === markup.length) {
 						startDelimiter = prevDelimiter;
 						break;
-					} else if (prevDelimiter.markup === "*" || prevDelimiter.markup === "_") {
+					} else if ((prevDelimiter.precedence ?? 0) <= precedence) {
+						// Same or lower precedence delimiters can be skipped over
 						continue;
 					} else {
+						// Higher precedence delimiters block
 						break;
 					}
 				}
@@ -109,7 +111,7 @@ export default function testTagMarks(
 			parent.children!.push(text);
 
 			state.i += markup.length;
-			state.delimiters.push({ markup: char, start, length: markup.length });
+			state.delimiters.push({ markup: char, start, length: markup.length, precedence });
 
 			return true;
 		}

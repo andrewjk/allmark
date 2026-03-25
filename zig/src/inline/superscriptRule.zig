@@ -7,7 +7,7 @@ const testTagMarks = @import("tagMarksRule.zig").testTagMarks;
 
 pub fn testSuperscript(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i < state.src.len and state.src[state.i] == '^' and !isEscaped(state.src, state.i)) {
-        return testTagMarks("superscript", '^', state, parent);
+        return testTagMarks("superscript", '^', state, parent, superscriptRule.precedence.?);
     }
     return false;
 }
@@ -15,4 +15,5 @@ pub fn testSuperscript(state: *InlineParserState, parent: *MarkdownNode) bool {
 pub const superscriptRule = InlineRule{
     .name = "superscript",
     .@"test" = testSuperscript,
+    .precedence = 5,
 };

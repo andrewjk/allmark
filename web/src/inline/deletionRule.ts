@@ -6,9 +6,10 @@ import testCriticMarks from "./criticMarksRule";
 const rule: InlineRule = {
 	name: "deletion",
 	test: testDeletion,
+	precedence: 20,
 };
 export default rule;
 
 function testDeletion(state: InlineParserState, parent: MarkdownNode): boolean {
-	return testCriticMarks(rule.name, "-", state, parent);
+	return testCriticMarks(rule.name, "-", state, parent, rule.precedence!);
 }

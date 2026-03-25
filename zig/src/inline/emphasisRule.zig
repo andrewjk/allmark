@@ -61,9 +61,11 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
                     startDelimiter = prevDelimiter;
                     startIndex = d;
                 }
-            } else if (prevDelimiter.markup[0] == '*' or prevDelimiter.markup[0] == '_') {
+            } else if ((prevDelimiter.precedence orelse 0) <= emphasisRule.precedence.?) {
+                // Same or lower precedence delimiters can be skipped over
                 continue;
             } else {
+                // Higher precedence delimiters block
                 break;
             }
         }
@@ -201,6 +203,7 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
             .start = start,
             .length = markup_len,
             .handled = false,
+            .precedence = emphasisRule.precedence,
         };
         delim.markup[0] = char;
         state.delimiters.append(state.allocator, delim) catch return false;
@@ -217,4 +220,5 @@ fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
 pub const emphasisRule = InlineRule{
     .name = "emphasis",
     .@"test" = testEmphasis,
+    .precedence = 10,
 };

@@ -10,11 +10,13 @@ public static class DeletionRule
         {
             Name = "deletion",
             Test = TestDeletion,
+            Precedence = 20,
         };
     }
 
     private static bool TestDeletion(InlineParserState state, MarkdownNode parent)
     {
-        return CriticMarksRule.Execute("deletion", "-", state, parent);
+        var rule = Create();
+        return CriticMarksRule.Execute("deletion", "-", state, parent, rule.Precedence!.Value);
     }
 }

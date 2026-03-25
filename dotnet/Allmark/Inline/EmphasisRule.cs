@@ -10,6 +10,7 @@ public static class EmphasisRule
         {
             Name = "emphasis",
             Test = TestEmphasis,
+            Precedence = 10,
         };
     }
 
@@ -65,7 +66,6 @@ public static class EmphasisRule
                 !spaceBefore &&
                 (!punctuationBefore || (punctuationBefore && (spaceAfter || punctuationAfter)));
 
-            // TODO: Precedence
             // Loop backwards through delimiters to find a matching one that does
             // not take precedence, and ideally has the same length
             Delimiter? startDelimiter = null;
@@ -90,12 +90,14 @@ public static class EmphasisRule
                             startIndex = i;
                         }
                     }
-                    else if (prevDelimiter.Markup == "*" || prevDelimiter.Markup == "_")
+                    else if ((prevDelimiter.Precedence ?? 0) <= Create().Precedence!.Value)
                     {
+                        // Same or lower precedence delimiters can be skipped over
                         continue;
                     }
                     else
                     {
+                        // Higher precedence delimiters block
                         break;
                     }
                 }
@@ -201,7 +203,7 @@ public static class EmphasisRule
                 parent.Children!.Add(text);
 
                 state.I += markup.Length;
-                state.Delimiters.Add(new Delimiter { Markup = ch.ToString(), Start = start, Length = markup.Length });
+                state.Delimiters.Add(new Delimiter { Markup = ch.ToString(), Start = start, Length = markup.Length, Precedence = Create().Precedence!.Value });
 
                 return true;
             }

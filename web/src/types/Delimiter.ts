@@ -3,4 +3,5 @@ export default interface Delimiter {
 	start: number;
 	length: number;
 	handled?: boolean;
+	precedence?: number;
 }

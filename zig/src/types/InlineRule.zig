@@ -9,4 +9,6 @@ pub const InlineRule = struct {
     name: []const u8,
 
     @"test": *const fn (state: *InlineParserState, parent: *MarkdownNode) bool,
+    /// Precedence for delimiter matching (higher = takes precedence).
+    precedence: ?u8 = null,
 };

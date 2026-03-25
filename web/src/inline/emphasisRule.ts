@@ -12,6 +12,7 @@ import newText from "../utils/newText";
 const rule: InlineRule = {
 	name: "emphasis",
 	test: testEmphasis,
+	precedence: 10,
 };
 export default rule;
 
@@ -61,7 +62,6 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 			!spaceBefore &&
 			(!punctuationBefore || (punctuationBefore && (spaceAfter || punctuationAfter)));
 
-		// TODO: Precedence
 		// Loop backwards through delimiters to find a matching one that does
 		// not take precedence, and ideally has the same length
 		let startDelimiter: Delimiter | undefined;
@@ -79,9 +79,11 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 						startDelimiter = prevDelimiter;
 						startIndex = i;
 					}
-				} else if (prevDelimiter.markup === "*" || prevDelimiter.markup === "_") {
+				} else if ((prevDelimiter.precedence ?? 0) <= rule.precedence!) {
+					// Same or lower precedence delimiters can be skipped over
 					continue;
 				} else {
+					// Higher precedence delimiters block
 					break;
 				}
 			}
@@ -180,7 +182,12 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 			parent.children!.push(text);
 
 			state.i += markup.length;
-			state.delimiters.push({ markup: char, start, length: markup.length });
+			state.delimiters.push({
+				markup: char,
+				start,
+				length: markup.length,
+				precedence: rule.precedence,
+			});
 
 			return true;
 		}

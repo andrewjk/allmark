@@ -7,4 +7,8 @@ public record InlineRule
 {
     public required string Name { get; init; }
     public required Func<InlineParserState, MarkdownNode, bool> Test { get; init; }
+    /// <summary>
+    /// Precedence for delimiter matching (higher = takes precedence).
+    /// </summary>
+    public int? Precedence { get; init; }
 }

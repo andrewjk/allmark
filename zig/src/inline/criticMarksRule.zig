@@ -5,7 +5,7 @@ const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
 
-pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserState, parent: *MarkdownNode, closingDelimiter: ?u8) bool {
+pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserState, parent: *MarkdownNode, precedence: u8, closingDelimiter: ?u8) bool {
     const closeDel = closingDelimiter orelse delimiter;
     if (state.i < state.src.len) {
         const char = state.src[state.i];
@@ -52,6 +52,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
                     .start = state.parentIndex + start,
                     .length = markup_len,
                     .handled = false,
+                    .precedence = precedence,
                 };
                 @memcpy(delim.markup[0..markup_len], markup);
                 state.delimiters.append(state.allocator, delim) catch return false;

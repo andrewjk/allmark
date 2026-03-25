@@ -7,7 +7,7 @@ const testTagMarks = @import("tagMarksRule.zig").testTagMarks;
 
 pub fn testStrikethrough(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i < state.src.len and state.src[state.i] == '~' and !isEscaped(state.src, state.i)) {
-        return testTagMarks("strikethrough", '~', state, parent);
+        return testTagMarks("strikethrough", '~', state, parent, strikethroughRule.precedence.?);
     }
     return false;
 }
@@ -15,4 +15,5 @@ pub fn testStrikethrough(state: *InlineParserState, parent: *MarkdownNode) bool 
 pub const strikethroughRule = InlineRule{
     .name = "strikethrough",
     .@"test" = testStrikethrough,
+    .precedence = 5,
 };

@@ -5,6 +5,7 @@ func testCriticMarks(
 	delimiter: String,
 	state: inout InlineParserState,
 	parent: inout MarkdownNode,
+	precedence: Int,
 	closingDelimiter: String? = nil
 ) -> Bool {
 	let closeDel = closingDelimiter ?? delimiter
@@ -44,7 +45,7 @@ func testCriticMarks(
 
 			// Add the start delimiter
 			state.i += markup.count
-			state.delimiters.append(Delimiter(markup: markup, start: start, length: markup.count, handled: nil))
+			state.delimiters.append(Delimiter(markup: markup, start: start, length: markup.count, handled: nil, precedence: precedence))
 
 			return true
 		}

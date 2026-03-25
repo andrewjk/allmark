@@ -6,9 +6,10 @@ import testCriticMarks from "./criticMarksRule";
 const rule: InlineRule = {
 	name: "comment",
 	test: testComment,
+	precedence: 20,
 };
 export default rule;
 
 function testComment(state: InlineParserState, parent: MarkdownNode): boolean {
-	return testCriticMarks(rule.name, ">", state, parent, "<");
+	return testCriticMarks(rule.name, ">", state, parent, rule.precedence!, "<");
 }

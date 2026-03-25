@@ -10,6 +10,7 @@ public static class SubscriptRule
         {
             Name = "subscript",
             Test = TestSubscript,
+            Precedence = 5,
         };
     }
 
@@ -23,7 +24,8 @@ public static class SubscriptRule
             {
                 return false;
             }
-            return TagMarksRule.Execute("subscript", ch.ToString(), state, parent);
+            var rule = Create();
+            return TagMarksRule.Execute("subscript", ch.ToString(), state, parent, rule.Precedence!.Value);
         }
         return false;
     }

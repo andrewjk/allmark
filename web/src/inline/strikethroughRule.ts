@@ -7,6 +7,7 @@ import testTagMarks from "./tagMarksRule";
 const rule: InlineRule = {
 	name: "strikethrough",
 	test: testStrikethrough,
+	precedence: 5,
 };
 export default rule;
 
@@ -17,7 +18,7 @@ export default rule;
 function testStrikethrough(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
 	if (char === "~" && !isEscaped(state.src, state.i)) {
-		return testTagMarks(rule.name, char, state, parent);
+		return testTagMarks(rule.name, char, state, parent, rule.precedence!);
 	}
 	return false;
 }
