@@ -9,7 +9,7 @@ public static class ConsoleHeadingRenderer
         return new OutputRenderer
         {
             Name = "heading",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 
@@ -81,7 +81,7 @@ public static class ConsoleHeadingRenderer
 
         if (state.Renderers != null && state.Renderers.TryGetValue(node.Type, out var renderer))
         {
-            renderer.Render(node, state, false, false, true);
+            renderer.Render(node, state, true);
         }
 
         var result = state.Output.ToString();

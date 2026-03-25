@@ -6,16 +6,8 @@ const escapeHtml = @import("../utils/escapeHtml.zig").escapeHtml;
 const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapePunctuation = @import("../utils/escapePunctuation.zig").escapePunctuation;
 
-pub fn render(node: *const MarkdownNode, state: *RendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    var markup: []const u8 = node.markup;
-
-    if (first orelse false) {
-        markup = std.mem.trimStart(u8, markup, &std.ascii.whitespace);
-    }
-
-    if (last orelse false) {
-        markup = std.mem.trimEnd(u8, markup, &std.ascii.whitespace);
-    }
+pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) void {
+    const markup: []const u8 = node.markup;
 
     if (decode orelse false) {
         const decoded = decodeEntities(state.allocator, markup) catch unreachable;

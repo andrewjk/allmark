@@ -13,7 +13,7 @@ public static class ConsoleEmphasisRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         state.Output.Append($"{Ansi.Italic}{Ansi.Yellow}");
         RenderChildren.Execute(node, state);

@@ -17,9 +17,7 @@ pub const consoleAlertRenderer = Renderer{
     .render = render,
 };
 
-pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
     const alert_type = node.markup;

@@ -13,7 +13,7 @@ public static class ConsoleBlockQuoteRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         var style = Ansi.Dim;
         if (state.Output.Length > 0 && state.Output[^1] != '\n')
@@ -57,7 +57,7 @@ public static class ConsoleBlockQuoteRenderer
 
         if (state.Renderers != null && state.Renderers.TryGetValue(node.Type, out var renderer))
         {
-            renderer.Render(node, state, false, false, true);
+            renderer.Render(node, state, true);
         }
 
         var result = state.Output.ToString();

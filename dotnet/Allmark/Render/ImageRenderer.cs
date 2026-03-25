@@ -13,7 +13,7 @@ public static class ImageRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         RenderUtils.StartNewLine(node, state);
         var alt = GetChildText(node);

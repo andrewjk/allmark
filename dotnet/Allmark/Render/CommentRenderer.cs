@@ -9,7 +9,7 @@ public static class CommentRenderer
         return new OutputRenderer { Name = "comment", Render = Execute };
     }
 
-    public static void Execute(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Execute(MarkdownNode node, RendererState state, bool? decode = true)
     {
         RenderUtils.StartNewLine(node, state);
         state.Output.Append("<span class=\"markdown-comment\">");

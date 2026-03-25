@@ -13,9 +13,7 @@ pub const consoleListRenderer = Renderer{
     .render = render,
 };
 
-pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
     state.listDepth += 1;
@@ -80,7 +78,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?b
                             state.output.append(state.allocator, ' ') catch unreachable;
                         }
                         if (state.renderers.get(child.type)) |renderer| {
-                            renderer.render(child, state, false, false, true);
+                            renderer.render(child, state, true);
                         }
                     }
                 }
@@ -107,9 +105,7 @@ fn isLooseList(node: *const MarkdownNode) bool {
     return false;
 }
 
-fn consoleListTaskItemRenderer(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+fn consoleListTaskItemRenderer(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
     const is_checked = node.markup.len > 1 and node.markup[1] != ' ';

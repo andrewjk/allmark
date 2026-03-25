@@ -13,17 +13,9 @@ public static class ConsoleTextRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         var text = node.Markup;
-        if (first == true)
-        {
-            text = text.TrimStart();
-        }
-        if (last == true)
-        {
-            text = text.TrimEnd();
-        }
         state.Output.Append(text);
     }
 }

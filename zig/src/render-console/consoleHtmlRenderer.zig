@@ -9,9 +9,7 @@ pub const consoleHtmlRenderer = Renderer{
     .render = render,
 };
 
-fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
     state.output.appendSlice(state.allocator, node.content) catch unreachable;

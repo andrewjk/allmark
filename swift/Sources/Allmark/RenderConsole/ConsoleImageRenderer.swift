@@ -5,7 +5,7 @@ let consoleImageRenderer = Renderer(
 	render: renderConsoleImage
 )
 
-func renderConsoleImage(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?, _: Bool?, _: Bool?) {
+func renderConsoleImage(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?) {
 	let style = ansiGray
 	let reset = ansiReset
 	var alt = ""

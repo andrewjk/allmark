@@ -9,7 +9,7 @@ public static class ConsoleInsertionRenderer
         return new OutputRenderer
         {
             Name = "insertion",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

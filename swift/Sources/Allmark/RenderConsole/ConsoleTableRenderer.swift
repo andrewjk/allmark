@@ -5,7 +5,7 @@ let consoleTableRenderer = Renderer(
 	render: renderConsoleTable
 )
 
-func renderConsoleTable(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?, _: Bool?, _: Bool?) {
+func renderConsoleTable(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?) {
 	let style = ansiDim
 	if !state.output.isEmpty, !state.output.hasSuffix("\n") {
 		state.output += "\n"

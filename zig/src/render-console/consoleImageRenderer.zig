@@ -11,9 +11,7 @@ pub const consoleImageRenderer = Renderer{
     .render = render,
 };
 
-pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
     var altBuffer: std.ArrayList(u8) = std.ArrayList(u8).initCapacity(state.allocator, 64) catch unreachable;

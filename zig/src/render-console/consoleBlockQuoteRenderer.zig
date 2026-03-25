@@ -11,9 +11,7 @@ pub const consoleBlockQuoteRenderer = Renderer{
     .render = render,
 };
 
-pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
     if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] != '\n') {
@@ -57,7 +55,7 @@ fn renderNodeToString(node: *const MarkdownNode, state: *ConsoleRendererState) [
     defer state.output = old_output;
 
     if (state.renderers.get(node.type)) |renderer| {
-        renderer.render(node, state, false, false, true);
+        renderer.render(node, state, true);
     }
 
     return state.output.toOwnedSlice(state.allocator) catch unreachable;

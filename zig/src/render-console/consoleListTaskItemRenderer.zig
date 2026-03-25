@@ -6,9 +6,7 @@ const Renderer = @import("../types/Renderer.zig").Renderer;
 const ansiDim = @import("console.zig").ansiDim;
 const ansiReset = @import("console.zig").ansiReset;
 
-pub fn render(node: *const MarkdownNode, state: *RendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) void {
     _ = decode;
 
     const is_checked = if (node.markup.len > 1 and node.markup[1] != ' ')

@@ -10,7 +10,7 @@ public static class ConsoleTableRenderer
         return new OutputRenderer
         {
             Name = "table",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

@@ -13,7 +13,7 @@ public static class FootnoteListRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         state.Output.Append("<section class=\"footnotes\">\n<ol>\n");
         var number = 1;

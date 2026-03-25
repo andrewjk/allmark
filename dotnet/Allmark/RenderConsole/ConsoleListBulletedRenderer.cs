@@ -9,7 +9,7 @@ public static class ConsoleListBulletedRenderer
         return new OutputRenderer
         {
             Name = "list_bulleted",
-            Render = (node, state, first, last, decode) => ConsoleListRenderer.Render(node, state, false),
+            Render = (node, state, decode) => ConsoleListRenderer.Render(node, state, false),
         };
     }
 }

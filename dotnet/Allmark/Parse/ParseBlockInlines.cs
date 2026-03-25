@@ -65,7 +65,7 @@ public static class ParseBlockInlines
         {
             Rules = rules,
             // "Final spaces are stripped before inline parsing"
-            Src = parent.Content.TrimEnd(),
+            Src = parent.Content.Trim(),
             I = 0,
             Line = parent.Line,
             LineStart = 0,

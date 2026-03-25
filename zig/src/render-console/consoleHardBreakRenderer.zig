@@ -9,10 +9,8 @@ pub const consoleHardBreakRenderer = Renderer{
     .render = render,
 };
 
-pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
+pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = node;
-    _ = first;
-    _ = last;
     _ = decode;
 
     state.output.append(state.allocator, '\n') catch unreachable;

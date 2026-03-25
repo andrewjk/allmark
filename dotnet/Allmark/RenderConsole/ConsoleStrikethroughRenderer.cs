@@ -9,7 +9,7 @@ public static class ConsoleStrikethroughRenderer
         return new OutputRenderer
         {
             Name = "strikethrough",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

@@ -9,7 +9,7 @@ public static class ConsoleLinkRenderer
         return new OutputRenderer
         {
             Name = "link",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

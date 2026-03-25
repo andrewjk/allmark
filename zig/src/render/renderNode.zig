@@ -8,11 +8,9 @@ const renderUtils = @import("renderUtils.zig");
 pub fn renderNode(
     node: *const MarkdownNode,
     state: *RendererState,
-    first: bool,
-    last: bool,
     decode: bool,
 ) void {
     if (state.renderers.get(node.type)) |renderer| {
-        renderer.render(node, state, first, last, decode);
+        renderer.render(node, state, decode);
     }
 }

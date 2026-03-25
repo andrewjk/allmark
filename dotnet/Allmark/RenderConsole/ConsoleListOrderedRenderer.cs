@@ -9,7 +9,7 @@ public static class ConsoleListOrderedRenderer
         return new OutputRenderer
         {
             Name = "list_ordered",
-            Render = (node, state, first, last, decode) => ConsoleListRenderer.Render(node, state, true),
+            Render = (node, state, decode) => ConsoleListRenderer.Render(node, state, true),
         };
     }
 }

@@ -13,7 +13,7 @@ public static class ConsoleCodeFenceRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         var content = (node.Content ?? "").TrimEnd('\n');
         var lines = content.Split('\n');

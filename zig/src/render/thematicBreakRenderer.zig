@@ -4,9 +4,7 @@ const RendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
 const renderSelfClosedTag = @import("renderSelfClosedTag.zig").renderSelfClosedTag;
 
-pub fn render(node: *const MarkdownNode, state: *RendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) void {
     _ = decode;
     renderSelfClosedTag(node, state, "hr");
 }

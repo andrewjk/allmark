@@ -9,7 +9,7 @@ public static class ConsoleImageRenderer
         return new OutputRenderer
         {
             Name = "image",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

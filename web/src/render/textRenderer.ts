@@ -11,20 +11,8 @@ const renderer: Renderer = {
 };
 export default renderer;
 
-function render(
-	node: MarkdownNode,
-	state: RendererState,
-	first?: boolean,
-	last?: boolean,
-	decode?: boolean,
-): void {
+function render(node: MarkdownNode, state: RendererState, decode?: boolean): void {
 	let markup = node.markup;
-	if (first === true) {
-		markup = markup.trimStart();
-	}
-	if (last === true) {
-		markup = markup.trimEnd();
-	}
 	if (decode === true) {
 		markup = decodeEntities(markup);
 		markup = escapePunctuation(markup);

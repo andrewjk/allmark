@@ -9,7 +9,7 @@ public static class ConsoleAlertRenderer
         return new OutputRenderer
         {
             Name = "alert",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

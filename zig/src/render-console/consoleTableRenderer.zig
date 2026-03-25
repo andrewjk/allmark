@@ -11,9 +11,7 @@ pub const consoleTableRenderer = Renderer{
     .render = render,
 };
 
-pub fn render(node: *const MarkdownNode, state: *RendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) void {
     _ = decode;
 
     if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] != '\n') {

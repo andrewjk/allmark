@@ -9,14 +9,7 @@ const renderer: Renderer = {
 };
 export default renderer;
 
-function render(node: MarkdownNode, state: RendererState, first?: boolean, last?: boolean): void {
+function render(node: MarkdownNode, state: RendererState): void {
 	const s = state as ConsoleRendererState;
-	let text = node.markup;
-	if (first === true) {
-		text = text.trimStart();
-	}
-	if (last === true) {
-		text = text.trimEnd();
-	}
-	s.output += text;
+	s.output += node.markup;
 }

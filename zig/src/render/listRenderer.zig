@@ -6,9 +6,7 @@ const renderChildrenFn = @import("renderChildren.zig").renderChildren;
 const renderUtils = @import("renderUtils.zig");
 const renderNodeFn = @import("renderNode.zig").renderNode;
 
-pub fn render(node: *const MarkdownNode, state: *RendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) void {
     _ = decode;
 
     const ordered = std.mem.eql(u8, node.type, "list_ordered");
@@ -108,7 +106,7 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, first: ?bool, la
                         if (ii == 0) {
                             renderUtils.innerNewLine(item, state);
                         }
-                        renderNodeFn(child, state, ii == 0, ii == ic.len - 1, true);
+                        renderNodeFn(child, state, true);
                         if (ii == ic.len - 1 and child.block) {
                             const output_slice = state.output.items;
                             if (output_slice.len > 0 and output_slice[output_slice.len - 1] != '\n') {

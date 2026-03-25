@@ -9,7 +9,7 @@ public static class ConsoleHighlightRenderer
         return new OutputRenderer
         {
             Name = "highlight",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

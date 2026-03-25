@@ -31,21 +31,15 @@ pub const consoleBullets = [4][]const u8{
 pub fn renderChildrenConsole(node: *const MarkdownNode, state: *RendererState, decode: bool) !void {
     if (node.children) |children| {
         if (children.len > 0) {
-            const trim = !std.mem.eql(u8, node.type, "code_block") and
-                !std.mem.eql(u8, node.type, "code_fence") and
-                !std.mem.eql(u8, node.type, "code_span");
-
-            for (children, 0..) |child, i| {
-                const first = i == 0;
-                const last = i == children.len - 1;
-                try renderNodeConsole(child, state, if (trim) first else false, if (trim) last else false, decode);
+            for (children) |child| {
+                try renderNodeConsole(child, state, decode);
             }
         }
     }
 }
 
-fn renderNodeConsole(node: *const MarkdownNode, state: *RendererState, first: bool, last: bool, decode: bool) !void {
+fn renderNodeConsole(node: *const MarkdownNode, state: *RendererState, decode: bool) !void {
     if (state.renderers.get(node.type)) |renderer| {
-        renderer.render(node, state, first, last, decode);
+        renderer.render(node, state, decode);
     }
 }

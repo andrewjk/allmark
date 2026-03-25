@@ -93,7 +93,7 @@ func parseBlockInlines(
 	var state = InlineParserState(
 		rules: rules,
 		// "Final spaces are stripped before inline parsing"
-		src: parent.content.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression),
+		src: parent.content.trimmingCharacters(in: .whitespacesAndNewlines),
 		i: 0,
 		line: parent.line,
 		lineStart: 0,

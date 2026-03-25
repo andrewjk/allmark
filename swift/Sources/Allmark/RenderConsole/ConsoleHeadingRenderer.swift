@@ -5,7 +5,7 @@ let consoleHeadingRenderer = Renderer(
 	render: renderConsoleHeading
 )
 
-func renderConsoleHeading(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?, _: Bool?, _: Bool?) {
+func renderConsoleHeading(_ node: MarkdownNode, _ state: inout RendererState, _: Bool?) {
 	var level = 0
 	var isUnderline = false
 	if node.markup.hasPrefix("#") {

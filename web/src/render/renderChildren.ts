@@ -9,12 +9,8 @@ export default function renderChildren(
 ): void {
 	let children = node.children;
 	if (children && children.length) {
-		let trim =
-			node.type !== "code_block" && node.type !== "code_fence" && node.type !== "code_span";
-		for (let [i, child] of children.entries()) {
-			let first = i === 0;
-			let last = i === children.length - 1;
-			renderNode(child, state, trim && first, trim && last, decode);
+		for (let child of children) {
+			renderNode(child, state, decode);
 		}
 	}
 }

@@ -9,7 +9,7 @@ public static class ConsoleInlineRenderer
         return new OutputRenderer
         {
             Name = "inline",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

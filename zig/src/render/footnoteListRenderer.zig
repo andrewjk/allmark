@@ -13,10 +13,8 @@ pub fn renderFootnoteList(state: *RendererState) void {
     render(null, state, null, null, null);
 }
 
-pub fn render(_node: ?*const MarkdownNode, state: *RendererState, first: ?bool, last: ?bool, decode: ?bool) void {
+pub fn render(_node: ?*const MarkdownNode, state: *RendererState, decode: ?bool) void {
     _ = _node;
-    _ = first;
-    _ = last;
     _ = decode;
     state.output.appendSlice(state.allocator, "<section class=\"footnotes\">\n<ol>\n") catch unreachable;
 

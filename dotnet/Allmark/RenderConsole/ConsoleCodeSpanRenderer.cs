@@ -9,7 +9,7 @@ public static class ConsoleCodeSpanRenderer
         return new OutputRenderer
         {
             Name = "code_span",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

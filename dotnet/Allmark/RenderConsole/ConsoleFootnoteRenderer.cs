@@ -9,7 +9,7 @@ public static class ConsoleFootnoteRenderer
         return new OutputRenderer
         {
             Name = "footnote",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

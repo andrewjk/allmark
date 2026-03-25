@@ -11,8 +11,6 @@ pub const Renderer = struct {
     render: *const fn (
         node: *const MarkdownNode,
         state: *RendererState,
-        first: ?bool,
-        last: ?bool,
         decode: ?bool,
     ) void,
 };

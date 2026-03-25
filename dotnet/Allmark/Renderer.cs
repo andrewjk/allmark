@@ -21,7 +21,7 @@ public static class Renderer
 
         if (state.Footnotes.Count > 0 && renderers.TryGetValue("footnote_list", out var footnoteListRenderer))
         {
-            footnoteListRenderer.Render(doc, state, null, null, true);
+            footnoteListRenderer.Render(doc, state, true);
         }
 
         if (state.Output.Length > 0)

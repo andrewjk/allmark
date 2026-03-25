@@ -16,9 +16,7 @@ pub const consoleHeadingRenderer = Renderer{
     .render = render,
 };
 
-pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
     var level: usize = 0;
@@ -105,7 +103,7 @@ fn renderChildToString(node: *const MarkdownNode, state: *ConsoleRendererState, 
 
     // Capture the output by rendering to state
     if (state.renderers.get(node.type)) |renderer| {
-        renderer.render(node, state, false, false, true);
+        renderer.render(node, state, true);
     }
 
     // Copy the new output

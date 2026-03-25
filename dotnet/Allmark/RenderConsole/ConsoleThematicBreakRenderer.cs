@@ -9,7 +9,7 @@ public static class ConsoleThematicBreakRenderer
         return new OutputRenderer
         {
             Name = "thematic_break",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

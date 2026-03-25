@@ -9,7 +9,7 @@ public static class ConsoleCommentRenderer
         return new OutputRenderer
         {
             Name = "comment",
-            Render = (node, state, first, last, decode) => Render(node, state),
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 

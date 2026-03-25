@@ -11,14 +11,8 @@ pub fn renderChildren(
 ) void {
     if (node.children) |children| {
         if (children.len > 0) {
-            const trim = !std.mem.eql(u8, node.type, "code_block") and
-                !std.mem.eql(u8, node.type, "code_fence") and
-                !std.mem.eql(u8, node.type, "code_span");
-
-            for (children, 0..) |child, i| {
-                const first = i == 0;
-                const last = i == children.len - 1;
-                renderNode(child, state, if (trim) first else false, if (trim) last else false, decode);
+            for (children) |child| {
+                renderNode(child, state, decode);
             }
         }
     }

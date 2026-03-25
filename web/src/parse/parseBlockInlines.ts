@@ -55,7 +55,7 @@ export default function parseBlockInlines(
 	let state: InlineParserState = {
 		rules,
 		// "Final spaces are stripped before inline parsing"
-		src: parent.content.trimEnd(),
+		src: parent.content.trim(),
 		i: 0,
 		line: parent.line,
 		lineStart: 0,

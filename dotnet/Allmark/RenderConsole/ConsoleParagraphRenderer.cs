@@ -13,7 +13,7 @@ public static class ConsoleParagraphRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         if (state.Output.Length > 0 && state.Output[^1] != '\n')
         {

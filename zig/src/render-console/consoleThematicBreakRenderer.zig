@@ -11,9 +11,7 @@ pub const consoleThematicBreakRenderer = Renderer{
     .render = render,
 };
 
-fn render(node: *const MarkdownNode, state: *ConsoleRendererState, first: ?bool, last: ?bool, decode: ?bool) void {
-    _ = first;
-    _ = last;
+fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
     if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] != '\n') {

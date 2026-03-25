@@ -13,17 +13,9 @@ public static class TextRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         var markup = node.Markup;
-        if (first == true)
-        {
-            markup = markup.TrimStart();
-        }
-        if (last == true)
-        {
-            markup = markup.TrimEnd();
-        }
         if (decode == true)
         {
             markup = Utils.DecodeEntities(markup);

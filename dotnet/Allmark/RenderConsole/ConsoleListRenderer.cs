@@ -59,7 +59,7 @@ public static class ConsoleListRenderer
                             }
                             if (state.Renderers.TryGetValue(child.Type, out var renderer))
                             {
-                                renderer.Render(child, state, false, false, true);
+                                renderer.Render(child, state, true);
                             }
                         }
                     }

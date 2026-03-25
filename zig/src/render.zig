@@ -47,7 +47,7 @@ pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers:
 
     if (state.footnotes.items.len > 0 and renderersToUse.renderers.get("footnote_list") != null) {
         const footnoteListRenderer = renderersToUse.renderers.get("footnote_list").?;
-        footnoteListRenderer.render(doc, &state, null, null, null);
+        footnoteListRenderer.render(doc, &state, null);
     }
 
     if (useConsole) {

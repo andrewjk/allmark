@@ -13,7 +13,7 @@ public static class CodeBlockRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         if (node.Type == "code_block" && node.Content != null && node.Content.Length == 0)
         {

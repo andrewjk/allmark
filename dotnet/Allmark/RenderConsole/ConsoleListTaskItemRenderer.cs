@@ -13,7 +13,7 @@ public static class ConsoleListTaskItemRenderer
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? first = null, bool? last = null, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         var isChecked = node.Markup.Length > 1 && node.Markup[1] != ' ';
         var emoji = isChecked ? "[✓]" : "[ ]";

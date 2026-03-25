@@ -83,6 +83,9 @@ pub fn parseBlockInlines(
     }
 
     var trimmed_content = parent.content;
+    while (trimmed_content.len > 0 and std.ascii.isWhitespace(trimmed_content[0])) {
+        trimmed_content = trimmed_content[1..trimmed_content.len];
+    }
     while (trimmed_content.len > 0 and std.ascii.isWhitespace(trimmed_content[trimmed_content.len - 1])) {
         trimmed_content = trimmed_content[0 .. trimmed_content.len - 1];
     }
