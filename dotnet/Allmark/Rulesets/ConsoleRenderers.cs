@@ -1,6 +1,7 @@
 namespace Allmark.Rulesets;
 
 using Allmark.Render;
+using Allmark.Render.Console;
 using Allmark.Types;
 
 public static class ConsoleRenderers
@@ -18,6 +19,7 @@ public static class ConsoleRenderers
         [ConsoleFootnoteRenderer.Create().Name] = ConsoleFootnoteRenderer.Create(),
         [ConsoleHardBreakRenderer.Create().Name] = ConsoleHardBreakRenderer.Create(),
         [ConsoleHeadingRenderer.Create().Name] = ConsoleHeadingRenderer.Create(),
+        [ConsoleHeadingUnderlineRenderer.Create().Name] = ConsoleHeadingUnderlineRenderer.Create(),
         [ConsoleHighlightRenderer.Create().Name] = ConsoleHighlightRenderer.Create(),
         [ConsoleHtmlBlockRenderer.Create().Name] = ConsoleHtmlBlockRenderer.Create(),
         [ConsoleHtmlSpanRenderer.Create().Name] = ConsoleHtmlSpanRenderer.Create(),

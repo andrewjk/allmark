@@ -72,7 +72,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		let haveParagraph =
 			parent.type === "paragraph" && !parent.blankAfter && /[^\s]/.test(parent.content);
 		if (haveParagraph) {
-			parent.type = "heading";
+			parent.type = "heading_underline";
 			parent.markup = state.src.substring(state.i, end);
 			parent.length = end - parent.index;
 			state.i = end;

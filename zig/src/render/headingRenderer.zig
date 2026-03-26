@@ -21,8 +21,14 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
     const open_tag = std.fmt.allocPrint(state.allocator, "<h{d}>", .{level}) catch unreachable;
     defer state.allocator.free(open_tag);
     state.output.appendSlice(state.allocator, open_tag) catch unreachable;
-    renderUtils.innerNewLine(node, state);
-    renderChildrenFn(node, state, true);
+
+    // Render the children of the dummy paragraph directly (not the paragraph itself)
+    if (node.children) |children| {
+        if (children.len > 0) {
+            renderChildrenFn(children[0], state, true);
+        }
+    }
+
     const close_tag = std.fmt.allocPrint(state.allocator, "</h{d}>", .{level}) catch unreachable;
     defer state.allocator.free(close_tag);
     state.output.appendSlice(state.allocator, close_tag) catch unreachable;

@@ -32,8 +32,11 @@ public static class HeadingRenderer
         }
 
         state.Output.Append($"<h{level}>");
-        RenderUtils.InnerNewLine(node, state);
-        RenderChildren.Execute(node, state, decode);
+        // Render the children of the dummy paragraph directly (not the paragraph itself)
+        if (node.Children != null && node.Children.Count > 0)
+        {
+            RenderChildren.Execute(node.Children[0], state, decode);
+        }
         state.Output.Append($"</h{level}>");
         RenderUtils.EndNewLine(node, state);
     }

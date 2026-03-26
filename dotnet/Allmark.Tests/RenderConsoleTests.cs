@@ -191,7 +191,7 @@ public class RenderConsoleTests
     public void RendersHeadingWithUnderlineSetextStyle()
     {
         var input = "Heading\n=======\n\nSubheading\n-------";
-        var expected = "\x1B[1m\x1B[35mHeading\n\x1B[0m\x1B[2m=======\x1B[0m\n\x1B[1m\x1B[35mSubheading\n\x1B[0m\x1B[2m----------\x1B[0m\n";
+        var expected = "\x1B[1m\x1B[35mHeading\x1B[0m\n\x1B[2m=======\x1B[0m\n\x1B[1m\x1B[35mSubheading\x1B[0m\n\x1B[2m----------\x1B[0m\n";
         var doc = Parser.Execute(input, Core.RuleSet);
         var output = Renderer.Execute(doc, ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);

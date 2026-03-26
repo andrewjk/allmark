@@ -57,8 +57,8 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             // Don't add heading to openNodes - it doesn't accept block children
             // Heading content is stored in the content field and processed as inlines later
 
-            // Advance past the # characters (like TypeScript: state.i += level)
-            state.i = j;
+            const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
+            movePastMarker(level, state);
             const eol = getEndOfLine(state);
 
             // Strip trailing spaces and optional closing # characters
@@ -81,14 +81,26 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 }
                 end -= 1;
             }
+            end += 1;
 
+            const paragraph = newBlock(state.allocator, "paragraph", state.i, state.line, "", 0) catch unreachable;
             if (state.i <= end) {
-                heading.content = state.src[state.i .. end + 1];
+                paragraph.content = state.src[state.i..end];
             } else {
-                heading.content = "";
+                paragraph.content = "";
             }
+
+            const children_array = state.allocator.alloc(*MarkdownNode, 1) catch unreachable;
+            children_array[0] = paragraph;
+            heading.children = children_array;
+
+            if (end < eol) {
+                heading.info = state.allocator.dupe(u8, state.src[end..eol]) catch unreachable;
+            }
+
             state.i = eol;
             heading.length = state.i - heading.index;
+            paragraph.length = state.i - paragraph.index;
 
             return true;
         }

@@ -1,8 +1,26 @@
+import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
-import { render } from "./headingRenderer";
+import type RendererState from "../types/RendererState";
+import renderChildren from "./renderChildren";
+import { endNewLine, innerNewLine, startNewLine } from "./renderUtils";
 
 const renderer: Renderer = {
 	name: "heading_underline",
 	render,
 };
 export default renderer;
+
+export function render(node: MarkdownNode, state: RendererState): void {
+	startNewLine(node, state);
+	let level = 0;
+	if (node.markup.includes("=")) {
+		level = 1;
+	} else if (node.markup.includes("-")) {
+		level = 2;
+	}
+	state.output += `<h${level}>`;
+	innerNewLine(node, state);
+	renderChildren(node, state);
+	state.output += `</h${level}>`;
+	endNewLine(node, state);
+}

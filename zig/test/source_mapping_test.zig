@@ -37,6 +37,28 @@ test "source mapping - heading ATX with multiple hashes" {
     try std.testing.expectEqual(@as(usize, 13), heading.length);
 }
 
+test "source mapping - heading with emphasis" {
+    const input = "# Heading *bold* 1";
+    const gpa = std.testing.allocator;
+    var rules = try extended.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    try std.testing.expect(doc.children.?.len == 1);
+    const heading = doc.children.?[0];
+    try std.testing.expectEqualStrings("heading", heading.type);
+    try std.testing.expectEqual(@as(usize, 0), heading.index);
+    try std.testing.expectEqual(@as(usize, 18), heading.length);
+
+    const emphasis = heading.children.?[0].children.?[1];
+    try std.testing.expectEqualStrings("emphasis", emphasis.type);
+    try std.testing.expectEqual(@as(usize, 10), emphasis.index);
+    try std.testing.expectEqual(@as(usize, 6), emphasis.length);
+}
+
 test "source mapping - heading underline" {
     const input = "Heading\n=====";
     const gpa = std.testing.allocator;
@@ -49,7 +71,7 @@ test "source mapping - heading underline" {
 
     try std.testing.expect(doc.children.?.len == 1);
     const heading = doc.children.?[0];
-    try std.testing.expectEqualStrings("heading", heading.type);
+    try std.testing.expectEqualStrings("heading_underline", heading.type);
     try std.testing.expectEqual(@as(usize, 0), heading.index);
     try std.testing.expectEqual(@as(usize, 13), heading.length);
 }
@@ -102,6 +124,28 @@ test "source mapping - block quote" {
     try std.testing.expectEqualStrings("block_quote", blockQuote.type);
     try std.testing.expectEqual(@as(usize, 0), blockQuote.index);
     try std.testing.expectEqual(@as(usize, 15), blockQuote.length);
+}
+
+test "source mapping - block quote with emphasis" {
+    const input = "> Quote *content*";
+    const gpa = std.testing.allocator;
+    var rules = try extended.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    try std.testing.expect(doc.children.?.len == 1);
+    const blockQuote = doc.children.?[0];
+    try std.testing.expectEqualStrings("block_quote", blockQuote.type);
+    try std.testing.expectEqual(@as(usize, 0), blockQuote.index);
+    try std.testing.expectEqual(@as(usize, 17), blockQuote.length);
+
+    const emphasis = blockQuote.children.?[0].children.?[1];
+    try std.testing.expectEqualStrings("emphasis", emphasis.type);
+    try std.testing.expectEqual(@as(usize, 8), emphasis.index);
+    try std.testing.expectEqual(@as(usize, 9), emphasis.length);
 }
 
 test "source mapping - code block indented" {
@@ -274,6 +318,31 @@ test "source mapping - list item" {
     try std.testing.expectEqualStrings("list_item", listItem.type);
     try std.testing.expectEqual(@as(usize, 0), listItem.index);
     try std.testing.expectEqual(@as(usize, 11), listItem.length);
+}
+
+test "source mapping - list item with emphasis" {
+    const input = "1. Item *one*";
+    const gpa = std.testing.allocator;
+    var rules = try extended.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    try std.testing.expect(doc.children.?.len == 1);
+    const list = doc.children.?[0];
+    try std.testing.expect(list.children != null);
+    try std.testing.expectEqual(@as(usize, 1), list.children.?.len);
+    const listItem = list.children.?[0];
+    try std.testing.expectEqualStrings("list_item", listItem.type);
+    try std.testing.expectEqual(@as(usize, 0), listItem.index);
+    try std.testing.expectEqual(@as(usize, 13), listItem.length);
+
+    const emphasis = listItem.children.?[0].children.?[1];
+    try std.testing.expectEqualStrings("emphasis", emphasis.type);
+    try std.testing.expectEqual(@as(usize, 8), emphasis.index);
+    try std.testing.expectEqual(@as(usize, 5), emphasis.length);
 }
 
 test "source mapping - list task item checked" {

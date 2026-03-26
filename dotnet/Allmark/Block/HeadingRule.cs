@@ -66,8 +66,7 @@ public static class HeadingRule
 
                 parent.Children!.Add(heading);
 
-                // HACK: ignore optional end heading marks and spaces, destructively
-                state.I += level;
+                Utils.MovePastMarker(level, state);
                 var endOfLine = Utils.GetEndOfLine(state);
                 var end = endOfLine - 1;
                 for (; end >= state.I; end--)
@@ -88,9 +87,20 @@ public static class HeadingRule
                         break;
                     }
                 }
-                heading.Content = state.Src.Substring(state.I, end + 1 - state.I);
-                heading.Length = endOfLine - heading.Index;
+                end++;
+
+                var paragraph = Utils.NewBlock("paragraph", state.I, state.Line, "", 0);
+                paragraph.Content = state.Src.Substring(state.I, end - state.I);
+                heading.Children = [paragraph];
+
+                if (end < endOfLine)
+                {
+                    heading.Info = state.Src.Substring(end, endOfLine - end);
+                }
+
                 state.I = endOfLine;
+                heading.Length = state.I - heading.Index;
+                paragraph.Length = state.I - paragraph.Index;
 
                 return true;
             }

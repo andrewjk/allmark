@@ -26,9 +26,24 @@ describe("source mapping - block rules", () => {
 		const input = "Heading\n=====";
 		const doc = parse(input, extended);
 		const heading = doc.children![0];
-		expect(heading.type).toBe("heading");
+		expect(heading.type).toBe("heading_underline");
 		expect(heading.index).toBe(0);
 		expect(heading.length).toBe(13);
+	});
+
+	test("heading with emphasis", () => {
+		const input = "# Heading *bold* 1";
+		const doc = parse(input, extended);
+
+		const heading = doc.children![0];
+		expect(heading.type).toBe("heading");
+		expect(heading.index).toBe(0);
+		expect(heading.length).toBe(18);
+
+		const emphasis = heading.children![0].children![1];
+		expect(emphasis.type).toBe("emphasis");
+		expect(emphasis.index).toBe(10);
+		expect(emphasis.length).toBe(6);
 	});
 
 	test("thematic break", () => {
@@ -56,6 +71,21 @@ describe("source mapping - block rules", () => {
 		expect(blockQuote.type).toBe("block_quote");
 		expect(blockQuote.index).toBe(0);
 		expect(blockQuote.length).toBe(15);
+	});
+
+	test("block quote with emphasis", () => {
+		const input = "> Quote *content*";
+		const doc = parse(input, extended);
+
+		const blockQuote = doc.children![0];
+		expect(blockQuote.type).toBe("block_quote");
+		expect(blockQuote.index).toBe(0);
+		expect(blockQuote.length).toBe(17);
+
+		const emphasis = blockQuote.children![0].children![1];
+		expect(emphasis.type).toBe("emphasis");
+		expect(emphasis.index).toBe(8);
+		expect(emphasis.length).toBe(9);
 	});
 
 	test("code block - indented", () => {
@@ -147,6 +177,22 @@ describe("source mapping - block rules", () => {
 		expect(listItem.type).toBe("list_item");
 		expect(listItem.index).toBe(0);
 		expect(listItem.length).toBe(11);
+	});
+
+	test("list item with emphasis", () => {
+		const input = "1. Item *one*";
+		const doc = parse(input, extended);
+		const list = doc.children![0];
+
+		const listItem = list.children![0];
+		expect(listItem.type).toBe("list_item");
+		expect(listItem.index).toBe(0);
+		expect(listItem.length).toBe(13);
+
+		const emphasis = listItem.children![0].children![1];
+		expect(emphasis.type).toBe("emphasis");
+		expect(emphasis.index).toBe(8);
+		expect(emphasis.length).toBe(5);
 	});
 
 	test("list task item - checked", () => {
@@ -336,6 +382,22 @@ describe("source mapping - inline rules", () => {
 		expect(link.type).toBe("link");
 		expect(link.index).toBe(8);
 		expect(link.length).toBe(19);
+	});
+
+	test("link with emphasis", () => {
+		const input = "# Test\n\n[link *text*](url)";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![1];
+
+		const link = paragraph.children![0];
+		expect(link.type).toBe("link");
+		expect(link.index).toBe(8);
+		expect(link.length).toBe(18);
+
+		const emphasis = link.children![1];
+		expect(emphasis.type).toBe("emphasis");
+		expect(emphasis.index).toBe(14);
+		expect(emphasis.length).toBe(6);
 	});
 
 	test("footnote", () => {

@@ -5,6 +5,7 @@ import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
 import isSpace from "../utils/isSpace";
+import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
@@ -66,7 +67,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			parent.children!.push(heading);
 
-			state.i += level;
+			movePastMarker(level, state);
 
 			// Ignore optional end heading marks and spaces for content, but put
 			// them in info so that they aren't lost
@@ -85,13 +86,20 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			}
 			end++;
 
-			heading.content = state.src.substring(state.i, end);
+			// Add a dummy paragraph which will be removed in the renderer. It
+			// is needed to get the correct mapping of elements (e.g. emphasis)
+			// inside the header
+			let paragraph = newBlock("paragraph", state.i, state.line, "", 0);
+			paragraph.content = state.src.substring(state.i, end);
+			heading.children = [paragraph];
+
 			if (end < endOfLine) {
 				heading.info = state.src.substring(end, endOfLine);
 			}
 
 			state.i = endOfLine;
 			heading.length = state.i - heading.index;
+			paragraph.length = state.i - paragraph.index;
 
 			return true;
 		}

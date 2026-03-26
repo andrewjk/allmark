@@ -2,7 +2,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
 import renderChildren from "./renderChildren";
-import { endNewLine, innerNewLine, startNewLine } from "./renderUtils";
+import { endNewLine, startNewLine } from "./renderUtils";
 
 const renderer: Renderer = {
 	name: "heading",
@@ -21,8 +21,9 @@ export function render(node: MarkdownNode, state: RendererState): void {
 		level = 2;
 	}
 	state.output += `<h${level}>`;
-	innerNewLine(node, state);
-	renderChildren(node, state);
+	if (node.children !== undefined && node.children.length > 0) {
+		renderChildren(node.children[0], state);
+	}
 	state.output += `</h${level}>`;
 	endNewLine(node, state);
 }

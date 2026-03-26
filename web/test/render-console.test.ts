@@ -148,8 +148,8 @@ test("renders heading with underline Setext style", () => {
 	const doc = parse(input, core);
 	const output = render(doc, consoleRenderers);
 	expect(output).toBe(
-		"\x1b[1m\x1b[35mHeading\n\x1b[0m\x1b[2m=======\x1b[0m\n" +
-			"\x1b[1m\x1b[35mSubheading\n\x1b[0m\x1b[2m----------\x1b[0m\n",
+		"\x1b[1m\x1b[35mHeading\x1b[0m\n\x1b[2m=======\x1b[0m\n" +
+			"\x1b[1m\x1b[35mSubheading\x1b[0m\n\x1b[2m----------\x1b[0m\n",
 	);
 });
 

@@ -19,18 +19,7 @@ pub const consoleHeadingRenderer = Renderer{
 pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
     _ = decode;
 
-    var level: usize = 0;
-    var isSetext = false;
-
-    if (node.markup.len > 0 and node.markup[0] == '#') {
-        level = node.markup.len;
-    } else if (std.mem.indexOfScalar(u8, node.markup, '=')) |_| {
-        level = 1;
-        isSetext = true;
-    } else if (std.mem.indexOfScalar(u8, node.markup, '-')) |_| {
-        level = 2;
-        isSetext = true;
-    }
+    const level = node.markup.len;
 
     if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] != '\n') {
         state.output.append(state.allocator, '\n') catch unreachable;
@@ -46,87 +35,26 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
         else => ansiReset,
     };
 
-    if (isSetext) {
-        // Render Setext-style heading with underline
-        state.output.appendSlice(state.allocator, style) catch unreachable;
-
-        var headingText = std.ArrayList(u8).initCapacity(state.allocator, 0) catch unreachable;
-        defer headingText.deinit(state.allocator);
-
-        for (node.children orelse &.{}) |child| {
-            if (std.mem.eql(u8, child.type, "text")) {
-                headingText.appendSlice(state.allocator, child.content) catch unreachable;
-            } else {
-                renderChildToString(child, state, &headingText) catch unreachable;
-            }
-        }
-
-        const plainText = stripAnsiCodes(state.allocator, headingText.items) catch unreachable;
-        defer state.allocator.free(plainText);
-
-        const underlineChar: u8 = if (level == 1) '=' else '-';
-        var underlineBuf = std.ArrayList(u8).initCapacity(state.allocator, plainText.len) catch unreachable;
-        defer underlineBuf.deinit(state.allocator);
-        for (0..plainText.len) |_| {
-            underlineBuf.append(state.allocator, underlineChar) catch unreachable;
-        }
-        const underline = underlineBuf.items;
-
-        state.output.appendSlice(state.allocator, headingText.items) catch unreachable;
-        state.output.append(state.allocator, '\n') catch unreachable;
-        state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
-        state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
-        state.output.appendSlice(state.allocator, underline) catch unreachable;
-        state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
-        state.output.append(state.allocator, '\n') catch unreachable;
-    } else {
-        var hashesBuf = std.ArrayList(u8).initCapacity(state.allocator, level) catch unreachable;
-        defer hashesBuf.deinit(state.allocator);
-        for (0..level) |_| {
-            hashesBuf.append(state.allocator, '#') catch unreachable;
-        }
-        const hashes = hashesBuf.items;
-
-        state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
-        state.output.appendSlice(state.allocator, hashes) catch unreachable;
-        state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
-        state.output.appendSlice(state.allocator, " ") catch unreachable;
-        state.output.appendSlice(state.allocator, style) catch unreachable;
-        renderChildrenConsole(node, state, true) catch unreachable;
-        state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
-        state.output.append(state.allocator, '\n') catch unreachable;
+    var hashesBuf = std.ArrayList(u8).initCapacity(state.allocator, level) catch unreachable;
+    defer hashesBuf.deinit(state.allocator);
+    for (0..level) |_| {
+        hashesBuf.append(state.allocator, '#') catch unreachable;
     }
-}
+    const hashes = hashesBuf.items;
 
-fn renderChildToString(node: *const MarkdownNode, state: *ConsoleRendererState, output: *std.ArrayList(u8)) !void {
-    const originalOutputLen = state.output.items.len;
+    state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
+    state.output.appendSlice(state.allocator, hashes) catch unreachable;
+    state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
+    state.output.appendSlice(state.allocator, " ") catch unreachable;
+    state.output.appendSlice(state.allocator, style) catch unreachable;
 
-    // Capture the output by rendering to state
-    if (state.renderers.get(node.type)) |renderer| {
-        renderer.render(node, state, true);
-    }
-
-    // Copy the new output
-    try output.appendSlice(state.allocator, state.output.items[originalOutputLen..]);
-
-    // Restore the original output
-    state.output.replaceRange(state.allocator, originalOutputLen, state.output.items.len, "") catch unreachable;
-}
-
-fn stripAnsiCodes(allocator: std.mem.Allocator, input: []const u8) ![]u8 {
-    var result = std.ArrayList(u8).initCapacity(allocator, 0) catch unreachable;
-    defer result.deinit(allocator);
-
-    var i: usize = 0;
-    while (i < input.len) {
-        if (input[i] == 0x1b and i + 1 < input.len and input[i + 1] == '[') {
-            const end = std.mem.indexOfScalar(u8, input[i..], 'm') orelse input.len - i;
-            i += end + 1;
-        } else {
-            try result.append(allocator, input[i]);
-            i += 1;
+    // Render the dummy paragraph's children directly (not the paragraph itself)
+    if (node.children) |children| {
+        if (children.len > 0) {
+            renderChildrenConsole(children[0], state, true) catch unreachable;
         }
     }
 
-    return result.toOwnedSlice(allocator);
+    state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
+    state.output.append(state.allocator, '\n') catch unreachable;
 }

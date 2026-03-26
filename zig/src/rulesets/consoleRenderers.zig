@@ -13,6 +13,7 @@ const emphasisRenderer = @import("../render-console/consoleEmphasisRenderer.zig"
 const footnoteRenderer = @import("../render-console/consoleFootnoteRenderer.zig").consoleFootnoteRenderer;
 const hardBreakRenderer = @import("../render-console/consoleHardBreakRenderer.zig").consoleHardBreakRenderer;
 const headingRenderer = @import("../render-console/consoleHeadingRenderer.zig").consoleHeadingRenderer;
+const headingUnderlineRenderer = @import("../render-console/consoleHeadingUnderlineRenderer.zig").consoleHeadingUnderlineRenderer;
 const highlightRenderer = @import("../render-console/consoleHighlightRenderer.zig").consoleHighlightRenderer;
 const htmlBlockRenderer = @import("../render-console/consoleHtmlRenderer.zig").consoleHtmlRenderer;
 const htmlSpanRenderer = @import("../render-console/consoleHtmlRenderer.zig").consoleHtmlRenderer;
@@ -47,6 +48,7 @@ pub fn init(allocator: std.mem.Allocator) !RendererSet {
     try renderers.put(footnoteRenderer.name, &footnoteRenderer);
     try renderers.put(hardBreakRenderer.name, &hardBreakRenderer);
     try renderers.put(headingRenderer.name, &headingRenderer);
+    try renderers.put(headingUnderlineRenderer.name, &headingUnderlineRenderer);
     try renderers.put(highlightRenderer.name, &highlightRenderer);
     try renderers.put(htmlBlockRenderer.name, &htmlBlockRenderer);
     try renderers.put("html_block", &htmlBlockRenderer);

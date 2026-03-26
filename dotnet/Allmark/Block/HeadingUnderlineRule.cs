@@ -66,7 +66,7 @@ public static class HeadingUnderlineRule
                 parent.Type == "paragraph" && !parent.BlankAfter && Regex.IsMatch(parent.Content ?? "", @"[^\s]");
             if (haveParagraph)
             {
-                parent.Type = "heading";
+                parent.Type = "heading_underline";
                 parent.Markup = state.Src.Substring(state.I, end - state.I);
                 parent.Length = end - parent.Index;
                 state.I = end;

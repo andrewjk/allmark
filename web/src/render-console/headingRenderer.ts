@@ -16,41 +16,15 @@ function render(node: MarkdownNode, state: RendererState): void {
 	const style = ANSI.bold + ANSI.magenta;
 	const reset = ANSI.reset;
 
-	let level = 0;
-	const isSetext = node.markup.includes("=") || node.markup.includes("-");
-	if (node.markup.startsWith("#")) {
-		level = node.markup.length;
-	} else if (isSetext) {
-		if (node.markup.includes("=")) {
-			level = 1;
-		} else {
-			level = 2;
-		}
-	}
+	let level = node.markup.length;
 
 	if (s.output.length && !s.output.endsWith("\n")) {
 		s.output += "\n";
 	}
 
-	if (isSetext) {
-		const plainTextLength = getPlainTextLength(node);
-		const underlineChar = level === 1 ? "=" : "-";
-		s.output += `${style}`;
-		renderChildren(node, state);
-		s.output += `\n${reset}${ANSI.dim}${underlineChar.repeat(plainTextLength)}${reset}\n`;
-	} else {
-		s.output += `${ANSI.dim}${"#".repeat(level)}${reset} ${style}`;
-		renderChildren(node, state);
-		s.output += `${reset}\n`;
+	s.output += `${ANSI.dim}${"#".repeat(level)}${reset} ${style}`;
+	if (node.children !== undefined && node.children.length > 0) {
+		renderChildren(node.children[0], state);
 	}
-}
-
-function getPlainTextLength(node: MarkdownNode): number {
-	if (node.type === "text") {
-		return node.content.length || 0;
-	}
-	if (node.children) {
-		return node.children.reduce((sum, child) => sum + getPlainTextLength(child), 0);
-	}
-	return 0;
+	s.output += `${reset}\n`;
 }

@@ -30,12 +30,27 @@ public class SourceMappingTests
     }
 
     [TestMethod]
+    public void HeadingWithEmphasis()
+    {
+        var input = "# Heading *bold* 1";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var heading = doc.Children![0];
+        Assert.AreEqual("heading", heading.Type);
+        Assert.AreEqual(0, heading.Index);
+        Assert.AreEqual(18, heading.Length);
+        var emphasis = heading.Children![0].Children![1];
+        Assert.AreEqual("emphasis", emphasis.Type);
+        Assert.AreEqual(10, emphasis.Index);
+        Assert.AreEqual(6, emphasis.Length);
+    }
+
+    [TestMethod]
     public void HeadingUnderline()
     {
         var input = "Heading\n=====";
         var doc = Parser.Execute(input, Extended.RuleSet);
         var heading = doc.Children![0];
-        Assert.AreEqual("heading", heading.Type);
+        Assert.AreEqual("heading_underline", heading.Type);
         Assert.AreEqual(0, heading.Index);
         Assert.AreEqual(13, heading.Length);
     }
@@ -70,6 +85,21 @@ public class SourceMappingTests
         Assert.AreEqual("block_quote", blockQuote.Type);
         Assert.AreEqual(0, blockQuote.Index);
         Assert.AreEqual(15, blockQuote.Length);
+    }
+
+    [TestMethod]
+    public void BlockQuoteWithEmphasis()
+    {
+        var input = "> Quote *content*";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var blockQuote = doc.Children![0];
+        Assert.AreEqual("block_quote", blockQuote.Type);
+        Assert.AreEqual(0, blockQuote.Index);
+        Assert.AreEqual(17, blockQuote.Length);
+        var emphasis = blockQuote.Children![0].Children![1];
+        Assert.AreEqual("emphasis", emphasis.Type);
+        Assert.AreEqual(8, emphasis.Index);
+        Assert.AreEqual(9, emphasis.Length);
     }
 
     [TestMethod]
@@ -181,6 +211,22 @@ public class SourceMappingTests
         Assert.AreEqual("list_item", listItem.Type);
         Assert.AreEqual(0, listItem.Index);
         Assert.AreEqual(11, listItem.Length);
+    }
+
+    [TestMethod]
+    public void ListItemWithEmphasis()
+    {
+        var input = "1. Item *one*";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var list = doc.Children![0];
+        var listItem = list.Children![0];
+        Assert.AreEqual("list_item", listItem.Type);
+        Assert.AreEqual(0, listItem.Index);
+        Assert.AreEqual(13, listItem.Length);
+        var emphasis = listItem.Children![0].Children![1];
+        Assert.AreEqual("emphasis", emphasis.Type);
+        Assert.AreEqual(8, emphasis.Index);
+        Assert.AreEqual(5, emphasis.Length);
     }
 
     [TestMethod]

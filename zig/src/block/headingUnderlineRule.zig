@@ -76,7 +76,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 parent.content = new_content;
                 parent.content_allocated = true;
 
-                const new_type = state.allocator.dupe(u8, "heading") catch unreachable;
+                const new_type = state.allocator.dupe(u8, "heading_underline") catch unreachable;
                 state.allocator.free(parent.type);
                 parent.type = new_type;
                 parent.markup = state.allocator.dupe(u8, state.src[state.i..end]) catch unreachable;

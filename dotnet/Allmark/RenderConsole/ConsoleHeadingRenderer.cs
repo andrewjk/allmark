@@ -52,7 +52,11 @@ public static class ConsoleHeadingRenderer
         else
         {
             state.Output.Append($"{Ansi.Dim}{new string('#', level)}{Ansi.Reset} {style}");
-            RenderChildren.Execute(node, state);
+            // Render the dummy paragraph's children directly (not the paragraph itself)
+            if (node.Children != null && node.Children.Count > 0)
+            {
+                RenderChildren.Execute(node.Children[0], state);
+            }
             state.Output.Append($"{Ansi.Reset}\n");
         }
     }
