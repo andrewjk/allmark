@@ -2,6 +2,7 @@ import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import isSpace from "../utils/isSpace";
+import movePastMarker from "../utils/movePastMarker";
 import newInline from "../utils/newInline";
 
 const rule: BlockRule = {
@@ -48,8 +49,9 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			let markup = `[${state.src[start + 1]}]`;
 			// HACK: It should be a block, but it's not for output reasons
 			let task = newInline("list_task_item", state.i, state.line, markup, 0);
+			task.length = 3;
 			parent.children!.push(task);
-			state.i = start + 3;
+			movePastMarker(3, state);
 		}
 	}
 

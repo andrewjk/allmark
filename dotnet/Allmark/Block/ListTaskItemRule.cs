@@ -29,8 +29,9 @@ public static class ListTaskItemRule
                 var markup = $"[{Utils.GetChar(state.Src, start + 1)}]";
                 // HACK: It should be a block, but it's not for output reasons
                 var task = Utils.NewInline("list_task_item", state.I, state.Line, markup, 0);
+                task.Length = 3;
                 parent.Children!.Add(task);
-                state.I = start + 3;
+                Utils.MovePastMarker(3, state);
             }
         }
 

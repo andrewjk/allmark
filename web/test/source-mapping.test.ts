@@ -199,20 +199,53 @@ describe("source mapping - block rules", () => {
 		const input = "- [x] Done task";
 		const doc = parse(input, extended);
 		const list = doc.children![0];
-		const taskItem = list.children![0];
-		expect(taskItem.type).toBe("list_item");
-		expect(taskItem.index).toBe(0);
-		expect(taskItem.length).toBe(15);
+
+		const listItem = list.children![0];
+		expect(listItem.type).toBe("list_item");
+		expect(listItem.index).toBe(0);
+		expect(listItem.length).toBe(15);
+
+		const taskItem = listItem.children![0];
+		expect(taskItem.type).toBe("list_task_item");
+		expect(taskItem.index).toBe(2);
+		expect(taskItem.length).toBe(3);
 	});
 
 	test("list task item - unchecked", () => {
 		const input = "- [ ] Todo task";
 		const doc = parse(input, extended);
 		const list = doc.children![0];
-		const taskItem = list.children![0];
-		expect(taskItem.type).toBe("list_item");
-		expect(taskItem.index).toBe(0);
-		expect(taskItem.length).toBe(15);
+
+		const listItem = list.children![0];
+		expect(listItem.type).toBe("list_item");
+		expect(listItem.index).toBe(0);
+		expect(listItem.length).toBe(15);
+
+		const taskItem = listItem.children![0];
+		expect(taskItem.type).toBe("list_task_item");
+		expect(taskItem.index).toBe(2);
+		expect(taskItem.length).toBe(3);
+	});
+
+	test("list task item with emphasis", () => {
+		const input = "- [ ] very *quick* task";
+		const doc = parse(input, extended);
+		const list = doc.children![0];
+
+		const listItem = list.children![0];
+		expect(listItem.type).toBe("list_item");
+		expect(listItem.index).toBe(0);
+		expect(listItem.length).toBe(23);
+
+		const taskItem = listItem.children![0];
+		expect(taskItem.type).toBe("list_task_item");
+		expect(taskItem.index).toBe(2);
+		expect(taskItem.length).toBe(3);
+
+		const emphasis = listItem.children![1].children![1];
+		expect(emphasis.type).toBe("emphasis");
+		expect(emphasis.index).toBe(11);
+		expect(emphasis.length).toBe(7);
 	});
 
 	test("footnote reference", () => {

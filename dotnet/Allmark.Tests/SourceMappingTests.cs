@@ -254,6 +254,47 @@ public class SourceMappingTests
     }
 
     [TestMethod]
+    public void ListTaskItemWithEmphasis()
+    {
+        var input = "- [ ] very *quick* task";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var list = doc.Children![0];
+
+        var listItem = list.Children![0];
+        Assert.AreEqual("list_item", listItem.Type);
+        Assert.AreEqual(0, listItem.Index);
+        Assert.AreEqual(23, listItem.Length);
+
+        var taskItem = listItem.Children![0];
+        Assert.AreEqual("list_task_item", taskItem.Type);
+        Assert.AreEqual(2, taskItem.Index);
+        Assert.AreEqual(3, taskItem.Length);
+
+        var emphasis = listItem.Children![1].Children![1];
+        Assert.AreEqual("emphasis", emphasis.Type);
+        Assert.AreEqual(11, emphasis.Index);
+        Assert.AreEqual(7, emphasis.Length);
+    }
+
+    [TestMethod]
+    public void LinkWithEmphasis()
+    {
+        var input = "# Test\n\n[link *text*](url)";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var paragraph = doc.Children![1];
+
+        var link = paragraph.Children![0];
+        Assert.AreEqual("link", link.Type);
+        Assert.AreEqual(8, link.Index);
+        Assert.AreEqual(18, link.Length);
+
+        var emphasis = link.Children![1];
+        Assert.AreEqual("emphasis", emphasis.Type);
+        Assert.AreEqual(14, emphasis.Index);
+        Assert.AreEqual(6, emphasis.Length);
+    }
+
+    [TestMethod]
     public void FootnoteReference()
     {
         var input = "[^1]: Footnote content";

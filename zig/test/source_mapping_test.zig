@@ -385,6 +385,61 @@ test "source mapping - list task item unchecked" {
     try std.testing.expectEqual(@as(usize, 15), taskItem.length);
 }
 
+test "source mapping - list task item with emphasis" {
+    const input = "- [ ] very *quick* task";
+    const gpa = std.testing.allocator;
+    var rules = try extended.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    try std.testing.expect(doc.children.?.len == 1);
+    const list = doc.children.?[0];
+    try std.testing.expect(list.children != null);
+    try std.testing.expectEqual(@as(usize, 1), list.children.?.len);
+    const listItem = list.children.?[0];
+    try std.testing.expectEqualStrings("list_item", listItem.type);
+    try std.testing.expectEqual(@as(usize, 0), listItem.index);
+    try std.testing.expectEqual(@as(usize, 23), listItem.length);
+
+    const taskItem = listItem.children.?[0];
+    try std.testing.expectEqualStrings("list_task_item", taskItem.type);
+    try std.testing.expectEqual(@as(usize, 2), taskItem.index);
+    try std.testing.expectEqual(@as(usize, 3), taskItem.length);
+
+    const emphasis = listItem.children.?[1].children.?[1];
+    try std.testing.expectEqualStrings("emphasis", emphasis.type);
+    try std.testing.expectEqual(@as(usize, 11), emphasis.index);
+    try std.testing.expectEqual(@as(usize, 7), emphasis.length);
+}
+
+test "source mapping - link with emphasis" {
+    const input = "# Test\n\n[link *text*](url)";
+    const gpa = std.testing.allocator;
+    var rules = try extended.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    try std.testing.expect(doc.children.?.len == 2);
+    const paragraph = doc.children.?[1];
+    try std.testing.expect(paragraph.children != null);
+    try std.testing.expectEqual(@as(usize, 1), paragraph.children.?.len);
+    const link = paragraph.children.?[0];
+    try std.testing.expectEqualStrings("link", link.type);
+    try std.testing.expectEqual(@as(usize, 8), link.index);
+    try std.testing.expectEqual(@as(usize, 18), link.length);
+
+    const emphasis = link.children.?[1];
+    try std.testing.expectEqualStrings("emphasis", emphasis.type);
+    try std.testing.expectEqual(@as(usize, 14), emphasis.index);
+    try std.testing.expectEqual(@as(usize, 6), emphasis.length);
+}
+
 test "source mapping - footnote reference" {
     const input = "[^1]: Footnote content";
     const gpa = std.testing.allocator;

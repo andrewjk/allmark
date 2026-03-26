@@ -248,6 +248,47 @@ struct SourceMappingTests {
 		}
 	}
 
+	@Test func listTaskItemWithEmphasis() async {
+		let input = "- [ ] very *quick* task"
+		await MainActor.run {
+			let doc = _parse(src: input, rules: extendedRuleSet)
+			let list = doc.children![0]
+
+			let listItem = list.children![0]
+			#expect(listItem.type == "list_item")
+			#expect(listItem.index == 0)
+			#expect(listItem.length == 23)
+
+			let taskItem = listItem.children![0]
+			#expect(taskItem.type == "list_task_item")
+			#expect(taskItem.index == 2)
+			#expect(taskItem.length == 3)
+
+			let emphasis = listItem.children![1].children![1]
+			#expect(emphasis.type == "emphasis")
+			#expect(emphasis.index == 11)
+			#expect(emphasis.length == 7)
+		}
+	}
+
+	@Test func linkWithEmphasis() async {
+		let input = "# Test\n\n[link *text*](url)"
+		await MainActor.run {
+			let doc = _parse(src: input, rules: extendedRuleSet)
+			let paragraph = doc.children![1]
+
+			let link = paragraph.children![0]
+			#expect(link.type == "link")
+			#expect(link.index == 8)
+			#expect(link.length == 18)
+
+			let emphasis = link.children![1]
+			#expect(emphasis.type == "emphasis")
+			#expect(emphasis.index == 14)
+			#expect(emphasis.length == 6)
+		}
+	}
+
 	@Test func footnoteReference() async {
 		let input = "[^1]: Footnote content"
 		await MainActor.run {
