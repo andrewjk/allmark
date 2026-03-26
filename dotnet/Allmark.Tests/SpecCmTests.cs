@@ -1354,6 +1354,9 @@ baz</em></h1>
         Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
     }
 
+    // NOTE: We break from the spec here and require at least two underline
+    // chars to prevent things from jumping around when typing a list under
+    // a paragraph
     [TestMethod]
     public void Example83()
     {
@@ -1362,7 +1365,7 @@ Foo
 -------------------------
 
 Foo
-=
+==
 ";
         var expected = @"
 <h2>Foo</h2>

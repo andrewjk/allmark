@@ -62,6 +62,14 @@ public static class HeadingUnderlineRule
                 }
             }
 
+            // NOTE: We break from the spec here and require at least two underline
+            // chars to prevent things from jumping around when typing a list under
+            // a paragraph
+            if (matched < 2)
+            {
+                return false;
+            }
+
             var haveParagraph =
                 parent.Type == "paragraph" && !parent.BlankAfter && Regex.IsMatch(parent.Content ?? "", @"[^\s]");
             if (haveParagraph)

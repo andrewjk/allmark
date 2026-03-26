@@ -1192,13 +1192,16 @@ test "Example 52, line 1047: '  Foo *bar\\nbaz*→\\n===='" {
     try std.testing.expectEqualStrings(expected, html);
 }
 
+// NOTE: We break from the spec here and require at least two underline
+// chars to prevent things from jumping around when typing a list under
+// a paragraph
 test "Example 53, line 1059: 'Foo\\n-------------------------\\n\\nFoo\\n='" {
     const input =
         "Foo\n" ++
         "-------------------------\n" ++
         "\n" ++
         "Foo\n" ++
-        "=\n";
+        "==\n";
     const expected =
         "<h2>Foo</h2>\n" ++
         "<h1>Foo</h1>\n";

@@ -69,6 +69,13 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			}
 		}
 
+		// NOTE: We break from the spec here and require at least two underline
+		// chars to prevent things from jumping around when typing a list under
+		// a paragraph
+		if (matched < 2) {
+			return false;
+		}
+
 		let haveParagraph =
 			parent.type === "paragraph" && !parent.blankAfter && /[^\s]/.test(parent.content);
 		if (haveParagraph) {

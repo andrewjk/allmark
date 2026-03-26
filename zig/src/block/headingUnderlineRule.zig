@@ -25,6 +25,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     const char = state.src[state.i];
 
     if (state.indent <= 3 and (char == '=' or char == '-')) {
+        var matched: usize = 1;
         var end = state.i + 1;
         var prevChar: u8 = char;
         while (end < state.src.len) : (end += 1) {
@@ -33,6 +34,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 if (isSpace(prevChar)) {
                     return false;
                 }
+                matched += 1;
             } else if (isNewLine(nextChar)) {
                 end += 1;
                 break;
@@ -40,6 +42,13 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 return false;
             }
             prevChar = nextChar;
+        }
+
+        // NOTE: We break from the spec here and require at least two underline
+        // chars to prevent things from jumping around when typing a list under
+        // a paragraph
+        if (matched < 2) {
+            return false;
         }
 
         const haveParagraph = std.mem.eql(u8, parent.type, "paragraph") and !parent.blankAfter;

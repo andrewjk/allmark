@@ -1600,13 +1600,16 @@ baz</em></h1>
 		expect(htmlTrimmed.trim()).toBe(expected.trim());
 	});
 
+	// NOTE: We break from the spec here and require at least two underline
+	// chars to prevent things from jumping around when typing a list under a
+	// paragraph
 	test("Example 83, line 1387: 'Foo\\n-------------------------\\n\\nFoo\\n='", () => {
 		const input = `
 Foo
 -------------------------
 
 Foo
-=
+==
 `;
 		const expected = `
 <h2>Foo</h2>
