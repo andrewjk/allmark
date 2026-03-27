@@ -86,12 +86,12 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			}
 			end++;
 
-			// Add a dummy paragraph which will be removed in the renderer. It
-			// is needed to get the correct mapping of elements (e.g. emphasis)
+			// Add a dummy block which will be removed in the renderer. It is
+			// needed to get the correct mapping of elements (e.g. emphasis)
 			// inside the header
-			let paragraph = newBlock("paragraph", state.i, state.line, "", 0);
-			paragraph.content = state.src.substring(state.i, end);
-			heading.children = [paragraph];
+			let content = newBlock("heading_content", state.i, state.line, "", 0);
+			content.content = state.src.substring(state.i, end);
+			heading.children = [content];
 
 			if (end < endOfLine) {
 				heading.info = state.src.substring(end, endOfLine);
@@ -99,7 +99,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			state.i = endOfLine;
 			heading.length = state.i - heading.index;
-			paragraph.length = state.i - paragraph.index;
+			content.length = state.i - content.index;
 
 			return true;
 		}

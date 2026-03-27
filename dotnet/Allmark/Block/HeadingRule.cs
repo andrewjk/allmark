@@ -89,9 +89,9 @@ public static class HeadingRule
                 }
                 end++;
 
-                var paragraph = Utils.NewBlock("paragraph", state.I, state.Line, "", 0);
-                paragraph.Content = state.Src.Substring(state.I, end - state.I);
-                heading.Children = [paragraph];
+                var content = Utils.NewBlock("heading_content", state.I, state.Line, "", 0);
+                content.Content = state.Src.Substring(state.I, end - state.I);
+                heading.Children = [content];
 
                 if (end < endOfLine)
                 {
@@ -100,7 +100,7 @@ public static class HeadingRule
 
                 state.I = endOfLine;
                 heading.Length = state.I - heading.Index;
-                paragraph.Length = state.I - paragraph.Index;
+                content.Length = state.I - content.Index;
 
                 return true;
             }

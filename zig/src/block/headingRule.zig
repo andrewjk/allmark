@@ -83,15 +83,15 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             }
             end += 1;
 
-            const paragraph = newBlock(state.allocator, "paragraph", state.i, state.line, "", 0) catch unreachable;
+            const content = newBlock(state.allocator, "heading_content", state.i, state.line, "", 0) catch unreachable;
             if (state.i <= end) {
-                paragraph.content = state.src[state.i..end];
+                content.content = state.src[state.i..end];
             } else {
-                paragraph.content = "";
+                content.content = "";
             }
 
             const children_array = state.allocator.alloc(*MarkdownNode, 1) catch unreachable;
-            children_array[0] = paragraph;
+            children_array[0] = content;
             heading.children = children_array;
 
             if (end < eol) {
@@ -100,7 +100,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
             state.i = eol;
             heading.length = state.i - heading.index;
-            paragraph.length = state.i - paragraph.index;
+            content.length = state.i - content.index;
 
             return true;
         }
