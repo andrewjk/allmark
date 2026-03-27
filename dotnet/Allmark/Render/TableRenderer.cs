@@ -46,8 +46,11 @@ public static class TableRenderer
         RenderUtils.StartNewLine(node, state);
         string alignAttr = !string.IsNullOrEmpty(node.Info) ? $" align=\"{node.Info}\"" : "";
         state.Output.Append($"<{tag}{alignAttr}>");
-        RenderUtils.InnerNewLine(node, state);
-        RenderChildren.Execute(node, state, decode);
+        // Render the children of the dummy paragraph directly (not the paragraph itself)
+        if (node.Children != null && node.Children.Count > 0)
+        {
+            RenderChildren.Execute(node.Children[0], state, decode);
+        }
         state.Output.Append($"</{tag}>");
         RenderUtils.EndNewLine(node, state);
     }

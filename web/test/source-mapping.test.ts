@@ -260,10 +260,62 @@ describe("source mapping - block rules", () => {
 	test("table", () => {
 		const input = "| A | B |\n|---|---|\n| 1 | 2 |";
 		const doc = parse(input, extended);
+
 		const table = doc.children![0];
 		expect(table.type).toBe("table");
 		expect(table.index).toBe(0);
 		expect(table.length).toBe(29);
+
+		const header = table.children![0];
+		expect(header.type).toBe("table_header");
+		expect(header.index).toBe(0);
+		expect(header.length).toBe(9);
+
+		const hc1 = header.children![0];
+		expect(hc1.type).toBe("table_cell");
+		expect(hc1.index).toBe(0);
+		expect(hc1.length).toBe(5);
+
+		const hc2 = header.children![1];
+		expect(hc2.type).toBe("table_cell");
+		expect(hc2.index).toBe(4);
+		expect(hc2.length).toBe(5);
+
+		const row = table.children![1];
+		expect(row.type).toBe("table_row");
+		expect(row.index).toBe(20);
+		expect(row.length).toBe(9);
+
+		const rc1 = row.children![0];
+		expect(rc1.type).toBe("table_cell");
+		expect(rc1.index).toBe(20);
+		expect(rc1.length).toBe(5);
+
+		const rc2 = row.children![1];
+		expect(rc2.type).toBe("table_cell");
+		expect(rc2.index).toBe(24);
+		expect(rc2.length).toBe(5);
+	});
+
+	test("table with emphasis", () => {
+		const input = "| A | B |\n|---|---|\n| item *one* | 2 |";
+		const doc = parse(input, extended);
+
+		const table = doc.children![0];
+		expect(table.type).toBe("table");
+		expect(table.index).toBe(0);
+		expect(table.length).toBe(38);
+
+		const row = table.children![1];
+		expect(row.type).toBe("table_row");
+
+		const cell = row.children![0];
+		expect(cell.type).toBe("table_cell");
+
+		const emphasis = cell.children![0].children![1];
+		expect(emphasis.type).toBe("emphasis");
+		expect(emphasis.index).toBe(27);
+		expect(emphasis.length).toBe(5);
 	});
 
 	test("paragraph", () => {

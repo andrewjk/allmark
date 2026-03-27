@@ -2,7 +2,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
 import renderChildren from "./renderChildren";
-import { endNewLine, innerNewLine, startNewLine } from "./renderUtils";
+import { endNewLine, startNewLine } from "./renderUtils";
 
 const renderer: Renderer = {
 	name: "table",
@@ -36,8 +36,9 @@ function renderTableCell(node: MarkdownNode, state: RendererState, tag: string) 
 	startNewLine(node, state);
 	let align = node.info ? ` align="${node.info}"` : "";
 	state.output += `<${tag}${align}>`;
-	innerNewLine(node, state);
-	renderChildren(node, state);
+	if (node.children !== undefined && node.children.length > 0) {
+		renderChildren(node.children[0], state);
+	}
 	state.output += `</${tag}>`;
 	endNewLine(node, state);
 }

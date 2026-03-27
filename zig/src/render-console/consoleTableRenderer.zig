@@ -159,16 +159,23 @@ fn getTextFromNode(node: *const MarkdownNode, allocator: std.mem.Allocator) []co
     if (std.mem.eql(u8, node.type, "text")) {
         return node.content;
     }
-    if (node.content.len > 0) {
-        return allocator.dupe(u8, node.content) catch unreachable;
-    }
     if (node.children) |children| {
         var buffer = std.ArrayList(u8).initCapacity(allocator, 64) catch unreachable;
         for (children) |child| {
-            const text = getTextFromNode(child, allocator);
-            buffer.appendSlice(allocator, text) catch unreachable;
+            if (std.mem.eql(u8, child.type, "text") or std.mem.eql(u8, child.type, "table_cell_content")) {
+                buffer.appendSlice(allocator, child.content) catch unreachable;
+            } else if (child.children) |grandchildren| {
+                for (grandchildren) |grandchild| {
+                    if (std.mem.eql(u8, grandchild.type, "text") or std.mem.eql(u8, grandchild.type, "table_cell_content")) {
+                        buffer.appendSlice(allocator, grandchild.content) catch unreachable;
+                    }
+                }
+            }
         }
         return buffer.toOwnedSlice(allocator) catch unreachable;
+    }
+    if (node.content.len > 0) {
+        return allocator.dupe(u8, node.content) catch unreachable;
     }
     return "";
 }

@@ -35,9 +35,6 @@ public static class HtmlRenderers
         [SubscriptRenderer.Create().Name] = SubscriptRenderer.Create(),
         [SuperscriptRenderer.Create().Name] = SuperscriptRenderer.Create(),
         [TableRenderer.Create().Name] = TableRenderer.Create(),
-        [TableCellRenderer.Create().Name] = TableCellRenderer.Create(),
-        [TableHeaderRenderer.Create().Name] = TableHeaderRenderer.Create(),
-        [TableRowRenderer.Create().Name] = TableRowRenderer.Create(),
         [TextRenderer.Create().Name] = TextRenderer.Create(),
         [ThematicBreakRenderer.Create().Name] = ThematicBreakRenderer.Create(),
     };

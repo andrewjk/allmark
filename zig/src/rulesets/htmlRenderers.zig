@@ -30,9 +30,6 @@ const strongRenderer = @import("../render/strongRenderer.zig").strongRenderer;
 const subscriptRenderer = @import("../render/subscriptRenderer.zig").subscriptRenderer;
 const superscriptRenderer = @import("../render/superscriptRenderer.zig").superscriptRenderer;
 const tableRenderer = @import("../render/tableRenderer.zig").tableRenderer;
-const tableCellRenderer = @import("../render/tableCellRenderer.zig").tableCellRenderer;
-const tableHeaderRenderer = @import("../render/tableHeaderRenderer.zig").tableHeaderRenderer;
-const tableRowRenderer = @import("../render/tableRowRenderer.zig").tableRowRenderer;
 const textRenderer = @import("../render/textRenderer.zig").textRenderer;
 const thematicBreakRenderer = @import("../render/thematicBreakRenderer.zig").thematicBreakRenderer;
 
@@ -71,9 +68,6 @@ pub fn init(allocator: std.mem.Allocator) !RendererSet {
     try renderers.put(subscriptRenderer.name, &subscriptRenderer);
     try renderers.put(superscriptRenderer.name, &superscriptRenderer);
     try renderers.put(tableRenderer.name, &tableRenderer);
-    try renderers.put(tableCellRenderer.name, &tableCellRenderer);
-    try renderers.put(tableHeaderRenderer.name, &tableHeaderRenderer);
-    try renderers.put(tableRowRenderer.name, &tableRowRenderer);
     try renderers.put(textRenderer.name, &textRenderer);
     try renderers.put(thematicBreakRenderer.name, &thematicBreakRenderer);
 

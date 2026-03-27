@@ -32,11 +32,21 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 headers[hi] = cell.info orelse "";
             }
 
+            var rowLength = endOfLine - state.i;
+            if (state.src[endOfLine - 1] == '\n') {
+                rowLength -= 1;
+            }
+
             const row = newBlock(state.allocator, "table_row", state.i, state.line, "", 0) catch unreachable;
+            row.length = rowLength;
             appendChild(state.allocator, lastNode, row) catch unreachable;
 
-            var rowContent = state.src[state.i..endOfLine];
-            rowContent = std.mem.trim(u8, rowContent, &std.ascii.whitespace);
+            const rowSrc = state.src[state.i .. state.i + rowLength];
+            var pipePositions = std.ArrayList(usize).initCapacity(state.allocator, 0) catch return false;
+            defer pipePositions.deinit(state.allocator);
+            loadPipePositions(state.allocator, &pipePositions, rowSrc) catch unreachable;
+
+            var rowContent = std.mem.trim(u8, rowSrc, &std.ascii.whitespace);
 
             var rowStart: usize = 0;
             var rowEnd: usize = rowContent.len;
@@ -68,25 +78,8 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             const numParts = headers.len;
             var ri: usize = 0;
             while (ri < numParts) : (ri += 1) {
-                const cell = newBlock(state.allocator, "table_cell", state.i, state.line, "", 0) catch unreachable;
-                var text = if (ri < rowParts.items.len) rowParts.items[ri] else "";
-                text = std.mem.trim(u8, text, &std.ascii.whitespace);
-
-                var escapedText = std.ArrayList(u8).initCapacity(state.allocator, 0) catch return false;
-                defer escapedText.deinit(state.allocator);
-                var ti: usize = 0;
-                while (ti < text.len) : (ti += 1) {
-                    if (ti + 1 < text.len and text[ti] == '\\' and text[ti + 1] == '|') {
-                        escapedText.append(state.allocator, '|') catch return false;
-                        ti += 1;
-                    } else {
-                        escapedText.append(state.allocator, text[ti]) catch return false;
-                    }
-                }
-                cell.content = state.allocator.dupe(u8, escapedText.items) catch unreachable;
-                cell.content_allocated = true;
-                cell.info = if (ri < headers.len) state.allocator.dupe(u8, headers[ri]) catch unreachable else null;
-                appendChild(state.allocator, row, cell) catch unreachable;
+                const text = if (ri < rowParts.items.len) rowParts.items[ri] else "";
+                parseTableCell(state.allocator, row, state, ri, text, headers[ri], pipePositions.items) catch unreachable;
             }
 
             lastNode.length = endOfLine - lastNode.index;
@@ -179,8 +172,19 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 closeNode(state, closedNode.?);
             }
 
-            const header = newBlock(state.allocator, "table_header", state.i, state.line, "", 0) catch unreachable;
+            var headerLength = parent.content.len;
+            if (parent.content.len > 0 and parent.content[parent.content.len - 1] == '\n') {
+                headerLength -= 1;
+            }
+
+            const header = newBlock(state.allocator, "table_header", parent.index, state.line, "", 0) catch unreachable;
+            header.length = headerLength;
             appendChild(state.allocator, parent, header) catch unreachable;
+
+            const headerSrc = parent.content[0..headerLength];
+            var pipePositions = std.ArrayList(usize).initCapacity(state.allocator, 0) catch return false;
+            defer pipePositions.deinit(state.allocator);
+            loadPipePositions(state.allocator, &pipePositions, headerSrc) catch unreachable;
 
             var headerParts = std.ArrayList([]const u8).initCapacity(state.allocator, 0) catch return false;
             defer headerParts.deinit(state.allocator);
@@ -199,26 +203,9 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
             var hci: usize = 0;
             while (hci < headerParts.items.len) : (hci += 1) {
-                const cell = newBlock(state.allocator, "table_cell", state.i, state.line, "", 0) catch unreachable;
-                var text = std.mem.trim(u8, headerParts.items[hci], &std.ascii.whitespace);
-
-                var escapedText = std.ArrayList(u8).initCapacity(state.allocator, 0) catch return false;
-                defer escapedText.deinit(state.allocator);
-                var ti: usize = 0;
-                while (ti < text.len) : (ti += 1) {
-                    if (ti + 1 < text.len and text[ti] == '\\' and text[ti + 1] == '|') {
-                        escapedText.append(state.allocator, '|') catch return false;
-                        ti += 1;
-                    } else {
-                        escapedText.append(state.allocator, text[ti]) catch return false;
-                    }
-                }
-                cell.content = state.allocator.dupe(u8, escapedText.items) catch unreachable;
-                cell.content_allocated = true;
-                if (hci < cells.items.len) {
-                    cell.info = state.allocator.dupe(u8, cells.items[hci]) catch unreachable;
-                }
-                appendChild(state.allocator, header, cell) catch unreachable;
+                const text = headerParts.items[hci];
+                const header_cell = if (hci < cells.items.len) cells.items[hci] else "";
+                parseTableCell(state.allocator, header, state, hci, text, header_cell, pipePositions.items) catch unreachable;
             }
 
             const oldType = parent.type;
@@ -245,6 +232,72 @@ pub fn testContinue(_state: *BlockParserState, _node: *MarkdownNode) bool {
     _ = _state;
     _ = _node;
     return false;
+}
+
+fn loadPipePositions(allocator: std.mem.Allocator, pipePositions: *std.ArrayList(usize), line: []const u8) !void {
+    var haveEndPipe = false;
+    var i: usize = 0;
+    while (i < line.len) : (i += 1) {
+        if (line[i] == '|' and !isEscaped(line, i)) {
+            try pipePositions.append(allocator, i);
+            haveEndPipe = true;
+        } else if (!isSpace(line[i])) {
+            if (pipePositions.items.len == 0) {
+                try pipePositions.append(allocator, 0);
+            }
+            haveEndPipe = false;
+        }
+    }
+    if (!haveEndPipe) {
+        try pipePositions.append(allocator, if (line.len > 0) line.len - 1 else 0);
+    }
+}
+
+fn parseTableCell(allocator: std.mem.Allocator, row: *MarkdownNode, state: *BlockParserState, index: usize, text: []const u8, header: []const u8, pipePositions: []const usize) !void {
+    const cellStart = if (index < pipePositions.len) pipePositions[index] else 0;
+    const cellEnd = if (index + 1 < pipePositions.len) pipePositions[index + 1] else 0;
+    const cellLength = if (cellEnd > cellStart) cellEnd - cellStart + 1 else 0;
+
+    const trimmed = std.mem.trim(u8, text, &std.ascii.whitespace);
+    const contentStart = if (trimmed.len > 0)
+        row.index + cellStart + indexOf(text, trimmed) + 1
+    else
+        row.index + cellStart;
+
+    const cell = newBlock(allocator, "table_cell", row.index + cellStart, state.line, "", 0) catch unreachable;
+    cell.length = cellLength;
+    cell.info = if (header.len > 0) allocator.dupe(u8, header) catch unreachable else null;
+    appendChild(allocator, row, cell) catch unreachable;
+
+    var escapedText = std.ArrayList(u8).initCapacity(allocator, 0) catch unreachable;
+    defer escapedText.deinit(allocator);
+    var ti: usize = 0;
+    while (ti < trimmed.len) : (ti += 1) {
+        if (ti + 1 < trimmed.len and trimmed[ti] == '\\' and trimmed[ti + 1] == '|') {
+            try escapedText.append(allocator, '|');
+            ti += 1;
+        } else {
+            try escapedText.append(allocator, trimmed[ti]);
+        }
+    }
+
+    const content = newBlock(allocator, "table_cell_content", contentStart, state.line, "", 0) catch unreachable;
+    content.content = allocator.dupe(u8, escapedText.items) catch unreachable;
+    content.content_allocated = true;
+    appendChild(allocator, cell, content) catch unreachable;
+}
+
+fn indexOf(haystack: []const u8, needle: []const u8) usize {
+    if (needle.len == 0) return 0;
+    if (needle.len > haystack.len) return 0;
+
+    var i: usize = 0;
+    while (i <= haystack.len - needle.len) : (i += 1) {
+        if (std.mem.eql(u8, haystack[i .. i + needle.len], needle)) {
+            return i;
+        }
+    }
+    return 0;
 }
 
 pub const tableRule = BlockRule{

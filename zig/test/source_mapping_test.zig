@@ -472,6 +472,64 @@ test "source mapping - table" {
     try std.testing.expectEqualStrings("table", table.type);
     try std.testing.expectEqual(@as(usize, 0), table.index);
     try std.testing.expectEqual(@as(usize, 29), table.length);
+
+    const header = table.children.?[0];
+    try std.testing.expectEqualStrings("table_header", header.type);
+    try std.testing.expectEqual(@as(usize, 0), header.index);
+    try std.testing.expectEqual(@as(usize, 9), header.length);
+
+    const hc1 = header.children.?[0];
+    try std.testing.expectEqualStrings("table_cell", hc1.type);
+    try std.testing.expectEqual(@as(usize, 0), hc1.index);
+    try std.testing.expectEqual(@as(usize, 5), hc1.length);
+
+    const hc2 = header.children.?[1];
+    try std.testing.expectEqualStrings("table_cell", hc2.type);
+    try std.testing.expectEqual(@as(usize, 4), hc2.index);
+    try std.testing.expectEqual(@as(usize, 5), hc2.length);
+
+    const row = table.children.?[1];
+    try std.testing.expectEqualStrings("table_row", row.type);
+    try std.testing.expectEqual(@as(usize, 20), row.index);
+    try std.testing.expectEqual(@as(usize, 9), row.length);
+
+    const rc1 = row.children.?[0];
+    try std.testing.expectEqualStrings("table_cell", rc1.type);
+    try std.testing.expectEqual(@as(usize, 20), rc1.index);
+    try std.testing.expectEqual(@as(usize, 5), rc1.length);
+
+    const rc2 = row.children.?[1];
+    try std.testing.expectEqualStrings("table_cell", rc2.type);
+    try std.testing.expectEqual(@as(usize, 24), rc2.index);
+    try std.testing.expectEqual(@as(usize, 5), rc2.length);
+}
+
+test "source mapping - table with emphasis" {
+    const input = "| A | B |\n|---|---|\n| item *one* | 2 |";
+    const gpa = std.testing.allocator;
+    var rules = try extended.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    try std.testing.expect(doc.children.?.len == 1);
+    const table = doc.children.?[0];
+    try std.testing.expectEqualStrings("table", table.type);
+    try std.testing.expectEqual(@as(usize, 0), table.index);
+    try std.testing.expectEqual(@as(usize, 38), table.length);
+
+    const row = table.children.?[1];
+    try std.testing.expectEqualStrings("table_row", row.type);
+
+    const cell = row.children.?[0];
+    try std.testing.expectEqualStrings("table_cell", cell.type);
+
+    const emphasis = cell.children.?[0].children.?[1];
+    try std.testing.expectEqualStrings("emphasis", emphasis.type);
+    try std.testing.expectEqual(@as(usize, 27), emphasis.index);
+    try std.testing.expectEqual(@as(usize, 5), emphasis.length);
 }
 
 test "source mapping - paragraph" {

@@ -35,9 +35,6 @@ public static class ConsoleRenderers
         //[ConsoleSubscriptRenderer.Create().Name] = ConsoleSubscriptRenderer.Create(),
         //[ConsoleSuperscriptRenderer.Create().Name] = ConsoleSuperscriptRenderer.Create(),
         [ConsoleTableRenderer.Create().Name] = ConsoleTableRenderer.Create(),
-        //[ConsoleTableCellRenderer.Create().Name] = ConsoleTableCellRenderer.Create(),
-        //[ConsoleTableHeaderRenderer.Create().Name] = ConsoleTableHeaderRenderer.Create(),
-        //[ConsoleTableRowRenderer.Create().Name] = ConsoleTableRowRenderer.Create(),
         [ConsoleTextRenderer.Create().Name] = ConsoleTextRenderer.Create(),
         [ConsoleThematicBreakRenderer.Create().Name] = ConsoleThematicBreakRenderer.Create(),
     };

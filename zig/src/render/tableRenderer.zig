@@ -66,8 +66,12 @@ fn renderTableCell(node: *const MarkdownNode, state: *RendererState, tag: []cons
     defer state.allocator.free(open_tag);
     state.output.appendSlice(state.allocator, open_tag) catch unreachable;
 
-    renderUtils.innerNewLine(node, state);
-    renderChildren(node, state, true);
+    // Render the children of the dummy paragraph directly (not the paragraph itself)
+    if (node.children) |children| {
+        if (children.len > 0) {
+            renderChildren(children[0], state, true);
+        }
+    }
 
     const close_tag = std.fmt.allocPrint(state.allocator, "</{s}>", .{tag}) catch unreachable;
     defer state.allocator.free(close_tag);

@@ -25,24 +25,25 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	if (!state.hasBlankLine && lastNode?.type === "table") {
 		let endOfLine = getEndOfLine(state);
 
-		let headers = lastNode.children![0].children!.map((c) => c.info);
+		let headers = lastNode.children![0].children!.map((c) => c.info ?? "");
 
 		let row = newBlock("table_row", state.i, state.line, "", 0);
+		let rowLength = endOfLine - state.i;
+		if (state.src[endOfLine - 1] === "\n") {
+			rowLength--;
+		}
+		row.length = rowLength;
 		lastNode.children!.push(row);
 
-		let rowContent = state.src
-			.substring(state.i, endOfLine)
-			.trim()
-			.replaceAll(/(^\||\|$)/g, "");
+		let rowSrc = state.src.substring(state.i, state.i + rowLength);
+		let pipePositions = loadPipePositions(rowSrc);
+
+		let rowContent = rowSrc.trim().replaceAll(/(^\||\|$)/g, "");
 		let rowParts = rowContent.split(/(?<!\\)\|/);
 		rowParts.length = headers.length;
 
-		let ri = 0;
-		for (let text of rowParts) {
-			let cell = newBlock("table_cell", state.i, state.line, "", 0);
-			cell.content = (text ?? "").trim().replaceAll("\\\|", "|");
-			cell.info = headers[ri++];
-			row.children!.push(cell);
+		for (let j = 0; j < rowParts.length; j++) {
+			parseTableCell(row, state, j, rowParts, headers, pipePositions);
 		}
 
 		lastNode.length = endOfLine - lastNode.index;
@@ -125,16 +126,21 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 				closeNode(state, closedNode);
 			}
 
-			let header = newBlock("table_header", state.i, state.line, "", 0);
+			let headerIndex = parent.index;
+			let headerLength = parent.content.length;
+			if (parent.content.endsWith("\n")) {
+				headerLength--;
+			}
+			let header = newBlock("table_header", headerIndex, state.line, "", 0);
+			header.length = headerLength;
 			parent.children!.push(header);
 
+			let headerSrc = parent.content.substring(0, headerLength);
+			let pipePositions = loadPipePositions(headerSrc);
+
 			let headerParts = headerContent.split(/(?<!\\)\|/);
-			let hi = 0;
-			for (let text of headerParts) {
-				let cell = newBlock("table_cell", state.i, state.line, "", 0);
-				cell.content = text.trim().replaceAll("\\\|", "|");
-				cell.info = cells[hi++];
-				header.children!.push(cell);
+			for (let j = 0; j < headerParts.length; j++) {
+				parseTableCell(header, state, j, headerParts, cells, pipePositions);
 			}
 
 			parent.type = "table";
@@ -154,4 +160,52 @@ function testContinue(_state: BlockParserState, _node: MarkdownNode) {
 	// table in testStart. That way we can interrupt tables with e.g.
 	// blockquotes, even if the blockquote contains a pipe
 	return false;
+}
+
+function loadPipePositions(line: string) {
+	let pipePositions: number[] = [];
+	let haveEndPipe = false;
+	for (let i = 0; i < line.length; i++) {
+		if (line[i] === "|" && !isEscaped(line, i)) {
+			pipePositions.push(i);
+			haveEndPipe = true;
+		} else if (!isSpace(line.charCodeAt(i))) {
+			// Make sure there's a start pipe position
+			if (pipePositions.length === 0) {
+				pipePositions.push(0);
+			}
+			haveEndPipe = false;
+		}
+	}
+	// Make sure there's an end pipe position
+	if (!haveEndPipe) {
+		pipePositions.push(line.length - 1);
+	}
+	return pipePositions;
+}
+
+function parseTableCell(
+	row: MarkdownNode,
+	state: BlockParserState,
+	index: number,
+	parts: string[],
+	headers: string[],
+	pipePositions: number[],
+) {
+	let text = parts[index];
+	let cellStart = pipePositions[index];
+	let cellEnd = pipePositions[index + 1];
+	let cellLength = cellEnd - cellStart + 1;
+	let contentStart =
+		row.index +
+		cellStart +
+		((text ?? "").trim().length > 0 ? (text ?? "").indexOf((text ?? "").trim()) + 1 : 0);
+	let cell = newBlock("table_cell", row.index + cellStart, state.line, "", 0);
+	cell.length = cellLength;
+	cell.info = headers[index];
+	row.children!.push(cell);
+
+	let content = newBlock("table_cell_content", contentStart, state.line, "", 0);
+	content.content = (text ?? "").trim().replaceAll("\\\|", "|");
+	cell.children = [content];
 }

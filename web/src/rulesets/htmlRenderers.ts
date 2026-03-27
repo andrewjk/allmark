@@ -25,10 +25,7 @@ import strikethroughRenderer from "../render/strikethroughRenderer";
 import strongRenderer from "../render/strongRenderer";
 import subscriptRenderer from "../render/subscriptRenderer";
 import superscriptRenderer from "../render/superscriptRenderer";
-import tableCellRenderer from "../render/tableCellRenderer";
-import tableHeaderRenderer from "../render/tableHeaderRenderer";
 import tableRenderer from "../render/tableRenderer";
-import tableRowRenderer from "../render/tableRowRenderer";
 import textRenderer from "../render/textRenderer";
 import thematicBreakRenderer from "../render/thematicBreakRenderer";
 import type Renderer from "../types/Renderer";
@@ -62,9 +59,6 @@ const renderers: Map<string, Renderer> = new Map([
 	[subscriptRenderer.name, subscriptRenderer],
 	[superscriptRenderer.name, superscriptRenderer],
 	[tableRenderer.name, tableRenderer],
-	[tableCellRenderer.name, tableCellRenderer],
-	[tableHeaderRenderer.name, tableHeaderRenderer],
-	[tableRowRenderer.name, tableRowRenderer],
 	[textRenderer.name, textRenderer],
 	[thematicBreakRenderer.name, thematicBreakRenderer],
 ]);

@@ -310,10 +310,64 @@ public class SourceMappingTests
     {
         var input = "| A | B |\n|---|---|\n| 1 | 2 |";
         var doc = Parser.Execute(input, Extended.RuleSet);
+
         var table = doc.Children![0];
         Assert.AreEqual("table", table.Type);
         Assert.AreEqual(0, table.Index);
         Assert.AreEqual(29, table.Length);
+
+        var header = table.Children![0];
+        Assert.AreEqual("table_header", header.Type);
+        Assert.AreEqual(0, header.Index);
+        Assert.AreEqual(9, header.Length);
+
+        var hc1 = header.Children![0];
+        Assert.AreEqual("table_cell", hc1.Type);
+        Assert.AreEqual(0, hc1.Index);
+        Assert.AreEqual(5, hc1.Length);
+
+        var hc2 = header.Children![1];
+        Assert.AreEqual("table_cell", hc2.Type);
+        Assert.AreEqual(4, hc2.Index);
+        Assert.AreEqual(5, hc2.Length);
+
+        var row = table.Children![1];
+        Assert.AreEqual("table_row", row.Type);
+        Assert.AreEqual(20, row.Index);
+        Assert.AreEqual(9, row.Length);
+
+        var rc1 = row.Children![0];
+        Assert.AreEqual("table_cell", rc1.Type);
+        Assert.AreEqual(20, rc1.Index);
+        Assert.AreEqual(5, rc1.Length);
+
+        var rc2 = row.Children![1];
+        Assert.AreEqual("table_cell", rc2.Type);
+        Assert.AreEqual(24, rc2.Index);
+        Assert.AreEqual(5, rc2.Length);
+    }
+
+    [TestMethod]
+    public void TableWithEmphasis()
+    {
+        var input = "| A | B |\n|---|---|\n| item *one* | 2 |";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+
+        var table = doc.Children![0];
+        Assert.AreEqual("table", table.Type);
+        Assert.AreEqual(0, table.Index);
+        Assert.AreEqual(38, table.Length);
+
+        var row = table.Children![1];
+        Assert.AreEqual("table_row", row.Type);
+
+        var cell = row.Children![0];
+        Assert.AreEqual("table_cell", cell.Type);
+
+        var emphasis = cell.Children![0].Children![1];
+        Assert.AreEqual("emphasis", emphasis.Type);
+        Assert.AreEqual(27, emphasis.Index);
+        Assert.AreEqual(5, emphasis.Length);
     }
 
     [TestMethod]
