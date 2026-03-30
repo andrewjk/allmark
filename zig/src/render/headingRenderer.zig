@@ -8,14 +8,7 @@ const renderUtils = @import("renderUtils.zig");
 pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) void {
     _ = decode;
 
-    var level: usize = 0;
-    if (node.markup.len > 0 and node.markup[0] == '#') {
-        level = node.markup.len;
-    } else if (std.mem.indexOfScalar(u8, node.markup, '=')) |_| {
-        level = 1;
-    } else if (std.mem.indexOfScalar(u8, node.markup, '-')) |_| {
-        level = 2;
-    }
+    const level = node.markup.len;
 
     renderUtils.startNewLine(node, state);
     const open_tag = std.fmt.allocPrint(state.allocator, "<h{d}>", .{level}) catch unreachable;
