@@ -138,20 +138,6 @@ test("renders multiple block types", () => {
 	expect(output).toBe("# Heading 1\n\nParagraph 1\n\n───\n\n## Heading 2\n\nParagraph 2\n");
 });
 
-test("renders table then paragraph", () => {
-	const input = "| A |\n|---|\n| 1 |\n\nParagraph";
-	const doc = parse(input, gfm);
-	const output = stripVTControlCharacters(render(doc, consoleRenderers));
-	expect(output).toBe("┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\nParagraph\n");
-});
-
-test("renders paragraph then table", () => {
-	const input = "Paragraph\n\n| A |\n|---|\n| 1 |";
-	const doc = parse(input, gfm);
-	const output = stripVTControlCharacters(render(doc, consoleRenderers));
-	expect(output).toBe("Paragraph\n\n┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\n");
-});
-
 test("renders alert then paragraph", () => {
 	const input = "> [!NOTE]\n> Note\n\nParagraph";
 	const doc = parse(input, gfm);
@@ -266,6 +252,51 @@ test("renders table with Unicode borders", () => {
 	const output = render(doc, consoleRenderers);
 	expect(output).toBe(
 		"\x1b[2m┌───┬───┐\x1b[0m\n\x1b[2m│\x1b[0m A \x1b[2m│\x1b[0m B \x1b[2m│\x1b[0m\n\x1b[2m├───┼───┤\x1b[0m\n\x1b[2m│\x1b[0m 1 \x1b[2m│\x1b[0m 2 \x1b[2m│\x1b[0m\n\x1b[2m└───┴───┘\x1b[0m\n",
+	);
+});
+
+test("renders table then paragraph", () => {
+	const input = "| A |\n|---|\n| 1 |\n\nParagraph";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\nParagraph\n");
+});
+
+test("renders paragraph then table", () => {
+	const input = "Paragraph\n\n| A |\n|---|\n| 1 |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("Paragraph\n\n┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\n");
+});
+
+test("renders table with padding", () => {
+	const input = "| A | B |\n| - | - |\n| 1 | hello |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe(
+		`
+┌───┬───────┐
+│ A │ B     │
+├───┼───────┤
+│ 1 │ hello │
+└───┴───────┘
+`.trimStart(),
+	);
+});
+
+test("renders table with correctly aligned padding", () => {
+	const input = "| A | B |\n| - | -: |\n| x | 1 |\n| y | 200 |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe(
+		`
+┌───┬─────┐
+│ A │   B │
+├───┼─────┤
+│ x │   1 │
+│ y │ 200 │
+└───┴─────┘
+`.trimStart(),
 	);
 });
 

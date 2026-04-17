@@ -63,7 +63,8 @@ function render(node: MarkdownNode, state: RendererState): void {
 		s.output += `${style}│${reset}`;
 		for (let i = 0; i < headerCells.length; i++) {
 			const text = cellTexts[0]?.[i] ?? "";
-			s.output += ` ${text.padEnd(columnWidths[i] - 1)}${style}│${reset}`;
+			const align = headerCells[i].info ?? "";
+			s.output += ` ${padText(text, columnWidths[i] - 2, align)}${style}│${reset}`;
 		}
 		s.output += "\n";
 	}
@@ -71,10 +72,13 @@ function render(node: MarkdownNode, state: RendererState): void {
 	s.output += makeLine("├", "┼", "┤", "┼");
 
 	for (let r = 0; r < dataRows.length; r++) {
+		const row = dataRows[r];
+		const rowCells = row.children ?? [];
 		s.output += `${style}│${reset}`;
 		for (let c = 0; c < columnWidths.length; c++) {
 			const text = cellTexts[r + 1]?.[c] ?? "";
-			s.output += ` ${text.padEnd(columnWidths[c] - 1)}${style}│${reset}`;
+			const align = rowCells[c]?.info ?? "";
+			s.output += ` ${padText(text, columnWidths[c] - 2, align)}${style}│${reset}`;
 		}
 		s.output += "\n";
 	}
@@ -90,4 +94,16 @@ function getTextFromNode(node: MarkdownNode): string {
 		return node.children.map(getTextFromNode).join("");
 	}
 	return "";
+}
+
+function padText(text: string, width: number, align: string): string {
+	if (align === "right") {
+		return text.padStart(width) + " ";
+	}
+	if (align === "center") {
+		const leftPad = Math.floor((width - text.length) / 2);
+		const rightPad = width - text.length - leftPad;
+		return " ".repeat(leftPad) + text + " ".repeat(rightPad);
+	}
+	return text.padEnd(width) + " ";
 }
