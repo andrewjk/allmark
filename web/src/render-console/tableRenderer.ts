@@ -1,4 +1,3 @@
-import type ConsoleRendererState from "../types/ConsoleRendererState";
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
@@ -11,7 +10,6 @@ const renderer: Renderer = {
 export default renderer;
 
 function render(node: MarkdownNode, state: RendererState): void {
-	const s = state as ConsoleRendererState;
 	const style = ANSI.dim;
 	const reset = ANSI.reset;
 
@@ -57,33 +55,33 @@ function render(node: MarkdownNode, state: RendererState): void {
 		return `${style}${line}${reset}\n`;
 	};
 
-	s.output += makeLine("┌", "┬", "┐", "┬");
+	state.output += makeLine("┌", "┬", "┐", "┬");
 
 	if (headerCells.length > 0) {
-		s.output += `${style}│${reset}`;
+		state.output += `${style}│${reset}`;
 		for (let i = 0; i < headerCells.length; i++) {
 			const text = cellTexts[0]?.[i] ?? "";
 			const align = headerCells[i].info ?? "";
-			s.output += ` ${padText(text, columnWidths[i] - 2, align)}${style}│${reset}`;
+			state.output += ` ${padText(text, columnWidths[i] - 2, align)}${style}│${reset}`;
 		}
-		s.output += "\n";
+		state.output += "\n";
 	}
 
-	s.output += makeLine("├", "┼", "┤", "┼");
+	state.output += makeLine("├", "┼", "┤", "┼");
 
 	for (let r = 0; r < dataRows.length; r++) {
 		const row = dataRows[r];
 		const rowCells = row.children ?? [];
-		s.output += `${style}│${reset}`;
+		state.output += `${style}│${reset}`;
 		for (let c = 0; c < columnWidths.length; c++) {
 			const text = cellTexts[r + 1]?.[c] ?? "";
 			const align = rowCells[c]?.info ?? "";
-			s.output += ` ${padText(text, columnWidths[c] - 2, align)}${style}│${reset}`;
+			state.output += ` ${padText(text, columnWidths[c] - 2, align)}${style}│${reset}`;
 		}
-		s.output += "\n";
+		state.output += "\n";
 	}
 
-	s.output += makeLine("└", "┴", "┘", "┴");
+	state.output += makeLine("└", "┴", "┘", "┴");
 }
 
 function getTextFromNode(node: MarkdownNode): string {

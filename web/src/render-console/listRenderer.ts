@@ -1,4 +1,3 @@
-import type ConsoleRendererState from "../types/ConsoleRendererState";
 import type MarkdownNode from "../types/MarkdownNode";
 import type RendererState from "../types/RendererState";
 import ANSI from "./ansi";
@@ -7,8 +6,7 @@ import renderChildren from "./renderChildren";
 const bullets = ["•", "◦", "▪", "‣"];
 
 export default function render(node: MarkdownNode, state: RendererState, ordered: boolean): void {
-	const s = state as ConsoleRendererState;
-	s.listDepth++;
+	state.listDepth++;
 
 	const style = ANSI.dim;
 	const reset = ANSI.reset;
@@ -26,40 +24,40 @@ export default function render(node: MarkdownNode, state: RendererState, ordered
 	for (const item of node.children ?? []) {
 		const prefix = ordered
 			? `${counter}.`
-			: bullets[Math.min(s.listDepth - 1, bullets.length - 1)] || "•";
+			: bullets[Math.min(state.listDepth - 1, bullets.length - 1)] || "•";
 		if (ordered) counter++;
 
 		if (item.children) {
 			for (const [i, child] of item.children.entries()) {
 				if (!loose && child.type === "paragraph") {
-					const indent = "  ".repeat(s.listDepth - 1);
+					const indent = "  ".repeat(state.listDepth - 1);
 					if (i === 0) {
-						s.output += `${indent}${style}${prefix}${reset} `;
+						state.output += `${indent}${style}${prefix}${reset} `;
 					}
 					renderChildren(child, state);
-					s.output += "\n";
+					state.output += "\n";
 				} else {
-					const indent = "  ".repeat(s.listDepth - 1);
+					const indent = "  ".repeat(state.listDepth - 1);
 					if (i === 0) {
-						s.output += `${indent}${style}${prefix}${reset} `;
+						state.output += `${indent}${style}${prefix}${reset} `;
 					}
 					const renderer = state.renderers.get(child.type);
 					if (renderer) {
 						renderer.render(child, state);
 					}
-					if (!loose && s.output.endsWith("\n\n")) {
-						s.output = s.output.slice(0, s.output.length - 1);
+					if (!loose && state.output.endsWith("\n\n")) {
+						state.output = state.output.slice(0, state.output.length - 1);
 					}
 				}
 			}
 		}
 	}
 
-	s.listDepth--;
+	state.listDepth--;
 
 	// Loose lists will already have a double newline
 	if (!loose) {
-		s.output += "\n";
+		state.output += "\n";
 	}
 }
 

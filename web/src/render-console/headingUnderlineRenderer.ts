@@ -1,4 +1,3 @@
-import type ConsoleRendererState from "../types/ConsoleRendererState";
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
@@ -12,7 +11,6 @@ const renderer: Renderer = {
 export default renderer;
 
 function render(node: MarkdownNode, state: RendererState): void {
-	const s = state as ConsoleRendererState;
 	const style = ANSI.bold + ANSI.magenta;
 	const reset = ANSI.reset;
 
@@ -23,16 +21,16 @@ function render(node: MarkdownNode, state: RendererState): void {
 		level = 2;
 	}
 
-	const originalLength = s.output.length;
+	const originalLength = state.output.length;
 	renderChildren(node, state);
-	const headingText = s.output.slice(originalLength);
+	const headingText = state.output.slice(originalLength);
 
 	const plainTextLength = getPlainTextLength(node);
 	const underlineChar = level === 1 ? "=" : "-";
 
-	s.output = s.output.slice(0, originalLength);
-	s.output += `${style}${headingText}${reset}\n`;
-	s.output += `${ANSI.dim}${underlineChar.repeat(plainTextLength)}${reset}\n\n`;
+	state.output = state.output.slice(0, originalLength);
+	state.output += `${style}${headingText}${reset}\n`;
+	state.output += `${ANSI.dim}${underlineChar.repeat(plainTextLength)}${reset}\n\n`;
 }
 
 function getPlainTextLength(node: MarkdownNode): number {
