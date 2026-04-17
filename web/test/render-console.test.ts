@@ -180,6 +180,48 @@ test("renders ordered list", () => {
 	expect(output).toBe("\x1b[2m1.\x1b[0m First\n\x1b[2m2.\x1b[0m Second\n");
 });
 
+test("renders tight bulleted list", () => {
+	const input = "- Item 1\n- Item 2\n- Item 3";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("• Item 1\n• Item 2\n• Item 3\n");
+});
+
+test("renders loose bulleted list", () => {
+	const input = "- Item 1\n\n- Item 2\n\n- Item 3";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("• Item 1\n\n• Item 2\n\n• Item 3\n");
+});
+
+test("renders tight ordered list", () => {
+	const input = "1. First\n2. Second\n3. Third";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("1. First\n2. Second\n3. Third\n");
+});
+
+test("renders loose ordered list", () => {
+	const input = "1. First\n\n2. Second\n\n3. Third";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("1. First\n\n2. Second\n\n3. Third\n");
+});
+
+test("renders ordered list with nested bulleted list", () => {
+	const input = "1. First\n   - Nested A\n   - Nested B\n2. Second";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("1. First\n  ◦ Nested A\n  ◦ Nested B\n2. Second\n");
+});
+
+test("renders bulleted list with nested ordered list", () => {
+	const input = "- First\n  1. Nested A\n  2. Nested B\n- Second";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("• First\n  1. Nested A\n  2. Nested B\n• Second\n");
+});
+
 test("renders code fence with box drawing", () => {
 	const input = "```\ncode\n```";
 	const doc = parse(input, core);

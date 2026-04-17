@@ -1,8 +1,8 @@
 import type Renderer from "../types/Renderer";
-import renderList from "./listRenderer";
+import render from "./listRenderer";
 
 const renderer: Renderer = {
 	name: "list_ordered",
-	render: renderList,
+	render: (node, state) => render(node, state, true),
 };
 export default renderer;
