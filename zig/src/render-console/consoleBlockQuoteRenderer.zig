@@ -47,6 +47,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
             }
         }
     }
+    state.output.appendSlice(state.allocator, "\n") catch unreachable;
 }
 
 fn renderNodeToString(node: *const MarkdownNode, state: *ConsoleRendererState) []const u8 {

@@ -75,7 +75,6 @@ fn testStartWithInfo(state: *BlockParserState, parent: *MarkdownNode, info: List
                 node.maybeContinuing = false;
                 closed_node = node;
                 state.openNodes.shrinkRetainingCapacity(j);
-                break;
             }
         }
         effective_parent = state.openNodes.items[state.openNodes.items.len - 1];

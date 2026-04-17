@@ -56,5 +56,5 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
     }
 
     state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
-    state.output.append(state.allocator, '\n') catch unreachable;
+    state.output.appendSlice(state.allocator, "\n\n") catch unreachable;
 }

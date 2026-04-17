@@ -78,7 +78,7 @@ fn testFootnoteClose(state: *InlineParserState, parent: *MarkdownNode) bool {
             const lastNode = children[child_i - 1];
             if (lastNode.index == state.parentIndex + startDelimiter.?.start) {
                 const start_markup = startDelimiter.?.getMarkup();
-                var label = state.src[startDelimiter.?.start + start_markup.len .. state.i];
+                const label = state.src[startDelimiter.?.start + start_markup.len .. state.i];
 
                 const hasNonAlpha = for (label) |c| {
                     if (!isAlphanumeric(c)) break true;

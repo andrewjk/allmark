@@ -50,14 +50,12 @@ pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers:
         footnoteListRenderer.render(doc, &state, null);
     }
 
-    if (useConsole) {
-        while (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\n') {
-            _ = state.output.pop();
-        }
-    } else {
-        if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] != '\n') {
-            try state.output.append(allocator, '\n');
-        }
+    // Ensure exactly one trailing newline (matching web implementation behavior)
+    while (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\n') {
+        _ = state.output.pop();
+    }
+    if (state.output.items.len > 0) {
+        try state.output.append(allocator, '\n');
     }
 
     return state.output.toOwnedSlice(allocator);

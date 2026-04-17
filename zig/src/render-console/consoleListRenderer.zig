@@ -80,6 +80,12 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
                         if (state.renderers.get(child.type)) |renderer| {
                             renderer.render(child, state, true);
                         }
+                        // Trim extra newline for tight lists (nested lists add their own)
+                        if (!loose and state.output.items.len >= 2 and
+                            std.mem.eql(u8, state.output.items[state.output.items.len - 2 ..], "\n\n"))
+                        {
+                            _ = state.output.pop();
+                        }
                     }
                 }
             }
@@ -87,6 +93,11 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
     }
 
     state.listDepth -= 1;
+
+    // Loose lists will already have a double newline from the paragraphs
+    if (!loose) {
+        state.output.append(state.allocator, '\n') catch unreachable;
+    }
 }
 
 fn isLooseList(node: *const MarkdownNode) bool {
@@ -94,10 +105,9 @@ fn isLooseList(node: *const MarkdownNode) bool {
         if (children.len > 1) {
             for (0..children.len - 1) |i| {
                 const child = children[i];
-                if (child.children) |grandchildren| {
-                    if (grandchildren.len > 0 and grandchildren[grandchildren.len - 1].blankAfter) {
-                        return true;
-                    }
+                // Check if the list item itself has blankAfter set
+                if (child.blankAfter) {
+                    return true;
                 }
             }
         }

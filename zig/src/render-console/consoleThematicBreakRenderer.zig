@@ -12,12 +12,13 @@ pub const consoleThematicBreakRenderer = Renderer{
 };
 
 fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {
+    _ = node;
     _ = decode;
 
     if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] != '\n') {
         state.output.append(state.allocator, '\n') catch unreachable;
     }
-    const count = @max(3, node.markup.len);
+    const count = 3;
     var dashes = std.ArrayList(u8).initCapacity(state.allocator, count) catch unreachable;
     defer dashes.deinit(state.allocator);
     for (0..count) |_| {
@@ -28,5 +29,5 @@ fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool
     state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
     state.output.appendSlice(state.allocator, dashesSlice) catch unreachable;
     state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
-    state.output.append(state.allocator, '\n') catch unreachable;
+    state.output.appendSlice(state.allocator, "\n\n") catch unreachable;
 }

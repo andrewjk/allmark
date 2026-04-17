@@ -26,6 +26,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
         state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
         state.output.appendSlice(state.allocator, "└─") catch unreachable;
         state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
+        state.output.appendSlice(state.allocator, "\n\n") catch unreachable;
     } else {
         state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
         state.output.appendSlice(state.allocator, "┌─") catch unreachable;
@@ -55,5 +56,6 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
         state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
         state.output.appendSlice(state.allocator, "└─") catch unreachable;
         state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
+        state.output.appendSlice(state.allocator, "\n\n") catch unreachable;
     }
 }

@@ -40,6 +40,10 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
     defer state.allocator.free(columnWidths);
     @memset(columnWidths, 0);
 
+    var columnAlignments = state.allocator.alloc([]const u8, maxColumns) catch unreachable;
+    defer state.allocator.free(columnAlignments);
+    @memset(columnAlignments, "");
+
     var cellTexts = std.ArrayList([]const []const u8).initCapacity(state.allocator, dataRows.len + 1) catch unreachable;
     defer {
         for (cellTexts.items) |row| {
@@ -61,6 +65,7 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
             const text = getTextFromNode(headerCells[i], state.allocator);
             headerTexts[i] = text;
             columnWidths[i] = @max(columnWidths[i], text.len + 2);
+            columnAlignments[i] = headerCells[i].info orelse "";
         }
     }
 
@@ -113,15 +118,8 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
 
         for (0..headerCells.len) |i| {
             const text = cellTexts.items[0][i];
-            state.output.append(state.allocator, ' ') catch unreachable;
-            state.output.appendSlice(state.allocator, text) catch unreachable;
-            const padding = columnWidths[i] - text.len - 1;
-            for (0..padding) |_| {
-                state.output.append(state.allocator, ' ') catch unreachable;
-            }
-            state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
-            state.output.appendSlice(state.allocator, "│") catch unreachable;
-            state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
+            const alignment = headerCells[i].info orelse "";
+            renderPaddedCell(state, text, columnWidths[i], alignment) catch unreachable;
         }
         state.output.append(state.allocator, '\n') catch unreachable;
     }
@@ -138,15 +136,8 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
             const rowTexts = cellTexts.items[r + 1];
             for (0..columnWidths.len) |c| {
                 const text = if (c < rowTexts.len) rowTexts[c] else "";
-                state.output.append(state.allocator, ' ') catch unreachable;
-                state.output.appendSlice(state.allocator, text) catch unreachable;
-                const padding = columnWidths[c] - text.len - 1;
-                for (0..padding) |_| {
-                    state.output.append(state.allocator, ' ') catch unreachable;
-                }
-                state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
-                state.output.appendSlice(state.allocator, "│") catch unreachable;
-                state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
+                const alignment = columnAlignments[c];
+                renderPaddedCell(state, text, columnWidths[c], alignment) catch unreachable;
             }
             state.output.append(state.allocator, '\n') catch unreachable;
         }
@@ -178,4 +169,42 @@ fn getTextFromNode(node: *const MarkdownNode, allocator: std.mem.Allocator) []co
         return allocator.dupe(u8, node.content) catch unreachable;
     }
     return "";
+}
+
+fn renderPaddedCell(state: *RendererState, text: []const u8, width: usize, alignment: []const u8) !void {
+    state.output.append(state.allocator, ' ') catch unreachable;
+
+    const innerWidth = width - 2;
+
+    if (std.mem.eql(u8, alignment, "right")) {
+        const padding = innerWidth - text.len;
+        for (0..padding) |_| {
+            state.output.append(state.allocator, ' ') catch unreachable;
+        }
+        state.output.appendSlice(state.allocator, text) catch unreachable;
+        state.output.append(state.allocator, ' ') catch unreachable;
+    } else if (std.mem.eql(u8, alignment, "center")) {
+        const padding = innerWidth - text.len;
+        const leftPad = padding / 2;
+        const rightPad = padding - leftPad;
+        for (0..leftPad) |_| {
+            state.output.append(state.allocator, ' ') catch unreachable;
+        }
+        state.output.appendSlice(state.allocator, text) catch unreachable;
+        for (0..rightPad) |_| {
+            state.output.append(state.allocator, ' ') catch unreachable;
+        }
+    } else {
+        // Default: left align
+        state.output.appendSlice(state.allocator, text) catch unreachable;
+        const padding = innerWidth - text.len;
+        for (0..padding) |_| {
+            state.output.append(state.allocator, ' ') catch unreachable;
+        }
+        state.output.append(state.allocator, ' ') catch unreachable;
+    }
+
+    state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
+    state.output.appendSlice(state.allocator, "│") catch unreachable;
+    state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
 }

@@ -14,7 +14,7 @@ const mvzr = @import("mvzr");
 const BLANK_LINE_REGEX = "\\n[ \\t]*\\n";
 
 pub fn parseLinkBlock(state: *BlockParserState, start: usize) !?LinkReference {
-    var spaces = try consumeSpaces(state.allocator, state.src, start);
+    const spaces = try consumeSpaces(state.allocator, state.src, start);
     defer state.allocator.free(spaces);
 
     const regex = mvzr.compile(BLANK_LINE_REGEX) orelse return null;
