@@ -6,8 +6,6 @@ func _render(doc: MarkdownNode, renderers: OrderedDictionary<String, Renderer> =
 		renderers: renderers,
 		output: "",
 		footnotes: [],
-		depth: 0,
-		quoteDepth: 0,
 		listDepth: 0
 	)
 
