@@ -7,7 +7,8 @@ func _render(doc: MarkdownNode, renderers: OrderedDictionary<String, Renderer> =
 		output: "",
 		footnotes: [],
 		depth: 0,
-		quoteDepth: 0
+		quoteDepth: 0,
+		listDepth: 0
 	)
 
 	renderChildren(node: doc, state: &state)

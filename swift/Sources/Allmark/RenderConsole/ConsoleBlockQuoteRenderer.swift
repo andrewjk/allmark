@@ -9,9 +9,6 @@ func renderConsoleBlockQuote(_ node: MarkdownNode, _ state: inout RendererState,
 	let style = ansiDim
 	let reset = ansiReset
 	state.quoteDepth += 1
-	if !state.output.isEmpty, !state.output.hasSuffix("\n") {
-		state.output += "\n"
-	}
 	for line in node.content.split(separator: "\n", omittingEmptySubsequences: false) {
 		if !line.isEmpty {
 			state.output += "\(style)┃\(reset) \(line)\n"
@@ -28,6 +25,7 @@ func renderConsoleBlockQuote(_ node: MarkdownNode, _ state: inout RendererState,
 		}
 	}
 	state.quoteDepth -= 1
+	state.output += "\n"
 }
 
 func renderNodeToStringConsole(node: MarkdownNode, state: inout RendererState) -> String {
