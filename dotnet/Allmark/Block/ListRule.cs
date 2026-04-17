@@ -66,7 +66,7 @@ public static class ListRule
         if (state.MaybeContinue)
         {
             state.MaybeContinue = false;
-            for (var j = 0; j < state.OpenNodes.Count - 1; j++)
+            for (var j = 0; j < state.OpenNodes.Count; j++)
             {
                 var node = state.OpenNodes.ElementAt(j);
                 if (node.MaybeContinuing)
@@ -78,6 +78,7 @@ public static class ListRule
                     while (state.OpenNodes.Count > newLength)
                     {
                         state.OpenNodes.Pop();
+                        j--;
                     }
                 }
             }
@@ -205,7 +206,7 @@ public static class ListRule
 
         // Can't continue if there's only one item, it's blank and there's a blank line after the list
         // HACK: This is messy
-        if (state.HasBlankLine && node.Children!.Count == 1 && node.Children[0].Children!.Count == 0)
+        if (state.HasBlankLine && node.Children!.Count == 1 && (node.Children[0].Children?.Count ?? 0) == 0)
         {
             return false;
         }

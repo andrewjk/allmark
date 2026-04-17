@@ -16,10 +16,6 @@ public static class ConsoleBlockQuoteRenderer
     public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         var style = Ansi.Dim;
-        if (state.Output.Length > 0 && state.Output[^1] != '\n')
-        {
-            state.Output.Append('\n');
-        }
 
         // Render content if it exists
         if (!string.IsNullOrEmpty(node.Content))
@@ -48,6 +44,8 @@ public static class ConsoleBlockQuoteRenderer
                 }
             }
         }
+
+        state.Output.Append('\n');
     }
 
     private static string RenderNodeToString(MarkdownNode node, RendererState state)

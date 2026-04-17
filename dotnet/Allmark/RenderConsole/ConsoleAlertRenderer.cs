@@ -34,11 +34,7 @@ public static class ConsoleAlertRenderer
             ["caution"] = "🚨",
         };
         var icon = icons.TryGetValue(type, out var i) ? i : icons["note"];
-        if (state.Output.Length > 0 && state.Output[^1] != '\n')
-        {
-            state.Output.Append('\n');
-        }
-        state.Output.Append($"{style}{icon} {char.ToUpper(type[0])}{type[1..]}:{Ansi.Reset}\n");
+        state.Output.Append($"{style}{icon} {char.ToUpper(type[0])}{type[1..]}:{Ansi.Reset}\n\n");
         RenderChildren.Execute(node, state);
     }
 }

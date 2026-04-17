@@ -17,10 +17,6 @@ public static class ConsoleTableRenderer
     public static void Render(MarkdownNode node, RendererState state)
     {
         var style = Ansi.Dim;
-        if (state.Output.Length > 0 && state.Output[^1] != '\n')
-        {
-            state.Output.Append('\n');
-        }
 
         if (node.Children == null || node.Children.Count == 0)
         {
@@ -35,6 +31,7 @@ public static class ConsoleTableRenderer
 
         var maxColumns = Math.Max(headerCells.Count, dataRows.Max(r => r.Children?.Count ?? 0));
         var columnWidths = Enumerable.Repeat(0, maxColumns).ToList();
+        var alignments = Enumerable.Repeat("", maxColumns).ToList();
 
         for (int i = 0; i < headerCells.Count; i++)
         {
@@ -45,6 +42,7 @@ public static class ConsoleTableRenderer
             }
             cellTexts[0].Add(text);
             columnWidths[i] = Math.Max(columnWidths[i], text.Length + 2);
+            alignments[i] = headerCells[i].Info ?? "";
         }
 
         for (int r = 0; r < dataRows.Count; r++)
@@ -86,6 +84,21 @@ public static class ConsoleTableRenderer
             return $"{style}{line}{Ansi.Reset}\n";
         }
 
+        string PadText(string text, int width, string align)
+        {
+            if (align == "right")
+            {
+                return new string(' ', width - text.Length) + text + " ";
+            }
+            if (align == "center")
+            {
+                var leftPad = (width - text.Length) / 2;
+                var rightPad = width - text.Length - leftPad;
+                return new string(' ', leftPad) + text + new string(' ', rightPad);
+            }
+            return text + new string(' ', width - text.Length) + " ";
+        }
+
         state.Output.Append(MakeLine("┌", "┬", "┐", "┬"));
 
         if (headerCells.Count > 0)
@@ -94,8 +107,8 @@ public static class ConsoleTableRenderer
             for (int i = 0; i < headerCells.Count; i++)
             {
                 var text = cellTexts.Count > 0 && i < cellTexts[0].Count ? cellTexts[0][i] : "";
-                var padding = new string(' ', columnWidths[i] - text.Length - 1);
-                state.Output.Append($" {text}{padding}{style}│{Ansi.Reset}");
+                var align = alignments[i];
+                state.Output.Append($" {PadText(text, columnWidths[i] - 2, align)}{style}│{Ansi.Reset}");
             }
             state.Output.Append('\n');
         }
@@ -105,11 +118,13 @@ public static class ConsoleTableRenderer
         for (int r = 0; r < dataRows.Count; r++)
         {
             state.Output.Append($"{style}│{Ansi.Reset}");
+            var row = dataRows[r];
+            var rowCells = row.Children ?? new List<MarkdownNode>();
             for (int c = 0; c < columnWidths.Count; c++)
             {
                 var text = (r + 1) < cellTexts.Count && c < cellTexts[r + 1].Count ? cellTexts[r + 1][c] : "";
-                var padding = new string(' ', columnWidths[c] - text.Length - 1);
-                state.Output.Append($" {text}{padding}{style}│{Ansi.Reset}");
+                var align = c < rowCells.Count ? (rowCells[c].Info ?? "") : "";
+                state.Output.Append($" {PadText(text, columnWidths[c] - 2, align)}{style}│{Ansi.Reset}");
             }
             state.Output.Append('\n');
         }

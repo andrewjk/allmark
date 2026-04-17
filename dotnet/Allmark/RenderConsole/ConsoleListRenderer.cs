@@ -61,6 +61,10 @@ public static class ConsoleListRenderer
                             {
                                 renderer.Render(child, state, true);
                             }
+                            if (!loose && state.Output.ToString().EndsWith("\n\n"))
+                            {
+                                state.Output.Length -= 1;
+                            }
                         }
                     }
                 }
@@ -68,6 +72,11 @@ public static class ConsoleListRenderer
         }
 
         state.ListDepth--;
+
+        if (!loose)
+        {
+            state.Output.Append('\n');
+        }
     }
 
     private static bool IsLooseList(MarkdownNode node)
@@ -80,7 +89,31 @@ public static class ConsoleListRenderer
                 var grandchild = child.Children?.Count > 0 ? child.Children[child.Children.Count - 1] : null;
                 if (grandchild?.BlankAfter == true)
                 {
+                    child.BlankAfter = true;
+                }
+                if (child.BlankAfter == true)
+                {
                     return true;
+                }
+            }
+
+            for (int i = 0; i < node.Children.Count; i++)
+            {
+                var child = node.Children[i];
+                if (child.Children != null)
+                {
+                    for (int j = 0; j < child.Children.Count - 1; j++)
+                    {
+                        var first = child.Children[j];
+                        if (j + 1 < child.Children.Count)
+                        {
+                            var second = child.Children[j + 1];
+                            if (first.Block == true && first.BlankAfter == true && second.Block == true)
+                            {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
         }

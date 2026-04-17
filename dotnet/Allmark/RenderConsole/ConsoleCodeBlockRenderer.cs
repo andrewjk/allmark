@@ -16,15 +16,17 @@ public static class ConsoleCodeBlockRenderer
     public static void Render(MarkdownNode node, RendererState state)
     {
         var style = Ansi.Dim;
-        if (state.Output.Length > 0 && state.Output[^1] != '\n')
-        {
-            state.Output.Append('\n');
-        }
         state.Output.Append($"{style}┌─{Ansi.Reset}\n");
-        foreach (var line in node.Content.Split('\n'))
+        var lines = (node.Content ?? "").Split('\n');
+        // Remove last line if empty
+        if (lines.Length > 0 && string.IsNullOrEmpty(lines[^1]))
+        {
+            lines = lines.Take(lines.Length - 1).ToArray();
+        }
+        foreach (var line in lines)
         {
             state.Output.Append($"{style}│{Ansi.Reset} {line}\n");
         }
-        state.Output.Append($"{style}└─{Ansi.Reset}\n");
+        state.Output.Append($"{style}└─{Ansi.Reset}\n\n");
     }
 }

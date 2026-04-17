@@ -16,12 +16,7 @@ public static class ConsoleHeadingRenderer
     public static void Render(MarkdownNode node, RendererState state)
     {
         var level = node.Markup.Length;
-
         var style = Ansi.Bold + Ansi.Magenta;
-        if (state.Output.Length > 0 && state.Output[^1] != '\n')
-        {
-            state.Output.Append('\n');
-        }
 
         state.Output.Append($"{Ansi.Dim}{new string('#', level)}{Ansi.Reset} {style}");
         // Render the dummy paragraph's children directly (not the paragraph itself)
@@ -29,6 +24,6 @@ public static class ConsoleHeadingRenderer
         {
             RenderChildren.Execute(node.Children[0], state);
         }
-        state.Output.Append($"{Ansi.Reset}\n");
+        state.Output.Append($"{Ansi.Reset}\n\n");
     }
 }
