@@ -32,7 +32,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 
 	s.output = s.output.slice(0, originalLength);
 	s.output += `${style}${headingText}${reset}\n`;
-	s.output += `${ANSI.dim}${underlineChar.repeat(plainTextLength)}${reset}\n`;
+	s.output += `${ANSI.dim}${underlineChar.repeat(plainTextLength)}${reset}\n\n`;
 }
 
 function getPlainTextLength(node: MarkdownNode): number {

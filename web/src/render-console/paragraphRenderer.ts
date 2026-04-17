@@ -12,12 +12,6 @@ export default renderer;
 
 function render(node: MarkdownNode, state: RendererState): void {
 	const s = state as ConsoleRendererState;
-	if (s.output.length && !s.output.endsWith("\n")) {
-		s.output += "\n";
-	}
-	if (s.output.length && !s.output.endsWith("\n\n")) {
-		s.output += "\n";
-	}
 	renderChildren(node, state);
 	s.output += "\n\n";
 }

@@ -1,3 +1,5 @@
+import { stripVTControlCharacters } from "node:util";
+
 import { expect, test } from "vite-plus/test";
 
 import parse from "../src/parse";
@@ -14,14 +16,154 @@ test("renders paragraph to console", () => {
 	expect(output).toBe("Hello, world!\n");
 });
 
+test("renders paragraph then paragraph to console", () => {
+	const input = "Hello, world!\n\nHello again";
+	const doc = parse(input, core);
+	const output = render(doc, consoleRenderers);
+	expect(output).toBe("Hello, world!\n\nHello again\n");
+});
+
 test("renders heading to console with color", () => {
 	const input = "# Heading 1\n## Heading 2";
 	const doc = parse(input, core);
 	const output = render(doc, consoleRenderers);
 	expect(output).toBe(
-		"\x1b[2m#\x1b[0m \x1b[1m\x1b[35mHeading 1\x1b[0m\n" +
+		"\x1b[2m#\x1b[0m \x1b[1m\x1b[35mHeading 1\x1b[0m\n\n" +
 			"\x1b[2m##\x1b[0m \x1b[1m\x1b[35mHeading 2\x1b[0m\n",
 	);
+});
+
+test("renders heading then heading to console", () => {
+	const input = "# Heading 1\n## Heading 2";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("# Heading 1\n\n## Heading 2\n");
+});
+
+test("renders paragraph x 3 to console", () => {
+	const input = "First\n\nSecond\n\nThird";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("First\n\nSecond\n\nThird\n");
+});
+
+test("renders heading then paragraph", () => {
+	const input = "# Heading\n\nParagraph text";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("# Heading\n\nParagraph text\n");
+});
+
+test("renders paragraph then heading", () => {
+	const input = "Paragraph text\n\n# Heading";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("Paragraph text\n\n# Heading\n");
+});
+
+test("renders heading then list", () => {
+	const input = "# Heading\n\n- Item 1\n- Item 2";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("# Heading\n\n• Item 1\n• Item 2\n");
+});
+
+test("renders list then heading", () => {
+	const input = "- Item 1\n- Item 2\n\n# Heading";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("• Item 1\n• Item 2\n\n# Heading\n");
+});
+
+test("renders paragraph then list", () => {
+	const input = "Paragraph\n\n- Item 1\n- Item 2";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("Paragraph\n\n• Item 1\n• Item 2\n");
+});
+
+test("renders list then paragraph", () => {
+	const input = "- Item 1\n- Item 2\n\nParagraph";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("• Item 1\n• Item 2\n\nParagraph\n");
+});
+
+test("renders heading then code block", () => {
+	const input = "# Heading\n\n```\ncode\n```";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("# Heading\n\n┌─\n│ code\n└─\n");
+});
+
+test("renders code block then heading", () => {
+	const input = "```\ncode\n```\n\n# Heading";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("┌─\n│ code\n└─\n\n# Heading\n");
+});
+
+test("renders heading then block quote", () => {
+	const input = "# Heading\n\n> Quote text";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("# Heading\n\n┃ Quote text\n");
+});
+
+test("renders block quote then heading", () => {
+	const input = "> Quote text\n\n# Heading";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("┃ Quote text\n\n# Heading\n");
+});
+
+test("renders heading then thematic break", () => {
+	const input = "# Heading\n\n---";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("# Heading\n\n───\n");
+});
+
+test("renders thematic break then heading", () => {
+	const input = "---\n\n# Heading";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("───\n\n# Heading\n");
+});
+
+test("renders multiple block types", () => {
+	const input = "# Heading 1\n\nParagraph 1\n\n---\n\n## Heading 2\n\nParagraph 2";
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("# Heading 1\n\nParagraph 1\n\n───\n\n## Heading 2\n\nParagraph 2\n");
+});
+
+test("renders table then paragraph", () => {
+	const input = "| A |\n|---|\n| 1 |\n\nParagraph";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\nParagraph\n");
+});
+
+test("renders paragraph then table", () => {
+	const input = "Paragraph\n\n| A |\n|---|\n| 1 |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("Paragraph\n\n┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\n");
+});
+
+test("renders alert then paragraph", () => {
+	const input = "> [!NOTE]\n> Note\n\nParagraph";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("📝 Note:\n\nNote\n\nParagraph\n");
+});
+
+test("renders paragraph then alert", () => {
+	const input = "Paragraph\n\n> [!NOTE]\n> Note";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe("Paragraph\n\n📝 Note:\n\nNote\n");
 });
 
 test("renders bulleted list with Unicode bullets", () => {
@@ -148,7 +290,7 @@ test("renders heading with underline Setext style", () => {
 	const doc = parse(input, core);
 	const output = render(doc, consoleRenderers);
 	expect(output).toBe(
-		"\x1b[1m\x1b[35mHeading\x1b[0m\n\x1b[2m=======\x1b[0m\n" +
+		"\x1b[1m\x1b[35mHeading\x1b[0m\n\x1b[2m=======\x1b[0m\n\n" +
 			"\x1b[1m\x1b[35mSubheading\x1b[0m\n\x1b[2m----------\x1b[0m\n",
 	);
 });
@@ -200,4 +342,44 @@ test("renders insertion", () => {
 	const doc = parse(input, extended);
 	const output = render(doc, consoleRenderers);
 	expect(output).toBe("++inserted++\n");
+});
+
+test("basic parse and render", () => {
+	const input = `
+# Test
+
+Here is some text
+
+* Tight item 1
+  * Nested item 1
+* Tight item 2
+
+- Loose item 1
+
+- Loose item 2
+
+## Subtest
+
+Here is some more text
+`;
+	const expected = `
+# Test
+
+Here is some text
+
+• Tight item 1
+  ◦ Nested item 1
+• Tight item 2
+
+• Loose item 1
+
+• Loose item 2
+
+## Subtest
+
+Here is some more text
+`.trimStart();
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe(expected);
 });

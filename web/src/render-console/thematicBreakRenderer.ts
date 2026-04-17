@@ -14,11 +14,5 @@ function render(_node: MarkdownNode, state: RendererState): void {
 	const s = state as ConsoleRendererState;
 	const style = ANSI.dim;
 	const reset = ANSI.reset;
-	if (s.output.length && !s.output.endsWith("\n")) {
-		s.output += "\n";
-	}
-	if (s.output.length && !s.output.endsWith("\n\n")) {
-		s.output += "\n";
-	}
 	s.output += `${style}───${reset}\n\n`;
 }

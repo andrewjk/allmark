@@ -14,9 +14,6 @@ function render(node: MarkdownNode, state: RendererState): void {
 	const s = state as ConsoleRendererState;
 	const style = ANSI.dim;
 	const reset = ANSI.reset;
-	if (s.output.length && !s.output.endsWith("\n")) {
-		s.output += "\n";
-	}
 	for (const line of node.content.split("\n")) {
 		if (line !== "") {
 			s.output += `${style}┃ ${reset}${line}\n`;
@@ -32,6 +29,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 			}
 		}
 	}
+	s.output += "\n";
 }
 
 function renderNodeToString(node: MarkdownNode, state: ConsoleRendererState): string {

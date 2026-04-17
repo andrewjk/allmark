@@ -67,6 +67,7 @@ function renderNode(
 	}
 
 	s.listDepth--;
+	s.output += "\n";
 }
 
 function isLooseList(node: MarkdownNode): boolean {

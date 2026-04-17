@@ -14,9 +14,6 @@ function render(node: MarkdownNode, state: RendererState): void {
 	const s = state as ConsoleRendererState;
 	const style = ANSI.dim;
 	const reset = ANSI.reset;
-	if (s.output.length && !s.output.endsWith("\n")) {
-		s.output += "\n";
-	}
 
 	const children = node.children ?? [];
 	if (children.length === 0) return;

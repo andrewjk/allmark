@@ -31,9 +31,6 @@ function render(node: MarkdownNode, state: RendererState): void {
 		caution: "🚨",
 	};
 	const icon = icons[type] || icons.note;
-	if (s.output.length && !s.output.endsWith("\n")) {
-		s.output += "\n";
-	}
-	s.output += `${style}${icon} ${type.charAt(0).toUpperCase() + type.slice(1)}:${reset}\n`;
+	s.output += `${style}${icon} ${type.charAt(0).toUpperCase() + type.slice(1)}:${reset}\n\n`;
 	renderChildren(node, state);
 }

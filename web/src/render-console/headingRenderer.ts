@@ -18,13 +18,9 @@ function render(node: MarkdownNode, state: RendererState): void {
 
 	let level = node.markup.length;
 
-	if (s.output.length && !s.output.endsWith("\n")) {
-		s.output += "\n";
-	}
-
 	s.output += `${ANSI.dim}${"#".repeat(level)}${reset} ${style}`;
 	if (node.children !== undefined && node.children.length > 0) {
 		renderChildren(node.children[0], state);
 	}
-	s.output += `${reset}\n`;
+	s.output += `${reset}\n\n`;
 }
