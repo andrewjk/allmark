@@ -17,16 +17,19 @@ function testStart(_state: BlockParserState, _parent: MarkdownNode) {
 function testContinue(state: BlockParserState, node: MarkdownNode) {
 	let char = state.src[state.i];
 
+	if (state.indent >= node.subindent) {
+		state.indent -= node.subindent;
+		return true;
+	}
+
 	// This only applies to the lowest list_item
-	// TODO: Is there a way to check this only once instead for each open list_item??
-	// TODO: Split this out into different list_items
 	let i = state.openNodes.length;
 	let itemNode: MarkdownNode | undefined;
 	while (i-- > 1) {
 		let openNode = state.openNodes[i];
 		if (openNode.type === "list_item") {
 			itemNode = openNode;
-		} else if (state.openNodes[i].type === "list_ordered") {
+		} else if (openNode.type === "list_ordered") {
 			let numbers = "";
 			let end = state.i;
 			while (isNumeric(state.src.charCodeAt(end))) {
@@ -42,19 +45,21 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 			) {
 				return false;
 			}
-			break;
-		} else if (state.openNodes[i].type === "list_bulleted") {
+			// Break only when content is inside this nesting level, otherwise
+			// continue walking up to check ancestor lists
+			if (state.indent >= itemNode!.subindent) {
+				break;
+			}
+		} else if (openNode.type === "list_bulleted") {
 			if (state.indent <= 3 && state.indent < itemNode!.subindent && char === node.delimiter) {
 				return false;
 			}
-			break;
+			// Break only when content is inside this nesting level, otherwise
+			// continue walking up to check ancestor lists
+			if (state.indent >= itemNode!.subindent) {
+				break;
+			}
 		}
-	}
-
-	if (state.indent >= node.subindent) {
-		// Unindent to prevent code blocks
-		state.indent -= node.subindent;
-		return true;
 	}
 
 	if (state.hasBlankLine) {

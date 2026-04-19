@@ -1131,6 +1131,47 @@ test "basic parse and render" {
     try std.testing.expectEqualStrings(expected, stripped);
 }
 
+test "renders nested and spaced lists" {
+    const input =
+        \\1. Item one
+        \\2. Item two
+        \\   - child one
+        \\   - child two
+        \\
+        \\3. Item three
+        \\4. Item four
+    ;
+    const expected =
+        \\1. Item one
+        \\
+        \\2. Item two
+        \\
+        \\  ◦ child one
+        \\  ◦ child two
+        \\
+        \\3. Item three
+        \\
+        \\4. Item four
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    var rules = try core.init(gpa);
+    defer rules.blocks.deinit();
+    defer rules.inlines.deinit();
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    const output = try render(gpa, doc, null, true);
+    defer gpa.free(output);
+
+    const stripped = try stripAnsiCodes(gpa, output);
+    defer gpa.free(stripped);
+
+    try std.testing.expectEqualStrings(expected, stripped);
+}
+
 fn stripAnsiCodes(allocator: std.mem.Allocator, input: []const u8) ![]u8 {
     var result = std.ArrayList(u8).initCapacity(allocator, 0) catch unreachable;
     defer result.deinit(allocator);

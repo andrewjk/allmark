@@ -619,4 +619,33 @@ Here is some more text
         var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers));
         Assert.AreEqual(expected.Trim(), output.Trim());
     }
+
+    [TestMethod]
+    public void RendersNestedAndSpacedLists()
+    {
+        var input = """
+1. Item one
+2. Item two
+   - child one
+   - child two
+
+3. Item three
+4. Item four
+""";
+        var expected = """
+1. Item one
+
+2. Item two
+
+  ◦ child one
+  ◦ child two
+
+3. Item three
+
+4. Item four
+""";
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers));
+        Assert.AreEqual(expected + "\n", output);
+    }
 }

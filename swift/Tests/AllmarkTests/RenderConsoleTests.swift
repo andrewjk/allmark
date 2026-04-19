@@ -691,4 +691,34 @@ struct RenderConsoleTests {
 			#expect(output.trimmingCharacters(in: .whitespacesAndNewlines) == expected.trimmingCharacters(in: .whitespacesAndNewlines))
 		}
 	}
+
+	@Test func rendersNestedAndSpacedLists() async {
+		let input = """
+		1. Item one
+		2. Item two
+		   - child one
+		   - child two
+
+		3. Item three
+		4. Item four
+		"""
+		let expected = """
+		1. Item one
+
+		2. Item two
+
+		  ◦ child one
+		  ◦ child two
+
+		3. Item three
+
+		4. Item four
+		"""
+
+		await MainActor.run {
+			let doc = _parse(src: input, rules: coreRuleSet)
+			let output = stripAnsiCodes(_render(doc: doc, renderers: consoleRenderers))
+			#expect(output == expected + "\n")
+		}
+	}
 }

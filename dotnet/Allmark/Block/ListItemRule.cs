@@ -23,9 +23,13 @@ public static class ListItemRule
     {
         var ch = Utils.GetChar(state.Src, state.I);
 
+        if (state.Indent >= node.Subindent)
+        {
+            state.Indent -= node.Subindent;
+            return true;
+        }
+
         // This only applies to the lowest list_item
-        // TODO: Is there a way to check this only once instead for each open list_item??
-        // TODO: Split this out into different list_items
         MarkdownNode? itemNode = null;
         for (var i = 0; i < state.OpenNodes.Count - 1; i++)
         {
@@ -34,7 +38,7 @@ public static class ListItemRule
             {
                 itemNode = openNode;
             }
-            else if (state.OpenNodes.ElementAt(i).Type == "list_ordered")
+            else if (openNode.Type == "list_ordered")
             {
                 var numbers = "";
                 var end = state.I;
@@ -52,23 +56,26 @@ public static class ListItemRule
                 {
                     return false;
                 }
-                break;
+                // Break only when content is inside this nesting level, otherwise
+                // continue walking up to check ancestor lists
+                if (state.Indent >= itemNode.Subindent)
+                {
+                    break;
+                }
             }
-            else if (state.OpenNodes.ElementAt(i).Type == "list_bulleted")
+            else if (openNode.Type == "list_bulleted")
             {
                 if (state.Indent <= 3 && state.Indent < itemNode!.Subindent && ch.ToString() == node.Delimiter)
                 {
                     return false;
                 }
-                break;
+                // Break only when content is inside this nesting level, otherwise
+                // continue walking up to check ancestor lists
+                if (state.Indent >= itemNode.Subindent)
+                {
+                    break;
+                }
             }
-        }
-
-        if (state.Indent >= node.Subindent)
-        {
-            // Unindent to prevent code blocks
-            state.Indent -= node.Subindent;
-            return true;
         }
 
         if (state.HasBlankLine)

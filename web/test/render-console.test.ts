@@ -472,8 +472,8 @@ test("nested and spaced lists", () => {
 
 2. Item two
 
-   ◦ child one
-   ◦ child two
+  ◦ child one
+  ◦ child two
 
 3. Item three
 
