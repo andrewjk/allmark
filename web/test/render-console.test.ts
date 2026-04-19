@@ -456,3 +456,30 @@ Here is some more text
 	const output = stripVTControlCharacters(render(doc, consoleRenderers));
 	expect(output).toBe(expected);
 });
+
+test("nested and spaced lists", () => {
+	const input = `
+1. Item one
+2. Item two
+   - child one
+   - child two
+
+3. Item three
+4. Item four
+`;
+	const expected = `
+1. Item one
+
+2. Item two
+
+   ◦ child one
+   ◦ child two
+
+3. Item three
+
+4. Item four
+`.trimStart();
+	const doc = parse(input, core);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe(expected);
+});
