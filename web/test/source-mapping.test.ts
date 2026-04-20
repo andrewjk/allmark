@@ -344,38 +344,6 @@ describe("source mapping - block rules", () => {
 		expect(escaped.index).toBe(0);
 		expect(escaped.length).toBe(16);
 	});
-
-	test("table", () => {
-		const input = "| A | B |\n|---|---|\n| 1 | 2 |";
-		const doc = parse(input, extended);
-		const table = doc.children![0];
-		expect(table.index).toBe(0);
-		expect(table.length).toBe(29);
-	});
-
-	test("paragraph", () => {
-		const input = "A paragraph.";
-		const doc = parse(input, extended);
-		const paragraph = doc.children![0];
-		expect(paragraph.index).toBe(0);
-		expect(paragraph.length).toBe(12);
-	});
-
-	test("indent", () => {
-		const input = "  indented paragraph";
-		const doc = parse(input, extended);
-		const indent = doc.children![0];
-		expect(indent.index).toBe(2);
-		expect(indent.length).toBe(18);
-	});
-
-	test("escaped block", () => {
-		const input = "\\# Not a heading";
-		const doc = parse(input, extended);
-		const escaped = doc.children![0];
-		expect(escaped.index).toBe(0);
-		expect(escaped.length).toBe(16);
-	});
 });
 
 describe("source mapping - inline rules", () => {

@@ -50,7 +50,8 @@ public static class Parser
         {
             var openNode = state.OpenNodes.ElementAt(j);
             openNode.Length = state.I - openNode.Index;
-            if (state.Rules.ContainsKey(openNode.Type)) {
+            if (state.Rules.ContainsKey(openNode.Type))
+            {
                 var rule = state.Rules[openNode.Type];
                 rule.CloseNode?.Invoke(state, openNode);
             }

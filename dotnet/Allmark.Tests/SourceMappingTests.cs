@@ -667,24 +667,24 @@ public class SourceMappingTests
         Assert.AreEqual(0, heading.Index);
         Assert.AreEqual(12, heading.Length);
 
-		var paragraph = doc.Children![1];
-		Assert.AreEqual("paragraph", paragraph.Type);
-		Assert.AreEqual(13, paragraph.Index);
-		Assert.AreEqual(52, paragraph.Length);
+        var paragraph = doc.Children![1];
+        Assert.AreEqual("paragraph", paragraph.Type);
+        Assert.AreEqual(13, paragraph.Index);
+        Assert.AreEqual(52, paragraph.Length);
 
-		var strong = paragraph.Children![1];
-		Assert.AreEqual("strong", strong.Type);
-		Assert.AreEqual(18, strong.Index);
-		Assert.AreEqual(8, strong.Length);
+        var strong = paragraph.Children![1];
+        Assert.AreEqual("strong", strong.Type);
+        Assert.AreEqual(18, strong.Index);
+        Assert.AreEqual(8, strong.Length);
 
-		var strikethrough = paragraph.Children![3];
-		Assert.AreEqual("strikethrough", strikethrough.Type);
-		Assert.AreEqual(37, strikethrough.Index);
-		Assert.AreEqual(11, strikethrough.Length);
+        var strikethrough = paragraph.Children![3];
+        Assert.AreEqual("strikethrough", strikethrough.Type);
+        Assert.AreEqual(37, strikethrough.Index);
+        Assert.AreEqual(11, strikethrough.Length);
 
-		var deletion = paragraph.Children![5];
-		Assert.AreEqual("insertion", deletion.Type);
-		Assert.AreEqual(57, deletion.Index);
-		Assert.AreEqual(8, deletion.Length);
+        var deletion = paragraph.Children![5];
+        Assert.AreEqual("insertion", deletion.Type);
+        Assert.AreEqual(57, deletion.Index);
+        Assert.AreEqual(8, deletion.Length);
     }
 }

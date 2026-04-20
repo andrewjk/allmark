@@ -15,7 +15,8 @@ public static class HardBreakRule
 
     private static bool TestHardBreak(InlineParserState state, MarkdownNode parent)
     {
-        if (state.I + 1 < state.Src.Length) {
+        if (state.I + 1 < state.Src.Length)
+        {
             if (state.Src[state.I] == '\\' && Utils.IsNewLine(state.Src[state.I + 1]))
             {
                 var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);

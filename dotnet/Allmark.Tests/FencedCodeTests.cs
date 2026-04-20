@@ -719,4 +719,63 @@ public class FencedCodeTests
         var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
     }
+
+    [TestMethod]
+    public void CodeFenceInBlockquote()
+    {
+        var input = """
+> ```
+code
+```
+""";
+        var expected = """
+<blockquote>
+<pre><code></code></pre>
+</blockquote>
+<p>code</p>
+<pre><code></code></pre>
+""";
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
+
+    [TestMethod]
+    public void CodeFenceInListItem()
+    {
+        var input = """
+- ```
+code
+```
+""";
+        var expected = """
+<ul>
+<li>
+<pre><code></code></pre>
+</li>
+</ul>
+<p>code</p>
+<pre><code></code></pre>
+""";
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
+
+    [TestMethod]
+    public void CodeFenceWithTrailingWhitespaceOnClosingFence()
+    {
+        var input = """
+```
+code
+```   
+""";
+        var expected = """
+<pre><code>code
+</code></pre>
+""";
+        var doc = Parser.Execute(input, Core.RuleSet);
+        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected.Trim(), html.Trim());
+    }
 }

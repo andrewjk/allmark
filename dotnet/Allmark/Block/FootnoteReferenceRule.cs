@@ -22,17 +22,17 @@ public static class FootnoteReferenceRule
             return false;
         }
 
-            var ch = Utils.GetChar(state.Src, state.I);
-            if (state.Indent <= 3 && ch == '[' && !Utils.IsEscaped(state.Src, state.I))
+        var ch = Utils.GetChar(state.Src, state.I);
+        if (state.Indent <= 3 && ch == '[' && !Utils.IsEscaped(state.Src, state.I))
+        {
+            // "A footnote definition cannot interrupt a paragraph"
+            if (parent.Type == "paragraph" && !parent.BlankAfter)
             {
-                // "A footnote definition cannot interrupt a paragraph"
-                if (parent.Type == "paragraph" && !parent.BlankAfter)
-                {
-                    return false;
-                }
+                return false;
+            }
 
-                var originalStart = state.I;
-                var start = state.I + 1;
+            var originalStart = state.I;
+            var start = state.I + 1;
 
             // Check for ^ that indicates a footnote (not a regular link reference)
             if (Utils.GetChar(state.Src, start) != '^')

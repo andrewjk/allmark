@@ -22,7 +22,7 @@ public static class TextRenderer
             content = Utils.EscapePunctuation(content);
         }
         content = Utils.EscapeHtml(content);
- 
+
         state.Output.Append(content);
     }
 }
