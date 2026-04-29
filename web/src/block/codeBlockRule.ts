@@ -36,7 +36,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	if (state.indent >= 4 && !isNewLine(state.src[state.i])) {
+	if (state.indent >= 4 && !isNewLine(state.src.charCodeAt(state.i))) {
 		let closedNode: MarkdownNode | undefined;
 
 		// TODO: rule.canContain?? e.g. list_ordered.canContain = ["list_item"] etc

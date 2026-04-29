@@ -121,9 +121,10 @@ export function testListStart(
 	let spaces = 0;
 	let blank = true;
 	for (let i = state.i + info.markup.length; i < state.src.length; i++) {
-		if (isNewLine(state.src[i])) {
+		let nextCharCode = state.src.charCodeAt(i);
+		if (isNewLine(nextCharCode)) {
 			break;
-		} else if (isSpace(state.src.charCodeAt(i))) {
+		} else if (isSpace(nextCharCode)) {
 			spaces++;
 		} else {
 			blank = false;
@@ -183,8 +184,6 @@ export function testListContinue(
 	node: MarkdownNode,
 	info?: ListInfo,
 ): boolean {
-	let char = state.src[state.i];
-
 	// If there's the same list marker and the indent is not too far, we can continue
 	if (info !== undefined) {
 		if (state.hasBlankLine && state.indent >= 4) {
@@ -203,7 +202,7 @@ export function testListContinue(
 
 	// TODO: Not sure about this one
 	// Also, do the state.isEmpty check with indent like on the other branch
-	if (isNewLine(char)) {
+	if (isNewLine(state.src.charCodeAt(state.i))) {
 		return true;
 	}
 

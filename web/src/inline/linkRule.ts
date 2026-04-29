@@ -3,6 +3,13 @@ import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type LinkReference from "../types/LinkReference";
 import type MarkdownNode from "../types/MarkdownNode";
+import {
+	BACKSLASH_CODE,
+	BRACKET_OPEN_CODE,
+	BRACKET_CLOSE_CODE,
+	PAREN_OPEN_CODE,
+	EXCLAMATION_CODE,
+} from "../utils/charCodes";
 import isEscaped from "../utils/isEscaped";
 import newText from "../utils/newText";
 import normalizeLabel from "../utils/normalizeLabel";
@@ -16,18 +23,18 @@ const rule: InlineRule = {
 export default rule;
 
 function testLink(state: InlineParserState, parent: MarkdownNode): boolean {
-	let char = state.src[state.i];
-
 	if (!isEscaped(state.src, state.i)) {
-		if (char === "[") {
+		let charCode = state.src.charCodeAt(state.i);
+
+		if (charCode === BRACKET_OPEN_CODE) {
 			return testLinkOpen(state, parent);
 		}
 
-		if (char === "!" && state.src[state.i + 1] === "[") {
+		if (charCode === EXCLAMATION_CODE && state.src.charCodeAt(state.i + 1) === BRACKET_OPEN_CODE) {
 			return testImageOpen(state, parent);
 		}
 
-		if (char === "]") {
+		if (charCode === BRACKET_CLOSE_CODE) {
 			return testLinkClose(state, parent);
 		}
 	}
@@ -101,11 +108,11 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 				// unbalanced ones, unless they are escaped"
 				let level = 0;
 				for (let i = 0; i < label.length; i++) {
-					if (label[i] === "\\") {
+					if (label.charCodeAt(i) === BACKSLASH_CODE) {
 						i++;
-					} else if (label[i] === "[") {
+					} else if (label.charCodeAt(i) === BRACKET_OPEN_CODE) {
 						level++;
-					} else if (label[i] === "]") {
+					} else if (label.charCodeAt(i) === BRACKET_CLOSE_CODE) {
 						level--;
 					}
 				}
@@ -115,8 +122,8 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 
 				let isLink = startDelimiter.markup === "[";
 
-				let hasInfo = state.src[state.i + 1] === "(";
-				let hasRef = state.src[state.i + 1] === "[";
+				let hasInfo = state.src.charCodeAt(state.i + 1) === PAREN_OPEN_CODE;
+				let hasRef = state.src.charCodeAt(state.i + 1) === BRACKET_OPEN_CODE;
 
 				// "Full and compact references take precedence over shortcut references"
 				// "Inline links also take precedence"
@@ -130,7 +137,7 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 				} else if (hasRef) {
 					start++;
 					for (let i = start; i < state.src.length; i++) {
-						if (state.src[i] === "]") {
+						if (state.src.charCodeAt(i) === BRACKET_CLOSE_CODE) {
 							// Lookup using the text between [], or if there
 							// is no text, use the label
 							label = i - start > 0 ? state.src.substring(start, i) : label;

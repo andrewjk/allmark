@@ -1,6 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { BACKSLASH_CODE, SPACE_CODE } from "../utils/charCodes";
 import isNewLine from "../utils/isNewLine";
 import newInline from "../utils/newInline";
 
@@ -17,19 +18,24 @@ export default rule;
  */
 
 function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean {
-	if (state.src[state.i] === "\\" && isNewLine(state.src[state.i + 1])) {
+	let charCode = state.src.charCodeAt(state.i);
+
+	if (charCode === BACKSLASH_CODE && isNewLine(state.src.charCodeAt(state.i + 1))) {
 		let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "\\", 0);
 		hb.length = 2;
 		state.i += 2;
 		parent.children!.push(hb);
 		return true;
-	} else if (state.src[state.i] === " ") {
+	}
+
+	if (charCode === SPACE_CODE) {
 		let end = state.i;
 		for (let i = state.i + 1; i < state.src.length; i++) {
-			if (isNewLine(state.src[i])) {
+			let nextCharCode = state.src.charCodeAt(i);
+			if (isNewLine(nextCharCode)) {
 				end = i;
 				break;
-			} else if (state.src[i] === " ") {
+			} else if (nextCharCode === SPACE_CODE) {
 				continue;
 			} else {
 				return false;

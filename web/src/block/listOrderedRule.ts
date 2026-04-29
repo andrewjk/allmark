@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { DOT_CODE, PAREN_CLOSE_CODE } from "../utils/charCodes";
 import { isNumeric } from "../utils/isAlphaNumeric";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
@@ -46,14 +47,14 @@ function getMarkup(state: BlockParserState) {
 	let orderedList =
 		numbers.length > 0 &&
 		numbers.length < 10 &&
-		(state.src[end] === "." || state.src[end] === ")") &&
+		(state.src.charCodeAt(end) === DOT_CODE || state.src.charCodeAt(end) === PAREN_CLOSE_CODE) &&
 		(end === state.src.length - 1 || isSpace(state.src.charCodeAt(end + 1)));
 	if (orderedList) {
 		let delimiter = state.src[end];
 		return {
 			delimiter,
 			markup: numbers + delimiter,
-			isBlank: end === state.src.length - 1 || isNewLine(state.src[end + 1]),
+			isBlank: end === state.src.length - 1 || isNewLine(state.src.charCodeAt(end + 1)),
 			type: "list_ordered",
 		};
 	}

@@ -6,7 +6,7 @@ import isNewLine from "./isNewLine";
 export default function getEndOfLine(state: BlockParserState): number {
 	let endOfLine = state.i;
 	for (; endOfLine < state.src.length; endOfLine++) {
-		if (isNewLine(state.src[endOfLine])) {
+		if (isNewLine(state.src.charCodeAt(endOfLine))) {
 			endOfLine++;
 			state.lineStart = endOfLine;
 			break;

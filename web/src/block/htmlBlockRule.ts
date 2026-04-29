@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { ANGLE_LEFT_CODE, SLASH_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import { CLOSE_TAG, OPEN_TAG } from "../utils/htmlPatterns";
@@ -41,8 +42,11 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (state.indent <= 3 && char === "<" && !isEscaped(state.src, state.i)) {
+	if (
+		state.indent <= 3 &&
+		state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE &&
+		!isEscaped(state.src, state.i)
+	) {
 		let tail = state.src.substring(state.i);
 
 		if (testHtmlCondition1(state, parent, tail)) {
@@ -93,7 +97,10 @@ function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail:
 		let start = state.i;
 		let end = state.i + 1 + match1[0].length + 1;
 		for (; end < state.src.length; end++) {
-			if (state.src[end] === "<" && state.src[end + 1] === "/") {
+			if (
+				state.src.charCodeAt(end) === ANGLE_LEFT_CODE &&
+				state.src.charCodeAt(end + 1) === SLASH_CODE
+			) {
 				let nextClosingTag = state.src.substring(end, end + closingTag.length).toLocaleLowerCase();
 				if (nextClosingTag === closingTag) {
 					//end += closingTag.length;

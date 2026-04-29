@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { ASTERISK_CODE, DASH_CODE, PLUS_CODE } from "../utils/charCodes";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import { testListContinue, testListStart } from "./listRule";
@@ -36,16 +37,17 @@ export default rule;
  */
 
 function getMarkup(state: BlockParserState) {
-	let char = state.src[state.i];
+	let charCode = state.src.charCodeAt(state.i);
 	if (
-		(char === "-" || char === "+" || char === "*") &&
+		(charCode === DASH_CODE || charCode === PLUS_CODE || charCode === ASTERISK_CODE) &&
 		// TODO: Should this be part of the isSpace/isNewLine check? i.e. eof counts as a space?
 		(state.i === state.src.length - 1 || isSpace(state.src.charCodeAt(state.i + 1)))
 	) {
+		let char = state.src[state.i];
 		return {
 			delimiter: char,
 			markup: char,
-			isBlank: state.i === state.src.length - 1 || isNewLine(state.src[state.i + 1]),
+			isBlank: state.i === state.src.length - 1 || isNewLine(state.src.charCodeAt(state.i + 1)),
 			type: "list_bulleted",
 		};
 	}

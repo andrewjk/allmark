@@ -3,6 +3,7 @@ import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import addMarkupAsText from "../utils/addMarkupAsText";
+import { ASTERISK_CODE, UNDERSCORE_CODE } from "../utils/charCodes";
 import isEscaped from "../utils/isEscaped";
 import isUnicodePunctuation from "../utils/isUnicodePunctuation";
 import isUnicodeSpace from "../utils/isUnicodeSpace";
@@ -17,21 +18,26 @@ const rule: InlineRule = {
 export default rule;
 
 function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
-	let char = state.src[state.i];
-	if ((char === "*" || char === "_") && !isEscaped(state.src, state.i)) {
+	let charCode = state.src.charCodeAt(state.i);
+	if (
+		(charCode === ASTERISK_CODE || charCode === UNDERSCORE_CODE) &&
+		!isEscaped(state.src, state.i)
+	) {
+		let char = state.src[state.i];
 		let start = state.i;
 		let end = state.i;
 
 		// Get the markup
 		let markup = char;
 		for (let i = start + 1; i < state.src.length; i++) {
-			if (state.src[i] === char) {
+			if (state.src.charCodeAt(i) === charCode) {
 				markup += char;
 				end++;
 			} else {
 				break;
 			}
 		}
+		//let markup = state.src.substring(start, end);
 
 		// TODO: Better space checks including start/end of line
 		let codeBefore = state.src.charCodeAt(start - 1);
@@ -94,10 +100,10 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 			let canClose =
 				(rightFlanking ||
 					// Check if it's a continuing part of a three-run delimiter
-					state.src[state.i - 1] === char) &&
+					state.src.charCodeAt(state.i - 1) === charCode) &&
 				startDelimiter.markup === char &&
 				// "Emphasis with _ is not allowed inside words"
-				(char !== "_" || spaceAfter || punctuationAfter) &&
+				(charCode !== UNDERSCORE_CODE || spaceAfter || punctuationAfter) &&
 				// "[A] delimiter that can both open and close ... cannot form
 				// emphasis if the sum of the lengths of the delimiter runs
 				// containing the opening and closing delimiters is a multiple
@@ -175,7 +181,7 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 		let canOpen =
 			leftFlanking &&
 			// "Emphasis with _ is not allowed inside words"
-			(char !== "_" || spaceBefore || punctuationBefore);
+			(charCode !== UNDERSCORE_CODE || spaceBefore || punctuationBefore);
 		if (canOpen) {
 			// Add a new text node which may turn into emphasis
 			let text = newText(state.parentIndex + start, state.line, markup, 0);

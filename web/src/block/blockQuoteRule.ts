@@ -2,6 +2,7 @@ import parseBlock from "../parse/parseBlock";
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { ANGLE_RIGHT_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
@@ -39,8 +40,8 @@ export default rule;
  * Nothing else counts as a block quote."
  */
 
-function hasMarkup(char: string, state: BlockParserState) {
-	return state.indent <= 3 && char === ">";
+function hasMarkup(state: BlockParserState) {
+	return state.indent <= 3 && state.src.charCodeAt(state.i) === ANGLE_RIGHT_CODE;
 }
 
 function testStart(state: BlockParserState, parent: MarkdownNode) {
@@ -50,8 +51,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (hasMarkup(char, state)) {
+	if (hasMarkup(state)) {
 		if (parent.type === "paragraph") {
 			closedNode = state.openNodes.pop();
 			parent = state.openNodes.at(-1)!;
@@ -63,7 +63,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let quoteIndent = state.indent + 1;
 
-		let quote = newBlock("block_quote", state.i, state.line, char, quoteIndent);
+		let quote = newBlock("block_quote", state.i, state.line, ">", quoteIndent);
 
 		parent.children!.push(quote);
 		state.openNodes.push(quote);
@@ -80,8 +80,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 }
 
 function testContinue(state: BlockParserState, node: MarkdownNode) {
-	let char = state.src[state.i];
-	if (hasMarkup(char, state)) {
+	if (hasMarkup(state)) {
 		movePastMarker(1, state);
 		return true;
 	}

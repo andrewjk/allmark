@@ -14,9 +14,10 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 	let i = 0;
 	let index = 0;
 	for (; index < src.length; index++) {
-		if (!isSpace(src.charCodeAt(index))) {
+		let nextCharCode = src.charCodeAt(index);
+		if (!isSpace(nextCharCode)) {
 			break;
-		} else if (isNewLine(src[index])) {
+		} else if (isNewLine(nextCharCode)) {
 			i = index + 1;
 		}
 	}

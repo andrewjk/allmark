@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { COLON_CODE, DASH_CODE, NEW_LINE_CODE, PIPE_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
@@ -29,7 +30,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let row = newBlock("table_row", state.i, state.line, "", 0);
 		let rowLength = endOfLine - state.i;
-		if (state.src[endOfLine - 1] === "\n") {
+		if (state.src.charCodeAt(endOfLine - 1) === NEW_LINE_CODE) {
 			rowLength--;
 		}
 		row.length = rowLength;
@@ -55,37 +56,40 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	// "The delimiter row consists of cells whose only content are hyphens (-),
 	// and optionally, a leading or trailing colon (:), or both, to indicate
 	// left, right, or center alignment respectively"
-	let char = state.src[state.i];
-	if (state.indent <= 3 && (char === "|" || char === "-" || char === ":")) {
-		let cells: string[] = [char === ":" ? "left" : ""];
+	let charCode = state.src.charCodeAt(state.i);
+	if (
+		state.indent <= 3 &&
+		(charCode === PIPE_CODE || charCode === DASH_CODE || charCode === COLON_CODE)
+	) {
+		let cells: string[] = [charCode === COLON_CODE ? "left" : ""];
 		let end = state.i + 1;
-		let lastChar = char;
+		let lastCharCode = charCode;
 		for (; end < state.src.length; end++) {
-			let nextChar = state.src[end];
-			if (nextChar === "|") {
+			let nextCharCode = state.src.charCodeAt(end);
+			if (nextCharCode === PIPE_CODE) {
 				cells.push("");
-				lastChar = nextChar;
-			} else if (nextChar === "-") {
-				lastChar = nextChar;
-			} else if (nextChar === ":") {
+				lastCharCode = nextCharCode;
+			} else if (nextCharCode === DASH_CODE) {
+				lastCharCode = nextCharCode;
+			} else if (nextCharCode === COLON_CODE) {
 				let x = cells.length - 1;
-				if (lastChar === "|") {
+				if (lastCharCode === PIPE_CODE) {
 					cells[x] = "left";
 				} else {
 					cells[x] = cells[x] ? "center" : "right";
 				}
-				lastChar = nextChar;
-			} else if (isNewLine(nextChar)) {
+				lastCharCode = nextCharCode;
+			} else if (isNewLine(nextCharCode)) {
 				// TODO: Handle windows crlf
 				end++;
 				break;
-			} else if (isSpace(state.src.charCodeAt(end))) {
+			} else if (isSpace(nextCharCode)) {
 				continue;
 			} else {
 				return false;
 			}
 		}
-		if (lastChar === "|") {
+		if (lastCharCode === PIPE_CODE) {
 			cells.pop();
 		}
 
@@ -97,7 +101,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			let headerCellCount = 1;
 			let headerContent = parent.content.trim().replaceAll(/(^\||\|$)/g, "");
 			for (let i = 0; i < headerContent.length; i++) {
-				if (headerContent[i] === "|" && !isEscaped(headerContent, i)) {
+				if (headerContent.charCodeAt(i) === PIPE_CODE && !isEscaped(headerContent, i)) {
 					headerCellCount++;
 				}
 			}
@@ -166,7 +170,7 @@ function loadPipePositions(line: string) {
 	let pipePositions: number[] = [];
 	let haveEndPipe = false;
 	for (let i = 0; i < line.length; i++) {
-		if (line[i] === "|" && !isEscaped(line, i)) {
+		if (line.charCodeAt(i) === PIPE_CODE && !isEscaped(line, i)) {
 			pipePositions.push(i);
 			haveEndPipe = true;
 		} else if (!isSpace(line.charCodeAt(i))) {

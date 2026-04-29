@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { ANGLE_RIGHT_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import movePastMarker from "../utils/movePastMarker";
@@ -32,8 +33,8 @@ export default rule;
 
 const ALERT_REGEX = /^\s*\[!(note|tip|important|warning|caution)]/i;
 
-function hasMarkup(char: string, state: BlockParserState) {
-	return state.indent <= 3 && char === ">";
+function hasMarkup(state: BlockParserState) {
+	return state.indent <= 3 && state.src.charCodeAt(state.i) === ANGLE_RIGHT_CODE;
 }
 
 function testStart(state: BlockParserState, parent: MarkdownNode) {
@@ -43,8 +44,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (hasMarkup(char, state)) {
+	if (hasMarkup(state)) {
 		const match = state.src.slice(state.i + 1).match(ALERT_REGEX);
 		if (match !== null) {
 			if (parent.type === "paragraph") {
@@ -75,8 +75,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 }
 
 function testContinue(state: BlockParserState, node: MarkdownNode) {
-	let char = state.src[state.i];
-	if (hasMarkup(char, state)) {
+	if (hasMarkup(state)) {
 		movePastMarker(1, state);
 		return true;
 	}

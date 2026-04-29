@@ -1,6 +1,7 @@
 import type Delimiter from "../types/Delimiter";
 import type InlineParserState from "../types/InlineParserState";
 import type MarkdownNode from "../types/MarkdownNode";
+import { BRACE_RIGHT_CODE } from "../utils/charCodes";
 import isEscaped from "../utils/isEscaped";
 import newText from "../utils/newText";
 
@@ -22,12 +23,13 @@ export default function testCriticMarks(
 		// Get the markup
 		let markup = char;
 		for (let i = start + 1; i < state.src.length; i++) {
-			if (state.src[i] === delimiter) {
+			let nextCharCode = state.src.charCodeAt(i);
+			if (nextCharCode === delimiter.charCodeAt(0)) {
 				markup += delimiter;
 				end++;
 			} else if (
-				state.src[i] === "}" ||
-				(closingDelimiter !== delimiter && state.src[i] === closingDelimiter)
+				nextCharCode === BRACE_RIGHT_CODE ||
+				(closingDelimiter !== delimiter && nextCharCode === closingDelimiter.charCodeAt(0))
 			) {
 				return false;
 			} else {
@@ -50,9 +52,10 @@ export default function testCriticMarks(
 		// Get the markup
 		let markup = "{" + delimiter;
 		for (let i = state.i + 1; i < state.src.length; i++) {
-			if (state.src[i] === closingDelimiter) {
+			let nextCharCode = state.src.charCodeAt(i);
+			if (nextCharCode === closingDelimiter.charCodeAt(0)) {
 				markup += delimiter;
-			} else if (state.src[i] === "}") {
+			} else if (nextCharCode === BRACE_RIGHT_CODE) {
 				break;
 			} else {
 				return false;

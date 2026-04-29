@@ -1,5 +1,13 @@
 import type BlockParserState from "../types/BlockParserState";
 import type LinkReference from "../types/LinkReference";
+import {
+	ANGLE_RIGHT_CODE,
+	ANGLE_LEFT_CODE,
+	PAREN_CLOSE_CODE,
+	PAREN_OPEN_CODE,
+	QUOTE_DOUBLE_CODE,
+	QUOTE_SINGLE_CODE,
+} from "./charCodes";
 import consumeSpaces from "./consumeSpaces";
 import decodeEntities from "./decodeEntities";
 import escapeBackslashes from "./escapeBackslashes";
@@ -25,10 +33,10 @@ export default function parseLinkBlock(
 
 	// Get the url
 	let url = "";
-	if (state.src[start] === "<") {
+	if (state.src.charCodeAt(start) === ANGLE_LEFT_CODE) {
 		start++;
 		for (let i = start; i < state.src.length; i++) {
-			if (state.src[i] === ">" && !isEscaped(state.src, i)) {
+			if (state.src.charCodeAt(i) === ANGLE_RIGHT_CODE && !isEscaped(state.src, i)) {
 				url = state.src.substring(start, i);
 				start = i + 1;
 				break;
@@ -71,29 +79,30 @@ export default function parseLinkBlock(
 
 	// Get the title
 	let title = "";
-	let delimiter = state.src[start];
-	if (delimiter === "'" || delimiter === '"') {
+	let delimiterCode = state.src.charCodeAt(start);
+	if (delimiterCode === QUOTE_SINGLE_CODE || delimiterCode === QUOTE_DOUBLE_CODE) {
 		start++;
 		for (let i = start; i < state.src.length; i++) {
-			if (state.src[i] === delimiter && !isEscaped(state.src, i)) {
+			if (state.src.charCodeAt(i) === delimiterCode && !isEscaped(state.src, i)) {
 				title = state.src.substring(start, i);
 				start = i + 1;
 				break;
 			}
 		}
-	} else if (delimiter === "(") {
+	} else if (delimiterCode === PAREN_OPEN_CODE) {
 		start++;
 		let level = 1;
 		for (let i = start; i < state.src.length; i++) {
 			if (!isEscaped(state.src, i)) {
-				if (state.src[i] === ")") {
+				let charCode = state.src.charCodeAt(i);
+				if (charCode === PAREN_CLOSE_CODE) {
 					level--;
 					if (level === 0) {
 						title = state.src.substring(start, i);
 						start = i + 1;
 						break;
 					}
-				} else if (state.src[i] === "(") {
+				} else if (charCode === PAREN_OPEN_CODE) {
 					level++;
 				}
 			}
@@ -120,9 +129,9 @@ export default function parseLinkBlock(
 	}
 
 	// "[There may not be] non-whitespace characters after the title"
-	if (!isNewLine(state.src[start - 1])) {
+	if (!isNewLine(state.src.charCodeAt(start - 1))) {
 		for (; start < state.src.length; start++) {
-			if (isNewLine(state.src[start])) {
+			if (isNewLine(state.src.charCodeAt(start))) {
 				start++;
 				break;
 			} else if (isSpace(state.src.charCodeAt(start))) {

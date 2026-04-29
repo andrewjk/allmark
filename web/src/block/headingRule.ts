@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { BACKSLASH_CODE, HASH_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
@@ -32,12 +33,15 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (state.indent <= 3 && char === "#" && !isEscaped(state.src, state.i)) {
+	if (
+		state.indent <= 3 &&
+		state.src.charCodeAt(state.i) === HASH_CODE &&
+		!isEscaped(state.src, state.i)
+	) {
 		let level = 1;
 		// TODO: peekUntil
 		for (let j = state.i + 1; j < state.src.length; j++) {
-			if (state.src[j] === "#") {
+			if (state.src.charCodeAt(j) === HASH_CODE) {
 				level++;
 			} else {
 				break;
@@ -77,8 +81,9 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 				if (!isSpace(state.src.charCodeAt(end))) break;
 			}
 			for (; end >= state.i; end--) {
-				if (state.src[end] !== "#") {
-					if (state.src[end] === "\\" || !isSpace(state.src.charCodeAt(end))) {
+				let nextCharCode = state.src.charCodeAt(end);
+				if (nextCharCode !== HASH_CODE) {
+					if (nextCharCode === BACKSLASH_CODE || !isSpace(nextCharCode)) {
 						end = endOfLine - 1;
 					}
 					break;

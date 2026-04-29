@@ -1,6 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { PAREN_CLOSE_CODE, PAREN_OPEN_CODE } from "../utils/charCodes";
 import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
@@ -23,15 +24,21 @@ const EXT_URL_REGEX = /^((https*|ftp):\/\/([a-z0-9_-]\.*)+([a-z0-9-]\.*){0,2}[^\
 const EXT_EMAIL_REGEX = /^([a-z0-9._\-+]+@([a-z0-9._\-+]+\.*)+)/i;
 const EXT_XMPP_REGEX = /^((mailto|xmpp):[a-z0-9._\-+]+@([a-z0-9._\-+]+\.*)+(\/[a-z0-9@.]+){0,1})/i;
 
+const F_CHAR_CODE = 102;
+const H_CHAR_CODE = 104;
+const M_CHAR_CODE = 109;
+const W_CHAR_CODE = 119;
+const X_CHAR_CODE = 120;
+
 function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 	// Don't try to extract HTML for HTML blocks
 	if (parent.type === "html_block") {
 		return false;
 	}
 
-	let char = state.src[state.i];
 	if (!isEscaped(state.src, state.i)) {
-		if (char === "w") {
+		let charCode = state.src.charCodeAt(state.i);
+		if (charCode === W_CHAR_CODE) {
 			let tail = state.src.substring(state.i);
 
 			let urlMatch = tail.match(URL_REGEX);
@@ -61,7 +68,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			}
 		}
 
-		if (char === "h" || char === "f") {
+		if (charCode === H_CHAR_CODE || charCode === F_CHAR_CODE) {
 			let tail = state.src.substring(state.i);
 
 			let urlMatch = tail.match(EXT_URL_REGEX);
@@ -90,7 +97,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			}
 		}
 
-		if (isAlphaNumeric(state.src.charCodeAt(state.i))) {
+		if (isAlphaNumeric(charCode)) {
 			// TODO: I think we should actually check this when we come across an @,
 			// rather than any alphanumeric
 			let tail = state.src.substring(state.i);
@@ -125,7 +132,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			}
 		}
 
-		if (char === "m" || char === "x") {
+		if (charCode === M_CHAR_CODE || charCode === X_CHAR_CODE) {
 			let tail = state.src.substring(state.i);
 
 			let emailMatch = tail.match(EXT_XMPP_REGEX);
@@ -181,13 +188,13 @@ function extendedValidation(url: string) {
 		let countingUp = true;
 		while (i--) {
 			if (countingUp) {
-				if (url[i] === ")") {
+				if (url.charCodeAt(i) === PAREN_CLOSE_CODE) {
 					trimCount++;
 				} else {
 					countingUp = false;
 				}
 			} else {
-				if (url[i] === "(") {
+				if (url.charCodeAt(i) === PAREN_OPEN_CODE) {
 					trimCount--;
 				}
 				if (trimCount === 0) {

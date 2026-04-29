@@ -3,6 +3,12 @@ import type Delimiter from "../types/Delimiter";
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import {
+	BACKSLASH_CODE,
+	BRACKET_OPEN_CODE,
+	BRACKET_CLOSE_CODE,
+	CARET_CODE,
+} from "../utils/charCodes";
 import isEscaped from "../utils/isEscaped";
 import newText from "../utils/newText";
 import normalizeLabel from "../utils/normalizeLabel";
@@ -14,14 +20,14 @@ const rule: InlineRule = {
 export default rule;
 
 function testFootnote(state: InlineParserState, parent: MarkdownNode): boolean {
-	let char = state.src[state.i];
-
 	if (!isEscaped(state.src, state.i)) {
-		if (char === "[") {
+		let charCode = state.src.charCodeAt(state.i);
+
+		if (charCode === BRACKET_OPEN_CODE) {
 			return testFootnoteOpen(state, parent);
 		}
 
-		if (char === "]") {
+		if (charCode === BRACKET_CLOSE_CODE) {
 			return testFootnoteClose(state, parent);
 		}
 	}
@@ -33,7 +39,7 @@ function testFootnoteOpen(state: InlineParserState, parent: MarkdownNode) {
 	let start = state.i;
 
 	// Check for [^ pattern which indicates a footnote reference
-	if (state.src[start + 1] !== "^") {
+	if (state.src.charCodeAt(start + 1) !== CARET_CODE) {
 		return false;
 	}
 
@@ -82,11 +88,11 @@ function testFootnoteClose(state: InlineParserState, parent: MarkdownNode) {
 				// Check for balanced brackets
 				let level = 0;
 				for (let i = 0; i < label.length; i++) {
-					if (label[i] === "\\") {
+					if (label.charCodeAt(i) === BACKSLASH_CODE) {
 						i++;
-					} else if (label[i] === "[") {
+					} else if (label.charCodeAt(i) === BRACKET_OPEN_CODE) {
 						level++;
-					} else if (label[i] === "]") {
+					} else if (label.charCodeAt(i) === BRACKET_CLOSE_CODE) {
 						level--;
 					}
 				}
@@ -96,10 +102,10 @@ function testFootnoteClose(state: InlineParserState, parent: MarkdownNode) {
 
 				// Swallow anything in brackets afterwards
 				// Unless it's a link reference, in which case it should be treated as a link instead
-				if (state.src[state.i + 1] === "[") {
+				if (state.src.charCodeAt(state.i + 1) === BRACKET_OPEN_CODE) {
 					const start = state.i + 2;
 					for (let i = start; i < state.src.length; i++) {
-						if (state.src[i] === "]") {
+						if (state.src.charCodeAt(i) === BRACKET_CLOSE_CODE) {
 							let linkRef = state.src.substring(start, i);
 							linkRef = normalizeLabel(linkRef);
 							if (state.refs[linkRef] !== undefined) {

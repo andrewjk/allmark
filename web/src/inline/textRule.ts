@@ -17,6 +17,7 @@ export default rule;
  */
 function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 	let char = state.src[state.i];
+	let charCode = state.src.charCodeAt(state.i);
 
 	// TODO: Should this be in the testEscaped rule?
 	// "Any ASCII punctuation character may be backslash-escaped"
@@ -29,12 +30,12 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 	if (lastNode === undefined || lastNode.type !== "text") {
 		lastNode = newText(state.parentIndex + state.i, state.line, "", 0);
 		parent.children!.push(lastNode);
-	} else if (isNewLine(char)) {
+	} else if (isNewLine(charCode)) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
 		lastNode.content = lastNode.content.trimEnd();
 	}
 
-	if (isAlphaNumeric(state.src.charCodeAt(state.i))) {
+	if (isAlphaNumeric(charCode)) {
 		// If this an alphanumeric character, we can just process whole
 		// word, and save checking a bunch of characters that are never going to
 		// match anything

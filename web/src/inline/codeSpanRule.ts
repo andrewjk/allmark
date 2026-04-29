@@ -2,6 +2,7 @@ import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import addMarkupAsText from "../utils/addMarkupAsText";
+import { BACKTICK_CODE } from "../utils/charCodes";
 import isEscaped from "../utils/isEscaped";
 import isSpace from "../utils/isSpace";
 import newInline from "../utils/newInline";
@@ -15,13 +16,13 @@ const rule: InlineRule = {
 export default rule;
 
 function testCodeSpan(state: InlineParserState, parent: MarkdownNode): boolean {
-	let char = state.src[state.i];
-	if (char === "`" && !isEscaped(state.src, state.i)) {
+	let charCode = state.src.charCodeAt(state.i);
+	if (charCode === BACKTICK_CODE && !isEscaped(state.src, state.i)) {
 		let openMatched = 1;
 		let openEnd = state.i + 1;
 		for (; openEnd < state.src.length; openEnd++) {
-			let nextChar = state.src[openEnd];
-			if (nextChar === char) {
+			let nextCharCode = state.src.charCodeAt(openEnd);
+			if (nextCharCode === charCode) {
 				openMatched++;
 			} else {
 				break;
@@ -35,10 +36,10 @@ function testCodeSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 		closeEnd = skipSpaces(state.src, closeEnd);
 		let closeMatched = 0;
 		for (; closeEnd < state.src.length; closeEnd++) {
-			if (state.src[closeEnd] === char) {
+			if (state.src.charCodeAt(closeEnd) === charCode) {
 				for (; closeEnd < state.src.length; closeEnd++) {
-					let nextChar = state.src[closeEnd];
-					if (nextChar === char) {
+					let nextCharCode = state.src.charCodeAt(closeEnd);
+					if (nextCharCode === charCode) {
 						closeMatched++;
 					} else {
 						break;

@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { BRACKET_OPEN_CODE, BRACKET_CLOSE_CODE, COLON_CODE } from "../utils/charCodes";
 import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
 import isNewLine from "../utils/isNewLine";
@@ -34,8 +35,11 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (state.indent <= 3 && char === "[" && !isEscaped(state.src, state.i)) {
+	if (
+		state.indent <= 3 &&
+		state.src.charCodeAt(state.i) === BRACKET_OPEN_CODE &&
+		!isEscaped(state.src, state.i)
+	) {
 		// "A link reference definition cannot interrupt a paragraph"
 		if (parent.type === "paragraph" && !parent.blankAfter) {
 			return false;
@@ -48,7 +52,9 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		let label = "";
 		for (let i = linkStart; i < state.src.length; i++) {
 			if (!isEscaped(state.src, i)) {
-				if (state.src[i] === "]") {
+				let nextCharCode = state.src.charCodeAt(i);
+
+				if (nextCharCode === BRACKET_CLOSE_CODE) {
 					label = state.src.substring(linkStart, i);
 					linkStart = i + 1;
 					break;
@@ -56,7 +62,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 				// "Link labels cannot contain brackets, unless they are
 				// backslash-escaped"
-				if (state.src[i] === "[") {
+				if (nextCharCode === BRACKET_OPEN_CODE) {
 					return false;
 				}
 			}
@@ -66,7 +72,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			return false;
 		}
 
-		if (state.src[linkStart] !== ":") {
+		if (state.src.charCodeAt(linkStart) !== COLON_CODE) {
 			return false;
 		}
 
@@ -98,7 +104,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		parent.children!.push(ref);
 
-		if (!isNewLine(state.src[state.i - 1])) {
+		if (!isNewLine(state.src.charCodeAt(state.i - 1))) {
 			state.i = getEndOfLine(state);
 		}
 

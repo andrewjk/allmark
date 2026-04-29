@@ -2,7 +2,9 @@ import parseBlock from "../parse/parseBlock";
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { BRACKET_OPEN_CODE, BRACKET_CLOSE_CODE, CARET_CODE, COLON_CODE } from "../utils/charCodes";
 import isEscaped from "../utils/isEscaped";
+import isSpace from "../utils/isSpace";
 import newBlock from "../utils/newBlock";
 import normalizeLabel from "../utils/normalizeLabel";
 
@@ -27,8 +29,11 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (state.indent <= 3 && char === "[" && !isEscaped(state.src, state.i)) {
+	if (
+		state.indent <= 3 &&
+		state.src.charCodeAt(state.i) === BRACKET_OPEN_CODE &&
+		!isEscaped(state.src, state.i)
+	) {
 		// "A footnote definition cannot interrupt a paragraph"
 		if (parent.type === "paragraph" && !parent.blankAfter) {
 			return false;
@@ -38,7 +43,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		let footnoteStart = state.i + 1;
 
 		// Check for ^ that indicates a footnote (not a regular link reference)
-		if (state.src[footnoteStart] !== "^") {
+		if (state.src.charCodeAt(footnoteStart) !== CARET_CODE) {
 			return false;
 		}
 		footnoteStart++;
@@ -47,7 +52,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		let label = "";
 		for (let i = footnoteStart; i < state.src.length; i++) {
 			if (!isEscaped(state.src, i)) {
-				if (state.src[i] === "]") {
+				let nextCharCode = state.src.charCodeAt(i);
+				if (nextCharCode === BRACKET_CLOSE_CODE) {
 					label = state.src.substring(footnoteStart, i);
 					footnoteStart = i + 1;
 					break;
@@ -55,7 +61,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 				// "Labels cannot contain brackets, unless they are
 				// backslash-escaped"
-				if (state.src[i] === "[") {
+				if (nextCharCode === BRACKET_OPEN_CODE) {
 					return false;
 				}
 			}
@@ -65,7 +71,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			return false;
 		}
 
-		if (state.src[footnoteStart] !== ":") {
+		if (state.src.charCodeAt(footnoteStart) !== COLON_CODE) {
 			return false;
 		}
 		footnoteStart++;
@@ -129,7 +135,8 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 			state.indent >= 4 ||
 			openNode.content.endsWith("  \n") ||
 			// GitHub swallows link references after footnote references
-			(state.src[state.i] === "[" && state.src[state.i + 1] !== "^")
+			(state.src.charCodeAt(state.i) === BRACKET_OPEN_CODE &&
+				state.src.charCodeAt(state.i + 1) !== CARET_CODE)
 		) {
 			// We won't know until we try more things
 			state.maybeContinue = true;
@@ -139,8 +146,4 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 	}
 
 	return false;
-}
-
-function isSpace(charCode: number): boolean {
-	return charCode === 0x20 || charCode === 0x09;
 }

@@ -1,5 +1,13 @@
 import type InlineParserState from "../types/InlineParserState";
 import LinkReference from "../types/LinkReference";
+import {
+	ANGLE_RIGHT_CODE,
+	ANGLE_LEFT_CODE,
+	PAREN_CLOSE_CODE,
+	PAREN_OPEN_CODE,
+	QUOTE_DOUBLE_CODE,
+	QUOTE_SINGLE_CODE,
+} from "./charCodes";
 import consumeSpaces from "./consumeSpaces";
 import decodeEntities from "./decodeEntities";
 import escapeBackslashes from "./escapeBackslashes";
@@ -24,10 +32,10 @@ export default function parseLinkInline(
 
 	// Get the url
 	let url = "";
-	if (state.src[start] === "<") {
+	if (state.src.charCodeAt(start) === ANGLE_LEFT_CODE) {
 		start++;
 		for (let i = start; i < state.src.length; i++) {
-			if (state.src[i] === ">" && !isEscaped(state.src, i)) {
+			if (state.src.charCodeAt(i) === ANGLE_RIGHT_CODE && !isEscaped(state.src, i)) {
 				url = state.src.substring(start, i);
 				start = i + 1;
 				break;
@@ -36,20 +44,22 @@ export default function parseLinkInline(
 	} else {
 		let level = 1;
 		for (let i = start; i <= state.src.length; i++) {
+			let charCode = state.src.charCodeAt(i);
+
 			// "Any number of parentheses are allowed without escaping, as long
 			// as they are balanced"
-			if (state.src[i] === ")" && !isEscaped(state.src, i)) {
+			if (charCode === PAREN_CLOSE_CODE && !isEscaped(state.src, i)) {
 				level--;
 				if (level === 0) {
 					url = state.src.substring(start, i);
 					start = i;
 					break;
 				}
-			} else if (state.src[i] === "(" && !isEscaped(state.src, i)) {
+			} else if (charCode === PAREN_OPEN_CODE && !isEscaped(state.src, i)) {
 				level++;
 			}
 
-			if (i === state.src.length || isSpace(state.src.charCodeAt(i))) {
+			if (i === state.src.length || isSpace(charCode)) {
 				url = state.src.substring(start, i);
 				start = i;
 				break;
@@ -84,31 +94,32 @@ export default function parseLinkInline(
 
 	// Get the title
 	let title = "";
-	let delimiter = state.src[start];
-	if (delimiter === ")") {
+	let delimiterCode = state.src.charCodeAt(start);
+	if (delimiterCode === PAREN_CLOSE_CODE) {
 		// No title
-	} else if (delimiter === "'" || delimiter === '"') {
+	} else if (delimiterCode === QUOTE_SINGLE_CODE || delimiterCode === QUOTE_DOUBLE_CODE) {
 		start++;
 		for (let i = start; i < state.src.length; i++) {
-			if (state.src[i] === delimiter && !isEscaped(state.src, i)) {
+			if (state.src.charCodeAt(i) === delimiterCode && !isEscaped(state.src, i)) {
 				title = state.src.substring(start, i);
 				start = i + 1;
 				break;
 			}
 		}
-	} else if (delimiter === "(") {
+	} else if (delimiterCode === PAREN_OPEN_CODE) {
 		start++;
 		let level = 1;
 		for (let i = start; i < state.src.length; i++) {
 			if (!isEscaped(state.src, i)) {
-				if (state.src[i] === ")") {
+				let charCode = state.src.charCodeAt(i);
+				if (charCode === PAREN_CLOSE_CODE) {
 					level--;
 					if (level === 0) {
 						title = state.src.substring(start, i);
 						start = i + 1;
 						break;
 					}
-				} else if (state.src[i] === "(") {
+				} else if (charCode === PAREN_OPEN_CODE) {
 					level++;
 				}
 			}
@@ -141,7 +152,7 @@ export default function parseLinkInline(
 	start += spaces.length;
 
 	// "[There may not be] non-whitespace characters after the title"
-	if (state.src[start] !== ")") {
+	if (state.src.charCodeAt(start) !== PAREN_CLOSE_CODE) {
 		return;
 	}
 

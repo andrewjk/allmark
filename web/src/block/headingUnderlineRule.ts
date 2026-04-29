@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { DASH_CODE, EQUALS_CODE } from "../utils/charCodes";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 
@@ -46,25 +47,25 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		}
 	}
 
-	let char = state.src[state.i];
-	if (state.indent <= 3 && (char === "=" || char === "-")) {
+	let charCode = state.src.charCodeAt(state.i);
+	if (state.indent <= 3 && (charCode === EQUALS_CODE || charCode === DASH_CODE)) {
 		let matched = 1;
 		let end = state.i + 1;
 		for (; end < state.src.length; end++) {
-			let nextChar = state.src[end];
-			if (nextChar === char) {
+			let nextCharCode = state.src.charCodeAt(end);
+			if (nextCharCode === charCode) {
 				// "The setext heading underline cannot contain internal spaces"
 				if (matched > 0 && isSpace(state.src.charCodeAt(end - 1))) {
 					return false;
 				}
 				matched++;
-			} else if (isNewLine(nextChar)) {
+			} else if (isNewLine(nextCharCode)) {
 				// TODO: Handle windows crlf
 				end++;
 				break;
-			} else if (isSpace(state.src.charCodeAt(end))) {
+			} else if (isSpace(nextCharCode)) {
 				continue;
-			} else if (nextChar !== char) {
+			} else if (nextCharCode !== charCode) {
 				return false;
 			}
 		}

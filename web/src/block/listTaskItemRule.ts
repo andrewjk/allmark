@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { BRACKET_OPEN_CODE, BRACKET_CLOSE_CODE } from "../utils/charCodes";
 import isSpace from "../utils/isSpace";
 import movePastMarker from "../utils/movePastMarker";
 import newInline from "../utils/newInline";
@@ -40,8 +41,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	if (parent.type === "list_item") {
 		let start = state.i;
 		if (
-			state.src[start] === "[" &&
-			state.src[start + 2] === "]" &&
+			state.src.charCodeAt(start) === BRACKET_OPEN_CODE &&
+			state.src.charCodeAt(start + 2) === BRACKET_CLOSE_CODE &&
 			isSpace(state.src.charCodeAt(start + 3)) &&
 			// GitHub doesn't support task lists in block quotes
 			state.openNodes.find((n) => n.type === "block_quote") === undefined

@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { BACKTICK_CODE, TILDE_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import decodeEntities from "../utils/decodeEntities";
 import escapeBackslashes from "../utils/escapeBackslashes";
@@ -61,21 +62,21 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (state.indent <= 3 && (char === "`" || char === "~")) {
+	let charCode = state.src.charCodeAt(state.i);
+	if (state.indent <= 3 && (charCode === BACKTICK_CODE || charCode === TILDE_CODE)) {
 		let matched = 1;
 		let end = state.i + 1;
 		let haveSpace = false;
 		for (; end < state.src.length; end++) {
-			let nextChar = state.src[end];
-			if (nextChar === char) {
+			let nextCharCode = state.src.charCodeAt(end);
+			if (nextCharCode === charCode) {
 				if (haveSpace) {
 					return false;
 				}
 				matched++;
-			} else if (isNewLine(nextChar)) {
+			} else if (isNewLine(nextCharCode)) {
 				break;
-			} else if (isSpace(state.src.charCodeAt(end))) {
+			} else if (isSpace(nextCharCode)) {
 				haveSpace = true;
 			} else {
 				break;
@@ -84,17 +85,17 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		if (matched >= 3) {
 			let closedNode: MarkdownNode | undefined;
 
-			let markup = char.repeat(matched);
+			let markup = (charCode === BACKTICK_CODE ? "`" : "~").repeat(matched);
 
 			let info = "";
-			if (!isNewLine(state.src[state.i + matched])) {
+			if (!isNewLine(state.src.charCodeAt(state.i + matched))) {
 				end = getEndOfLine(state);
 				info = state.src.substring(state.i + matched, end);
 
 				// "Info strings for backtick code blocks cannot contain backticks"
 				// But "Info strings for tilde code blocks can contain backticks and tildes"?!
 				// TODO: What if it's escaped?
-				if (char === "`" && info.includes("`")) {
+				if (charCode === BACKTICK_CODE && info.includes("`")) {
 					return false;
 				}
 
@@ -160,15 +161,15 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 		return true;
 	}
 
-	let char = state.src[state.i];
-	if (state.indent <= 3 && (char === "`" || char === "~")) {
+	let charCode = state.src.charCodeAt(state.i);
+	if (state.indent <= 3 && (charCode === BACKTICK_CODE || charCode === TILDE_CODE)) {
 		// This might be a closing fence, and if so, we can close the block
-		if (node.markup.startsWith(char)) {
+		if (node.markup.charCodeAt(0) === charCode) {
 			let endMatched = 0;
 			let end = state.i;
 			for (; end < state.src.length; end++) {
-				let nextChar = state.src[end];
-				if (nextChar === char) {
+				let nextCharCode = state.src.charCodeAt(end);
+				if (nextCharCode === charCode) {
 					endMatched++;
 				} else {
 					break;
@@ -177,10 +178,10 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 			if (endMatched >= node.markup.length) {
 				// "Closing code fences cannot have info strings"
 				for (; end < state.src.length; end++) {
-					let nextChar = state.src[end];
-					if (isNewLine(nextChar)) {
+					let nextCharCode = state.src.charCodeAt(end);
+					if (isNewLine(nextCharCode)) {
 						break;
-					} else if (isSpace(state.src.charCodeAt(end))) {
+					} else if (isSpace(nextCharCode)) {
 						continue;
 					} else {
 						return true;

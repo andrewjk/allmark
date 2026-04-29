@@ -1,6 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { ANGLE_LEFT_CODE } from "../utils/charCodes";
 import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
 import isEscaped from "../utils/isEscaped";
@@ -26,8 +27,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (char === "<" && !isEscaped(state.src, state.i)) {
+	if (state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE && !isEscaped(state.src, state.i)) {
 		let tail = state.src.substring(state.i);
 
 		let linkMatch = tail.match(LINK_REGEX);

@@ -1,6 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { ASTERISK_CODE, DASH_CODE, UNDERSCORE_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
@@ -23,19 +24,22 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let char = state.src[state.i];
-	if (state.indent <= 3 && (char === "-" || char === "_" || char === "*")) {
+	let charCode = state.src.charCodeAt(state.i);
+	if (
+		state.indent <= 3 &&
+		(charCode === DASH_CODE || charCode === UNDERSCORE_CODE || charCode === ASTERISK_CODE)
+	) {
 		let matched = 1;
 		let end = state.i + 1;
 		for (; end < state.src.length; end++) {
-			let nextChar = state.src[end];
-			if (nextChar === char) {
+			let nextCharCode = state.src.charCodeAt(end);
+			if (nextCharCode === charCode) {
 				matched++;
-			} else if (isNewLine(nextChar)) {
+			} else if (isNewLine(nextCharCode)) {
 				// TODO: Handle windows crlf
 				end++;
 				break;
-			} else if (isSpace(state.src.charCodeAt(end))) {
+			} else if (isSpace(nextCharCode)) {
 				continue;
 			} else {
 				return false;
@@ -66,7 +70,11 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			// HACK: Special case for a thematic break in a list
 			// Maybe do this with interrupts?
-			if (parent.type === "list_item" && !state.hasBlankLine && char === parent.delimiter) {
+			if (
+				parent.type === "list_item" &&
+				!state.hasBlankLine &&
+				charCode === parent.delimiter.charCodeAt(0)
+			) {
 				closedNode = state.openNodes.pop();
 				closedNode = state.openNodes.pop();
 				parent = state.openNodes.at(-1)!;
