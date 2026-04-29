@@ -105,9 +105,10 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 			if canClose {
 				// Convert the text node into an emphasis node with a new text child
 				// followed by the other children of the parent (if any)
-				var i = (parent.children?.count ?? 0) - 1
+				var i = parent.children.count - 1
 				while i >= 0 {
-					if let lastNode = parent.children?[i], lastNode.index == state.parentIndex + startDel.start {
+					let lastNode = parent.children[i]
+					if lastNode.index == state.parentIndex + startDel.start {
 						// If it's longer than the last delimiter, or longer
 						// than two, save some for the next go-round
 						let useLength = min(startDel.length, 2)
@@ -120,10 +121,8 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							indent: 0
 						)
 
-						let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
-						if let childCount = parent.children?.count {
-							parent.children?.removeSubrange((i + 1) ..< childCount)
-						}
+						let movedNodes = Array(parent.children.suffix(from: i + 1))
+						parent.children.removeSubrange((i + 1) ..< parent.children.count)
 
 						if useMarkup.count < startDel.length {
 							lastNode.content = String(lastNode.content.prefix(startDel.length - useMarkup.count))
@@ -136,13 +135,13 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							)
 							emphasis.length = state.parentIndex + state.i - emphasis.index + useMarkup.count
 							emphasis.children = [text] + movedNodes
-							parent.children?.append(emphasis)
+							parent.children.append(emphasis)
 						} else {
 							lastNode.type = useMarkup.count == 2 ? "strong" : "emphasis"
 							lastNode.markup = useMarkup
 							lastNode.length = state.parentIndex + state.i - lastNode.index + useMarkup.count
 							lastNode.children = [text] + movedNodes
-							parent.children?[i] = lastNode
+							parent.children[i] = lastNode
 						}
 
 						state.i += useMarkup.count
@@ -189,7 +188,7 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				content: markup,
 				indent: 0
 			)
-			parent.children?.append(text)
+			parent.children.append(text)
 
 			state.i += markup.count
 			state.delimiters.append(Delimiter(markup: String(char), start: start, length: markup.count, handled: nil, precedence: emphasisRule.precedence))

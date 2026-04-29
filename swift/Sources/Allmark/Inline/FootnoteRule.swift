@@ -46,7 +46,7 @@ func testFootnoteOpen(state: inout InlineParserState, parent: inout MarkdownNode
 		content: markup,
 		indent: 0
 	)
-	parent.children?.append(text)
+	parent.children.append(text)
 
 	state.i += 2
 	state.delimiters.append(Delimiter(markup: markup, start: start, length: 2, handled: nil))
@@ -73,9 +73,10 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 
 	if let startDel = startDelimiter {
 		// Convert the text node into a footnote node
-		var i = (parent.children?.count ?? 0) - 1
+		var i = parent.children.count - 1
 		while i >= 0 {
-			if let lastNode = parent.children?[i], lastNode.index == state.parentIndex + startDel.start {
+			let lastNode = parent.children[i]
+			if lastNode.index == state.parentIndex + startDel.start {
 				let labelStart = startDel.start + startDel.markup.count
 				let src = state.src
 				var label = charToString(src, from: labelStart, to: state.i)
@@ -144,7 +145,7 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 					lastNode.markup = "[^\(label)]"
 					lastNode.length = state.parentIndex + state.i - lastNode.index
 					lastNode.children = footnote.content.children
-					parent.children?[i] = lastNode
+					parent.children[i] = lastNode
 
 					// Parse the footnote content for inline elements
 					var tempState = InlineParserState(

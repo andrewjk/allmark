@@ -49,7 +49,7 @@ func testBlockQuoteStart(state: inout BlockParserState, parent: MarkdownNode) ->
 			indent: quoteIndent
 		)
 
-		currentParent.children!.append(quote)
+		currentParent.children.append(quote)
 		state.openNodes.append(quote)
 
 		movePastMarker(markerLength: 1, state: &state)
@@ -91,8 +91,8 @@ func testBlockQuoteContinue(state: inout BlockParserState, node: MarkdownNode) -
 }
 
 func closeBlockQuote(state: inout BlockParserState, node: MarkdownNode) {
-	if state.hasBlankLine, node.children != nil, !node.children!.isEmpty {
-		let lastChild = node.children![node.children!.count - 1]
+	if state.hasBlankLine, !node.children.isEmpty {
+		let lastChild = node.children[node.children.count - 1]
 		lastChild.blankAfter = true
 		state.hasBlankLine = false
 	}

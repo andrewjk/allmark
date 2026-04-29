@@ -1,9 +1,7 @@
-import Foundation
-
-func isNewLine(char: String) -> Bool {
+@inlinable func isNewLine(char: Character) -> Bool {
 	return char == "\r" || char == "\n"
 }
 
-func isNewLine(char: Character) -> Bool {
+func isNewLine(char: String) -> Bool {
 	return char == "\r" || char == "\n"
 }

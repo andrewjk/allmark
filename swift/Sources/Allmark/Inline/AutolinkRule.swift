@@ -48,7 +48,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							indent: state.indent
 						)
 						text.length = tail[fullRange].count
-						parent.children?.append(text)
+						parent.children.append(text)
 						state.i += tail[fullRange].count
 						return true
 					}
@@ -81,7 +81,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				}
 
 				link.children = [text]
-				parent.children?.append(link)
+				parent.children.append(link)
 
 				return true
 			}
@@ -107,7 +107,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							indent: state.indent
 						)
 						text.length = tail[fullRange].count
-						parent.children?.append(text)
+						parent.children.append(text)
 						state.i += tail[fullRange].count
 						return true
 					}
@@ -139,7 +139,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 				}
 
 				link.children = [text]
-				parent.children?.append(link)
+				parent.children.append(link)
 
 				return true
 			}

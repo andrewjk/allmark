@@ -42,7 +42,7 @@ func testLinkOpen(state: inout InlineParserState, parent: inout MarkdownNode) ->
 		content: markup,
 		indent: 0
 	)
-	parent.children?.append(text)
+	parent.children.append(text)
 
 	state.i += 1
 	state.delimiters.append(Delimiter(markup: markup, start: start, length: 1, handled: nil, precedence: linkRule.precedence))
@@ -61,7 +61,7 @@ func testImageOpen(state: inout InlineParserState, parent: inout MarkdownNode) -
 		content: markup,
 		indent: 0
 	)
-	parent.children?.append(text)
+	parent.children.append(text)
 
 	state.i += markup.count
 	state.delimiters.append(Delimiter(markup: markup, start: start, length: 1, handled: nil, precedence: linkRule.precedence))
@@ -97,9 +97,10 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 	if let startDel = startDelimiter {
 		// Convert the text node into a link node with a new text child
 		// followed by the other children of the parent (if any)
-		var i = (parent.children?.count ?? 0) - 1
+		var i = parent.children.count - 1
 		while i >= 0 {
-			if let lastNode = parent.children?[i], lastNode.index == state.parentIndex + startDel.start {
+			let lastNode = parent.children[i]
+			if lastNode.index == state.parentIndex + startDel.start {
 				var start = state.i + 1
 				let src = state.src
 				let labelStart = startDel.start + startDel.markup.count
@@ -174,12 +175,10 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 					lastNode.title = foundLink.title
 					lastNode.length = state.parentIndex + state.i - lastNode.index
 
-					let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
-					if let childCount = parent.children?.count {
-						parent.children?.removeSubrange((i + 1) ..< childCount)
-					}
+					let movedNodes = Array(parent.children.suffix(from: i + 1))
+					parent.children.removeSubrange((i + 1) ..< parent.children.count)
 					lastNode.children = [text] + movedNodes
-					parent.children?[i] = lastNode
+					parent.children[i] = lastNode
 
 					// "[L]inks may not contain other links, at any level of nesting"
 					if isLink {

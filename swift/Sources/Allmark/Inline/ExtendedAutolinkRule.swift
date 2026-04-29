@@ -58,7 +58,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 								indent: state.indent
 							)
 							text.length = originalLength
-							parent.children?.append(text)
+							parent.children.append(text)
 							state.i += originalLength
 							return true
 						}
@@ -71,7 +71,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					if let _ = Range(fullMatchRange, in: tail) {
 						let link = newLink(url: url, state: state)
 						link.info = "http://\(link.info ?? "")"
-						parent.children?.append(link)
+						parent.children.append(link)
 						state.i += url.count
 					}
 
@@ -100,7 +100,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 								content: markup,
 								indent: state.indent
 							)
-							parent.children?.append(text)
+							parent.children.append(text)
 							state.i += tail[fullRange].count
 							return true
 						}
@@ -110,7 +110,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					url = escapeHtml(text: url)
 
 					let link = newLink(url: url, state: state)
-					parent.children?.append(link)
+					parent.children.append(link)
 					state.i += url.count
 
 					return true
@@ -146,7 +146,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 									content: markup,
 									indent: state.indent
 								)
-								parent.children?.append(text)
+								parent.children.append(text)
 								state.i += tail[fullRange].count
 								return true
 							}
@@ -164,7 +164,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 										content: markup,
 										indent: state.indent
 									)
-									parent.children?.append(text)
+									parent.children.append(text)
 									state.i += tail[fullRange].count
 									return true
 								}
@@ -175,7 +175,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 
 						let link = newLink(url: url, state: state)
 						link.info = "mailto:\(link.info ?? "")"
-						parent.children?.append(link)
+						parent.children.append(link)
 						state.i += url.count
 
 						return true
@@ -207,7 +207,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 								content: markup,
 								indent: state.indent
 							)
-							parent.children?.append(text)
+							parent.children.append(text)
 							state.i += tail[fullRange].count
 							return true
 						}
@@ -225,7 +225,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 									content: markup,
 									indent: state.indent
 								)
-								parent.children?.append(text)
+								parent.children.append(text)
 								state.i += tail[fullRange].count
 								return true
 							}
@@ -235,7 +235,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					url = url.replacingOccurrences(of: "\\.$", with: "", options: .regularExpression)
 
 					let link = newLink(url: url, state: state)
-					parent.children?.append(link)
+					parent.children.append(link)
 					state.i += url.count
 
 					return true

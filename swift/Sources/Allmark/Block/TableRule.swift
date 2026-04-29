@@ -15,17 +15,16 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 	}
 
 	// We may already have a table
-	if let lastNode = parent.children?.last,
+	if let lastNode = parent.children.last,
 	   !state.hasBlankLine,
 	   lastNode.type == "table"
 	{
 		let endOfLine = getEndOfLine(state: &state)
 
-		guard let headerRow = lastNode.children?.first,
-		      let headers = headerRow.children?.map({ $0.info ?? "" })
-		else {
+		guard let headerRow = lastNode.children.first else {
 			return false
 		}
+		let headers = headerRow.children.map { $0.info ?? "" }
 
 		var rowLength = endOfLine - state.i
 		if endOfLine > 0, state.src[endOfLine - 1] == "\n" {
@@ -40,7 +39,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 			indent: 0
 		)
 		row.length = rowLength
-		lastNode.children?.append(row)
+		lastNode.children.append(row)
 
 		let rowSrc = charToString(state.src, from: state.i, to: state.i + rowLength)
 		let pipePositions = loadPipePositions(line: rowSrc)
@@ -176,7 +175,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 				indent: 0
 			)
 			header.length = headerLength
-			mutableParent.children?.append(header)
+			mutableParent.children.append(header)
 
 			let headerSrc = charToString(Array(parent.content), from: 0, to: headerLength)
 			let pipePositions = loadPipePositions(line: headerSrc)
@@ -289,7 +288,7 @@ private func parseTableCell(
 	)
 	cell.length = cellLength
 	cell.info = headers[index]
-	row.children?.append(cell)
+	row.children.append(cell)
 
 	let content = newBlock(
 		type: "table_cell_content",

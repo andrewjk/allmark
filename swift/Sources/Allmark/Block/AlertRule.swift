@@ -60,7 +60,7 @@ func testAlertStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 				indent: quoteIndent
 			)
 
-			currentParent.children!.append(quote)
+			currentParent.children.append(quote)
 			state.openNodes.append(quote)
 
 			state.i = getEndOfLine(state: &state)
@@ -100,8 +100,8 @@ func testAlertContinue(state: inout BlockParserState, node: MarkdownNode) -> Boo
 }
 
 func closeAlert(state: inout BlockParserState, node: MarkdownNode) {
-	if state.hasBlankLine, node.children != nil, !node.children!.isEmpty {
-		let lastChild = node.children![node.children!.count - 1]
+	if state.hasBlankLine, !node.children.isEmpty {
+		let lastChild = node.children[node.children.count - 1]
 		lastChild.blankAfter = true
 		state.hasBlankLine = false
 	}

@@ -58,13 +58,13 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bo
 					indent: 0
 				)
 
-				if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
-					let lastChild = currentParent.children![currentParent.children!.count - 1]
+				if state.hasBlankLine && !currentParent.children.isEmpty {
+					let lastChild = currentParent.children[currentParent.children.count - 1]
 					lastChild.blankAfter = true
 					state.hasBlankLine = false
 				}
 
-				currentParent.children!.append(heading)
+				currentParent.children.append(heading)
 
 				movePastMarker(markerLength: level, state: &state)
 				let endOfLine = getEndOfLine(state: &state)

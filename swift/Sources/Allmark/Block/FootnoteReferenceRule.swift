@@ -94,13 +94,13 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 		)
 		state.footnotes[label] = FootnoteReference(label: label, content: ref)
 
-		if state.hasBlankLine && parent.children != nil && !parent.children!.isEmpty {
-			let lastChild = parent.children![parent.children!.count - 1]
+		if state.hasBlankLine && !parent.children.isEmpty {
+			let lastChild = parent.children[parent.children.count - 1]
 			lastChild.blankAfter = true
 			state.hasBlankLine = false
 		}
 
-		parent.children!.append(ref)
+		parent.children.append(ref)
 		state.openNodes.append(ref)
 
 		state.hasBlankLine = false
@@ -112,7 +112,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 	// Add another paragraph if there is an indent of at least 4 characters
 	if state.hasBlankLine && state.indent >= 4 {
 		let currentParent = parent
-		if let lastChild = currentParent.children?.last, lastChild.type == "footnote_ref" {
+		if let lastChild = currentParent.children.last, lastChild.type == "footnote_ref" {
 			state.indent = 0
 			parseBlock(state: &state, parent: lastChild)
 			return true

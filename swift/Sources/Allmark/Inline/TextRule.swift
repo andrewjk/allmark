@@ -15,15 +15,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 
 	let char = src[state.i]
 
-	// TODO: Should this be in the testEscaped rule?
-	// "Any ASCII punctuation character may be backslash-escaped"
-	// if (char == "\\" && isPunctuation(code: Int(src[src.index(src.startIndex, offsetBy: state.i + 1)].asciiValue ?? 0))) {
-	//	state.i += 1
-	//	let newIndex = src.index(src.startIndex, offsetBy: state.i)
-	//	char = src[newIndex]
-	// }
-
-	var lastNode = parent.children?.last
+	let lastNode = parent.children.last
 	if lastNode == nil || lastNode?.type != "text" {
 		let newTextNode = newText(
 			index: state.parentIndex + state.i,
@@ -31,23 +23,21 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 			content: "",
 			indent: 0
 		)
-		parent.children?.append(newTextNode)
-		lastNode = newTextNode
+		parent.children.append(newTextNode)
 	} else if isNewLine(char: char) {
-		// "Spaces at the end of the line and beginning of the next line are removed"
 		if let last = lastNode {
-			last.content = last.content.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
-			if let count = parent.children?.count, count > 0 {
-				parent.children?[count - 1] = last
+			var content = last.content
+			while content.last?.isWhitespace == true {
+				content.removeLast()
 			}
+			last.content = content
+			last.length = content.count
 		}
 	}
 
+	let currentLast = parent.children.last!
 	let code = Int(char.asciiValue ?? 0)
 	if isAlphaNumeric(code: code) {
-		// If this an alphanumeric character, we can just process the whole
-		// word, and save checking a bunch of characters that are never going
-		// to match anything
 		let start = state.i
 		state.i += 1
 		while state.i < src.count {
@@ -58,28 +48,13 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 				break
 			}
 		}
-		if let last = lastNode {
-			last.content += charToString(src, from: start, to: state.i)
-			if let count = parent.children?.count, count > 0 {
-				parent.children?[count - 1] = last
-			}
-		}
+		currentLast.content += charToString(src, from: start, to: state.i)
 	} else {
 		state.i += 1
-		if let last = lastNode {
-			last.content += String(char)
-			if let count = parent.children?.count, count > 0 {
-				parent.children?[count - 1] = last
-			}
-		}
+		currentLast.content += String(char)
 	}
 
-	if let last = lastNode {
-		last.length = last.content.count
-		if let count = parent.children?.count, count > 0 {
-			parent.children?[count - 1] = last
-		}
-	}
+	currentLast.length = currentLast.content.count
 
 	return true
 }

@@ -41,7 +41,7 @@ func testListTaskItemStart(state: inout BlockParserState, parent: MarkdownNode) 
 					)
 					task.length = 3
 
-					parent.children?.append(task)
+					parent.children.append(task)
 					movePastMarker(markerLength: 3, state: &state)
 				}
 			}

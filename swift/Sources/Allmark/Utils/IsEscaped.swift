@@ -1,6 +1,4 @@
-import Foundation
-
-func isEscaped(text: [Character], i: Int) -> Bool {
+@inlinable func isEscaped(text: [Character], i: Int) -> Bool {
 	if i == 0 {
 		return false
 	}

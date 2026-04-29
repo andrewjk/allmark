@@ -80,9 +80,10 @@ func testTagMarks(
 			if let startDel = startDelimiter {
 				// Convert the text node into a delimited node with a new text
 				// child followed by the other children of the parent (if any)
-				var i = (parent.children?.count ?? 0) - 1
+				var i = parent.children.count - 1
 				while i >= 0 {
-					if let lastNode = parent.children?[i], lastNode.index == state.parentIndex + startDel.start {
+					let lastNode = parent.children[i]
+					if lastNode.index == state.parentIndex + startDel.start {
 						let text = newText(
 							index: lastNode.index,
 							line: lastNode.line,
@@ -94,12 +95,10 @@ func testTagMarks(
 						lastNode.markup = markup
 						lastNode.length = state.parentIndex + state.i - lastNode.index + markup.count
 
-						let movedNodes = Array(parent.children?.suffix(from: i + 1) ?? [])
-						if let childCount = parent.children?.count {
-							parent.children?.removeSubrange((i + 1) ..< childCount)
-						}
+						let movedNodes = Array(parent.children.suffix(from: i + 1))
+						parent.children.removeSubrange((i + 1) ..< parent.children.count)
 						lastNode.children = [text] + movedNodes
-						parent.children?[i] = lastNode
+						parent.children[i] = lastNode
 
 						state.i += markup.count
 
@@ -128,7 +127,7 @@ func testTagMarks(
 				content: markup,
 				indent: 0
 			)
-			parent.children?.append(text)
+			parent.children.append(text)
 
 			state.i += markup.count
 			state.delimiters.append(Delimiter(markup: char, start: start, length: markup.count, handled: nil, precedence: precedence))

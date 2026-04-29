@@ -22,19 +22,19 @@ func testParagraphStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 	let endOfLine = getEndOfLine(state: &state)
 	let src = state.src
 
-	let content = charToString(src, from: state.i, to: endOfLine)
-
 	var hasNonWhitespace = false
-	for char in content {
-		if !char.isWhitespace {
+	for i in state.i ..< endOfLine {
+		if !src[i].isWhitespace {
 			hasNonWhitespace = true
 			break
 		}
 	}
 	if !hasNonWhitespace {
-		state.i += content.count
+		state.i = endOfLine
 		return true
 	}
+
+	let content = charToString(src, from: state.i, to: endOfLine)
 
 	let paragraph = newBlock(
 		type: "paragraph",
@@ -46,13 +46,13 @@ func testParagraphStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 	paragraph.content = content
 	state.i = endOfLine
 
-	if state.hasBlankLine && parent.children != nil && !parent.children!.isEmpty {
-		let lastChild = parent.children![parent.children!.count - 1]
+	if state.hasBlankLine && !parent.children.isEmpty {
+		let lastChild = parent.children[parent.children.count - 1]
 		lastChild.blankAfter = true
 		state.hasBlankLine = false
 	}
 
-	parent.children!.append(paragraph)
+	parent.children.append(paragraph)
 	state.openNodes.append(paragraph)
 
 	return true

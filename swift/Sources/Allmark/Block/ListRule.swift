@@ -67,7 +67,7 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: Li
 
 	// If there's an open list of a different type, and this node is not nested, close it
 	if isListType(currentParent.type) && currentParent.delimiter != info.delimiter {
-		if let lastItem = currentParent.children?.last {
+		if let lastItem = currentParent.children.last {
 			if lastItem.type == "list_item" && state.indent < lastItem.subindent {
 				closedNode = state.openNodes.popLast()
 				currentParent = state.openNodes.last!
@@ -134,23 +134,23 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: Li
 	item.subindent = state.indent + info.markup.count + spaces
 
 	if !haveList {
-		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
-			let lastChild = currentParent.children![currentParent.children!.count - 1]
+		if state.hasBlankLine && !currentParent.children.isEmpty {
+			let lastChild = currentParent.children[currentParent.children.count - 1]
 			lastChild.blankAfter = true
 			state.hasBlankLine = false
 		}
 
-		currentParent.children!.append(list)
+		currentParent.children.append(list)
 		state.openNodes.append(list)
 	}
 
-	if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
-		let lastChild = currentParent.children![currentParent.children!.count - 1]
+	if state.hasBlankLine && !currentParent.children.isEmpty {
+		let lastChild = currentParent.children[currentParent.children.count - 1]
 		lastChild.blankAfter = true
 		state.hasBlankLine = false
 	}
 
-	list.children?.append(item)
+	list.children.append(item)
 	state.openNodes.append(item)
 
 	movePastMarker(markerLength: info.markup.count, state: &state)
@@ -180,7 +180,7 @@ func testListContinue(state: inout BlockParserState, node: MarkdownNode, info: L
 	}
 
 	// Can't continue if there's only one item, it's blank and there's a blank line after the list
-	if state.hasBlankLine && node.children?.count == 1 && (node.children?.first?.children?.isEmpty ?? true) {
+	if state.hasBlankLine && node.children.count == 1 && (node.children.first?.children.isEmpty ?? true) {
 		return false
 	}
 
@@ -193,7 +193,7 @@ func testListContinue(state: inout BlockParserState, node: MarkdownNode, info: L
 		return true
 	}
 
-	if let lastItem = node.children?.last {
+	if let lastItem = node.children.last {
 		if lastItem.type == "list_item" && state.indent >= lastItem.subindent {
 			return true
 		}
