@@ -23,11 +23,10 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 	let src = state.src
 	guard state.i < src.count else { return false }
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if char == "<" && !isEscaped(text: src, i: state.i) {
-		let tail = String(src[index...])
+		let tail = charToString(src, from: state.i)
 
 		// Try link match
 		let linkRange = NSRange(location: 0, length: tail.utf16.count)

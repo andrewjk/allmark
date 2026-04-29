@@ -31,11 +31,10 @@ func testHtmlBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if state.indent <= 3 && char == "<" && !isEscaped(text: src, i: state.i) {
-		let tail = String(src[src.index(src.startIndex, offsetBy: state.i)...])
+		let tail = charToString(src, from: state.i)
 
 		if testHtmlCondition1(state: &state, parent: parent, tail: tail) { return true }
 		if testHtmlCondition2(state: &state, parent: parent, tail: tail) { return true }
@@ -68,13 +67,9 @@ func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode, tai
 		var end = state.i + 1 + (match.range(at: 0).length) + 1
 
 		while end < state.src.count {
-			let endIndex = state.src.index(state.src.startIndex, offsetBy: end)
-			if state.src[endIndex] == "<" {
-				let nextIndex = state.src.index(state.src.startIndex, offsetBy: end + 1)
-				if state.src[nextIndex] == "/" {
-					let tagStart = state.src.index(state.src.startIndex, offsetBy: end)
-					let tagEnd = state.src.index(state.src.startIndex, offsetBy: end + closingTag.count)
-					let nextClosingTag = String(state.src[tagStart ..< tagEnd]).lowercased()
+			if state.src[end] == "<" {
+				if state.src[end + 1] == "/" {
+					let nextClosingTag = charToString(state.src, from: end, to: end + closingTag.count).lowercased()
 					if nextClosingTag == closingTag {
 						state.i = end
 						end = getEndOfLine(state: &state)
@@ -92,7 +87,7 @@ func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode, tai
 			markup: "",
 			indent: 1
 		)
-		html.content = String(repeating: " ", count: state.indent) + String(state.src[state.src.index(state.src.startIndex, offsetBy: start) ..< state.src.index(state.src.startIndex, offsetBy: end)])
+		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: end)
 
 		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
 			let lastChild = currentParent.children![currentParent.children!.count - 1]
@@ -132,7 +127,7 @@ func testHtmlCondition2(state: inout BlockParserState, parent: MarkdownNode, tai
 			markup: "",
 			indent: 2
 		)
-		html.content = String(repeating: " ", count: state.indent) + String(state.src[state.src.index(state.src.startIndex, offsetBy: start) ..< state.src.index(state.src.startIndex, offsetBy: endOfLine)])
+		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: endOfLine)
 
 		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
 			let lastChild = currentParent.children![currentParent.children!.count - 1]
@@ -172,7 +167,7 @@ func testHtmlCondition3(state: inout BlockParserState, parent: MarkdownNode, tai
 			markup: "",
 			indent: 3
 		)
-		html.content = String(repeating: " ", count: state.indent) + String(state.src[state.src.index(state.src.startIndex, offsetBy: start) ..< state.src.index(state.src.startIndex, offsetBy: endOfLine)])
+		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: endOfLine)
 
 		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
 			let lastChild = currentParent.children![currentParent.children!.count - 1]
@@ -212,7 +207,7 @@ func testHtmlCondition4(state: inout BlockParserState, parent: MarkdownNode, tai
 			markup: "",
 			indent: 4
 		)
-		html.content = String(repeating: " ", count: state.indent) + String(state.src[state.src.index(state.src.startIndex, offsetBy: start) ..< state.src.index(state.src.startIndex, offsetBy: endOfLine)])
+		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: endOfLine)
 
 		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
 			let lastChild = currentParent.children![currentParent.children!.count - 1]
@@ -252,7 +247,7 @@ func testHtmlCondition5(state: inout BlockParserState, parent: MarkdownNode, tai
 			markup: "",
 			indent: 5
 		)
-		html.content = String(repeating: " ", count: state.indent) + String(state.src[state.src.index(state.src.startIndex, offsetBy: start) ..< state.src.index(state.src.startIndex, offsetBy: endOfLine)])
+		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: endOfLine)
 
 		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
 			let lastChild = currentParent.children![currentParent.children!.count - 1]
@@ -290,7 +285,7 @@ func testHtmlCondition6(state: inout BlockParserState, parent: MarkdownNode, tai
 			markup: "",
 			indent: 6
 		)
-		html.content = String(repeating: " ", count: state.indent) + String(state.src[state.src.index(state.src.startIndex, offsetBy: state.i) ..< state.src.index(state.src.startIndex, offsetBy: endOfLine)])
+		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: state.i, to: endOfLine)
 		html.acceptsContent = true
 
 		if state.hasBlankLine && currentParent.children != nil && !currentParent.children!.isEmpty {
@@ -331,7 +326,7 @@ func testHtmlCondition7(state: inout BlockParserState, parent: MarkdownNode, tai
 		// All types of HTML blocks except type 7 may interrupt a paragraph
 		if parent.type == "paragraph" && !parent.blankAfter {
 			let end = state.i + matchEnd
-			let content = String(state.src[state.src.index(state.src.startIndex, offsetBy: state.i) ..< state.src.index(state.src.startIndex, offsetBy: end)])
+			let content = charToString(state.src, from: state.i, to: end)
 			parent.content += content
 			state.i = end
 			return true
@@ -346,7 +341,7 @@ func testHtmlCondition7(state: inout BlockParserState, parent: MarkdownNode, tai
 			markup: "",
 			indent: 7
 		)
-		html.content = String(repeating: " ", count: state.indent) + String(state.src[state.src.index(state.src.startIndex, offsetBy: state.i) ..< state.src.index(state.src.startIndex, offsetBy: endOfLine)])
+		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: state.i, to: endOfLine)
 		html.acceptsContent = true
 
 		if state.hasBlankLine && parent.children != nil && !parent.children!.isEmpty {

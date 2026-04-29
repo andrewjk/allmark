@@ -7,7 +7,7 @@ public struct InlineParserState {
 	public var rules: OrderedDictionary<String, InlineRule>
 
 	/// The source text being parsed.
-	public var src: String
+	public var src: [Character]
 	/// Current position in the source.
 	public var i: Int
 	/// Current line number.
@@ -25,7 +25,7 @@ public struct InlineParserState {
 	/// The starting index of the parent node.
 	public var parentIndex: Int
 
-	public init(rules: OrderedDictionary<String, InlineRule>, src: String, i: Int, line: Int, lineStart: Int, indent: Int, delimiters: [Delimiter], refs: [String: LinkReference], footnotes: [String: FootnoteReference], parentIndex: Int) {
+	public init(rules: OrderedDictionary<String, InlineRule>, src: [Character], i: Int, line: Int, lineStart: Int, indent: Int, delimiters: [Delimiter], refs: [String: LinkReference], footnotes: [String: FootnoteReference], parentIndex: Int) {
 		self.rules = rules
 		self.src = src
 		self.i = i

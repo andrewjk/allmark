@@ -9,14 +9,15 @@ func _parse(src: String, rules: RuleSet) -> MarkdownNode {
 		indent: 0
 	)
 
+	let chars = Array(src)
+
 	// Skip empty lines at the start
 	var start = 0
 	var i = 0
-	while i < src.count {
-		let charIndex = src.index(src.startIndex, offsetBy: i)
-		if !isSpace(code: Int(src[charIndex].asciiValue ?? 0)) {
+	while i < chars.count {
+		if !isSpace(code: Int(chars[i].asciiValue ?? 0)) {
 			break
-		} else if isNewLine(char: String(src[charIndex])) {
+		} else if isNewLine(char: chars[i]) {
 			start = i + 1
 		}
 		i += 1
@@ -24,7 +25,7 @@ func _parse(src: String, rules: RuleSet) -> MarkdownNode {
 
 	var state = BlockParserState(
 		rules: rules.blocks,
-		src: src,
+		src: chars,
 		i: start,
 		line: 0,
 		lineStart: 0,

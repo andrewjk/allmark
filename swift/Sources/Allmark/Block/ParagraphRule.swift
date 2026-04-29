@@ -15,7 +15,6 @@ func testParagraphStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		return false
 	}
 
-	// Don't start a new paragraph if we're already in one and there's no blank line
 	if parent.type == "paragraph" && !parent.blankAfter {
 		return false
 	}
@@ -23,14 +22,16 @@ func testParagraphStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 	let endOfLine = getEndOfLine(state: &state)
 	let src = state.src
 
-	let startIndex = src.index(src.startIndex, offsetBy: state.i)
-	let endIndex = src.index(src.startIndex, offsetBy: endOfLine)
-	let content = String(src[startIndex ..< endIndex])
+	let content = charToString(src, from: state.i, to: endOfLine)
 
-	// Check if content has at least one non-whitespace character
-	let contentPattern = try! NSRegularExpression(pattern: "[^\\s]")
-	let contentRange = NSRange(location: 0, length: content.utf16.count)
-	if contentPattern.firstMatch(in: content, options: [], range: contentRange) == nil {
+	var hasNonWhitespace = false
+	for char in content {
+		if !char.isWhitespace {
+			hasNonWhitespace = true
+			break
+		}
+	}
+	if !hasNonWhitespace {
 		state.i += content.count
 		return true
 	}

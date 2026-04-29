@@ -1,10 +1,16 @@
 import Foundation
 
+func isEscaped(text: [Character], i: Int) -> Bool {
+	if i == 0 {
+		return false
+	}
+	return text[i - 1] == "\\" && (i <= 1 || text[i - 2] != "\\")
+}
+
 func isEscaped(text: String, i: Int) -> Bool {
 	if i == 0 {
 		return false
 	}
-	let prevIndex = text.index(text.startIndex, offsetBy: i - 1)
-	let prevPrevIndex = i > 1 ? text.index(text.startIndex, offsetBy: i - 2) : text.startIndex
-	return text[prevIndex] == "\\" && (i <= 1 || text[prevPrevIndex] != "\\")
+	let chars = Array(text)
+	return chars[i - 1] == "\\" && (i <= 1 || chars[i - 2] != "\\")
 }

@@ -13,8 +13,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	let src = state.src
 	guard state.i < src.count else { return false }
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	// TODO: Should this be in the testEscaped rule?
 	// "Any ASCII punctuation character may be backslash-escaped"
@@ -34,7 +33,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		)
 		parent.children?.append(newTextNode)
 		lastNode = newTextNode
-	} else if isNewLine(char: String(char)) {
+	} else if isNewLine(char: char) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
 		if let last = lastNode {
 			last.content = last.content.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
@@ -52,17 +51,15 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		let start = state.i
 		state.i += 1
 		while state.i < src.count {
-			let nextCode = Int(src[src.index(src.startIndex, offsetBy: state.i)].asciiValue ?? 0)
+			let nextCode = Int(src[state.i].asciiValue ?? 0)
 			if isAlphaNumeric(code: nextCode) {
 				state.i += 1
 			} else {
 				break
 			}
 		}
-		let startIndex = src.index(src.startIndex, offsetBy: start)
-		let endIndex = src.index(src.startIndex, offsetBy: state.i)
 		if let last = lastNode {
-			last.content += String(src[startIndex ..< endIndex])
+			last.content += charToString(src, from: start, to: state.i)
 			if let count = parent.children?.count, count > 0 {
 				parent.children?[count - 1] = last
 			}

@@ -21,8 +21,7 @@ func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if state.indent <= 3 && (char == "`" || char == "~") {
 		var matched = 1
@@ -30,15 +29,14 @@ func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		var haveSpace = false
 
 		while end < src.count {
-			let endIndex = src.index(src.startIndex, offsetBy: end)
-			let nextChar = src[endIndex]
+			let nextChar = src[end]
 
 			if nextChar == char {
 				if haveSpace {
 					return false
 				}
 				matched += 1
-			} else if isNewLine(char: String(nextChar)) {
+			} else if isNewLine(char: nextChar) {
 				break
 			} else if isSpace(code: Int(nextChar.asciiValue ?? 0)) {
 				haveSpace = true
@@ -55,11 +53,9 @@ func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 			let markup = String(repeating: char, count: matched)
 
 			var info = ""
-			if src.indices.contains(src.index(src.startIndex, offsetBy: state.i + matched)), !isNewLine(char: String(src[src.index(src.startIndex, offsetBy: state.i + matched)])) {
+			if state.i + matched < src.count && !isNewLine(char: src[state.i + matched]) {
 				end = getEndOfLine(state: &state)
-				let infoStart = src.index(src.startIndex, offsetBy: state.i + matched)
-				let infoEnd = src.index(src.startIndex, offsetBy: end)
-				info = String(src[infoStart ..< infoEnd])
+				info = charToString(src, from: state.i + matched, to: end)
 
 				// Info strings for backtick code blocks cannot contain backticks
 				if char == "`" && info.contains("`") {
@@ -137,8 +133,7 @@ func testCodeFenceContinue(state: inout BlockParserState, node: MarkdownNode) ->
 		return true
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if state.indent <= 3 && (char == "`" || char == "~") {
 		// This might be a closing fence
@@ -147,8 +142,7 @@ func testCodeFenceContinue(state: inout BlockParserState, node: MarkdownNode) ->
 			var end = state.i
 
 			while end < src.count {
-				let endIndex = src.index(src.startIndex, offsetBy: end)
-				let nextChar = src[endIndex]
+				let nextChar = src[end]
 
 				if nextChar == char {
 					endMatched += 1
@@ -161,10 +155,9 @@ func testCodeFenceContinue(state: inout BlockParserState, node: MarkdownNode) ->
 			if endMatched >= node.markup.count {
 				// Closing code fences cannot have info strings
 				while end < src.count {
-					let endIndex = src.index(src.startIndex, offsetBy: end)
-					let nextChar = src[endIndex]
+					let nextChar = src[end]
 
-					if isNewLine(char: String(nextChar)) {
+					if isNewLine(char: nextChar) {
 						break
 					} else if isSpace(code: Int(nextChar.asciiValue ?? 0)) {
 						end += 1

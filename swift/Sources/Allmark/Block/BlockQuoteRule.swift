@@ -25,8 +25,7 @@ func testBlockQuoteStart(state: inout BlockParserState, parent: MarkdownNode) ->
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if hasBlockQuoteMarkup(char: char, state: state) {
 		var closedNode: MarkdownNode? = nil
@@ -70,8 +69,7 @@ func testBlockQuoteContinue(state: inout BlockParserState, node: MarkdownNode) -
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if hasBlockQuoteMarkup(char: char, state: state) {
 		movePastMarker(markerLength: 1, state: &state)

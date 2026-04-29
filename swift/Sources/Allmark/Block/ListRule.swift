@@ -86,10 +86,10 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: Li
 	let startIdx = state.i + info.markup.count
 
 	for idx in startIdx ..< src.count {
-		let charIndex = src.index(src.startIndex, offsetBy: idx)
-		if isNewLine(char: String(src[charIndex])) {
+		let char = src[idx]
+		if isNewLine(char: char) {
 			break
-		} else if isSpace(code: Int(src[charIndex].asciiValue ?? 0)) {
+		} else if isSpace(code: Int(char.asciiValue ?? 0)) {
 			spaces += 1
 		} else {
 			blank = false
@@ -167,8 +167,7 @@ func testListContinue(state: inout BlockParserState, node: MarkdownNode, info: L
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	// If there's the same list marker and the indent is not too far, we can continue
 	if let info = info {
@@ -185,7 +184,7 @@ func testListContinue(state: inout BlockParserState, node: MarkdownNode, info: L
 		return false
 	}
 
-	if isNewLine(char: String(char)) {
+	if isNewLine(char: char) {
 		return true
 	}
 

@@ -34,11 +34,10 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 	guard state.i < src.count else { return false }
 
 	if !isEscaped(text: src, i: state.i) {
-		let index = src.index(src.startIndex, offsetBy: state.i)
-		let char = src[index]
+		let char = src[state.i]
 
 		if char == "w" {
-			let tail = String(src[index...])
+			let tail = charToString(src, from: state.i)
 
 			let urlRange = NSRange(location: 0, length: tail.utf16.count)
 			if let urlMatch = urlRegex.firstMatch(in: tail, options: [], range: urlRange) {
@@ -82,7 +81,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 		}
 
 		if char == "h" || char == "f" {
-			let tail = String(src[index...])
+			let tail = charToString(src, from: state.i)
 
 			let urlRange = NSRange(location: 0, length: tail.utf16.count)
 			if let urlMatch = extUrlRegex.firstMatch(in: tail, options: [], range: urlRange) {
@@ -121,11 +120,11 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 
 		// Check alphanumeric for email
 		if state.i < src.count {
-			let code = Int(src[index].asciiValue ?? 0)
+			let code = Int(src[state.i].asciiValue ?? 0)
 			if isAlphaNumeric(code: code) {
 				// TODO: I think we should actually check this when we come across an @,
 				// rather than any alphanumeric
-				let tail = String(src[index...])
+				let tail = charToString(src, from: state.i)
 
 				let emailRange = NSRange(location: 0, length: tail.utf16.count)
 				if let emailMatch = extEmailRegex.firstMatch(in: tail, options: [], range: emailRange) {
@@ -186,7 +185,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 		}
 
 		if char == "m" || char == "x" {
-			let tail = String(src[index...])
+			let tail = charToString(src, from: state.i)
 
 			let xmppRange = NSRange(location: 0, length: tail.utf16.count)
 			if let emailMatch = extXmppRegex.firstMatch(in: tail, options: [], range: xmppRange) {

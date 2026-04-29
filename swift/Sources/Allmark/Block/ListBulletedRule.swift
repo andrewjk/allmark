@@ -15,8 +15,7 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 		return nil
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if char == "-" || char == "+" || char == "*" {
 		// Check if next char is space or end of line
@@ -29,9 +28,9 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 			)
 		}
 
-		let nextIndex = src.index(src.startIndex, offsetBy: state.i + 1)
-		if isSpace(code: Int(src[nextIndex].asciiValue ?? 0)) {
-			let isBlank = isNewLine(char: String(src[nextIndex]))
+		let nextChar = src[state.i + 1]
+		if isSpace(code: Int(nextChar.asciiValue ?? 0)) {
+			let isBlank = isNewLine(char: nextChar)
 			return ListInfo(
 				delimiter: String(char),
 				markup: String(char),

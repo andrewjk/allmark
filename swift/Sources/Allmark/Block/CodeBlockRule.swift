@@ -26,10 +26,9 @@ func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
-	if state.indent >= 4 && !isNewLine(char: String(char)) {
+	if state.indent >= 4 && !isNewLine(char: char) {
 		var closedNode: MarkdownNode? = nil
 		var currentParent = parent
 

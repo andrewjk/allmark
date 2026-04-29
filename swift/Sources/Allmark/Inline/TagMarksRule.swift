@@ -14,8 +14,7 @@ func testTagMarks(
 	// Get the markup
 	var markup = char
 	for i in (state.i + 1) ..< src.count {
-		let iIndex = src.index(src.startIndex, offsetBy: i)
-		if String(src[iIndex]) == char {
+		if String(src[i]) == char {
 			markup.append(char)
 			end += 1
 		} else {
@@ -26,11 +25,11 @@ func testTagMarks(
 	// "Three or more tildes do not create a strikethrough"
 	if markup.count < 3 {
 		// TODO: Better space checks including start/end of line
-		let codeBefore = start > 0 ? src.unicodeScalars[src.index(src.startIndex, offsetBy: start - 1)].value : 0
+		let codeBefore = start > 0 ? src[start - 1].unicodeScalars.first!.value : 0
 		let spaceBefore = start == 0 || isUnicodeSpace(code: codeBefore)
 		let punctuationBefore = !spaceBefore && isUnicodePunctuation(code: codeBefore)
 
-		let codeAfter = end + 1 < src.count ? src.unicodeScalars[src.index(src.startIndex, offsetBy: end + 1)].value : 0
+		let codeAfter = end + 1 < src.count ? src[end + 1].unicodeScalars.first!.value : 0
 		let spaceAfter = end == src.count - 1 || isUnicodeSpace(code: codeAfter)
 		let punctuationAfter = !spaceAfter && isUnicodePunctuation(code: codeAfter)
 

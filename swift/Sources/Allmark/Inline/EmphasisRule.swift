@@ -10,8 +10,7 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 	let src = state.src
 	guard state.i < src.count else { return false }
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if (char == "*" || char == "_") && !isEscaped(text: src, i: state.i) {
 		let start = state.i
@@ -20,8 +19,7 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 		// Get the markup
 		var markup = String(char)
 		for i in (start + 1) ..< src.count {
-			let iIndex = src.index(src.startIndex, offsetBy: i)
-			if src[iIndex] == char {
+			if src[i] == char {
 				markup.append(char)
 				end += 1
 			} else {
@@ -30,11 +28,11 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 		}
 
 		// TODO: Better space checks including start/end of line
-		let codeBefore = start > 0 ? src.unicodeScalars[src.index(src.startIndex, offsetBy: start - 1)].value : 0
+		let codeBefore = start > 0 ? src[start - 1].unicodeScalars.first!.value : 0
 		let spaceBefore = start == 0 || isUnicodeSpace(code: codeBefore)
 		let punctuationBefore = !spaceBefore && isUnicodePunctuation(code: codeBefore)
 
-		let codeAfter = end + 1 < src.count ? src.unicodeScalars[src.index(src.startIndex, offsetBy: end + 1)].value : 0
+		let codeAfter = end + 1 < src.count ? src[end + 1].unicodeScalars.first!.value : 0
 		let spaceAfter = end == src.count - 1 || isUnicodeSpace(code: codeAfter)
 		let punctuationAfter = !spaceAfter && isUnicodePunctuation(code: codeAfter)
 
@@ -92,7 +90,7 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 			let canClose =
 				(rightFlanking ||
 					// Check if it's a continuing part of a three-run delimiter
-					(state.i > 0 && src[src.index(src.startIndex, offsetBy: state.i - 1)] == char)) &&
+					(state.i > 0 && src[state.i - 1] == char)) &&
 				startDel.markup == String(char) &&
 				// "Emphasis with _ is not allowed inside words"
 				(char != "_" || spaceAfter || punctuationAfter) &&

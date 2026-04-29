@@ -10,8 +10,7 @@ func testLink(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	let src = state.src
 	guard state.i < src.count else { return false }
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if !isEscaped(text: src, i: state.i) {
 		if char == "[" {
@@ -19,8 +18,7 @@ func testLink(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		}
 
 		if char == "!" && state.i + 1 < src.count {
-			let nextIndex = src.index(src.startIndex, offsetBy: state.i + 1)
-			if src[nextIndex] == "[" {
+			if src[state.i + 1] == "[" {
 				return testImageOpen(state: &state, parent: &parent)
 			}
 		}
@@ -105,9 +103,7 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 				var start = state.i + 1
 				let src = state.src
 				let labelStart = startDel.start + startDel.markup.count
-				let labelEndIndex = src.index(src.startIndex, offsetBy: state.i)
-				let labelStartIndex = src.index(src.startIndex, offsetBy: labelStart)
-				var label = String(src[labelStartIndex ..< labelEndIndex])
+				var label = charToString(src, from: labelStart, to: state.i)
 
 				// "The link text may contain balanced brackets, but not
 				// unbalanced ones, unless they are escaped"
@@ -130,8 +126,8 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 
 				let isLink = startDel.markup == "["
 
-				let hasInfo = state.i + 1 < src.count && src[src.index(src.startIndex, offsetBy: state.i + 1)] == "("
-				let hasRef = state.i + 1 < src.count && src[src.index(src.startIndex, offsetBy: state.i + 1)] == "["
+				let hasInfo = state.i + 1 < src.count && src[state.i + 1] == "("
+				let hasRef = state.i + 1 < src.count && src[state.i + 1] == "["
 
 				// "Full and compact references take precedence over shortcut references"
 				// "Inline links also take precedence"
@@ -142,11 +138,10 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 				} else if hasRef {
 					start += 1
 					for i in start ..< src.count {
-						let iIndex = src.index(src.startIndex, offsetBy: i)
-						if src[iIndex] == "]" {
+						if src[i] == "]" {
 							// Lookup using the text between the [], or if there
 							// is no text, use the label
-							label = i - start > 0 ? String(src[src.index(src.startIndex, offsetBy: start) ..< iIndex]) : label
+							label = i - start > 0 ? charToString(src, from: start, to: i) : label
 							label = normalizeLabel(text: label)
 							link = state.refs[label]
 							if link != nil {

@@ -9,8 +9,7 @@ func testFootnote(state: inout InlineParserState, parent: inout MarkdownNode) ->
 	let src = state.src
 	guard state.i < src.count else { return false }
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if !isEscaped(text: src, i: state.i) {
 		if char == "[" {
@@ -34,8 +33,7 @@ func testFootnoteOpen(state: inout InlineParserState, parent: inout MarkdownNode
 		return false
 	}
 
-	let nextIndex = src.index(src.startIndex, offsetBy: start + 1)
-	if src[nextIndex] != "^" {
+	if src[start + 1] != "^" {
 		return false
 	}
 
@@ -80,9 +78,7 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 			if let lastNode = parent.children?[i], lastNode.index == state.parentIndex + startDel.start {
 				let labelStart = startDel.start + startDel.markup.count
 				let src = state.src
-				let labelEndIndex = src.index(src.startIndex, offsetBy: state.i)
-				let labelStartIndex = src.index(src.startIndex, offsetBy: labelStart)
-				var label = String(src[labelStartIndex ..< labelEndIndex])
+				var label = charToString(src, from: labelStart, to: state.i)
 
 				// No special characters
 				if label.range(of: "[^a-zA-Z0-9]", options: .regularExpression) != nil {
@@ -110,14 +106,11 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 				// Swallow anything in brackets afterwards
 				// Unless it's a link reference, in which case it should be treated as a link instead
 				if state.i + 1 < src.count {
-					let nextIndex = src.index(src.startIndex, offsetBy: state.i + 1)
-					if src[nextIndex] == "[" {
+					if src[state.i + 1] == "[" {
 						let linkStart = state.i + 2
 						for i in linkStart ..< src.count {
-							let iIndex = src.index(src.startIndex, offsetBy: i)
-							if src[iIndex] == "]" {
-								let linkStartIndex = src.index(src.startIndex, offsetBy: linkStart)
-								var linkRef = String(src[linkStartIndex ..< iIndex])
+							if src[i] == "]" {
+								var linkRef = charToString(src, from: linkStart, to: i)
 								linkRef = normalizeLabel(text: linkRef)
 								if state.refs[linkRef] != nil {
 									// Change delimiter to [ for link processing
@@ -156,7 +149,7 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 					// Parse the footnote content for inline elements
 					var tempState = InlineParserState(
 						rules: state.rules,
-						src: footnote.content.content,
+						src: Array(footnote.content.content),
 						i: 0,
 						line: lastNode.line,
 						lineStart: 0,

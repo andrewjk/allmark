@@ -12,8 +12,7 @@ func testCriticMarks(
 	let src = state.src
 	guard state.i < src.count else { return false }
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if char == "{" && !isEscaped(text: src, i: state.i) {
 		let start = state.i
@@ -22,11 +21,10 @@ func testCriticMarks(
 		// Get the markup
 		var markup = String(char)
 		for i in (start + 1) ..< src.count {
-			let iIndex = src.index(src.startIndex, offsetBy: i)
-			if src[iIndex] == delimiter.first {
+			if src[i] == delimiter.first {
 				markup.append(delimiter)
 				end += 1
-			} else if src[iIndex] == "}" || (closeDel != delimiter && src[iIndex] == closeDel.first) {
+			} else if src[i] == "}" || (closeDel != delimiter && src[i] == closeDel.first) {
 				return false
 			} else {
 				break
@@ -53,10 +51,9 @@ func testCriticMarks(
 		// Get the markup
 		var markup = "{" + delimiter
 		for i in (state.i + 1) ..< src.count {
-			let iIndex = src.index(src.startIndex, offsetBy: i)
-			if src[iIndex] == closeDel.first {
+			if src[i] == closeDel.first {
 				markup.append(delimiter)
-			} else if src[iIndex] == "}" {
+			} else if src[i] == "}" {
 				break
 			} else {
 				return false

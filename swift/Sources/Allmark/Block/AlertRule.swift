@@ -29,11 +29,10 @@ func testAlertStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if hasAlertMarkup(char: char, state: state) {
-		let tail = String(src[src.index(src.startIndex, offsetBy: state.i + 1)...])
+		let tail = charToString(src, from: state.i + 1)
 		let range = NSRange(location: 0, length: tail.utf16.count)
 
 		if let match = alertRegex.firstMatch(in: tail, options: [], range: range) {
@@ -79,8 +78,7 @@ func testAlertContinue(state: inout BlockParserState, node: MarkdownNode) -> Boo
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if hasAlertMarkup(char: char, state: state) {
 		movePastMarker(markerLength: 1, state: &state)

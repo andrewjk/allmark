@@ -7,7 +7,7 @@ public struct BlockParserState {
 	public var rules: OrderedDictionary<String, BlockRule>
 
 	/// The source text being parsed.
-	public var src: String
+	public var src: [Character]
 	/// Current position in the source.
 	public var i: Int
 	/// Current line number.
@@ -27,7 +27,7 @@ public struct BlockParserState {
 	/// Footnote reference definitions.
 	public var footnotes: [String: FootnoteReference]
 
-	public init(rules: OrderedDictionary<String, BlockRule>, src: String, i: Int, line: Int, lineStart: Int, indent: Int, openNodes: [MarkdownNode], maybeContinue: Bool, hasBlankLine: Bool, refs: [String: LinkReference], footnotes: [String: FootnoteReference]) {
+	public init(rules: OrderedDictionary<String, BlockRule>, src: [Character], i: Int, line: Int, lineStart: Int, indent: Int, openNodes: [MarkdownNode], maybeContinue: Bool, hasBlankLine: Bool, refs: [String: LinkReference], footnotes: [String: FootnoteReference]) {
 		self.rules = rules
 		self.src = src
 		self.i = i

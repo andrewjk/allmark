@@ -19,8 +19,7 @@ func testListItemContinue(state: inout BlockParserState, node: MarkdownNode) -> 
 		return false
 	}
 
-	let index = src.index(src.startIndex, offsetBy: state.i)
-	let char = src[index]
+	let char = src[state.i]
 
 	if state.indent >= node.subindent {
 		state.indent -= node.subindent
@@ -40,9 +39,8 @@ func testListItemContinue(state: inout BlockParserState, node: MarkdownNode) -> 
 			var end = state.i
 
 			while end < src.count {
-				let endIndex = src.index(src.startIndex, offsetBy: end)
-				if isNumeric(code: Int(src[endIndex].asciiValue ?? 0)) {
-					numbers.append(src[endIndex])
+				if isNumeric(code: Int(src[end].asciiValue ?? 0)) {
+					numbers.append(src[end])
 					end += 1
 				} else {
 					break
@@ -50,8 +48,7 @@ func testListItemContinue(state: inout BlockParserState, node: MarkdownNode) -> 
 			}
 
 			if end < src.count {
-				let delimiterIndex = src.index(src.startIndex, offsetBy: end)
-				let delimiter = src[delimiterIndex]
+				let delimiter = src[end]
 
 				if let item = itemNode {
 					if state.indent <= 3 && state.indent < item.subindent && !numbers.isEmpty && String(delimiter) == node.delimiter {
