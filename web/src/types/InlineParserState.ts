@@ -4,7 +4,7 @@ import type InlineRule from "./InlineRule";
 import type LinkReference from "./LinkReference";
 
 export default interface InlineParserState {
-	rules: Map<string, InlineRule>;
+	rules: InlineRule[];
 
 	src: string;
 	i: number;

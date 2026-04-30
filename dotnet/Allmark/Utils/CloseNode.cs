@@ -13,7 +13,7 @@ public static partial class Utils
         for (int i = 0; i < state.OpenNodes.Count - 1; i++)
         {
             var openNode = state.OpenNodes.ElementAt(i);
-            var rule = state.Rules[openNode.Type];
+            var rule = state.RulesMap[openNode.Type];
             // TODO: Add close functions for dangling nodes, so they get cleaned up more tidily
             rule.CloseNode?.Invoke(state, openNode);
             if (openNode == node)

@@ -7,11 +7,11 @@ using Allmark.Types;
 
 public static class Renderer
 {
-    public static string Execute(MarkdownNode doc, Dictionary<string, OutputRenderer> renderers)
+    public static string Execute(MarkdownNode doc, OutputRenderer[] renderers)
     {
         var state = new RendererState
         {
-            Renderers = renderers,
+            RenderersMap = renderers.ToDictionary(r => r.Name),
             Output = new StringBuilder(),
             Footnotes = new List<MarkdownNode>(),
             ListDepth = 0
@@ -19,7 +19,7 @@ public static class Renderer
 
         RenderChildren.Execute(doc, state);
 
-        if (state.Footnotes.Count > 0 && renderers.TryGetValue("footnote_list", out var footnoteListRenderer))
+        if (state.Footnotes.Count > 0 && state.RenderersMap.TryGetValue("footnote_list", out var footnoteListRenderer))
         {
             footnoteListRenderer.Render(doc, state, true);
         }

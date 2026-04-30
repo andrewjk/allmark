@@ -18,16 +18,12 @@ pub fn parseInline(allocator: std.mem.Allocator, state: *InlineParserState, pare
 
         state.isEscaped = isEscaped(state.src, state.i);
 
-        //std.debug.print("====\n", .{});
-        var it = state.rules.iterator();
-        while (it.next()) |entry| {
-            const handled = entry.value_ptr.*.@"test"(state, parent);
+        for (state.rules) |rule| {
+            const handled = rule.@"test"(state, parent);
 
             if (handled) {
-                //std.debug.print("RULE PASSED: {s}\n", .{entry.value_ptr.*.name});
                 break;
             }
-            //std.debug.print("RULE FAILED: {s}\n", .{entry.value_ptr.*.name});
         }
     }
 }

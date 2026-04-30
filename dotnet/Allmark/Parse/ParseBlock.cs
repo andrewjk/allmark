@@ -8,7 +8,7 @@ public static class ParseBlock
     {
         state.IsEscaped = Utils.IsEscaped(state.Src, state.I);
 
-        foreach (var rule in state.Rules.Values)
+        foreach (var rule in state.Rules)
         {
             // int start = state.I;
             bool handled = rule.TestStart(state, parent);

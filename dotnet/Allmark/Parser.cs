@@ -24,9 +24,12 @@ public static class Parser
             }
         }
 
+        var rulesMap = rules.Blocks.ToDictionary(r => r.Name);
+
         var state = new BlockParserState
         {
             Rules = rules.Blocks,
+            RulesMap = rulesMap,
             Src = src,
             I = start,
             Line = 0,
@@ -51,9 +54,8 @@ public static class Parser
         {
             var openNode = state.OpenNodes.ElementAt(j);
             openNode.Length = state.I - openNode.Index;
-            if (state.Rules.ContainsKey(openNode.Type))
+            if (state.RulesMap.TryGetValue(openNode.Type, out var rule))
             {
-                var rule = state.Rules[openNode.Type];
                 rule.CloseNode?.Invoke(state, openNode);
             }
         }

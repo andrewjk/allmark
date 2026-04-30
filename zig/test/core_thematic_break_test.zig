@@ -14,9 +14,8 @@ test "Simple thematic break with dashes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -37,9 +36,8 @@ test "Simple thematic break with asterisks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -60,9 +58,8 @@ test "Simple thematic break with underscores" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -83,9 +80,8 @@ test "Thematic break with 4 dashes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -106,9 +102,8 @@ test "Thematic break with 5 asterisks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -129,9 +124,8 @@ test "Thematic break with spaces between characters" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -151,9 +145,8 @@ test "Thematic break with tabs between characters" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -174,9 +167,8 @@ test "Thematic break with 1 space indent" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -197,9 +189,8 @@ test "Thematic break with 3 space indent" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -221,9 +212,8 @@ test "Thematic break with 4 space indent should be code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -246,9 +236,8 @@ test "Thematic break followed by paragraph without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -272,9 +261,8 @@ test "Multiple thematic breaks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -295,9 +283,8 @@ test "Thematic break not valid - only 2 dashes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -318,9 +305,8 @@ test "Thematic break not valid - only 2 asterisks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -341,9 +327,8 @@ test "Thematic break not valid - only 2 underscores" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -364,9 +349,8 @@ test "Thematic break not valid - mixed characters" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -387,9 +371,8 @@ test "Thematic break not valid - mixed dashes and asterisks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -412,9 +395,8 @@ test "Thematic break in blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -439,9 +421,8 @@ test "Thematic break in list item" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -462,9 +443,8 @@ test "Thematic break with trailing spaces" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -484,9 +464,8 @@ test "Thematic break with trailing tabs" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -513,9 +492,8 @@ test "Thematic break after list without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -540,9 +518,8 @@ test "Thematic break before list without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -567,9 +544,8 @@ test "Thematic break at end of document" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -596,9 +572,8 @@ test "Thematic break between paragraphs" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -624,9 +599,8 @@ test "Thematic break between paragraphs without blank lines" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -649,9 +623,8 @@ test "Thematic break after heading" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -674,9 +647,8 @@ test "Thematic break before heading" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -702,9 +674,8 @@ test "Thematic break with code block above" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -730,9 +701,8 @@ test "Thematic break with code block below" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -760,9 +730,8 @@ test "Thematic break in nested blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -783,9 +752,8 @@ test "Thematic break with very long sequence" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -806,9 +774,8 @@ test "Thematic break not valid - starts with dash but has spaces" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -832,9 +799,8 @@ test "Thematic break with inline elements above" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -857,9 +823,8 @@ test "Thematic break with inline elements below" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -890,9 +855,8 @@ test "Thematic break between blockquotes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -916,9 +880,8 @@ test "Thematic break with setext heading" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -945,9 +908,8 @@ test "Thematic break after ordered list" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -963,9 +925,8 @@ test "Empty thematic break (should not match)" {
     const expected = "";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -986,9 +947,8 @@ test "Text that looks like thematic break but has other content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1014,9 +974,8 @@ test "Thematic break preceded by code fence" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1043,9 +1002,8 @@ test "Thematic break not valid - less than 3 chars with spaces" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1077,9 +1035,8 @@ test "Thematic break after loose list" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1103,9 +1060,8 @@ test "Thematic break in fenced code block (should not be interpreted)" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1126,9 +1082,8 @@ test "Thematic break with mixed spacing" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1149,9 +1104,8 @@ test "Thematic break not valid - text after spaces" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

@@ -16,7 +16,7 @@ pub fn parseLine(state: *BlockParserState) void {
     var i: usize = 1;
     while (i < state.openNodes.items.len) {
         const node = state.openNodes.items[i];
-        const rule = state.rules.get(node.type);
+        const rule = state.rulesMap.get(node.type);
         if (rule.?.testContinue(state, node)) {
             parseIndent(state);
         } else {

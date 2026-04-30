@@ -23,7 +23,7 @@ public static class ParseInline
 
             state.IsEscaped = Utils.IsEscaped(state.Src, state.I);
 
-            foreach (var rule in state.Rules.Values)
+            foreach (var rule in state.Rules)
             {
                 bool handled = rule.Test(state, parent);
                 // Console.WriteLine("Rule:", rule.Name, handled);

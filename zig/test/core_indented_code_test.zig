@@ -15,9 +15,8 @@ test "Simple 4-space indented code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -38,9 +37,8 @@ test "Tab-indented code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -66,9 +64,8 @@ test "Multi-line indented code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -89,9 +86,8 @@ test "Less than 4 spaces should be paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -113,9 +109,8 @@ test "5-space indented code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -137,9 +132,8 @@ test "8-space indented code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -165,9 +159,8 @@ test "Indented code block with blank line in middle" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -192,9 +185,8 @@ test "Indented code block interrupts paragraph with blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -217,9 +209,8 @@ test "Indented code block does not interrupt paragraph without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -241,9 +232,8 @@ test "Indented code block with trailing spaces" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -267,9 +257,8 @@ test "Mixed 4-space and 8-space indentation" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -291,9 +280,8 @@ test "Indented code with backticks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -315,9 +303,8 @@ test "Indented code with tildes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -339,9 +326,8 @@ test "Indented code with asterisks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -365,9 +351,8 @@ test "Indented code in blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -393,9 +378,8 @@ test "Indented code in list item" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -421,9 +405,8 @@ test "Indented code in ordered list" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -448,9 +431,8 @@ test "Indented code followed by paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -475,9 +457,8 @@ test "Paragraph followed by indented code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -503,9 +484,8 @@ test "Multiple indented code blocks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -527,9 +507,8 @@ test "Indented code with special characters" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -555,9 +534,8 @@ test "Indented code with mixed indentation" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -582,9 +560,8 @@ test "Indented code block after heading" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -609,9 +586,8 @@ test "Indented code block before heading" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -636,9 +612,8 @@ test "Indented code block after thematic break" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -663,9 +638,8 @@ test "Indented code block before thematic break" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -692,9 +666,8 @@ test "Indented code with fenced code block above" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -721,9 +694,8 @@ test "Indented code with fenced code block below" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -748,9 +720,8 @@ test "Indented code with ATX heading above" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -775,9 +746,8 @@ test "Indented code with ATX heading below" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -803,9 +773,8 @@ test "Indented code with setext heading above" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -831,9 +800,8 @@ test "Indented code with setext heading below" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -856,9 +824,8 @@ test "Indented code preceded by paragraph without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -882,9 +849,8 @@ test "Paragraph preceded by indented code without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -906,9 +872,8 @@ test "Indented code with HTML entities" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -939,9 +904,8 @@ test "Indented code block in nested list" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -963,9 +927,8 @@ test "Indented code block at end of document" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -991,9 +954,8 @@ test "Indented code block with varying indentation" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1014,9 +976,8 @@ test "Single tab indented" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1037,9 +998,8 @@ test "Mixed tab and space indentation" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1060,9 +1020,8 @@ test "3 spaces - should be paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1084,9 +1043,8 @@ test "6 spaces indented code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1108,9 +1066,8 @@ test "12 spaces indented code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1132,9 +1089,8 @@ test "Code block with unicode characters" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1156,9 +1112,8 @@ test "Indented code with inline link" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1180,9 +1135,8 @@ test "Indented code with inline image" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1204,9 +1158,8 @@ test "Indented code with emphasis" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1228,9 +1181,8 @@ test "Indented code with strong" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1252,9 +1204,8 @@ test "Indented code with inline code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1271,9 +1222,8 @@ test "Empty indented code block" {
     const expected = "";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1290,9 +1240,8 @@ test "Indented code block with only whitespace" {
     const expected = "";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

@@ -38,9 +38,8 @@ test "basic parse" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

@@ -7,7 +7,7 @@ using System.Text;
 /// </summary>
 public record RendererState
 {
-    public required Dictionary<string, OutputRenderer> Renderers { get; set; }
+    public required Dictionary<string, OutputRenderer> RenderersMap { get; set; }
 
     public required StringBuilder Output { get; set; }
     public required List<MarkdownNode> Footnotes { get; set; }

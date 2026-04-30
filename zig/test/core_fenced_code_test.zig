@@ -17,9 +17,8 @@ test "Simple code fence with backticks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -43,9 +42,8 @@ test "Simple code fence with tildes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -69,9 +67,8 @@ test "Code fence with 4 backticks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -95,9 +92,8 @@ test "Code fence with 5 tildes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -121,9 +117,8 @@ test "Code fence with language specifier" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -147,9 +142,8 @@ test "Code fence with language specifier and extra text" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -171,9 +165,8 @@ test "Code fence with empty content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -201,9 +194,8 @@ test "Code fence with multi-line content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -227,9 +219,8 @@ test "Code fence with 1 space indent" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -253,9 +244,8 @@ test "Code fence with 3 space indent" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -281,9 +271,8 @@ test "Code fence with 4 space indent should be code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -309,9 +298,8 @@ test "Code fence interrupts paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -333,9 +321,8 @@ test "Code fence without space after opening" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -363,9 +350,8 @@ test "Code fence with blank line in content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -388,9 +374,8 @@ test "Code fence not valid - only 2 backticks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -415,9 +400,8 @@ test "Code fence not valid - only 2 tildes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -442,9 +426,8 @@ test "Code fence not valid - mixed backticks and tildes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -469,9 +452,8 @@ test "Code fence not valid - info string with backticks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -495,9 +477,8 @@ test "Code fence with backticks in content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -521,9 +502,8 @@ test "Code fence with tildes in content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -549,9 +529,8 @@ test "Code fence preceded by paragraph without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -577,9 +556,8 @@ test "Code fence followed by paragraph without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -609,9 +587,8 @@ test "Multiple code fences" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -637,9 +614,8 @@ test "Code fence with inline markdown in content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -663,9 +639,8 @@ test "Code fence at end of document" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -692,9 +667,8 @@ test "Code fence in blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -723,9 +697,8 @@ test "Code fence in list item" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -749,9 +722,8 @@ test "Code fence with trailing spaces after closing" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -775,9 +747,8 @@ test "Code fence with very long opening" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -802,9 +773,8 @@ test "Code fence with shorter closing" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -829,9 +799,8 @@ test "Code fence not valid - closing fence shorter than opening" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -855,9 +824,8 @@ test "Code fence with language containing numbers" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -881,9 +849,8 @@ test "Code fence with language containing dashes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -907,9 +874,8 @@ test "Code fence with trailing whitespace on closing fence" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -939,9 +905,8 @@ test "Code fence between paragraphs" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -965,9 +930,8 @@ test "Code fence with backslash in info string" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -993,9 +957,8 @@ test "Code fence with indented content lines" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1018,9 +981,8 @@ test "Code fence not valid - space between fence chars" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1042,9 +1004,8 @@ test "Code fence with only info string" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1071,9 +1032,8 @@ test "Code fence with setext heading above" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1099,9 +1059,8 @@ test "Code fence with ATX heading below" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1125,9 +1084,8 @@ test "Code fence with trailing spaces after opening" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1151,9 +1109,8 @@ test "Code fence with HTML entities in info" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

@@ -2,18 +2,19 @@ const std = @import("std");
 const MarkdownNode = @import("types/MarkdownNode.zig").MarkdownNode;
 const RendererSet = @import("types/RendererSet.zig").RendererSet;
 const RendererState = @import("types/RendererState.zig").RendererState;
+const Renderer = @import("types/Renderer.zig").Renderer;
 const htmlRenderers = @import("rulesets/htmlRenderers.zig");
 const consoleRenderers = @import("rulesets/consoleRenderers.zig");
 const renderChildren = @import("render/renderChildren.zig").renderChildren;
 const renderChildrenConsole = @import("render-console/console.zig").renderChildrenConsole;
 
-pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers: ?RendererSet, useConsole: bool) ![]const u8 {
+pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers: ?*const RendererSet, useConsole: bool) ![]const u8 {
     var createdRenderers = false;
     var localRenderers: RendererSet = undefined;
     var renderersToUse: *const RendererSet = undefined;
 
     if (renderers) |r| {
-        renderersToUse = &r;
+        renderersToUse = r;
     } else {
         localRenderers = if (useConsole)
             try consoleRenderers.init(allocator)
@@ -24,14 +25,26 @@ pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers:
     }
     defer if (createdRenderers) {
         if (useConsole)
-            consoleRenderers.deinit(@constCast(renderersToUse))
+            consoleRenderers.deinit(renderersToUse, allocator)
         else
-            htmlRenderers.deinit(@constCast(renderersToUse));
+            htmlRenderers.deinit(renderersToUse, allocator);
     };
+
+    var renderersMap = std.StringHashMap(*const Renderer).init(allocator);
+    for (renderersToUse.renderers) |renderer| {
+        try renderersMap.put(renderer.name, renderer);
+    }
+    defer {
+        var iter = renderersMap.iterator();
+        while (iter.next()) |_| {
+            // No need to free the key - it's a string literal
+        }
+        renderersMap.deinit();
+    }
 
     var state = RendererState{
         .allocator = allocator,
-        .renderers = renderersToUse.renderers,
+        .renderersMap = renderersMap,
         .output = std.ArrayList(u8).initCapacity(allocator, if (useConsole) 4096 else 1024) catch unreachable,
         .footnotes = std.ArrayList(*const MarkdownNode).initCapacity(allocator, 8) catch unreachable,
         .listDepth = 0,
@@ -45,8 +58,8 @@ pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers:
         renderChildren(doc, &state, true);
     }
 
-    if (state.footnotes.items.len > 0 and renderersToUse.renderers.get("footnote_list") != null) {
-        const footnoteListRenderer = renderersToUse.renderers.get("footnote_list").?;
+    if (state.footnotes.items.len > 0 and renderersMap.get("footnote_list") != null) {
+        const footnoteListRenderer = renderersMap.get("footnote_list").?;
         footnoteListRenderer.render(doc, &state, null);
     }
 

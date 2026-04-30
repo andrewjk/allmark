@@ -152,8 +152,7 @@ pub fn main(init: std.process.Init) !void {
         try allmark.gfm.init(allocator)
     else
         try allmark.extended.init(allocator);
-    defer ruleset.blocks.deinit();
-    defer ruleset.inlines.deinit();
+    defer allmark.core.deinit(&ruleset, allocator);
 
     const document = try allmark.parse.execute(allocator, markdown, ruleset);
     defer document.deinit(allocator);

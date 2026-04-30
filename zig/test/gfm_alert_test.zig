@@ -16,8 +16,8 @@ test "spec alert" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -40,8 +40,8 @@ test "alert tip" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -64,8 +64,8 @@ test "alert important" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -88,8 +88,8 @@ test "alert warning" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -112,8 +112,8 @@ test "alert caution" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -137,8 +137,8 @@ test "alert with multiple paragraphs" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -161,8 +161,8 @@ test "alert with inline formatting" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -190,8 +190,8 @@ test "alert with list" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -215,8 +215,8 @@ test "alert with code block" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -239,8 +239,8 @@ test "alert with link" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -263,8 +263,8 @@ test "alert case insensitive" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -287,8 +287,8 @@ test "non alert blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -311,8 +311,8 @@ test "blockquote with brackets but not alert" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -338,8 +338,8 @@ test "alert with nested blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -366,8 +366,8 @@ test "consecutive alerts" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -390,8 +390,8 @@ test "alert with empty content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules);
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

@@ -77,7 +77,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
                             state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
                             state.output.append(state.allocator, ' ') catch unreachable;
                         }
-                        if (state.renderers.get(child.type)) |renderer| {
+                        if (state.renderersMap.get(child.type)) |renderer| {
                             renderer.render(child, state, true);
                         }
                         // Trim extra newline for tight lists (nested lists add their own)

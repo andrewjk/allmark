@@ -24,6 +24,7 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 
 	let state: BlockParserState = {
 		rules: rules.blocks,
+		rulesMap: new Map(rules.blocks.map((b) => [b.name, b])),
 		src,
 		i,
 		line: 0,
@@ -47,7 +48,7 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 	while (j--) {
 		let openNode = state.openNodes[j];
 		openNode.length = state.i - openNode.index;
-		let rule = state.rules.get(openNode.type);
+		let rule = state.rulesMap.get(openNode.type);
 		if (rule?.closeNode !== undefined) {
 			rule.closeNode(state, openNode);
 		}

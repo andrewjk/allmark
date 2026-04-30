@@ -8,7 +8,7 @@ import parseInline from "./parseInline";
 
 export default function parseBlockInlines(
 	parent: MarkdownNode,
-	rules: Map<string, InlineRule>,
+	rules: InlineRule[],
 	refs: Record<string, LinkReference>,
 	footnotes: Record<string, FootnoteReference>,
 ): void {

@@ -5,8 +5,7 @@ namespace Allmark.Types;
 /// </summary>
 public record InlineParserState
 {
-    public required Dictionary<string, InlineRule> Rules { get; set; }
-
+    public required InlineRule[] Rules { get; set; }
     public required string Src { get; set; }
     public required int I { get; set; }
     public required int Line { get; set; }

@@ -41,7 +41,7 @@ export default function render(node: MarkdownNode, state: RendererState, ordered
 					if (i === 0) {
 						state.output += `${indent}${style}${prefix}${reset} `;
 					}
-					const renderer = state.renderers.get(child.type);
+					const renderer = state.renderersMap.get(child.type);
 					if (renderer) {
 						renderer.render(child, state);
 					}

@@ -4,11 +4,11 @@ import type MarkdownNode from "./types/MarkdownNode";
 import type Renderer from "./types/Renderer";
 import type RendererState from "./types/RendererState";
 
-export default function render(doc: MarkdownNode, renderers?: Map<string, Renderer>): string {
+export default function render(doc: MarkdownNode, renderers?: Renderer[]): string {
 	renderers ??= htmlRenderers;
 
 	let state: RendererState = {
-		renderers,
+		renderersMap: new Map(renderers.map((r) => [r.name, r])),
 		output: "",
 		footnotes: [],
 		listDepth: 0,
@@ -16,8 +16,8 @@ export default function render(doc: MarkdownNode, renderers?: Map<string, Render
 
 	renderChildren(doc, state);
 
-	if (state.footnotes.length > 0 && renderers.has("footnote_list")) {
-		const footnoteListRenderer = renderers.get("footnote_list");
+	if (state.footnotes.length > 0 && state.renderersMap.has("footnote_list")) {
+		const footnoteListRenderer = state.renderersMap.get("footnote_list");
 		footnoteListRenderer!.render(doc, state);
 	}
 

@@ -1,10 +1,11 @@
 import Foundation
-import OrderedCollections
 
 /// State maintained during block parsing.
 public struct BlockParserState {
 	/// Block parsing rules.
-	public var rules: OrderedDictionary<String, BlockRule>
+	public var rules: [BlockRule]
+	/// Block parsing rules map for fast lookup by name.
+	public var rulesMap: [String: BlockRule]
 
 	/// The source text being parsed.
 	public var src: [Character]
@@ -29,8 +30,9 @@ public struct BlockParserState {
 	/// Footnote reference definitions.
 	public var footnotes: [String: FootnoteReference]
 
-	public init(rules: OrderedDictionary<String, BlockRule>, src: [Character], i: Int, line: Int, lineStart: Int, indent: Int, openNodes: [MarkdownNode], isEscaped: Bool, maybeContinue: Bool, hasBlankLine: Bool, refs: [String: LinkReference], footnotes: [String: FootnoteReference]) {
+	public init(rules: [BlockRule], rulesMap: [String: BlockRule], src: [Character], i: Int, line: Int, lineStart: Int, indent: Int, openNodes: [MarkdownNode], isEscaped: Bool, maybeContinue: Bool, hasBlankLine: Bool, refs: [String: LinkReference], footnotes: [String: FootnoteReference]) {
 		self.rules = rules
+		self.rulesMap = rulesMap
 		self.src = src
 		self.i = i
 		self.line = line

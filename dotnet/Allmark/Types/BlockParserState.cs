@@ -5,7 +5,8 @@ namespace Allmark.Types;
 /// </summary>
 public record BlockParserState
 {
-    public required Dictionary<string, BlockRule> Rules { get; set; }
+    public required BlockRule[] Rules { get; set; }
+    public required Dictionary<string, BlockRule> RulesMap { get; set; }
 
     public required string Src { get; set; }
     public required int I { get; set; }

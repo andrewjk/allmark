@@ -57,7 +57,7 @@ public static class ConsoleListRenderer
                             {
                                 state.Output.Append($"{indent}{style}{prefix}{reset} ");
                             }
-                            if (state.Renderers.TryGetValue(child.Type, out var renderer))
+                            if (state.RenderersMap.TryGetValue(child.Type, out var renderer))
                             {
                                 renderer.Render(child, state, true);
                             }

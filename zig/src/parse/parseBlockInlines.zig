@@ -9,7 +9,7 @@ const appendChild = @import("../utils/appendChild.zig").appendChild;
 pub fn parseBlockInlines(
     allocator: std.mem.Allocator,
     parent: *MarkdownNode,
-    rules: std.StringArrayHashMap(*const InlineRule),
+    rules: []const *const InlineRule,
     refs: std.StringHashMap(@import("../types/LinkReference.zig").LinkReference),
     footnotes: std.StringHashMap(@import("../types/FootnoteReference.zig").FootnoteReference),
 ) !void {
@@ -88,6 +88,16 @@ pub fn parseBlockInlines(
     }
     while (trimmed_content.len > 0 and std.ascii.isWhitespace(trimmed_content[trimmed_content.len - 1])) {
         trimmed_content = trimmed_content[0 .. trimmed_content.len - 1];
+    }
+
+    var rulesMap = std.StringHashMap(*const InlineRule).init(allocator);
+    for (rules) |rule| {
+        try rulesMap.put(rule.name, rule);
+    }
+    defer {
+        var iter = rulesMap.iterator();
+        while (iter.next()) |_| {}
+        rulesMap.deinit();
     }
 
     const Delimiter = @import("../types/Delimiter.zig").Delimiter;

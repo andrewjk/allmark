@@ -2,7 +2,7 @@ const std = @import("std");
 
 pub const InlineParserState = struct {
     allocator: std.mem.Allocator,
-    rules: std.StringArrayHashMap(*const InlineRule),
+    rules: []const *const InlineRule,
 
     src: []const u8,
     i: usize,

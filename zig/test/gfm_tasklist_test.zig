@@ -16,9 +16,8 @@ test "spec tasklist" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -41,9 +40,8 @@ test "tasklist with asterisk marker" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -66,9 +64,8 @@ test "tasklist with plus marker" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -91,9 +88,8 @@ test "tasklist in ordered list" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -117,9 +113,8 @@ test "tasklist with inline formatting" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -142,9 +137,8 @@ test "tasklist with code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -167,9 +161,8 @@ test "tasklist with links" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -197,9 +190,8 @@ test "nested tasklist" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -224,9 +216,8 @@ test "mixed tasks and regular items" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -249,9 +240,8 @@ test "tasklist with single character" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -274,9 +264,8 @@ test "tasklist with empty brackets" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -299,9 +288,8 @@ test "tasklist with uppercase X" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -326,9 +314,8 @@ test "tasklist in blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -356,9 +343,8 @@ test "tasklist with multiple paragraphs" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -386,9 +372,8 @@ test "tasklist with sublist" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -411,9 +396,8 @@ test "tasklist with html entities" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -437,9 +421,8 @@ test "tasklist with various whitespace" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

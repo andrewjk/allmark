@@ -10,7 +10,7 @@ pub fn renderNode(
     state: *RendererState,
     decode: bool,
 ) void {
-    if (state.renderers.get(node.type)) |renderer| {
+    if (state.renderersMap.get(node.type)) |renderer| {
         renderer.render(node, state, decode);
     }
 }

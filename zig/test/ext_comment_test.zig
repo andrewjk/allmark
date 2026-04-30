@@ -16,9 +16,8 @@ test "comment basic" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -38,9 +37,8 @@ test "comment single character" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -60,9 +58,8 @@ test "comment with spaces" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -82,9 +79,8 @@ test "comment at start of paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -104,9 +100,8 @@ test "comment at end of paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -126,9 +121,8 @@ test "comment with punctuation" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -148,9 +142,8 @@ test "comment with special characters" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -170,9 +163,8 @@ test "comment adjacent to text" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -192,9 +184,8 @@ test "empty comment" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -214,9 +205,8 @@ test "comment with markdown inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -236,9 +226,8 @@ test "comment with code inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -258,9 +247,8 @@ test "escaped braces should not be comment" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -280,9 +268,8 @@ test "unmatched opening comment" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -302,9 +289,8 @@ test "unmatched closing comment" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -326,9 +312,8 @@ test "comment in list item" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -350,9 +335,8 @@ test "comment in blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -372,9 +356,8 @@ test "comment with angle brackets inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -394,9 +377,8 @@ test "comment at beginning of document" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -416,9 +398,8 @@ test "comment at end of document" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -438,9 +419,8 @@ test "multiple comments in one line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -460,9 +440,8 @@ test "comment with starting emphasis" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -482,9 +461,8 @@ test "comment with ending emphasis" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -504,9 +482,8 @@ test "comment with plus signs inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -526,9 +503,8 @@ test "comment with minus signs inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -548,9 +524,8 @@ test "comment nested with other critic marks" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

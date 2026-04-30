@@ -12,9 +12,8 @@ test "Example 1, line 368: '→foo→baz→→bim'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -33,9 +32,8 @@ test "Example 2, line 375: '  →foo→baz→→bim'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -56,9 +54,8 @@ test "Example 3, line 382: '    a→a\\n    ὐ→a'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -83,9 +80,8 @@ test "Example 4, line 395: '  - foo\\n\\n→bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -111,9 +107,8 @@ test "Example 5, line 408: '- foo\\n\\n→→bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -134,9 +129,8 @@ test "Example 6, line 431: '>→→foo'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -159,9 +153,8 @@ test "Example 7, line 440: '-→→foo'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -182,9 +175,8 @@ test "Example 8, line 452: '    foo\\n→bar'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -214,9 +206,8 @@ test "Example 9, line 461: ' - foo\\n   - bar\\n→ - baz'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -234,9 +225,8 @@ test "Example 10, line 479: '#→Foo'" {
         "<h1>Foo</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -254,9 +244,8 @@ test "Example 11, line 485: '*→*→*→'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -278,9 +267,8 @@ test "Example 12, line 512: '- `one\\n- two`'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -302,9 +290,8 @@ test "Example 13, line 551: '***\\n---\\n___'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -322,9 +309,8 @@ test "Example 14, line 564: '+++'" {
         "<p>+++</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -342,9 +328,8 @@ test "Example 15, line 571: '==='" {
         "<p>===</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -366,9 +351,8 @@ test "Example 16, line 580: '--\\n**\\n__'" {
         "__</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -390,9 +374,8 @@ test "Example 17, line 593: ' ***\\n  ***\\n   ***'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -411,9 +394,8 @@ test "Example 18, line 606: '    ***'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -433,9 +415,8 @@ test "Example 19, line 614: 'Foo\\n    ***'" {
         "***</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -453,9 +434,8 @@ test "Example 20, line 625: '_____________________________________'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -473,9 +453,8 @@ test "Example 21, line 634: ' - - -'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -493,9 +472,8 @@ test "Example 22, line 641: ' **  * ** * ** * **'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -513,9 +491,8 @@ test "Example 23, line 648: '-     -      -      -'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -533,9 +510,8 @@ test "Example 24, line 657: '- - - -    '" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -559,9 +535,8 @@ test "Example 25, line 666: '_ _ _ _ a\\n\\na------\\n\\n---a---'" {
         "<p>---a---</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -579,9 +554,8 @@ test "Example 26, line 682: ' *-*'" {
         "<p><em>-</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -607,9 +581,8 @@ test "Example 27, line 691: '- foo\\n***\\n- bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -631,9 +604,8 @@ test "Example 28, line 708: 'Foo\\n***\\nbar'" {
         "<p>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -654,9 +626,8 @@ test "Example 29, line 725: 'Foo\\n---\\nbar'" {
         "<p>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -682,9 +653,8 @@ test "Example 30, line 738: '* Foo\\n* * *\\n* Bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -708,9 +678,8 @@ test "Example 31, line 755: '- Foo\\n- * * *'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -738,9 +707,8 @@ test "Example 32, line 784: '# foo\\n## foo\\n### foo\\n#### foo\\n##### foo\\n#
         "<h6>foo</h6>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -758,9 +726,8 @@ test "Example 33, line 803: '####### foo'" {
         "<p>####### foo</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -781,9 +748,8 @@ test "Example 34, line 818: '#5 bolt\\n\\n#hashtag'" {
         "<p>#hashtag</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -801,9 +767,8 @@ test "Example 35, line 830: '\\## foo'" {
         "<p>## foo</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -821,9 +786,8 @@ test "Example 36, line 839: '# foo *bar* \\*baz\\*'" {
         "<h1>foo <em>bar</em> *baz*</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -841,9 +805,8 @@ test "Example 37, line 848: '#                  foo                     '" {
         "<h1>foo</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -865,9 +828,8 @@ test "Example 38, line 857: ' ### foo\\n  ## foo\\n   # foo'" {
         "<h1>foo</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -886,9 +848,8 @@ test "Example 39, line 870: '    # foo'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -908,9 +869,8 @@ test "Example 40, line 878: 'foo\\n    # bar'" {
         "# bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -930,9 +890,8 @@ test "Example 41, line 889: '## foo ##\\n  ###   bar    ###'" {
         "<h3>bar</h3>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -952,9 +911,8 @@ test "Example 42, line 900: '# foo ##################################\\n##### fo
         "<h5>foo</h5>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -972,9 +930,8 @@ test "Example 43, line 911: '### foo ###     '" {
         "<h3>foo</h3>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -992,9 +949,8 @@ test "Example 44, line 922: '### foo ### b'" {
         "<h3>foo ### b</h3>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1012,9 +968,8 @@ test "Example 45, line 931: '# foo#'" {
         "<h1>foo#</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1036,9 +991,8 @@ test "Example 46, line 941: '### foo \\###\\n## foo #\\##\\n# foo \\#'" {
         "<h1>foo #</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1060,9 +1014,8 @@ test "Example 47, line 955: '****\\n## foo\\n****'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1084,9 +1037,8 @@ test "Example 48, line 966: 'Foo bar\\n# baz\\nBar foo'" {
         "<p>Bar foo</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1108,9 +1060,8 @@ test "Example 49, line 979: '## \\n#\\n### ###'" {
         "<h3></h3>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1133,9 +1084,8 @@ test "Example 50, line 1019: 'Foo *bar*\\n=========\\n\\nFoo *bar*\\n---------'"
         "<h2>Foo <em>bar</em></h2>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1156,9 +1106,8 @@ test "Example 51, line 1033: 'Foo *bar\\nbaz*\\n===='" {
         "baz</em></h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1179,9 +1128,8 @@ test "Example 52, line 1047: '  Foo *bar\\nbaz*→\\n===='" {
         "baz</em></h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1207,9 +1155,8 @@ test "Example 53, line 1059: 'Foo\\n-------------------------\\n\\nFoo\\n='" {
         "<h1>Foo</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1236,9 +1183,8 @@ test "Example 54, line 1074: '   Foo\\n---\\n\\n  Foo\\n-----\\n\\n  Foo\\n  ===
         "<h1>Foo</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1265,9 +1211,8 @@ test "Example 55, line 1092: '    Foo\\n    ---\\n\\n    Foo\\n---'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1286,9 +1231,8 @@ test "Example 56, line 1111: 'Foo\\n   ----      '" {
         "<h2>Foo</h2>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1308,9 +1252,8 @@ test "Example 57, line 1121: 'Foo\\n    ---'" {
         "---</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1335,9 +1278,8 @@ test "Example 58, line 1132: 'Foo\\n= =\\n\\nFoo\\n--- -'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1356,9 +1298,8 @@ test "Example 59, line 1148: 'Foo  \\n-----'" {
         "<h2>Foo</h2>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1377,9 +1318,8 @@ test "Example 60, line 1158: 'Foo\\\\n----'" {
         "<h2>Foo\\</h2>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1406,9 +1346,8 @@ test "Example 61, line 1169: '`Foo\\n----\\n`\\n\\n<a title=\"a lot\\n---\\nof d
         "<p>of dashes&quot;/&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1430,9 +1369,8 @@ test "Example 62, line 1188: '> Foo\\n---'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1456,9 +1394,8 @@ test "Example 63, line 1199: '> foo\\nbar\\n==='" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1480,9 +1417,8 @@ test "Example 64, line 1212: '- Foo\\n---'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1503,9 +1439,8 @@ test "Example 65, line 1227: 'Foo\\nBar\\n---'" {
         "Bar</h2>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1531,9 +1466,8 @@ test "Example 66, line 1240: '---\\nFoo\\n---\\nBar\\n---\\nBaz'" {
         "<p>Baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1552,9 +1486,8 @@ test "Example 67, line 1257: '\\n===='" {
         "<p>====</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1574,9 +1507,8 @@ test "Example 68, line 1269: '---\\n---'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1598,9 +1530,8 @@ test "Example 69, line 1278: '- foo\\n-----'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1621,9 +1552,8 @@ test "Example 70, line 1289: '    foo\\n---'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1645,9 +1575,8 @@ test "Example 71, line 1299: '> foo\\n-----'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1666,9 +1595,8 @@ test "Example 72, line 1313: '\\> foo\\n------'" {
         "<h2>&gt; foo</h2>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1692,9 +1620,8 @@ test "Example 73, line 1344: 'Foo\\n\\nbar\\n---\\nbaz'" {
         "<p>baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1720,9 +1647,8 @@ test "Example 74, line 1360: 'Foo\\nbar\\n\\n---\\n\\nbaz'" {
         "<p>baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1746,9 +1672,8 @@ test "Example 75, line 1378: 'Foo\\nbar\\n* * *\\nbaz'" {
         "<p>baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1772,9 +1697,8 @@ test "Example 76, line 1393: 'Foo\\nbar\\n\\---\\nbaz'" {
         "baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1795,9 +1719,8 @@ test "Example 77, line 1421: '    a simple\\n      indented code block'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1822,9 +1745,8 @@ test "Example 78, line 1435: '  - foo\\n\\n    bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1851,9 +1773,8 @@ test "Example 79, line 1449: '1.  foo\\n\\n    - bar'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1878,9 +1799,8 @@ test "Example 80, line 1469: '    <a/>\\n    *hi*\\n\\n    - one'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1911,9 +1831,8 @@ test "Example 81, line 1485: '    chunk1\\n\\n    chunk2\\n  \\n \\n \\n    chun
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1936,9 +1855,8 @@ test "Example 82, line 1508: '    chunk1\\n      \\n      chunk2'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1959,9 +1877,8 @@ test "Example 83, line 1523: 'Foo\\n    bar\\n'" {
         "bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1982,9 +1899,8 @@ test "Example 84, line 1537: '    foo\\nbar'" {
         "<p>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2013,9 +1929,8 @@ test "Example 85, line 1550: '# Heading\\n    foo\\nHeading\\n------\\n    foo\\
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2036,9 +1951,8 @@ test "Example 86, line 1570: '        foo\\n    bar'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2061,9 +1975,8 @@ test "Example 87, line 1583: '\\n    \\n    foo\\n    \\n'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2082,9 +1995,8 @@ test "Example 88, line 1597: '    foo  '" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2107,9 +2019,8 @@ test "Example 89, line 1652: '```\\n<\\n >\\n```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2132,9 +2043,8 @@ test "Example 90, line 1666: '~~~\\n<\\n >\\n~~~'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2154,9 +2064,8 @@ test "Example 91, line 1679: '``\\nfoo\\n``'" {
         "<p><code>foo</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2179,9 +2088,8 @@ test "Example 92, line 1690: '```\\naaa\\n~~~\\n```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2204,9 +2112,8 @@ test "Example 93, line 1702: '~~~\\naaa\\n```\\n~~~'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2229,9 +2136,8 @@ test "Example 94, line 1716: '````\\naaa\\n```\\n``````'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2254,9 +2160,8 @@ test "Example 95, line 1728: '~~~~\\naaa\\n~~~\\n~~~~'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2274,9 +2179,8 @@ test "Example 96, line 1743: '```'" {
         "<pre><code></code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2300,9 +2204,8 @@ test "Example 97, line 1750: '`````\\n\\n```\\naaa'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2327,9 +2230,8 @@ test "Example 98, line 1763: '> ```\\n> aaa\\n\\nbbb'" {
         "<p>bbb</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2352,9 +2254,8 @@ test "Example 99, line 1779: '```\\n\\n  \\n```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2373,9 +2274,8 @@ test "Example 100, line 1793: '```\\n```'" {
         "<pre><code></code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2398,9 +2298,8 @@ test "Example 101, line 1805: ' ```\\n aaa\\naaa\\n```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2425,9 +2324,8 @@ test "Example 102, line 1817: '  ```\\naaa\\n  aaa\\naaa\\n  ```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2452,9 +2350,8 @@ test "Example 103, line 1831: '   ```\\n   aaa\\n    aaa\\n  aaa\\n   ```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2477,9 +2374,8 @@ test "Example 104, line 1847: '    ```\\n    aaa\\n    ```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2500,9 +2396,8 @@ test "Example 105, line 1862: '```\\naaa\\n  ```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2523,9 +2418,8 @@ test "Example 106, line 1872: '   ```\\naaa\\n  ```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2547,9 +2441,8 @@ test "Example 107, line 1884: '```\\naaa\\n    ```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2569,9 +2462,8 @@ test "Example 108, line 1898: '``` ```\\naaa'" {
         "aaa</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2593,9 +2485,8 @@ test "Example 109, line 1907: '~~~~~~\\naaa\\n~~~ ~~'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2620,9 +2511,8 @@ test "Example 110, line 1921: 'foo\\n```\\nbar\\n```\\nbaz'" {
         "<p>baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2648,9 +2538,8 @@ test "Example 111, line 1938: 'foo\\n---\\n~~~\\nbar\\n~~~\\n# baz'" {
         "<h1>baz</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2675,9 +2564,8 @@ test "Example 112, line 1960: '```ruby\\ndef foo(x)\\n  return 3\\nend\\n```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2702,9 +2590,8 @@ test "Example 113, line 1974: '~~~~    ruby startline=3 $%@#$\\ndef foo(x)\\n  r
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2723,9 +2610,8 @@ test "Example 114, line 1988: '````;\\n````'" {
         "<pre><code class=\"language-;\"></code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2745,9 +2631,8 @@ test "Example 115, line 1998: '``` aa ```\\nfoo'" {
         "foo</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2768,9 +2653,8 @@ test "Example 116, line 2009: '~~~ aa ``` ~~~\\nfoo\\n~~~'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2791,9 +2675,8 @@ test "Example 117, line 2021: '```\\n``` aaa\\n```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2822,9 +2705,8 @@ test "Example 118, line 2100: '<table><tr><td>\\n<pre>\\n**Hello**,\\n\\n_world_
         "</td></tr></table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2857,9 +2739,8 @@ test "Example 119, line 2129: '<table>\\n  <tr>\\n    <td>\\n           hi\\n   
         "<p>okay.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2881,9 +2762,8 @@ test "Example 120, line 2151: ' <div>\\n  *hello*\\n         <foo><a>'" {
         "         <foo><a>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2903,9 +2783,8 @@ test "Example 121, line 2164: '</div>\\n*foo*'" {
         "*foo*\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2929,9 +2808,8 @@ test "Example 122, line 2175: '<DIV CLASS=\"foo\">\\n\\n*Markdown*\\n\\n</DIV>'"
         "</DIV>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2953,9 +2831,8 @@ test "Example 123, line 2191: '<div id=\"foo\"\\n  class=\"bar\">\\n</div>'" {
         "</div>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -2977,9 +2854,8 @@ test "Example 124, line 2202: '<div id=\"foo\" class=\"bar\\n  baz\">\\n</div>'"
         "</div>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3002,9 +2878,8 @@ test "Example 125, line 2214: '<div>\\n*foo*\\n\\n*bar*'" {
         "<p><em>bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3024,9 +2899,8 @@ test "Example 126, line 2230: '<div id=\"foo\"\\n*hi*'" {
         "*hi*\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3046,9 +2920,8 @@ test "Example 127, line 2239: '<div class\\nfoo'" {
         "foo\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3068,9 +2941,8 @@ test "Example 128, line 2251: '<div *???-&&&-<---\\n*foo*'" {
         "*foo*\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3088,9 +2960,8 @@ test "Example 129, line 2263: '<div><a href=\"bar\">*foo*</a></div>'" {
         "<div><a href=\"bar\">*foo*</a></div>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3112,9 +2983,8 @@ test "Example 130, line 2270: '<table><tr><td>\\nfoo\\n</td></tr></table>'" {
         "</td></tr></table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3138,9 +3008,8 @@ test "Example 131, line 2287: '<div></div>\\n``` c\\nint x = 33;\\n```'" {
         "```\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3162,9 +3031,8 @@ test "Example 132, line 2304: '<a href=\"foo\">\\n*bar*\\n</a>'" {
         "</a>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3186,9 +3054,8 @@ test "Example 133, line 2317: '<Warning>\\n*bar*\\n</Warning>'" {
         "</Warning>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3210,9 +3077,8 @@ test "Example 134, line 2328: '<i class=\"foo\">\\n*bar*\\n</i>'" {
         "</i>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3232,9 +3098,8 @@ test "Example 135, line 2339: '</ins>\\n*bar*'" {
         "*bar*\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3256,9 +3121,8 @@ test "Example 136, line 2354: '<del>\\n*foo*\\n</del>'" {
         "</del>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3282,9 +3146,8 @@ test "Example 137, line 2369: '<del>\\n\\n*foo*\\n\\n</del>'" {
         "</del>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3302,9 +3165,8 @@ test "Example 138, line 2387: '<del>*foo*</del>'" {
         "<p><del><em>foo</em></del></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3334,9 +3196,8 @@ test "Example 139, line 2403: '<pre language=\"haskell\"><code>\\nimport Text.HT
         "<p>okay</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3364,9 +3225,8 @@ test "Example 140, line 2424: '<script type=\"text/javascript\">\\n// JavaScript
         "<p>okay</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3396,9 +3256,8 @@ test "Example 141, line 2443: '<style\\n  type=\"text/css\">\\nh1 {color:red;}\\
         "<p>okay</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3422,9 +3281,8 @@ test "Example 142, line 2466: '<style\\n  type=\"text/css\">\\n\\nfoo'" {
         "foo\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3449,9 +3307,8 @@ test "Example 143, line 2479: '> <div>\\n> foo\\n\\nbar'" {
         "<p>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3475,9 +3332,8 @@ test "Example 144, line 2493: '- <div>\\n- foo'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3497,9 +3353,8 @@ test "Example 145, line 2508: '<style>p{color:red;}</style>\\n*foo*'" {
         "<p><em>foo</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3519,9 +3374,8 @@ test "Example 146, line 2517: '<!-- foo -->*bar*\\n*baz*'" {
         "<p><em>baz</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3543,9 +3397,8 @@ test "Example 147, line 2529: '<script>\\nfoo\\n</script>1. *bar*'" {
         "</script>1. *bar*\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3571,9 +3424,8 @@ test "Example 148, line 2542: '<!-- Foo\\n\\nbar\\n   baz -->\\nokay'" {
         "<p>okay</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3601,9 +3453,8 @@ test "Example 149, line 2560: '<?php\\n\\n  echo '>';\\n\\n?>\\nokay'" {
         "<p>okay</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3621,9 +3472,8 @@ test "Example 150, line 2579: '<!DOCTYPE html>'" {
         "<!DOCTYPE html>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3665,9 +3515,8 @@ test "Example 151, line 2588: '<![CDATA[\\nfunction matchwo(a,b)\\n{\\n  if (a <
         "<p>okay</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3689,9 +3538,8 @@ test "Example 152, line 2621: '  <!-- foo -->\\n\\n    <!-- foo -->'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3713,9 +3561,8 @@ test "Example 153, line 2632: '  <div>\\n\\n    <div>'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3739,9 +3586,8 @@ test "Example 154, line 2646: 'Foo\\n<div>\\nbar\\n</div>'" {
         "</div>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3765,9 +3611,8 @@ test "Example 155, line 2663: '<div>\\nbar\\n</div>\\n*foo*'" {
         "*foo*\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3789,9 +3634,8 @@ test "Example 156, line 2678: 'Foo\\n<a href=\"bar\">\\nbaz'" {
         "baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3815,9 +3659,8 @@ test "Example 157, line 2719: '<div>\\n\\n*Emphasized* text.\\n\\n</div>'" {
         "</div>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3839,9 +3682,8 @@ test "Example 158, line 2732: '<div>\\n*Emphasized* text.\\n</div>'" {
         "</div>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3875,9 +3717,8 @@ test "Example 159, line 2754: '<table>\\n\\n<tr>\\n\\n<td>\\nHi\\n</td>\\n\\n</t
         "</table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3912,9 +3753,8 @@ test "Example 160, line 2781: '<table>\\n\\n  <tr>\\n\\n    <td>\\n      Hi\\n  
         "</table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3934,9 +3774,8 @@ test "Example 161, line 2829: '[foo]: /url \"title\"\\n\\n[foo]'" {
         "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3958,9 +3797,8 @@ test "Example 162, line 2838: '   [foo]: \\n      /url  \\n           'the title
         "<p><a href=\"/url\" title=\"the title\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -3980,9 +3818,8 @@ test "Example 163, line 2849: '[Foo*bar\\]]:my_(url) 'title (with parens)'\\n\\n
         "<p><a href=\"my_(url)\" title=\"title (with parens)\">Foo*bar]</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4004,9 +3841,8 @@ test "Example 164, line 2858: '[Foo bar]:\\n<my url>\\n'title'\\n\\n[Foo bar]'" 
         "<p><a href=\"my%20url\" title=\"title\">Foo bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4034,9 +3870,8 @@ test "Example 165, line 2871: '[foo]: /url '\\ntitle\\nline1\\nline2\\n'\\n\\n[f
         "\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4060,9 +3895,8 @@ test "Example 166, line 2890: '[foo]: /url 'title\\n\\nwith blank line'\\n\\n[fo
         "<p>[foo]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4083,9 +3917,8 @@ test "Example 167, line 2905: '[foo]:\\n/url\\n\\n[foo]'" {
         "<p><a href=\"/url\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4106,9 +3939,8 @@ test "Example 168, line 2917: '[foo]:\\n\\n[foo]'" {
         "<p>[foo]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4128,9 +3960,8 @@ test "Example 169, line 2929: '[foo]: <>\\n\\n[foo]'" {
         "<p><a href=\"\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4151,9 +3982,8 @@ test "Example 170, line 2940: '[foo]: <bar>(baz)\\n\\n[foo]'" {
         "<p>[foo]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4173,9 +4003,8 @@ test "Example 171, line 2953: '[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\\n\\n[
         "<p><a href=\"/url%5Cbar*baz\" title=\"foo&quot;bar\\baz\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4195,9 +4024,8 @@ test "Example 172, line 2964: '[foo]\\n\\n[foo]: url'" {
         "<p><a href=\"url\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4218,9 +4046,8 @@ test "Example 173, line 2976: '[foo]\\n\\n[foo]: first\\n[foo]: second'" {
         "<p><a href=\"first\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4240,9 +4067,8 @@ test "Example 174, line 2989: '[FOO]: /url\\n\\n[Foo]'" {
         "<p><a href=\"/url\">Foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4263,9 +4089,7 @@ test "Example 174, line 2989: '[FOO]: /url\\n\\n[Foo]'" {
 //        "<p><a href=\"/%CF%86%CE%BF%CF%85\">αγω</a></p>\n";
 //
 //    const gpa = std.testing.allocator;
-//    var rules = try gfm.init(gpa);
-//    defer rules.blocks.deinit();
-//    defer rules.inlines.deinit();
+//    const rules = try gfm.init(gpa);
 ////
 //    const doc = try parse.execute(gpa, input, rules);
 //    defer doc.deinit(gpa);
@@ -4283,9 +4107,8 @@ test "Example 176, line 3010: '[foo]: /url'" {
         "";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4306,9 +4129,8 @@ test "Example 177, line 3018: '[\\nfoo\\n]: /url\\nbar'" {
         "<p>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4326,9 +4148,8 @@ test "Example 178, line 3031: '[foo]: /url \"title\" ok'" {
         "<p>[foo]: /url &quot;title&quot; ok</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4347,9 +4168,8 @@ test "Example 179, line 3040: '[foo]: /url\\n\"title\" ok'" {
         "<p>&quot;title&quot; ok</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4371,9 +4191,8 @@ test "Example 180, line 3051: '    [foo]: /url \"title\"\\n\\n[foo]'" {
         "<p>[foo]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4397,9 +4216,8 @@ test "Example 181, line 3065: '```\\n[foo]: /url\\n```\\n\\n[foo]'" {
         "<p>[foo]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4422,9 +4240,8 @@ test "Example 182, line 3080: 'Foo\\n[bar]: /baz\\n\\n[bar]'" {
         "<p>[bar]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4447,9 +4264,8 @@ test "Example 183, line 3095: '# [Foo]\\n[foo]: /url\\n> bar'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4471,9 +4287,8 @@ test "Example 184, line 3106: '[foo]: /url\\nbar\\n===\\n[foo]'" {
         "<p><a href=\"/url\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4494,9 +4309,8 @@ test "Example 185, line 3116: '[foo]: /url\\n===\\n[foo]'" {
         "<a href=\"/url\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4523,9 +4337,8 @@ test "Example 186, line 3129: '[foo]: /foo-url \"foo\"\\n[bar]: /bar-url\\n  \"b
         "<a href=\"/baz-url\">baz</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4547,9 +4360,8 @@ test "Example 187, line 3150: '[foo]\\n\\n> [foo]: /url'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4567,9 +4379,8 @@ test "Example 188, line 3167: '[foo]: /url'" {
         "";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4590,9 +4401,8 @@ test "Example 189, line 3184: 'aaa\\n\\nbbb'" {
         "<p>bbb</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4617,9 +4427,8 @@ test "Example 190, line 3196: 'aaa\\nbbb\\n\\nccc\\nddd'" {
         "ddd</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4641,9 +4450,8 @@ test "Example 191, line 3212: 'aaa\\n\\n\\nbbb'" {
         "<p>bbb</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4663,9 +4471,8 @@ test "Example 192, line 3225: '  aaa\\n bbb'" {
         "bbb</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4687,9 +4494,8 @@ test "Example 193, line 3237: 'aaa\\n             bbb\\n                        
         "ccc</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4709,9 +4515,8 @@ test "Example 194, line 3251: '   aaa\\nbbb'" {
         "bbb</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4732,9 +4537,8 @@ test "Example 195, line 3260: '    aaa\\nbbb'" {
         "<p>bbb</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4754,9 +4558,8 @@ test "Example 196, line 3274: 'aaa     \\nbbb     '" {
         "bbb</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4782,9 +4585,8 @@ test "Example 197, line 3291: '  \\n\\naaa\\n  \\n\\n# aaa\\n\\n  '" {
         "<h1>aaa</h1>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4817,9 +4619,8 @@ test "Example 198, line 3326: '| foo | bar |\\n| --- | --- |\\n| baz | bim |'" {
         "</table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4852,9 +4653,8 @@ test "Example 199, line 3350: '| abc | defghi |\\n:-: | -----------:\\nbar | baz
         "</table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4889,9 +4689,8 @@ test "Example 200, line 3374: '| f\\|oo  |\\n| ------ |\\n| b `\\|` az |\\n| b *
         "</table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4928,9 +4727,8 @@ test "Example 201, line 3400: '| abc | def |\\n| --- | --- |\\n| bar | baz |\\n>
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4971,9 +4769,8 @@ test "Example 202, line 3425: '| abc | def |\\n| --- | --- |\\n| bar | baz |\\nb
         "<p>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -4995,9 +4792,8 @@ test "Example 203, line 3457: '| abc | def |\\n| --- |\\n| bar |'" {
         "| bar |</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5035,9 +4831,8 @@ test "Example 204, line 3471: '| abc | def |\\n| --- | --- |\\n| bar |\\n| bar |
         "</table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5063,9 +4858,8 @@ test "Example 205, line 3499: '| abc | def |\\n| --- | --- |'" {
         "</table>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5089,9 +4883,8 @@ test "Example 206, line 3565: '> # Foo\\n> bar\\n> baz'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5115,9 +4908,8 @@ test "Example 207, line 3580: '># Foo\\n>bar\\n> baz'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5141,9 +4933,8 @@ test "Example 208, line 3595: '   > # Foo\\n   > bar\\n > baz'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5166,9 +4957,8 @@ test "Example 209, line 3610: '    > # Foo\\n    > bar\\n    > baz'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5192,9 +4982,8 @@ test "Example 210, line 3625: '> # Foo\\n> bar\\nbaz'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5218,9 +5007,8 @@ test "Example 211, line 3641: '> bar\\nbaz\\n> foo'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5242,9 +5030,8 @@ test "Example 212, line 3665: '> foo\\n---'" {
         "<hr />\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5270,9 +5057,8 @@ test "Example 213, line 3685: '> - foo\\n- bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5296,9 +5082,8 @@ test "Example 214, line 3703: '>     foo\\n    bar'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5322,9 +5107,8 @@ test "Example 215, line 3716: '> ```\\nfoo\\n```'" {
         "<pre><code></code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5346,9 +5130,8 @@ test "Example 216, line 3732: '> foo\\n    - bar'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5367,9 +5150,8 @@ test "Example 217, line 3756: '>'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5390,9 +5172,8 @@ test "Example 218, line 3764: '>\\n>  \\n> '" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5414,9 +5195,8 @@ test "Example 219, line 3776: '>\\n> foo\\n>  '" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5441,9 +5221,8 @@ test "Example 220, line 3789: '> foo\\n\\n> bar'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5465,9 +5244,8 @@ test "Example 221, line 3811: '> foo\\n> bar'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5490,9 +5268,8 @@ test "Example 222, line 3824: '> foo\\n>\\n> bar'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5514,9 +5291,8 @@ test "Example 223, line 3838: 'foo\\n> bar'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5542,9 +5318,8 @@ test "Example 224, line 3852: '> aaa\\n***\\n> bbb'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5566,9 +5341,8 @@ test "Example 225, line 3870: '> bar\\nbaz'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5591,9 +5365,8 @@ test "Example 226, line 3881: '> bar\\n\\nbaz'" {
         "<p>baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5616,9 +5389,8 @@ test "Example 227, line 3893: '> bar\\n>\\nbaz'" {
         "<p>baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5644,9 +5416,8 @@ test "Example 228, line 3909: '> > > foo\\nbar'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5674,9 +5445,8 @@ test "Example 229, line 3924: '>>> foo\\n> bar\\n>>baz'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5702,9 +5472,8 @@ test "Example 230, line 3946: '>     code\\n\\n>    not code'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5733,9 +5502,8 @@ test "Example 231, line 4000: 'A paragraph\\nwith two lines.\\n\\n    indented c
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5768,9 +5536,8 @@ test "Example 232, line 4022: '1.  A paragraph\\n    with two lines.\\n\\n      
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5793,9 +5560,8 @@ test "Example 233, line 4055: '- one\\n\\n two'" {
         "<p>two</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5820,9 +5586,8 @@ test "Example 234, line 4067: '- one\\n\\n  two'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5846,9 +5611,8 @@ test "Example 235, line 4081: ' -    one\\n\\n     two'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5873,9 +5637,8 @@ test "Example 236, line 4094: ' -    one\\n\\n      two'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5904,9 +5667,8 @@ test "Example 237, line 4116: '   > > 1.  one\\n>>\\n>>     two'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5933,9 +5695,8 @@ test "Example 238, line 4143: '>>- one\\n>>\\n  >  > two'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5956,9 +5717,8 @@ test "Example 239, line 4162: '-one\\n\\n2.two'" {
         "<p>2.two</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -5984,9 +5744,8 @@ test "Example 240, line 4175: '- foo\\n\\n\\n  bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6022,9 +5781,8 @@ test "Example 241, line 4192: '1.  foo\\n\\n    ```\\n    bar\\n    ```\\n\\n   
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6056,9 +5814,8 @@ test "Example 242, line 4220: '- Foo\\n\\n      bar\\n\\n\\n      baz'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6078,9 +5835,8 @@ test "Example 243, line 4242: '123456789. ok'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6098,9 +5854,8 @@ test "Example 244, line 4251: '1234567890. not ok'" {
         "<p>1234567890. not ok</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6120,9 +5875,8 @@ test "Example 245, line 4260: '0. ok'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6142,9 +5896,8 @@ test "Example 246, line 4269: '003. ok'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6162,9 +5915,8 @@ test "Example 247, line 4280: '-1. not ok'" {
         "<p>-1. not ok</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6190,9 +5942,8 @@ test "Example 248, line 4303: '- foo\\n\\n      bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6218,9 +5969,8 @@ test "Example 249, line 4320: '  10.  foo\\n\\n           bar'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6246,9 +5996,8 @@ test "Example 250, line 4339: '    indented code\\n\\nparagraph\\n\\n    more co
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6278,9 +6027,8 @@ test "Example 251, line 4354: '1.     indented code\\n\\n   paragraph\\n\\n     
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6310,9 +6058,8 @@ test "Example 252, line 4376: '1.      indented code\\n\\n   paragraph\\n\\n    
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6333,9 +6080,8 @@ test "Example 253, line 4403: '   foo\\n\\nbar'" {
         "<p>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6358,9 +6104,8 @@ test "Example 254, line 4413: '-    foo\\n\\n  bar'" {
         "<p>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6385,9 +6130,8 @@ test "Example 255, line 4430: '-  foo\\n\\n   bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6422,9 +6166,8 @@ test "Example 256, line 4458: '-\\n  foo\\n-\\n  ```\\n  bar\\n  ```\\n-\\n     
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6445,9 +6188,8 @@ test "Example 257, line 4484: '-   \\n  foo'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6470,9 +6212,8 @@ test "Example 258, line 4498: '-\\n\\n  foo'" {
         "<p>foo</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6496,9 +6237,8 @@ test "Example 259, line 4512: '- foo\\n-\\n- bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6522,9 +6262,8 @@ test "Example 260, line 4527: '- foo\\n-   \\n- bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6548,9 +6287,8 @@ test "Example 261, line 4542: '1. foo\\n2.\\n3. bar'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6570,9 +6308,8 @@ test "Example 262, line 4557: '*'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6597,9 +6334,8 @@ test "Example 263, line 4567: 'foo\\n*\\n\\nfoo\\n1.'" {
         "1.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6632,9 +6368,8 @@ test "Example 264, line 4589: ' 1.  A paragraph\\n     with two lines.\\n\\n    
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6667,9 +6402,8 @@ test "Example 265, line 4613: '  1.  A paragraph\\n      with two lines.\\n\\n  
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6702,9 +6436,8 @@ test "Example 266, line 4637: '   1.  A paragraph\\n       with two lines.\\n\\n
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6733,9 +6466,8 @@ test "Example 267, line 4661: '    1.  A paragraph\\n        with two lines.\\n\
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6768,9 +6500,8 @@ test "Example 268, line 4691: '  1.  A paragraph\\nwith two lines.\\n\\n        
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6792,9 +6523,8 @@ test "Example 269, line 4715: '  1.  A paragraph\\n    with two lines.'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6822,9 +6552,8 @@ test "Example 270, line 4728: '> 1. > Blockquote\\ncontinued here.'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6852,9 +6581,8 @@ test "Example 271, line 4745: '> 1. > Blockquote\\n> continued here.'" {
         "</blockquote>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6889,9 +6617,8 @@ test "Example 272, line 4773: '- foo\\n  - bar\\n    - baz\\n      - boo'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6917,9 +6644,8 @@ test "Example 273, line 4799: '- foo\\n - bar\\n  - baz\\n   - boo'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6944,9 +6670,8 @@ test "Example 274, line 4816: '10) foo\\n    - bar'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6970,9 +6695,8 @@ test "Example 275, line 4832: '10) foo\\n   - bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -6996,9 +6720,8 @@ test "Example 276, line 4847: '- - foo'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7026,9 +6749,8 @@ test "Example 277, line 4860: '1. - 2. foo'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7056,9 +6778,8 @@ test "Example 278, line 4879: '- # Foo\\n- Bar\\n  ---\\n  baz'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7080,9 +6801,8 @@ test "Example 279, line 5108: '- [ ] foo\\n- [x] bar'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7111,9 +6831,8 @@ test "Example 280, line 5120: '- [x] foo\\n  - [ ] bar\\n  - [x] baz\\n- [ ] bim
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7139,9 +6858,8 @@ test "Example 281, line 5172: '- foo\\n- bar\\n+ baz'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7167,9 +6885,8 @@ test "Example 282, line 5187: '1. foo\\n2. bar\\n3) baz'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7193,9 +6910,8 @@ test "Example 283, line 5206: 'Foo\\n- bar\\n- baz'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7215,9 +6931,8 @@ test "Example 284, line 5283: 'The number of windows in my house is\\n14.  The n
         "14.  The number of doors is 6.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7239,9 +6954,8 @@ test "Example 285, line 5293: 'The number of windows in my house is\\n1.  The nu
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7274,9 +6988,8 @@ test "Example 286, line 5307: '- foo\\n\\n- bar\\n\\n\\n- baz'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7312,9 +7025,8 @@ test "Example 287, line 5328: '- foo\\n  - bar\\n    - baz\\n\\n\\n      bim'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7346,9 +7058,8 @@ test "Example 288, line 5358: '- foo\\n- bar\\n\\n<!-- -->\\n\\n- baz\\n- bim'" 
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7385,9 +7096,8 @@ test "Example 289, line 5379: '-   foo\\n\\n    notcode\\n\\n-   foo\\n\\n<!-- -
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7419,9 +7129,8 @@ test "Example 290, line 5410: '- a\\n - b\\n  - c\\n   - d\\n  - e\\n - f\\n- g'
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7453,9 +7162,8 @@ test "Example 291, line 5431: '1. a\\n\\n  2. b\\n\\n   3. c'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7483,9 +7191,8 @@ test "Example 292, line 5455: '- a\\n - b\\n  - c\\n   - d\\n    - e'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7516,9 +7223,8 @@ test "Example 293, line 5475: '1. a\\n\\n  2. b\\n\\n    3. c'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7549,9 +7255,8 @@ test "Example 294, line 5498: '- a\\n- b\\n\\n- c'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7580,9 +7285,8 @@ test "Example 295, line 5520: '* a\\n*\\n\\n* c'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7615,9 +7319,8 @@ test "Example 296, line 5542: '- a\\n- b\\n\\n  c\\n- d'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7649,9 +7352,8 @@ test "Example 297, line 5564: '- a\\n- b\\n\\n  [ref]: /url\\n- d'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7684,9 +7386,8 @@ test "Example 298, line 5587: '- a\\n- ```\\n  b\\n\\n\\n  ```\\n- c'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7718,9 +7419,8 @@ test "Example 299, line 5613: '- a\\n  - b\\n\\n    c\\n- d'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7748,9 +7448,8 @@ test "Example 300, line 5637: '* a\\n  > b\\n  >\\n* c'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7782,9 +7481,8 @@ test "Example 301, line 5657: '- a\\n  > b\\n  ```\\n  c\\n  ```\\n- d'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7804,9 +7502,8 @@ test "Example 302, line 5680: '- a'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7831,9 +7528,8 @@ test "Example 303, line 5689: '- a\\n  - b'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7861,9 +7557,8 @@ test "Example 304, line 5706: '1. ```\\n   foo\\n   ```\\n\\n   bar'" {
         "</ol>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7892,9 +7587,8 @@ test "Example 305, line 5725: '* foo\\n  * bar\\n\\n  baz'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7933,9 +7627,8 @@ test "Example 306, line 5743: '- a\\n  - b\\n  - c\\n\\n- d\\n  - e\\n  - f'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7953,9 +7646,8 @@ test "Example 307, line 5777: '`hi`lo`'" {
         "<p><code>hi</code>lo`</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7973,9 +7665,8 @@ test "Example 308, line 5791: '\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:
         "<p>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -7993,9 +7684,8 @@ test "Example 309, line 5801: '\\→\\A\\a\\ \\3\\φ\\«'" {
         "<p>\\\t\\A\\a\\ \\3\\φ\\«</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8029,9 +7719,8 @@ test "Example 310, line 5811: '\\*not emphasized*\\n\\<br/> not a tag\\n\\[not a
         "&amp;ouml; not a character entity</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8049,9 +7738,8 @@ test "Example 311, line 5836: '\\\\*emphasis*'" {
         "<p>\\<em>emphasis</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8071,9 +7759,8 @@ test "Example 312, line 5845: 'foo\\\\nbar'" {
         "bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8091,9 +7778,8 @@ test "Example 313, line 5857: '`` \\[\\` ``'" {
         "<p><code>\\[\\`</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8112,9 +7798,8 @@ test "Example 314, line 5864: '    \\[\\]'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8135,9 +7820,8 @@ test "Example 315, line 5872: '~~~\\n\\[\\]\\n~~~'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8155,9 +7839,8 @@ test "Example 316, line 5882: '<http://example.com?find=\\*>'" {
         "<p><a href=\"http://example.com?find=%5C*\">http://example.com?find=\\*</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8175,9 +7858,8 @@ test "Example 317, line 5889: '<a href=\"/bar\\/)\">'" {
         "<a href=\"/bar\\/)\">\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8195,9 +7877,8 @@ test "Example 318, line 5899: '[foo](/bar\\* \"ti\\*tle\")'" {
         "<p><a href=\"/bar*\" title=\"ti*tle\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8217,9 +7898,8 @@ test "Example 319, line 5906: '[foo]\\n\\n[foo]: /bar\\* \"ti\\*tle\"'" {
         "<p><a href=\"/bar*\" title=\"ti*tle\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8240,9 +7920,8 @@ test "Example 320, line 5915: '``` foo\\+bar\\nfoo\\n```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8264,9 +7943,8 @@ test "Example 321, line 5952: '&nbsp; &amp; &copy; &AElig; &Dcaron;\\n&frac34; &
         "∲ ≧̸</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8284,9 +7962,8 @@ test "Example 322, line 5971: '&#35; &#1234; &#992; &#0;'" {
         "<p># Ӓ Ϡ �</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8304,9 +7981,8 @@ test "Example 323, line 5984: '&#X22; &#XD06; &#xcab;'" {
         "<p>&quot; ആ ಫ</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8330,9 +8006,8 @@ test "Example 324, line 5993: '&nbsp &x; &#; &#x;\\n&#987654321;\\n&#abcdef0;\\n
         "&amp;ThisIsNotDefined; &amp;hi?;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8350,9 +8025,8 @@ test "Example 325, line 6010: '&copy'" {
         "<p>&amp;copy</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8370,9 +8044,8 @@ test "Example 326, line 6020: '&MadeUpEntity;'" {
         "<p>&amp;MadeUpEntity;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8390,9 +8063,8 @@ test "Example 327, line 6031: '<a href=\"&ouml;&ouml;.html\">'" {
         "<a href=\"&ouml;&ouml;.html\">\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8410,9 +8082,8 @@ test "Example 328, line 6038: '[foo](/f&ouml;&ouml; \"f&ouml;&ouml;\")'" {
         "<p><a href=\"/f%C3%B6%C3%B6\" title=\"föö\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8432,9 +8103,8 @@ test "Example 329, line 6045: '[foo]\\n\\n[foo]: /f&ouml;&ouml; \"f&ouml;&ouml;\
         "<p><a href=\"/f%C3%B6%C3%B6\" title=\"föö\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8455,9 +8125,8 @@ test "Example 330, line 6054: '``` f&ouml;&ouml;\\nfoo\\n```'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8475,9 +8144,8 @@ test "Example 331, line 6067: '`f&ouml;&ouml;`'" {
         "<p><code>f&amp;ouml;&amp;ouml;</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8496,9 +8164,8 @@ test "Example 332, line 6074: '    f&ouml;f&ouml;'" {
         "</code></pre>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8518,9 +8185,8 @@ test "Example 333, line 6086: '&#42;foo&#42;\\n*foo*'" {
         "<em>foo</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8543,9 +8209,8 @@ test "Example 334, line 6094: '&#42; foo\\n\\n* foo'" {
         "</ul>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8565,9 +8230,8 @@ test "Example 335, line 6105: 'foo&#10;&#10;bar'" {
         "bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8585,9 +8249,8 @@ test "Example 336, line 6113: '&#9;foo'" {
         "<p>\tfoo</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8605,9 +8268,8 @@ test "Example 337, line 6120: '[a](url &quot;tit&quot;)'" {
         "<p>[a](url &quot;tit&quot;)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8625,9 +8287,8 @@ test "Example 338, line 6148: '`foo`'" {
         "<p><code>foo</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8645,9 +8306,8 @@ test "Example 339, line 6159: '`` foo ` bar ``'" {
         "<p><code>foo ` bar</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8665,9 +8325,8 @@ test "Example 340, line 6169: '` `` `'" {
         "<p><code>``</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8685,9 +8344,8 @@ test "Example 341, line 6177: '`  ``  `'" {
         "<p><code> `` </code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8705,9 +8363,8 @@ test "Example 342, line 6186: '` a`'" {
         "<p><code> a</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8725,9 +8382,8 @@ test "Example 343, line 6195: '` b `'" {
         "<p><code> b </code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8747,9 +8403,8 @@ test "Example 344, line 6203: '` `\\n`  `'" {
         "<code>  </code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8771,9 +8426,8 @@ test "Example 345, line 6214: '``\\nfoo\\nbar  \\nbaz\\n``'" {
         "<p><code>foo bar   baz</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8793,9 +8447,8 @@ test "Example 346, line 6224: '``\\nfoo \\n``'" {
         "<p><code>foo </code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8814,9 +8467,8 @@ test "Example 347, line 6235: '`foo   bar \\nbaz`'" {
         "<p><code>foo   bar  baz</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8834,9 +8486,8 @@ test "Example 348, line 6252: '`foo\\`bar`'" {
         "<p><code>foo\\</code>bar`</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8854,9 +8505,8 @@ test "Example 349, line 6263: '``foo`bar``'" {
         "<p><code>foo`bar</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8874,9 +8524,8 @@ test "Example 350, line 6269: '` foo `` bar `'" {
         "<p><code>foo `` bar</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8894,9 +8543,8 @@ test "Example 351, line 6281: '*foo`*`'" {
         "<p>*foo<code>*</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8914,9 +8562,8 @@ test "Example 352, line 6290: '[not a `link](/foo`)'" {
         "<p>[not a <code>link](/foo</code>)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8934,9 +8581,8 @@ test "Example 353, line 6300: '`<a href=\"`\">`'" {
         "<p><code>&lt;a href=&quot;</code>&quot;&gt;`</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8954,9 +8600,8 @@ test "Example 354, line 6309: '<a href=\"`\">`'" {
         "<p><a href=\"`\">`</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8974,9 +8619,8 @@ test "Example 355, line 6318: '`<http://foo.bar.`baz>`'" {
         "<p><code>&lt;http://foo.bar.</code>baz&gt;`</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -8994,9 +8638,8 @@ test "Example 356, line 6327: '<http://foo.bar.`baz>`'" {
         "<p><a href=\"http://foo.bar.%60baz\">http://foo.bar.`baz</a>`</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9014,9 +8657,8 @@ test "Example 357, line 6337: '```foo``'" {
         "<p>```foo``</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9034,9 +8676,8 @@ test "Example 358, line 6344: '`foo'" {
         "<p>`foo</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9054,9 +8695,8 @@ test "Example 359, line 6353: '`foo``bar``'" {
         "<p>`foo<code>bar</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9074,9 +8714,8 @@ test "Example 360, line 6570: '*foo bar*'" {
         "<p><em>foo bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9094,9 +8733,8 @@ test "Example 361, line 6580: 'a * foo bar*'" {
         "<p>a * foo bar*</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9114,9 +8752,8 @@ test "Example 362, line 6591: 'a*\"foo\"*'" {
         "<p>a*&quot;foo&quot;*</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9134,9 +8771,8 @@ test "Example 363, line 6600: '* a *'" {
         "<p>* a *</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9154,9 +8790,8 @@ test "Example 364, line 6609: 'foo*bar*'" {
         "<p>foo<em>bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9174,9 +8809,8 @@ test "Example 365, line 6616: '5*6*78'" {
         "<p>5<em>6</em>78</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9194,9 +8828,8 @@ test "Example 366, line 6625: '_foo bar_'" {
         "<p><em>foo bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9214,9 +8847,8 @@ test "Example 367, line 6635: '_ foo bar_'" {
         "<p>_ foo bar_</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9234,9 +8866,8 @@ test "Example 368, line 6645: 'a_\"foo\"_'" {
         "<p>a_&quot;foo&quot;_</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9254,9 +8885,8 @@ test "Example 369, line 6654: 'foo_bar_'" {
         "<p>foo_bar_</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9274,9 +8904,8 @@ test "Example 370, line 6661: '5_6_78'" {
         "<p>5_6_78</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9294,9 +8923,8 @@ test "Example 371, line 6668: 'пристаням_стремятся_'" {
         "<p>пристаням_стремятся_</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9314,9 +8942,8 @@ test "Example 372, line 6678: 'aa_\"bb\"_cc'" {
         "<p>aa_&quot;bb&quot;_cc</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9334,9 +8961,8 @@ test "Example 373, line 6689: 'foo-_(bar)_'" {
         "<p>foo-<em>(bar)</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9354,9 +8980,8 @@ test "Example 374, line 6701: '_foo*'" {
         "<p>_foo*</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9374,9 +8999,8 @@ test "Example 375, line 6711: '*foo bar *'" {
         "<p>*foo bar *</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9396,9 +9020,8 @@ test "Example 376, line 6720: '*foo bar\\n*'" {
         "*</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9416,9 +9039,8 @@ test "Example 377, line 6733: '*(*foo)'" {
         "<p>*(*foo)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9436,9 +9058,8 @@ test "Example 378, line 6743: '*(*foo*)*'" {
         "<p><em>(<em>foo</em>)</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9456,9 +9077,8 @@ test "Example 379, line 6752: '*foo*bar'" {
         "<p><em>foo</em>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9476,9 +9096,8 @@ test "Example 380, line 6765: '_foo bar _'" {
         "<p>_foo bar _</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9496,9 +9115,8 @@ test "Example 381, line 6775: '_(_foo)'" {
         "<p>_(_foo)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9516,9 +9134,8 @@ test "Example 382, line 6784: '_(_foo_)_'" {
         "<p><em>(<em>foo</em>)</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9536,9 +9153,8 @@ test "Example 383, line 6793: '_foo_bar'" {
         "<p>_foo_bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9556,9 +9172,8 @@ test "Example 384, line 6800: '_пристаням_стремятся'" {
         "<p>_пристаням_стремятся</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9576,9 +9191,8 @@ test "Example 385, line 6807: '_foo_bar_baz_'" {
         "<p><em>foo_bar_baz</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9596,9 +9210,8 @@ test "Example 386, line 6818: '_(bar)_.'" {
         "<p><em>(bar)</em>.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9616,9 +9229,8 @@ test "Example 387, line 6827: '**foo bar**'" {
         "<p><strong>foo bar</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9636,9 +9248,8 @@ test "Example 388, line 6837: '** foo bar**'" {
         "<p>** foo bar**</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9656,9 +9267,8 @@ test "Example 389, line 6848: 'a**\"foo\"**'" {
         "<p>a**&quot;foo&quot;**</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9676,9 +9286,8 @@ test "Example 390, line 6857: 'foo**bar**'" {
         "<p>foo<strong>bar</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9696,9 +9305,8 @@ test "Example 391, line 6866: '__foo bar__'" {
         "<p><strong>foo bar</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9716,9 +9324,8 @@ test "Example 392, line 6876: '__ foo bar__'" {
         "<p>__ foo bar__</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9738,9 +9345,8 @@ test "Example 393, line 6884: '__\\nfoo bar__'" {
         "foo bar__</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9758,9 +9364,8 @@ test "Example 394, line 6896: 'a__\"foo\"__'" {
         "<p>a__&quot;foo&quot;__</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9778,9 +9383,8 @@ test "Example 395, line 6905: 'foo__bar__'" {
         "<p>foo__bar__</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9798,9 +9402,8 @@ test "Example 396, line 6912: '5__6__78'" {
         "<p>5__6__78</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9818,9 +9421,8 @@ test "Example 397, line 6919: 'пристаням__стремятся__'" {
         "<p>пристаням__стремятся__</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9838,9 +9440,8 @@ test "Example 398, line 6926: '__foo, __bar__, baz__'" {
         "<p><strong>foo, <strong>bar</strong>, baz</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9858,9 +9459,8 @@ test "Example 399, line 6937: 'foo-__(bar)__'" {
         "<p>foo-<strong>(bar)</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9878,9 +9478,8 @@ test "Example 400, line 6950: '**foo bar **'" {
         "<p>**foo bar **</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9898,9 +9497,8 @@ test "Example 401, line 6963: '**(**foo)'" {
         "<p>**(**foo)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9918,9 +9516,8 @@ test "Example 402, line 6973: '*(**foo**)*'" {
         "<p><em>(<strong>foo</strong>)</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9940,9 +9537,8 @@ test "Example 403, line 6980: '**Gomphocarpus (*Gomphocarpus physocarpus*, syn.\
         "<em>Asclepias physocarpa</em>)</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9960,9 +9556,8 @@ test "Example 404, line 6989: '**foo \"*bar*\" foo**'" {
         "<p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -9980,9 +9575,8 @@ test "Example 405, line 6998: '**foo**bar'" {
         "<p><strong>foo</strong>bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10000,9 +9594,8 @@ test "Example 406, line 7010: '__foo bar __'" {
         "<p>__foo bar __</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10020,9 +9613,8 @@ test "Example 407, line 7020: '__(__foo)'" {
         "<p>__(__foo)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10040,9 +9632,8 @@ test "Example 408, line 7030: '_(__foo__)_'" {
         "<p><em>(<strong>foo</strong>)</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10060,9 +9651,8 @@ test "Example 409, line 7039: '__foo__bar'" {
         "<p>__foo__bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10080,9 +9670,8 @@ test "Example 410, line 7046: '__пристаням__стремятся'" {
         "<p>__пристаням__стремятся</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10100,9 +9689,8 @@ test "Example 411, line 7053: '__foo__bar__baz__'" {
         "<p><strong>foo__bar__baz</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10120,9 +9708,8 @@ test "Example 412, line 7064: '__(bar)__.'" {
         "<p><strong>(bar)</strong>.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10140,9 +9727,8 @@ test "Example 413, line 7076: '*foo [bar](/url)*'" {
         "<p><em>foo <a href=\"/url\">bar</a></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10162,9 +9748,8 @@ test "Example 414, line 7083: '*foo\\nbar*'" {
         "bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10182,9 +9767,8 @@ test "Example 415, line 7095: '_foo __bar__ baz_'" {
         "<p><em>foo <strong>bar</strong> baz</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10202,9 +9786,8 @@ test "Example 416, line 7102: '_foo _bar_ baz_'" {
         "<p><em>foo <em>bar</em> baz</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10222,9 +9805,8 @@ test "Example 417, line 7109: '__foo_ bar_'" {
         "<p><em><em>foo</em> bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10242,9 +9824,8 @@ test "Example 418, line 7116: '*foo *bar**'" {
         "<p><em>foo <em>bar</em></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10262,9 +9843,8 @@ test "Example 419, line 7123: '*foo **bar** baz*'" {
         "<p><em>foo <strong>bar</strong> baz</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10282,9 +9862,8 @@ test "Example 420, line 7129: '*foo**bar**baz*'" {
         "<p><em>foo<strong>bar</strong>baz</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10302,9 +9881,8 @@ test "Example 421, line 7153: '*foo**bar*'" {
         "<p><em>foo**bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10322,9 +9900,8 @@ test "Example 422, line 7166: '***foo** bar*'" {
         "<p><em><strong>foo</strong> bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10342,9 +9919,8 @@ test "Example 423, line 7173: '*foo **bar***'" {
         "<p><em>foo <strong>bar</strong></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10362,9 +9938,8 @@ test "Example 424, line 7180: '*foo**bar***'" {
         "<p><em>foo<strong>bar</strong></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10382,9 +9957,8 @@ test "Example 425, line 7191: 'foo***bar***baz'" {
         "<p>foo<em><strong>bar</strong></em>baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10402,9 +9976,8 @@ test "Example 426, line 7197: 'foo******bar*********baz'" {
         "<p>foo<strong><strong><strong>bar</strong></strong></strong>***baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10422,9 +9995,8 @@ test "Example 427, line 7206: '*foo **bar *baz* bim** bop*'" {
         "<p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10442,9 +10014,8 @@ test "Example 428, line 7213: '*foo [*bar*](/url)*'" {
         "<p><em>foo <a href=\"/url\"><em>bar</em></a></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10462,9 +10033,8 @@ test "Example 429, line 7222: '** is not an empty emphasis'" {
         "<p>** is not an empty emphasis</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10482,9 +10052,8 @@ test "Example 430, line 7229: '**** is not an empty strong emphasis'" {
         "<p>**** is not an empty strong emphasis</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10502,9 +10071,8 @@ test "Example 431, line 7242: '**foo [bar](/url)**'" {
         "<p><strong>foo <a href=\"/url\">bar</a></strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10524,9 +10092,8 @@ test "Example 432, line 7249: '**foo\\nbar**'" {
         "bar</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10544,9 +10111,8 @@ test "Example 433, line 7261: '__foo _bar_ baz__'" {
         "<p><strong>foo <em>bar</em> baz</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10564,9 +10130,8 @@ test "Example 434, line 7268: '__foo __bar__ baz__'" {
         "<p><strong>foo <strong>bar</strong> baz</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10584,9 +10149,8 @@ test "Example 435, line 7275: '____foo__ bar__'" {
         "<p><strong><strong>foo</strong> bar</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10604,9 +10168,8 @@ test "Example 436, line 7282: '**foo **bar****'" {
         "<p><strong>foo <strong>bar</strong></strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10624,9 +10187,8 @@ test "Example 437, line 7289: '**foo *bar* baz**'" {
         "<p><strong>foo <em>bar</em> baz</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10644,9 +10206,8 @@ test "Example 438, line 7296: '**foo*bar*baz**'" {
         "<p><strong>foo<em>bar</em>baz</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10664,9 +10225,8 @@ test "Example 439, line 7303: '***foo* bar**'" {
         "<p><strong><em>foo</em> bar</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10684,9 +10244,8 @@ test "Example 440, line 7310: '**foo *bar***'" {
         "<p><strong>foo <em>bar</em></strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10706,9 +10265,8 @@ test "Example 441, line 7319: '**foo *bar **baz**\\nbim* bop**'" {
         "bim</em> bop</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10726,9 +10284,8 @@ test "Example 442, line 7328: '**foo [*bar*](/url)**'" {
         "<p><strong>foo <a href=\"/url\"><em>bar</em></a></strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10746,9 +10303,8 @@ test "Example 443, line 7337: '__ is not an empty emphasis'" {
         "<p>__ is not an empty emphasis</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10766,9 +10322,8 @@ test "Example 444, line 7344: '____ is not an empty strong emphasis'" {
         "<p>____ is not an empty strong emphasis</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10786,9 +10341,8 @@ test "Example 445, line 7354: 'foo ***'" {
         "<p>foo ***</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10806,9 +10360,8 @@ test "Example 446, line 7361: 'foo *\\**'" {
         "<p>foo <em>*</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10826,9 +10379,8 @@ test "Example 447, line 7368: 'foo *_*'" {
         "<p>foo <em>_</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10846,9 +10398,8 @@ test "Example 448, line 7375: 'foo *****'" {
         "<p>foo *****</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10866,9 +10417,8 @@ test "Example 449, line 7382: 'foo **\\***'" {
         "<p>foo <strong>*</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10886,9 +10436,8 @@ test "Example 450, line 7389: 'foo **_**'" {
         "<p>foo <strong>_</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10906,9 +10455,8 @@ test "Example 451, line 7400: '**foo*'" {
         "<p>*<em>foo</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10926,9 +10474,8 @@ test "Example 452, line 7407: '*foo**'" {
         "<p><em>foo</em>*</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10946,9 +10493,8 @@ test "Example 453, line 7414: '***foo**'" {
         "<p>*<strong>foo</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10966,9 +10512,8 @@ test "Example 454, line 7421: '****foo*'" {
         "<p>***<em>foo</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -10986,9 +10531,8 @@ test "Example 455, line 7428: '**foo***'" {
         "<p><strong>foo</strong>*</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11006,9 +10550,8 @@ test "Example 456, line 7435: '*foo****'" {
         "<p><em>foo</em>***</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11026,9 +10569,8 @@ test "Example 457, line 7445: 'foo ___'" {
         "<p>foo ___</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11046,9 +10588,8 @@ test "Example 458, line 7452: 'foo _\\__'" {
         "<p>foo <em>_</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11066,9 +10607,8 @@ test "Example 459, line 7459: 'foo _*_'" {
         "<p>foo <em>*</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11086,9 +10626,8 @@ test "Example 460, line 7466: 'foo _____'" {
         "<p>foo _____</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11106,9 +10645,8 @@ test "Example 461, line 7473: 'foo __\\___'" {
         "<p>foo <strong>_</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11126,9 +10664,8 @@ test "Example 462, line 7480: 'foo __*__'" {
         "<p>foo <strong>*</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11146,9 +10683,8 @@ test "Example 463, line 7487: '__foo_'" {
         "<p>_<em>foo</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11166,9 +10702,8 @@ test "Example 464, line 7498: '_foo__'" {
         "<p><em>foo</em>_</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11186,9 +10721,8 @@ test "Example 465, line 7505: '___foo__'" {
         "<p>_<strong>foo</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11206,9 +10740,8 @@ test "Example 466, line 7512: '____foo_'" {
         "<p>___<em>foo</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11226,9 +10759,8 @@ test "Example 467, line 7519: '__foo___'" {
         "<p><strong>foo</strong>_</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11246,9 +10778,8 @@ test "Example 468, line 7526: '_foo____'" {
         "<p><em>foo</em>___</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11266,9 +10797,8 @@ test "Example 469, line 7536: '**foo**'" {
         "<p><strong>foo</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11286,9 +10816,8 @@ test "Example 470, line 7543: '*_foo_*'" {
         "<p><em><em>foo</em></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11306,9 +10835,8 @@ test "Example 471, line 7550: '__foo__'" {
         "<p><strong>foo</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11326,9 +10854,8 @@ test "Example 472, line 7557: '_*foo*_'" {
         "<p><em><em>foo</em></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11346,9 +10873,8 @@ test "Example 473, line 7567: '****foo****'" {
         "<p><strong><strong>foo</strong></strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11366,9 +10892,8 @@ test "Example 474, line 7574: '____foo____'" {
         "<p><strong><strong>foo</strong></strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11386,9 +10911,8 @@ test "Example 475, line 7585: '******foo******'" {
         "<p><strong><strong><strong>foo</strong></strong></strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11406,9 +10930,8 @@ test "Example 476, line 7594: '***foo***'" {
         "<p><em><strong>foo</strong></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11426,9 +10949,8 @@ test "Example 477, line 7601: '_____foo_____'" {
         "<p><em><strong><strong>foo</strong></strong></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11446,9 +10968,8 @@ test "Example 478, line 7610: '*foo _bar* baz_'" {
         "<p><em>foo _bar</em> baz_</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11466,9 +10987,8 @@ test "Example 479, line 7617: '*foo __bar *baz bim__ bam*'" {
         "<p><em>foo <strong>bar *baz bim</strong> bam</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11486,9 +11006,8 @@ test "Example 480, line 7626: '**foo **bar baz**'" {
         "<p>**foo <strong>bar baz</strong></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11506,9 +11025,8 @@ test "Example 481, line 7633: '*foo *bar baz*'" {
         "<p>*foo <em>bar baz</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11526,9 +11044,8 @@ test "Example 482, line 7642: '*[bar*](/url)'" {
         "<p>*<a href=\"/url\">bar*</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11546,9 +11063,8 @@ test "Example 483, line 7649: '_foo [bar_](/url)'" {
         "<p>_foo <a href=\"/url\">bar_</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11566,9 +11082,8 @@ test "Example 484, line 7656: '*<img src=\"foo\" title=\"*\"/>'" {
         "<p>*<img src=\"foo\" title=\"*\"/></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11586,9 +11101,8 @@ test "Example 485, line 7663: '**<a href=\"**\">'" {
         "<p>**<a href=\"**\"></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11606,9 +11120,8 @@ test "Example 486, line 7670: '__<a href=\"__\">'" {
         "<p>__<a href=\"__\"></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11626,9 +11139,8 @@ test "Example 487, line 7677: '*a `*`*'" {
         "<p><em>a <code>*</code></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11646,9 +11158,8 @@ test "Example 488, line 7684: '_a `_`_'" {
         "<p><em>a <code>_</code></em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11666,9 +11177,8 @@ test "Example 489, line 7691: '**a<http://foo.bar/?q=**>'" {
         "<p>**a<a href=\"http://foo.bar/?q=**\">http://foo.bar/?q=**</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11686,9 +11196,8 @@ test "Example 490, line 7698: '__a<http://foo.bar/?q=__>'" {
         "<p>__a<a href=\"http://foo.bar/?q=__\">http://foo.bar/?q=__</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11706,9 +11215,8 @@ test "Example 491, line 7714: '~~Hi~~ Hello, world!'" {
         "<p><del>Hi</del> Hello, world!</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11729,9 +11237,8 @@ test "Example 492, line 7723: 'This ~~has a\\n\\nnew paragraph~~.'" {
         "<p>new paragraph~~.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11749,9 +11256,8 @@ test "Example 493, line 7734: 'This will ~~~not~~~ strike.'" {
         "<p>This will ~~~not~~~ strike.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11769,9 +11275,8 @@ test "Example 494, line 7817: '[link](/uri \"title\")'" {
         "<p><a href=\"/uri\" title=\"title\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11789,9 +11294,8 @@ test "Example 495, line 7826: '[link](/uri)'" {
         "<p><a href=\"/uri\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11809,9 +11313,8 @@ test "Example 496, line 7835: '[link]()'" {
         "<p><a href=\"\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11829,9 +11332,8 @@ test "Example 497, line 7842: '[link](<>)'" {
         "<p><a href=\"\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11849,9 +11351,8 @@ test "Example 498, line 7851: '[link](/my uri)'" {
         "<p>[link](/my uri)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11869,9 +11370,8 @@ test "Example 499, line 7857: '[link](</my uri>)'" {
         "<p><a href=\"/my%20uri\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11891,9 +11391,8 @@ test "Example 500, line 7866: '[link](foo\\nbar)'" {
         "bar)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11913,9 +11412,8 @@ test "Example 501, line 7874: '[link](<foo\\nbar>)'" {
         "bar>)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11933,9 +11431,8 @@ test "Example 502, line 7885: '[a](<b)c>)'" {
         "<p><a href=\"b)c\">a</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11953,9 +11450,8 @@ test "Example 503, line 7893: '[link](<foo\\>)'" {
         "<p>[link](&lt;foo&gt;)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11977,9 +11473,8 @@ test "Example 504, line 7902: '[a](<b)c\\n[a](<b)c>\\n[a](<b>c)'" {
         "[a](<b>c)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -11997,9 +11492,8 @@ test "Example 505, line 7914: '[link](\\(foo\\))'" {
         "<p><a href=\"(foo)\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12017,9 +11511,8 @@ test "Example 506, line 7923: '[link](foo(and(bar)))'" {
         "<p><a href=\"foo(and(bar))\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12037,9 +11530,8 @@ test "Example 507, line 7932: '[link](foo\\(and\\(bar\\))'" {
         "<p><a href=\"foo(and(bar)\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12057,9 +11549,8 @@ test "Example 508, line 7939: '[link](<foo(and(bar)>)'" {
         "<p><a href=\"foo(and(bar)\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12077,9 +11568,8 @@ test "Example 509, line 7949: '[link](foo\\)\\:)'" {
         "<p><a href=\"foo):\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12103,9 +11593,8 @@ test "Example 510, line 7958: '[link](#fragment)\\n\\n[link](http://example.com#
         "<p><a href=\"http://example.com?foo=3#frag\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12123,9 +11612,8 @@ test "Example 511, line 7974: '[link](foo\\bar)'" {
         "<p><a href=\"foo%5Cbar\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12143,9 +11631,8 @@ test "Example 512, line 7990: '[link](foo%20b&auml;)'" {
         "<p><a href=\"foo%20b%C3%A4\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12163,9 +11650,8 @@ test "Example 513, line 8001: '[link](\"title\")'" {
         "<p><a href=\"%22title%22\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12187,9 +11673,8 @@ test "Example 514, line 8010: '[link](/url \"title\")\\n[link](/url 'title')\\n[
         "<a href=\"/url\" title=\"title\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12207,9 +11692,8 @@ test "Example 515, line 8024: '[link](/url \"title \\\"&quot;\")'" {
         "<p><a href=\"/url\" title=\"title &quot;&quot;\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12227,9 +11711,8 @@ test "Example 516, line 8034: '[link](/url \"title\")'" {
         "<p><a href=\"/url%C2%A0%22title%22\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12247,9 +11730,8 @@ test "Example 517, line 8043: '[link](/url \"title \"and\" title\")'" {
         "<p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12267,9 +11749,8 @@ test "Example 518, line 8052: '[link](/url 'title \"and\" title')'" {
         "<p><a href=\"/url\" title=\"title &quot;and&quot; title\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12288,9 +11769,8 @@ test "Example 519, line 8076: '[link](   /uri\\n  \"title\"  )'" {
         "<p><a href=\"/uri\" title=\"title\">link</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12308,9 +11788,8 @@ test "Example 520, line 8087: '[link] (/uri)'" {
         "<p>[link] (/uri)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12328,9 +11807,8 @@ test "Example 521, line 8097: '[link [foo [bar]]](/uri)'" {
         "<p><a href=\"/uri\">link [foo [bar]]</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12348,9 +11826,8 @@ test "Example 522, line 8104: '[link] bar](/uri)'" {
         "<p>[link] bar](/uri)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12368,9 +11845,8 @@ test "Example 523, line 8111: '[link [bar](/uri)'" {
         "<p>[link <a href=\"/uri\">bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12388,9 +11864,8 @@ test "Example 524, line 8118: '[link \\[bar](/uri)'" {
         "<p><a href=\"/uri\">link [bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12408,9 +11883,8 @@ test "Example 525, line 8127: '[link *foo **bar** `#`*](/uri)'" {
         "<p><a href=\"/uri\">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12428,9 +11902,8 @@ test "Example 526, line 8134: '[![moon](moon.jpg)](/uri)'" {
         "<p><a href=\"/uri\"><img src=\"moon.jpg\" alt=\"moon\" /></a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12448,9 +11921,8 @@ test "Example 527, line 8143: '[foo [bar](/uri)](/uri)'" {
         "<p>[foo <a href=\"/uri\">bar</a>](/uri)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12468,9 +11940,8 @@ test "Example 528, line 8150: '[foo *[bar [baz](/uri)](/uri)*](/uri)'" {
         "<p>[foo <em>[bar <a href=\"/uri\">baz</a>](/uri)</em>](/uri)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12488,9 +11959,8 @@ test "Example 529, line 8157: '![[[foo](uri1)](uri2)](uri3)'" {
         "<p><img src=\"uri3\" alt=\"[foo](uri2)\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12508,9 +11978,8 @@ test "Example 530, line 8167: '*[foo*](/uri)'" {
         "<p>*<a href=\"/uri\">foo*</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12528,9 +11997,8 @@ test "Example 531, line 8174: '[foo *bar](baz*)'" {
         "<p><a href=\"baz*\">foo *bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12549,9 +12017,7 @@ test "Example 531, line 8174: '[foo *bar](baz*)'" {
 //        "<p><em>foo [bar</em> baz]</p>\n";
 //
 //    const gpa = std.testing.allocator;
-//    var rules = try gfm.init(gpa);
-//    defer rules.blocks.deinit();
-//    defer rules.inlines.deinit();
+//    const rules = try gfm.init(gpa);
 ////
 //    const doc = try parse.execute(gpa, input, rules);
 //    defer doc.deinit(gpa);
@@ -12569,9 +12035,8 @@ test "Example 533, line 8194: '[foo <bar attr=\"](baz)\">'" {
         "<p>[foo <bar attr=\"](baz)\"></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12589,9 +12054,8 @@ test "Example 534, line 8201: '[foo`](/uri)`'" {
         "<p>[foo<code>](/uri)</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12609,9 +12073,8 @@ test "Example 535, line 8208: '[foo<http://example.com/?search=](uri)>'" {
         "<p>[foo<a href=\"http://example.com/?search=%5D(uri)\">http://example.com/?search=](uri)</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12631,9 +12094,8 @@ test "Example 536, line 8246: '[foo][bar]\\n\\n[bar]: /url \"title\"'" {
         "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12653,9 +12115,8 @@ test "Example 537, line 8261: '[link [foo [bar]]][ref]\\n\\n[ref]: /uri'" {
         "<p><a href=\"/uri\">link [foo [bar]]</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12675,9 +12136,8 @@ test "Example 538, line 8270: '[link \\[bar][ref]\\n\\n[ref]: /uri'" {
         "<p><a href=\"/uri\">link [bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12697,9 +12157,8 @@ test "Example 539, line 8281: '[link *foo **bar** `#`*][ref]\\n\\n[ref]: /uri'" 
         "<p><a href=\"/uri\">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12719,9 +12178,8 @@ test "Example 540, line 8290: '[![moon](moon.jpg)][ref]\\n\\n[ref]: /uri'" {
         "<p><a href=\"/uri\"><img src=\"moon.jpg\" alt=\"moon\" /></a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12741,9 +12199,8 @@ test "Example 541, line 8301: '[foo [bar](/uri)][ref]\\n\\n[ref]: /uri'" {
         "<p>[foo <a href=\"/uri\">bar</a>]<a href=\"/uri\">ref</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12763,9 +12220,8 @@ test "Example 542, line 8310: '[foo *bar [baz][ref]*][ref]\\n\\n[ref]: /uri'" {
         "<p>[foo <em>bar <a href=\"/uri\">baz</a></em>]<a href=\"/uri\">ref</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12785,9 +12241,8 @@ test "Example 543, line 8325: '*[foo*][ref]\\n\\n[ref]: /uri'" {
         "<p>*<a href=\"/uri\">foo*</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12807,9 +12262,8 @@ test "Example 544, line 8334: '[foo *bar][ref]\\n\\n[ref]: /uri'" {
         "<p><a href=\"/uri\">foo *bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12829,9 +12283,8 @@ test "Example 545, line 8346: '[foo <bar attr=\"][ref]\">\\n\\n[ref]: /uri'" {
         "<p>[foo <bar attr=\"][ref]\"></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12851,9 +12304,8 @@ test "Example 546, line 8355: '[foo`][ref]`\\n\\n[ref]: /uri'" {
         "<p>[foo<code>][ref]</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12873,9 +12325,8 @@ test "Example 547, line 8364: '[foo<http://example.com/?search=][ref]>\\n\\n[ref
         "<p>[foo<a href=\"http://example.com/?search=%5D%5Bref%5D\">http://example.com/?search=][ref]</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12895,9 +12346,8 @@ test "Example 548, line 8375: '[foo][BaR]\\n\\n[bar]: /url \"title\"'" {
         "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12918,9 +12368,7 @@ test "Example 548, line 8375: '[foo][BaR]\\n\\n[bar]: /url \"title\"'" {
 //        "<p><a href=\"/url\">Толпой</a> is a Russian word.</p>\n";
 //
 //    const gpa = std.testing.allocator;
-//    var rules = try gfm.init(gpa);
-//    defer rules.blocks.deinit();
-//    defer rules.inlines.deinit();
+//    const rules = try gfm.init(gpa);
 ////
 //    const doc = try parse.execute(gpa, input, rules);
 //    defer doc.deinit(gpa);
@@ -12941,9 +12389,8 @@ test "Example 550, line 8398: '[Foo\\n  bar]: /url\\n\\n[Baz][Foo bar]'" {
         "<p><a href=\"/url\">Baz</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12963,9 +12410,8 @@ test "Example 551, line 8411: '[foo] [bar]\\n\\n[bar]: /url \"title\"'" {
         "<p>[foo] <a href=\"/url\" title=\"title\">bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -12987,9 +12433,8 @@ test "Example 552, line 8420: '[foo]\\n[bar]\\n\\n[bar]: /url \"title\"'" {
         "<a href=\"/url\" title=\"title\">bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13011,9 +12456,8 @@ test "Example 553, line 8461: '[foo]: /url1\\n\\n[foo]: /url2\\n\\n[bar][foo]'" 
         "<p><a href=\"/url1\">bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13033,9 +12477,8 @@ test "Example 554, line 8476: '[bar][foo\\!]\\n\\n[foo!]: /url'" {
         "<p>[bar][foo!]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13056,9 +12499,8 @@ test "Example 555, line 8488: '[foo][ref[]\\n\\n[ref[]: /uri'" {
         "<p>[ref[]: /uri</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13079,9 +12521,8 @@ test "Example 556, line 8498: '[foo][ref[bar]]\\n\\n[ref[bar]]: /uri'" {
         "<p>[ref[bar]]: /uri</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13102,9 +12543,8 @@ test "Example 557, line 8508: '[[[foo]]]\\n\\n[[[foo]]]: /url'" {
         "<p>[[[foo]]]: /url</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13124,9 +12564,8 @@ test "Example 558, line 8518: '[foo][ref\\[]\\n\\n[ref\\[]: /uri'" {
         "<p><a href=\"/uri\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13146,9 +12585,8 @@ test "Example 559, line 8529: '[bar\\\\]: /uri\\n\\n[bar\\\\]'" {
         "<p><a href=\"/uri\">bar\\</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13169,9 +12607,8 @@ test "Example 560, line 8540: '[]\\n\\n[]: /uri'" {
         "<p>[]: /uri</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13196,9 +12633,8 @@ test "Example 561, line 8550: '[\\n ]\\n\\n[\\n ]: /uri'" {
         "]: /uri</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13218,9 +12654,8 @@ test "Example 562, line 8573: '[foo][]\\n\\n[foo]: /url \"title\"'" {
         "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13240,9 +12675,8 @@ test "Example 563, line 8582: '[*foo* bar][]\\n\\n[*foo* bar]: /url \"title\"'" 
         "<p><a href=\"/url\" title=\"title\"><em>foo</em> bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13262,9 +12696,8 @@ test "Example 564, line 8593: '[Foo][]\\n\\n[foo]: /url \"title\"'" {
         "<p><a href=\"/url\" title=\"title\">Foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13286,9 +12719,8 @@ test "Example 565, line 8606: '[foo] \\n[]\\n\\n[foo]: /url \"title\"'" {
         "[]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13308,9 +12740,8 @@ test "Example 566, line 8626: '[foo]\\n\\n[foo]: /url \"title\"'" {
         "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13330,9 +12761,8 @@ test "Example 567, line 8635: '[*foo* bar]\\n\\n[*foo* bar]: /url \"title\"'" {
         "<p><a href=\"/url\" title=\"title\"><em>foo</em> bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13352,9 +12782,8 @@ test "Example 568, line 8644: '[[*foo* bar]]\\n\\n[*foo* bar]: /url \"title\"'" 
         "<p>[<a href=\"/url\" title=\"title\"><em>foo</em> bar</a>]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13374,9 +12803,8 @@ test "Example 569, line 8653: '[[bar [foo]\\n\\n[foo]: /url'" {
         "<p>[[bar <a href=\"/url\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13396,9 +12824,8 @@ test "Example 570, line 8664: '[Foo]\\n\\n[foo]: /url \"title\"'" {
         "<p><a href=\"/url\" title=\"title\">Foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13418,9 +12845,8 @@ test "Example 571, line 8675: '[foo] bar\\n\\n[foo]: /url'" {
         "<p><a href=\"/url\">foo</a> bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13440,9 +12866,8 @@ test "Example 572, line 8687: '\\[foo]\\n\\n[foo]: /url \"title\"'" {
         "<p>[foo]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13462,9 +12887,8 @@ test "Example 573, line 8699: '[foo*]: /url\\n\\n*[foo*]'" {
         "<p>*<a href=\"/url\">foo*</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13485,9 +12909,8 @@ test "Example 574, line 8711: '[foo][bar]\\n\\n[foo]: /url1\\n[bar]: /url2'" {
         "<p><a href=\"/url2\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13507,9 +12930,8 @@ test "Example 575, line 8720: '[foo][]\\n\\n[foo]: /url1'" {
         "<p><a href=\"/url1\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13529,9 +12951,8 @@ test "Example 576, line 8730: '[foo]()\\n\\n[foo]: /url1'" {
         "<p><a href=\"\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13551,9 +12972,8 @@ test "Example 577, line 8738: '[foo](not a link)\\n\\n[foo]: /url1'" {
         "<p><a href=\"/url1\">foo</a>(not a link)</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13573,9 +12993,8 @@ test "Example 578, line 8749: '[foo][bar][baz]\\n\\n[baz]: /url'" {
         "<p>[foo]<a href=\"/url\">bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13596,9 +13015,8 @@ test "Example 579, line 8761: '[foo][bar][baz]\\n\\n[baz]: /url1\\n[bar]: /url2'
         "<p><a href=\"/url2\">foo</a><a href=\"/url1\">baz</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13619,9 +13037,8 @@ test "Example 580, line 8774: '[foo][bar][baz]\\n\\n[baz]: /url1\\n[foo]: /url2'
         "<p>[foo]<a href=\"/url1\">bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13639,9 +13056,8 @@ test "Example 581, line 8797: '![foo](/url \"title\")'" {
         "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13661,9 +13077,8 @@ test "Example 582, line 8804: '![foo *bar*]\\n\\n[foo *bar*]: train.jpg \"train 
         "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13681,9 +13096,8 @@ test "Example 583, line 8813: '![foo ![bar](/url)](/url2)'" {
         "<p><img src=\"/url2\" alt=\"foo bar\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13701,9 +13115,8 @@ test "Example 584, line 8820: '![foo [bar](/url)](/url2)'" {
         "<p><img src=\"/url2\" alt=\"foo bar\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13723,9 +13136,8 @@ test "Example 585, line 8834: '![foo *bar*][]\\n\\n[foo *bar*]: train.jpg \"trai
         "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13745,9 +13157,8 @@ test "Example 586, line 8843: '![foo *bar*][foobar]\\n\\n[FOOBAR]: train.jpg \"t
         "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13765,9 +13176,8 @@ test "Example 587, line 8852: '![foo](train.jpg)'" {
         "<p><img src=\"train.jpg\" alt=\"foo\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13785,9 +13195,8 @@ test "Example 588, line 8859: 'My ![foo bar](/path/to/train.jpg  \"title\"   )'"
         "<p>My <img src=\"/path/to/train.jpg\" alt=\"foo bar\" title=\"title\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13805,9 +13214,8 @@ test "Example 589, line 8866: '![foo](<url>)'" {
         "<p><img src=\"url\" alt=\"foo\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13825,9 +13233,8 @@ test "Example 590, line 8873: '![](/url)'" {
         "<p><img src=\"/url\" alt=\"\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13847,9 +13254,8 @@ test "Example 591, line 8882: '![foo][bar]\\n\\n[bar]: /url'" {
         "<p><img src=\"/url\" alt=\"foo\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13869,9 +13275,8 @@ test "Example 592, line 8891: '![foo][bar]\\n\\n[BAR]: /url'" {
         "<p><img src=\"/url\" alt=\"foo\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13891,9 +13296,8 @@ test "Example 593, line 8902: '![foo][]\\n\\n[foo]: /url \"title\"'" {
         "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13913,9 +13317,8 @@ test "Example 594, line 8911: '![*foo* bar][]\\n\\n[*foo* bar]: /url \"title\"'"
         "<p><img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13935,9 +13338,8 @@ test "Example 595, line 8922: '![Foo][]\\n\\n[foo]: /url \"title\"'" {
         "<p><img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13959,9 +13361,8 @@ test "Example 596, line 8934: '![foo] \\n[]\\n\\n[foo]: /url \"title\"'" {
         "[]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -13981,9 +13382,8 @@ test "Example 597, line 8947: '![foo]\\n\\n[foo]: /url \"title\"'" {
         "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14003,9 +13403,8 @@ test "Example 598, line 8956: '![*foo* bar]\\n\\n[*foo* bar]: /url \"title\"'" {
         "<p><img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14026,9 +13425,8 @@ test "Example 599, line 8967: '![[foo]]\\n\\n[[foo]]: /url \"title\"'" {
         "<p>[[foo]]: /url &quot;title&quot;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14048,9 +13446,8 @@ test "Example 600, line 8979: '![Foo]\\n\\n[foo]: /url \"title\"'" {
         "<p><img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14070,9 +13467,8 @@ test "Example 601, line 8991: '!\\[foo]\\n\\n[foo]: /url \"title\"'" {
         "<p>![foo]</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14092,9 +13488,8 @@ test "Example 602, line 9003: '\\![foo]\\n\\n[foo]: /url \"title\"'" {
         "<p>!<a href=\"/url\" title=\"title\">foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14112,9 +13507,8 @@ test "Example 603, line 9036: '<http://foo.bar.baz>'" {
         "<p><a href=\"http://foo.bar.baz\">http://foo.bar.baz</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14132,9 +13526,8 @@ test "Example 604, line 9043: '<http://foo.bar.baz/test?q=hello&id=22&boolean>'"
         "<p><a href=\"http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean\">http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14152,9 +13545,8 @@ test "Example 605, line 9050: '<irc://foo.bar:2233/baz>'" {
         "<p><a href=\"irc://foo.bar:2233/baz\">irc://foo.bar:2233/baz</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14172,9 +13564,8 @@ test "Example 606, line 9059: '<MAILTO:FOO@BAR.BAZ>'" {
         "<p><a href=\"MAILTO:FOO@BAR.BAZ\">MAILTO:FOO@BAR.BAZ</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14192,9 +13583,8 @@ test "Example 607, line 9071: '<a+b+c:d>'" {
         "<p><a href=\"a+b+c:d\">a+b+c:d</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14212,9 +13602,8 @@ test "Example 608, line 9078: '<made-up-scheme://foo,bar>'" {
         "<p><a href=\"made-up-scheme://foo,bar\">made-up-scheme://foo,bar</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14232,9 +13621,8 @@ test "Example 609, line 9085: '<http://../>'" {
         "<p><a href=\"http://../\">http://../</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14252,9 +13640,8 @@ test "Example 610, line 9092: '<localhost:5001/foo>'" {
         "<p><a href=\"localhost:5001/foo\">localhost:5001/foo</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14272,9 +13659,8 @@ test "Example 611, line 9101: '<http://foo.bar/baz bim>'" {
         "<p>&lt;http://foo.bar/baz bim&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14292,9 +13678,8 @@ test "Example 612, line 9110: '<http://example.com/\\[\\>'" {
         "<p><a href=\"http://example.com/%5C%5B%5C\">http://example.com/\\[\\</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14312,9 +13697,8 @@ test "Example 613, line 9132: '<foo@bar.example.com>'" {
         "<p><a href=\"mailto:foo@bar.example.com\">foo@bar.example.com</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14332,9 +13716,8 @@ test "Example 614, line 9139: '<foo+special@Bar.baz-bar0.com>'" {
         "<p><a href=\"mailto:foo+special@Bar.baz-bar0.com\">foo+special@Bar.baz-bar0.com</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14352,9 +13735,8 @@ test "Example 615, line 9148: '<foo\\+@bar.example.com>'" {
         "<p>&lt;foo+@bar.example.com&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14372,9 +13754,8 @@ test "Example 616, line 9157: '<>'" {
         "<p>&lt;&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14392,9 +13773,8 @@ test "Example 617, line 9164: '< http://foo.bar >'" {
         "<p>&lt; http://foo.bar &gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14412,9 +13792,8 @@ test "Example 618, line 9171: '<m:abc>'" {
         "<p>&lt;m:abc&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14432,9 +13811,8 @@ test "Example 619, line 9178: '<foo.bar.baz>'" {
         "<p>&lt;foo.bar.baz&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14452,9 +13830,8 @@ test "Example 620, line 9185: 'http://example.com'" {
         "<p><a href=\"http://example.com\">http://example.com</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14472,9 +13849,8 @@ test "Example 621, line 9192: 'foo@bar.example.com'" {
         "<p><a href=\"mailto:foo@bar.example.com\">foo@bar.example.com</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14492,9 +13868,8 @@ test "Example 622, line 9221: 'www.commonmark.org'" {
         "<p><a href=\"http://www.commonmark.org\">www.commonmark.org</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14512,9 +13887,8 @@ test "Example 623, line 9229: 'Visit www.commonmark.org/help for more informatio
         "<p>Visit <a href=\"http://www.commonmark.org/help\">www.commonmark.org/help</a> for more information.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14535,9 +13909,8 @@ test "Example 624, line 9241: 'Visit www.commonmark.org.\\n\\nVisit www.commonma
         "<p>Visit <a href=\"http://www.commonmark.org/a.b\">www.commonmark.org/a.b</a>.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14564,9 +13937,8 @@ test "Example 625, line 9255: 'www.google.com/search?q=Markup+(business)\\n\\nww
         "<p>(<a href=\"http://www.google.com/search?q=Markup+(business)\">www.google.com/search?q=Markup+(business)</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14584,9 +13956,8 @@ test "Example 626, line 9274: 'www.google.com/search?q=(business))+ok'" {
         "<p><a href=\"http://www.google.com/search?q=(business))+ok\">www.google.com/search?q=(business))+ok</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14607,9 +13978,8 @@ test "Example 627, line 9285: 'www.google.com/search?q=commonmark&hl=en\\n\\nwww
         "<p><a href=\"http://www.google.com/search?q=commonmark\">www.google.com/search?q=commonmark</a>&amp;hl;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14627,9 +13997,8 @@ test "Example 628, line 9296: 'www.commonmark.org/he<lp'" {
         "<p><a href=\"http://www.commonmark.org/he\">www.commonmark.org/he</a>&lt;lp</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14653,9 +14022,8 @@ test "Example 629, line 9307: 'http://commonmark.org\\n\\n(Visit https://encrypt
         "<p>Anonymous FTP is available at <a href=\"ftp://foo.bar.baz\">ftp://foo.bar.baz</a>.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14673,9 +14041,8 @@ test "Example 630, line 9333: 'foo@bar.baz'" {
         "<p><a href=\"mailto:foo@bar.baz\">foo@bar.baz</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14693,9 +14060,8 @@ test "Example 631, line 9341: 'hello@mail+xyz.example isn't valid, but hello+xyz
         "<p>hello@mail+xyz.example isn't valid, but <a href=\"mailto:hello+xyz@mail.example\">hello+xyz@mail.example</a> is.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14722,9 +14088,8 @@ test "Example 632, line 9351: 'a.b-c_d@a.b\\n\\na.b-c_d@a.b.\\n\\na.b-c_d@a.b-\\
         "<p>a.b-c_d@a.b_</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14763,9 +14128,8 @@ test "Example 633, line 9375: 'mailto:foo@bar.baz\\n\\nmailto:a.b-c_d@a.b\\n\\nm
         "<p><a href=\"xmpp:foo@bar.baz\">xmpp:foo@bar.baz</a>.</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14789,9 +14153,8 @@ test "Example 634, line 9406: 'xmpp:foo@bar.baz/txt\\n\\nxmpp:foo@bar.baz/txt@bi
         "<p><a href=\"xmpp:foo@bar.baz/txt@bin.com\">xmpp:foo@bar.baz/txt@bin.com</a></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14809,9 +14172,8 @@ test "Example 635, line 9420: 'xmpp:foo@bar.baz/txt/bin'" {
         "<p><a href=\"xmpp:foo@bar.baz/txt\">xmpp:foo@bar.baz/txt</a>/bin</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14829,9 +14191,8 @@ test "Example 636, line 9502: '<a><bab><c2c>'" {
         "<p><a><bab><c2c></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14849,9 +14210,8 @@ test "Example 637, line 9511: '<a/><b2/>'" {
         "<p><a/><b2/></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14871,9 +14231,8 @@ test "Example 638, line 9520: '<a  /><b2\\ndata=\"foo\" >'" {
         "data=\"foo\" ></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14893,9 +14252,8 @@ test "Example 639, line 9531: '<a foo=\"bar\" bam = 'baz <em>\"</em>'\\n_boolean
         "_boolean zoop:33=zoop:33 /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14913,9 +14271,8 @@ test "Example 640, line 9542: 'Foo <responsive-image src=\"foo.jpg\" />'" {
         "<p>Foo <responsive-image src=\"foo.jpg\" /></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14933,9 +14290,8 @@ test "Example 641, line 9551: '<33> <__>'" {
         "<p>&lt;33&gt; &lt;__&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14953,9 +14309,8 @@ test "Example 642, line 9560: '<a h*#ref=\"hi\">'" {
         "<p>&lt;a h*#ref=&quot;hi&quot;&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14973,9 +14328,8 @@ test "Example 643, line 9569: '<a href=\"hi'> <a href=hi'>'" {
         "<p>&lt;a href=&quot;hi'&gt; &lt;a href=hi'&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -14999,9 +14353,8 @@ test "Example 644, line 9578: '< a><\\nfoo><bar/ >\\n<foo bar=baz\\nbim!bop />'"
         "bim!bop /&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15019,9 +14372,8 @@ test "Example 645, line 9593: '<a href='bar'title=title>'" {
         "<p>&lt;a href='bar'title=title&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15039,9 +14391,8 @@ test "Example 646, line 9602: '</a></foo >'" {
         "<p></a></foo ></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15059,9 +14410,8 @@ test "Example 647, line 9611: '</a href=\"foo\">'" {
         "<p>&lt;/a href=&quot;foo&quot;&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15081,9 +14431,8 @@ test "Example 648, line 9620: 'foo <!-- this is a --\\ncomment - with hyphens --
         "comment - with hyphens --></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15103,9 +14452,8 @@ test "Example 649, line 9628: 'foo <!-- this is a --\\ncomment - with hyphens --
         "comment - with hyphens --></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15126,9 +14474,8 @@ test "Example 650, line 9636: 'foo <!--> foo -->\\n\\nfoo <!---> foo -->'" {
         "<p>foo <!---> foo --&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15146,9 +14493,8 @@ test "Example 651, line 9648: 'foo <?php echo $a; ?>'" {
         "<p>foo <?php echo $a; ?></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15166,9 +14512,8 @@ test "Example 652, line 9657: 'foo <!ELEMENT br EMPTY>'" {
         "<p>foo <!ELEMENT br EMPTY></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15186,9 +14531,8 @@ test "Example 653, line 9666: 'foo <![CDATA[>&<]]>'" {
         "<p>foo <![CDATA[>&<]]></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15206,9 +14550,8 @@ test "Example 654, line 9676: 'foo <a href=\"&ouml;\">'" {
         "<p>foo <a href=\"&ouml;\"></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15226,9 +14569,8 @@ test "Example 655, line 9685: 'foo <a href=\"\\*\">'" {
         "<p>foo <a href=\"\\*\"></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15246,9 +14588,8 @@ test "Example 656, line 9692: '<a href=\"\\\"\">'" {
         "<p>&lt;a href=&quot;&quot;&quot;&gt;</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15273,9 +14614,7 @@ test "Example 656, line 9692: '<a href=\"\\\"\">'" {
 //        "</blockquote>\n";
 //
 //    const gpa = std.testing.allocator;
-//    var rules = try gfm.init(gpa);
-//    defer rules.blocks.deinit();
-//    defer rules.inlines.deinit();
+//    const rules = try gfm.init(gpa);
 ////
 //    const doc = try parse.execute(gpa, input, rules);
 //    defer doc.deinit(gpa);
@@ -15295,9 +14634,8 @@ test "Example 658, line 9745: 'foo  \\nbaz'" {
         "baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15317,9 +14655,8 @@ test "Example 659, line 9757: 'foo\\\\nbaz'" {
         "baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15339,9 +14676,8 @@ test "Example 660, line 9768: 'foo       \\nbaz'" {
         "baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15361,9 +14697,8 @@ test "Example 661, line 9779: 'foo  \\n     bar'" {
         "bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15383,9 +14718,8 @@ test "Example 662, line 9788: 'foo\\\\n     bar'" {
         "bar</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15405,9 +14739,8 @@ test "Example 663, line 9800: '*foo  \\nbar*'" {
         "bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15427,9 +14760,8 @@ test "Example 664, line 9809: '*foo\\\\nbar*'" {
         "bar</em></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15448,9 +14780,8 @@ test "Example 665, line 9820: '`code  \\nspan`'" {
         "<p><code>code   span</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15469,9 +14800,8 @@ test "Example 666, line 9828: '`code\\\\nspan`'" {
         "<p><code>code\\ span</code></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15491,9 +14821,8 @@ test "Example 667, line 9838: '<a href=\"foo  \\nbar\">'" {
         "bar\"></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15513,9 +14842,8 @@ test "Example 668, line 9847: '<a href=\"foo\\\\nbar\">'" {
         "bar\"></p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15533,9 +14861,8 @@ test "Example 669, line 9860: 'foo\\'" {
         "<p>foo\\</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15553,9 +14880,8 @@ test "Example 670, line 9867: 'foo  '" {
         "<p>foo</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15573,9 +14899,8 @@ test "Example 671, line 9874: '### foo\\'" {
         "<h3>foo\\</h3>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15593,9 +14918,8 @@ test "Example 672, line 9881: '### foo  '" {
         "<h3>foo</h3>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15615,9 +14939,8 @@ test "Example 673, line 9896: 'foo\\nbaz'" {
         "baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15637,9 +14960,8 @@ test "Example 674, line 9908: 'foo \\n baz'" {
         "baz</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15657,9 +14979,8 @@ test "Example 675, line 9928: 'hello $.;'there'" {
         "<p>hello $.;'there</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15677,9 +14998,8 @@ test "Example 676, line 9935: 'Foo χρῆν'" {
         "<p>Foo χρῆν</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -15697,9 +15017,8 @@ test "Example 677, line 9944: 'Multiple     spaces'" {
         "<p>Multiple     spaces</p>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

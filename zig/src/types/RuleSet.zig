@@ -1,8 +1,8 @@
 const std = @import("std");
 
 pub const RuleSet = struct {
-    blocks: std.StringArrayHashMap(*const BlockRule),
-    inlines: std.StringArrayHashMap(*const InlineRule),
+    blocks: []const *const BlockRule,
+    inlines: []const *const InlineRule,
 };
 
 const BlockRule = @import("BlockRule.zig").BlockRule;

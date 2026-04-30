@@ -25,31 +25,31 @@ import type RuleSet from "../types/RuleSet";
  * The core rules from [CommonMark](https://spec.commonmark.org/).
  */
 const core: RuleSet = {
-	blocks: new Map([
-		[indentRule.name, indentRule],
-		[headingRule.name, headingRule],
-		[headingUnderlineRule.name, headingUnderlineRule],
-		[thematicBreakRule.name, thematicBreakRule],
-		[blockQuoteRule.name, blockQuoteRule],
-		[listOrderedRule.name, listOrderedRule],
-		[listBulletedRule.name, listBulletedRule],
-		[listItemRule.name, listItemRule],
-		[codeBlockRule.name, codeBlockRule],
-		[codeFenceRule.name, codeFenceRule],
-		[htmlBlockRule.name, htmlBlockRule],
-		[linkReferenceRule.name, linkReferenceRule],
-		[paragraphRule.name, paragraphRule],
-		[contentRule.name, contentRule],
-	]),
-	inlines: new Map([
-		[autolinkRule.name, autolinkRule],
-		[htmlSpanRule.name, htmlSpanRule],
-		[codeSpanRule.name, codeSpanRule],
-		[emphasisRule.name, emphasisRule],
-		[linkRule.name, linkRule],
-		[hardBreakRule.name, hardBreakRule],
-		[textRule.name, textRule],
-	]),
+	blocks: [
+		indentRule,
+		headingRule,
+		headingUnderlineRule,
+		thematicBreakRule,
+		blockQuoteRule,
+		listOrderedRule,
+		listBulletedRule,
+		listItemRule,
+		codeBlockRule,
+		codeFenceRule,
+		htmlBlockRule,
+		linkReferenceRule,
+		paragraphRule,
+		contentRule,
+	],
+	inlines: [
+		autolinkRule,
+		htmlSpanRule,
+		codeSpanRule,
+		emphasisRule,
+		linkRule,
+		hardBreakRule,
+		textRule,
+	],
 };
 
 export default core;

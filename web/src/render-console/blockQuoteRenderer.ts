@@ -33,7 +33,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 function renderNodeToString(node: MarkdownNode, state: RendererState): string {
 	const output = state.output;
 	state.output = "";
-	const renderer = state.renderers.get(node.type);
+	const renderer = state.renderersMap.get(node.type);
 	if (renderer) {
 		renderer.render(node, state);
 	}

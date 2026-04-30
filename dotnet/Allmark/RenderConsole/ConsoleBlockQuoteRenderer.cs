@@ -53,7 +53,7 @@ public static class ConsoleBlockQuoteRenderer
         var originalOutput = state.Output.ToString();
         state.Output.Clear();
 
-        if (state.Renderers != null && state.Renderers.TryGetValue(node.Type, out var renderer))
+        if (state.RenderersMap.TryGetValue(node.Type, out var renderer))
         {
             renderer.Render(node, state, true);
         }

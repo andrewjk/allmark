@@ -14,9 +14,8 @@ test "ATX heading level 1" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -37,9 +36,8 @@ test "ATX heading level 2" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -60,9 +58,8 @@ test "ATX heading level 3" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -83,9 +80,8 @@ test "ATX heading level 4" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -106,9 +102,8 @@ test "ATX heading level 5" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -129,9 +124,8 @@ test "ATX heading level 6" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -152,9 +146,8 @@ test "ATX heading with closing sequence" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -175,9 +168,8 @@ test "ATX heading with multiple closing hashes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -198,9 +190,8 @@ test "ATX heading with closing hashes and spaces" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -221,9 +212,8 @@ test "ATX heading with inline emphasis" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -244,9 +234,8 @@ test "ATX heading with inline code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -267,9 +256,8 @@ test "ATX heading with link" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -291,9 +279,8 @@ test "Setext heading level 1 with =" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -315,9 +302,8 @@ test "Setext heading level 2 with -" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -341,9 +327,8 @@ test "Setext heading with multiline content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -365,9 +350,8 @@ test "Setext heading with inline formatting" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -388,9 +372,8 @@ test "ATX heading with 3 space indent" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -412,9 +395,8 @@ test "ATX heading with 4 space indent should be code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -435,9 +417,8 @@ test "ATX heading without space after # is paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -458,9 +439,8 @@ test "ATX heading with 7 # characters is paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -481,9 +461,8 @@ test "ATX heading with empty content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -504,9 +483,8 @@ test "ATX heading with only # and closing #" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -531,9 +509,8 @@ test "Setext heading requires paragraph content" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -554,9 +531,8 @@ test "ATX heading escapes closing # with backslash" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -577,9 +553,8 @@ test "ATX heading at end of document" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -604,9 +579,8 @@ test "Multiple ATX headings" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -632,9 +606,8 @@ test "Multiple Setext headings" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -657,9 +630,8 @@ test "ATX heading preceded by paragraph without blank line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -680,9 +652,8 @@ test "ATX heading with mixed inline elements" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

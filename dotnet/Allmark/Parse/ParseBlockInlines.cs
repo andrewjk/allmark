@@ -7,7 +7,7 @@ public static class ParseBlockInlines
 {
     public static void Execute(
         MarkdownNode parent,
-        Dictionary<string, InlineRule> rules,
+        InlineRule[] rules,
         Dictionary<string, LinkReference> refs,
         Dictionary<string, FootnoteReference> footnotes
     )

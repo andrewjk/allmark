@@ -7,9 +7,8 @@ const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 pub fn parseBlock(state: *BlockParserState, parent: *MarkdownNode) void {
     state.isEscaped = isEscaped(state.src, state.i);
 
-    var it = state.rules.iterator();
-    while (it.next()) |entry| {
-        const handled = entry.value_ptr.*.testStart(state, parent);
+    for (state.rules) |rule| {
+        const handled = rule.testStart(state, parent);
 
         if (handled) {
             return;

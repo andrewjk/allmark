@@ -11,9 +11,8 @@ test "renders paragraph to console" {
     const expected = "Hello, world!\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -29,9 +28,8 @@ test "renders paragraph then paragraph to console" {
     const expected = "Hello, world!\n\nHello again\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -47,9 +45,8 @@ test "renders heading to console with color" {
     const expected = "\x1b[2m#\x1b[0m \x1b[1m\x1b[35mHeading 1\x1b[0m\n\n\x1b[2m##\x1b[0m \x1b[1m\x1b[35mHeading 2\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -65,9 +62,8 @@ test "renders heading then heading to console" {
     const expected = "# Heading 1\n\n## Heading 2\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -86,9 +82,8 @@ test "renders paragraph x 3 to console" {
     const expected = "First\n\nSecond\n\nThird\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -107,9 +102,8 @@ test "renders heading then paragraph" {
     const expected = "# Heading\n\nParagraph text\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -128,9 +122,8 @@ test "renders paragraph then heading" {
     const expected = "Paragraph text\n\n# Heading\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -149,9 +142,8 @@ test "renders heading then list" {
     const expected = "# Heading\n\n• Item 1\n• Item 2\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -170,9 +162,8 @@ test "renders list then heading" {
     const expected = "• Item 1\n• Item 2\n\n# Heading\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -191,9 +182,8 @@ test "renders paragraph then list" {
     const expected = "Paragraph\n\n• Item 1\n• Item 2\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -212,9 +202,8 @@ test "renders list then paragraph" {
     const expected = "• Item 1\n• Item 2\n\nParagraph\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -233,9 +222,8 @@ test "renders heading then code block" {
     const expected = "# Heading\n\n┌─\n│ code\n└─\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -254,9 +242,8 @@ test "renders code block then heading" {
     const expected = "┌─\n│ code\n└─\n\n# Heading\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -275,9 +262,8 @@ test "renders heading then block quote" {
     const expected = "# Heading\n\n┃ Quote text\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -296,9 +282,8 @@ test "renders block quote then heading" {
     const expected = "┃ Quote text\n\n# Heading\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -317,9 +302,8 @@ test "renders heading then thematic break" {
     const expected = "# Heading\n\n───\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -338,9 +322,8 @@ test "renders thematic break then heading" {
     const expected = "───\n\n# Heading\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -359,9 +342,8 @@ test "renders multiple block types" {
     const expected = "# Heading 1\n\nParagraph 1\n\n───\n\n## Heading 2\n\nParagraph 2\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -380,9 +362,8 @@ test "renders alert then paragraph" {
     const expected = "📝 Note:\n\nNote\n\nParagraph\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -401,9 +382,8 @@ test "renders paragraph then alert" {
     const expected = "Paragraph\n\n📝 Note:\n\nNote\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -422,9 +402,8 @@ test "renders bulleted list with Unicode bullets" {
     const expected = "\x1b[2m•\x1b[0m Item 1\n\x1b[2m•\x1b[0m Item 2\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -440,9 +419,8 @@ test "renders ordered list" {
     const expected = "\x1b[2m1.\x1b[0m First\n\x1b[2m2.\x1b[0m Second\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -458,9 +436,8 @@ test "renders tight bulleted list" {
     const expected = "• Item 1\n• Item 2\n• Item 3\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -479,9 +456,8 @@ test "renders loose bulleted list" {
     const expected = "• Item 1\n\n• Item 2\n\n• Item 3\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -500,9 +476,8 @@ test "renders tight ordered list" {
     const expected = "1. First\n2. Second\n3. Third\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -521,9 +496,8 @@ test "renders loose ordered list" {
     const expected = "1. First\n\n2. Second\n\n3. Third\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -542,9 +516,8 @@ test "renders ordered list with nested bulleted list" {
     const expected = "1. First\n  ◦ Nested A\n  ◦ Nested B\n2. Second\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -563,9 +536,8 @@ test "renders bulleted list with nested ordered list" {
     const expected = "• First\n  1. Nested A\n  2. Nested B\n• Second\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -584,9 +556,8 @@ test "renders code fence with box drawing" {
     const expected = "\x1b[2m┌─\x1b[0m\n\x1b[2m│\x1b[0m code\n\x1b[2m└─\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -602,9 +573,8 @@ test "renders inline code" {
     const expected = "\x1b[32mcode\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -620,9 +590,8 @@ test "renders block quote with vertical line" {
     const expected_stripped = "┃ Quote text\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -641,9 +610,8 @@ test "renders thematic break" {
     const expected = "\x1b[2m───\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -659,9 +627,8 @@ test "renders task list" {
     const expected = "\x1b[2m•\x1b[0m \x1b[2m[\x1b[0m✓\x1b[2m]\x1b[0m Done\n\x1b[2m•\x1b[0m \x1b[2m[\x1b[0m \x1b[2m]\x1b[0m Todo\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -677,9 +644,8 @@ test "renders table with Unicode borders" {
     const expected = "\x1b[2m┌───┬───┐\x1b[0m\n\x1b[2m│\x1b[0m A \x1b[2m│\x1b[0m B \x1b[2m│\x1b[0m\n\x1b[2m├───┼───┤\x1b[0m\n\x1b[2m│\x1b[0m 1 \x1b[2m│\x1b[0m 2 \x1b[2m│\x1b[0m\n\x1b[2m└───┴───┘\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -695,9 +661,8 @@ test "renders table then paragraph" {
     const expected = "┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\nParagraph\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -716,9 +681,8 @@ test "renders paragraph then table" {
     const expected = "Paragraph\n\n┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -744,9 +708,8 @@ test "renders table with padding" {
     const expected_with_newline = expected ++ "\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -773,9 +736,8 @@ test "renders table with correctly aligned padding" {
     const expected_with_newline = expected ++ "\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -794,9 +756,8 @@ test "renders strong text" {
     const expected = "\x1b[1m\x1b[33mbold\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -812,9 +773,8 @@ test "renders emphasis text" {
     const expected = "\x1b[3m\x1b[33mitalic\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -830,9 +790,8 @@ test "renders link" {
     const expected = "\x1b[4m\x1b[34mtext\x1b[0m \x1b[2m(url)\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -848,9 +807,8 @@ test "renders image" {
     const expected = "\x1b[90m[Image: alt]\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -866,9 +824,8 @@ test "renders strikethrough" {
     const expected = "\x1b[2m\x1b[9mdeleted\x1b[29m\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -884,9 +841,8 @@ test "renders alert with emoji" {
     const expected = "\x1b[34m📝 Note:\x1b[0m\n\nNote content\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -902,9 +858,8 @@ test "renders nested list with different bullets" {
     const expected = "\x1b[2m•\x1b[0m Level 1\n  \x1b[2m◦\x1b[0m Level 2\n    \x1b[2m▪\x1b[0m Level 3\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -920,9 +875,8 @@ test "renders hard break" {
     const expected = "Line 1\n\nLine 2\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -938,9 +892,8 @@ test "renders heading with underline Setext style" {
     const expected = "\x1b[1m\x1b[35mHeading\n\x1b[0m\x1b[2m=======\x1b[0m\n\n\x1b[1m\x1b[35mSubheading\n\x1b[0m\x1b[2m----------\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -956,9 +909,8 @@ test "renders HTML block" {
     const expected = "<div>html</div>\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -974,9 +926,8 @@ test "renders HTML span inline" {
     const expected = "test <span>html</span> test\n";
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -992,9 +943,8 @@ test "renders comment" {
     const expected = "<!-- comment -->\n";
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1010,9 +960,8 @@ test "renders deletion (strikethrough alternative)" {
     const expected = "\x1b[2m\x1b[9mdeleted\x1b[29m\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1028,9 +977,8 @@ test "renders footnote" {
     const expected = "Text \x1b[2m[1]\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1046,9 +994,8 @@ test "renders highlight" {
     const expected = "\x1b[43m\x1b[30mhighlighted\x1b[0m\n";
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1064,9 +1011,8 @@ test "renders insertion" {
     const expected = "++inserted++\n";
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1115,9 +1061,8 @@ test "basic parse and render" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1156,9 +1101,8 @@ test "renders nested and spaced lists" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try core.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

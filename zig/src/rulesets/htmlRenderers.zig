@@ -34,48 +34,47 @@ const textRenderer = @import("../render/textRenderer.zig").textRenderer;
 const thematicBreakRenderer = @import("../render/thematicBreakRenderer.zig").thematicBreakRenderer;
 
 pub const htmlRenderers = RendererSet{
-    .renderers = std.StringArrayHashMap(*const Renderer).init(std.heap.page_allocator),
+    .renderers = &.{},
 };
 
 pub fn init(allocator: std.mem.Allocator) !RendererSet {
-    var renderers = std.StringArrayHashMap(*const Renderer).init(allocator);
-
-    try renderers.put(alertRenderer.name, &alertRenderer);
-    try renderers.put(blockQuoteRenderer.name, &blockQuoteRenderer);
-    try renderers.put(codeBlockRenderer.name, &codeBlockRenderer);
-    try renderers.put(codeFenceRenderer.name, &codeFenceRenderer);
-    try renderers.put(codeSpanRenderer.name, &codeSpanRenderer);
-    try renderers.put(commentRenderer.name, &commentRenderer);
-    try renderers.put(deletionRenderer.name, &deletionRenderer);
-    try renderers.put(emphasisRenderer.name, &emphasisRenderer);
-    try renderers.put(footnoteRenderer.name, &footnoteRenderer);
-    try renderers.put(footnoteListRenderer.name, &footnoteListRenderer);
-    try renderers.put(hardBreakRenderer.name, &hardBreakRenderer);
-    try renderers.put(headingRenderer.name, &headingRenderer);
-    try renderers.put(headingUnderlineRenderer.name, &headingUnderlineRenderer);
-    try renderers.put(highlightRenderer.name, &highlightRenderer);
-    try renderers.put(htmlBlockRenderer.name, &htmlBlockRenderer);
-    try renderers.put(htmlSpanRenderer.name, &htmlSpanRenderer);
-    try renderers.put(imageRenderer.name, &imageRenderer);
-    try renderers.put(insertionRenderer.name, &insertionRenderer);
-    try renderers.put(linkRenderer.name, &linkRenderer);
-    try renderers.put(listBulletedRenderer.name, &listBulletedRenderer);
-    try renderers.put(listOrderedRenderer.name, &listOrderedRenderer);
-    try renderers.put(listTaskItemRenderer.name, &listTaskItemRenderer);
-    try renderers.put(paragraphRenderer.name, &paragraphRenderer);
-    try renderers.put(strikethroughRenderer.name, &strikethroughRenderer);
-    try renderers.put(strongRenderer.name, &strongRenderer);
-    try renderers.put(subscriptRenderer.name, &subscriptRenderer);
-    try renderers.put(superscriptRenderer.name, &superscriptRenderer);
-    try renderers.put(tableRenderer.name, &tableRenderer);
-    try renderers.put(textRenderer.name, &textRenderer);
-    try renderers.put(thematicBreakRenderer.name, &thematicBreakRenderer);
+    const renderers = try allocator.alloc(*const Renderer, 30);
+    renderers[0] = &alertRenderer;
+    renderers[1] = &blockQuoteRenderer;
+    renderers[2] = &codeBlockRenderer;
+    renderers[3] = &codeFenceRenderer;
+    renderers[4] = &codeSpanRenderer;
+    renderers[5] = &commentRenderer;
+    renderers[6] = &deletionRenderer;
+    renderers[7] = &emphasisRenderer;
+    renderers[8] = &footnoteRenderer;
+    renderers[9] = &footnoteListRenderer;
+    renderers[10] = &hardBreakRenderer;
+    renderers[11] = &headingRenderer;
+    renderers[12] = &headingUnderlineRenderer;
+    renderers[13] = &highlightRenderer;
+    renderers[14] = &htmlBlockRenderer;
+    renderers[15] = &htmlSpanRenderer;
+    renderers[16] = &imageRenderer;
+    renderers[17] = &insertionRenderer;
+    renderers[18] = &linkRenderer;
+    renderers[19] = &listBulletedRenderer;
+    renderers[20] = &listOrderedRenderer;
+    renderers[21] = &listTaskItemRenderer;
+    renderers[22] = &paragraphRenderer;
+    renderers[23] = &strikethroughRenderer;
+    renderers[24] = &strongRenderer;
+    renderers[25] = &subscriptRenderer;
+    renderers[26] = &superscriptRenderer;
+    renderers[27] = &tableRenderer;
+    renderers[28] = &textRenderer;
+    renderers[29] = &thematicBreakRenderer;
 
     return RendererSet{
         .renderers = renderers,
     };
 }
 
-pub fn deinit(renderers: *RendererSet) void {
-    renderers.renderers.deinit();
+pub fn deinit(renderers: *const RendererSet, allocator: std.mem.Allocator) void {
+    allocator.free(renderers.renderers);
 }

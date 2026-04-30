@@ -25,7 +25,7 @@ func parseInline(state: inout InlineParserState, parent: MarkdownNode) {
 
 		state.isEscaped = isEscaped(text: src, i: state.i)
 
-		for (_, rule) in state.rules {
+		for rule in state.rules {
 			var mutableParent = parent
 			let handled = rule.test(&state, &mutableParent)
 			if handled {

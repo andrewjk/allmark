@@ -6,9 +6,8 @@ const extended = @import("allmark").extended;
 test "source mapping - heading ATX" {
     const input = "# Heading 1";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -23,9 +22,8 @@ test "source mapping - heading ATX" {
 test "source mapping - heading ATX with multiple hashes" {
     const input = "### Heading 3";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -40,9 +38,8 @@ test "source mapping - heading ATX with multiple hashes" {
 test "source mapping - heading with emphasis" {
     const input = "# Heading *bold* 1";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -62,9 +59,8 @@ test "source mapping - heading with emphasis" {
 test "source mapping - heading underline" {
     const input = "Heading\n=====";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -79,9 +75,8 @@ test "source mapping - heading underline" {
 test "source mapping - thematic break" {
     const input = "---";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -96,9 +91,8 @@ test "source mapping - thematic break" {
 test "source mapping - alert" {
     const input = "> [!NOTE]\n> Alert content";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -112,9 +106,8 @@ test "source mapping - alert" {
 test "source mapping - block quote" {
     const input = "> Quote content";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -129,9 +122,8 @@ test "source mapping - block quote" {
 test "source mapping - block quote with emphasis" {
     const input = "> Quote *content*";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -151,9 +143,8 @@ test "source mapping - block quote with emphasis" {
 test "source mapping - code block indented" {
     const input = "\n    code\n    here";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -168,9 +159,8 @@ test "source mapping - code block indented" {
 test "source mapping - code fence backticks" {
     const input = "```\ncode\n```";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -185,9 +175,8 @@ test "source mapping - code fence backticks" {
 test "source mapping - code fence tildes" {
     const input = "~~~\ncode\n~~~";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -202,9 +191,8 @@ test "source mapping - code fence tildes" {
 test "source mapping - code fence with language" {
     const input = "```javascript\ncode\n```";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -219,9 +207,8 @@ test "source mapping - code fence with language" {
 test "source mapping - html block" {
     const input = "<div>content</div>";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -236,9 +223,8 @@ test "source mapping - html block" {
 test "source mapping - html block multiline" {
     const input = "<div>\ncontent\n</div>";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -253,9 +239,8 @@ test "source mapping - html block multiline" {
 test "source mapping - link reference definition" {
     const input = "[link]: url";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -269,9 +254,8 @@ test "source mapping - link reference definition" {
 test "source mapping - list ordered" {
     const input = "1. Item one";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -286,9 +270,8 @@ test "source mapping - list ordered" {
 test "source mapping - list bulleted" {
     const input = "- Item one";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -303,9 +286,8 @@ test "source mapping - list bulleted" {
 test "source mapping - list item" {
     const input = "1. Item one";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -323,9 +305,8 @@ test "source mapping - list item" {
 test "source mapping - list item with emphasis" {
     const input = "1. Item *one*";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -348,9 +329,8 @@ test "source mapping - list item with emphasis" {
 test "source mapping - list task item checked" {
     const input = "- [x] Done task";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -368,9 +348,8 @@ test "source mapping - list task item checked" {
 test "source mapping - list task item unchecked" {
     const input = "- [ ] Todo task";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -388,9 +367,8 @@ test "source mapping - list task item unchecked" {
 test "source mapping - list task item with emphasis" {
     const input = "- [ ] very *quick* task";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -418,9 +396,8 @@ test "source mapping - list task item with emphasis" {
 test "source mapping - link with emphasis" {
     const input = "# Test\n\n[link *text*](url)";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -443,9 +420,8 @@ test "source mapping - link with emphasis" {
 test "source mapping - footnote reference" {
     const input = "[^1]: Footnote content";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -460,9 +436,8 @@ test "source mapping - footnote reference" {
 test "source mapping - table" {
     const input = "| A | B |\n|---|---|\n| 1 | 2 |";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -507,9 +482,8 @@ test "source mapping - table" {
 test "source mapping - table with emphasis" {
     const input = "| A | B |\n|---|---|\n| item *one* | 2 |";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -535,9 +509,8 @@ test "source mapping - table with emphasis" {
 test "source mapping - paragraph" {
     const input = "A paragraph.";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -552,9 +525,8 @@ test "source mapping - paragraph" {
 test "source mapping - indent" {
     const input = "  indented paragraph";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -569,9 +541,8 @@ test "source mapping - indent" {
 test "source mapping - escaped block" {
     const input = "\\# Not a heading";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -586,9 +557,8 @@ test "source mapping - escaped block" {
 test "source mapping - autolink URL" {
     const input = "# Test\n\n<https://example.com>";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -606,9 +576,8 @@ test "source mapping - autolink URL" {
 test "source mapping - autolink email" {
     const input = "# Test\n\n<user@example.com>";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -626,9 +595,8 @@ test "source mapping - autolink email" {
 test "source mapping - extended autolink www" {
     const input = "# Test\n\nwww.example.com";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -646,9 +614,8 @@ test "source mapping - extended autolink www" {
 test "source mapping - code span" {
     const input = "# Test\n\n`code`";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -666,9 +633,8 @@ test "source mapping - code span" {
 test "source mapping - emphasis asterisk" {
     const input = "# Test\n\n*emphasis*";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -686,9 +652,8 @@ test "source mapping - emphasis asterisk" {
 test "source mapping - emphasis underscore" {
     const input = "# Test\n\nhere: _emphasis_";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -706,9 +671,8 @@ test "source mapping - emphasis underscore" {
 test "source mapping - strong" {
     const input = "# Test\n\n**strong**";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -726,9 +690,8 @@ test "source mapping - strong" {
 test "source mapping - link" {
     const input = "# Test\n\n[link](url)";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -746,9 +709,8 @@ test "source mapping - link" {
 test "source mapping - link with title" {
     const input = "# Test\n\n[link](url \"title\")";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -766,9 +728,8 @@ test "source mapping - link with title" {
 test "source mapping - footnote" {
     const input = "# Test\n\n[^1]";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -785,9 +746,8 @@ test "source mapping - footnote" {
 test "source mapping - hard break" {
     const input = "# Test\n\nline  \nbreak";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -804,9 +764,8 @@ test "source mapping - hard break" {
 test "source mapping - strikethrough" {
     const input = "# Test\n\n~~strikethrough~~";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -824,9 +783,8 @@ test "source mapping - strikethrough" {
 test "source mapping - highlight" {
     const input = "# Test\n\n==highlight==";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -844,9 +802,8 @@ test "source mapping - highlight" {
 test "source mapping - subscript" {
     const input = "# Test\n\n~subscript~";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -864,9 +821,8 @@ test "source mapping - subscript" {
 test "source mapping - superscript" {
     const input = "# Test\n\n^superscript^";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -884,9 +840,8 @@ test "source mapping - superscript" {
 test "source mapping - insertion" {
     const input = "# Test\n\n{++inserted++}";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -904,9 +859,8 @@ test "source mapping - insertion" {
 test "source mapping - deletion" {
     const input = "# Test\n\ndel: {--deleted--}";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -924,9 +878,8 @@ test "source mapping - deletion" {
 test "source mapping - html span" {
     const input = "# Test\n\n<span>content</span>";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -948,9 +901,8 @@ test "source mapping - html span" {
 test "source mapping - comment" {
     const input = "# Test\n\n<!-- comment -->";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -964,9 +916,8 @@ test "source mapping - comment" {
 test "source mapping - text" {
     const input = "# Test\n\nplain text";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -984,9 +935,8 @@ test "source mapping - text" {
 test "source mapping - text with special chars" {
     const input = "# Test\n\ntext with & chars";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -1004,9 +954,8 @@ test "source mapping - text with special chars" {
 test "source mapping - various formattings" {
     const input = "# Heading 1\n\nSome **bold** text, I'm ~~deleted~~, really {+gone+}";
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

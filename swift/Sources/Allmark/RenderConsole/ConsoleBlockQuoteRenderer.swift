@@ -27,7 +27,7 @@ func renderConsoleBlockQuote(_ node: MarkdownNode, _ state: inout RendererState,
 func renderNodeToStringConsole(node: MarkdownNode, state: inout RendererState) -> String {
 	let output = state.output
 	state.output = ""
-	if let renderer = state.renderers[node.type] {
+	if let renderer = state.renderersMap[node.type] {
 		renderer.render(node, &state, true)
 	}
 	let result = state.output

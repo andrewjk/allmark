@@ -15,9 +15,8 @@ test "highlight single" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -39,9 +38,8 @@ test "highlight double" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -63,9 +61,8 @@ test "highlight triple" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -85,9 +82,8 @@ test "highlight single character" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -107,9 +103,8 @@ test "multiple highlights in one line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -129,9 +124,8 @@ test "highlight at start of paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -151,9 +145,8 @@ test "highlight at end of paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -173,9 +166,8 @@ test "highlight with punctuation" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -195,9 +187,8 @@ test "highlight with spaces" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -217,9 +208,8 @@ test "highlight with special characters" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -239,9 +229,8 @@ test "highlight adjacent to text" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -261,9 +250,8 @@ test "empty highlight" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -283,9 +271,8 @@ test "highlight with markdown inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -305,9 +292,8 @@ test "highlight with code inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -327,9 +313,8 @@ test "escaped equals should not be highlight" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -349,9 +334,8 @@ test "unmatched opening equals" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -371,9 +355,8 @@ test "unmatched closing equals" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -395,9 +378,8 @@ test "highlight in list item" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -419,9 +401,8 @@ test "highlight in blockquote" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -441,9 +422,8 @@ test "highlight with equals inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -463,9 +443,8 @@ test "highlight at beginning of document" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -485,9 +464,8 @@ test "highlight at end of document" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try extended.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

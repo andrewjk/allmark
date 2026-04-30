@@ -39,49 +39,48 @@ const superscriptRule = @import("../inline/superscriptRule.zig").superscriptRule
 const textRule = @import("../inline/textRule.zig").textRule;
 
 pub const extended = RuleSet{
-    .blocks = std.StringArrayHashMap(*const BlockRule).init(std.heap.page_allocator) catch unreachable,
-    .inlines = std.StringArrayHashMap(*const InlineRule).init(std.heap.page_allocator) catch unreachable,
+    .blocks = &.{},
+    .inlines = &.{},
 };
 
 pub fn init(allocator: std.mem.Allocator) !RuleSet {
-    var blocks = std.StringArrayHashMap(*const BlockRule).init(allocator);
-    var inlines = std.StringArrayHashMap(*const InlineRule).init(allocator);
+    const blocks = try allocator.alloc(*const BlockRule, 18);
+    blocks[0] = &indentRule;
+    blocks[1] = &headingRule;
+    blocks[2] = &headingUnderlineRule;
+    blocks[3] = &thematicBreakRule;
+    blocks[4] = &alertRule;
+    blocks[5] = &blockQuoteRule;
+    blocks[6] = &listOrderedRule;
+    blocks[7] = &listBulletedRule;
+    blocks[8] = &listItemRule;
+    blocks[9] = &listTaskItemRule;
+    blocks[10] = &footnoteReferenceRule;
+    blocks[11] = &codeBlockRule;
+    blocks[12] = &codeFenceRule;
+    blocks[13] = &htmlBlockRule;
+    blocks[14] = &linkReferenceRule;
+    blocks[15] = &tableRule;
+    blocks[16] = &paragraphRule;
+    blocks[17] = &contentRule;
 
-    try blocks.put(indentRule.name, &indentRule);
-    try blocks.put(headingRule.name, &headingRule);
-    try blocks.put(headingUnderlineRule.name, &headingUnderlineRule);
-    try blocks.put(thematicBreakRule.name, &thematicBreakRule);
-    try blocks.put(alertRule.name, &alertRule);
-    try blocks.put(blockQuoteRule.name, &blockQuoteRule);
-    try blocks.put(listOrderedRule.name, &listOrderedRule);
-    try blocks.put(listBulletedRule.name, &listBulletedRule);
-    try blocks.put(listItemRule.name, &listItemRule);
-    try blocks.put(listTaskItemRule.name, &listTaskItemRule);
-    try blocks.put(footnoteReferenceRule.name, &footnoteReferenceRule);
-    try blocks.put(codeBlockRule.name, &codeBlockRule);
-    try blocks.put(codeFenceRule.name, &codeFenceRule);
-    try blocks.put(htmlBlockRule.name, &htmlBlockRule);
-    try blocks.put(linkReferenceRule.name, &linkReferenceRule);
-    try blocks.put(tableRule.name, &tableRule);
-    try blocks.put(paragraphRule.name, &paragraphRule);
-    try blocks.put(contentRule.name, &contentRule);
-
-    try inlines.put(autolinkRule.name, &autolinkRule);
-    try inlines.put(extendedAutolinkRule.name, &extendedAutolinkRule);
-    try inlines.put(htmlSpanRule.name, &htmlSpanRule);
-    try inlines.put(codeSpanRule.name, &codeSpanRule);
-    try inlines.put(emphasisRule.name, &emphasisRule);
-    try inlines.put(subscriptRule.name, &subscriptRule);
-    try inlines.put(superscriptRule.name, &superscriptRule);
-    try inlines.put(strikethroughRule.name, &strikethroughRule);
-    try inlines.put(highlightRule.name, &highlightRule);
-    try inlines.put(footnoteRule.name, &footnoteRule);
-    try inlines.put(linkRule.name, &linkRule);
-    try inlines.put(hardBreakRule.name, &hardBreakRule);
-    try inlines.put(insertionRule.name, &insertionRule);
-    try inlines.put(deletionRule.name, &deletionRule);
-    try inlines.put(commentRule.name, &commentRule);
-    try inlines.put(textRule.name, &textRule);
+    const inlines = try allocator.alloc(*const InlineRule, 16);
+    inlines[0] = &autolinkRule;
+    inlines[1] = &extendedAutolinkRule;
+    inlines[2] = &htmlSpanRule;
+    inlines[3] = &codeSpanRule;
+    inlines[4] = &emphasisRule;
+    inlines[5] = &subscriptRule;
+    inlines[6] = &superscriptRule;
+    inlines[7] = &strikethroughRule;
+    inlines[8] = &highlightRule;
+    inlines[9] = &footnoteRule;
+    inlines[10] = &linkRule;
+    inlines[11] = &hardBreakRule;
+    inlines[12] = &insertionRule;
+    inlines[13] = &deletionRule;
+    inlines[14] = &commentRule;
+    inlines[15] = &textRule;
 
     return RuleSet{
         .blocks = blocks,
@@ -89,7 +88,7 @@ pub fn init(allocator: std.mem.Allocator) !RuleSet {
     };
 }
 
-pub fn deinit(rules: *RuleSet) void {
-    rules.blocks.deinit();
-    rules.inlines.deinit();
+pub fn deinit(rules: *const RuleSet, allocator: std.mem.Allocator) void {
+    allocator.free(rules.blocks);
+    allocator.free(rules.inlines);
 }

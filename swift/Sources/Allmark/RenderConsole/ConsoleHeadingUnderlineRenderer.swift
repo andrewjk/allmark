@@ -26,7 +26,7 @@ func renderConsoleHeadingUnderline(_ node: MarkdownNode, _ state: inout Renderer
 			headingText += child.content
 		} else {
 			var childState = RendererState(
-				renderers: state.renderers,
+				renderersMap: state.renderersMap,
 				output: "",
 				footnotes: state.footnotes,
 				listDepth: state.listDepth

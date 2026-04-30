@@ -1,7 +1,7 @@
 const std = @import("std");
 
 pub const RendererSet = struct {
-    renderers: std.StringArrayHashMap(*const Renderer),
+    renderers: []const *const Renderer,
 };
 
 const Renderer = @import("Renderer.zig").Renderer;

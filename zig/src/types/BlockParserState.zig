@@ -2,7 +2,8 @@ const std = @import("std");
 
 pub const BlockParserState = struct {
     allocator: std.mem.Allocator,
-    rules: std.StringArrayHashMap(*const BlockRule),
+    rules: []const *const BlockRule,
+    rulesMap: std.StringHashMap(*const BlockRule),
     src: []const u8,
     i: usize,
     line: i32,

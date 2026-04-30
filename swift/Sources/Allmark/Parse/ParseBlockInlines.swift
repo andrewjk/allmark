@@ -1,5 +1,4 @@
 import Foundation
-import OrderedCollections
 
 /// Parses block inlines by processing inline rules for a block node's content
 /// - Parameters:
@@ -10,7 +9,7 @@ import OrderedCollections
 
 func parseBlockInlines(
 	parent: inout MarkdownNode,
-	rules: OrderedDictionary<String, InlineRule>,
+	rules: [InlineRule],
 	refs: [String: LinkReference],
 	footnotes: [String: FootnoteReference]
 ) {

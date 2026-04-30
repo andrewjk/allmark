@@ -23,8 +23,11 @@ func _parse(src: String, rules: RuleSet) -> MarkdownNode {
 		i += 1
 	}
 
+	let rulesMap = Dictionary(uniqueKeysWithValues: rules.blocks.map { ($0.name, $0) })
+
 	var state = BlockParserState(
 		rules: rules.blocks,
+		rulesMap: rulesMap,
 		src: chars,
 		i: start,
 		line: 0,
@@ -48,7 +51,7 @@ func _parse(src: String, rules: RuleSet) -> MarkdownNode {
 		j -= 1
 		let openNode = state.openNodes[j]
 		openNode.length = state.i - openNode.index
-		if let rule = state.rules[openNode.type] {
+		if let rule = state.rulesMap[openNode.type] {
 			rule.closeNode(&state, openNode)
 		}
 	}

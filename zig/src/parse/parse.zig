@@ -2,6 +2,7 @@ const std = @import("std");
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const BlockParserState = @import("../types/BlockParserState.zig").BlockParserState;
 const RuleSet = @import("../types/RuleSet.zig").RuleSet;
+const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 const newInline = @import("../utils/newInline.zig").newInline;
@@ -21,9 +22,15 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*Ma
     var openNodes = std.ArrayList(*MarkdownNode).initCapacity(allocator, 1) catch unreachable;
     openNodes.append(allocator, document) catch unreachable;
 
+    var rulesMap = std.StringHashMap(*const BlockRule).init(allocator);
+    for (rules.blocks) |rule| {
+        try rulesMap.put(rule.name, rule);
+    }
+
     var state = BlockParserState{
         .allocator = allocator,
         .rules = rules.blocks,
+        .rulesMap = rulesMap,
         .src = src,
         .i = i,
         .line = 1,
@@ -54,6 +61,13 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*Ma
         }
         state.footnotes.deinit();
     }
+    defer {
+        var iter = state.rulesMap.iterator();
+        while (iter.next()) |_| {
+            // No need to free the key - it's a string literal
+        }
+        state.rulesMap.deinit();
+    }
 
     while (state.i < state.src.len) {
         const start_i = state.i;
@@ -69,7 +83,7 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*Ma
     while (j > 0) : (j -= 1) {
         const openNode = state.openNodes.items[j - 1];
         openNode.length = state.i - openNode.index;
-        if (state.rules.get(openNode.type)) |rule| {
+        if (state.rulesMap.get(openNode.type)) |rule| {
             if (rule.closeNode) |closeFn| {
                 closeFn(&state, openNode);
             }

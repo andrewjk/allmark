@@ -8,7 +8,7 @@ export default function closeNode(state: BlockParserState, node: MarkdownNode): 
 	let i = state.openNodes.length;
 	while (i-- > 1) {
 		let openNode = state.openNodes[i];
-		let rule = state.rules.get(openNode.type)!;
+		let rule = state.rulesMap.get(openNode.type)!;
 		if (rule.closeNode !== undefined) {
 			rule.closeNode(state, openNode);
 		}

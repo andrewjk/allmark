@@ -9,7 +9,7 @@ pub fn closeNode(
     var i = state.openNodes.items.len;
     while (i > 1) : (i -= 1) {
         const openNode = state.openNodes.items[i - 1];
-        const rule = state.rules.get(openNode.type);
+        const rule = state.rulesMap.get(openNode.type);
         if (rule) |r| {
             if (r.closeNode) |closeFn| {
                 closeFn(state, openNode);

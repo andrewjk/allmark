@@ -20,7 +20,7 @@ export function parseLine(state: BlockParserState): void {
 	for (let i = 1; i < state.openNodes.length; i++) {
 		let node = state.openNodes[i];
 		// TODO: Fallback rule??
-		let rule = state.rules.get(node.type)!;
+		let rule = state.rulesMap.get(node.type)!;
 		//if (state.debug && !rule) {
 		//	console.log("RULE NOT FOUND:", node.type);
 		//}

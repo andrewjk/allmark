@@ -58,7 +58,7 @@ public static class ListItemRule
                 }
                 // Break only when content is inside this nesting level, otherwise
                 // continue walking up to check ancestor lists
-                if (state.Indent >= itemNode.Subindent)
+                if (state.Indent >= itemNode!.Subindent)
                 {
                     break;
                 }
@@ -71,7 +71,7 @@ public static class ListItemRule
                 }
                 // Break only when content is inside this nesting level, otherwise
                 // continue walking up to check ancestor lists
-                if (state.Indent >= itemNode.Subindent)
+                if (state.Indent >= itemNode!.Subindent)
                 {
                     break;
                 }

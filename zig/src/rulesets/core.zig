@@ -26,37 +26,35 @@ const linkRule = @import("../inline/linkRule.zig").linkRule;
 const textRule = @import("../inline/textRule.zig").textRule;
 
 pub const core = RuleSet{
-    .blocks = std.StringArrayHashMap(*const BlockRule).init(std.heap.page_allocator),
-    .inlines = std.StringArrayHashMap(*const InlineRule).init(std.heap.page_allocator) catch unreachable,
+    .blocks = &.{},
+    .inlines = &.{},
 };
 
 pub fn init(allocator: std.mem.Allocator) !RuleSet {
-    var blocks = std.StringArrayHashMap(*const BlockRule).init(allocator);
-    var inlines = std.StringArrayHashMap(*const InlineRule).init(allocator);
+    const blocks = try allocator.alloc(*const BlockRule, 14);
+    blocks[0] = &indentRule;
+    blocks[1] = &headingRule;
+    blocks[2] = &headingUnderlineRule;
+    blocks[3] = &thematicBreakRule;
+    blocks[4] = &blockQuoteRule;
+    blocks[5] = &listOrderedRule;
+    blocks[6] = &listBulletedRule;
+    blocks[7] = &listItemRule;
+    blocks[8] = &codeBlockRule;
+    blocks[9] = &codeFenceRule;
+    blocks[10] = &htmlBlockRule;
+    blocks[11] = &linkReferenceRule;
+    blocks[12] = &paragraphRule;
+    blocks[13] = &contentRule;
 
-    // Add block rules in priority order (higher priority first)
-    try blocks.put(indentRule.name, &indentRule);
-    try blocks.put(headingRule.name, &headingRule);
-    try blocks.put(headingUnderlineRule.name, &headingUnderlineRule);
-    try blocks.put(thematicBreakRule.name, &thematicBreakRule);
-    try blocks.put(blockQuoteRule.name, &blockQuoteRule);
-    try blocks.put(listOrderedRule.name, &listOrderedRule);
-    try blocks.put(listBulletedRule.name, &listBulletedRule);
-    try blocks.put(listItemRule.name, &listItemRule);
-    try blocks.put(codeFenceRule.name, &codeFenceRule);
-    try blocks.put(codeBlockRule.name, &codeBlockRule);
-    try blocks.put(htmlBlockRule.name, &htmlBlockRule);
-    try blocks.put(linkReferenceRule.name, &linkReferenceRule);
-    try blocks.put(paragraphRule.name, &paragraphRule);
-    try blocks.put(contentRule.name, &contentRule);
-
-    try inlines.put(autolinkRule.name, &autolinkRule);
-    try inlines.put(htmlSpanRule.name, &htmlSpanRule);
-    try inlines.put(codeSpanRule.name, &codeSpanRule);
-    try inlines.put(emphasisRule.name, &emphasisRule);
-    try inlines.put(linkRule.name, &linkRule);
-    try inlines.put(hardBreakRule.name, &hardBreakRule);
-    try inlines.put(textRule.name, &textRule);
+    const inlines = try allocator.alloc(*const InlineRule, 7);
+    inlines[0] = &autolinkRule;
+    inlines[1] = &htmlSpanRule;
+    inlines[2] = &codeSpanRule;
+    inlines[3] = &emphasisRule;
+    inlines[4] = &linkRule;
+    inlines[5] = &hardBreakRule;
+    inlines[6] = &textRule;
 
     return RuleSet{
         .blocks = blocks,
@@ -64,7 +62,7 @@ pub fn init(allocator: std.mem.Allocator) !RuleSet {
     };
 }
 
-pub fn deinit(rules: *RuleSet) void {
-    rules.blocks.deinit();
-    rules.inlines.deinit();
+pub fn deinit(rules: *const RuleSet, allocator: std.mem.Allocator) void {
+    allocator.free(rules.blocks);
+    allocator.free(rules.inlines);
 }

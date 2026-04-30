@@ -4,8 +4,8 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const ConsoleRendererState = @import("../types/RendererState.zig").RendererState;
 const Renderer = @import("../types/Renderer.zig").Renderer;
 
-pub const consoleHtmlRenderer = Renderer{
-    .name = "html",
+pub const consoleHtmlSpanRenderer = Renderer{
+    .name = "html_span",
     .render = render,
 };
 

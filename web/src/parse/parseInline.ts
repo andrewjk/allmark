@@ -21,7 +21,7 @@ export default function parseInline(state: InlineParserState, parent: MarkdownNo
 
 		state.isEscaped = isEscaped(state.src, state.i);
 
-		for (let rule of state.rules.values()) {
+		for (let rule of state.rules) {
 			let handled = rule.test(state, parent);
 			//console.log("Rule:", rule.name, handled);
 			if (handled) {

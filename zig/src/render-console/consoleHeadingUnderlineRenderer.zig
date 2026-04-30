@@ -79,7 +79,7 @@ fn renderChildToString(node: *const MarkdownNode, state: *ConsoleRendererState, 
     const originalOutputLen = state.output.items.len;
 
     // Capture the output by rendering to state
-    if (state.renderers.get(node.type)) |renderer| {
+    if (state.renderersMap.get(node.type)) |renderer| {
         renderer.render(node, state, true);
     }
 

@@ -15,9 +15,8 @@ test "spec strikethrough" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -37,9 +36,8 @@ test "strikethrough single word" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -59,9 +57,8 @@ test "strikethrough multiple words" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -81,9 +78,8 @@ test "strikethrough with spaces inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -103,9 +99,8 @@ test "strikethrough with emphasis" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -125,9 +120,8 @@ test "strikethrough inside emphasis" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -147,9 +141,8 @@ test "strikethrough with code" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -169,9 +162,8 @@ test "strikethrough with link" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -191,9 +183,8 @@ test "multiple strikethroughs in one line" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -213,9 +204,8 @@ test "strikethrough at start of paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -235,9 +225,8 @@ test "strikethrough at end of paragraph" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -260,9 +249,8 @@ test "strikethrough in list item" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -282,9 +270,8 @@ test "strikethrough with tildes inside" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -304,9 +291,8 @@ test "strikethrough with multiple tildes" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -327,9 +313,8 @@ test "strikethrough across lines" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -349,9 +334,8 @@ test "strikethrough with punctuation" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -371,9 +355,8 @@ test "strikethrough with numbers" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -406,9 +389,8 @@ test "strikethrough in table cell" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -428,9 +410,8 @@ test "strikethrough adjacent to regular text" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
@@ -450,9 +431,8 @@ test "strikethrough with escaped characters" {
     ;
 
     const gpa = std.testing.allocator;
-    var rules = try gfm.init(gpa);
-    defer rules.blocks.deinit();
-    defer rules.inlines.deinit();
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
 
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);

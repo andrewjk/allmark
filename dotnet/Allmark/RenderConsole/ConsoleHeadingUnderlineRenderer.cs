@@ -38,7 +38,7 @@ public static class ConsoleHeadingUnderlineRenderer
                 {
                     headingTextBuilder.Append(child.Content);
                 }
-                else if (state.Renderers != null && state.Renderers.TryGetValue(child.Type, out var renderer))
+                else if (state.RenderersMap.TryGetValue(child.Type, out var renderer))
                 {
                     // Temporarily capture current output and render child to a new buffer
                     var childOutput = RenderNodeToString(child, state);
@@ -63,7 +63,7 @@ public static class ConsoleHeadingUnderlineRenderer
         var originalOutput = state.Output.ToString();
         state.Output.Clear();
 
-        if (state.Renderers != null && state.Renderers.TryGetValue(node.Type, out var renderer))
+        if (state.RenderersMap.TryGetValue(node.Type, out var renderer))
         {
             renderer.Render(node, state, true);
         }

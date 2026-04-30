@@ -24,7 +24,7 @@ public static class ParseLine
         {
             var node = state.OpenNodes.ElementAt(i);
             // TODO: Fallback rule??
-            var rule = state.Rules[node.Type];
+            var rule = state.RulesMap[node.Type];
             // if (state.Debug && rule == null)
             // {
             // 	Console.WriteLine("RULE NOT FOUND:", node.Type);

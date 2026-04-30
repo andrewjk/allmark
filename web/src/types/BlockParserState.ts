@@ -4,7 +4,8 @@ import type LinkReference from "./LinkReference";
 import type MarkdownNode from "./MarkdownNode";
 
 export default interface BlockParserState {
-	rules: Map<string, BlockRule>;
+	rules: BlockRule[];
+	rulesMap: Map<string, BlockRule>;
 
 	src: string;
 	i: number;
