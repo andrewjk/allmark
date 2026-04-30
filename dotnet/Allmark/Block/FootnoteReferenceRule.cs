@@ -23,7 +23,7 @@ public static class FootnoteReferenceRule
         }
 
         var ch = Utils.GetChar(state.Src, state.I);
-        if (state.Indent <= 3 && ch == '[' && !Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped && state.Indent <= 3 && ch == '[')
         {
             // "A footnote definition cannot interrupt a paragraph"
             if (parent.Type == "paragraph" && !parent.BlankAfter)

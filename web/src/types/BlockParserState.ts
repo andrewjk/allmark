@@ -12,6 +12,7 @@ export default interface BlockParserState {
 	lineStart: number;
 	indent: number;
 	openNodes: MarkdownNode[];
+	isEscaped: boolean;
 	maybeContinue: boolean;
 	hasBlankLine: boolean;
 	refs: Record<string, LinkReference>;

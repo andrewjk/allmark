@@ -87,6 +87,7 @@ func parseBlockInlines(
 		line: parent.line,
 		lineStart: 0,
 		indent: 0,
+		isEscaped: false,
 		delimiters: [],
 		refs: refs,
 		footnotes: footnotes,

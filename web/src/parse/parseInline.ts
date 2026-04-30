@@ -1,6 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type MarkdownNode from "../types/MarkdownNode";
 import { CARRIAGE_RETURN_CODE, NEW_LINE_CODE } from "../utils/charCodes";
+import isEscaped from "../utils/isEscaped";
 
 export default function parseInline(state: InlineParserState, parent: MarkdownNode): void {
 	while (state.i < state.src.length) {
@@ -17,6 +18,8 @@ export default function parseInline(state: InlineParserState, parent: MarkdownNo
 			state.line += 1;
 			state.lineStart = state.i;
 		}
+
+		state.isEscaped = isEscaped(state.src, state.i);
 
 		for (let rule of state.rules.values()) {
 			let handled = rule.test(state, parent);

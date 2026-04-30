@@ -3,7 +3,6 @@ const InlineParserState = @import("../types/InlineParserState.zig").InlineParser
 const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const LinkReference = @import("../types/LinkReference.zig").LinkReference;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const newText = @import("../utils/newText.zig").newText;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
 const parseLinkInline = @import("../utils/parseLinkInline.zig").parseLinkInline;
@@ -14,7 +13,7 @@ pub fn testLink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     const char = state.src[state.i];
 
-    if (!isEscaped(state.src, state.i)) {
+    if (!state.isEscaped) {
         if (char == '[') {
             return testLinkOpen(state, parent);
         }

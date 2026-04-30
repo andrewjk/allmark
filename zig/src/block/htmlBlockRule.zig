@@ -8,7 +8,6 @@ const appendChild = @import("../utils/appendChild.zig").appendChild;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const mvzr = @import("mvzr");
 
 // HTML block condition regexes (case-insensitive where noted)
@@ -34,7 +33,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
     const char = state.src[state.i];
 
-    if (state.indent <= 3 and char == '<' and !isEscaped(state.src, state.i)) {
+    if (!state.isEscaped and state.indent <= 3 and char == '<') {
         const tail = state.src[state.i..];
 
         if (testHtmlCondition1(state, parent, tail)) {

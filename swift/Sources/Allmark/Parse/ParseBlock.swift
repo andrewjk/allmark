@@ -6,6 +6,8 @@ import Foundation
 ///   - parent: The parent markdown node
 
 func parseBlock(state: inout BlockParserState, parent: MarkdownNode) {
+	state.isEscaped = isEscaped(text: state.src, i: state.i)
+
 	for (_, rule) in state.rules {
 		let handled = rule.testStart(&state, parent)
 

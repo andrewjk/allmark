@@ -21,6 +21,8 @@ public static class ParseInline
                 state.LineStart = state.I;
             }
 
+            state.IsEscaped = Utils.IsEscaped(state.Src, state.I);
+
             foreach (var rule in state.Rules.Values)
             {
                 bool handled = rule.Test(state, parent);

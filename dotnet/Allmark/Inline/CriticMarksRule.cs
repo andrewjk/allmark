@@ -8,7 +8,7 @@ public static class CriticMarksRule
     {
         var closeDel = closingDelimiter ?? delimiter;
         var ch = Utils.GetChar(state.Src, state.I);
-        if (ch == '{' && !Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped && ch == '{')
         {
             var start = state.I;
             var end = state.I;
@@ -45,7 +45,7 @@ public static class CriticMarksRule
                 return true;
             }
         }
-        else if (ch.ToString() == closeDel && !Utils.IsEscaped(state.Src, state.I))
+        else if (!state.IsEscaped && ch.ToString() == closeDel)
         {
             // Get the markup
             var markup = "{" + delimiter;

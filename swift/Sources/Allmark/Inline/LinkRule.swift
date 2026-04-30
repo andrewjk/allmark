@@ -12,7 +12,7 @@ func testLink(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 
 	let char = src[state.i]
 
-	if !isEscaped(text: src, i: state.i) {
+	if !state.isEscaped {
 		if char == "[" {
 			return testLinkOpen(state: &state, parent: &parent)
 		}

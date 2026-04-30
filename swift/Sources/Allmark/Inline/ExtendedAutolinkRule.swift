@@ -33,7 +33,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 	let src = state.src
 	guard state.i < src.count else { return false }
 
-	if !isEscaped(text: src, i: state.i) {
+	if !state.isEscaped {
 		let char = src[state.i]
 
 		if char == "w" {

@@ -4,7 +4,6 @@ const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const Delimiter = @import("../types/Delimiter.zig").Delimiter;
 const addMarkupAsText = @import("../utils/addMarkupAsText.zig").addMarkupAsText;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isUnicodePunctuation = @import("../utils/isUnicodePunctuation.zig").isUnicodePunctuation;
 const isUnicodeSpace = @import("../utils/isUnicodeSpace.zig").isUnicodeSpace;
 const newText = @import("../utils/newText.zig").newText;
@@ -12,7 +11,7 @@ const newInline = @import("../utils/newInline.zig").newInline;
 
 fn testEmphasis(state: *InlineParserState, parent: *MarkdownNode) bool {
     const char = state.src[state.i];
-    if ((char != '*' and char != '_') or isEscaped(state.src, state.i)) {
+    if (state.isEscaped or (char != '*' and char != '_')) {
         return false;
     }
 

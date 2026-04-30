@@ -17,7 +17,7 @@ public static class StrikethroughRule
     private static bool TestStrikethrough(InlineParserState state, MarkdownNode parent)
     {
         var ch = Utils.GetChar(state.Src, state.I);
-        if (ch == '~' && !Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped && ch == '~')
         {
             var rule = Create();
             return TagMarksRule.Execute("strikethrough", ch.ToString(), state, parent, rule.Precedence!.Value);

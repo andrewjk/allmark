@@ -13,6 +13,7 @@ public record BlockParserState
     public required int LineStart { get; set; }
     public required int Indent { get; set; }
     public required Stack<MarkdownNode> OpenNodes { get; set; }
+    public required bool IsEscaped { get; set; }
     public required bool MaybeContinue { get; set; }
     public required bool HasBlankLine { get; set; }
     public required Dictionary<string, LinkReference> Refs { get; set; }

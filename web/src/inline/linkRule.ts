@@ -10,7 +10,6 @@ import {
 	PAREN_OPEN_CODE,
 	EXCLAMATION_CODE,
 } from "../utils/charCodes";
-import isEscaped from "../utils/isEscaped";
 import newText from "../utils/newText";
 import normalizeLabel from "../utils/normalizeLabel";
 import parseLinkInline from "../utils/parseLinkInline";
@@ -23,7 +22,7 @@ const rule: InlineRule = {
 export default rule;
 
 function testLink(state: InlineParserState, parent: MarkdownNode): boolean {
-	if (!isEscaped(state.src, state.i)) {
+	if (!state.isEscaped) {
 		let charCode = state.src.charCodeAt(state.i);
 
 		if (charCode === BRACKET_OPEN_CODE) {

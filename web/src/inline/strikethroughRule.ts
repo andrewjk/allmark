@@ -2,7 +2,6 @@ import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import { TILDE_CODE } from "../utils/charCodes";
-import isEscaped from "../utils/isEscaped";
 import testTagMarks from "./tagMarksRule";
 
 const rule: InlineRule = {
@@ -17,7 +16,7 @@ export default rule;
  * tildes (~).
  */
 function testStrikethrough(state: InlineParserState, parent: MarkdownNode): boolean {
-	if (state.src.charCodeAt(state.i) === TILDE_CODE && !isEscaped(state.src, state.i)) {
+	if (!state.isEscaped && state.src.charCodeAt(state.i) === TILDE_CODE) {
 		return testTagMarks(rule.name, "~", state, parent, rule.precedence!);
 	}
 	return false;

@@ -32,6 +32,7 @@ public static class Parser
             Line = 0,
             LineStart = 0,
             Indent = 0,
+            IsEscaped = false,
             MaybeContinue = false,
             HasBlankLine = false,
             OpenNodes = new Stack<MarkdownNode>(new[] { document }),

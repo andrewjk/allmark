@@ -29,7 +29,7 @@ public static class AutolinkRule
         }
 
         var ch = Utils.GetChar(state.Src, state.I);
-        if (ch == '<' && !Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped && ch == '<')
         {
             var tail = state.Src.Substring(state.I);
 

@@ -12,6 +12,7 @@ public record InlineParserState
     public required int Line { get; set; }
     public required int LineStart { get; set; }
     public required int Indent { get; set; }
+    public required bool IsEscaped { get; set; }
     public required List<Delimiter> Delimiters { get; set; }
     public required Dictionary<string, LinkReference> Refs { get; set; }
     public required Dictionary<string, FootnoteReference> Footnotes { get; set; }

@@ -9,6 +9,7 @@ pub const InlineParserState = struct {
     line: i32,
     lineStart: usize,
     indent: i32,
+    isEscaped: bool,
     delimiters: std.ArrayList(Delimiter),
     refs: std.StringHashMap(LinkReference),
     footnotes: std.StringHashMap(FootnoteReference),

@@ -18,6 +18,8 @@ public struct BlockParserState {
 	public var indent: Int
 	/// Stack of currently open nodes.
 	public var openNodes: [MarkdownNode]
+	/// Whether the current character is escaped.
+	public var isEscaped: Bool
 	/// Whether the current node may continue lazily.
 	public var maybeContinue: Bool
 	/// Whether we've encountered a blank line.
@@ -27,7 +29,7 @@ public struct BlockParserState {
 	/// Footnote reference definitions.
 	public var footnotes: [String: FootnoteReference]
 
-	public init(rules: OrderedDictionary<String, BlockRule>, src: [Character], i: Int, line: Int, lineStart: Int, indent: Int, openNodes: [MarkdownNode], maybeContinue: Bool, hasBlankLine: Bool, refs: [String: LinkReference], footnotes: [String: FootnoteReference]) {
+	public init(rules: OrderedDictionary<String, BlockRule>, src: [Character], i: Int, line: Int, lineStart: Int, indent: Int, openNodes: [MarkdownNode], isEscaped: Bool, maybeContinue: Bool, hasBlankLine: Bool, refs: [String: LinkReference], footnotes: [String: FootnoteReference]) {
 		self.rules = rules
 		self.src = src
 		self.i = i
@@ -35,6 +37,7 @@ public struct BlockParserState {
 		self.lineStart = lineStart
 		self.indent = indent
 		self.openNodes = openNodes
+		self.isEscaped = isEscaped
 		self.maybeContinue = maybeContinue
 		self.hasBlankLine = hasBlankLine
 		self.refs = refs

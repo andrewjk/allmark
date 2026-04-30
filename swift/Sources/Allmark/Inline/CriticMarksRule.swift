@@ -14,7 +14,7 @@ func testCriticMarks(
 
 	let char = src[state.i]
 
-	if char == "{" && !isEscaped(text: src, i: state.i) {
+	if !state.isEscaped && char == "{" {
 		let start = state.i
 		var end = state.i
 
@@ -47,7 +47,7 @@ func testCriticMarks(
 
 			return true
 		}
-	} else if String(char) == closeDel && !isEscaped(text: src, i: state.i) {
+	} else if !state.isEscaped && String(char) == closeDel {
 		// Get the markup
 		var markup = "{" + delimiter
 		for i in (state.i + 1) ..< src.count {

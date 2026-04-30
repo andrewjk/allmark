@@ -5,7 +5,6 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const parseBlockInlines = @import("../parse/parseBlockInlines.zig").parseBlockInlines;
 const parseInline = @import("../parse/parseInline.zig").parseInline;
 const isAlphanumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
@@ -16,7 +15,7 @@ pub fn testFootnote(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     const char = state.src[state.i];
 
-    if (!isEscaped(state.src, state.i)) {
+    if (!state.isEscaped) {
         if (char == '[') {
             return testFootnoteOpen(state, parent);
         }
@@ -180,6 +179,7 @@ fn testFootnoteClose(state: *InlineParserState, parent: *MarkdownNode) bool {
                         .line = lastNode.line,
                         .lineStart = 0,
                         .indent = 0,
+                        .isEscaped = false,
                         .delimiters = delimiters_list,
                         .refs = state.refs,
                         .footnotes = state.footnotes,

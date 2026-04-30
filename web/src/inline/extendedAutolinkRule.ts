@@ -5,7 +5,6 @@ import { PAREN_CLOSE_CODE, PAREN_OPEN_CODE } from "../utils/charCodes";
 import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
-import isEscaped from "../utils/isEscaped";
 import newInline from "../utils/newInline";
 import newText from "../utils/newText";
 
@@ -36,7 +35,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 		return false;
 	}
 
-	if (!isEscaped(state.src, state.i)) {
+	if (!state.isEscaped) {
 		let charCode = state.src.charCodeAt(state.i);
 		if (charCode === W_CHAR_CODE) {
 			let tail = state.src.substring(state.i);

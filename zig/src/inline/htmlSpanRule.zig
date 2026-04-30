@@ -8,7 +8,6 @@ const COMMENT = @import("../utils/htmlPatterns.zig").COMMENT;
 const INSTRUCTION = @import("../utils/htmlPatterns.zig").INSTRUCTION;
 const DECLARATION = @import("../utils/htmlPatterns.zig").DECLARATION;
 const CDATA = @import("../utils/htmlPatterns.zig").CDATA;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
@@ -28,7 +27,7 @@ pub fn testHtmlSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
 
     const char = state.src[state.i];
-    if (char == '<' and !isEscaped(state.src, state.i)) {
+    if (!state.isEscaped and char == '<') {
         const tail = state.src[state.i..];
 
         const regex = ProperlySizedRegex.compile(pattern) orelse return false;

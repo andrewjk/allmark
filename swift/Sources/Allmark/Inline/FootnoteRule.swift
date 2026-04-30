@@ -11,7 +11,7 @@ func testFootnote(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 	let char = src[state.i]
 
-	if !isEscaped(text: src, i: state.i) {
+	if !state.isEscaped {
 		if char == "[" {
 			return testFootnoteOpen(state: &state, parent: &parent)
 		}
@@ -155,6 +155,7 @@ func testFootnoteClose(state: inout InlineParserState, parent: inout MarkdownNod
 						line: lastNode.line,
 						lineStart: 0,
 						indent: 0,
+						isEscaped: false,
 						delimiters: [],
 						refs: state.refs,
 						footnotes: state.footnotes,

@@ -17,7 +17,7 @@ public static class EmphasisRule
     private static bool TestEmphasis(InlineParserState state, MarkdownNode parent)
     {
         var ch = Utils.GetChar(state.Src, state.I);
-        if ((ch == '*' || ch == '_') && !Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped && (ch == '*' || ch == '_'))
         {
             var start = state.I;
             var end = state.I;

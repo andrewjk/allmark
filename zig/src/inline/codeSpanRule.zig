@@ -3,7 +3,6 @@ const InlineParserState = @import("../types/InlineParserState.zig").InlineParser
 const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const addMarkupAsText = @import("../utils/addMarkupAsText.zig").addMarkupAsText;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const newInline = @import("../utils/newInline.zig").newInline;
 const newText = @import("../utils/newText.zig").newText;
@@ -14,7 +13,7 @@ pub fn testCodeSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
 
     const char = state.src[state.i];
-    if (char == '`' and !isEscaped(state.src, state.i)) {
+    if (!state.isEscaped and char == '`') {
         var openMatched: usize = 1;
         var openEnd = state.i + 1;
         while (openEnd < state.src.len and state.src[openEnd] == char) : (openEnd += 1) {

@@ -11,12 +11,10 @@ export default interface InlineParserState {
 	line: number;
 	lineStart: number;
 	indent: number;
+	isEscaped: boolean;
 	delimiters: Delimiter[];
 	refs: Record<string, LinkReference>;
 	footnotes: Record<string, FootnoteReference>;
 
 	parentIndex: number;
-
-	// HACK:
-	debug?: boolean;
 }

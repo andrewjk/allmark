@@ -17,7 +17,7 @@ public static class SubscriptRule
     private static bool TestSubscript(InlineParserState state, MarkdownNode parent)
     {
         var ch = Utils.GetChar(state.Src, state.I);
-        if (ch == '~' && !Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped && ch == '~')
         {
             // Subscripts can only be one character long, otherwise they are a GFM strikethrough
             if (Utils.GetChar(state.Src, state.I + 1) == '~')

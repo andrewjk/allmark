@@ -16,6 +16,8 @@ public struct InlineParserState {
 	public var lineStart: Int
 	/// Current indentation level.
 	public var indent: Int
+	/// Whether the current character is escaped.
+	public var isEscaped: Bool
 	/// Active delimiter characters for emphasis/links.
 	public var delimiters: [Delimiter]
 	/// Link reference definitions.
@@ -25,13 +27,14 @@ public struct InlineParserState {
 	/// The starting index of the parent node.
 	public var parentIndex: Int
 
-	public init(rules: OrderedDictionary<String, InlineRule>, src: [Character], i: Int, line: Int, lineStart: Int, indent: Int, delimiters: [Delimiter], refs: [String: LinkReference], footnotes: [String: FootnoteReference], parentIndex: Int) {
+	public init(rules: OrderedDictionary<String, InlineRule>, src: [Character], i: Int, line: Int, lineStart: Int, indent: Int, isEscaped: Bool, delimiters: [Delimiter], refs: [String: LinkReference], footnotes: [String: FootnoteReference], parentIndex: Int) {
 		self.rules = rules
 		self.src = src
 		self.i = i
 		self.line = line
 		self.lineStart = lineStart
 		self.indent = indent
+		self.isEscaped = isEscaped
 		self.delimiters = delimiters
 		self.refs = refs
 		self.footnotes = footnotes

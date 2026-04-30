@@ -12,7 +12,7 @@ func testEmphasis(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 	let char = src[state.i]
 
-	if (char == "*" || char == "_") && !isEscaped(text: src, i: state.i) {
+	if !state.isEscaped && (char == "*" || char == "_") {
 		let start = state.i
 		var end = state.i
 

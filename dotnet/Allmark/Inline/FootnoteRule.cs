@@ -17,7 +17,7 @@ public static class FootnoteRule
     {
         var ch = Utils.GetChar(state.Src, state.I);
 
-        if (!Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped)
         {
             if (ch == '[')
             {
@@ -159,6 +159,7 @@ public static class FootnoteRule
                             Line = lastNode.Line,
                             LineStart = 0,
                             Indent = 0,
+                            IsEscaped = false,
                             Delimiters = [],
                             Refs = state.Refs,
                             Footnotes = state.Footnotes,

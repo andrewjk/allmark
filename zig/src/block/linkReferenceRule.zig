@@ -19,7 +19,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
 
     const char = state.src[state.i];
-    if (state.indent <= 3 and char == '[' and !isEscaped(state.src, state.i)) {
+    if (!state.isEscaped and state.indent <= 3 and char == '[') {
         if (std.mem.eql(u8, parent.type, "paragraph") and !parent.blankAfter) {
             return false;
         }

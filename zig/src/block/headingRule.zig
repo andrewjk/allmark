@@ -2,7 +2,6 @@ const std = @import("std");
 const BlockParserState = @import("../types/BlockParserState.zig").BlockParserState;
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
@@ -15,7 +14,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
     const char = state.src[state.i];
 
-    if (state.indent <= 3 and char == '#' and !isEscaped(state.src, state.i)) {
+    if (!state.isEscaped and state.indent <= 3 and char == '#') {
         var level: usize = 1;
         var j = state.i + 1;
         while (j < state.src.len and state.src[j] == '#') : (j += 1) {

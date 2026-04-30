@@ -23,7 +23,7 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bo
 
 	let char = src[state.i]
 
-	if state.indent <= 3 && char == "#" && !isEscaped(text: src, i: state.i) {
+	if !state.isEscaped && state.indent <= 3 && char == "#" {
 		var level = 1
 		var j = state.i + 1
 

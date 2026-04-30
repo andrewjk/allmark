@@ -70,6 +70,7 @@ public static class ParseBlockInlines
             Line = parent.Line,
             LineStart = 0,
             Indent = 0,
+            IsEscaped = false,
             Delimiters = [],
             Refs = refs,
             Footnotes = footnotes,

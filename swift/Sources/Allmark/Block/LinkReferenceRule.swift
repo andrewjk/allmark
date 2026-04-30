@@ -23,7 +23,7 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 
 	let char = src[state.i]
 
-	if state.indent <= 3 && char == "[" && !isEscaped(text: src, i: state.i) {
+	if !state.isEscaped && state.indent <= 3 && char == "[" {
 		// A link reference definition cannot interrupt a paragraph
 		if parent.type == "paragraph" && !parent.blankAfter {
 			return false

@@ -10,7 +10,6 @@ import {
 	INSTRUCTION,
 	OPEN_TAG,
 } from "../utils/htmlPatterns";
-import isEscaped from "../utils/isEscaped";
 import newInline from "../utils/newInline";
 
 const rule: InlineRule = {
@@ -31,7 +30,7 @@ function testHtmlSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 		return false;
 	}
 
-	if (state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE && !isEscaped(state.src, state.i)) {
+	if (!state.isEscaped && state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE) {
 		let tail = state.src.substring(state.i);
 		let match = tail.match(HTML_TAG_REGEX);
 		if (match !== null) {

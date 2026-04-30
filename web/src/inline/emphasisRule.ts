@@ -4,7 +4,6 @@ import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import addMarkupAsText from "../utils/addMarkupAsText";
 import { ASTERISK_CODE, UNDERSCORE_CODE } from "../utils/charCodes";
-import isEscaped from "../utils/isEscaped";
 import isUnicodePunctuation from "../utils/isUnicodePunctuation";
 import isUnicodeSpace from "../utils/isUnicodeSpace";
 import newInline from "../utils/newInline";
@@ -19,10 +18,7 @@ export default rule;
 
 function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 	let charCode = state.src.charCodeAt(state.i);
-	if (
-		(charCode === ASTERISK_CODE || charCode === UNDERSCORE_CODE) &&
-		!isEscaped(state.src, state.i)
-	) {
+	if (!state.isEscaped && (charCode === ASTERISK_CODE || charCode === UNDERSCORE_CODE)) {
 		let char = state.src[state.i];
 		let start = state.i;
 		let end = state.i;

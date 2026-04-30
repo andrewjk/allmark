@@ -100,6 +100,7 @@ pub fn parseBlockInlines(
         .line = parent.line,
         .lineStart = 0,
         .indent = 0,
+        .isEscaped = false,
         .delimiters = delimiters_list,
         .refs = refs,
         .footnotes = footnotes,

@@ -9,7 +9,6 @@ import {
 	BRACKET_CLOSE_CODE,
 	CARET_CODE,
 } from "../utils/charCodes";
-import isEscaped from "../utils/isEscaped";
 import newText from "../utils/newText";
 import normalizeLabel from "../utils/normalizeLabel";
 
@@ -20,7 +19,7 @@ const rule: InlineRule = {
 export default rule;
 
 function testFootnote(state: InlineParserState, parent: MarkdownNode): boolean {
-	if (!isEscaped(state.src, state.i)) {
+	if (!state.isEscaped) {
 		let charCode = state.src.charCodeAt(state.i);
 
 		if (charCode === BRACKET_OPEN_CODE) {
@@ -141,6 +140,7 @@ function testFootnoteClose(state: InlineParserState, parent: MarkdownNode) {
 						line: lastNode.line,
 						lineStart: 0,
 						indent: 0,
+						isEscaped: false,
 						delimiters: [],
 						refs: state.refs,
 						footnotes: state.footnotes,

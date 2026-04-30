@@ -31,6 +31,7 @@ func _parse(src: String, rules: RuleSet) -> MarkdownNode {
 		lineStart: 0,
 		indent: 0,
 		openNodes: [document],
+		isEscaped: false,
 		maybeContinue: false,
 		hasBlankLine: false,
 		refs: [:],

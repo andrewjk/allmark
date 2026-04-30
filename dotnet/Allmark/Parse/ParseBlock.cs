@@ -6,6 +6,8 @@ public static class ParseBlock
 {
     public static void Execute(BlockParserState state, MarkdownNode parent)
     {
+        state.IsEscaped = Utils.IsEscaped(state.Src, state.I);
+
         foreach (var rule in state.Rules.Values)
         {
             // int start = state.I;

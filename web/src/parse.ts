@@ -29,6 +29,7 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 		line: 0,
 		lineStart: 0,
 		indent: 0,
+		isEscaped: false,
 		maybeContinue: false,
 		hasBlankLine: false,
 		openNodes: [document],

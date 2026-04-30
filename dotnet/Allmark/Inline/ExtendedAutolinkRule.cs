@@ -31,7 +31,7 @@ public static class ExtendedAutolinkRule
         }
 
         var ch = Utils.GetChar(state.Src, state.I);
-        if (!Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped)
         {
             if (ch == 'w')
             {

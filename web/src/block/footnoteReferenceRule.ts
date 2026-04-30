@@ -30,9 +30,9 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	}
 
 	if (
+		!state.isEscaped &&
 		state.indent <= 3 &&
-		state.src.charCodeAt(state.i) === BRACKET_OPEN_CODE &&
-		!isEscaped(state.src, state.i)
+		state.src.charCodeAt(state.i) === BRACKET_OPEN_CODE
 	) {
 		// "A footnote definition cannot interrupt a paragraph"
 		if (parent.type === "paragraph" && !parent.blankAfter) {

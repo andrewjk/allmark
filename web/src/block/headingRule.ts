@@ -4,7 +4,6 @@ import type MarkdownNode from "../types/MarkdownNode";
 import { BACKSLASH_CODE, HASH_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
-import isEscaped from "../utils/isEscaped";
 import isSpace from "../utils/isSpace";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
@@ -33,11 +32,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	if (
-		state.indent <= 3 &&
-		state.src.charCodeAt(state.i) === HASH_CODE &&
-		!isEscaped(state.src, state.i)
-	) {
+	if (!state.isEscaped && state.indent <= 3 && state.src.charCodeAt(state.i) === HASH_CODE) {
 		let level = 1;
 		// TODO: peekUntil
 		for (let j = state.i + 1; j < state.src.length; j++) {

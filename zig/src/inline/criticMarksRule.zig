@@ -1,7 +1,6 @@
 const std = @import("std");
 const InlineParserState = @import("../types/InlineParserState.zig").InlineParserState;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
 
@@ -9,7 +8,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
     const closeDel = closingDelimiter orelse delimiter;
     if (state.i < state.src.len) {
         const char = state.src[state.i];
-        if (char == '{' and !isEscaped(state.src, state.i)) {
+        if (!state.isEscaped and char == '{') {
             const start = state.i;
             var end = state.i;
 
@@ -59,7 +58,7 @@ pub fn testCriticMarks(name: []const u8, delimiter: u8, state: *InlineParserStat
 
                 return true;
             }
-        } else if (char == closeDel and !isEscaped(state.src, state.i)) {
+        } else if (!state.isEscaped and char == closeDel) {
             var markup_buf: [4]u8 = undefined;
             var markup_len: usize = 0;
             markup_buf[0] = '{';

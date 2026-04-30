@@ -45,7 +45,7 @@ public static class HtmlBlockRule
         }
 
         var ch = Utils.GetChar(state.Src, state.I);
-        if (state.Indent <= 3 && ch == '<' && !Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped && state.Indent <= 3 && ch == '<')
         {
             var tail = state.Src.Substring(state.I);
 

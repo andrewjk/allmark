@@ -4,7 +4,6 @@ import type MarkdownNode from "../types/MarkdownNode";
 import { ANGLE_LEFT_CODE } from "../utils/charCodes";
 import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
-import isEscaped from "../utils/isEscaped";
 import newInline from "../utils/newInline";
 import newText from "../utils/newText";
 
@@ -27,7 +26,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 		return false;
 	}
 
-	if (state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE && !isEscaped(state.src, state.i)) {
+	if (!state.isEscaped && state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE) {
 		let tail = state.src.substring(state.i);
 
 		let linkMatch = tail.match(LINK_REGEX);

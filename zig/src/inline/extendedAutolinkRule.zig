@@ -6,7 +6,6 @@ const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapeHtml = @import("../utils/escapeHtml.zig").escapeHtml;
 const encodeUri = @import("../utils/encodeUri.zig").encodeUri;
 const isAlphaNumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
-const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const newText = @import("../utils/newText.zig").newText;
 const newInline = @import("../utils/newInline.zig").newInline;
@@ -31,7 +30,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
 
     const char = state.src[state.i];
-    if (!isEscaped(state.src, state.i)) {
+    if (!state.isEscaped) {
         if (char == 'w') {
             const tail = state.src[state.i..];
 

@@ -1,6 +1,7 @@
 const std = @import("std");
 const InlineParserState = @import("../types/InlineParserState.zig").InlineParserState;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
+const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 
 pub fn parseInline(allocator: std.mem.Allocator, state: *InlineParserState, parent: *MarkdownNode) !void {
     _ = allocator;
@@ -14,6 +15,8 @@ pub fn parseInline(allocator: std.mem.Allocator, state: *InlineParserState, pare
             state.line += 1;
             state.lineStart = state.i;
         }
+
+        state.isEscaped = isEscaped(state.src, state.i);
 
         //std.debug.print("====\n", .{});
         var it = state.rules.iterator();

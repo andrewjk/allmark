@@ -17,7 +17,7 @@ public static class SuperscriptRule
     private static bool TestSuperscript(InlineParserState state, MarkdownNode parent)
     {
         var ch = Utils.GetChar(state.Src, state.I);
-        if (ch == '^' && !Utils.IsEscaped(state.Src, state.I))
+        if (!state.IsEscaped && ch == '^')
         {
             var rule = Create();
             return TagMarksRule.Execute("superscript", ch.ToString(), state, parent, rule.Precedence!.Value);
