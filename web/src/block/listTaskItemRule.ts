@@ -5,6 +5,7 @@ import { BRACKET_OPEN_CODE, BRACKET_CLOSE_CODE } from "../utils/charCodes";
 import isSpace from "../utils/isSpace";
 import movePastMarker from "../utils/movePastMarker";
 import newInline from "../utils/newInline";
+import { appendChild } from "../utils/nodeUtils";
 
 const rule: BlockRule = {
 	name: "list_task_item",
@@ -51,7 +52,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			// HACK: It should be a block, but it's not for output reasons
 			let task = newInline("list_task_item", state.i, state.line, markup, 0);
 			task.length = 3;
-			parent.children!.push(task);
+			appendChild(parent, task);
 			movePastMarker(3, state);
 		}
 	}

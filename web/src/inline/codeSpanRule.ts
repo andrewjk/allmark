@@ -6,6 +6,7 @@ import { BACKTICK_CODE } from "../utils/charCodes";
 import isSpace from "../utils/isSpace";
 import newInline from "../utils/newInline";
 import newText from "../utils/newText";
+import { appendChildWithText } from "../utils/nodeUtils";
 import skipSpaces from "../utils/skipSpaces";
 
 const rule: InlineRule = {
@@ -84,9 +85,9 @@ function testCodeSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 				markup,
 				0,
 			);
-			code.children = [text];
 			code.length = closeEnd - (state.i - openMatched);
-			parent.children!.push(code);
+
+			appendChildWithText(parent, code, text);
 
 			state.i = closeEnd;
 

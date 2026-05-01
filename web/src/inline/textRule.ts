@@ -4,6 +4,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
 import isNewLine from "../utils/isNewLine";
 import newText from "../utils/newText";
+import { appendChild, getLastChild } from "../utils/nodeUtils";
 
 const rule: InlineRule = {
 	name: "text",
@@ -26,10 +27,10 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 	//	char = state.src[state.i];
 	//}
 
-	let lastNode = parent.children!.at(-1);
+	let lastNode = getLastChild(parent);
 	if (lastNode === undefined || lastNode.type !== "text") {
 		lastNode = newText(state.parentIndex + state.i, state.line, "", 0);
-		parent.children!.push(lastNode);
+		appendChild(parent, lastNode);
 	} else if (isNewLine(charCode)) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
 		lastNode.content = lastNode.content.trimEnd();

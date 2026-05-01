@@ -8,6 +8,7 @@ import isEscaped from "../utils/isEscaped";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, getFirstChild, getChildren } from "../utils/nodeUtils";
 
 const rule: BlockRule = {
 	name: "table",
@@ -22,11 +23,12 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	}
 
 	// We may already have a table
-	let lastNode = parent.children?.at(-1);
-	if (!state.hasBlankLine && lastNode?.type === "table") {
+	let lastNode = getLastChild(parent);
+	if (!state.hasBlankLine && lastNode !== undefined && lastNode.type === "table") {
 		let endOfLine = getEndOfLine(state);
 
-		let headers = lastNode.children![0].children!.map((c) => c.info ?? "");
+		let firstRow = getFirstChild(lastNode)!;
+		let headers = getChildren(firstRow).map((c) => c.info ?? "");
 
 		let row = newBlock("table_row", state.i, state.line, "", 0);
 		let rowLength = endOfLine - state.i;
@@ -34,7 +36,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			rowLength--;
 		}
 		row.length = rowLength;
-		lastNode.children!.push(row);
+		appendChild(lastNode, row);
 
 		let rowSrc = state.src.substring(state.i, state.i + rowLength);
 		let pipePositions = loadPipePositions(rowSrc);
@@ -137,7 +139,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			}
 			let header = newBlock("table_header", headerIndex, state.line, "", 0);
 			header.length = headerLength;
-			parent.children!.push(header);
+			appendChild(parent, header);
 
 			let headerSrc = parent.content.substring(0, headerLength);
 			let pipePositions = loadPipePositions(headerSrc);
@@ -207,9 +209,9 @@ function parseTableCell(
 	let cell = newBlock("table_cell", row.index + cellStart, state.line, "", 0);
 	cell.length = cellLength;
 	cell.info = headers[index];
-	row.children!.push(cell);
+	appendChild(row, cell);
 
 	let content = newBlock("table_cell_content", contentStart, state.line, "", 0);
 	content.content = (text ?? "").trim().replaceAll("\\\|", "|");
-	cell.children = [content];
+	appendChild(cell, content);
 }

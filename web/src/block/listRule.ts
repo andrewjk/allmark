@@ -6,6 +6,13 @@ import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
+import {
+	appendChild,
+	getLastChild,
+	hasChildren,
+	getChildCount,
+	getFirstChild,
+} from "../utils/nodeUtils";
 
 /**
  * "A list is a sequence of one or more list items of the same type. The list
@@ -105,8 +112,8 @@ export function testListStart(
 
 	// If there's an open list of a different type, and this node is not nested, close it
 	// TODO: Is there a better way to do this??
-	if (isList(parent.type) && parent.delimiter !== info.delimiter && parent.children !== undefined) {
-		let lastItem = parent.children.at(-1)!;
+	if (isList(parent.type) && parent.delimiter !== info.delimiter && hasChildren(parent)) {
+		let lastItem = getLastChild(parent)!;
 		if (lastItem.type === "list_item" && state.indent < lastItem.subindent) {
 			closedNode = state.openNodes.pop();
 			parent = state.openNodes.at(-1)!;
@@ -154,21 +161,21 @@ export function testListStart(
 	item.subindent = state.indent + info.markup.length + spaces;
 
 	if (!haveList) {
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(list);
+		appendChild(parent, list);
 		state.openNodes.push(list);
 	}
 
-	if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-		parent.children.at(-1)!.blankAfter = true;
+	if (state.hasBlankLine && hasChildren(parent)) {
+		getLastChild(parent)!.blankAfter = true;
 		state.hasBlankLine = false;
 	}
 
-	list.children?.push(item);
+	appendChild(list, item);
 	state.openNodes.push(item);
 
 	movePastMarker(info.markup.length, state);
@@ -196,8 +203,11 @@ export function testListContinue(
 
 	// Can't continue if there's only one item, it's blank and there's a blank line after the list
 	// HACK: This is messy
-	if (state.hasBlankLine && node.children?.length === 1 && !node.children![0].children?.length) {
-		return false;
+	if (state.hasBlankLine && getChildCount(node) === 1) {
+		let firstChild = getFirstChild(node);
+		if (firstChild !== undefined && getChildCount(firstChild) === 0) {
+			return false;
+		}
 	}
 
 	// TODO: Not sure about this one
@@ -212,7 +222,7 @@ export function testListContinue(
 		return true;
 	}
 
-	let lastItem = node.children?.at(-1);
+	let lastItem = getLastChild(node);
 	if (lastItem && lastItem.type === "list_item" && state.indent >= lastItem.subindent) {
 		return true;
 	}

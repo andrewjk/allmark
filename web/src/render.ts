@@ -11,6 +11,7 @@ export default function render(doc: MarkdownNode, renderers?: Renderer[]): strin
 		renderersMap: new Map(renderers.map((r) => [r.name, r])),
 		output: "",
 		footnotes: [],
+		footnoteRefs: {},
 		listDepth: 0,
 	};
 

@@ -1,5 +1,6 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type RendererState from "../types/RendererState";
+import { hasChildren } from "../utils/nodeUtils";
 import renderChildren from "./renderChildren";
 import { endNewLine, innerNewLine, startNewLine } from "./renderUtils";
 
@@ -11,7 +12,7 @@ export default function render(
 ): void {
 	startNewLine(node, state);
 	state.output += `<${tag}>`;
-	if (node.block && node.children?.length === 0) {
+	if (node.block && !hasChildren(node)) {
 		// Block nodes with no children still need a newline
 		state.output += "\n";
 	} else {

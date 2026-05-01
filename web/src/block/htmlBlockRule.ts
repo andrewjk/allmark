@@ -6,6 +6,7 @@ import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import { CLOSE_TAG, OPEN_TAG } from "../utils/htmlPatterns";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, hasChildren } from "../utils/nodeUtils";
 
 // TODO: de-duplicate a lot of this code
 // TODO: Should we split it up into seven different node types??
@@ -109,12 +110,12 @@ function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail:
 		let html = newBlock("html_block", start, state.line, "", 1);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, end);
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(html);
+		appendChild(parent, html);
 		state.openNodes.push(html);
 		state.i = end;
 
@@ -144,12 +145,12 @@ function testHtmlCondition2(state: BlockParserState, parent: MarkdownNode, tail:
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(html);
+		appendChild(parent, html);
 		state.openNodes.push(html);
 		state.i = endOfLine;
 
@@ -179,12 +180,12 @@ function testHtmlCondition3(state: BlockParserState, parent: MarkdownNode, tail:
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(html);
+		appendChild(parent, html);
 		state.openNodes.push(html);
 		state.i = endOfLine;
 
@@ -215,12 +216,12 @@ function testHtmlCondition4(state: BlockParserState, parent: MarkdownNode, tail:
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(html);
+		appendChild(parent, html);
 		state.openNodes.push(html);
 		state.i = endOfLine;
 
@@ -250,12 +251,12 @@ function testHtmlCondition5(state: BlockParserState, parent: MarkdownNode, tail:
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(html);
+		appendChild(parent, html);
 		state.openNodes.push(html);
 		state.i = endOfLine;
 
@@ -291,12 +292,12 @@ function testHtmlCondition6(state: BlockParserState, parent: MarkdownNode, tail:
 		html.content = " ".repeat(state.indent) + state.src.substring(state.i, endOfLine);
 		html.acceptsContent = true;
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(html);
+		appendChild(parent, html);
 		state.openNodes.push(html);
 		state.i = endOfLine;
 
@@ -344,12 +345,12 @@ function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail:
 		html.content = " ".repeat(state.indent) + state.src.substring(state.i, endOfLine);
 		html.acceptsContent = true;
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(html);
+		appendChild(parent, html);
 		state.openNodes.push(html);
 		state.i = endOfLine;
 		return true;

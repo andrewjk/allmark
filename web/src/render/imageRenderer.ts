@@ -1,6 +1,7 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
+import { forEachChild } from "../utils/nodeUtils";
 import { endNewLine, startNewLine } from "./renderUtils";
 
 const renderer: Renderer = {
@@ -19,14 +20,12 @@ function render(node: MarkdownNode, state: RendererState): void {
 
 function getChildText(node: MarkdownNode): string {
 	let text = "";
-	if (node.children) {
-		for (let child of node.children) {
-			if (child.type === "text") {
-				text += child.content;
-			} else {
-				text += getChildText(child);
-			}
+	forEachChild(node, (child) => {
+		if (child.type === "text") {
+			text += child.content;
+		} else {
+			text += getChildText(child);
 		}
-	}
+	});
 	return text;
 }

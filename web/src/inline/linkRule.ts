@@ -11,6 +11,7 @@ import {
 	EXCLAMATION_CODE,
 } from "../utils/charCodes";
 import newText from "../utils/newText";
+import { appendChild, getLastDescendant, spliceTextNode } from "../utils/nodeUtils";
 import normalizeLabel from "../utils/normalizeLabel";
 import parseLinkInline from "../utils/parseLinkInline";
 
@@ -47,7 +48,7 @@ function testLinkOpen(state: InlineParserState, parent: MarkdownNode) {
 
 	// Add a new text node which may turn into a link
 	let text = newText(state.parentIndex + start, state.line, markup, 0);
-	parent.children!.push(text);
+	appendChild(parent, text);
 
 	state.i++;
 	state.delimiters.push({ markup, start, length: 1, precedence: rule.precedence });
@@ -61,7 +62,7 @@ function testImageOpen(state: InlineParserState, parent: MarkdownNode) {
 
 	// Add a new text node which may turn into an image
 	let text = newText(state.parentIndex + start, state.line, markup, 0);
-	parent.children!.push(text);
+	appendChild(parent, text);
 
 	state.i += markup.length;
 	state.delimiters.push({ markup, start, length: 1, precedence: rule.precedence });
@@ -93,10 +94,13 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 	if (startDelimiter !== undefined) {
 		// Convert the text node into a link node with a new text child
 		// followed by the other children of the parent (if any)
-		let i = parent.children!.length;
-		while (i--) {
-			let lastNode = parent.children![i];
-			if (lastNode.index === state.parentIndex + startDelimiter.start) {
+		let lastDescendant = getLastDescendant(parent)!;
+		let lastNode = lastDescendant;
+		while (lastNode !== parent) {
+			if (
+				lastNode.depth === parent.depth + 1 &&
+				lastNode.index === state.parentIndex + startDelimiter.start
+			) {
 				let start = state.i + 1;
 				let label = state.src.substring(
 					startDelimiter.start + startDelimiter.markup.length,
@@ -163,11 +167,14 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 					let text = newText(lastNode.index, lastNode.line, content, 0);
 					text.length = text.content.length;
 
+					// Convert the previous node to a link/image
 					lastNode.type = isLink ? "link" : "image";
 					lastNode.info = link.url;
 					lastNode.title = link.title;
-					lastNode.children = [text, ...parent.children!.splice(i + 1)];
 					lastNode.length = state.parentIndex + state.i - lastNode.index;
+
+					// Move the parent's subsequent children under the new link node
+					spliceTextNode(parent, text, lastNode, lastDescendant);
 
 					// "[L]inks may not contain other links, at any level of nesting"
 					if (isLink) {
@@ -191,6 +198,8 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 				startDelimiter.handled = true;
 				break;
 			}
+
+			lastNode = lastNode.previousNode!;
 		}
 	}
 

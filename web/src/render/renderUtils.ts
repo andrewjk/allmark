@@ -1,5 +1,6 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type RendererState from "../types/RendererState";
+import { getFirstChild } from "../utils/nodeUtils";
 
 export function startNewLine(node: MarkdownNode, state: RendererState): void {
 	if (state.output.length && node.block && !state.output.endsWith("\n")) {
@@ -8,8 +9,11 @@ export function startNewLine(node: MarkdownNode, state: RendererState): void {
 }
 
 export function innerNewLine(node: MarkdownNode, state: RendererState): void {
-	if (node.block && node.children && node.children[0]?.block) {
-		state.output += "\n";
+	if (node.block) {
+		let firstChild = getFirstChild(node);
+		if (firstChild !== undefined && firstChild.block) {
+			state.output += "\n";
+		}
 	}
 }
 

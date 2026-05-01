@@ -1,6 +1,7 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
+import { getChildren, forEachChild } from "../utils/nodeUtils";
 import ANSI from "./ansi";
 
 const renderer: Renderer = {
@@ -13,16 +14,16 @@ function render(node: MarkdownNode, state: RendererState): void {
 	const style = ANSI.dim;
 	const reset = ANSI.reset;
 
-	const children = node.children ?? [];
+	const children = getChildren(node);
 	if (children.length === 0) return;
 
 	const headerRow = children[0];
 	const dataRows = children.slice(1);
 
-	const headerCells = headerRow.children ?? [];
+	const headerCells = getChildren(headerRow);
 	const cellTexts: string[][] = [];
 
-	const maxColumns = Math.max(headerCells.length, ...dataRows.map((r) => r.children?.length ?? 0));
+	const maxColumns = Math.max(headerCells.length, ...dataRows.map((r) => getChildren(r).length));
 	const columnWidths = Array.from({ length: maxColumns }).fill(0) as number[];
 
 	for (let i = 0; i < headerCells.length; i++) {
@@ -34,7 +35,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 
 	for (let r = 0; r < dataRows.length; r++) {
 		const row = dataRows[r];
-		const rowCells = row.children ?? [];
+		const rowCells = getChildren(row);
 		if (!cellTexts[r + 1]) cellTexts[r + 1] = [];
 		for (let c = 0; c < rowCells.length; c++) {
 			const text = getTextFromNode(rowCells[c]);
@@ -71,7 +72,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 
 	for (let r = 0; r < dataRows.length; r++) {
 		const row = dataRows[r];
-		const rowCells = row.children ?? [];
+		const rowCells = getChildren(row);
 		state.output += `${style}│${reset}`;
 		for (let c = 0; c < columnWidths.length; c++) {
 			const text = cellTexts[r + 1]?.[c] ?? "";
@@ -88,10 +89,11 @@ function getTextFromNode(node: MarkdownNode): string {
 	if (node.type === "text") {
 		return node.content;
 	}
-	if (node.children) {
-		return node.children.map(getTextFromNode).join("");
-	}
-	return "";
+	let text = "";
+	forEachChild(node, (child) => {
+		text += getTextFromNode(child);
+	});
+	return text;
 }
 
 function padText(text: string, width: number, align: string): string {

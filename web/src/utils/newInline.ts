@@ -21,5 +21,8 @@ export default function newInline(
 		acceptsContent: false,
 		maybeContinuing: false,
 		blankAfter: false,
+		depth: 0,
+		previousNode: undefined,
+		nextNode: undefined,
 	};
 }

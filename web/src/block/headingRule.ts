@@ -7,6 +7,7 @@ import getEndOfLine from "../utils/getEndOfLine";
 import isSpace from "../utils/isSpace";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, hasChildren } from "../utils/nodeUtils";
 
 const rule: BlockRule = {
 	name: "heading",
@@ -59,12 +60,12 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			let heading = newBlock("heading", state.i, state.line, "#".repeat(level), 0);
 
-			if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-				parent.children.at(-1)!.blankAfter = true;
+			if (state.hasBlankLine && hasChildren(parent)) {
+				getLastChild(parent)!.blankAfter = true;
 				state.hasBlankLine = false;
 			}
 
-			parent.children!.push(heading);
+			appendChild(parent, heading);
 
 			movePastMarker(level, state);
 
@@ -91,7 +92,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			// inside the header
 			let content = newBlock("heading_content", state.i, state.line, "", 0);
 			content.content = state.src.substring(state.i, end);
-			heading.children = [content];
+			appendChild(heading, content);
 
 			if (end < endOfLine) {
 				heading.info = state.src.substring(end, endOfLine);

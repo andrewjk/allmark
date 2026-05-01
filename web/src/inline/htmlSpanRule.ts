@@ -11,6 +11,7 @@ import {
 	OPEN_TAG,
 } from "../utils/htmlPatterns";
 import newInline from "../utils/newInline";
+import { appendChild } from "../utils/nodeUtils";
 
 const rule: InlineRule = {
 	name: "html_span",
@@ -38,7 +39,7 @@ function testHtmlSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 			let html = newInline("html_span", state.parentIndex + state.i, state.line, "", state.indent);
 			html.content = content;
 			html.length = match[0].length;
-			parent.children!.push(html);
+			appendChild(parent, html);
 			state.i += match[0].length;
 			return true;
 		}

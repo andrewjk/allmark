@@ -1,5 +1,6 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type RendererState from "../types/RendererState";
+import { forEachChild } from "../utils/nodeUtils";
 import renderNode from "./renderNode";
 
 export default function renderChildren(
@@ -7,10 +8,7 @@ export default function renderChildren(
 	state: RendererState,
 	decode = true,
 ): void {
-	let children = node.children;
-	if (children && children.length) {
-		for (let child of children) {
-			renderNode(child, state, decode);
-		}
-	}
+	forEachChild(node, (child) => {
+		renderNode(child, state, decode);
+	});
 }

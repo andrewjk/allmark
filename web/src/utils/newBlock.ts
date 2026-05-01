@@ -21,6 +21,8 @@ export default function newBlock(
 		acceptsContent: false,
 		maybeContinuing: false,
 		blankAfter: false,
-		children: [],
+		depth: 0,
+		previousNode: undefined,
+		nextNode: undefined,
 	};
 }

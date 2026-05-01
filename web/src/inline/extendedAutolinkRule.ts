@@ -7,6 +7,7 @@ import escapeHtml from "../utils/escapeHtml";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
 import newInline from "../utils/newInline";
 import newText from "../utils/newText";
+import { appendChild, appendChildWithText } from "../utils/nodeUtils";
 
 const rule: InlineRule = {
 	name: "extended_autolink",
@@ -48,18 +49,16 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 					let content = escapeHtml(urlMatch[0]);
 					let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
 					text.length = urlMatch[0].length;
-					parent.children!.push(text);
+					appendChild(parent, text);
 					state.i += urlMatch[0].length;
-
 					return true;
 				}
 
 				url = extendedValidation(url);
 				url = escapeHtml(url);
 
-				let link = newLink(url, state);
+				let link = newLink(parent, url, state);
 				link.info = `http://${link.info}`;
-				parent.children!.push(link);
 
 				state.i += url.length;
 
@@ -78,17 +77,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 					let content = escapeHtml(urlMatch[0]);
 					let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
 					text.length = urlMatch[0].length;
-					parent.children!.push(text);
+					appendChild(parent, text);
 					state.i += urlMatch[0].length;
-
 					return true;
 				}
 
 				url = extendedValidation(url);
 				url = escapeHtml(url);
 
-				let link = newLink(url, state);
-				parent.children!.push(link);
+				newLink(parent, url, state);
 
 				state.i += url.length;
 
@@ -113,17 +110,15 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 					let content = escapeHtml(emailMatch[0]);
 					let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
 					text.length = emailMatch[0].length;
-					parent.children!.push(text);
+					appendChild(parent, text);
 					state.i += emailMatch[0].length;
-
 					return true;
 				}
 
 				url = url.replaceAll(/\.$/g, "");
 
-				let link = newLink(url, state);
+				let link = newLink(parent, url, state);
 				link.info = `mailto:${link.info}`;
-				parent.children!.push(link);
 
 				state.i += url.length;
 
@@ -146,16 +141,14 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 					let content = escapeHtml(emailMatch[0]);
 					let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
 					text.length = emailMatch[0].length;
-					parent.children!.push(text);
+					appendChild(parent, text);
 					state.i += emailMatch[0].length;
-
 					return true;
 				}
 
 				url = url.replaceAll(/\.$/g, "");
 
-				let link = newLink(url, state);
-				parent.children!.push(link);
+				newLink(parent, url, state);
 
 				state.i += url.length;
 
@@ -214,7 +207,7 @@ function extendedValidation(url: string) {
 	return url;
 }
 
-function newLink(url: string, state: InlineParserState) {
+function newLink(parent: MarkdownNode, url: string, state: InlineParserState) {
 	let text = newText(
 		state.parentIndex + state.i,
 		state.line,
@@ -222,10 +215,14 @@ function newLink(url: string, state: InlineParserState) {
 		state.indent,
 	);
 	let link = newInline("link", state.parentIndex + state.i, state.line, "", state.indent);
-	link.children = [text];
 
 	url = decodeEntities(url);
 	url = encodeURI(decodeURI(url));
+
+	appendChildWithText(parent, link, text);
+
+	link.depth = parent.depth + 1;
+	text.depth = link.depth + 1;
 
 	link.info = url;
 	link.length = url.length;

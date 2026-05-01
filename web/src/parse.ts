@@ -9,6 +9,7 @@ import newBlock from "./utils/newBlock";
 
 export default function parse(src: string, rules: RuleSet): MarkdownNode {
 	let document = newBlock("document", 0, 1, "", 0);
+	document.depth = 0;
 
 	// Skip empty lines at the start
 	let i = 0;
@@ -55,7 +56,13 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 	}
 
 	// Stage 2 -- parse the inlines for each block
-	parseBlockInlines(document, rules.inlines, state.refs, state.footnotes);
+	let node = document.nextNode;
+	while (node !== undefined) {
+		if (node.block) {
+			parseBlockInlines(node, rules.inlines, state.refs, state.footnotes);
+		}
+		node = node.nextNode;
+	}
 
 	return document;
 }

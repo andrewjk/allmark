@@ -7,6 +7,7 @@ import commentRenderer from "../render/commentRenderer";
 import deletionRenderer from "../render/deletionRenderer";
 import emphasisRenderer from "../render/emphasisRenderer";
 import footnoteListRenderer from "../render/footnoteListRenderer";
+import footnoteRefRenderer from "../render/footnoteRefRenderer";
 import footnoteRenderer from "../render/footnoteRenderer";
 import hardBreakRenderer from "../render/hardBreakRenderer";
 import headingRenderer from "../render/headingRenderer";
@@ -39,6 +40,7 @@ const renderers: Renderer[] = [
 	commentRenderer,
 	deletionRenderer,
 	emphasisRenderer,
+	footnoteRefRenderer,
 	footnoteRenderer,
 	footnoteListRenderer,
 	hardBreakRenderer,

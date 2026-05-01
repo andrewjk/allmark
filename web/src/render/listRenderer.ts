@@ -1,5 +1,6 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type RendererState from "../types/RendererState";
+import { getChildren, getLastChild } from "../utils/nodeUtils";
 import renderChildren from "./renderChildren";
 import renderNode from "./renderNode";
 import { endNewLine, innerNewLine, startNewLine } from "./renderUtils";
@@ -19,10 +20,13 @@ export default function render(node: MarkdownNode, state: RendererState, ordered
 	innerNewLine(node, state);
 
 	let loose = isLooseList(node);
+	let items = getChildren(node);
 
-	for (let item of node.children!) {
+	for (let item of items) {
 		state.output += "<li>";
-		for (let [i, child] of item.children!.entries()) {
+		let itemChildren = getChildren(item);
+		for (let i = 0; i < itemChildren.length; i++) {
+			let child = itemChildren[i];
 			if (!loose && child.type === "paragraph") {
 				// Skip paragraphs under list items to make the list tight
 				renderChildren(child, state);
@@ -31,7 +35,7 @@ export default function render(node: MarkdownNode, state: RendererState, ordered
 					innerNewLine(item, state);
 				}
 				renderNode(child, state);
-				if (i === item.children!.length - 1 && child.block && !state.output.endsWith("\n")) {
+				if (i === itemChildren.length - 1 && child.block && !state.output.endsWith("\n")) {
 					state.output += "\n";
 				}
 			}
@@ -46,17 +50,18 @@ export default function render(node: MarkdownNode, state: RendererState, ordered
 
 function isLooseList(node: MarkdownNode) {
 	let loose = false;
+	let children = getChildren(node);
 
 	// "A list is loose if any of its constituent list items are separated by
 	// blank lines, or if any of its constituent list items directly contain two
 	// block-level elements with a blank line between them. Otherwise a list is
 	// tight."
-	for (let i = 0; i < node.children!.length - 1; i++) {
-		let child = node.children![i]!;
+	for (let i = 0; i < children.length - 1; i++) {
+		let child = children[i];
 
 		// A list item has a blank line after if its last child has a blank line after
-		let grandchild = child.children?.at(-1);
-		if (grandchild?.blankAfter) {
+		let grandchild = getLastChild(child);
+		if (grandchild !== undefined && grandchild.blankAfter) {
 			child.blankAfter = true;
 		}
 
@@ -66,11 +71,12 @@ function isLooseList(node: MarkdownNode) {
 		}
 	}
 
-	for (let i = 0; i < node.children!.length; i++) {
-		let child = node.children![i]!;
-		for (let j = 0; j < child.children!.length - 1; j++) {
-			let first = child.children![j];
-			let second = child.children![j + 1];
+	for (let i = 0; i < children.length; i++) {
+		let child = children[i];
+		let childChildren = getChildren(child);
+		for (let j = 0; j < childChildren.length - 1; j++) {
+			let first = childChildren[j];
+			let second = childChildren[j + 1];
 			if (first.block && first.blankAfter && second.block) {
 				loose = true;
 				break;

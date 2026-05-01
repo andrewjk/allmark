@@ -6,6 +6,7 @@ import { ANGLE_RIGHT_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, hasChildren } from "../utils/nodeUtils";
 
 const rule: BlockRule = {
 	name: "block_quote",
@@ -65,7 +66,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let quote = newBlock("block_quote", state.i, state.line, ">", quoteIndent);
 
-		parent.children!.push(quote);
+		appendChild(parent, quote);
 		state.openNodes.push(quote);
 
 		movePastMarker(1, state);
@@ -102,8 +103,8 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 
 function close(state: BlockParserState, node: MarkdownNode) {
 	// Swallow blank lines
-	if (state.hasBlankLine && node.children !== undefined && node.children.length > 0) {
-		node.children.at(-1)!.blankAfter = true;
+	if (state.hasBlankLine && hasChildren(node)) {
+		getLastChild(node)!.blankAfter = true;
 		state.hasBlankLine = false;
 	}
 }

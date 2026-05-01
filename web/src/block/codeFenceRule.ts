@@ -9,6 +9,7 @@ import getEndOfLine from "../utils/getEndOfLine";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, hasChildren } from "../utils/nodeUtils";
 
 const rule: BlockRule = {
 	name: "code_fence",
@@ -140,12 +141,12 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			state.i = end;
 
-			if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-				parent.children.at(-1)!.blankAfter = true;
+			if (state.hasBlankLine && hasChildren(parent)) {
+				getLastChild(parent)!.blankAfter = true;
 				state.hasBlankLine = false;
 			}
 
-			parent.children!.push(code);
+			appendChild(parent, code);
 			state.openNodes.push(code);
 
 			return true;

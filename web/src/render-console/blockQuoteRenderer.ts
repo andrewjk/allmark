@@ -1,6 +1,7 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
+import { forEachChild } from "../utils/nodeUtils";
 import ANSI from "./ansi";
 
 const renderer: Renderer = {
@@ -17,16 +18,14 @@ function render(node: MarkdownNode, state: RendererState): void {
 			state.output += `${style}┃ ${reset}${line}\n`;
 		}
 	}
-	if (node.children) {
-		for (const child of node.children) {
-			const lines = renderNodeToString(child, state);
-			for (const line of lines.split("\n")) {
-				if (line) {
-					state.output += `${style}┃${reset} ${line}\n`;
-				}
+	forEachChild(node, (child) => {
+		const lines = renderNodeToString(child, state);
+		for (const line of lines.split("\n")) {
+			if (line) {
+				state.output += `${style}┃${reset} ${line}\n`;
 			}
 		}
-	}
+	});
 	state.output += "\n";
 }
 

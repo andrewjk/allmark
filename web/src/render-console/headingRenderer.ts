@@ -1,6 +1,7 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
+import { getFirstChild } from "../utils/nodeUtils";
 import ANSI from "./ansi";
 import renderChildren from "./renderChildren";
 
@@ -17,8 +18,9 @@ function render(node: MarkdownNode, state: RendererState): void {
 	let level = node.markup.length;
 
 	state.output += `${ANSI.dim}${"#".repeat(level)}${reset} ${style}`;
-	if (node.children !== undefined && node.children.length > 0) {
-		renderChildren(node.children[0], state);
+	let firstChild = getFirstChild(node);
+	if (firstChild !== undefined) {
+		renderChildren(firstChild, state);
 	}
 	state.output += `${reset}\n\n`;
 }

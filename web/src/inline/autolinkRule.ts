@@ -6,6 +6,7 @@ import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
 import newInline from "../utils/newInline";
 import newText from "../utils/newText";
+import { appendChild, appendChildWithText } from "../utils/nodeUtils";
 
 const rule: InlineRule = {
 	name: "autolink",
@@ -37,9 +38,8 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				let content = escapeHtml(linkMatch[0]);
 				let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
 				text.length = linkMatch[0].length;
-				parent.children!.push(text);
+				appendChild(parent, text);
 				state.i += linkMatch[0].length;
-
 				return true;
 			}
 
@@ -50,14 +50,14 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				state.indent,
 			);
 			let link = newInline("link", state.parentIndex + state.i, state.line, "", state.indent);
-			link.children = [text];
 
 			url = decodeEntities(url);
 			url = encodeURI(decodeURI(url));
 
 			link.info = url;
 			link.length = linkMatch[0].length;
-			parent.children!.push(link);
+
+			appendChildWithText(parent, link, text);
 
 			state.i += linkMatch[0].length;
 
@@ -72,9 +72,8 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				let content = escapeHtml(emailMatch[0]);
 				let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
 				text.length = emailMatch[0].length;
-				parent.children!.push(text);
+				appendChild(parent, text);
 				state.i += emailMatch[0].length;
-
 				return true;
 			}
 
@@ -85,13 +84,13 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				state.indent,
 			);
 			let link = newInline("link", state.parentIndex + state.i, state.line, "", state.indent);
-			link.children = [text];
 
 			url = `mailto:${encodeURI(url)}`;
 
 			link.info = url;
 			link.length = emailMatch[0].length;
-			parent.children!.push(link);
+
+			appendChildWithText(parent, link, text);
 
 			state.i += emailMatch[0].length;
 

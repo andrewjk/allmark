@@ -6,6 +6,7 @@ import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, hasChildren } from "../utils/nodeUtils";
 
 const rule: BlockRule = {
 	name: "alert",
@@ -60,12 +61,10 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			let quote = newBlock("alert", state.i, state.line, match[1].toLowerCase(), quoteIndent);
 
-			parent.children!.push(quote);
+			appendChild(parent, quote);
 			state.openNodes.push(quote);
 
 			state.i = getEndOfLine(state);
-
-			//parseBlock(state, quote);
 
 			return true;
 		}
@@ -97,8 +96,8 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 
 function close(state: BlockParserState, node: MarkdownNode) {
 	// Swallow blank lines
-	if (state.hasBlankLine && node.children !== undefined && node.children.length > 0) {
-		node.children.at(-1)!.blankAfter = true;
+	if (state.hasBlankLine && hasChildren(node)) {
+		getLastChild(node)!.blankAfter = true;
 		state.hasBlankLine = false;
 	}
 }

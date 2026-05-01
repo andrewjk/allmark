@@ -6,6 +6,7 @@ import { BRACKET_OPEN_CODE, BRACKET_CLOSE_CODE, CARET_CODE, COLON_CODE } from ".
 import isEscaped from "../utils/isEscaped";
 import isSpace from "../utils/isSpace";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, hasChildren } from "../utils/nodeUtils";
 import normalizeLabel from "../utils/normalizeLabel";
 
 const rule: BlockRule = {
@@ -93,17 +94,18 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		}
 
 		let ref = newBlock("footnote_ref", start, state.line, "", 0);
+		ref.info = label;
 		state.footnotes[label] = {
 			label,
 			content: ref,
 		};
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(ref);
+		appendChild(parent, ref);
 		state.openNodes.push(ref);
 
 		state.hasBlankLine = false;
@@ -115,10 +117,13 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	}
 
 	// Add another paragraph if there is an indent of at least 4 characters
-	if (state.hasBlankLine && state.indent >= 4 && parent.children?.at(-1)?.type === "footnote_ref") {
-		state.indent = 0;
-		parseBlock(state, parent.children.at(-1)!);
-		return true;
+	if (state.hasBlankLine && state.indent >= 4) {
+		let lastChild = getLastChild(parent);
+		if (lastChild !== undefined && lastChild.type === "footnote_ref") {
+			state.indent = 0;
+			parseBlock(state, lastChild);
+			return true;
+		}
 	}
 
 	return false;

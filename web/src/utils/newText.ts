@@ -20,5 +20,8 @@ export default function newText(
 		acceptsContent: false,
 		maybeContinuing: false,
 		blankAfter: false,
+		depth: 0,
+		previousNode: undefined,
+		nextNode: undefined,
 	};
 }

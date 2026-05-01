@@ -4,6 +4,7 @@ import type MarkdownNode from "../types/MarkdownNode";
 import { BACKSLASH_CODE, SPACE_CODE } from "../utils/charCodes";
 import isNewLine from "../utils/isNewLine";
 import newInline from "../utils/newInline";
+import { appendChild } from "../utils/nodeUtils";
 
 const rule: InlineRule = {
 	name: "hard_break",
@@ -24,7 +25,7 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 		let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "\\", 0);
 		hb.length = 2;
 		state.i += 2;
-		parent.children!.push(hb);
+		appendChild(parent, hb);
 		return true;
 	}
 
@@ -45,7 +46,7 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 			let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "  ", 0);
 			hb.length = end - state.i;
 			state.i = end + 1;
-			parent.children!.push(hb);
+			appendChild(parent, hb);
 			return true;
 		}
 	}

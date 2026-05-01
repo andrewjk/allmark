@@ -8,6 +8,7 @@ import isUnicodePunctuation from "../utils/isUnicodePunctuation";
 import isUnicodeSpace from "../utils/isUnicodeSpace";
 import newInline from "../utils/newInline";
 import newText from "../utils/newText";
+import { appendChild, getLastDescendant, spliceTextNode } from "../utils/nodeUtils";
 
 const rule: InlineRule = {
 	name: "emphasis",
@@ -110,10 +111,13 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 			if (canClose) {
 				// Convert the text node into an emphasis node with a new text child
 				// followed by the other children of the parent (if any)
-				let i = parent.children!.length;
-				while (i--) {
-					let lastNode = parent.children![i];
-					if (lastNode.index === state.parentIndex + startDelimiter.start) {
+				let lastDescendant = getLastDescendant(parent)!;
+				let lastNode = lastDescendant;
+				while (lastNode !== parent) {
+					if (
+						lastNode.depth === parent.depth + 1 &&
+						lastNode.index === state.parentIndex + startDelimiter.start
+					) {
 						// If it's longer than the last delimiter, or longer
 						// than two, save some for the next go-round
 						markup = markup.substring(0, Math.min(startDelimiter.length, 2));
@@ -121,8 +125,6 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 						let content = lastNode.content.slice(startDelimiter.length);
 						let text = newText(lastNode.index, lastNode.line, content, 0);
 						text.length = text.content.length;
-
-						let movedNodes = parent.children!.splice(i + 1);
 
 						if (markup.length < startDelimiter.length) {
 							let remainingStart = lastNode.index + startDelimiter.length - markup.length;
@@ -138,13 +140,28 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 								markup,
 								0,
 							);
-							emphasis.children = [text, ...movedNodes];
 							emphasis.length = state.parentIndex + state.i - remainingStart + markup.length;
-							parent.children!.push(emphasis);
+
+							text.previousNode = emphasis;
+							text.nextNode = lastNode.nextNode;
+							emphasis.previousNode = lastNode;
+							emphasis.nextNode = text;
+							lastNode.nextNode = emphasis;
+
+							let nextNode = lastNode;
+							while (nextNode !== lastDescendant) {
+								nextNode.depth++;
+								nextNode = nextNode.nextNode!;
+							}
+							lastDescendant.depth++;
+
+							lastNode.depth = parent.depth + 1;
+							emphasis.depth = parent.depth + 1;
+							text.depth = emphasis.depth + 1;
 						} else {
 							lastNode.type = markup.length === 2 ? "strong" : "emphasis";
 							lastNode.markup = markup;
-							lastNode.children = [text, ...movedNodes];
+							spliceTextNode(parent, text, lastNode, lastDescendant);
 							lastNode.length = state.parentIndex + state.i - lastNode.index + markup.length;
 						}
 
@@ -169,6 +186,8 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 
 						return true;
 					}
+
+					lastNode = lastNode.previousNode!;
 				}
 			}
 		}
@@ -181,7 +200,7 @@ function testEmphasis(state: InlineParserState, parent: MarkdownNode): boolean {
 		if (canOpen) {
 			// Add a new text node which may turn into emphasis
 			let text = newText(state.parentIndex + start, state.line, markup, 0);
-			parent.children!.push(text);
+			appendChild(parent, text);
 
 			state.i += markup.length;
 			state.delimiters.push({

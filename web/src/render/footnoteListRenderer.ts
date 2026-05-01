@@ -17,7 +17,10 @@ function render(_node: MarkdownNode, state: RendererState): void {
 		let id = `fn${label}`;
 		let href = `#fnref${label}`;
 		state.output += `<li id="${id}">`;
-		renderChildren(node, state);
+		let refNode = state.footnoteRefs[node.info!];
+		if (refNode !== undefined) {
+			renderChildren(refNode, state);
+		}
 		if (state.output.endsWith("</p>\n")) {
 			state.output = state.output.slice(0, state.output.length - 5);
 		}

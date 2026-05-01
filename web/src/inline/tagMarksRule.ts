@@ -5,6 +5,7 @@ import addMarkupAsText from "../utils/addMarkupAsText";
 import isUnicodePunctuation from "../utils/isUnicodePunctuation";
 import isUnicodeSpace from "../utils/isUnicodeSpace";
 import newText from "../utils/newText";
+import { appendChild, getLastDescendant, spliceTextNode } from "../utils/nodeUtils";
 
 export default function testTagMarks(
 	name: string,
@@ -83,24 +84,32 @@ export default function testTagMarks(
 			if (startDelimiter !== undefined) {
 				// Convert the text node into a delimited node with a new text
 				// child followed by the other children of the parent (if any)
-				let i = parent.children!.length;
-				while (i--) {
-					let lastNode = parent.children![i];
-					if (lastNode.index === state.parentIndex + startDelimiter.start) {
+				let lastDescendant = getLastDescendant(parent)!;
+				let lastNode = lastDescendant;
+				while (lastNode !== parent) {
+					if (
+						lastNode.depth === parent.depth + 1 &&
+						lastNode.index === state.parentIndex + startDelimiter.start
+					) {
 						let content = lastNode.content.slice(startDelimiter.length);
 						let text = newText(lastNode.index, lastNode.line, content, 0);
 						text.length = text.content.length;
 
+						// Convert the previous node to the tag type
 						lastNode.type = name;
 						lastNode.markup = markup;
-						lastNode.children = [text, ...parent.children!.splice(i + 1)];
 						lastNode.length = state.parentIndex + state.i - lastNode.index + markup.length;
+
+						// Move the parent's subsequent children under the new link node
+						spliceTextNode(parent, text, lastNode, lastDescendant);
 
 						state.i += markup.length;
 						startDelimiter.handled = true;
 
 						return true;
 					}
+
+					lastNode = lastNode.previousNode!;
 				}
 			}
 		}
@@ -108,7 +117,7 @@ export default function testTagMarks(
 		if (leftFlanking) {
 			// Add a new text node which may turn into a delimiter
 			let text = newText(state.parentIndex + start, state.line, markup, 0);
-			parent.children!.push(text);
+			appendChild(parent, text);
 
 			state.i += markup.length;
 			state.delimiters.push({ markup: char, start, length: markup.length, precedence });

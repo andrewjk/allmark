@@ -6,6 +6,7 @@ import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
 import isNewLine from "../utils/isNewLine";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, hasChildren } from "../utils/nodeUtils";
 import normalizeLabel from "../utils/normalizeLabel";
 import parseLinkBlock from "../utils/parseLinkBlock";
 
@@ -97,12 +98,12 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let ref = newBlock("link_ref", start, state.line, "", 0);
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
+		if (state.hasBlankLine && hasChildren(parent)) {
+			getLastChild(parent)!.blankAfter = true;
 			state.hasBlankLine = false;
 		}
 
-		parent.children!.push(ref);
+		appendChild(parent, ref);
 
 		if (!isNewLine(state.src.charCodeAt(state.i - 1))) {
 			state.i = getEndOfLine(state);

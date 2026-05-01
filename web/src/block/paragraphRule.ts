@@ -3,6 +3,7 @@ import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import newBlock from "../utils/newBlock";
+import { appendChild, getLastChild, hasChildren } from "../utils/nodeUtils";
 
 const rule: BlockRule = {
 	name: "paragraph",
@@ -40,12 +41,12 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	paragraph.content = content;
 	state.i = endOfLine;
 
-	if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-		parent.children.at(-1)!.blankAfter = true;
+	if (state.hasBlankLine && hasChildren(parent)) {
+		getLastChild(parent)!.blankAfter = true;
 		state.hasBlankLine = false;
 	}
 
-	parent.children!.push(paragraph);
+	appendChild(parent, paragraph);
 	state.openNodes.push(paragraph);
 
 	return true;

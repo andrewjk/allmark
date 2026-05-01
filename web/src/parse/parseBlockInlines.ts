@@ -4,6 +4,7 @@ import type InlineRule from "../types/InlineRule";
 import type LinkReference from "../types/LinkReference";
 import type MarkdownNode from "../types/MarkdownNode";
 import newText from "../utils/newText";
+import { appendChild } from "../utils/nodeUtils";
 import parseInline from "./parseInline";
 
 export default function parseBlockInlines(
@@ -30,7 +31,7 @@ export default function parseBlockInlines(
 			}
 		}
 		let text = newText(parent.index, parent.line, content, 0);
-		parent.children!.push(text);
+		appendChild(parent, text);
 		return;
 	} else if (parent.type === "code_fence") {
 		// "Fences can be indented. If the opening fence is indented, content lines will
@@ -48,7 +49,7 @@ export default function parseBlockInlines(
 			}
 		}
 		let text = newText(parent.index, parent.line, content, 0);
-		parent.children!.push(text);
+		appendChild(parent, text);
 		return;
 	}
 
@@ -68,13 +69,4 @@ export default function parseBlockInlines(
 	};
 
 	parseInline(state, parent);
-
-	// TODO: Do this first so we don't have to check whether it's a block?
-	if (parent.children !== undefined) {
-		for (let child of parent.children) {
-			if (child.block) {
-				parseBlockInlines(child, rules, refs, footnotes);
-			}
-		}
-	}
 }

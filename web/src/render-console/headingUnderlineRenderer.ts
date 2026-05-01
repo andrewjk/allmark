@@ -1,6 +1,7 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
+import { forEachChild } from "../utils/nodeUtils";
 import ANSI from "./ansi";
 import renderChildren from "./renderChildren";
 
@@ -37,8 +38,9 @@ function getPlainTextLength(node: MarkdownNode): number {
 	if (node.type === "text") {
 		return node.content.length || 0;
 	}
-	if (node.children) {
-		return node.children.reduce((sum, child) => sum + getPlainTextLength(child), 0);
-	}
-	return 0;
+	let length = 0;
+	forEachChild(node, (child) => {
+		length += getPlainTextLength(child);
+	});
+	return length;
 }

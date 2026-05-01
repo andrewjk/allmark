@@ -1,5 +1,6 @@
 export default interface MarkdownNode {
 	type: string;
+	/** Whether this node represents a block-level item (heading, blockquote, paragraph etc) */
 	block: boolean;
 	/** The starting index of the source text for this node */
 	index: number;
@@ -17,9 +18,6 @@ export default interface MarkdownNode {
 	indent: number;
 	/** For list item nodes, the number of (logical, not physical) spaces its content starts after */
 	subindent: number;
-	/** Whether this node is a tight list item */
-	//tight: boolean;
-	// TODO: booleans should be flags! Also, I'm not sure whether all combinations are needed?
 	/** Whether this node is followed by a blank line */
 	blankAfter: boolean;
 	/** Whether this node contains plain text content, rather than parsed Markdown */
@@ -30,5 +28,8 @@ export default interface MarkdownNode {
 	info?: string;
 	/** The title for a link */
 	title?: string;
-	children?: MarkdownNode[];
+
+	depth: number;
+	previousNode?: MarkdownNode;
+	nextNode?: MarkdownNode;
 }
