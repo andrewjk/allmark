@@ -1,6 +1,7 @@
 import type MarkdownNode from "../types/MarkdownNode";
 import type Renderer from "../types/Renderer";
 import type RendererState from "../types/RendererState";
+import ANSI from "./ansi";
 import renderChildren from "./renderChildren";
 
 const renderer: Renderer = {
@@ -10,21 +11,21 @@ const renderer: Renderer = {
 export default renderer;
 
 function render(_node: MarkdownNode, state: RendererState): void {
-	state.output += `<section class="footnotes">\n<ol>\n`;
+	if (state.footnotes.length === 0) {
+		return;
+	}
+	state.output += `\n${ANSI.dim}---${ANSI.reset}\n`;
 	let number = 1;
 	for (let node of state.footnotes) {
 		let label = number++;
-		let id = `fn${label}`;
-		let href = `#fnref${label}`;
-		state.output += `<li id="${id}">`;
+		state.output += `${ANSI.dim}[${label}]${ANSI.reset} `;
 		let refNode = state.footnoteRefs[node.info!];
 		if (refNode !== undefined) {
 			renderChildren(refNode, state);
 		}
-		if (state.output.endsWith("</p>\n")) {
-			state.output = state.output.slice(0, state.output.length - 5);
+		if (state.output.endsWith("\n")) {
+			state.output = state.output.slice(0, -1);
 		}
-		state.output += ` <a href="${href}" class="footnote-backref">↩</a></p>\n</li>\n`;
+		state.output += "\n";
 	}
-	state.output += `</ol>\n</section>`;
 }

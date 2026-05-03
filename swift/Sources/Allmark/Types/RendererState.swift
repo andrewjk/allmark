@@ -8,6 +8,8 @@ public struct RendererState {
 	public var output: String
 	/// Footnote nodes to render at the end.
 	public var footnotes: [MarkdownNode]
+	/// Footnote reference definitions, keyed by label.
+	public var footnoteRefs: [String: MarkdownNode]
 	/// Current list nesting depth.
 	public var listDepth: Int
 
@@ -15,6 +17,7 @@ public struct RendererState {
 		self.renderersMap = renderersMap
 		self.output = output
 		self.footnotes = footnotes
+		footnoteRefs = [:]
 		self.listDepth = listDepth
 	}
 }

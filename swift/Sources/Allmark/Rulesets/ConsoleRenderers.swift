@@ -12,6 +12,8 @@ public let consoleRenderers: [Renderer] = [
 	consoleDeletionRenderer,
 	consoleEmphasisRenderer,
 	consoleFootnoteRenderer,
+	consoleFootnoteRefRenderer,
+	consoleFootnoteListRenderer,
 	consoleHardBreakRenderer,
 	consoleHeadingRenderer,
 	consoleHeadingUnderlineRenderer,

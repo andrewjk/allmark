@@ -11,6 +11,8 @@ const commentRenderer = @import("../render-console/consoleCommentRenderer.zig").
 const deletionRenderer = @import("../render-console/consoleDeletionRenderer.zig").consoleDeletionRenderer;
 const emphasisRenderer = @import("../render-console/consoleEmphasisRenderer.zig").consoleEmphasisRenderer;
 const footnoteRenderer = @import("../render-console/consoleFootnoteRenderer.zig").consoleFootnoteRenderer;
+const footnoteRefRenderer = @import("../render-console/consoleFootnoteRefRenderer.zig").consoleFootnoteRefRenderer;
+const footnoteListRenderer = @import("../render-console/consoleFootnoteListRenderer.zig").consoleFootnoteListRenderer;
 const hardBreakRenderer = @import("../render-console/consoleHardBreakRenderer.zig").consoleHardBreakRenderer;
 const headingRenderer = @import("../render-console/consoleHeadingRenderer.zig").consoleHeadingRenderer;
 const headingUnderlineRenderer = @import("../render-console/consoleHeadingUnderlineRenderer.zig").consoleHeadingUnderlineRenderer;
@@ -35,7 +37,7 @@ pub const consoleRenderers = RendererSet{
 };
 
 pub fn init(allocator: std.mem.Allocator) !RendererSet {
-    const renderers = try allocator.alloc(*const Renderer, 28);
+    const renderers = try allocator.alloc(*const Renderer, 30);
     renderers[0] = &alertRenderer;
     renderers[1] = &blockQuoteRenderer;
     renderers[2] = &codeBlockRenderer;
@@ -45,25 +47,27 @@ pub fn init(allocator: std.mem.Allocator) !RendererSet {
     renderers[6] = &deletionRenderer;
     renderers[7] = &emphasisRenderer;
     renderers[8] = &footnoteRenderer;
-    renderers[9] = &hardBreakRenderer;
-    renderers[10] = &headingRenderer;
-    renderers[11] = &headingUnderlineRenderer;
-    renderers[12] = &highlightRenderer;
-    renderers[13] = &htmlBlockRenderer;
-    renderers[14] = &htmlSpanRenderer;
-    renderers[15] = &imageRenderer;
-    renderers[16] = &insertionRenderer;
-    renderers[17] = &linkRenderer;
-    renderers[18] = &listBulletedRenderer;
-    renderers[19] = &listOrderedRenderer;
-    renderers[20] = &listTaskItemRenderer;
-    renderers[21] = &paragraphRenderer;
-    renderers[22] = &strikethroughRenderer;
-    renderers[23] = &strongRenderer;
-    renderers[24] = &tableRenderer;
-    renderers[25] = &textRenderer;
-    renderers[26] = &thematicBreakRenderer;
-    renderers[27] = &htmlBlockRenderer;
+    renderers[9] = &footnoteRefRenderer;
+    renderers[10] = &footnoteListRenderer;
+    renderers[11] = &hardBreakRenderer;
+    renderers[12] = &headingRenderer;
+    renderers[13] = &headingUnderlineRenderer;
+    renderers[14] = &highlightRenderer;
+    renderers[15] = &htmlBlockRenderer;
+    renderers[16] = &htmlSpanRenderer;
+    renderers[17] = &imageRenderer;
+    renderers[18] = &insertionRenderer;
+    renderers[19] = &linkRenderer;
+    renderers[20] = &listBulletedRenderer;
+    renderers[21] = &listOrderedRenderer;
+    renderers[22] = &listTaskItemRenderer;
+    renderers[23] = &paragraphRenderer;
+    renderers[24] = &strikethroughRenderer;
+    renderers[25] = &strongRenderer;
+    renderers[26] = &tableRenderer;
+    renderers[27] = &textRenderer;
+    renderers[28] = &thematicBreakRenderer;
+    renderers[29] = &htmlBlockRenderer;
 
     return RendererSet{
         .renderers = renderers,

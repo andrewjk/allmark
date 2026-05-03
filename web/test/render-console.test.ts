@@ -400,7 +400,9 @@ test("renders footnote", () => {
 	const input = "Text [^1]\n\n[^1]: http://example.com";
 	const doc = parse(input, gfm);
 	const output = render(doc, consoleRenderers);
-	expect(output).toBe("Text \x1b[2m[1]\x1b[0m\n");
+	expect(output).toBe(
+		"Text \x1b[2m[1]\x1b[0m\n\n\n\x1b[2m---\x1b[0m\n\x1b[2m[1]\x1b[0m \x1b[4m\x1b[34mhttp://example.com\x1b[0m \x1b[2m(http://example.com)\x1b[0m\n",
+	);
 });
 
 test("renders highlight", () => {

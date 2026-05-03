@@ -6,6 +6,7 @@ export default interface RendererState {
 
 	output: string;
 	footnotes: MarkdownNode[];
+	footnoteRefs: Record<string, MarkdownNode>;
 
 	listDepth: number;
 }

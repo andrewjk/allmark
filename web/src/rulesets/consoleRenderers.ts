@@ -6,6 +6,8 @@ import codeSpanRenderer from "../render-console/codeSpanRenderer";
 import commentRenderer from "../render-console/commentRenderer";
 import deletionRenderer from "../render-console/deletionRenderer";
 import emphasisRenderer from "../render-console/emphasisRenderer";
+import footnoteListRenderer from "../render-console/footnoteListRenderer";
+import footnoteRefRenderer from "../render-console/footnoteRefRenderer";
 import footnoteRenderer from "../render-console/footnoteRenderer";
 import hardBreakRenderer from "../render-console/hardBreakRenderer";
 import headingRenderer from "../render-console/headingRenderer";
@@ -39,6 +41,8 @@ const renderers: Renderer[] = [
 	deletionRenderer,
 	emphasisRenderer,
 	footnoteRenderer,
+	footnoteRefRenderer,
+	footnoteListRenderer,
 	hardBreakRenderer,
 	headingRenderer,
 	headingUnderlineRenderer,

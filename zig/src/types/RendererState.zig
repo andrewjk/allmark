@@ -6,6 +6,7 @@ pub const RendererState = struct {
 
     output: std.ArrayList(u8),
     footnotes: std.ArrayList(*const MarkdownNode),
+    footnoteRefs: std.StringHashMap(*const MarkdownNode),
 
     listDepth: usize = 0,
 };

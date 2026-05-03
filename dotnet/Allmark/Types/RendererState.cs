@@ -11,5 +11,6 @@ public record RendererState
 
     public required StringBuilder Output { get; set; }
     public required List<MarkdownNode> Footnotes { get; set; }
+    public required Dictionary<string, MarkdownNode> FootnoteRefs { get; set; }
     public required int ListDepth { get; set; }
 }

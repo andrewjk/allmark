@@ -93,6 +93,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		}
 
 		let ref = newBlock("footnote_ref", start, state.line, "", 0);
+		ref.info = label;
 		state.footnotes[label] = {
 			label,
 			content: ref,

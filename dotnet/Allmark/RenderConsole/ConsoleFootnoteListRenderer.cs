@@ -2,38 +2,39 @@ namespace Allmark.Render;
 
 using Allmark.Types;
 
-public static class FootnoteListRenderer
+public static class ConsoleFootnoteListRenderer
 {
     public static OutputRenderer Create()
     {
         return new OutputRenderer
         {
             Name = "footnote_list",
-            Render = Render,
+            Render = (node, state, decode) => Render(node, state),
         };
     }
 
-    public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
+    public static void Render(MarkdownNode node, RendererState state)
     {
-        state.Output.Append("<section class=\"footnotes\">\n<ol>\n");
+        if (state.Footnotes.Count == 0)
+        {
+            return;
+        }
+        state.Output.Append($"\n{Ansi.Dim}---{Ansi.Reset}\n");
         var number = 1;
         foreach (var footnote in state.Footnotes)
         {
             var label = number++;
-            var id = $"fn{label}";
-            var href = $"#fnref{label}";
-            state.Output.Append($"<li id=\"{id}\">");
+            state.Output.Append($"{Ansi.Dim}[{label}]{Ansi.Reset} ");
             if (footnote.Info != null && state.FootnoteRefs.TryGetValue(footnote.Info, out var refNode))
             {
                 RenderChildren.Execute(refNode, state);
             }
             var output = state.Output.ToString();
-            if (output.EndsWith("</p>\n"))
+            if (output.EndsWith("\n"))
             {
-                state.Output.Length -= 5;
+                state.Output.Length -= 1;
             }
-            state.Output.Append($" <a href=\"{href}\" class=\"footnote-backref\">↩</a></p>\n</li>\n");
+            state.Output.Append("\n");
         }
-        state.Output.Append("</ol>\n</section>");
     }
 }

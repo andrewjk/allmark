@@ -552,7 +552,7 @@ public class RenderConsoleTests
     public void RendersFootnote()
     {
         var input = "Text [^1]\n\n[^1]: http://example.com";
-        var expected = "Text \x1b[2m[1]\x1b[0m\n";
+        var expected = "Text \x1b[2m[1]\x1b[0m\n\n\n\x1b[2m---\x1b[0m\n\x1b[2m[1]\x1b[0m \x1b[34m\x1b[4mhttp://example.com\x1b[0m \x1b[2m(http://example.com)\x1b[0m\n";
         var doc = Parser.Execute(input, Gfm.RuleSet);
         var output = Renderer.Execute(doc, ConsoleRenderers.Renderers);
         Assert.AreEqual(expected, output);

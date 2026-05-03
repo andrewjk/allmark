@@ -47,10 +47,12 @@ pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers:
         .renderersMap = renderersMap,
         .output = std.ArrayList(u8).initCapacity(allocator, if (useConsole) 4096 else 1024) catch unreachable,
         .footnotes = std.ArrayList(*const MarkdownNode).initCapacity(allocator, 8) catch unreachable,
+        .footnoteRefs = std.StringHashMap(*const MarkdownNode).init(allocator),
         .listDepth = 0,
     };
     defer state.output.deinit(allocator);
     defer state.footnotes.deinit(allocator);
+    defer state.footnoteRefs.deinit();
 
     if (useConsole) {
         try renderChildrenConsole(doc, &state, true);

@@ -14,6 +14,7 @@ public static class Renderer
             RenderersMap = renderers.ToDictionary(r => r.Name),
             Output = new StringBuilder(),
             Footnotes = new List<MarkdownNode>(),
+            FootnoteRefs = new Dictionary<string, MarkdownNode>(),
             ListDepth = 0
         };
 

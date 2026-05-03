@@ -16,6 +16,7 @@ public static class HtmlRenderers
         DeletionRenderer.Create(),
         EmphasisRenderer.Create(),
         FootnoteRenderer.Create(),
+        FootnoteRefRenderer.Create(),
         FootnoteListRenderer.Create(),
         HardBreakRenderer.Create(),
         HeadingRenderer.Create(),

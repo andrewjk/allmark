@@ -12,6 +12,7 @@ public let htmlRenderers: [Renderer] = [
 	deletionRenderer,
 	emphasisRenderer,
 	footnoteRenderer,
+	footnoteRefRenderer,
 	footnoteListRenderer,
 	hardBreakRenderer,
 	headingRenderer,

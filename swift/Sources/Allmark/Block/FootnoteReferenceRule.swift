@@ -92,6 +92,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 			markup: "",
 			indent: 0
 		)
+		ref.info = label
 		state.footnotes[label] = FootnoteReference(label: label, content: ref)
 
 		if state.hasBlankLine && !parent.children.isEmpty {

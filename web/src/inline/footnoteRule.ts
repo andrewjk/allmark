@@ -1,4 +1,3 @@
-import parseInline from "../parse/parseInline";
 import type Delimiter from "../types/Delimiter";
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
@@ -129,24 +128,7 @@ function testFootnoteClose(state: InlineParserState, parent: MarkdownNode) {
 					lastNode.type = "footnote";
 					lastNode.info = label;
 					lastNode.markup = `[^${label}]`;
-					lastNode.children = footnote.content.children;
 					lastNode.length = state.parentIndex + state.i - lastNode.index;
-
-					// Parse the footnote content for inline elements
-					let tempState: InlineParserState = {
-						rules: state.rules,
-						src: footnote.content.content,
-						i: 0,
-						line: lastNode.line,
-						lineStart: 0,
-						indent: 0,
-						isEscaped: false,
-						delimiters: [],
-						refs: state.refs,
-						footnotes: state.footnotes,
-						parentIndex: lastNode.index,
-					};
-					parseInline(tempState, lastNode);
 
 					return true;
 				}

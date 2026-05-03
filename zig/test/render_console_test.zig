@@ -974,7 +974,7 @@ test "renders deletion (strikethrough alternative)" {
 
 test "renders footnote" {
     const input = "Text [^1]\n\n[^1]: http://example.com";
-    const expected = "Text \x1b[2m[1]\x1b[0m\n";
+    const expected = "Text \x1b[2m[1]\x1b[0m\n\n\n\x1b[2m---\x1b[0m\n\x1b[2m[1]\x1b[0m \x1b[4m\x1b[34mhttp://example.com\x1b[0m \x1b[2m(http://example.com)\x1b[0m\n";
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);

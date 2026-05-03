@@ -82,6 +82,8 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         }
 
         const ref = newBlock(state.allocator, "footnote_ref", start, state.line, "", 0) catch unreachable;
+        const info_dup = state.allocator.dupe(u8, normalized) catch unreachable;
+        ref.info = info_dup;
 
         const footnoteRef = @import("../types/FootnoteReference.zig").FootnoteReference{
             .label = normalized,

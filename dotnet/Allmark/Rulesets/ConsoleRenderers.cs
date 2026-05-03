@@ -17,6 +17,8 @@ public static class ConsoleRenderers
         ConsoleDeletionRenderer.Create(),
         ConsoleEmphasisRenderer.Create(),
         ConsoleFootnoteRenderer.Create(),
+        ConsoleFootnoteRefRenderer.Create(),
+        ConsoleFootnoteListRenderer.Create(),
         ConsoleHardBreakRenderer.Create(),
         ConsoleHeadingRenderer.Create(),
         ConsoleHeadingUnderlineRenderer.Create(),
