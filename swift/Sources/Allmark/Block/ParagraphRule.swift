@@ -24,7 +24,7 @@ func testParagraphStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 
 	var hasNonWhitespace = false
 	for i in state.i ..< endOfLine {
-		if !src[i].isWhitespace {
+		if !isWhitespace(code: src[i]) {
 			hasNonWhitespace = true
 			break
 		}

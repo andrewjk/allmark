@@ -5,19 +5,19 @@ import Foundation
 func parseIndent(state: inout BlockParserState) {
 	let src = state.src
 
-	guard state.i < src.count, isSpace(code: Int(src[state.i].asciiValue ?? 0)) else {
+	guard state.i < src.count, isSpace(code: src[state.i]) else {
 		return
 	}
 
 	while state.i < src.count {
 		let char = src[state.i]
 
-		if char == " " {
+		if char == 0x20 /* \s */ {
 			state.indent += 1
-		} else if char == "\t" {
+		} else if char == 0x09 /* \t */ {
 			// Set spaces to the next tabstop of 4 characters
 			state.indent += 4 - (state.indent % 4)
-		} else if isNewLine(char: char) {
+		} else if isNewLine(code: char) {
 			state.hasBlankLine = true
 			break
 		} else {

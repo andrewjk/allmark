@@ -17,14 +17,14 @@ func testIndentStart(state: inout BlockParserState, parent _: MarkdownNode) -> B
 
 	let char = src[state.i]
 
-	if isSpace(code: Int(char.asciiValue ?? 0)) {
+	if isSpace(code: char) {
 		while state.i < src.count {
 			let currentChar = src[state.i]
 
-			if currentChar == " " {
+			if currentChar == 0x20 /* \s */ {
 				state.indent += 1
 				state.i += 1
-			} else if currentChar == "\t" {
+			} else if currentChar == 0x09 /* \t */ {
 				state.indent += 4 - (state.indent % 4)
 				state.i += 1
 			} else {

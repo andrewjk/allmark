@@ -22,7 +22,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 
 	let char = src[state.i]
 
-	if !state.isEscaped && state.indent <= 3 && char == "[" {
+	if !state.isEscaped && state.indent <= 3 && char == 0x5B /* [ */ {
 		// A footnote definition cannot interrupt a paragraph
 		if parent.type == "paragraph" && !parent.blankAfter {
 			return false
@@ -32,7 +32,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 		var start = state.i + 1
 
 		// Check for ^ that indicates a footnote (not a regular link reference)
-		if start >= src.count || src[start] != "^" {
+		if start >= src.count || src[start] != 0x5E /* ^ */ {
 			return false
 		}
 		start += 1
@@ -41,14 +41,14 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 		var label = ""
 		for i in start ..< src.count {
 			if !isEscaped(text: src, i: i) {
-				if src[i] == "]" {
+				if src[i] == 0x5D /* ] */ {
 					label = charToString(src, from: start, to: i)
 					start = i + 1
 					break
 				}
 
 				// Labels cannot contain brackets, unless they are backslash-escaped
-				if src[i] == "[" {
+				if src[i] == 0x5B /* [ */ {
 					return false
 				}
 			}
@@ -61,14 +61,14 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 			return false
 		}
 
-		if start >= src.count || src[start] != ":" {
+		if start >= src.count || src[start] != 0x3A /* : */ {
 			return false
 		}
 		start += 1
 
 		// Skip whitespace after colon
 		while start < src.count {
-			if isSpace(code: Int(src[start].asciiValue ?? 0)) {
+			if isSpace(code: src[start]) {
 				start += 1
 			} else {
 				break
@@ -132,8 +132,8 @@ func testFootnoteReferenceContinue(state: inout BlockParserState, node: Markdown
 	if openNode.type == "paragraph" {
 		if state.indent >= 4 ||
 			openNode.content.hasSuffix("  \n") ||
-			(state.i + 1 < state.src.count && state.src[state.i] == "[" &&
-				state.src[state.i + 1] != "^")
+			(state.i + 1 < state.src.count && state.src[state.i] == 0x5B /* [ */ &&
+				state.src[state.i + 1] != 0x5E /* ^ */ )
 		{
 			state.maybeContinue = true
 			node.maybeContinuing = true
@@ -142,9 +142,4 @@ func testFootnoteReferenceContinue(state: inout BlockParserState, node: Markdown
 	}
 
 	return false
-}
-
-// Helper for space checking (used in this file only)
-func isWhitespaceSpace(code: Int) -> Bool {
-	return code == 0x20 || code == 0x09
 }

@@ -1,12 +1,12 @@
 import Foundation
 
-func consumeSpaces(text: [Character], i: Int) -> String {
+func consumeSpaces(text: [UInt8], i: Int) -> String {
 	var result = ""
 	var index = i
 	while index < text.count {
 		let char = text[index]
-		if isSpace(code: Int(char.asciiValue ?? 0)) {
-			result.append(char)
+		if isSpace(code: char) {
+			result.append(Character(UnicodeScalar(char)))
 			index += 1
 		} else {
 			break

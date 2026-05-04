@@ -24,7 +24,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 			indent: 0
 		)
 		parent.children.append(newTextNode)
-	} else if isNewLine(char: char) {
+	} else if isNewLine(code: char) {
 		if let last = lastNode {
 			var content = last.content
 			while content.last?.isWhitespace == true {
@@ -36,12 +36,11 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	}
 
 	let currentLast = parent.children.last!
-	let code = Int(char.asciiValue ?? 0)
-	if isAlphaNumeric(code: code) {
+	if isAlphaNumeric(code: char) {
 		let start = state.i
 		state.i += 1
 		while state.i < src.count {
-			let nextCode = Int(src[state.i].asciiValue ?? 0)
+			let nextCode = src[state.i]
 			if isAlphaNumeric(code: nextCode) {
 				state.i += 1
 			} else {
@@ -50,8 +49,26 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		}
 		currentLast.content += charToString(src, from: start, to: state.i)
 	} else {
+		// For non-ASCII characters, we need to handle multi-byte UTF-8 sequences
+		// ASCII characters are 0-127, UTF-8 continuation bytes are 128-191
+		// UTF-8 start bytes are 192-247 (2-byte: 192-223, 3-byte: 224-239, 4-byte: 240-247)
+		let start = state.i
 		state.i += 1
-		currentLast.content += String(char)
+
+		// If this is a UTF-8 start byte (192-247), collect continuation bytes (128-191)
+		if char >= 192 && char <= 247 {
+			while state.i < src.count {
+				let nextByte = src[state.i]
+				// Continuation bytes are in range 128-191 (0x80-0xBF)
+				if nextByte >= 128 && nextByte <= 191 {
+					state.i += 1
+				} else {
+					break
+				}
+			}
+		}
+
+		currentLast.content += charToString(src, from: start, to: state.i)
 	}
 
 	currentLast.length = currentLast.content.count

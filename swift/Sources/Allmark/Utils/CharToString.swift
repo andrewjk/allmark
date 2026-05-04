@@ -1,13 +1,15 @@
 import Foundation
 
-func charToString(_ chars: [Character], from: Int, to: Int) -> String {
-	return String(chars[from ..< to])
+@inlinable func charToString(_ chars: [UInt8], from: Int, to: Int) -> String {
+	return String(bytes: chars[from ..< to], encoding: .utf8)!
 }
 
-func charToString(_ chars: [Character], from: Int) -> String {
-	return String(chars[from...])
+@inlinable func charToString(_ chars: [UInt8], from: Int) -> String {
+	return String(bytes: chars[from...], encoding: .utf8)!
 }
 
-func charToString(_ chars: ArraySlice<Character>) -> String {
-	return String(chars)
+@inlinable func charToString(_ string: String, from: Int, to: Int) -> String {
+	let start = string.index(string.startIndex, offsetBy: from)
+	let end = string.index(string.startIndex, offsetBy: to)
+	return String(string[start ..< end])
 }

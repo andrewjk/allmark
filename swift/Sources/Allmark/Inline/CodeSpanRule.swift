@@ -11,7 +11,7 @@ func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 	let char = src[state.i]
 
-	if !state.isEscaped && char == "`" {
+	if !state.isEscaped && char == 0x60 /* ` */ {
 		var openMatched = 1
 		var openEnd = state.i + 1
 

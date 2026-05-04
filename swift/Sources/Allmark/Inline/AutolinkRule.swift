@@ -25,7 +25,7 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 	let char = src[state.i]
 
-	if !state.isEscaped && char == "<" {
+	if !state.isEscaped && char == 0x3C /* < */ {
 		let tail = charToString(src, from: state.i)
 
 		// Try link match

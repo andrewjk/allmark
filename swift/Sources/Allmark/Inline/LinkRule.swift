@@ -13,17 +13,17 @@ func testLink(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	let char = src[state.i]
 
 	if !state.isEscaped {
-		if char == "[" {
+		if char == 0x5B /* [ */ {
 			return testLinkOpen(state: &state, parent: &parent)
 		}
 
-		if char == "!" && state.i + 1 < src.count {
-			if src[state.i + 1] == "[" {
+		if char == 0x21 /* ! */ && state.i + 1 < src.count {
+			if src[state.i + 1] == 0x5B /* [ */ {
 				return testImageOpen(state: &state, parent: &parent)
 			}
 		}
 
-		if char == "]" {
+		if char == 0x5D /* ] */ {
 			return testLinkClose(state: &state, parent: &parent)
 		}
 	}
@@ -127,8 +127,8 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 
 				let isLink = startDel.markup == "["
 
-				let hasInfo = state.i + 1 < src.count && src[state.i + 1] == "("
-				let hasRef = state.i + 1 < src.count && src[state.i + 1] == "["
+				let hasInfo = state.i + 1 < src.count && src[state.i + 1] == 0x28 /* ( */
+				let hasRef = state.i + 1 < src.count && src[state.i + 1] == 0x5B /* [ */
 
 				// "Full and compact references take precedence over shortcut references"
 				// "Inline links also take precedence"
@@ -139,7 +139,7 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 				} else if hasRef {
 					start += 1
 					for i in start ..< src.count {
-						if src[i] == "]" {
+						if src[i] == 0x5D /* ] */ {
 							// Lookup using the text between the [], or if there
 							// is no text, use the label
 							label = i - start > 0 ? charToString(src, from: start, to: i) : label

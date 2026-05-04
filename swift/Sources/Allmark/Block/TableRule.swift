@@ -27,7 +27,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 		let headers = headerRow.children.map { $0.info ?? "" }
 
 		var rowLength = endOfLine - state.i
-		if endOfLine > 0, state.src[endOfLine - 1] == "\n" {
+		if endOfLine > 0, state.src[endOfLine - 1] == 0x0A /* \n */ {
 			rowLength -= 1
 		}
 
@@ -78,32 +78,32 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 
 	let char = state.src[state.i]
 
-	if state.indent <= 3 && (char == "|" || char == "-" || char == ":") {
-		var cells: [String] = [char == ":" ? "left" : ""]
+	if state.indent <= 3 && (char == 0x7C /* | */ || char == 0x2D /* - */ || char == 0x3A /* : */ ) {
+		var cells: [String] = [char == 0x3A /* : */ ? "left" : ""]
 		var end = state.i + 1
 		var lastChar = char
 
 		while end < state.src.count {
 			let nextChar = state.src[end]
 
-			if nextChar == "|" {
+			if nextChar == 0x7C /* | */ {
 				cells.append("")
 				lastChar = nextChar
-			} else if nextChar == "-" {
+			} else if nextChar == 0x2D /* - */ {
 				lastChar = nextChar
-			} else if nextChar == ":" {
+			} else if nextChar == 0x3A /* : */ {
 				let x = cells.count - 1
-				if lastChar == "|" {
+				if lastChar == 0x7C /* | */ {
 					cells[x] = "left"
 				} else {
 					cells[x] = cells[x].isEmpty ? "right" : "center"
 				}
 				lastChar = nextChar
-			} else if isNewLine(char: nextChar) {
+			} else if isNewLine(code: nextChar) {
 				// Handle newline
 				end += 1
 				break
-			} else if isSpace(code: Int(nextChar.asciiValue ?? 0)) {
+			} else if isSpace(code: nextChar) {
 				// Continue past spaces
 			} else {
 				return false
@@ -111,7 +111,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 			end += 1
 		}
 
-		if lastChar == "|" {
+		if lastChar == 0x7C /* | */ {
 			cells.removeLast()
 		}
 
@@ -177,7 +177,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 			header.length = headerLength
 			mutableParent.children.append(header)
 
-			let headerSrc = charToString(Array(parent.content), from: 0, to: headerLength)
+			let headerSrc = charToString(parent.content, from: 0, to: headerLength)
 			let pipePositions = loadPipePositions(line: headerSrc)
 
 			let headerParts = splitByUnescapedPipe(headerContent)
@@ -246,7 +246,7 @@ private func loadPipePositions(line: String) -> [Int] {
 		if char == "|", !isEscaped(text: line, i: i) {
 			pipePositions.append(i)
 			haveEndPipe = true
-		} else if !isSpace(code: Int(char.asciiValue ?? 0)) {
+		} else if !isSpace(code: char.asciiValue ?? 0) {
 			// Make sure there's a start pipe position
 			if pipePositions.isEmpty {
 				pipePositions.append(0)

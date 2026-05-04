@@ -12,8 +12,8 @@ func testSuperscript(state: inout InlineParserState, parent: inout MarkdownNode)
 
 	let char = src[state.i]
 
-	if !state.isEscaped && char == "^" {
-		return testTagMarks(name: "superscript", char: "^", state: &state, parent: &parent, precedence: superscriptRule.precedence!)
+	if !state.isEscaped && char == 0x5E /* ^ */ {
+		return testTagMarks(name: "superscript", char: char, state: &state, parent: &parent, precedence: superscriptRule.precedence!)
 	}
 
 	return false

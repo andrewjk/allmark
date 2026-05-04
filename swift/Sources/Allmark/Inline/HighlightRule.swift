@@ -12,8 +12,8 @@ func testHighlight(state: inout InlineParserState, parent: inout MarkdownNode) -
 
 	let char = src[state.i]
 
-	if !state.isEscaped && char == "=" {
-		return testTagMarks(name: "highlight", char: "=", state: &state, parent: &parent, precedence: highlightRule.precedence!)
+	if !state.isEscaped && char == 0x3D /* = */ {
+		return testTagMarks(name: "highlight", char: char, state: &state, parent: &parent, precedence: highlightRule.precedence!)
 	}
 
 	return false
