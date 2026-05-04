@@ -2,7 +2,7 @@ import { type UserConfig, defineConfig } from "vite-plus";
 
 export default defineConfig({
 	fmt: {
-		ignorePatterns: ["/dist"],
+		ignorePatterns: ["/dist", "*.md"],
 		useTabs: true,
 		printWidth: 100,
 		sortImports: {},
