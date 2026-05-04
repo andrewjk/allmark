@@ -8,6 +8,7 @@ const std = @import("std");
 // know when a step doesn't need to be re-run).
 pub fn build(b: *std.Build) void {
     const mvzr = b.dependency("mvzr", .{});
+    const zbench = b.dependency("zbench", .{});
 
     // Standard target options allow the person running `zig build` to choose
     // what target to build for. Here we do not override the defaults, which
@@ -43,6 +44,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .imports = &.{
             .{ .name = "mvzr", .module = mvzr.module("mvzr") },
+            .{ .name = "zbench", .module = zbench.module("zbench") },
         },
     });
 
@@ -162,6 +164,28 @@ pub fn build(b: *std.Build) void {
     test_step.dependOn(&run_mod_tests.step);
     test_step.dependOn(&run_exe_tests.step);
     test_step.dependOn(&run_all_tests.step);
+
+    // Creates an executable for benchmarks
+    const bench_exe = b.addExecutable(.{
+        .name = "bench",
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("test/bench.zig"),
+            .target = target,
+            .optimize = optimize,
+            .imports = &.{
+                .{ .name = "allmark", .module = mod },
+                .{ .name = "zbench", .module = zbench.module("zbench") },
+            },
+        }),
+    });
+
+    b.installArtifact(bench_exe);
+
+    const run_bench = b.addRunArtifact(bench_exe);
+
+    // A top level step for running benchmarks
+    const bench_step = b.step("bench", "Run benchmarks");
+    bench_step.dependOn(&run_bench.step);
 
     // Just like flags, top level steps are also listed in the `--help` menu.
     //
