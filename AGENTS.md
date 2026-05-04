@@ -23,6 +23,12 @@ pnpm test -- --run      # Run tests once (CI mode)
 pnpm test -- testName   # Run single test by name pattern
 pnpm format             # Format with Prettier
 pnpm cli <input.md>     # Run CLI to convert MD to HTML
+pnpm bench              # Run Allmark-only benchmarks
+```
+
+### TypeScript Comparative Benchmarks (`/bench`)
+```bash
+pnpm bench              # Run comparative benchmarks (Allmark vs markdown-it, micromark, cmark-gfm)
 ```
 
 ### Swift (`/swift`)
@@ -30,6 +36,7 @@ pnpm cli <input.md>     # Run CLI to convert MD to HTML
 swift build                     # Build package
 swift test                      # Run tests
 swift test --filter testName    # Run single test
+swift test -c release --filter Bench.benchMarkdownToHtmlWithGfm  # Run benchmark in release mode
 swift-format --in-place --recursive Sources/ Tests/
 ```
 
@@ -39,6 +46,7 @@ dotnet build                    # Build solution
 dotnet test                     # Run tests
 dotnet test --filter "BasicParse"  # Run single test by name
 dotnet format Allmark.sln       # Format code
+dotnet run --project Allmark.Benchmarks/Allmark.Benchmarks.csproj  # Run benchmarks
 ```
 
 ### Zig (`/zig`)
@@ -46,6 +54,7 @@ dotnet format Allmark.sln       # Format code
 zig build                       # Build
 zig build test                  # Run all tests (no output means all tests succeeded)
 zig test test/parser_test.zig   # Run single test file
+zig build bench -Doptimize=ReleaseFast  # Run benchmarks in release mode
 ```
 
 ## TypeScript Code Style

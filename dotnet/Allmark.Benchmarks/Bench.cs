@@ -38,7 +38,7 @@ public class Bench
     {
         var doc = Parser.Execute(Markdown, Gfm.RuleSet);
         var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        
+
         Consume(html);
     }
 
