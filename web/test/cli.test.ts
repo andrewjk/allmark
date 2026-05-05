@@ -29,7 +29,7 @@ describe("CLI parseArgs", () => {
 			input: "input.md",
 			output: null,
 			ruleset: "extended",
-			format: "html",
+			format: "console",
 		});
 	});
 
@@ -49,14 +49,14 @@ describe("CLI parseArgs", () => {
 		resetMocks();
 		const args = ["input.md", "--ruleset", "core"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: null, ruleset: "core", format: "html" });
+		expect(result).toEqual({ input: "input.md", output: null, ruleset: "core", format: "console" });
 	});
 
 	test("parses input file with ruleset gfm", () => {
 		resetMocks();
 		const args = ["input.md", "--ruleset", "gfm"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: null, ruleset: "gfm", format: "html" });
+		expect(result).toEqual({ input: "input.md", output: null, ruleset: "gfm", format: "console" });
 	});
 
 	test("parses input file with ruleset extended", () => {
@@ -67,7 +67,7 @@ describe("CLI parseArgs", () => {
 			input: "input.md",
 			output: null,
 			ruleset: "extended",
-			format: "html",
+			format: "console",
 		});
 	});
 
@@ -111,7 +111,7 @@ describe("CLI parseArgs", () => {
 		resetMocks();
 		const args = ["input.md", "-r", "gfm"];
 		const result = parseArgs(args);
-		expect(result).toEqual({ input: "input.md", output: null, ruleset: "gfm", format: "html" });
+		expect(result).toEqual({ input: "input.md", output: null, ruleset: "gfm", format: "console" });
 	});
 
 	test("parses both shortcuts -o and -r", () => {

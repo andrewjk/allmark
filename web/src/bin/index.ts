@@ -19,7 +19,7 @@ export function printUsage(): void {
 	console.error("  input-file   Path to the markdown file to convert");
 	console.error("  -o, --output Path to output file (optional, prints to stdout by default)");
 	console.error("  -r, --ruleset Ruleset to use: core, gfm, or extended (default: extended)");
-	console.error("  -f, --format Output format: html or console (default: html)");
+	console.error("  -f, --format Output format: html or console (default: console)");
 	console.error("  -h, --help   Show this help message");
 }
 
@@ -33,10 +33,11 @@ export function parseArgs(args: string[]): {
 		input: "",
 		output: null as string | null,
 		ruleset: "extended" as Ruleset,
-		format: "html" as Format,
+		format: "console" as Format,
 	};
-	let i = 0;
+	let formatSupplied = false;
 
+	let i = 0;
 	while (i < args.length) {
 		const arg = args[i];
 
@@ -77,6 +78,7 @@ export function parseArgs(args: string[]): {
 				process.exit(1);
 			}
 			result.format = format;
+			formatSupplied = true;
 			i += 2;
 		} else if (arg === "--help" || arg === "-h") {
 			printUsage();
@@ -106,6 +108,11 @@ export function parseArgs(args: string[]): {
 		process.exit(1);
 	}
 
+	// If an output file has been supplied, we assume the user wants it as html, not console
+	if (result.output && !formatSupplied) {
+		result.format = "html";
+	}
+
 	return result;
 }
 
@@ -122,6 +129,8 @@ export function getRuleset(name: Ruleset): RuleSet {
 
 export function main(): void {
 	const args = parseArgs(process.argv.slice(2));
+
+	console.log();
 
 	try {
 		const markdown = readFileSync(args.input, "utf-8");
