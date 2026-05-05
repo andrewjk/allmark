@@ -100,7 +100,7 @@ function padText(text: string, width: number, align: string): string {
 	}
 	if (align === "center") {
 		const leftPad = Math.floor((width - text.length) / 2);
-		const rightPad = width - text.length - leftPad;
+		const rightPad = width - text.length - leftPad + 1;
 		return " ".repeat(leftPad) + text + " ".repeat(rightPad);
 	}
 	return text.padEnd(width) + " ";

@@ -93,7 +93,7 @@ public static class ConsoleTableRenderer
             if (align == "center")
             {
                 var leftPad = (width - text.Length) / 2;
-                var rightPad = width - text.Length - leftPad;
+                var rightPad = width - text.Length - leftPad + 1;
                 return new string(' ', leftPad) + text + new string(' ', rightPad);
             }
             return text + new string(' ', width - text.Length) + " ";

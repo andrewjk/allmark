@@ -186,7 +186,7 @@ fn renderPaddedCell(state: *RendererState, text: []const u8, width: usize, align
     } else if (std.mem.eql(u8, alignment, "center")) {
         const padding = innerWidth - text.len;
         const leftPad = padding / 2;
-        const rightPad = padding - leftPad;
+        const rightPad = padding - leftPad + 1;
         for (0..leftPad) |_| {
             state.output.append(state.allocator, ' ') catch unreachable;
         }

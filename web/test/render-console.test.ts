@@ -300,6 +300,38 @@ test("renders table with correctly aligned padding", () => {
 	);
 });
 
+test("renders table with center aligned padding", () => {
+	const input = "| A | B |\n| - | :-: |\n| x | centered |\n| y | a1 |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe(
+		`
+┌───┬──────────┐
+│ A │    B     │
+├───┼──────────┤
+│ x │ centered │
+│ y │    a1    │
+└───┴──────────┘
+`.trimStart(),
+	);
+});
+
+test("renders table with center aligned padding 2", () => {
+	const input = "| A | B |\n| - | :-: |\n| x | centerd |\n| y | a1 |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers));
+	expect(output).toBe(
+		`
+┌───┬─────────┐
+│ A │    B    │
+├───┼─────────┤
+│ x │ centerd │
+│ y │   a1    │
+└───┴─────────┘
+`.trimStart(),
+	);
+});
+
 test("renders strong text", () => {
 	const input = "**bold**";
 	const doc = parse(input, core);

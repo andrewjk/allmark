@@ -399,6 +399,40 @@ public class RenderConsoleTests
     }
 
     [TestMethod]
+    public void RendersTableWithCenterAlignedPadding()
+    {
+        var input = "| A | B |\n| - | :-: |\n| x | centered |\n| y | a1 |";
+        var expected = """
+┌───┬──────────┐
+│ A │    B     │
+├───┼──────────┤
+│ x │ centered │
+│ y │    a1    │
+└───┴──────────┘
+""";
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers));
+        Assert.AreEqual(expected.Trim(), output.Trim());
+    }
+
+    [TestMethod]
+    public void RendersTableWithCenterAlignedPadding2()
+    {
+        var input = "| A | B |\n| - | :-: |\n| x | centerd |\n| y | a1 |";
+        var expected = """
+┌───┬─────────┐
+│ A │    B    │
+├───┼─────────┤
+│ x │ centerd │
+│ y │   a1    │
+└───┴─────────┘
+""";
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers));
+        Assert.AreEqual(expected.Trim(), output.Trim());
+    }
+
+    [TestMethod]
     public void RendersStrongText()
     {
         var input = "**bold**";

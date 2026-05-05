@@ -751,6 +751,62 @@ test "renders table with correctly aligned padding" {
     try std.testing.expectEqualStrings(expected_with_newline, stripped);
 }
 
+test "renders table with center aligned padding" {
+    const input = "| A | B |\n| - | :-: |\n| x | centered |\n| y | a1 |";
+    const expected =
+        \\┌───┬──────────┐
+        \\│ A │    B     │
+        \\├───┼──────────┤
+        \\│ x │ centered │
+        \\│ y │    a1    │
+        \\└───┴──────────┘
+    ;
+    const expected_with_newline = expected ++ "\n";
+
+    const gpa = std.testing.allocator;
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    const output = try render(gpa, doc, null, true);
+    defer gpa.free(output);
+
+    const stripped = try stripAnsiCodes(gpa, output);
+    defer gpa.free(stripped);
+
+    try std.testing.expectEqualStrings(expected_with_newline, stripped);
+}
+
+test "renders table with center aligned padding 2" {
+    const input = "| A | B |\n| - | :-: |\n| x | centerd |\n| y | a1 |";
+    const expected =
+        \\┌───┬─────────┐
+        \\│ A │    B    │
+        \\├───┼─────────┤
+        \\│ x │ centerd │
+        \\│ y │   a1    │
+        \\└───┴─────────┘
+    ;
+    const expected_with_newline = expected ++ "\n";
+
+    const gpa = std.testing.allocator;
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    const output = try render(gpa, doc, null, true);
+    defer gpa.free(output);
+
+    const stripped = try stripAnsiCodes(gpa, output);
+    defer gpa.free(stripped);
+
+    try std.testing.expectEqualStrings(expected_with_newline, stripped);
+}
+
 test "renders strong text" {
     const input = "**bold**";
     const expected = "\x1b[1m\x1b[33mbold\x1b[0m\n";
