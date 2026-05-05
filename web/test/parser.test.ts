@@ -1,4 +1,4 @@
-import { expect, test } from "vite-plus/test";
+import { assert, expect, test } from "vite-plus/test";
 
 import parse from "../src/parse";
 import render from "../src/render";
@@ -7,7 +7,7 @@ import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 test("basic parse", () => {
 	const input = `
-# Test
+# Test ☺️
 
 Here is some text
 
@@ -23,7 +23,7 @@ Here is some text
 Here is some more text
 `;
 	const expected = `
-<h1>Test</h1>
+<h1>Test ☺️</h1>
 <p>Here is some text</p>
 <ul>
 <li>Tight item 1</li>
@@ -40,7 +40,17 @@ Here is some more text
 <h2>Subtest</h2>
 <p>Here is some more text</p>
 `.trimStart();
+
 	const doc = parse(input, core);
 	const html = render(doc, htmlRenderers);
 	expect(html).toBe(expected);
+
+	assert(doc.children);
+	expect(doc.children[0].type).toBe("heading");
+	expect(doc.children[0].index).toBe(1);
+	expect(doc.children[0].length).toBe(10);
+
+	const start = doc.children[0].index;
+	const end = start + doc.children[0].length;
+	expect(input.substring(start, end)).toBe("# Test ☺️\n");
 });

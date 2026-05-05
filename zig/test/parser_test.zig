@@ -6,9 +6,9 @@ const core = @import("allmark").core;
 
 test "basic parse" {
     const input =
-        \\# Test
+        \\# Test ☺️
         \\
-        \\Here is some *text*
+        \\Here is some text
         \\
         \\* Tight item 1
         \\* Tight item 2
@@ -17,11 +17,15 @@ test "basic parse" {
         \\
         \\- Loose item 2
         \\
+        \\## Subtest
+        \\
+        \\Here is some more text
+        \\
     ;
 
     const expected =
-        \\<h1>Test</h1>
-        \\<p>Here is some <em>text</em></p>
+        \\<h1>Test ☺️</h1>
+        \\<p>Here is some text</p>
         \\<ul>
         \\<li>Tight item 1</li>
         \\<li>Tight item 2</li>
@@ -34,6 +38,8 @@ test "basic parse" {
         \\<p>Loose item 2</p>
         \\</li>
         \\</ul>
+        \\<h2>Subtest</h2>
+        \\<p>Here is some more text</p>
         \\
     ;
 
@@ -48,4 +54,13 @@ test "basic parse" {
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);
+
+    try std.testing.expect(doc.children != null);
+    try std.testing.expectEqualStrings("heading", doc.children.?[0].type);
+    try std.testing.expectEqual(@as(usize, 0), doc.children.?[0].index);
+    try std.testing.expectEqual(@as(usize, 14), doc.children.?[0].length);
+
+    const start = doc.children.?[0].index;
+    const end = start + doc.children.?[0].length;
+    try std.testing.expectEqualStrings("# Test ☺️\n", input[start..end]);
 }

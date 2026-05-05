@@ -10,7 +10,7 @@ public class ParserTests
     public void BasicParse()
     {
         var input = @"
-# Test
+# Test ☺️
 
 Here is some text
 
@@ -20,10 +20,14 @@ Here is some text
 - Loose item 1
 
 - Loose item 2
+
+## Subtest
+
+Here is some more text
 ";
 
         var expected = @"
-<h1>Test</h1>
+<h1>Test ☺️</h1>
 <p>Here is some text</p>
 <ul>
 <li>Tight item 1</li>
@@ -37,10 +41,21 @@ Here is some text
 <p>Loose item 2</p>
 </li>
 </ul>
-".TrimStart();
+<h2>Subtest</h2>
+<p>Here is some more text</p>
+";
 
-        var doc = Parser.Execute(input[1..^1], Core.RuleSet);
+        var doc = Parser.Execute(input, Core.RuleSet);
         var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
         Assert.AreEqual(expected.Trim(), html.Trim());
+
+        Assert.IsNotNull(doc.Children);
+        Assert.AreEqual("heading", doc.Children[0].Type);
+        Assert.AreEqual(1, doc.Children[0].Index);
+        Assert.AreEqual(10, doc.Children[0].Length);
+
+        var start = doc.Children[0].Index;
+        var length = doc.Children[0].Length;
+        Assert.AreEqual("# Test ☺️\n", input.Substring(start, length));
     }
 }
