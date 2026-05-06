@@ -1,12 +1,21 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const gfm = @import("allmark").gfm;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "spec footnote" {
-    const input = "Here is a simple footnote[^1].\n\nA footnote can also have multiple lines[^2].\n\n[^1]: My reference.\n[^2]: To add line breaks within a footnote, add 2 spaces to the end of a line.  \nThis is a second line.";
-
+    const input =
+        \\
+        \\Here is a simple footnote[^1].
+        \\
+        \\A footnote can also have multiple lines[^2].
+        \\
+        \\[^1]: My reference.
+        \\[^2]: To add line breaks within a footnote, add 2 spaces to the end of a line.  
+        \\This is a second line.
+        \\
+    ;
     const expected =
         \\<p>Here is a simple footnote<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>.</p>
         \\<p>A footnote can also have multiple lines<sup class="footnote-ref"><a href="#fn2" id="fnref2">2</a></sup>.</p>
@@ -27,19 +36,26 @@ test "spec footnote" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "simple footnote reference" {
-    const input = "Text with a footnote[^1].\n\n[^1]: This is the footnote content.";
-
+    const input =
+        \\
+        \\Text with a footnote[^1].
+        \\
+        \\[^1]: This is the footnote content.
+        \\
+    ;
     const expected =
         \\<p>Text with a footnote<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>.</p>
         \\<section class="footnotes">
@@ -55,19 +71,27 @@ test "simple footnote reference" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "multiple footnote references" {
-    const input = "First reference[^1] and second[^2].\n\n[^1]: First footnote.\n[^2]: Second footnote.";
-
+    const input =
+        \\
+        \\First reference[^1] and second[^2].
+        \\
+        \\[^1]: First footnote.
+        \\[^2]: Second footnote.
+        \\
+    ;
     const expected =
         \\<p>First reference<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup> and second<sup class="footnote-ref"><a href="#fn2" id="fnref2">2</a></sup>.</p>
         \\<section class="footnotes">
@@ -86,19 +110,26 @@ test "multiple footnote references" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote with inline formatting" {
-    const input = "Text[^1].\n\n[^1]: Footnote with **bold** and *italic* text.";
-
+    const input =
+        \\
+        \\Text[^1].
+        \\
+        \\[^1]: Footnote with **bold** and *italic* text.
+        \\
+    ;
     const expected =
         \\<p>Text<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>.</p>
         \\<section class="footnotes">
@@ -114,19 +145,26 @@ test "footnote with inline formatting" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote with code" {
-    const input = "Code reference[^1].\n\n[^1]: Footnote with `inline code`.";
-
+    const input =
+        \\
+        \\Code reference[^1].
+        \\
+        \\[^1]: Footnote with `inline code`.
+        \\
+    ;
     const expected =
         \\<p>Code reference<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>.</p>
         \\<section class="footnotes">
@@ -142,19 +180,26 @@ test "footnote with code" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote with link" {
-    const input = "Link reference[^1].\n\n[^1]: See [example](http://example.com).";
-
+    const input =
+        \\
+        \\Link reference[^1].
+        \\
+        \\[^1]: See [example](http://example.com).
+        \\
+    ;
     const expected =
         \\<p>Link reference<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>.</p>
         \\<section class="footnotes">
@@ -170,19 +215,24 @@ test "footnote with link" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote reference not at definition" {
-    const input = "Unknown footnote[^99].";
-
+    const input =
+        \\
+        \\Unknown footnote[^99].
+        \\
+    ;
     const expected =
         \\<p>Unknown footnote[^99].</p>
         \\
@@ -191,19 +241,28 @@ test "footnote reference not at definition" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote with multiline content" {
-    const input = "Multiline[^1].\n\n[^1]: First line\n    Second line\n    Third line";
-
+    const input =
+        \\
+        \\Multiline[^1].
+        \\
+        \\[^1]: First line
+        \\    Second line
+        \\    Third line
+        \\
+    ;
     const expected =
         \\<p>Multiline<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>.</p>
         \\<section class="footnotes">
@@ -221,19 +280,26 @@ test "footnote with multiline content" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "repeated footnote reference" {
-    const input = "First[^1] and second[^1] use same footnote.\n\n[^1]: Shared footnote content.";
-
+    const input =
+        \\
+        \\First[^1] and second[^1] use same footnote.
+        \\
+        \\[^1]: Shared footnote content.
+        \\
+    ;
     const expected =
         \\<p>First<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup> and second<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup> use same footnote.</p>
         \\<section class="footnotes">
@@ -249,19 +315,28 @@ test "repeated footnote reference" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote in list" {
-    const input = "- Item with footnote[^1]\n- Another item[^2]\n\n[^1]: First footnote.\n[^2]: Second footnote.";
-
+    const input =
+        \\
+        \\- Item with footnote[^1]
+        \\- Another item[^2]
+        \\
+        \\[^1]: First footnote.
+        \\[^2]: Second footnote.
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li>Item with footnote<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup></li>
@@ -283,19 +358,26 @@ test "footnote in list" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote in blockquote" {
-    const input = "> Quoted text with footnote[^1]\n\n[^1]: Footnote for quote.";
-
+    const input =
+        \\
+        \\> Quoted text with footnote[^1]
+        \\
+        \\[^1]: Footnote for quote.
+        \\
+    ;
     const expected =
         \\<blockquote>
         \\<p>Quoted text with footnote<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup></p>
@@ -313,19 +395,26 @@ test "footnote in blockquote" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote with special characters in label" {
-    const input = "Special label[^a-b_c].\n\n[^a-b_c]: Footnote with special label.";
-
+    const input =
+        \\
+        \\Special label[^a-b_c].
+        \\
+        \\[^a-b_c]: Footnote with special label.
+        \\
+    ;
     const expected =
         \\<p>Special label[^a-b_c].</p>
         \\
@@ -334,19 +423,26 @@ test "footnote with special characters in label" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "case insensitive footnote labels" {
-    const input = "Mixed case[^ABC].\n\n[^abc]: Should match.";
-
+    const input =
+        \\
+        \\Mixed case[^ABC].
+        \\
+        \\[^abc]: Should match.
+        \\
+    ;
     const expected =
         \\<p>Mixed case<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>.</p>
         \\<section class="footnotes">
@@ -362,19 +458,27 @@ test "case insensitive footnote labels" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote then list" {
-    const input = "Text[^1]\n\n[^1]: Here is the content  \n- and here is a list";
-
+    const input =
+        \\
+        \\Text[^1]
+        \\
+        \\[^1]: Here is the content  
+        \\- and here is a list
+        \\
+    ;
     const expected =
         \\<p>Text<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup></p>
         \\<ul>
@@ -393,19 +497,26 @@ test "footnote then list" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "title after footnote label" {
-    const input = "Text[^1]\n\n[^1]: https://example.com test";
-
+    const input =
+        \\
+        \\Text[^1]
+        \\
+        \\[^1]: https://example.com test
+        \\
+    ;
     const expected =
         \\<p>Text<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup></p>
         \\<section class="footnotes">
@@ -421,19 +532,27 @@ test "title after footnote label" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "link then footnote" {
-    const input = "Text[^1] [foo]\n\n[foo]: https://example.com/foo\n[^1]: https://example.com/1 test";
-
+    const input =
+        \\
+        \\Text[^1] [foo]
+        \\
+        \\[foo]: https://example.com/foo
+        \\[^1]: https://example.com/1 test
+        \\
+    ;
     const expected =
         \\<p>Text<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup> <a href="https://example.com/foo">foo</a></p>
         \\<section class="footnotes">
@@ -449,19 +568,27 @@ test "link then footnote" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "footnote then link" {
-    const input = "Text[^1] [foo]\n\n[^1]: https://example.com/1 test\n[foo]: https://example.com/foo";
-
+    const input =
+        \\
+        \\Text[^1] [foo]
+        \\
+        \\[^1]: https://example.com/1 test
+        \\[foo]: https://example.com/foo
+        \\
+    ;
     const expected =
         \\<p>Text<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup> [foo]</p>
         \\<section class="footnotes">
@@ -478,19 +605,26 @@ test "footnote then link" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "swallow following brackets" {
-    const input = "[^1][asd]f]\n\n[^1]: /footnote";
-
+    const input =
+        \\
+        \\[^1][asd]f]
+        \\
+        \\[^1]: /footnote
+        \\
+    ;
     const expected =
         \\<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>f]</p>
         \\<section class="footnotes">
@@ -506,19 +640,28 @@ test "swallow following brackets" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "link reference takes precedence" {
-    const input = "[^1][foo]\n\n[^1]: /footnote\n\n[foo]: /url";
-
+    const input =
+        \\
+        \\[^1][foo]
+        \\
+        \\[^1]: /footnote
+        \\
+        \\[foo]: /url
+        \\
+    ;
     const expected =
         \\<p><a href="/url">^1</a></p>
         \\
@@ -527,19 +670,28 @@ test "link reference takes precedence" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "multiple paragraphs" {
-    const input = "Footnote 1 link[^first].\n\n[^first]: Footnote **can have markup**\n\n    and multiple paragraphs.";
-
+    const input =
+        \\
+        \\Footnote 1 link[^first].
+        \\
+        \\[^first]: Footnote **can have markup**
+        \\
+        \\    and multiple paragraphs.
+        \\
+    ;
     const expected =
         \\<p>Footnote 1 link<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>.</p>
         \\<section class="footnotes">
@@ -556,12 +708,14 @@ test "multiple paragraphs" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

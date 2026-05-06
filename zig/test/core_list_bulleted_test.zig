@@ -1,12 +1,14 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const core = @import("allmark").core;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "Simple bulleted list with dashes" {
     const input =
+        \\
         \\- Item
+        \\
     ;
     const expected =
         \\<ul>
@@ -18,19 +20,23 @@ test "Simple bulleted list with dashes" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Simple bulleted list with plus" {
     const input =
+        \\
         \\+ Item
+        \\
     ;
     const expected =
         \\<ul>
@@ -42,19 +48,23 @@ test "Simple bulleted list with plus" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Simple bulleted list with asterisks" {
     const input =
+        \\
         \\* Item
+        \\
     ;
     const expected =
         \\<ul>
@@ -66,21 +76,25 @@ test "Simple bulleted list with asterisks" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with multiple items" {
     const input =
+        \\
         \\- Item 1
         \\- Item 2
         \\- Item 3
+        \\
     ;
     const expected =
         \\<ul>
@@ -94,20 +108,24 @@ test "Bulleted list with multiple items" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Tight bulleted list" {
     const input =
+        \\
         \\- Item 1
         \\- Item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -120,21 +138,25 @@ test "Tight bulleted list" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Loose bulleted list with blank lines" {
     const input =
+        \\
         \\- Item 1
         \\
         \\- Item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -151,21 +173,25 @@ test "Loose bulleted list with blank lines" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Nested bulleted lists" {
     const input =
+        \\
         \\- Item 1
         \\  - Nested item
         \\- Item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -182,21 +208,25 @@ test "Nested bulleted lists" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Deep nested bulleted lists" {
     const input =
+        \\
         \\- Level 1
         \\  - Level 2
         \\    - Level 3
+        \\
     ;
     const expected =
         \\<ul>
@@ -216,20 +246,24 @@ test "Deep nested bulleted lists" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list in blockquote" {
     const input =
+        \\
         \\> - Item 1
         \\> - Item 2
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -244,19 +278,23 @@ test "Bulleted list in blockquote" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Empty list item" {
     const input =
+        \\
         \\-
+        \\
     ;
     const expected =
         \\<ul>
@@ -268,23 +306,27 @@ test "Empty list item" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with paragraphs" {
     const input =
+        \\
         \\- Item 1
         \\
         \\  Paragraph in item 1
         \\
         \\- Item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -302,21 +344,25 @@ test "Bulleted list with paragraphs" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list preceded by paragraph" {
     const input =
+        \\
         \\Paragraph
         \\
         \\- Item
+        \\
     ;
     const expected =
         \\<p>Paragraph</p>
@@ -329,21 +375,25 @@ test "Bulleted list preceded by paragraph" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list followed by paragraph" {
     const input =
+        \\
         \\- Item
         \\
         \\Paragraph
+        \\
     ;
     const expected =
         \\<ul>
@@ -356,20 +406,24 @@ test "Bulleted list followed by paragraph" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Mixed bullet markers should not be same list" {
     const input =
+        \\
         \\- Item 1
         \\+ Item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -384,23 +438,27 @@ test "Mixed bullet markers should not be same list" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with code block" {
     const input =
+        \\
         \\- Item
         \\
         \\  ```
         \\  code
         \\  ```
+        \\
     ;
     const expected =
         \\<ul>
@@ -416,19 +474,23 @@ test "Bulleted list with code block" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with inline formatting" {
     const input =
+        \\
         \\- Item with *emphasis*
+        \\
     ;
     const expected =
         \\<ul>
@@ -440,19 +502,23 @@ test "Bulleted list with inline formatting" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with bold" {
     const input =
+        \\
         \\- Item with **bold**
+        \\
     ;
     const expected =
         \\<ul>
@@ -464,23 +530,27 @@ test "Bulleted list with bold" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list item with multiple paragraphs (loose)" {
     const input =
+        \\
         \\- Item 1
         \\
         \\  Second paragraph
         \\
         \\- Item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -498,19 +568,23 @@ test "Bulleted list item with multiple paragraphs (loose)" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with links" {
     const input =
+        \\
         \\- [Link](https://example.com)
+        \\
     ;
     const expected =
         \\<ul>
@@ -522,19 +596,23 @@ test "Bulleted list with links" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with code span" {
     const input =
+        \\
         \\- `inline code`
+        \\
     ;
     const expected =
         \\<ul>
@@ -546,20 +624,24 @@ test "Bulleted list with code span" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list at end of document" {
     const input =
+        \\
         \\- Item 1
         \\- Item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -572,23 +654,27 @@ test "Bulleted list at end of document" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Multiple separate bulleted lists" {
     const input =
+        \\
         \\- List 1 item 1
         \\- List 1 item 2
         \\
         \\- List 2 item 1
         \\- List 2 item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -611,19 +697,23 @@ test "Multiple separate bulleted lists" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list item with leading spaces (still a list)" {
     const input =
+        \\
         \\   - Item
+        \\
     ;
     const expected =
         \\<ul>
@@ -635,19 +725,23 @@ test "Bulleted list item with leading spaces (still a list)" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list item with 4 spaces indent should be code" {
     const input =
+        \\
         \\    - Item
+        \\
     ;
     const expected =
         \\<pre><code>- Item
@@ -658,19 +752,23 @@ test "Bulleted list item with 4 spaces indent should be code" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with only spaces after marker" {
     const input =
+        \\
         \\-    Item
+        \\
     ;
     const expected =
         \\<ul>
@@ -682,21 +780,25 @@ test "Bulleted list with only spaces after marker" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Nested lists with different markers" {
     const input =
+        \\
         \\- Dash
         \\  + Plus
         \\    * Star
+        \\
     ;
     const expected =
         \\<ul>
@@ -716,22 +818,26 @@ test "Nested lists with different markers" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list followed immediately by ordered list" {
     const input =
+        \\
         \\- Item 1
         \\- Item 2
         \\1. Ordered 1
         \\2. Ordered 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -748,23 +854,27 @@ test "Bulleted list followed immediately by ordered list" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Bulleted list with thematic break in item" {
     const input =
+        \\
         \\- Item 1
         \\
         \\  ---
         \\
         \\- Item 2
+        \\
     ;
     const expected =
         \\<ul>
@@ -782,12 +892,14 @@ test "Bulleted list with thematic break in item" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

@@ -19,124 +19,152 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" disabled="""" /> foo</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> bar</li>
 </ul>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithAsteriskMarker()
     {
-        var input = @"* [ ] unchecked
-* [x] checked";
+        var input = @"
+* [ ] unchecked
+* [x] checked
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> unchecked</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithPlusMarker()
     {
-        var input = @"+ [ ] unchecked
-+ [x] checked";
+        var input = @"
++ [ ] unchecked
++ [x] checked
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> unchecked</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistInOrderedList()
     {
-        var input = @"1. [ ] unchecked item
-2. [x] checked item";
+        var input = @"
+1. [ ] unchecked item
+2. [x] checked item
+";
         var expected = @"
 <ol>
 <li><input type=""checkbox"" disabled="""" /> unchecked item</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked item</li>
 </ol>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithInlineFormatting()
     {
-        var input = @"- [ ] **bold** task
+        var input = @"
+- [ ] **bold** task
 - [x] *italic* task
-- [ ] ~~strikethrough~~ task";
+- [ ] ~~strikethrough~~ task
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> <strong>bold</strong> task</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> <em>italic</em> task</li>
 <li><input type=""checkbox"" disabled="""" /> <del>strikethrough</del> task</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithCode()
     {
-        var input = @"- [ ] task with `code`
-- [x] another `code` task";
+        var input = @"
+- [ ] task with `code`
+- [x] another `code` task
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> task with <code>code</code></li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> another <code>code</code> task</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithLinks()
     {
-        var input = @"- [ ] task with [link](http://example.com)
-- [x] checked [link](http://example.com) task";
+        var input = @"
+- [ ] task with [link](http://example.com)
+- [x] checked [link](http://example.com) task
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> task with <a href=""http://example.com"">link</a></li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked <a href=""http://example.com"">link</a> task</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void NestedTasklist()
     {
-        var input = @"- [ ] parent task
+        var input = @"
+- [ ] parent task
    - [ ] child task 1
    - [x] child task 2
-- [x] another parent";
+- [x] another parent
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> parent task
@@ -147,20 +175,24 @@ public class GfmTasklistTests
 </li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> another parent</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void MixedTasksAndRegularItems()
     {
-        var input = @"- [ ] task item
+        var input = @"
+- [ ] task item
 - regular item
 - [x] checked task
-- another regular item";
+- another regular item
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> task item</li>
@@ -168,69 +200,85 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked task</li>
 <li>another regular item</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithSingleCharacter()
     {
-        var input = @"- [ ] a
-- [x] b";
+        var input = @"
+- [ ] a
+- [x] b
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> a</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> b</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithEmptyBrackets()
     {
-        var input = @"- [ ] 
-- [x] ";
+        var input = @"
+- [ ] 
+- [x] 
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> </li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> </li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithUppercaseX()
     {
-        var input = @"- [ ] unchecked
-- [X] checked with uppercase";
+        var input = @"
+- [ ] unchecked
+- [X] checked with uppercase
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> unchecked</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked with uppercase</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistInBlockquote()
     {
-        var input = @"> - [ ] quoted task
-> - [x] checked quoted task";
+        var input = @"
+> - [ ] quoted task
+> - [x] checked quoted task
+";
         var expected = @"
 <blockquote>
 <ul>
@@ -238,20 +286,24 @@ public class GfmTasklistTests
 <li>[x] checked quoted task</li>
 </ul>
 </blockquote>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithMultipleParagraphs()
     {
-        var input = @"- [ ] task with paragraph
+        var input = @"
+- [ ] task with paragraph
 
    continuation paragraph
-- [x] another task";
+- [x] another task
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> 
@@ -261,19 +313,25 @@ public class GfmTasklistTests
 <li><input type=""checkbox"" checked="""" disabled="""" /> 
 <p>another task</p>
 </li>
-</ul>".Trim();
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers).Trim();
-        Assert.AreEqual(expected.Trim(), html.Trim());
+</ul>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithSublist()
     {
-        var input = @"- [ ] task with sublist
+        var input = @"
+- [ ] task with sublist
    - subitem 1
    - subitem 2
-- [x] checked task";
+- [x] checked task
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> task with sublist
@@ -284,46 +342,56 @@ public class GfmTasklistTests
 </li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> checked task</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithHtmlEntities()
     {
-        var input = @"- [ ] task with &amp; entity
-- [x] task with &lt;HTML&gt;";
+        var input = @"
+- [ ] task with &amp; entity
+- [x] task with &lt;HTML&gt;
+";
         var expected = @"
 <ul>
 <li><input type=""checkbox"" disabled="""" /> task with &amp; entity</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> task with &lt;HTML&gt;</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TasklistWithVariousWhitespace()
     {
-        var input = @"- [ ]one
+        var input = @"
+- [ ]one
 - [  ] two
-- [ x] three";
+- [ x] three
+";
         var expected = @"
 <ul>
 <li>[ ]one</li>
 <li>[  ] two</li>
 <li>[ x] three</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 }

@@ -1,12 +1,14 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const core = @import("allmark").core;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "Simple blockquote" {
     const input =
+        \\
         \\> Simple quote
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -18,21 +20,25 @@ test "Simple blockquote" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with multiple lines" {
     const input =
+        \\
         \\> Line 1
         \\> Line 2
         \\> Line 3
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -46,21 +52,25 @@ test "Blockquote with multiple lines" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with lazy continuation" {
     const input =
+        \\
         \\> Line 1
         \\Line 2
         \\> Line 3
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -74,19 +84,23 @@ test "Blockquote with lazy continuation" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with space after >" {
     const input =
+        \\
         \\> With space
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -98,19 +112,23 @@ test "Blockquote with space after >" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote without space after >" {
     const input =
+        \\
         \\>Without space
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -122,21 +140,25 @@ test "Blockquote without space after >" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with multiple paragraphs" {
     const input =
+        \\
         \\> Paragraph 1
         \\>
         \\> Paragraph 2
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -149,20 +171,24 @@ test "Blockquote with multiple paragraphs" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with code block" {
     const input =
+        \\
         \\>     code block
         \\>     more code
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -176,20 +202,24 @@ test "Blockquote with code block" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with list" {
     const input =
+        \\
         \\> - Item 1
         \\> - Item 2
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -204,21 +234,25 @@ test "Blockquote with list" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with nested blockquote" {
     const input =
+        \\
         \\> Outer
         \\>> Inner
         \\>>> Innerer
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -236,19 +270,23 @@ test "Blockquote with nested blockquote" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with heading" {
     const input =
+        \\
         \\> # Heading
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -260,19 +298,23 @@ test "Blockquote with heading" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with inline emphasis" {
     const input =
+        \\
         \\> *italic* and **bold**
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -284,19 +326,23 @@ test "Blockquote with inline emphasis" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with inline code" {
     const input =
+        \\
         \\> `code` inside quote
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -308,19 +354,23 @@ test "Blockquote with inline code" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with link" {
     const input =
+        \\
         \\> [link](https://example.com)
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -332,19 +382,23 @@ test "Blockquote with link" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with 1 space indent" {
     const input =
+        \\
         \\ > Indented quote
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -356,19 +410,23 @@ test "Blockquote with 1 space indent" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with 3 space indent" {
     const input =
+        \\
         \\   > Indented quote
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -380,19 +438,23 @@ test "Blockquote with 3 space indent" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with 4 space indent should be code" {
     const input =
+        \\
         \\    > Not a quote
+        \\
     ;
     const expected =
         \\<pre><code>&gt; Not a quote
@@ -403,21 +465,25 @@ test "Blockquote with 4 space indent should be code" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Multiple consecutive blockquotes" {
     const input =
+        \\
         \\> Quote 1
         \\
         \\> Quote 2
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -432,20 +498,24 @@ test "Multiple consecutive blockquotes" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote preceded by paragraph without blank line" {
     const input =
+        \\
         \\Paragraph
         \\> Quote
+        \\
     ;
     const expected =
         \\<p>Paragraph</p>
@@ -458,21 +528,25 @@ test "Blockquote preceded by paragraph without blank line" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with thematic break" {
     const input =
+        \\
         \\> Text
         \\>
         \\> ---
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -485,24 +559,28 @@ test "Blockquote with thematic break" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with multiple blocks" {
     const input =
+        \\
         \\> Paragraph
         \\>
         \\> - List item
         \\>
         \\> Code:
         \\>     code
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -519,24 +597,28 @@ test "Blockquote with multiple blocks" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with complex nested content" {
     const input =
+        \\
         \\> Quote
         \\>
         \\>> Nested quote
         \\>>
         \\>> - List in nested
         \\> Back to outer
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -555,19 +637,23 @@ test "Blockquote with complex nested content" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Empty blockquote" {
     const input =
+        \\
         \\>
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -578,19 +664,23 @@ test "Empty blockquote" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with only space" {
     const input =
+        \\
         \\> 
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -601,19 +691,23 @@ test "Blockquote with only space" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote at end of document" {
     const input =
+        \\
         \\> Last quote
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -625,21 +719,25 @@ test "Blockquote at end of document" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with fenced code block" {
     const input =
+        \\
         \\> ```
         \\> code
         \\> ```
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -652,20 +750,24 @@ test "Blockquote with fenced code block" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with ordered list" {
     const input =
+        \\
         \\> 1. First
         \\> 2. Second
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -680,20 +782,24 @@ test "Blockquote with ordered list" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with setext heading" {
     const input =
+        \\
         \\> Heading
         \\> =======
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -705,43 +811,53 @@ test "Blockquote with setext heading" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with HTML block" {
     const input =
+        \\
         \\> <div>HTML</div>
+        \\
+        \\
     ;
     const expected =
         \\<blockquote>
-        \\<div>HTML</div></blockquote>
+        \\<div>HTML</div>
+        \\</blockquote>
         \\
     ;
 
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with hard line breaks" {
     const input =
+        \\
         \\> Line 1  
         \\> Line 2
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -754,19 +870,23 @@ test "Blockquote with hard line breaks" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with image" {
     const input =
+        \\
         \\> ![alt](image.png)
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -778,22 +898,26 @@ test "Blockquote with image" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Deeply nested blockquotes" {
     const input =
+        \\
         \\> Level 1
         \\>> Level 2
         \\>>> Level 3
         \\>>>> Level 4
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -814,22 +938,26 @@ test "Deeply nested blockquotes" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with mixed lazy continuation" {
     const input =
+        \\
         \\> Line 1
         \\> Line 2
         \\Line 3 (lazy)
         \\> Line 4
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -844,21 +972,25 @@ test "Blockquote with mixed lazy continuation" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with loose list" {
     const input =
+        \\
         \\> - Item 1
         \\>
         \\> - Item 2
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -877,20 +1009,24 @@ test "Blockquote with loose list" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Blockquote with tight list" {
     const input =
+        \\
         \\> - Item 1
         \\> - Item 2
+        \\
     ;
     const expected =
         \\<blockquote>
@@ -905,12 +1041,14 @@ test "Blockquote with tight list" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

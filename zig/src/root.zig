@@ -50,7 +50,9 @@ pub const renderHtml = struct {
     pub const renderUtils = @import("render/renderUtils.zig").renderUtils;
 };
 
+pub const RuleSet = @import("types/RuleSet.zig").RuleSet;
 pub const core = @import("rulesets/core.zig");
 pub const gfm = @import("rulesets/gfm.zig");
 pub const extended = @import("rulesets/extended.zig");
-pub const RuleSet = @import("types/RuleSet.zig").RuleSet;
+pub const htmlRenderers = @import("rulesets/htmlRenderers.zig");
+pub const consoleRenderers = @import("rulesets/consoleRenderers.zig");

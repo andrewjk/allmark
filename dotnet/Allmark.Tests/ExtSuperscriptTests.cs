@@ -14,11 +14,13 @@ This should be ^up^ above everything else.
 ";
         var expected = @"
 <p>This should be <sup>up</sup> above everything else.</p>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -29,11 +31,13 @@ This should be ^^up^^ above everything else.
 ";
         var expected = @"
 <p>This should be <sup>up</sup> above everything else.</p>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -44,223 +48,339 @@ This should be ^^^up^^^ above everything else.
 ";
         var expected = @"
 <p>This should be ^^^up^^^ above everything else.</p>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptSingleCharacter()
     {
-        var input = @"x^2^";
-        var expected = @"<p>x<sup>2</sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+x^2^
+";
+        var expected = @"
+<p>x<sup>2</sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptWithNumbers()
     {
-        var input = @"E=mc^2^";
-        var expected = @"<p>E=mc<sup>2</sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+E=mc^2^
+";
+        var expected = @"
+<p>E=mc<sup>2</sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void MultipleSuperscriptsInOneLine()
     {
-        var input = @"x^2^ + y^2^ = z^2^";
-        var expected = @"<p>x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+x^2^ + y^2^ = z^2^
+";
+        var expected = @"
+<p>x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptAtStartOfParagraph()
     {
-        var input = @"^note^ This is important.";
-        var expected = @"<p><sup>note</sup> This is important.</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+^note^ This is important.
+";
+        var expected = @"
+<p><sup>note</sup> This is important.</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptAtEndOfParagraph()
     {
-        var input = @"See footnote^1^";
-        var expected = @"<p>See footnote<sup>1</sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+See footnote^1^
+";
+        var expected = @"
+<p>See footnote<sup>1</sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptWithPunctuation()
     {
-        var input = @"Hello^world!^";
-        var expected = @"<p>Hello<sup>world!</sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+Hello^world!^
+";
+        var expected = @"
+<p>Hello<sup>world!</sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptWithSpaces()
     {
-        var input = @"text ^with spaces^ more";
-        var expected = @"<p>text <sup>with spaces</sup> more</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text ^with spaces^ more
+";
+        var expected = @"
+<p>text <sup>with spaces</sup> more</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptWithSpecialCharacters()
     {
-        var input = @"math^2+3^";
-        var expected = @"<p>math<sup>2+3</sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+math^2+3^
+";
+        var expected = @"
+<p>math<sup>2+3</sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptAdjacentToText()
     {
-        var input = @"test^ing^test";
-        var expected = @"<p>test<sup>ing</sup>test</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+test^ing^test
+";
+        var expected = @"
+<p>test<sup>ing</sup>test</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void EmptySuperscript()
     {
-        var input = @"text^^text";
-        var expected = @"<p>text^^text</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text^^text
+";
+        var expected = @"
+<p>text^^text</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptWithMarkdownInside()
     {
-        var input = @"text ^**bold**^";
-        var expected = @"<p>text <sup><strong>bold</strong></sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text ^**bold**^
+";
+        var expected = @"
+<p>text <sup><strong>bold</strong></sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptWithCodeInside()
     {
-        var input = @"text ^`code`^";
-        var expected = @"<p>text <sup><code>code</code></sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text ^`code`^
+";
+        var expected = @"
+<p>text <sup><code>code</code></sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void EscapedCaretShouldNotBeSuperscript()
     {
-        var input = @"text \^not superscript\^";
-        var expected = @"<p>text ^not superscript^</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text \^not superscript\^
+";
+        var expected = @"
+<p>text ^not superscript^</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void UnmatchedOpeningCaret()
     {
-        var input = @"text ^not closed";
-        var expected = @"<p>text ^not closed</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text ^not closed
+";
+        var expected = @"
+<p>text ^not closed</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void UnmatchedClosingCaret()
     {
-        var input = @"text not opened^";
-        var expected = @"<p>text not opened^</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text not opened^
+";
+        var expected = @"
+<p>text not opened^</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptInListItem()
     {
-        var input = @"- Item with ^superscript^";
-        var expected = @"<ul>
+        var input = @"
+- Item with ^superscript^
+";
+        var expected = @"
+<ul>
 <li>Item with <sup>superscript</sup></li>
-</ul>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+</ul>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptInBlockquote()
     {
-        var input = @"> Quote with ^superscript^";
-        var expected = @"<blockquote>
+        var input = @"
+> Quote with ^superscript^
+";
+        var expected = @"
+<blockquote>
 <p>Quote with <sup>superscript</sup></p>
-</blockquote>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+</blockquote>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void NestedSuperscript()
     {
-        var input = @"x^y^z^";
-        var expected = @"<p>x<sup>y</sup>z^</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+x^y^z^
+";
+        var expected = @"
+<p>x<sup>y</sup>z^</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SuperscriptWithCaretInside()
     {
-        var input = @"text ^caret ^ inside^";
-        var expected = @"<p>text <sup>caret ^ inside</sup></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text ^caret ^ inside^
+";
+        var expected = @"
+<p>text <sup>caret ^ inside</sup></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 }

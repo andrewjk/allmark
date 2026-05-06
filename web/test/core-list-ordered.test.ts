@@ -1,132 +1,177 @@
 import { renderHtmlSync } from "cmark-gfm";
 import { describe, expect, test } from "vite-plus/test";
 
-import parse from "../src/parse";
-import render from "../src/render";
 import core from "../src/rulesets/core";
 import htmlRenderers from "../src/rulesets/htmlRenderers";
+import transform from "../src/transform";
 
 describe("ordered lists", () => {
 	test("Simple ordered list with period delimiter", () => {
-		const input = "1. Item";
+		const input = `
+1. Item
+`;
 		const expected = `
 <ol>
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Simple ordered list with paren delimiter", () => {
-		const input = "1) Item";
+		const input = `
+1) Item
+`;
 		const expected = `
 <ol>
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list starting at 1", () => {
-		const input = "1. Item";
+		const input = `
+1. Item
+`;
 		const expected = `
 <ol>
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list starting at 2", () => {
-		const input = "2. Item";
+		const input = `
+2. Item
+`;
 		const expected = `
 <ol start="2">
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list starting at 10", () => {
-		const input = "10. Item";
+		const input = `
+10. Item
+`;
 		const expected = `
 <ol start="10">
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list starting at 0", () => {
-		const input = "0. Item";
+		const input = `
+0. Item
+`;
 		const expected = `
 <ol start="0">
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with large start number", () => {
-		const input = "123456789. Item";
+		const input = `
+123456789. Item
+`;
 		const expected = `
 <ol start="123456789">
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with too large number (10+ digits)", () => {
-		const input = "1234567890. Item";
+		const input = `
+1234567890. Item
+`;
 		const expected = `
 <p>1234567890. Item</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with leading zeros", () => {
-		const input = "003. Item";
+		const input = `
+003. Item
+`;
 		const expected = `
 <ol start="3">
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with multiple items", () => {
 		const input = `
 1. Item 1
 2. Item 2
-3. Item 3`.substring(1);
+3. Item 3
+`;
 		const expected = `
 <ol>
 <li>Item 1</li>
@@ -135,16 +180,20 @@ describe("ordered lists", () => {
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with sequential numbers disregarded", () => {
 		const input = `
 1. Item 1
 1. Item 2
-1. Item 3`.substring(1);
+1. Item 3
+`;
 		const expected = `
 <ol>
 <li>Item 1</li>
@@ -153,16 +202,20 @@ describe("ordered lists", () => {
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with mixed numbers disregarded", () => {
 		const input = `
 1. Item 1
 5. Item 2
-3. Item 3`.substring(1);
+3. Item 3
+`;
 		const expected = `
 <ol>
 <li>Item 1</li>
@@ -171,15 +224,19 @@ describe("ordered lists", () => {
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Tight ordered list", () => {
 		const input = `
 1. Item 1
-2. Item 2`.substring(1);
+2. Item 2
+`;
 		const expected = `
 <ol>
 <li>Item 1</li>
@@ -187,16 +244,20 @@ describe("ordered lists", () => {
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Loose ordered list with blank lines", () => {
 		const input = `
 1. Item 1
 
-2. Item 2`.substring(1);
+2. Item 2
+`;
 		const expected = `
 <ol>
 <li>
@@ -208,16 +269,20 @@ describe("ordered lists", () => {
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Nested ordered lists", () => {
 		const input = `
 1. Item 1
    1. Nested item
-2. Item 2`.substring(1);
+2. Item 2
+`;
 		const expected = `
 <ol>
 <li>Item 1
@@ -229,16 +294,20 @@ describe("ordered lists", () => {
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Deep nested ordered lists", () => {
 		const input = `
 1. Level 1
    1. Level 2
-      1. Level 3`.substring(1);
+      1. Level 3
+`;
 		const expected = `
 <ol>
 <li>Level 1
@@ -253,15 +322,19 @@ describe("ordered lists", () => {
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list in blockquote", () => {
 		const input = `
 > 1. Item 1
-> 2. Item 2`.substring(1);
+> 2. Item 2
+`;
 		const expected = `
 <blockquote>
 <ol>
@@ -271,22 +344,30 @@ describe("ordered lists", () => {
 </blockquote>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Empty ordered list item", () => {
-		const input = "1.";
+		const input = `
+1.
+`;
 		const expected = `
 <ol>
 <li></li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with paragraphs", () => {
@@ -295,7 +376,8 @@ describe("ordered lists", () => {
 
    Paragraph in item 1
 
-2. Item 2`.substring(1);
+2. Item 2
+`;
 		const expected = `
 <ol>
 <li>
@@ -308,16 +390,20 @@ describe("ordered lists", () => {
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list preceded by paragraph", () => {
 		const input = `
 Paragraph
 
-1. Item`.substring(1);
+1. Item
+`;
 		const expected = `
 <p>Paragraph</p>
 <ol>
@@ -325,16 +411,20 @@ Paragraph
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list followed by paragraph", () => {
 		const input = `
 1. Item
 
-Paragraph`.substring(1);
+Paragraph
+`;
 		const expected = `
 <ol>
 <li>Item</li>
@@ -342,15 +432,19 @@ Paragraph`.substring(1);
 <p>Paragraph</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Mixed delimiters should not be same list", () => {
 		const input = `
 1. Item 1
-1) Item 2`.substring(1);
+1) Item 2
+`;
 		const expected = `
 <ol>
 <li>Item 1</li>
@@ -360,9 +454,12 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with code block", () => {
@@ -371,7 +468,8 @@ Paragraph`.substring(1);
 
    \`\`\`
    code
-   \`\`\``.substring(1);
+   \`\`\`
+`;
 		const expected = `
 <ol>
 <li>
@@ -382,35 +480,48 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with inline formatting", () => {
-		const input = "1. Item with *emphasis*";
+		const input = `
+1. Item with *emphasis*
+`;
 		const expected = `
 <ol>
 <li>Item with <em>emphasis</em></li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with bold", () => {
-		const input = "1. Item with **bold**";
+		const input = `
+1. Item with **bold**
+`;
 		const expected = `
 <ol>
 <li>Item with <strong>bold</strong></li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list item with multiple paragraphs (loose)", () => {
@@ -419,7 +530,8 @@ Paragraph`.substring(1);
 
    Second paragraph
 
-2. Item 2`.substring(1);
+2. Item 2
+`;
 		const expected = `
 <ol>
 <li>
@@ -432,41 +544,55 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with links", () => {
-		const input = "1. [Link](https://example.com)";
+		const input = `
+1. [Link](https://example.com)
+`;
 		const expected = `
 <ol>
 <li><a href="https://example.com">Link</a></li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with code span", () => {
-		const input = "1. `inline code`";
+		const input = `
+1. \`inline code\`
+`;
 		const expected = `
 <ol>
 <li><code>inline code</code></li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list at end of document", () => {
 		const input = `
 1. Item 1
-2. Item 2`.substring(1);
+2. Item 2
+`;
 		const expected = `
 <ol>
 <li>Item 1</li>
@@ -474,9 +600,12 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Multiple separate ordered lists", () => {
@@ -485,7 +614,8 @@ Paragraph`.substring(1);
 2. List 1 item 2
 
 1. List 2 item 1
-2. List 2 item 2`.substring(1);
+2. List 2 item 2
+`;
 		const expected = `
 <ol>
 <li>
@@ -503,54 +633,73 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list item with leading spaces (still a list)", () => {
-		const input = "   1. Item";
+		const input = `
+   1. Item
+`;
 		const expected = `
 <ol>
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list item with 4 spaces indent should be code", () => {
-		const input = "    1. Item";
+		const input = `
+    1. Item
+`;
 		const expected = `
 <pre><code>1. Item
 </code></pre>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with only spaces after marker", () => {
-		const input = "1.    Item";
+		const input = `
+1.    Item
+`;
 		const expected = `
 <ol>
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Nested ordered and bulleted lists", () => {
 		const input = `
 1. Ordered
    - Bulleted
-      1. Nested ordered`.substring(1);
+      1. Nested ordered
+`;
 		const expected = `
 <ol>
 <li>Ordered
@@ -565,9 +714,12 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list followed immediately by bulleted list", () => {
@@ -575,7 +727,8 @@ Paragraph`.substring(1);
 1. Item 1
 2. Item 2
 - Bullet 1
-- Bullet 2`.substring(1);
+- Bullet 2
+`;
 		const expected = `
 <ol>
 <li>Item 1</li>
@@ -587,9 +740,12 @@ Paragraph`.substring(1);
 </ul>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with thematic break in item", () => {
@@ -598,7 +754,8 @@ Paragraph`.substring(1);
 
    ---
 
-2. Item 2`.substring(1);
+2. Item 2
+`;
 		const expected = `
 <ol>
 <li>
@@ -611,16 +768,20 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with paren delimiter multiple items", () => {
 		const input = `
 1) Item 1
 2) Item 2
-3) Item 3`.substring(1);
+3) Item 3
+`;
 		const expected = `
 <ol>
 <li>Item 1</li>
@@ -629,29 +790,38 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list with paren delimiter starting at 5", () => {
-		const input = "5) Item";
+		const input = `
+5) Item
+`;
 		const expected = `
 <ol start="5">
 <li>Item</li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list item with nested bulleted list", () => {
 		const input = `
 1. Item
    - Nested bullet
-   - Another bullet`.substring(1);
+   - Another bullet
+`;
 		const expected = `
 <ol>
 <li>Item
@@ -663,43 +833,61 @@ Paragraph`.substring(1);
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Not an ordered list - text after number", () => {
-		const input = "1.5 is a number";
+		const input = `
+1.5 is a number
+`;
 		const expected = `
 <p>1.5 is a number</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Not an ordered list - no space after delimiter", () => {
-		const input = "1.Item";
+		const input = `
+1.Item
+`;
 		const expected = `
 <p>1.Item</p>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("Ordered list at end of line without space", () => {
-		const input = "1.";
+		const input = `
+1.
+`;
 		const expected = `
 <ol>
 <li></li>
 </ol>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
-		const doc = parse(input, core);
-		const html = render(doc, htmlRenderers);
-		expect(html).toBe(expected);
+
+		const htmlSpaced = transform(input, core, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 });

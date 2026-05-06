@@ -1,114 +1,103 @@
 import { describe, expect, test } from "vite-plus/test";
 
-import parse from "../src/parse";
-import render from "../src/render";
 import gfm from "../src/rulesets/gfm";
 import htmlRenderers from "../src/rulesets/htmlRenderers";
+import transform from "../src/transform";
 
 describe("alert", () => {
 	test("spec alert", () => {
 		const input = `
 > [!NOTE]
 > Useful information that users should know, even when skimming content.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
 <p>Useful information that users should know, even when skimming content.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert tip", () => {
 		const input = `
 > [!TIP]
 > Helpful advice for doing things better or more easily.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-tip">
 <p class="markdown-alert-title">Tip</p>
 <p>Helpful advice for doing things better or more easily.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert important", () => {
 		const input = `
 > [!IMPORTANT]
 > Key information users need to know to achieve their goal.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-important">
 <p class="markdown-alert-title">Important</p>
 <p>Key information users need to know to achieve their goal.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert warning", () => {
 		const input = `
 > [!WARNING]
 > Urgent info that needs immediate user attention to avoid problems.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-warning">
 <p class="markdown-alert-title">Warning</p>
 <p>Urgent info that needs immediate user attention to avoid problems.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert caution", () => {
 		const input = `
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-caution">
 <p class="markdown-alert-title">Caution</p>
 <p>Advises about risks or negative outcomes of certain actions.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert with multiple paragraphs", () => {
@@ -117,43 +106,39 @@ describe("alert", () => {
 > First paragraph of the note.
 >
 > Second paragraph of the note.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
 <p>First paragraph of the note.</p>
 <p>Second paragraph of the note.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert with inline formatting", () => {
 		const input = `
 > [!NOTE]
 > This is **bold** and this is *italic* and this is \`code\`.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
 <p>This is <strong>bold</strong> and this is <em>italic</em> and this is <code>code</code>.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert with list", () => {
@@ -163,7 +148,7 @@ describe("alert", () => {
 > - First point
 > - Second point
 > - Third point
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
@@ -174,15 +159,13 @@ describe("alert", () => {
 <li>Third point</li>
 </ul>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert with code block", () => {
@@ -193,7 +176,7 @@ describe("alert", () => {
 > \`\`\`
 > console.log("Hello World");
 > \`\`\`
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
@@ -201,99 +184,89 @@ describe("alert", () => {
 <pre><code>console.log(&quot;Hello World&quot;);
 </code></pre>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert with link", () => {
 		const input = `
 > [!NOTE]
 > Check out the [documentation](https://example.com) for more info.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
 <p>Check out the <a href="https://example.com">documentation</a> for more info.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert case insensitive", () => {
 		const input = `
 > [!note]
 > This should work with lowercase.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
 <p>This should work with lowercase.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("non alert blockquote", () => {
 		const input = `
 > This is just a regular blockquote.
 > It should not be treated as an alert.
- `;
+`;
 		const expected = `
 <blockquote>
 <p>This is just a regular blockquote.
 It should not be treated as an alert.</p>
 </blockquote>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("blockquote with brackets but not alert", () => {
 		const input = `
 > [NOTE] This is not an alert syntax.
 > It should be a regular blockquote.
- `;
+`;
 		const expected = `
 <blockquote>
 <p>[NOTE] This is not an alert syntax.
 It should be a regular blockquote.</p>
 </blockquote>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert with nested blockquote", () => {
@@ -302,7 +275,7 @@ It should be a regular blockquote.</p>
 > Outer alert content.
 >
 > > Nested blockquote inside alert.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
@@ -311,15 +284,13 @@ It should be a regular blockquote.</p>
 <p>Nested blockquote inside alert.</p>
 </blockquote>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("consecutive alerts", () => {
@@ -329,7 +300,7 @@ It should be a regular blockquote.</p>
 
 > [!WARNING]
 > Second alert.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
@@ -339,15 +310,13 @@ It should be a regular blockquote.</p>
 <p class="markdown-alert-title">Warning</p>
 <p>Second alert.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("alert with empty content", () => {
@@ -355,20 +324,18 @@ It should be a regular blockquote.</p>
 > [!NOTE]
 >
 > Content after empty line.
- `;
+`;
 		const expected = `
 <div class="markdown-alert markdown-alert-note">
 <p class="markdown-alert-title">Note</p>
 <p>Content after empty line.</p>
 </div>
-`;
+`.substring(1);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 });

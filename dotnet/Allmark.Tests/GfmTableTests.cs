@@ -29,11 +29,13 @@ public class GfmTableTests
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -67,11 +69,13 @@ public class GfmTableTests
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -107,11 +111,13 @@ public class GfmTableTests
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -145,11 +151,13 @@ public class GfmTableTests
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -175,11 +183,13 @@ public class GfmTableTests
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -198,11 +208,13 @@ public class GfmTableTests
 </tr>
 </thead>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -236,11 +248,13 @@ public class GfmTableTests
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -257,11 +271,13 @@ a | b | c
 <li>| - | -
 1 | 2 | 3</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -289,11 +305,13 @@ a | b | c
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -334,11 +352,13 @@ a | b | c
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -366,11 +386,13 @@ a | b | c
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -413,10 +435,12 @@ a | b | c
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 }

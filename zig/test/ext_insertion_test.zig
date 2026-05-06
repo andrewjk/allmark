@@ -1,14 +1,15 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const extended = @import("allmark").extended;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "insertion single" {
     const input =
+        \\
         \\This text was {+inserted+} recently.
+        \\
     ;
-
     const expected =
         \\<p>This text was <ins class="markdown-insertion">inserted</ins> recently.</p>
         \\
@@ -17,21 +18,24 @@ test "insertion single" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion double" {
     const input =
+        \\
         \\This text was {++inserted++} recently.
+        \\
     ;
-
     const expected =
         \\<p>This text was <ins class="markdown-insertion">inserted</ins> recently.</p>
         \\
@@ -40,21 +44,24 @@ test "insertion double" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion triple" {
     const input =
+        \\
         \\This text was {+++inserted+++} recently.
+        \\
     ;
-
     const expected =
         \\<p>This text was {+++inserted+++} recently.</p>
         \\
@@ -63,19 +70,24 @@ test "insertion triple" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion single character" {
-    const input = "text {+a+} more";
-
+    const input =
+        \\
+        \\text {+a+} more
+        \\
+    ;
     const expected =
         \\<p>text <ins class="markdown-insertion">a</ins> more</p>
         \\
@@ -84,19 +96,24 @@ test "insertion single character" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion with spaces" {
-    const input = "text {+with spaces+} more";
-
+    const input =
+        \\
+        \\text {+with spaces+} more
+        \\
+    ;
     const expected =
         \\<p>text <ins class="markdown-insertion">with spaces</ins> more</p>
         \\
@@ -105,19 +122,24 @@ test "insertion with spaces" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion at start of paragraph" {
-    const input = "{+inserted+} This is new.";
-
+    const input =
+        \\
+        \\{+inserted+} This is new.
+        \\
+    ;
     const expected =
         \\<p><ins class="markdown-insertion">inserted</ins> This is new.</p>
         \\
@@ -126,19 +148,24 @@ test "insertion at start of paragraph" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion at end of paragraph" {
-    const input = "This is {+inserted+}";
-
+    const input =
+        \\
+        \\This is {+inserted+}
+        \\
+    ;
     const expected =
         \\<p>This is <ins class="markdown-insertion">inserted</ins></p>
         \\
@@ -147,19 +174,24 @@ test "insertion at end of paragraph" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion with punctuation" {
-    const input = "text {+word!+} more";
-
+    const input =
+        \\
+        \\text {+word!+} more
+        \\
+    ;
     const expected =
         \\<p>text <ins class="markdown-insertion">word!</ins> more</p>
         \\
@@ -168,19 +200,24 @@ test "insertion with punctuation" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion with special characters" {
-    const input = "text {+a+b+} more";
-
+    const input =
+        \\
+        \\text {+a+b+} more
+        \\
+    ;
     const expected =
         \\<p>text <ins class="markdown-insertion">a+b</ins> more</p>
         \\
@@ -189,19 +226,24 @@ test "insertion with special characters" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion adjacent to text" {
-    const input = "test{+ing+}test";
-
+    const input =
+        \\
+        \\test{+ing+}test
+        \\
+    ;
     const expected =
         \\<p>test<ins class="markdown-insertion">ing</ins>test</p>
         \\
@@ -210,19 +252,24 @@ test "insertion adjacent to text" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "empty insertion" {
-    const input = "text{++}text";
-
+    const input =
+        \\
+        \\text{++}text
+        \\
+    ;
     const expected =
         \\<p>text{++}text</p>
         \\
@@ -231,19 +278,24 @@ test "empty insertion" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion with markdown inside" {
-    const input = "text {+**bold**+}";
-
+    const input =
+        \\
+        \\text {+**bold**+}
+        \\
+    ;
     const expected =
         \\<p>text <ins class="markdown-insertion"><strong>bold</strong></ins></p>
         \\
@@ -252,19 +304,24 @@ test "insertion with markdown inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion with code inside" {
-    const input = "text {+`code`+}";
-
+    const input =
+        \\
+        \\text {+`code`+}
+        \\
+    ;
     const expected =
         \\<p>text <ins class="markdown-insertion"><code>code</code></ins></p>
         \\
@@ -273,19 +330,24 @@ test "insertion with code inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "escaped braces should not be insertion" {
-    const input = "text \\{+not insertion\\+}";
-
+    const input =
+        \\
+        \\text \{+not insertion\+}
+        \\
+    ;
     const expected =
         \\<p>text {+not insertion+}</p>
         \\
@@ -294,19 +356,24 @@ test "escaped braces should not be insertion" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "unmatched opening insertion" {
-    const input = "text {+not closed";
-
+    const input =
+        \\
+        \\text {+not closed
+        \\
+    ;
     const expected =
         \\<p>text {+not closed</p>
         \\
@@ -315,19 +382,24 @@ test "unmatched opening insertion" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "unmatched closing insertion" {
-    const input = "text not opened+}";
-
+    const input =
+        \\
+        \\text not opened+}
+        \\
+    ;
     const expected =
         \\<p>text not opened+}</p>
         \\
@@ -336,19 +408,24 @@ test "unmatched closing insertion" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion in list item" {
-    const input = "- Item with {+insertion+}";
-
+    const input =
+        \\
+        \\- Item with {+insertion+}
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li>Item with <ins class="markdown-insertion">insertion</ins></li>
@@ -359,19 +436,24 @@ test "insertion in list item" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion in blockquote" {
-    const input = "> Quote with {+insertion+}";
-
+    const input =
+        \\
+        \\> Quote with {+insertion+}
+        \\
+    ;
     const expected =
         \\<blockquote>
         \\<p>Quote with <ins class="markdown-insertion">insertion</ins></p>
@@ -382,19 +464,24 @@ test "insertion in blockquote" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion with plus inside" {
-    const input = "text {+plus + inside+}";
-
+    const input =
+        \\
+        \\text {+plus + inside+}
+        \\
+    ;
     const expected =
         \\<p>text <ins class="markdown-insertion">plus + inside</ins></p>
         \\
@@ -403,19 +490,24 @@ test "insertion with plus inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion at beginning of document" {
-    const input = "{+Start+} of document.";
-
+    const input =
+        \\
+        \\{+Start+} of document.
+        \\
+    ;
     const expected =
         \\<p><ins class="markdown-insertion">Start</ins> of document.</p>
         \\
@@ -424,19 +516,24 @@ test "insertion at beginning of document" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion at end of document" {
-    const input = "End of {+document+}";
-
+    const input =
+        \\
+        \\End of {+document+}
+        \\
+    ;
     const expected =
         \\<p>End of <ins class="markdown-insertion">document</ins></p>
         \\
@@ -445,19 +542,24 @@ test "insertion at end of document" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "multiple insertions in one line" {
-    const input = "{+first+} and {+second+} and {+third+}";
-
+    const input =
+        \\
+        \\{+first+} and {+second+} and {+third+}
+        \\
+    ;
     const expected =
         \\<p><ins class="markdown-insertion">first</ins> and <ins class="markdown-insertion">second</ins> and <ins class="markdown-insertion">third</ins></p>
         \\
@@ -466,19 +568,24 @@ test "multiple insertions in one line" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion with starting emphasis" {
-    const input = "{+inserted *text+} that shouldn't be bold*";
-
+    const input =
+        \\
+        \\{+inserted *text+} that shouldn't be bold*
+        \\
+    ;
     const expected =
         \\<p><ins class="markdown-insertion">inserted *text</ins> that shouldn't be bold*</p>
         \\
@@ -487,19 +594,24 @@ test "insertion with starting emphasis" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "insertion with ending emphasis" {
-    const input = "*this text should be {+inserted but not bold*+}";
-
+    const input =
+        \\
+        \\*this text should be {+inserted but not bold*+}
+        \\
+    ;
     const expected =
         \\<p>*this text should be <ins class="markdown-insertion">inserted but not bold*</ins></p>
         \\
@@ -508,12 +620,14 @@ test "insertion with ending emphasis" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

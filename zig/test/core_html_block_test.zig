@@ -1,12 +1,14 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const core = @import("allmark").core;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "HTML script tag - single line" {
     const input =
+        \\
         \\<script>alert('hi');</script>
+        \\
     ;
     const expected =
         \\<script>alert('hi');</script>
@@ -16,22 +18,26 @@ test "HTML script tag - single line" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML script tag - multi-line" {
     const input =
+        \\
         \\<script>
         \\alert('hi');
         \\alert('bye');
         \\</script>
+        \\
     ;
     const expected =
         \\<script>
@@ -44,19 +50,23 @@ test "HTML script tag - multi-line" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML pre tag" {
     const input =
+        \\
         \\<pre>code here</pre>
+        \\
     ;
     const expected =
         \\<pre>code here</pre>
@@ -66,19 +76,23 @@ test "HTML pre tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML style tag" {
     const input =
+        \\
         \\<style>body { color: red; }</style>
+        \\
     ;
     const expected =
         \\<style>body { color: red; }</style>
@@ -88,19 +102,23 @@ test "HTML style tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML comment - single line" {
     const input =
+        \\
         \\<!-- This is a comment -->
+        \\
     ;
     const expected =
         \\<!-- This is a comment -->
@@ -110,22 +128,26 @@ test "HTML comment - single line" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML comment - multi-line" {
     const input =
+        \\
         \\<!--
         \\This is a
         \\multi-line comment
         \\-->
+        \\
     ;
     const expected =
         \\<!--
@@ -138,19 +160,23 @@ test "HTML comment - multi-line" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML processing instruction" {
     const input =
+        \\
         \\<?php echo 'hello'; ?>
+        \\
     ;
     const expected =
         \\<?php echo 'hello'; ?>
@@ -160,19 +186,23 @@ test "HTML processing instruction" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML declaration - DOCTYPE" {
     const input =
+        \\
         \\<!DOCTYPE html>
+        \\
     ;
     const expected =
         \\<!DOCTYPE html>
@@ -182,19 +212,23 @@ test "HTML declaration - DOCTYPE" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML CDATA section" {
     const input =
+        \\
         \\<![CDATA[<greeting>Hello</greeting>]]>
+        \\
     ;
     const expected =
         \\<![CDATA[<greeting>Hello</greeting>]]>
@@ -204,19 +238,23 @@ test "HTML CDATA section" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block-level div tag" {
     const input =
+        \\
         \\<div>Content</div>
+        \\
     ;
     const expected =
         \\<div>Content</div>
@@ -226,21 +264,25 @@ test "HTML block-level div tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML div with blank line after" {
     const input =
+        \\
         \\<div>Content</div>
         \\
         \\Next paragraph
+        \\
     ;
     const expected =
         \\<div>Content</div>
@@ -251,19 +293,23 @@ test "HTML div with blank line after" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML paragraph tag" {
     const input =
+        \\
         \\<p>HTML paragraph</p>
+        \\
     ;
     const expected =
         \\<p>HTML paragraph</p>
@@ -273,19 +319,23 @@ test "HTML paragraph tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML heading tags" {
     const input =
+        \\
         \\<h1>Heading</h1>
+        \\
     ;
     const expected =
         \\<h1>Heading</h1>
@@ -295,21 +345,25 @@ test "HTML heading tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML list tags" {
     const input =
+        \\
         \\<ul>
         \\<li>Item</li>
         \\</ul>
+        \\
     ;
     const expected =
         \\<ul>
@@ -321,19 +375,23 @@ test "HTML list tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML table tag" {
     const input =
+        \\
         \\<table><tr><td>Cell</td></tr></table>
+        \\
     ;
     const expected =
         \\<table><tr><td>Cell</td></tr></table>
@@ -343,19 +401,23 @@ test "HTML table tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block with indentation (less than 4 spaces)" {
     const input =
+        \\
         \\   <div>Indented</div>
+        \\
     ;
     const expected =
         \\   <div>Indented</div>
@@ -365,19 +427,23 @@ test "HTML block with indentation (less than 4 spaces)" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block with 4 space indent should be code" {
     const input =
+        \\
         \\    <div>Code</div>
+        \\
     ;
     const expected =
         \\<pre><code>&lt;div&gt;Code&lt;/div&gt;
@@ -388,19 +454,23 @@ test "HTML block with 4 space indent should be code" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML closing tag alone" {
     const input =
+        \\
         \\</div>
+        \\
     ;
     const expected =
         \\</div>
@@ -410,19 +480,23 @@ test "HTML closing tag alone" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML self-closing tag" {
     const input =
+        \\
         \\<br />
+        \\
     ;
     const expected =
         \\<br />
@@ -432,19 +506,23 @@ test "HTML self-closing tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML img tag" {
     const input =
+        \\
         \\<img src="image.jpg" alt="Image">
+        \\
     ;
     const expected =
         \\<img src="image.jpg" alt="Image">
@@ -454,19 +532,23 @@ test "HTML img tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML hr tag" {
     const input =
+        \\
         \\<hr />
+        \\
     ;
     const expected =
         \\<hr />
@@ -476,21 +558,25 @@ test "HTML hr tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block followed by Markdown" {
     const input =
+        \\
         \\<div>HTML</div>
         \\
         \\# Markdown Heading
+        \\
     ;
     const expected =
         \\<div>HTML</div>
@@ -501,20 +587,24 @@ test "HTML block followed by Markdown" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Paragraph before HTML block type 7 should not interrupt" {
     const input =
+        \\
         \\Paragraph text
         \\<span>inline</span>
+        \\
     ;
     const expected =
         \\<p>Paragraph text
@@ -525,19 +615,23 @@ test "Paragraph before HTML block type 7 should not interrupt" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML comment in paragraph" {
     const input =
+        \\
         \\Text <!-- comment --> more text
+        \\
     ;
     const expected =
         \\<p>Text <!-- comment --> more text</p>
@@ -547,21 +641,25 @@ test "HTML comment in paragraph" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "Multiple HTML blocks" {
     const input =
+        \\
         \\<div>First</div>
         \\
         \\<div>Second</div>
+        \\
     ;
     const expected =
         \\<div>First</div>
@@ -572,19 +670,23 @@ test "Multiple HTML blocks" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block with attributes" {
     const input =
+        \\
         \\<div class="container" id="main">Content</div>
+        \\
     ;
     const expected =
         \\<div class="container" id="main">Content</div>
@@ -594,19 +696,23 @@ test "HTML block with attributes" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML script tag with attributes" {
     const input =
+        \\
         \\<script src="script.js" async></script>
+        \\
     ;
     const expected =
         \\<script src="script.js" async></script>
@@ -616,19 +722,23 @@ test "HTML script tag with attributes" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML form tag" {
     const input =
+        \\
         \\<form action="/submit"> <input type="text"> </form>
+        \\
     ;
     const expected =
         \\<form action="/submit"> <input type="text"> </form>
@@ -638,19 +748,23 @@ test "HTML form tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML blockquote tag" {
     const input =
+        \\
         \\<blockquote>Quote</blockquote>
+        \\
     ;
     const expected =
         \\<blockquote>Quote</blockquote>
@@ -660,19 +774,23 @@ test "HTML blockquote tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML address tag" {
     const input =
+        \\
         \\<address>123 Main St</address>
+        \\
     ;
     const expected =
         \\<address>123 Main St</address>
@@ -682,19 +800,23 @@ test "HTML address tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML article tag" {
     const input =
+        \\
         \\<article>Content</article>
+        \\
     ;
     const expected =
         \\<article>Content</article>
@@ -704,19 +826,23 @@ test "HTML article tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML aside tag" {
     const input =
+        \\
         \\<aside>Sidebar</aside>
+        \\
     ;
     const expected =
         \\<aside>Sidebar</aside>
@@ -726,19 +852,23 @@ test "HTML aside tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML section tag" {
     const input =
+        \\
         \\<section>Section</section>
+        \\
     ;
     const expected =
         \\<section>Section</section>
@@ -748,19 +878,23 @@ test "HTML section tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML nav tag" {
     const input =
+        \\
         \\<nav>Menu</nav>
+        \\
     ;
     const expected =
         \\<nav>Menu</nav>
@@ -770,19 +904,23 @@ test "HTML nav tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML footer tag" {
     const input =
+        \\
         \\<footer>Copyright</footer>
+        \\
     ;
     const expected =
         \\<footer>Copyright</footer>
@@ -792,19 +930,23 @@ test "HTML footer tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML header tag" {
     const input =
+        \\
         \\<header>Header</header>
+        \\
     ;
     const expected =
         \\<header>Header</header>
@@ -814,19 +956,23 @@ test "HTML header tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML main tag" {
     const input =
+        \\
         \\<main>Main</main>
+        \\
     ;
     const expected =
         \\<main>Main</main>
@@ -836,19 +982,23 @@ test "HTML main tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML figure tag" {
     const input =
+        \\
         \\<figure><img src="img.jpg"></figure>
+        \\
     ;
     const expected =
         \\<figure><img src="img.jpg"></figure>
@@ -858,19 +1008,23 @@ test "HTML figure tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML figcaption tag" {
     const input =
+        \\
         \\<figcaption>Caption</figcaption>
+        \\
     ;
     const expected =
         \\<figcaption>Caption</figcaption>
@@ -880,19 +1034,23 @@ test "HTML figcaption tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML details and summary tags" {
     const input =
+        \\
         \\<details><summary>Click</summary>Content</details>
+        \\
     ;
     const expected =
         \\<details><summary>Click</summary>Content</details>
@@ -902,19 +1060,23 @@ test "HTML details and summary tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML dialog tag" {
     const input =
+        \\
         \\<dialog>Dialog content</dialog>
+        \\
     ;
     const expected =
         \\<dialog>Dialog content</dialog>
@@ -924,19 +1086,23 @@ test "HTML dialog tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML fieldset tag" {
     const input =
+        \\
         \\<fieldset>Field</fieldset>
+        \\
     ;
     const expected =
         \\<fieldset>Field</fieldset>
@@ -946,19 +1112,23 @@ test "HTML fieldset tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML legend tag" {
     const input =
+        \\
         \\<legend>Legend</legend>
+        \\
     ;
     const expected =
         \\<legend>Legend</legend>
@@ -968,19 +1138,23 @@ test "HTML legend tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML dl, dt, dd tags" {
     const input =
+        \\
         \\<dl><dt>Term</dt><dd>Definition</dd></dl>
+        \\
     ;
     const expected =
         \\<dl><dt>Term</dt><dd>Definition</dd></dl>
@@ -990,19 +1164,23 @@ test "HTML dl, dt, dd tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML link tag (empty)" {
     const input =
+        \\
         \\<link rel="stylesheet" href="style.css">
+        \\
     ;
     const expected =
         \\<link rel="stylesheet" href="style.css">
@@ -1012,19 +1190,23 @@ test "HTML link tag (empty)" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML base tag" {
     const input =
+        \\
         \\<base href="https://example.com/">
+        \\
     ;
     const expected =
         \\<base href="https://example.com/">
@@ -1034,19 +1216,23 @@ test "HTML base tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML basefont tag" {
     const input =
+        \\
         \\<basefont face="Arial">
+        \\
     ;
     const expected =
         \\<basefont face="Arial">
@@ -1056,19 +1242,23 @@ test "HTML basefont tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML center tag" {
     const input =
+        \\
         \\<center>Centered</center>
+        \\
     ;
     const expected =
         \\<center>Centered</center>
@@ -1078,19 +1268,23 @@ test "HTML center tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML col and colgroup tags" {
     const input =
+        \\
         \\<colgroup><col span="2"></colgroup>
+        \\
     ;
     const expected =
         \\<colgroup><col span="2"></colgroup>
@@ -1100,19 +1294,23 @@ test "HTML col and colgroup tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML tbody, thead, tfoot, tr, th, td tags" {
     const input =
+        \\
         \\<table><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>
+        \\
     ;
     const expected =
         \\<table><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>
@@ -1122,19 +1320,23 @@ test "HTML tbody, thead, tfoot, tr, th, td tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML caption tag" {
     const input =
+        \\
         \\<caption>Table caption</caption>
+        \\
     ;
     const expected =
         \\<caption>Table caption</caption>
@@ -1144,19 +1346,23 @@ test "HTML caption tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML source tag" {
     const input =
+        \\
         \\<source src="video.mp4" type="video/mp4">
+        \\
     ;
     const expected =
         \\<source src="video.mp4" type="video/mp4">
@@ -1166,19 +1372,23 @@ test "HTML source tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML track tag" {
     const input =
+        \\
         \\<track src="captions.vtt" kind="captions">
+        \\
     ;
     const expected =
         \\<track src="captions.vtt" kind="captions">
@@ -1188,19 +1398,23 @@ test "HTML track tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML frameset, frame, noframes tags" {
     const input =
+        \\
         \\<frameset><frame src="frame.html"></frameset>
+        \\
     ;
     const expected =
         \\<frameset><frame src="frame.html"></frameset>
@@ -1210,19 +1424,23 @@ test "HTML frameset, frame, noframes tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML noframes tag" {
     const input =
+        \\
         \\<noframes>No frames</noframes>
+        \\
     ;
     const expected =
         \\<noframes>No frames</noframes>
@@ -1232,19 +1450,23 @@ test "HTML noframes tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML iframe tag" {
     const input =
+        \\
         \\<iframe src="page.html"></iframe>
+        \\
     ;
     const expected =
         \\<iframe src="page.html"></iframe>
@@ -1254,19 +1476,23 @@ test "HTML iframe tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML param tag" {
     const input =
+        \\
         \\<param name="autoplay" value="true">
+        \\
     ;
     const expected =
         \\<param name="autoplay" value="true">
@@ -1276,19 +1502,23 @@ test "HTML param tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML dir tag" {
     const input =
+        \\
         \\<dir><li>Item</li></dir>
+        \\
     ;
     const expected =
         \\<dir><li>Item</li></dir>
@@ -1298,19 +1528,23 @@ test "HTML dir tag" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML menu and menuitem tags" {
     const input =
+        \\
         \\<menu><menuitem>Item</menuitem></menu>
+        \\
     ;
     const expected =
         \\<menu><menuitem>Item</menuitem></menu>
@@ -1320,19 +1554,23 @@ test "HTML menu and menuitem tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML optgroup and option tags" {
     const input =
+        \\
         \\<select><optgroup label="Group"><option>Item</option></optgroup></select>
+        \\
     ;
     const expected =
         \\<p><select><optgroup label="Group"><option>Item</option></optgroup></select></p>
@@ -1342,19 +1580,23 @@ test "HTML optgroup and option tags" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML title tag in body (not head)" {
     const input =
+        \\
         \\<title>Page Title</title>
+        \\
     ;
     const expected =
         \\<title>Page Title</title>
@@ -1364,23 +1606,27 @@ test "HTML title tag in body (not head)" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block with line breaks inside" {
     const input =
+        \\
         \\<div>
         \\Line 1
         \\Line 2
         \\Line 3
         \\</div>
+        \\
     ;
     const expected =
         \\<div>
@@ -1394,19 +1640,23 @@ test "HTML block with line breaks inside" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML case insensitive - uppercase" {
     const input =
+        \\
         \\<DIV>Content</DIV>
+        \\
     ;
     const expected =
         \\<DIV>Content</DIV>
@@ -1416,19 +1666,23 @@ test "HTML case insensitive - uppercase" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML script tag with mixed case" {
     const input =
+        \\
         \\<SCRIPT>alert('hi');</SCRIPT>
+        \\
     ;
     const expected =
         \\<SCRIPT>alert('hi');</SCRIPT>
@@ -1438,19 +1692,23 @@ test "HTML script tag with mixed case" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block with no content" {
     const input =
+        \\
         \\<div></div>
+        \\
     ;
     const expected =
         \\<div></div>
@@ -1460,19 +1718,23 @@ test "HTML block with no content" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML custom tag (non-block-level)" {
     const input =
+        \\
         \\<custom-tag>Content</custom-tag>
+        \\
     ;
     const expected =
         \\<p><custom-tag>Content</custom-tag></p>
@@ -1482,19 +1744,23 @@ test "HTML custom tag (non-block-level)" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML comment ending on same line" {
     const input =
+        \\
         \\<!-- comment -->
+        \\
     ;
     const expected =
         \\<!-- comment -->
@@ -1504,19 +1770,23 @@ test "HTML comment ending on same line" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML comment with multiple dashes" {
     const input =
+        \\
         \\<!-- --- comment --- -->
+        \\
     ;
     const expected =
         \\<!-- --- comment --- -->
@@ -1526,19 +1796,23 @@ test "HTML comment with multiple dashes" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML CDATA with embedded brackets" {
     const input =
+        \\
         \\<![CDATA[<test>data</test>]]>
+        \\
     ;
     const expected =
         \\<![CDATA[<test>data</test>]]>
@@ -1548,19 +1822,23 @@ test "HTML CDATA with embedded brackets" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML DOCTYPE with public identifier" {
     const input =
+        \\
         \\<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+        \\
     ;
     const expected =
         \\<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -1570,23 +1848,27 @@ test "HTML DOCTYPE with public identifier" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block continues until blank line (type 6)" {
     const input =
+        \\
         \\<div>Line 1
         \\Line 2
         \\Line 3
         \\
         \\Next
+        \\
     ;
     const expected =
         \\<div>Line 1
@@ -1599,21 +1881,25 @@ test "HTML block continues until blank line (type 6)" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block inside list" {
     const input =
+        \\
         \\- Item
         \\
         \\  <div>HTML</div>
+        \\
     ;
     const expected =
         \\<ul>
@@ -1628,35 +1914,43 @@ test "HTML block inside list" {
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "HTML block inside blockquote" {
     const input =
+        \\
         \\> <div>HTML</div>
+        \\
+        \\
     ;
     const expected =
         \\<blockquote>
-        \\<div>HTML</div></blockquote>
+        \\<div>HTML</div>
+        \\</blockquote>
         \\
     ;
 
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
     defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

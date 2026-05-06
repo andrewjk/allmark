@@ -20,10 +20,13 @@ public class SpecGfmTests
         var expected = @"
 <pre><code>foo	baz		bim
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -35,10 +38,13 @@ public class SpecGfmTests
         var expected = @"
 <pre><code>foo	baz		bim
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -52,10 +58,13 @@ public class SpecGfmTests
 <pre><code>a	a
 ὐ	a
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -73,10 +82,13 @@ public class SpecGfmTests
 <p>bar</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -95,10 +107,13 @@ public class SpecGfmTests
 </code></pre>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -112,10 +127,13 @@ public class SpecGfmTests
 <pre><code>  foo
 </code></pre>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -131,10 +149,13 @@ public class SpecGfmTests
 </code></pre>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -148,10 +169,13 @@ public class SpecGfmTests
 <pre><code>foo
 bar
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -174,10 +198,13 @@ bar
 </ul>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -188,10 +215,13 @@ bar
 ";
         var expected = @"
 <h1>Foo</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -202,10 +232,13 @@ bar
 ";
         var expected = @"
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -220,10 +253,13 @@ bar
 <li>`one</li>
 <li>two`</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -238,10 +274,13 @@ ___
 <hr />
 <hr />
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -252,10 +291,13 @@ ___
 ";
         var expected = @"
 <p>+++</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -266,10 +308,13 @@ ___
 ";
         var expected = @"
 <p>===</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -284,10 +329,13 @@ __
 <p>--
 **
 __</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -302,10 +350,13 @@ __</p>
 <hr />
 <hr />
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -317,10 +368,13 @@ __</p>
         var expected = @"
 <pre><code>***
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -333,10 +387,13 @@ Foo
         var expected = @"
 <p>Foo
 ***</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -347,10 +404,13 @@ _____________________________________
 ";
         var expected = @"
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -361,10 +421,13 @@ _____________________________________
 ";
         var expected = @"
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -375,10 +438,13 @@ _____________________________________
 ";
         var expected = @"
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -389,10 +455,13 @@ _____________________________________
 ";
         var expected = @"
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -403,10 +472,13 @@ _____________________________________
 ";
         var expected = @"
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -423,10 +495,13 @@ a------
 <p>_ _ _ _ a</p>
 <p>a------</p>
 <p>---a---</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -437,10 +512,13 @@ a------
 ";
         var expected = @"
 <p><em>-</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -459,10 +537,13 @@ a------
 <ul>
 <li>bar</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -477,10 +558,13 @@ bar
 <p>Foo</p>
 <hr />
 <p>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -494,10 +578,13 @@ bar
         var expected = @"
 <h2>Foo</h2>
 <p>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -516,10 +603,13 @@ bar
 <ul>
 <li>Bar</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -536,10 +626,13 @@ bar
 <hr />
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -560,10 +653,13 @@ bar
 <h4>foo</h4>
 <h5>foo</h5>
 <h6>foo</h6>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -574,10 +670,13 @@ bar
 ";
         var expected = @"
 <p>####### foo</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -591,10 +690,13 @@ bar
         var expected = @"
 <p>#5 bolt</p>
 <p>#hashtag</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -605,10 +707,13 @@ bar
 ";
         var expected = @"
 <p>## foo</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -619,10 +724,13 @@ bar
 ";
         var expected = @"
 <h1>foo <em>bar</em> *baz*</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -633,10 +741,13 @@ bar
 ";
         var expected = @"
 <h1>foo</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -651,10 +762,13 @@ bar
 <h3>foo</h3>
 <h2>foo</h2>
 <h1>foo</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -666,10 +780,13 @@ bar
         var expected = @"
 <pre><code># foo
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -682,10 +799,13 @@ foo
         var expected = @"
 <p>foo
 # bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -698,10 +818,13 @@ foo
         var expected = @"
 <h2>foo</h2>
 <h3>bar</h3>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -714,10 +837,13 @@ foo
         var expected = @"
 <h1>foo</h1>
 <h5>foo</h5>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -728,10 +854,13 @@ foo
 ";
         var expected = @"
 <h3>foo</h3>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -742,10 +871,13 @@ foo
 ";
         var expected = @"
 <h3>foo ### b</h3>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -756,10 +888,13 @@ foo
 ";
         var expected = @"
 <h1>foo#</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -774,10 +909,13 @@ foo
 <h3>foo ###</h3>
 <h2>foo ###</h2>
 <h1>foo #</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -792,10 +930,13 @@ foo
 <hr />
 <h2>foo</h2>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -810,10 +951,13 @@ Bar foo
 <p>Foo bar</p>
 <h1>baz</h1>
 <p>Bar foo</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -828,10 +972,13 @@ Bar foo
 <h2></h2>
 <h1></h1>
 <h3></h3>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -847,10 +994,13 @@ Foo *bar*
         var expected = @"
 <h1>Foo <em>bar</em></h1>
 <h2>Foo <em>bar</em></h2>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -864,10 +1014,13 @@ baz*
         var expected = @"
 <h1>Foo <em>bar
 baz</em></h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -881,10 +1034,13 @@ baz*
         var expected = @"
 <h1>Foo <em>bar
 baz</em></h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     // NOTE: We break from the spec here and require at least two underline
@@ -903,10 +1059,13 @@ Foo
         var expected = @"
 <h2>Foo</h2>
 <h1>Foo</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -926,10 +1085,13 @@ Foo
 <h2>Foo</h2>
 <h2>Foo</h2>
 <h1>Foo</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -949,10 +1111,13 @@ Foo
 Foo
 </code></pre>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -964,10 +1129,13 @@ Foo
 ";
         var expected = @"
 <h2>Foo</h2>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -980,10 +1148,13 @@ Foo
         var expected = @"
 <p>Foo
 ---</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1001,10 +1172,13 @@ Foo
 = =</p>
 <p>Foo</p>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1016,10 +1190,13 @@ Foo
 ";
         var expected = @"
 <h2>Foo</h2>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1031,10 +1208,13 @@ Foo\
 ";
         var expected = @"
 <h2>Foo\</h2>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1054,10 +1234,13 @@ of dashes""/>
 <p>`</p>
 <h2>&lt;a title=&quot;a lot</h2>
 <p>of dashes&quot;/&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1072,10 +1255,13 @@ of dashes""/>
 <p>Foo</p>
 </blockquote>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1092,10 +1278,13 @@ bar
 bar
 ===</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1110,10 +1299,13 @@ bar
 <li>Foo</li>
 </ul>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1127,10 +1319,13 @@ Bar
         var expected = @"
 <h2>Foo
 Bar</h2>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1149,10 +1344,13 @@ Baz
 <h2>Foo</h2>
 <h2>Bar</h2>
 <p>Baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1164,10 +1362,13 @@ Baz
 ";
         var expected = @"
 <p>====</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1180,10 +1381,13 @@ Baz
         var expected = @"
 <hr />
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1198,10 +1402,13 @@ Baz
 <li>foo</li>
 </ul>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1215,10 +1422,13 @@ Baz
 <pre><code>foo
 </code></pre>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1233,10 +1443,13 @@ Baz
 <p>foo</p>
 </blockquote>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1248,10 +1461,13 @@ Baz
 ";
         var expected = @"
 <h2>&gt; foo</h2>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1268,10 +1484,13 @@ baz
 <p>Foo</p>
 <h2>bar</h2>
 <p>baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1290,10 +1509,13 @@ baz
 bar</p>
 <hr />
 <p>baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1310,10 +1532,13 @@ baz
 bar</p>
 <hr />
 <p>baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1330,10 +1555,13 @@ baz
 bar
 ---
 baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1347,10 +1575,13 @@ baz</p>
 <pre><code>a simple
   indented code block
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1368,10 +1599,13 @@ baz</p>
 <p>bar</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1391,10 +1625,13 @@ baz</p>
 </ul>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1412,10 +1649,13 @@ baz</p>
 
 - one
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1439,10 +1679,13 @@ chunk2
 
 chunk3
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1458,10 +1701,13 @@ chunk3
   
   chunk2
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1475,10 +1721,13 @@ Foo
         var expected = @"
 <p>Foo
 bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1492,10 +1741,13 @@ bar
 <pre><code>foo
 </code></pre>
 <p>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1517,10 +1769,13 @@ Heading
 <pre><code>foo
 </code></pre>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1534,10 +1789,13 @@ Heading
 <pre><code>    foo
 bar
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1553,10 +1811,13 @@ bar
         var expected = @"
 <pre><code>foo
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1568,10 +1829,13 @@ bar
         var expected = @"
 <pre><code>foo  
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1587,10 +1851,13 @@ bar
 <pre><code>&lt;
  &gt;
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1606,10 +1873,13 @@ bar
 <pre><code>&lt;
  &gt;
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1622,10 +1892,13 @@ foo
 ";
         var expected = @"
 <p><code>foo</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1641,10 +1914,13 @@ aaa
 <pre><code>aaa
 ~~~
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1660,10 +1936,13 @@ aaa
 <pre><code>aaa
 ```
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1679,10 +1958,13 @@ aaa
 <pre><code>aaa
 ```
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1698,10 +1980,13 @@ aaa
 <pre><code>aaa
 ~~~
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1712,10 +1997,13 @@ aaa
 ";
         var expected = @"
 <pre><code></code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1732,10 +2020,13 @@ aaa
 ```
 aaa
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1753,10 +2044,13 @@ bbb
 </code></pre>
 </blockquote>
 <p>bbb</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1772,10 +2066,13 @@ bbb
 <pre><code>
   
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1787,10 +2084,13 @@ bbb
 ";
         var expected = @"
 <pre><code></code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1806,10 +2106,13 @@ aaa
 <pre><code>aaa
 aaa
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1827,10 +2130,13 @@ aaa
 aaa
 aaa
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1848,10 +2154,13 @@ aaa
  aaa
 aaa
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1867,10 +2176,13 @@ aaa
 aaa
 ```
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1884,10 +2196,13 @@ aaa
         var expected = @"
 <pre><code>aaa
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1901,10 +2216,13 @@ aaa
         var expected = @"
 <pre><code>aaa
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1919,10 +2237,13 @@ aaa
 <pre><code>aaa
     ```
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1935,10 +2256,13 @@ aaa
         var expected = @"
 <p><code> </code>
 aaa</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1953,10 +2277,13 @@ aaa
 <pre><code>aaa
 ~~~ ~~
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1974,10 +2301,13 @@ baz
 <pre><code>bar
 </code></pre>
 <p>baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -1996,10 +2326,13 @@ bar
 <pre><code>bar
 </code></pre>
 <h1>baz</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2017,10 +2350,13 @@ end
   return 3
 end
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2038,10 +2374,13 @@ end
   return 3
 end
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2053,10 +2392,13 @@ end
 ";
         var expected = @"
 <pre><code class=""language-;""></code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2069,10 +2411,13 @@ foo
         var expected = @"
 <p><code>aa</code>
 foo</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2086,10 +2431,13 @@ foo
         var expected = @"
 <pre><code class=""language-aa"">foo
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2103,10 +2451,13 @@ foo
         var expected = @"
 <pre><code>``` aaa
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2128,10 +2479,13 @@ _world_.
 <p><em>world</em>.
 </pre></p>
 </td></tr></table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2157,10 +2511,13 @@ okay.
   </tr>
 </table>
 <p>okay.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2175,10 +2532,13 @@ okay.
  <div>
   *hello*
          <foo><a>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2191,10 +2551,13 @@ okay.
         var expected = @"
 </div>
 *foo*
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2211,10 +2574,13 @@ okay.
 <DIV CLASS=""foo"">
 <p><em>Markdown</em></p>
 </DIV>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2229,10 +2595,13 @@ okay.
 <div id=""foo""
   class=""bar"">
 </div>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2247,10 +2616,13 @@ okay.
 <div id=""foo"" class=""bar
   baz"">
 </div>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2266,10 +2638,13 @@ okay.
 <div>
 *foo*
 <p><em>bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2282,10 +2657,13 @@ okay.
         var expected = @"
 <div id=""foo""
 *hi*
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2298,10 +2676,13 @@ foo
         var expected = @"
 <div class
 foo
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2314,10 +2695,13 @@ foo
         var expected = @"
 <div *???-&&&-<---
 *foo*
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2328,10 +2712,13 @@ foo
 ";
         var expected = @"
 <div><a href=""bar"">*foo*</a></div>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2346,10 +2733,13 @@ foo
 <table><tr><td>
 foo
 </td></tr></table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2366,10 +2756,13 @@ int x = 33;
 ``` c
 int x = 33;
 ```
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2384,10 +2777,13 @@ int x = 33;
 <a href=""foo"">
 *bar*
 </a>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2402,10 +2798,13 @@ int x = 33;
 <Warning>
 *bar*
 </Warning>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2420,10 +2819,13 @@ int x = 33;
 <i class=""foo"">
 *bar*
 </i>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2436,10 +2838,13 @@ int x = 33;
         var expected = @"
 </ins>
 *bar*
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2454,10 +2859,13 @@ int x = 33;
 <del>
 *foo*
 </del>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2474,10 +2882,13 @@ int x = 33;
 <del>
 <p><em>foo</em></p>
 </del>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2488,10 +2899,13 @@ int x = 33;
 ";
         var expected = @"
 <p><del><em>foo</em></del></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2514,10 +2928,13 @@ main :: IO ()
 main = print $ parseTags tags
 </code></pre>
 <p>okay</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2538,10 +2955,13 @@ okay
 document.getElementById(""demo"").innerHTML = ""Hello JavaScript!"";
 </script>
 <p>okay</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2564,10 +2984,13 @@ h1 {color:red;}
 p {color:blue;}
 </style>
 <p>okay</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2584,10 +3007,13 @@ foo
   type=""text/css"">
 
 foo
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2605,10 +3031,13 @@ bar
 foo
 </blockquote>
 <p>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2625,10 +3054,13 @@ foo
 </li>
 <li>foo</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2641,10 +3073,13 @@ foo
         var expected = @"
 <style>p{color:red;}</style>
 <p><em>foo</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2657,10 +3092,13 @@ foo
         var expected = @"
 <!-- foo -->*bar*
 <p><em>baz</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2675,10 +3113,13 @@ foo
 <script>
 foo
 </script>1. *bar*
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2697,10 +3138,13 @@ okay
 bar
    baz -->
 <p>okay</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2721,10 +3165,13 @@ okay
 
 ?>
 <p>okay</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2735,10 +3182,13 @@ okay
 ";
         var expected = @"
 <!DOCTYPE html>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2773,10 +3223,13 @@ function matchwo(a,b)
 }
 ]]>
 <p>okay</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2791,10 +3244,13 @@ function matchwo(a,b)
   <!-- foo -->
 <pre><code>&lt;!-- foo --&gt;
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2809,10 +3265,13 @@ function matchwo(a,b)
   <div>
 <pre><code>&lt;div&gt;
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2829,10 +3288,13 @@ bar
 <div>
 bar
 </div>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2849,10 +3311,13 @@ bar
 bar
 </div>
 *foo*
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2867,10 +3332,13 @@ baz
 <p>Foo
 <a href=""bar"">
 baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2887,10 +3355,13 @@ baz</p>
 <div>
 <p><em>Emphasized</em> text.</p>
 </div>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2905,10 +3376,13 @@ baz</p>
 <div>
 *Emphasized* text.
 </div>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2935,10 +3409,13 @@ Hi
 </td>
 </tr>
 </table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2966,10 +3443,13 @@ Hi
 </code></pre>
   </tr>
 </table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -2982,10 +3462,13 @@ Hi
 ";
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3000,10 +3483,13 @@ Hi
 ";
         var expected = @"
 <p><a href=""/url"" title=""the title"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3016,10 +3502,13 @@ Hi
 ";
         var expected = @"
 <p><a href=""my_(url)"" title=""title (with parens)"">Foo*bar]</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3034,10 +3523,13 @@ Hi
 ";
         var expected = @"
 <p><a href=""my%20url"" title=""title"">Foo bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3058,10 +3550,13 @@ title
 line1
 line2
 "">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3078,10 +3573,13 @@ with blank line'
 <p>[foo]: /url 'title</p>
 <p>with blank line'</p>
 <p>[foo]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3095,10 +3593,13 @@ with blank line'
 ";
         var expected = @"
 <p><a href=""/url"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3112,10 +3613,13 @@ with blank line'
         var expected = @"
 <p>[foo]:</p>
 <p>[foo]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3128,10 +3632,13 @@ with blank line'
 ";
         var expected = @"
 <p><a href="""">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3145,10 +3652,13 @@ with blank line'
         var expected = @"
 <p>[foo]: <bar>(baz)</p>
 <p>[foo]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3161,10 +3671,13 @@ with blank line'
 ";
         var expected = @"
 <p><a href=""/url%5Cbar*baz"" title=""foo&quot;bar\baz"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3177,10 +3690,13 @@ with blank line'
 ";
         var expected = @"
 <p><a href=""url"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3194,10 +3710,13 @@ with blank line'
 ";
         var expected = @"
 <p><a href=""first"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3210,10 +3729,13 @@ with blank line'
 ";
         var expected = @"
 <p><a href=""/url"">Foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3226,10 +3748,13 @@ with blank line'
 ";
         var expected = @"
 <p><a href=""/%CF%86%CE%BF%CF%85"">αγω</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3239,11 +3764,13 @@ with blank line'
 [foo]: /url
 ";
         var expected = @"
+".Substring(1);
 
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3257,10 +3784,13 @@ bar
 ";
         var expected = @"
 <p>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3271,10 +3801,13 @@ bar
 ";
         var expected = @"
 <p>[foo]: /url &quot;title&quot; ok</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3286,10 +3819,13 @@ bar
 ";
         var expected = @"
 <p>&quot;title&quot; ok</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3304,10 +3840,13 @@ bar
 <pre><code>[foo]: /url &quot;title&quot;
 </code></pre>
 <p>[foo]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3324,10 +3863,13 @@ bar
 <pre><code>[foo]: /url
 </code></pre>
 <p>[foo]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3343,10 +3885,13 @@ Foo
 <p>Foo
 [bar]: /baz</p>
 <p>[bar]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3362,10 +3907,13 @@ Foo
 <blockquote>
 <p>bar</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3380,10 +3928,13 @@ bar
         var expected = @"
 <h1>bar</h1>
 <p><a href=""/url"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3397,10 +3948,13 @@ bar
         var expected = @"
 <p>===
 <a href=""/url"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3420,10 +3974,13 @@ bar
 <p><a href=""/foo-url"" title=""foo"">foo</a>,
 <a href=""/bar-url"" title=""bar"">bar</a>,
 <a href=""/baz-url"">baz</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3438,10 +3995,13 @@ bar
 <p><a href=""/url"">foo</a></p>
 <blockquote>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3451,11 +4011,13 @@ bar
 [foo]: /url
 ";
         var expected = @"
+".Substring(1);
 
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3469,10 +4031,13 @@ bbb
         var expected = @"
 <p>aaa</p>
 <p>bbb</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3490,10 +4055,13 @@ ddd
 bbb</p>
 <p>ccc
 ddd</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3508,10 +4076,13 @@ bbb
         var expected = @"
 <p>aaa</p>
 <p>bbb</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3524,10 +4095,13 @@ bbb
         var expected = @"
 <p>aaa
 bbb</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3542,10 +4116,13 @@ aaa
 <p>aaa
 bbb
 ccc</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3558,10 +4135,13 @@ bbb
         var expected = @"
 <p>aaa
 bbb</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3575,10 +4155,13 @@ bbb
 <pre><code>aaa
 </code></pre>
 <p>bbb</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3591,10 +4174,13 @@ bbb
         var expected = @"
 <p>aaa<br />
 bbb</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3613,10 +4199,13 @@ aaa
         var expected = @"
 <p>aaa</p>
 <h1>aaa</h1>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3642,10 +4231,13 @@ aaa
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3671,10 +4263,13 @@ bar | baz
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3702,10 +4297,13 @@ bar | baz
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3735,10 +4333,13 @@ bar | baz
 <blockquote>
 <p>bar</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3772,10 +4373,13 @@ bar
 </tbody>
 </table>
 <p>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3790,10 +4394,13 @@ bar
 <p>| abc | def |
 | --- |
 | bar |</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3824,10 +4431,13 @@ bar
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3846,10 +4456,13 @@ bar
 </tr>
 </thead>
 </table>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3866,10 +4479,13 @@ bar
 <p>bar
 baz</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3886,10 +4502,13 @@ baz</p>
 <p>bar
 baz</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3906,10 +4525,13 @@ baz</p>
 <p>bar
 baz</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3925,10 +4547,13 @@ baz</p>
 &gt; bar
 &gt; baz
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3945,10 +4570,13 @@ baz
 <p>bar
 baz</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3965,10 +4593,13 @@ baz
 baz
 foo</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -3983,10 +4614,13 @@ foo</p>
 <p>foo</p>
 </blockquote>
 <hr />
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4005,10 +4639,13 @@ foo</p>
 <ul>
 <li>bar</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4025,10 +4662,13 @@ foo</p>
 </blockquote>
 <pre><code>bar
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4045,10 +4685,13 @@ foo
 </blockquote>
 <p>foo</p>
 <pre><code></code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4063,10 +4706,13 @@ foo
 <p>foo
 - bar</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4078,10 +4724,13 @@ foo
         var expected = @"
 <blockquote>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4095,10 +4744,13 @@ foo
         var expected = @"
 <blockquote>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4113,10 +4765,13 @@ foo
 <blockquote>
 <p>foo</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4134,10 +4789,13 @@ foo
 <blockquote>
 <p>bar</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4152,10 +4810,13 @@ foo
 <p>foo
 bar</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4171,10 +4832,13 @@ bar</p>
 <p>foo</p>
 <p>bar</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4189,10 +4853,13 @@ foo
 <blockquote>
 <p>bar</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4211,10 +4878,13 @@ foo
 <blockquote>
 <p>bbb</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4229,10 +4899,13 @@ baz
 <p>bar
 baz</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4248,10 +4921,13 @@ baz
 <p>bar</p>
 </blockquote>
 <p>baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4267,10 +4943,13 @@ baz
 <p>bar</p>
 </blockquote>
 <p>baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4289,10 +4968,13 @@ bar</p>
 </blockquote>
 </blockquote>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4313,10 +4995,13 @@ baz</p>
 </blockquote>
 </blockquote>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4335,10 +5020,13 @@ baz</p>
 <blockquote>
 <p>not code</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4360,10 +5048,13 @@ with two lines.</p>
 <blockquote>
 <p>A block quote.</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4389,10 +5080,13 @@ with two lines.</p>
 </blockquote>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4408,10 +5102,13 @@ with two lines.</p>
 <li>one</li>
 </ul>
 <p>two</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4429,10 +5126,13 @@ with two lines.</p>
 <p>two</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4449,10 +5149,13 @@ with two lines.</p>
 </ul>
 <pre><code> two
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4470,10 +5173,13 @@ with two lines.</p>
 <p>two</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4495,10 +5201,13 @@ with two lines.</p>
 </ol>
 </blockquote>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4518,10 +5227,13 @@ with two lines.</p>
 <p>two</p>
 </blockquote>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4535,10 +5247,13 @@ with two lines.</p>
         var expected = @"
 <p>-one</p>
 <p>2.two</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4557,10 +5272,13 @@ with two lines.</p>
 <p>bar</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4589,10 +5307,13 @@ with two lines.</p>
 </blockquote>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4617,10 +5338,13 @@ baz
 </code></pre>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4633,10 +5357,13 @@ baz
 <ol start=""123456789"">
 <li>ok</li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4647,10 +5374,13 @@ baz
 ";
         var expected = @"
 <p>1234567890. not ok</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4663,10 +5393,13 @@ baz
 <ol start=""0"">
 <li>ok</li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4679,10 +5412,13 @@ baz
 <ol start=""3"">
 <li>ok</li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4693,10 +5429,13 @@ baz
 ";
         var expected = @"
 <p>-1. not ok</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4715,10 +5454,13 @@ baz
 </code></pre>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4737,10 +5479,13 @@ baz
 </code></pre>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4759,10 +5504,13 @@ paragraph
 <p>paragraph</p>
 <pre><code>more code
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4785,10 +5533,13 @@ paragraph
 </code></pre>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4811,10 +5562,13 @@ paragraph
 </code></pre>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4828,10 +5582,13 @@ bar
         var expected = @"
 <p>foo</p>
 <p>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4847,10 +5604,13 @@ bar
 <li>foo</li>
 </ul>
 <p>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4868,10 +5628,13 @@ bar
 <p>bar</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4899,10 +5662,13 @@ bar
 </code></pre>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4916,10 +5682,13 @@ bar
 <ul>
 <li>foo</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4935,10 +5704,13 @@ bar
 <li></li>
 </ul>
 <p>foo</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4955,10 +5727,13 @@ bar
 <li></li>
 <li>bar</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4975,10 +5750,13 @@ bar
 <li></li>
 <li>bar</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -4995,10 +5773,13 @@ bar
 <li></li>
 <li>bar</li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5011,10 +5792,13 @@ bar
 <ul>
 <li></li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5032,10 +5816,13 @@ foo
 *</p>
 <p>foo
 1.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5061,10 +5848,13 @@ with two lines.</p>
 </blockquote>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5090,10 +5880,13 @@ with two lines.</p>
 </blockquote>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5119,10 +5912,13 @@ with two lines.</p>
 </blockquote>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5144,10 +5940,13 @@ with two lines.</p>
 
     &gt; A block quote.
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5173,10 +5972,13 @@ with two lines.</p>
 </blockquote>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5191,10 +5993,13 @@ with two lines.</p>
 <li>A paragraph
 with two lines.</li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5215,10 +6020,13 @@ continued here.</p>
 </li>
 </ol>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5239,10 +6047,13 @@ continued here.</p>
 </li>
 </ol>
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5270,10 +6081,13 @@ continued here.</p>
 </ul>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5292,10 +6106,13 @@ continued here.</p>
 <li>baz</li>
 <li>boo</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5313,10 +6130,13 @@ continued here.</p>
 </ul>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5333,10 +6153,13 @@ continued here.</p>
 <ul>
 <li>bar</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5353,10 +6176,13 @@ continued here.</p>
 </ul>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5377,10 +6203,13 @@ continued here.</p>
 </ul>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5401,10 +6230,13 @@ continued here.</p>
 <h2>Bar</h2>
 baz</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5419,10 +6251,13 @@ baz</li>
 <li><input type=""checkbox"" disabled="""" /> foo</li>
 <li><input type=""checkbox"" checked="""" disabled="""" /> bar</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5444,10 +6279,13 @@ baz</li>
 </li>
 <li><input type=""checkbox"" disabled="""" /> bim</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5466,10 +6304,13 @@ baz</li>
 <ul>
 <li>baz</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5488,10 +6329,13 @@ baz</li>
 <ol start=""3"">
 <li>baz</li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5508,10 +6352,13 @@ Foo
 <li>bar</li>
 <li>baz</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5524,10 +6371,13 @@ The number of windows in my house is
         var expected = @"
 <p>The number of windows in my house is
 14.  The number of doors is 6.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5542,10 +6392,13 @@ The number of windows in my house is
 <ol>
 <li>The number of doors is 6.</li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5571,10 +6424,13 @@ The number of windows in my house is
 <p>baz</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5603,10 +6459,13 @@ The number of windows in my house is
 </ul>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5631,10 +6490,13 @@ The number of windows in my house is
 <li>baz</li>
 <li>bim</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5664,10 +6526,13 @@ The number of windows in my house is
 <!-- -->
 <pre><code>code
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5692,10 +6557,13 @@ The number of windows in my house is
 <li>f</li>
 <li>g</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5720,10 +6588,13 @@ The number of windows in my house is
 <p>c</p>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5744,10 +6615,13 @@ The number of windows in my house is
 <li>d
 - e</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5771,10 +6645,13 @@ The number of windows in my house is
 </ol>
 <pre><code>3. c
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5798,10 +6675,13 @@ The number of windows in my house is
 <p>c</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5823,10 +6703,13 @@ The number of windows in my house is
 <p>c</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5852,10 +6735,13 @@ The number of windows in my house is
 <p>d</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5880,10 +6766,13 @@ The number of windows in my house is
 <p>d</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5909,10 +6798,13 @@ The number of windows in my house is
 </li>
 <li>c</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5937,10 +6829,13 @@ The number of windows in my house is
 </li>
 <li>d</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5961,10 +6856,13 @@ The number of windows in my house is
 </li>
 <li>c</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -5989,10 +6887,13 @@ The number of windows in my house is
 </li>
 <li>d</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6005,10 +6906,13 @@ The number of windows in my house is
 <ul>
 <li>a</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6026,10 +6930,13 @@ The number of windows in my house is
 </ul>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6050,10 +6957,13 @@ The number of windows in my house is
 <p>bar</p>
 </li>
 </ol>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6075,10 +6985,13 @@ The number of windows in my house is
 <p>baz</p>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6110,10 +7023,13 @@ The number of windows in my house is
 </ul>
 </li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6124,10 +7040,13 @@ The number of windows in my house is
 ";
         var expected = @"
 <p><code>hi</code>lo`</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6138,10 +7057,13 @@ The number of windows in my house is
 ";
         var expected = @"
 <p>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_`{|}~</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6152,10 +7074,13 @@ The number of windows in my house is
 ";
         var expected = @"
 <p>\	\A\a\ \3\φ\«</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6182,10 +7107,13 @@ The number of windows in my house is
 # not a heading
 [foo]: /url &quot;not a reference&quot;
 &amp;ouml; not a character entity</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6196,10 +7124,13 @@ The number of windows in my house is
 ";
         var expected = @"
 <p>\\<em>emphasis</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6212,10 +7143,13 @@ bar
         var expected = @"
 <p>foo<br />
 bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6226,10 +7160,13 @@ bar</p>
 ";
         var expected = @"
 <p><code>\\[\\`</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6241,10 +7178,13 @@ bar</p>
         var expected = @"
 <pre><code>\\[\\]
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6258,10 +7198,13 @@ bar</p>
         var expected = @"
 <pre><code>\\[\\]
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6272,10 +7215,13 @@ bar</p>
 ";
         var expected = @"
 <p><a href=""http://example.com?find=%5C*"">http://example.com?find=\*</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6286,10 +7232,13 @@ bar</p>
 ";
         var expected = @"
 <a href=""/bar\\/)"">
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6300,10 +7249,13 @@ bar</p>
 ";
         var expected = @"
 <p><a href=""/bar*"" title=""ti*tle"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6316,10 +7268,13 @@ bar</p>
 ";
         var expected = @"
 <p><a href=""/bar*"" title=""ti*tle"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6333,10 +7288,13 @@ foo
         var expected = @"
 <pre><code class=""language-foo+bar"">foo
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6351,10 +7309,13 @@ foo
 <p>  &amp; © Æ Ď
 ¾ ℋ ⅆ
 ∲ ≧̸</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6365,10 +7326,13 @@ foo
 ";
         var expected = @"
 <p># Ӓ Ϡ �</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6379,10 +7343,13 @@ foo
 ";
         var expected = @"
 <p>&quot; ആ ಫ</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6399,10 +7366,13 @@ foo
 &amp;#987654321;
 &amp;#abcdef0;
 &amp;ThisIsNotDefined; &amp;hi?;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6413,10 +7383,13 @@ foo
 ";
         var expected = @"
 <p>&amp;copy</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6427,10 +7400,13 @@ foo
 ";
         var expected = @"
 <p>&amp;MadeUpEntity;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6441,10 +7417,13 @@ foo
 ";
         var expected = @"
 <a href=""&ouml;&ouml;.html"">
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6455,10 +7434,13 @@ foo
 ";
         var expected = @"
 <p><a href=""/f%C3%B6%C3%B6"" title=""föö"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6471,10 +7453,13 @@ foo
 ";
         var expected = @"
 <p><a href=""/f%C3%B6%C3%B6"" title=""föö"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6488,10 +7473,13 @@ foo
         var expected = @"
 <pre><code class=""language-föö"">foo
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6502,10 +7490,13 @@ foo
 ";
         var expected = @"
 <p><code>f&amp;ouml;&amp;ouml;</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6517,10 +7508,13 @@ foo
         var expected = @"
 <pre><code>f&amp;ouml;f&amp;ouml;
 </code></pre>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6533,10 +7527,13 @@ foo
         var expected = @"
 <p>*foo*
 <em>foo</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6552,10 +7549,13 @@ foo
 <ul>
 <li>foo</li>
 </ul>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6568,10 +7568,13 @@ foo&#10;&#10;bar
 <p>foo
 
 bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6582,10 +7585,13 @@ bar</p>
 ";
         var expected = @"
 <p>	foo</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6596,10 +7602,13 @@ bar</p>
 ";
         var expected = @"
 <p>[a](url &quot;tit&quot;)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6610,10 +7619,13 @@ bar</p>
 ";
         var expected = @"
 <p><code>foo</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6624,10 +7636,13 @@ bar</p>
 ";
         var expected = @"
 <p><code>foo ` bar</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6638,10 +7653,13 @@ bar</p>
 ";
         var expected = @"
 <p><code>``</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6652,10 +7670,13 @@ bar</p>
 ";
         var expected = @"
 <p><code> `` </code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6666,10 +7687,13 @@ bar</p>
 ";
         var expected = @"
 <p><code> a</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6680,10 +7704,13 @@ bar</p>
 ";
         var expected = @"
 <p><code> b </code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6696,10 +7723,13 @@ bar</p>
         var expected = @"
 <p><code> </code>
 <code>  </code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6714,10 +7744,13 @@ baz
 ";
         var expected = @"
 <p><code>foo bar   baz</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6730,10 +7763,13 @@ foo
 ";
         var expected = @"
 <p><code>foo </code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6745,10 +7781,13 @@ baz`
 ";
         var expected = @"
 <p><code>foo   bar  baz</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6759,10 +7798,13 @@ baz`
 ";
         var expected = @"
 <p><code>foo\\</code>bar`</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6773,10 +7815,13 @@ baz`
 ";
         var expected = @"
 <p><code>foo`bar</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6787,10 +7832,13 @@ baz`
 ";
         var expected = @"
 <p><code>foo `` bar</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6801,10 +7849,13 @@ baz`
 ";
         var expected = @"
 <p>*foo<code>*</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6815,10 +7866,13 @@ baz`
 ";
         var expected = @"
 <p>[not a <code>link](/foo</code>)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6829,10 +7883,13 @@ baz`
 ";
         var expected = @"
 <p><code>&lt;a href=&quot;</code>&quot;&gt;`</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6843,10 +7900,13 @@ baz`
 ";
         var expected = @"
 <p><a href=""`"">`</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6857,10 +7917,13 @@ baz`
 ";
         var expected = @"
 <p><code>&lt;http://foo.bar.</code>baz&gt;`</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6871,10 +7934,13 @@ baz`
 ";
         var expected = @"
 <p><a href=""http://foo.bar.%60baz"">http://foo.bar.`baz</a>`</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6885,10 +7951,13 @@ baz`
 ";
         var expected = @"
 <p>```foo``</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6899,10 +7968,13 @@ baz`
 ";
         var expected = @"
 <p>`foo</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6913,10 +7985,13 @@ baz`
 ";
         var expected = @"
 <p>`foo<code>bar</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6927,10 +8002,13 @@ baz`
 ";
         var expected = @"
 <p><em>foo bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6941,10 +8019,13 @@ a * foo bar*
 ";
         var expected = @"
 <p>a * foo bar*</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6955,10 +8036,13 @@ a*""foo""*
 ";
         var expected = @"
 <p>a*&quot;foo&quot;*</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6969,10 +8053,13 @@ a*""foo""*
 ";
         var expected = @"
 <p>* a *</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6983,10 +8070,13 @@ foo*bar*
 ";
         var expected = @"
 <p>foo<em>bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -6997,10 +8087,13 @@ foo*bar*
 ";
         var expected = @"
 <p>5<em>6</em>78</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7011,10 +8104,13 @@ _foo bar_
 ";
         var expected = @"
 <p><em>foo bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7025,10 +8121,13 @@ _ foo bar_
 ";
         var expected = @"
 <p>_ foo bar_</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7039,10 +8138,13 @@ a_""foo""_
 ";
         var expected = @"
 <p>a_&quot;foo&quot;_</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7053,10 +8155,13 @@ foo_bar_
 ";
         var expected = @"
 <p>foo_bar_</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7067,10 +8172,13 @@ foo_bar_
 ";
         var expected = @"
 <p>5_6_78</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7081,10 +8189,13 @@ foo_bar_
 ";
         var expected = @"
 <p>пристаням_стремятся_</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7095,10 +8206,13 @@ aa_""bb""_cc
 ";
         var expected = @"
 <p>aa_&quot;bb&quot;_cc</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7109,10 +8223,13 @@ foo-_(bar)_
 ";
         var expected = @"
 <p>foo-<em>(bar)</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7123,10 +8240,13 @@ _foo*
 ";
         var expected = @"
 <p>_foo*</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7137,10 +8257,13 @@ _foo*
 ";
         var expected = @"
 <p>*foo bar *</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7153,10 +8276,13 @@ _foo*
         var expected = @"
 <p>*foo bar
 *</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7167,10 +8293,13 @@ _foo*
 ";
         var expected = @"
 <p>*(*foo)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7181,10 +8310,13 @@ _foo*
 ";
         var expected = @"
 <p><em>(<em>foo</em>)</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7195,10 +8327,13 @@ _foo*
 ";
         var expected = @"
 <p><em>foo</em>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7209,10 +8344,13 @@ _foo bar _
 ";
         var expected = @"
 <p>_foo bar _</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7223,10 +8361,13 @@ _(_foo)
 ";
         var expected = @"
 <p>_(_foo)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7237,10 +8378,13 @@ _(_foo_)_
 ";
         var expected = @"
 <p><em>(<em>foo</em>)</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7251,10 +8395,13 @@ _foo_bar
 ";
         var expected = @"
 <p>_foo_bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7265,10 +8412,13 @@ _пристаням_стремятся
 ";
         var expected = @"
 <p>_пристаням_стремятся</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7279,10 +8429,13 @@ _foo_bar_baz_
 ";
         var expected = @"
 <p><em>foo_bar_baz</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7293,10 +8446,13 @@ _(bar)_.
 ";
         var expected = @"
 <p><em>(bar)</em>.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7307,10 +8463,13 @@ _(bar)_.
 ";
         var expected = @"
 <p><strong>foo bar</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7321,10 +8480,13 @@ _(bar)_.
 ";
         var expected = @"
 <p>** foo bar**</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7335,10 +8497,13 @@ a**""foo""**
 ";
         var expected = @"
 <p>a**&quot;foo&quot;**</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7349,10 +8514,13 @@ foo**bar**
 ";
         var expected = @"
 <p>foo<strong>bar</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7363,10 +8531,13 @@ __foo bar__
 ";
         var expected = @"
 <p><strong>foo bar</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7377,10 +8548,13 @@ __ foo bar__
 ";
         var expected = @"
 <p>__ foo bar__</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7393,10 +8567,13 @@ foo bar__
         var expected = @"
 <p>__
 foo bar__</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7407,10 +8584,13 @@ a__""foo""__
 ";
         var expected = @"
 <p>a__&quot;foo&quot;__</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7421,10 +8601,13 @@ foo__bar__
 ";
         var expected = @"
 <p>foo__bar__</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7435,10 +8618,13 @@ foo__bar__
 ";
         var expected = @"
 <p>5__6__78</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7449,10 +8635,13 @@ foo__bar__
 ";
         var expected = @"
 <p>пристаням__стремятся__</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7463,10 +8652,13 @@ __foo, __bar__, baz__
 ";
         var expected = @"
 <p><strong>foo, <strong>bar</strong>, baz</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7477,10 +8669,13 @@ foo-__(bar)__
 ";
         var expected = @"
 <p>foo-<strong>(bar)</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7491,10 +8686,13 @@ foo-__(bar)__
 ";
         var expected = @"
 <p>**foo bar **</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7505,10 +8703,13 @@ foo-__(bar)__
 ";
         var expected = @"
 <p>**(**foo)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7519,10 +8720,13 @@ foo-__(bar)__
 ";
         var expected = @"
 <p><em>(<strong>foo</strong>)</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7535,10 +8739,13 @@ foo-__(bar)__
         var expected = @"
 <p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.
 <em>Asclepias physocarpa</em>)</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7549,10 +8756,13 @@ foo-__(bar)__
 ";
         var expected = @"
 <p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7563,10 +8773,13 @@ foo-__(bar)__
 ";
         var expected = @"
 <p><strong>foo</strong>bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7577,10 +8790,13 @@ __foo bar __
 ";
         var expected = @"
 <p>__foo bar __</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7591,10 +8807,13 @@ __(__foo)
 ";
         var expected = @"
 <p>__(__foo)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7605,10 +8824,13 @@ _(__foo__)_
 ";
         var expected = @"
 <p><em>(<strong>foo</strong>)</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7619,10 +8841,13 @@ __foo__bar
 ";
         var expected = @"
 <p>__foo__bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7633,10 +8858,13 @@ __пристаням__стремятся
 ";
         var expected = @"
 <p>__пристаням__стремятся</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7647,10 +8875,13 @@ __foo__bar__baz__
 ";
         var expected = @"
 <p><strong>foo__bar__baz</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7661,10 +8892,13 @@ __(bar)__.
 ";
         var expected = @"
 <p><strong>(bar)</strong>.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7675,10 +8909,13 @@ __(bar)__.
 ";
         var expected = @"
 <p><em>foo <a href=""/url"">bar</a></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7691,10 +8928,13 @@ bar*
         var expected = @"
 <p><em>foo
 bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7705,10 +8945,13 @@ _foo __bar__ baz_
 ";
         var expected = @"
 <p><em>foo <strong>bar</strong> baz</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7719,10 +8962,13 @@ _foo _bar_ baz_
 ";
         var expected = @"
 <p><em>foo <em>bar</em> baz</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7733,10 +8979,13 @@ __foo_ bar_
 ";
         var expected = @"
 <p><em><em>foo</em> bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7747,10 +8996,13 @@ __foo_ bar_
 ";
         var expected = @"
 <p><em>foo <em>bar</em></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7761,10 +9013,13 @@ __foo_ bar_
 ";
         var expected = @"
 <p><em>foo <strong>bar</strong> baz</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7775,10 +9030,13 @@ __foo_ bar_
 ";
         var expected = @"
 <p><em>foo<strong>bar</strong>baz</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7789,10 +9047,13 @@ __foo_ bar_
 ";
         var expected = @"
 <p><em>foo**bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7803,10 +9064,13 @@ __foo_ bar_
 ";
         var expected = @"
 <p><em><strong>foo</strong> bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7817,10 +9081,13 @@ __foo_ bar_
 ";
         var expected = @"
 <p><em>foo <strong>bar</strong></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7831,10 +9098,13 @@ __foo_ bar_
 ";
         var expected = @"
 <p><em>foo<strong>bar</strong></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7845,10 +9115,13 @@ foo***bar***baz
 ";
         var expected = @"
 <p>foo<em><strong>bar</strong></em>baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7859,10 +9132,13 @@ foo******bar*********baz
 ";
         var expected = @"
 <p>foo<strong><strong><strong>bar</strong></strong></strong>***baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7873,10 +9149,13 @@ foo******bar*********baz
 ";
         var expected = @"
 <p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7887,10 +9166,13 @@ foo******bar*********baz
 ";
         var expected = @"
 <p><em>foo <a href=""/url""><em>bar</em></a></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7901,10 +9183,13 @@ foo******bar*********baz
 ";
         var expected = @"
 <p>** is not an empty emphasis</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7915,10 +9200,13 @@ foo******bar*********baz
 ";
         var expected = @"
 <p>**** is not an empty strong emphasis</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7929,10 +9217,13 @@ foo******bar*********baz
 ";
         var expected = @"
 <p><strong>foo <a href=""/url"">bar</a></strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7945,10 +9236,13 @@ bar**
         var expected = @"
 <p><strong>foo
 bar</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7959,10 +9253,13 @@ __foo _bar_ baz__
 ";
         var expected = @"
 <p><strong>foo <em>bar</em> baz</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7973,10 +9270,13 @@ __foo __bar__ baz__
 ";
         var expected = @"
 <p><strong>foo <strong>bar</strong> baz</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -7987,10 +9287,13 @@ ____foo__ bar__
 ";
         var expected = @"
 <p><strong><strong>foo</strong> bar</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8001,10 +9304,13 @@ ____foo__ bar__
 ";
         var expected = @"
 <p><strong>foo <strong>bar</strong></strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8015,10 +9321,13 @@ ____foo__ bar__
 ";
         var expected = @"
 <p><strong>foo <em>bar</em> baz</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8029,10 +9338,13 @@ ____foo__ bar__
 ";
         var expected = @"
 <p><strong>foo<em>bar</em>baz</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8043,10 +9355,13 @@ ____foo__ bar__
 ";
         var expected = @"
 <p><strong><em>foo</em> bar</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8057,10 +9372,13 @@ ____foo__ bar__
 ";
         var expected = @"
 <p><strong>foo <em>bar</em></strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8073,10 +9391,13 @@ bim* bop**
         var expected = @"
 <p><strong>foo <em>bar <strong>baz</strong>
 bim</em> bop</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8087,10 +9408,13 @@ bim</em> bop</strong></p>
 ";
         var expected = @"
 <p><strong>foo <a href=""/url""><em>bar</em></a></strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8101,10 +9425,13 @@ __ is not an empty emphasis
 ";
         var expected = @"
 <p>__ is not an empty emphasis</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8115,10 +9442,13 @@ ____ is not an empty strong emphasis
 ";
         var expected = @"
 <p>____ is not an empty strong emphasis</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8129,10 +9459,13 @@ foo ***
 ";
         var expected = @"
 <p>foo ***</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8143,10 +9476,13 @@ foo *\**
 ";
         var expected = @"
 <p>foo <em>*</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8157,10 +9493,13 @@ foo *_*
 ";
         var expected = @"
 <p>foo <em>_</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8171,10 +9510,13 @@ foo *****
 ";
         var expected = @"
 <p>foo *****</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8185,10 +9527,13 @@ foo **\***
 ";
         var expected = @"
 <p>foo <strong>*</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8199,10 +9544,13 @@ foo **_**
 ";
         var expected = @"
 <p>foo <strong>_</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8213,10 +9561,13 @@ foo **_**
 ";
         var expected = @"
 <p>*<em>foo</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8227,10 +9578,13 @@ foo **_**
 ";
         var expected = @"
 <p><em>foo</em>*</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8241,10 +9595,13 @@ foo **_**
 ";
         var expected = @"
 <p>*<strong>foo</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8255,10 +9612,13 @@ foo **_**
 ";
         var expected = @"
 <p>***<em>foo</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8269,10 +9629,13 @@ foo **_**
 ";
         var expected = @"
 <p><strong>foo</strong>*</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8283,10 +9646,13 @@ foo **_**
 ";
         var expected = @"
 <p><em>foo</em>***</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8297,10 +9663,13 @@ foo ___
 ";
         var expected = @"
 <p>foo ___</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8311,10 +9680,13 @@ foo _\__
 ";
         var expected = @"
 <p>foo <em>_</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8325,10 +9697,13 @@ foo _*_
 ";
         var expected = @"
 <p>foo <em>*</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8339,10 +9714,13 @@ foo _____
 ";
         var expected = @"
 <p>foo _____</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8353,10 +9731,13 @@ foo __\___
 ";
         var expected = @"
 <p>foo <strong>_</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8367,10 +9748,13 @@ foo __*__
 ";
         var expected = @"
 <p>foo <strong>*</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8381,10 +9765,13 @@ __foo_
 ";
         var expected = @"
 <p>_<em>foo</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8395,10 +9782,13 @@ _foo__
 ";
         var expected = @"
 <p><em>foo</em>_</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8409,10 +9799,13 @@ ___foo__
 ";
         var expected = @"
 <p>_<strong>foo</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8423,10 +9816,13 @@ ____foo_
 ";
         var expected = @"
 <p>___<em>foo</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8437,10 +9833,13 @@ __foo___
 ";
         var expected = @"
 <p><strong>foo</strong>_</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8451,10 +9850,13 @@ _foo____
 ";
         var expected = @"
 <p><em>foo</em>___</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8465,10 +9867,13 @@ _foo____
 ";
         var expected = @"
 <p><strong>foo</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8479,10 +9884,13 @@ _foo____
 ";
         var expected = @"
 <p><em><em>foo</em></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8493,10 +9901,13 @@ __foo__
 ";
         var expected = @"
 <p><strong>foo</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8507,10 +9918,13 @@ _*foo*_
 ";
         var expected = @"
 <p><em><em>foo</em></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8521,10 +9935,13 @@ _*foo*_
 ";
         var expected = @"
 <p><strong><strong>foo</strong></strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8535,10 +9952,13 @@ ____foo____
 ";
         var expected = @"
 <p><strong><strong>foo</strong></strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8549,10 +9969,13 @@ ____foo____
 ";
         var expected = @"
 <p><strong><strong><strong>foo</strong></strong></strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8563,10 +9986,13 @@ ____foo____
 ";
         var expected = @"
 <p><em><strong>foo</strong></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8577,10 +10003,13 @@ _____foo_____
 ";
         var expected = @"
 <p><em><strong><strong>foo</strong></strong></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8591,10 +10020,13 @@ _____foo_____
 ";
         var expected = @"
 <p><em>foo _bar</em> baz_</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8605,10 +10037,13 @@ _____foo_____
 ";
         var expected = @"
 <p><em>foo <strong>bar *baz bim</strong> bam</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8619,10 +10054,13 @@ _____foo_____
 ";
         var expected = @"
 <p>**foo <strong>bar baz</strong></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8633,10 +10071,13 @@ _____foo_____
 ";
         var expected = @"
 <p>*foo <em>bar baz</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8647,10 +10088,13 @@ _____foo_____
 ";
         var expected = @"
 <p>*<a href=""/url"">bar*</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8661,10 +10105,13 @@ _foo [bar_](/url)
 ";
         var expected = @"
 <p>_foo <a href=""/url"">bar_</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8675,10 +10122,13 @@ _foo [bar_](/url)
 ";
         var expected = @"
 <p>*<img src=""foo"" title=""*""/></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8689,10 +10139,13 @@ _foo [bar_](/url)
 ";
         var expected = @"
 <p>**<a href=""**""></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8703,10 +10156,13 @@ __<a href=""__"">
 ";
         var expected = @"
 <p>__<a href=""__""></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8717,10 +10173,13 @@ __<a href=""__"">
 ";
         var expected = @"
 <p><em>a <code>*</code></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8731,10 +10190,13 @@ _a `_`_
 ";
         var expected = @"
 <p><em>a <code>_</code></em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8745,10 +10207,13 @@ _a `_`_
 ";
         var expected = @"
 <p>**a<a href=""http://foo.bar/?q=**"">http://foo.bar/?q=**</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8759,10 +10224,13 @@ __a<http://foo.bar/?q=__>
 ";
         var expected = @"
 <p>__a<a href=""http://foo.bar/?q=__"">http://foo.bar/?q=__</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8773,10 +10241,13 @@ __a<http://foo.bar/?q=__>
 ";
         var expected = @"
 <p><del>Hi</del> Hello, world!</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8790,10 +10261,13 @@ new paragraph~~.
         var expected = @"
 <p>This ~~has a</p>
 <p>new paragraph~~.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8804,10 +10278,13 @@ This will ~~~not~~~ strike.
 ";
         var expected = @"
 <p>This will ~~~not~~~ strike.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8818,10 +10295,13 @@ This will ~~~not~~~ strike.
 ";
         var expected = @"
 <p><a href=""/uri"" title=""title"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8832,10 +10312,13 @@ This will ~~~not~~~ strike.
 ";
         var expected = @"
 <p><a href=""/uri"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8846,10 +10329,13 @@ This will ~~~not~~~ strike.
 ";
         var expected = @"
 <p><a href="""">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8860,10 +10346,13 @@ This will ~~~not~~~ strike.
 ";
         var expected = @"
 <p><a href="""">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8874,10 +10363,13 @@ This will ~~~not~~~ strike.
 ";
         var expected = @"
 <p>[link](/my uri)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8888,10 +10380,13 @@ This will ~~~not~~~ strike.
 ";
         var expected = @"
 <p><a href=""/my%20uri"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8904,10 +10399,13 @@ bar)
         var expected = @"
 <p>[link](foo
 bar)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8920,10 +10418,13 @@ bar>)
         var expected = @"
 <p>[link](<foo
 bar>)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8934,10 +10435,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""b)c"">a</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8948,10 +10452,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[link](&lt;foo&gt;)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8966,10 +10473,13 @@ bar>)</p>
 <p>[a](&lt;b)c
 [a](&lt;b)c&gt;
 [a](<b>c)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8980,10 +10490,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""(foo)"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -8994,10 +10507,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""foo(and(bar))"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9008,10 +10524,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""foo(and(bar)"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9022,10 +10541,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""foo(and(bar)"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9036,10 +10558,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""foo):"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9056,10 +10581,13 @@ bar>)</p>
 <p><a href=""#fragment"">link</a></p>
 <p><a href=""http://example.com#fragment"">link</a></p>
 <p><a href=""http://example.com?foo=3#frag"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9070,10 +10598,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""foo%5Cbar"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9084,10 +10615,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""foo%20b%C3%A4"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9098,10 +10632,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""%22title%22"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9116,10 +10653,13 @@ bar>)</p>
 <p><a href=""/url"" title=""title"">link</a>
 <a href=""/url"" title=""title"">link</a>
 <a href=""/url"" title=""title"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9130,10 +10670,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title &quot;&quot;"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9144,10 +10687,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url%C2%A0%22title%22"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9158,10 +10704,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9172,10 +10721,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title &quot;and&quot; title"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9187,10 +10739,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"" title=""title"">link</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9201,10 +10756,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[link] (/uri)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9215,10 +10773,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">link [foo [bar]]</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9229,10 +10790,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[link] bar](/uri)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9243,10 +10807,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[link <a href=""/uri"">bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9257,10 +10824,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">link [bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9271,10 +10841,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9285,10 +10858,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri""><img src=""moon.jpg"" alt=""moon"" /></a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9299,10 +10875,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo <a href=""/uri"">bar</a>](/uri)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9313,10 +10892,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo <em>[bar <a href=""/uri"">baz</a>](/uri)</em>](/uri)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9327,10 +10909,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><img src=""uri3"" alt=""[foo](uri2)"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9341,10 +10926,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>*<a href=""/uri"">foo*</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9355,10 +10943,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""baz*"">foo *bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     //[TestMethod]
@@ -9369,10 +10960,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><em>foo [bar</em> baz]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9383,10 +10977,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo <bar attr=""](baz)""></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9397,10 +10994,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo<code>](/uri)</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9411,10 +11011,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo<a href=""http://example.com/?search=%5D(uri)"">http://example.com/?search=](uri)</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9427,10 +11030,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9443,10 +11049,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">link [foo [bar]]</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9459,10 +11068,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">link [bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9475,10 +11087,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9491,10 +11106,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri""><img src=""moon.jpg"" alt=""moon"" /></a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9507,10 +11125,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo <a href=""/uri"">bar</a>]<a href=""/uri"">ref</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9523,10 +11144,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo <em>bar <a href=""/uri"">baz</a></em>]<a href=""/uri"">ref</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9539,10 +11163,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>*<a href=""/uri"">foo*</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9555,10 +11182,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">foo *bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9571,10 +11201,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo <bar attr=""][ref]""></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9587,10 +11220,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo<code>][ref]</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9603,10 +11239,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo<a href=""http://example.com/?search=%5D%5Bref%5D"">http://example.com/?search=][ref]</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9619,10 +11258,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9635,10 +11277,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"">Толпой</a> is a Russian word.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9652,10 +11297,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"">Baz</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9668,10 +11316,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo] <a href=""/url"" title=""title"">bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9686,10 +11337,13 @@ bar>)</p>
         var expected = @"
 <p>[foo]
 <a href=""/url"" title=""title"">bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9704,10 +11358,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url1"">bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9720,10 +11377,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[bar][foo!]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9737,10 +11397,13 @@ bar>)</p>
         var expected = @"
 <p>[foo][ref[]</p>
 <p>[ref[]: /uri</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9754,10 +11417,13 @@ bar>)</p>
         var expected = @"
 <p>[foo][ref[bar]]</p>
 <p>[ref[bar]]: /uri</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9771,10 +11437,13 @@ bar>)</p>
         var expected = @"
 <p>[[[foo]]]</p>
 <p>[[[foo]]]: /url</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9787,10 +11456,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9803,10 +11475,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/uri"">bar\\</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9820,10 +11495,13 @@ bar>)</p>
         var expected = @"
 <p>[]</p>
 <p>[]: /uri</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9841,10 +11519,13 @@ bar>)</p>
 ]</p>
 <p>[
 ]: /uri</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9857,10 +11538,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9873,10 +11557,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title""><em>foo</em> bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9889,10 +11576,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title"">Foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9907,10 +11597,13 @@ bar>)</p>
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a>
 []</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9923,10 +11616,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9939,10 +11635,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title""><em>foo</em> bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9955,10 +11654,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[<a href=""/url"" title=""title""><em>foo</em> bar</a>]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9971,10 +11673,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[[bar <a href=""/url"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -9987,10 +11692,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"" title=""title"">Foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10003,10 +11711,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url"">foo</a> bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10019,10 +11730,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10035,10 +11749,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>*<a href=""/url"">foo*</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10052,10 +11769,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url2"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10068,10 +11788,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url1"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10084,10 +11807,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href="""">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10100,10 +11826,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url1"">foo</a>(not a link)</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10116,10 +11845,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo]<a href=""/url"">bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10133,10 +11865,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><a href=""/url2"">foo</a><a href=""/url1"">baz</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10150,10 +11885,13 @@ bar>)</p>
 ";
         var expected = @"
 <p>[foo]<a href=""/url1"">bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10164,10 +11902,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><img src=""/url"" alt=""foo"" title=""title"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10180,10 +11921,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><img src=""train.jpg"" alt=""foo bar"" title=""train &amp; tracks"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10194,10 +11938,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><img src=""/url2"" alt=""foo bar"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10208,10 +11955,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><img src=""/url2"" alt=""foo bar"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10224,10 +11974,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><img src=""train.jpg"" alt=""foo bar"" title=""train &amp; tracks"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10240,10 +11993,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><img src=""train.jpg"" alt=""foo bar"" title=""train &amp; tracks"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10254,10 +12010,13 @@ bar>)</p>
 ";
         var expected = @"
 <p><img src=""train.jpg"" alt=""foo"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10268,10 +12027,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>My <img src=""/path/to/train.jpg"" alt=""foo bar"" title=""title"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10282,10 +12044,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""url"" alt=""foo"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10296,10 +12061,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt="""" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10312,10 +12080,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt=""foo"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10328,10 +12099,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt=""foo"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10344,10 +12118,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt=""foo"" title=""title"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10360,10 +12137,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt=""foo bar"" title=""title"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10376,10 +12156,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt=""Foo"" title=""title"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10394,10 +12177,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p><img src=""/url"" alt=""foo"" title=""title"" />
 []</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10410,10 +12196,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt=""foo"" title=""title"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10426,10 +12215,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt=""foo bar"" title=""title"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10443,10 +12235,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
         var expected = @"
 <p>![[foo]]</p>
 <p>[[foo]]: /url &quot;title&quot;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10459,10 +12254,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><img src=""/url"" alt=""Foo"" title=""title"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10475,10 +12273,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>![foo]</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10491,10 +12292,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>!<a href=""/url"" title=""title"">foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10505,10 +12309,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""http://foo.bar.baz"">http://foo.bar.baz</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10519,10 +12326,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean"">http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10533,10 +12343,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""irc://foo.bar:2233/baz"">irc://foo.bar:2233/baz</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10547,10 +12360,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""MAILTO:FOO@BAR.BAZ"">MAILTO:FOO@BAR.BAZ</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10561,10 +12377,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""a+b+c:d"">a+b+c:d</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10575,10 +12394,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""made-up-scheme://foo,bar"">made-up-scheme://foo,bar</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10589,10 +12411,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""http://../"">http://../</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10603,10 +12428,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""localhost:5001/foo"">localhost:5001/foo</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10617,10 +12445,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>&lt;http://foo.bar/baz bim&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10631,10 +12462,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""http://example.com/%5C%5B%5C"">http://example.com/\[\</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10645,10 +12479,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""mailto:foo@bar.example.com"">foo@bar.example.com</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10659,10 +12496,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p><a href=""mailto:foo+special@Bar.baz-bar0.com"">foo+special@Bar.baz-bar0.com</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10673,10 +12513,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>&lt;foo+@bar.example.com&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10687,10 +12530,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>&lt;&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10701,10 +12547,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>&lt; http://foo.bar &gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10715,10 +12564,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>&lt;m:abc&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10729,10 +12581,13 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
 ";
         var expected = @"
 <p>&lt;foo.bar.baz&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10743,10 +12598,13 @@ http://example.com
 ";
         var expected = @"
 <p><a href=""http://example.com"">http://example.com</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10757,10 +12615,13 @@ foo@bar.example.com
 ";
         var expected = @"
 <p><a href=""mailto:foo@bar.example.com"">foo@bar.example.com</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10771,10 +12632,13 @@ www.commonmark.org
 ";
         var expected = @"
 <p><a href=""http://www.commonmark.org"">www.commonmark.org</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10785,10 +12649,13 @@ Visit www.commonmark.org/help for more information.
 ";
         var expected = @"
 <p>Visit <a href=""http://www.commonmark.org/help"">www.commonmark.org/help</a> for more information.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10802,10 +12669,13 @@ Visit www.commonmark.org/a.b.
         var expected = @"
 <p>Visit <a href=""http://www.commonmark.org"">www.commonmark.org</a>.</p>
 <p>Visit <a href=""http://www.commonmark.org/a.b"">www.commonmark.org/a.b</a>.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10825,10 +12695,13 @@ www.google.com/search?q=Markup+(business)))
 <p><a href=""http://www.google.com/search?q=Markup+(business)"">www.google.com/search?q=Markup+(business)</a>))</p>
 <p>(<a href=""http://www.google.com/search?q=Markup+(business)"">www.google.com/search?q=Markup+(business)</a>)</p>
 <p>(<a href=""http://www.google.com/search?q=Markup+(business)"">www.google.com/search?q=Markup+(business)</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10839,10 +12712,13 @@ www.google.com/search?q=(business))+ok
 ";
         var expected = @"
 <p><a href=""http://www.google.com/search?q=(business))+ok"">www.google.com/search?q=(business))+ok</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10856,10 +12732,13 @@ www.google.com/search?q=commonmark&hl;
         var expected = @"
 <p><a href=""http://www.google.com/search?q=commonmark&amp;hl=en"">www.google.com/search?q=commonmark&amp;hl=en</a></p>
 <p><a href=""http://www.google.com/search?q=commonmark"">www.google.com/search?q=commonmark</a>&amp;hl;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10870,10 +12749,13 @@ www.commonmark.org/he<lp
 ";
         var expected = @"
 <p><a href=""http://www.commonmark.org/he"">www.commonmark.org/he</a>&lt;lp</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10890,10 +12772,13 @@ Anonymous FTP is available at ftp://foo.bar.baz.
 <p><a href=""http://commonmark.org"">http://commonmark.org</a></p>
 <p>(Visit <a href=""https://encrypted.google.com/search?q=Markup+(business)"">https://encrypted.google.com/search?q=Markup+(business)</a>)</p>
 <p>Anonymous FTP is available at <a href=""ftp://foo.bar.baz"">ftp://foo.bar.baz</a>.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10904,10 +12789,13 @@ foo@bar.baz
 ";
         var expected = @"
 <p><a href=""mailto:foo@bar.baz"">foo@bar.baz</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10918,10 +12806,13 @@ hello@mail+xyz.example isn't valid, but hello+xyz@mail.example is.
 ";
         var expected = @"
 <p>hello@mail+xyz.example isn't valid, but <a href=""mailto:hello+xyz@mail.example"">hello+xyz@mail.example</a> is.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10941,10 +12832,13 @@ a.b-c_d@a.b_
 <p><a href=""mailto:a.b-c_d@a.b"">a.b-c_d@a.b</a>.</p>
 <p>a.b-c_d@a.b-</p>
 <p>a.b-c_d@a.b_</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10976,10 +12870,13 @@ xmpp:foo@bar.baz.
 <p>mailto:a.b-c_d@a.b_</p>
 <p><a href=""xmpp:foo@bar.baz"">xmpp:foo@bar.baz</a></p>
 <p><a href=""xmpp:foo@bar.baz"">xmpp:foo@bar.baz</a>.</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -10996,10 +12893,13 @@ xmpp:foo@bar.baz/txt@bin.com
 <p><a href=""xmpp:foo@bar.baz/txt"">xmpp:foo@bar.baz/txt</a></p>
 <p><a href=""xmpp:foo@bar.baz/txt@bin"">xmpp:foo@bar.baz/txt@bin</a></p>
 <p><a href=""xmpp:foo@bar.baz/txt@bin.com"">xmpp:foo@bar.baz/txt@bin.com</a></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11010,10 +12910,13 @@ xmpp:foo@bar.baz/txt/bin
 ";
         var expected = @"
 <p><a href=""xmpp:foo@bar.baz/txt"">xmpp:foo@bar.baz/txt</a>/bin</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11024,10 +12927,13 @@ xmpp:foo@bar.baz/txt/bin
 ";
         var expected = @"
 <p><a><bab><c2c></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11038,10 +12944,13 @@ xmpp:foo@bar.baz/txt/bin
 ";
         var expected = @"
 <p><a/><b2/></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11054,10 +12963,13 @@ data=""foo"" >
         var expected = @"
 <p><a  /><b2
 data=""foo"" ></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11070,10 +12982,13 @@ _boolean zoop:33=zoop:33 />
         var expected = @"
 <p><a foo=""bar"" bam = 'baz <em>""</em>'
 _boolean zoop:33=zoop:33 /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11084,10 +12999,13 @@ Foo <responsive-image src=""foo.jpg"" />
 ";
         var expected = @"
 <p>Foo <responsive-image src=""foo.jpg"" /></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11098,10 +13016,13 @@ Foo <responsive-image src=""foo.jpg"" />
 ";
         var expected = @"
 <p>&lt;33&gt; &lt;__&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11112,10 +13033,13 @@ Foo <responsive-image src=""foo.jpg"" />
 ";
         var expected = @"
 <p>&lt;a h*#ref=&quot;hi&quot;&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11126,10 +13050,13 @@ Foo <responsive-image src=""foo.jpg"" />
 ";
         var expected = @"
 <p>&lt;a href=&quot;hi'&gt; &lt;a href=hi'&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11146,10 +13073,13 @@ bim!bop />
 foo&gt;&lt;bar/ &gt;
 &lt;foo bar=baz
 bim!bop /&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11160,10 +13090,13 @@ bim!bop /&gt;</p>
 ";
         var expected = @"
 <p>&lt;a href='bar'title=title&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11174,10 +13107,13 @@ bim!bop /&gt;</p>
 ";
         var expected = @"
 <p></a></foo ></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11188,10 +13124,13 @@ bim!bop /&gt;</p>
 ";
         var expected = @"
 <p>&lt;/a href=&quot;foo&quot;&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11204,10 +13143,13 @@ comment - with hyphens -->
         var expected = @"
 <p>foo <!-- this is a --
 comment - with hyphens --></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11220,10 +13162,13 @@ comment - with hyphens -->
         var expected = @"
 <p>foo <!-- this is a --
 comment - with hyphens --></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11237,10 +13182,13 @@ foo <!---> foo -->
         var expected = @"
 <p>foo <!--> foo --&gt;</p>
 <p>foo <!---> foo --&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11251,10 +13199,13 @@ foo <?php echo $a; ?>
 ";
         var expected = @"
 <p>foo <?php echo $a; ?></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11265,10 +13216,13 @@ foo <!ELEMENT br EMPTY>
 ";
         var expected = @"
 <p>foo <!ELEMENT br EMPTY></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11279,10 +13233,13 @@ foo <![CDATA[>&<]]>
 ";
         var expected = @"
 <p>foo <![CDATA[>&<]]></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11293,10 +13250,13 @@ foo <a href=""&ouml;"">
 ";
         var expected = @"
 <p>foo <a href=""&ouml;""></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11307,10 +13267,13 @@ foo <a href=""\\*"">
 ";
         var expected = @"
 <p>foo <a href=""\\*""></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11321,10 +13284,13 @@ foo <a href=""\\*"">
 ";
         var expected = @"
 <p>&lt;a href=&quot;&quot;&quot;&gt;</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     //[TestMethod]
@@ -11342,10 +13308,13 @@ foo <a href=""\\*"">
 <blockquote>
   &lt;xmp> is disallowed.  &lt;XMP> is also disallowed.
 </blockquote>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11358,10 +13327,13 @@ baz
         var expected = @"
 <p>foo<br />
 baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11374,10 +13346,13 @@ baz
         var expected = @"
 <p>foo<br />
 baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11390,10 +13365,13 @@ baz
         var expected = @"
 <p>foo<br />
 baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11406,10 +13384,13 @@ foo
         var expected = @"
 <p>foo<br />
 bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11422,10 +13403,13 @@ foo\
         var expected = @"
 <p>foo<br />
 bar</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11438,10 +13422,13 @@ bar*
         var expected = @"
 <p><em>foo<br />
 bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11454,10 +13441,13 @@ bar*
         var expected = @"
 <p><em>foo<br />
 bar</em></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11469,10 +13459,13 @@ span`
 ";
         var expected = @"
 <p><code>code   span</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11484,10 +13477,13 @@ span`
 ";
         var expected = @"
 <p><code>code\\ span</code></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11500,10 +13496,13 @@ bar"">
         var expected = @"
 <p><a href=""foo  
 bar""></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11516,10 +13515,13 @@ bar"">
         var expected = @"
 <p><a href=""foo\\
 bar""></p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11530,10 +13532,13 @@ foo\
 ";
         var expected = @"
 <p>foo\</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11544,10 +13549,13 @@ foo
 ";
         var expected = @"
 <p>foo</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11558,10 +13566,13 @@ foo
 ";
         var expected = @"
 <h3>foo\</h3>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11572,10 +13583,13 @@ foo
 ";
         var expected = @"
 <h3>foo</h3>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11588,10 +13602,13 @@ baz
         var expected = @"
 <p>foo
 baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11604,10 +13621,13 @@ foo
         var expected = @"
 <p>foo
 baz</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11618,10 +13638,13 @@ hello $.;'there
 ";
         var expected = @"
 <p>hello $.;'there</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11632,10 +13655,13 @@ Foo χρῆν
 ";
         var expected = @"
 <p>Foo χρῆν</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -11646,10 +13672,13 @@ Multiple     spaces
 ";
         var expected = @"
 <p>Multiple     spaces</p>
-";
-        var doc = Parser.Execute(input[1..^1], Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
-        Assert.IsTrue(expected.Trim() == html.Trim(), Message(expected.Trim(), html.Trim()));
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     private string Message(string expected, string html)

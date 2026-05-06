@@ -1,14 +1,15 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const extended = @import("allmark").extended;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "subscript single" {
     const input =
+        \\
         \\This should be ~down~ below everything else.
+        \\
     ;
-
     const expected =
         \\<p>This should be <sub>down</sub> below everything else.</p>
         \\
@@ -17,21 +18,24 @@ test "subscript single" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript double" {
     const input =
+        \\
         \\This should be ~~down~~ below everything else.
+        \\
     ;
-
     const expected =
         \\<p>This should be <del>down</del> below everything else.</p>
         \\
@@ -40,21 +44,24 @@ test "subscript double" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript triple" {
     const input =
+        \\
         \\This should be ~~~down~~~ below everything else.
+        \\
     ;
-
     const expected =
         \\<p>This should be ~~~down~~~ below everything else.</p>
         \\
@@ -63,19 +70,24 @@ test "subscript triple" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript single character" {
-    const input = "H~2~O";
-
+    const input =
+        \\
+        \\H~2~O
+        \\
+    ;
     const expected =
         \\<p>H<sub>2</sub>O</p>
         \\
@@ -84,19 +96,24 @@ test "subscript single character" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript with numbers" {
-    const input = "x~1~ + x~2~";
-
+    const input =
+        \\
+        \\x~1~ + x~2~
+        \\
+    ;
     const expected =
         \\<p>x<sub>1</sub> + x<sub>2</sub></p>
         \\
@@ -105,19 +122,24 @@ test "subscript with numbers" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "multiple subscripts in one line" {
-    const input = "a~i~ + b~j~ = c~k~";
-
+    const input =
+        \\
+        \\a~i~ + b~j~ = c~k~
+        \\
+    ;
     const expected =
         \\<p>a<sub>i</sub> + b<sub>j</sub> = c<sub>k</sub></p>
         \\
@@ -126,19 +148,24 @@ test "multiple subscripts in one line" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript at start of paragraph" {
-    const input = "~note~ This is important.";
-
+    const input =
+        \\
+        \\~note~ This is important.
+        \\
+    ;
     const expected =
         \\<p><sub>note</sub> This is important.</p>
         \\
@@ -147,19 +174,24 @@ test "subscript at start of paragraph" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript at end of paragraph" {
-    const input = "See index~1~";
-
+    const input =
+        \\
+        \\See index~1~
+        \\
+    ;
     const expected =
         \\<p>See index<sub>1</sub></p>
         \\
@@ -168,19 +200,24 @@ test "subscript at end of paragraph" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript with punctuation" {
-    const input = "Hello~world!~";
-
+    const input =
+        \\
+        \\Hello~world!~
+        \\
+    ;
     const expected =
         \\<p>Hello<sub>world!</sub></p>
         \\
@@ -189,19 +226,24 @@ test "subscript with punctuation" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript with spaces" {
-    const input = "text ~with spaces~ more";
-
+    const input =
+        \\
+        \\text ~with spaces~ more
+        \\
+    ;
     const expected =
         \\<p>text <sub>with spaces</sub> more</p>
         \\
@@ -210,19 +252,24 @@ test "subscript with spaces" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript with special characters" {
-    const input = "math~i+j~";
-
+    const input =
+        \\
+        \\math~i+j~
+        \\
+    ;
     const expected =
         \\<p>math<sub>i+j</sub></p>
         \\
@@ -231,19 +278,24 @@ test "subscript with special characters" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript adjacent to text" {
-    const input = "test~ing~test";
-
+    const input =
+        \\
+        \\test~ing~test
+        \\
+    ;
     const expected =
         \\<p>test<sub>ing</sub>test</p>
         \\
@@ -252,19 +304,24 @@ test "subscript adjacent to text" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "empty subscript" {
-    const input = "text~~text";
-
+    const input =
+        \\
+        \\text~~text
+        \\
+    ;
     const expected =
         \\<p>text~~text</p>
         \\
@@ -273,19 +330,24 @@ test "empty subscript" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript with markdown inside" {
-    const input = "text ~**bold**~";
-
+    const input =
+        \\
+        \\text ~**bold**~
+        \\
+    ;
     const expected =
         \\<p>text <sub><strong>bold</strong></sub></p>
         \\
@@ -294,19 +356,24 @@ test "subscript with markdown inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript with code inside" {
-    const input = "text ~`code`~";
-
+    const input =
+        \\
+        \\text ~`code`~
+        \\
+    ;
     const expected =
         \\<p>text <sub><code>code</code></sub></p>
         \\
@@ -315,19 +382,24 @@ test "subscript with code inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "escaped tilde should not be subscript" {
-    const input = "text \\~not subscript\\~";
-
+    const input =
+        \\
+        \\text \~not subscript\~
+        \\
+    ;
     const expected =
         \\<p>text ~not subscript~</p>
         \\
@@ -336,19 +408,24 @@ test "escaped tilde should not be subscript" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "unmatched opening tilde" {
-    const input = "text ~not closed";
-
+    const input =
+        \\
+        \\text ~not closed
+        \\
+    ;
     const expected =
         \\<p>text ~not closed</p>
         \\
@@ -357,19 +434,24 @@ test "unmatched opening tilde" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "unmatched closing tilde" {
-    const input = "text not opened~";
-
+    const input =
+        \\
+        \\text not opened~
+        \\
+    ;
     const expected =
         \\<p>text not opened~</p>
         \\
@@ -378,19 +460,24 @@ test "unmatched closing tilde" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript in list item" {
-    const input = "- Item with ~subscript~";
-
+    const input =
+        \\
+        \\- Item with ~subscript~
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li>Item with <sub>subscript</sub></li>
@@ -401,19 +488,24 @@ test "subscript in list item" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript in blockquote" {
-    const input = "> Quote with ~subscript~";
-
+    const input =
+        \\
+        \\> Quote with ~subscript~
+        \\
+    ;
     const expected =
         \\<blockquote>
         \\<p>Quote with <sub>subscript</sub></p>
@@ -424,19 +516,24 @@ test "subscript in blockquote" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "strikethrough vs subscript precedence" {
-    const input = "This is ~~deleted~~ text.";
-
+    const input =
+        \\
+        \\This is ~~deleted~~ text.
+        \\
+    ;
     const expected =
         \\<p>This is <del>deleted</del> text.</p>
         \\
@@ -445,19 +542,24 @@ test "strikethrough vs subscript precedence" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "subscript with tilde inside" {
-    const input = "text ~tilde ~ inside~";
-
+    const input =
+        \\
+        \\text ~tilde ~ inside~
+        \\
+    ;
     const expected =
         \\<p>text <sub>tilde ~ inside</sub></p>
         \\
@@ -466,19 +568,24 @@ test "subscript with tilde inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "strikethrough still works" {
-    const input = "text ~~struck~~, not subscripted";
-
+    const input =
+        \\
+        \\text ~~struck~~, not subscripted
+        \\
+    ;
     const expected =
         \\<p>text <del>struck</del>, not subscripted</p>
         \\
@@ -487,12 +594,14 @@ test "strikethrough still works" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

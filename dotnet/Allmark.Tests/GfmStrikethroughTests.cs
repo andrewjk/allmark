@@ -12,203 +12,303 @@ public class GfmStrikethroughTests
         var input = @"
 ~~Hi~~ Hello, world!
 ";
-        var expected = @"<p><del>Hi</del> Hello, world!</p>";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var expected = @"
+<p><del>Hi</del> Hello, world!</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughSingleWord()
     {
-        var input = @"~~deleted~~";
-        var expected = @"<p><del>deleted</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~deleted~~
+";
+        var expected = @"
+<p><del>deleted</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughMultipleWords()
     {
-        var input = @"~~this is deleted~~";
-        var expected = @"<p><del>this is deleted</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~this is deleted~~
+";
+        var expected = @"
+<p><del>this is deleted</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithSpacesInside()
     {
-        var input = @"~~  spaces  ~~";
-        var expected = @"<p>~~  spaces  ~~</p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~  spaces  ~~
+";
+        var expected = @"
+<p>~~  spaces  ~~</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithEmphasis()
     {
-        var input = @"~~*bold and deleted*~~";
-        var expected = @"<p><del><em>bold and deleted</em></del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~*bold and deleted*~~
+";
+        var expected = @"
+<p><del><em>bold and deleted</em></del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughInsideEmphasis()
     {
-        var input = @"*~~deleted in italic~~*";
-        var expected = @"<p><em><del>deleted in italic</del></em></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+*~~deleted in italic~~*
+";
+        var expected = @"
+<p><em><del>deleted in italic</del></em></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithCode()
     {
-        var input = @"~~code: `var x` here~~";
-        var expected = @"<p><del>code: <code>var x</code> here</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~code: `var x` here~~
+";
+        var expected = @"
+<p><del>code: <code>var x</code> here</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithLink()
     {
-        var input = @"~~[link text](http://example.com)~~";
-        var expected = @"<p><del><a href=""http://example.com"">link text</a></del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~[link text](http://example.com)~~
+";
+        var expected = @"
+<p><del><a href=""http://example.com"">link text</a></del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void MultipleStrikethroughsInOneLine()
     {
-        var input = @"~~first~~ and ~~second~~ and ~~third~~";
-        var expected = @"<p><del>first</del> and <del>second</del> and <del>third</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~first~~ and ~~second~~ and ~~third~~
+";
+        var expected = @"
+<p><del>first</del> and <del>second</del> and <del>third</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughAtStartOfParagraph()
     {
-        var input = @"~~deleted~~ followed by normal text.";
-        var expected = @"<p><del>deleted</del> followed by normal text.</p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~deleted~~ followed by normal text.
+";
+        var expected = @"
+<p><del>deleted</del> followed by normal text.</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughAtEndOfParagraph()
     {
-        var input = @"Normal text followed by ~~deleted~~";
-        var expected = @"<p>Normal text followed by <del>deleted</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+Normal text followed by ~~deleted~~
+";
+        var expected = @"
+<p>Normal text followed by <del>deleted</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughInListItem()
     {
-        var input = @"- ~~deleted item~~
-- normal item";
+        var input = @"
+- ~~deleted item~~
+- normal item
+";
         var expected = @"
 <ul>
 <li><del>deleted item</del></li>
 <li>normal item</li>
 </ul>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithTildesInside()
     {
-        var input = @"~~text with ~ tilde~~";
-        var expected = @"<p><del>text with ~ tilde</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~text with ~ tilde~~
+";
+        var expected = @"
+<p><del>text with ~ tilde</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithMultipleTildes()
     {
-        var input = @"~~~~double~~~~";
-        var expected = @"<pre><code class=""language-double~~~~""></code></pre>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~~~double~~~~
+";
+        var expected = @"
+<pre><code class=""language-double~~~~""></code></pre>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughAcrossLines()
     {
-        var input = @"~~line one
-line two~~";
-        var expected = @"<p><del>line one
-line two</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~line one
+line two~~
+";
+        var expected = @"
+<p><del>line one
+line two</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithPunctuation()
     {
-        var input = @"~~Hello, world!~~";
-        var expected = @"<p><del>Hello, world!</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~Hello, world!~~
+";
+        var expected = @"
+<p><del>Hello, world!</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithNumbers()
     {
-        var input = @"~~12345~~";
-        var expected = @"<p><del>12345</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~12345~~
+";
+        var expected = @"
+<p><del>12345</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughInTableCell()
     {
-        var input = @"| col1 | col2 |
+        var input = @"
+| col1 | col2 |
 | ---- | ---- |
-| ~~deleted~~ | normal |";
+| ~~deleted~~ | normal |
+";
         var expected = @"
 <table>
 <thead>
@@ -224,32 +324,46 @@ line two</del></p>";
 </tr>
 </tbody>
 </table>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughAdjacentToRegularText()
     {
-        var input = @"normal~~deleted~~normal";
-        var expected = @"<p>normal<del>deleted</del>normal</p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+normal~~deleted~~normal
+";
+        var expected = @"
+<p>normal<del>deleted</del>normal</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void StrikethroughWithEscapedCharacters()
     {
-        var input = @"~~text with \*asterisk\*~~";
-        var expected = @"<p><del>text with *asterisk*</del></p>";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+~~text with \*asterisk\*~~
+";
+        var expected = @"
+<p><del>text with *asterisk*</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 }

@@ -1,10 +1,9 @@
 import { renderHtmlSync } from "cmark-gfm";
 import { describe, expect, test } from "vite-plus/test";
 
-import parse from "../src/parse";
-import render from "../src/render";
 import gfm from "../src/rulesets/gfm";
 import htmlRenderers from "../src/rulesets/htmlRenderers";
+import transform from "../src/transform";
 
 const options = {
 	footnotes: true,
@@ -22,16 +21,15 @@ describe("table", () => {
 | foo | bar |
 | --- | --- |
 | baz | bim |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.substring(1, input.length - 1), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with alignment", () => {
@@ -40,16 +38,15 @@ describe("table", () => {
 | :--- | :----: | ----: |
 | foo  |  bar   |   baz |
 | a    |   b    |     c |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with inline formatting", () => {
@@ -59,16 +56,15 @@ describe("table", () => {
 | **bold** | \`code\` |
 | *italic* | [link](url) |
 | ~~strike~~ | \`multi\` |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with missing cells", () => {
@@ -77,16 +73,15 @@ describe("table", () => {
 | - | - | - |
 | 1 | 2 |
 | 1 |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with extra cells", () => {
@@ -94,32 +89,30 @@ describe("table", () => {
 | a | b |
 | - | - |
 | 1 | 2 | 3 | 4 |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with only header", () => {
 		const input = `
 | foo | bar |
 | --- | --- |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with empty cells", () => {
@@ -128,16 +121,15 @@ describe("table", () => {
 | - | - | - |
 |   | 2 |   |
 | 1 |   | 3 |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table without outer pipes", () => {
@@ -145,16 +137,15 @@ describe("table", () => {
 a | b | c
 - | - | -
 1 | 2 | 3
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with whitespace variations", () => {
@@ -162,16 +153,15 @@ a | b | c
 |  a  |  b  |  c  |
 | --- | --- | --- |
 | 1   |   2 |3    |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with mixed content types", () => {
@@ -182,16 +172,15 @@ a | b | c
 | Code | \`inline\` |
 | Bold | **strong** |
 | Link | [text](http://example.com) |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with single column", () => {
@@ -200,16 +189,15 @@ a | b | c
 | ------ |
 | data   |
 | more   |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("table with many columns", () => {
@@ -218,15 +206,14 @@ a | b | c
 | - | - | - | - | - | - |
 | 1 | 2 | 3 | 4 | 5 | 6 |
 | a | b | c | d | e | f |
+
 `;
 		const expected = renderHtmlSync(input, options);
 
-		const docSpaced = parse(input, gfm);
-		const htmlSpaced = render(docSpaced, htmlRenderers);
-		expect(htmlSpaced.trim()).toBe(expected.trim());
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
 
-		const docTrimmed = parse(input.trim(), gfm);
-		const htmlTrimmed = render(docTrimmed, htmlRenderers);
-		expect(htmlTrimmed.trim()).toBe(expected.trim());
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 });

@@ -18,11 +18,13 @@ public class GfmAlertTests
 <p class=""markdown-alert-title"">Note</p>
 <p>Useful information that users should know, even when skimming content.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -37,11 +39,13 @@ public class GfmAlertTests
 <p class=""markdown-alert-title"">Tip</p>
 <p>Helpful advice for doing things better or more easily.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -56,11 +60,13 @@ public class GfmAlertTests
 <p class=""markdown-alert-title"">Important</p>
 <p>Key information users need to know to achieve their goal.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -75,11 +81,13 @@ public class GfmAlertTests
 <p class=""markdown-alert-title"">Warning</p>
 <p>Urgent info that needs immediate user attention to avoid problems.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -94,11 +102,13 @@ public class GfmAlertTests
 <p class=""markdown-alert-title"">Caution</p>
 <p>Advises about risks or negative outcomes of certain actions.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -116,11 +126,13 @@ public class GfmAlertTests
 <p>First paragraph of note.</p>
 <p>Second paragraph of note.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -135,11 +147,13 @@ public class GfmAlertTests
 <p class=""markdown-alert-title"">Note</p>
 <p>This is <strong>bold</strong> and this is <em>italic</em> and this is <code>code</code>.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -162,11 +176,13 @@ public class GfmAlertTests
 <li>Third point</li>
 </ul>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -186,11 +202,14 @@ public class GfmAlertTests
 <p>Example code:</p>
 <pre><code>console.log(&quot;Hello World&quot;);
 </code></pre>
-</div>";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+</div>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -205,11 +224,13 @@ public class GfmAlertTests
 <p class=""markdown-alert-title"">Note</p>
 <p>Check out <a href=""https://example.com"">documentation</a> for more info.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -224,11 +245,13 @@ public class GfmAlertTests
 <p class=""markdown-alert-title"">Note</p>
 <p>This should work with lowercase.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -243,11 +266,13 @@ public class GfmAlertTests
 <p>This is just a regular blockquote.
 It should not be treated as an alert.</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -262,11 +287,13 @@ It should not be treated as an alert.</p>
 <p>[NOTE] This is not an alert syntax.
 It should be a regular blockquote.</p>
 </blockquote>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -286,11 +313,13 @@ It should be a regular blockquote.</p>
 <p>Nested blockquote inside alert.</p>
 </blockquote>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -312,11 +341,13 @@ It should be a regular blockquote.</p>
 <p class=""markdown-alert-title"">Warning</p>
 <p>Second alert.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -333,10 +364,12 @@ It should be a regular blockquote.</p>
 <p class=""markdown-alert-title"">Note</p>
 <p>Content after empty line.</p>
 </div>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 }

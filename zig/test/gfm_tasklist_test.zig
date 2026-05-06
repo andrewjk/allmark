@@ -1,12 +1,16 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const gfm = @import("allmark").gfm;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "spec tasklist" {
-    const input = "- [ ] foo\n- [x] bar";
-
+    const input =
+        \\
+        \\- [ ] foo
+        \\- [x] bar
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> foo</li>
@@ -18,19 +22,25 @@ test "spec tasklist" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with asterisk marker" {
-    const input = "* [ ] unchecked\n* [x] checked";
-
+    const input =
+        \\
+        \\* [ ] unchecked
+        \\* [x] checked
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> unchecked</li>
@@ -42,19 +52,25 @@ test "tasklist with asterisk marker" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with plus marker" {
-    const input = "+ [ ] unchecked\n+ [x] checked";
-
+    const input =
+        \\
+        \\+ [ ] unchecked
+        \\+ [x] checked
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> unchecked</li>
@@ -66,19 +82,25 @@ test "tasklist with plus marker" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist in ordered list" {
-    const input = "1. [ ] unchecked item\n2. [x] checked item";
-
+    const input =
+        \\
+        \\1. [ ] unchecked item
+        \\2. [x] checked item
+        \\
+    ;
     const expected =
         \\<ol>
         \\<li><input type="checkbox" disabled="" /> unchecked item</li>
@@ -90,19 +112,26 @@ test "tasklist in ordered list" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with inline formatting" {
-    const input = "- [ ] **bold** task\n- [x] *italic* task\n- [ ] ~~strikethrough~~ task";
-
+    const input =
+        \\
+        \\- [ ] **bold** task
+        \\- [x] *italic* task
+        \\- [ ] ~~strikethrough~~ task
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> <strong>bold</strong> task</li>
@@ -115,19 +144,25 @@ test "tasklist with inline formatting" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with code" {
-    const input = "- [ ] task with `code`\n- [x] another `code` task";
-
+    const input =
+        \\
+        \\- [ ] task with `code`
+        \\- [x] another `code` task
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> task with <code>code</code></li>
@@ -139,19 +174,25 @@ test "tasklist with code" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with links" {
-    const input = "- [ ] task with [link](http://example.com)\n- [x] checked [link](http://example.com) task";
-
+    const input =
+        \\
+        \\- [ ] task with [link](http://example.com)
+        \\- [x] checked [link](http://example.com) task
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> task with <a href="http://example.com">link</a></li>
@@ -163,19 +204,27 @@ test "tasklist with links" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "nested tasklist" {
-    const input = "- [ ] parent task\n  - [ ] child task 1\n  - [x] child task 2\n- [x] another parent";
-
+    const input =
+        \\
+        \\- [ ] parent task
+        \\  - [ ] child task 1
+        \\  - [x] child task 2
+        \\- [x] another parent
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> parent task
@@ -192,19 +241,27 @@ test "nested tasklist" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "mixed tasks and regular items" {
-    const input = "- [ ] task item\n- regular item\n- [x] checked task\n- another regular item";
-
+    const input =
+        \\
+        \\- [ ] task item
+        \\- regular item
+        \\- [x] checked task
+        \\- another regular item
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> task item</li>
@@ -218,19 +275,25 @@ test "mixed tasks and regular items" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with single character" {
-    const input = "- [ ] a\n- [x] b";
-
+    const input =
+        \\
+        \\- [ ] a
+        \\- [x] b
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> a</li>
@@ -242,19 +305,25 @@ test "tasklist with single character" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with empty brackets" {
-    const input = "- [ ] \n- [x] ";
-
+    const input =
+        \\
+        \\- [ ] 
+        \\- [x] 
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> </li>
@@ -266,19 +335,25 @@ test "tasklist with empty brackets" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with uppercase X" {
-    const input = "- [ ] unchecked\n- [X] checked with uppercase";
-
+    const input =
+        \\
+        \\- [ ] unchecked
+        \\- [X] checked with uppercase
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> unchecked</li>
@@ -290,19 +365,25 @@ test "tasklist with uppercase X" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist in blockquote" {
-    const input = "> - [ ] quoted task\n> - [x] checked quoted task";
-
+    const input =
+        \\
+        \\> - [ ] quoted task
+        \\> - [x] checked quoted task
+        \\
+    ;
     const expected =
         \\<blockquote>
         \\<ul>
@@ -316,19 +397,27 @@ test "tasklist in blockquote" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with multiple paragraphs" {
-    const input = "- [ ] task with paragraph\n\n  continuation paragraph\n- [x] another task";
-
+    const input =
+        \\
+        \\- [ ] task with paragraph
+        \\
+        \\  continuation paragraph
+        \\- [x] another task
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> 
@@ -345,19 +434,27 @@ test "tasklist with multiple paragraphs" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with sublist" {
-    const input = "- [ ] task with sublist\n  - subitem 1\n  - subitem 2\n- [x] checked task";
-
+    const input =
+        \\
+        \\- [ ] task with sublist
+        \\  - subitem 1
+        \\  - subitem 2
+        \\- [x] checked task
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> task with sublist
@@ -374,19 +471,25 @@ test "tasklist with sublist" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with html entities" {
-    const input = "- [ ] task with &amp; entity\n- [x] task with &lt;HTML&gt;";
-
+    const input =
+        \\
+        \\- [ ] task with &amp; entity
+        \\- [x] task with &lt;HTML&gt;
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li><input type="checkbox" disabled="" /> task with &amp; entity</li>
@@ -398,19 +501,26 @@ test "tasklist with html entities" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "tasklist with various whitespace" {
-    const input = "- [ ]one\n- [  ] two\n- [ x] three";
-
+    const input =
+        \\
+        \\- [ ]one
+        \\- [  ] two
+        \\- [ x] three
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li>[ ]one</li>
@@ -423,12 +533,14 @@ test "tasklist with various whitespace" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

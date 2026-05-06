@@ -1,12 +1,17 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const gfm = @import("allmark").gfm;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "spec table" {
-    const input = "| foo | bar |\n| --- | --- |\n| baz | bim |";
-
+    const input =
+        \\
+        \\| foo | bar |
+        \\| --- | --- |
+        \\| baz | bim |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -28,19 +33,27 @@ test "spec table" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with alignment" {
-    const input = "| Left | Center | Right |\n| :--- | :----: | ----: |\n| foo  |  bar   |   baz |\n| a    |   b    |     c |";
-
+    const input =
+        \\
+        \\| Left | Center | Right |
+        \\| :--- | :----: | ----: |
+        \\| foo  |  bar   |   baz |
+        \\| a    |   b    |     c |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -69,19 +82,28 @@ test "table with alignment" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with inline formatting" {
-    const input = "| Text | Code |\n| ---- | ---- |\n| **bold** | `code` |\n| *italic* | [link](url) |\n| ~~strike~~ | `multi` |";
-
+    const input =
+        \\
+        \\| Text | Code |
+        \\| ---- | ---- |
+        \\| **bold** | `code` |
+        \\| *italic* | [link](url) |
+        \\| ~~strike~~ | `multi` |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -111,19 +133,27 @@ test "table with inline formatting" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with missing cells" {
-    const input = "| a | b | c |\n| - | - | - |\n| 1 | 2 |\n| 1 |";
-
+    const input =
+        \\
+        \\| a | b | c |
+        \\| - | - | - |
+        \\| 1 | 2 |
+        \\| 1 |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -152,19 +182,26 @@ test "table with missing cells" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with extra cells" {
-    const input = "| a | b |\n| - | - |\n| 1 | 2 | 3 | 4 |";
-
+    const input =
+        \\
+        \\| a | b |
+        \\| - | - |
+        \\| 1 | 2 | 3 | 4 |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -186,19 +223,25 @@ test "table with extra cells" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with only header" {
-    const input = "| foo | bar |\n| --- | --- |";
-
+    const input =
+        \\
+        \\| foo | bar |
+        \\| --- | --- |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -214,19 +257,27 @@ test "table with only header" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with empty cells" {
-    const input = "| a | b | c |\n| - | - | - |\n|   | 2 |   |\n| 1 |   | 3 |";
-
+    const input =
+        \\
+        \\| a | b | c |
+        \\| - | - | - |
+        \\|   | 2 |   |
+        \\| 1 |   | 3 |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -255,19 +306,26 @@ test "table with empty cells" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table without outer pipes" {
-    const input = "a | b | c\n- | - | -\n1 | 2 | 3";
-
+    const input =
+        \\
+        \\a | b | c
+        \\- | - | -
+        \\1 | 2 | 3
+        \\
+    ;
     const expected =
         \\<p>a | b | c</p>
         \\<ul>
@@ -280,19 +338,26 @@ test "table without outer pipes" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with whitespace variations" {
-    const input = "|  a  |  b  |  c  |\n| --- | --- | --- |\n| 1   |   2 |3    |";
-
+    const input =
+        \\
+        \\|  a  |  b  |  c  |
+        \\| --- | --- | --- |
+        \\| 1   |   2 |3    |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -316,19 +381,29 @@ test "table with whitespace variations" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with mixed content types" {
-    const input = "| Type | Example |\n| ---- | ------- |\n| Text | plain text |\n| Code | `inline` |\n| Bold | **strong** |\n| Link | [text](http://example.com) |";
-
+    const input =
+        \\
+        \\| Type | Example |
+        \\| ---- | ------- |
+        \\| Text | plain text |
+        \\| Code | `inline` |
+        \\| Bold | **strong** |
+        \\| Link | [text](http://example.com) |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -362,19 +437,27 @@ test "table with mixed content types" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with single column" {
-    const input = "| Column |\n| ------ |\n| data   |\n| more   |";
-
+    const input =
+        \\
+        \\| Column |
+        \\| ------ |
+        \\| data   |
+        \\| more   |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -397,19 +480,27 @@ test "table with single column" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "table with many columns" {
-    const input = "| A | B | C | D | E | F |\n| - | - | - | - | - | - |\n| 1 | 2 | 3 | 4 | 5 | 6 |\n| a | b | c | d | e | f |";
-
+    const input =
+        \\
+        \\| A | B | C | D | E | F |
+        \\| - | - | - | - | - | - |
+        \\| 1 | 2 | 3 | 4 | 5 | 6 |
+        \\| a | b | c | d | e | f |
+        \\
+    ;
     const expected =
         \\<table>
         \\<thead>
@@ -447,12 +538,14 @@ test "table with many columns" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

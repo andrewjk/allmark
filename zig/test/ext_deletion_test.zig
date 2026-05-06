@@ -1,14 +1,15 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const extended = @import("allmark").extended;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "deletion single" {
     const input =
+        \\
         \\This text was {-deleted-} recently.
+        \\
     ;
-
     const expected =
         \\<p>This text was <del class="markdown-deletion">deleted</del> recently.</p>
         \\
@@ -17,21 +18,24 @@ test "deletion single" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion double" {
     const input =
+        \\
         \\This text was {--deleted--} recently.
+        \\
     ;
-
     const expected =
         \\<p>This text was <del class="markdown-deletion">deleted</del> recently.</p>
         \\
@@ -40,21 +44,24 @@ test "deletion double" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion triple" {
     const input =
+        \\
         \\This text was {---deleted---} recently.
+        \\
     ;
-
     const expected =
         \\<p>This text was {---deleted---} recently.</p>
         \\
@@ -63,19 +70,24 @@ test "deletion triple" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion single character" {
-    const input = "text {-a-} more";
-
+    const input =
+        \\
+        \\text {-a-} more
+        \\
+    ;
     const expected =
         \\<p>text <del class="markdown-deletion">a</del> more</p>
         \\
@@ -84,19 +96,24 @@ test "deletion single character" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion with spaces" {
-    const input = "text {-with spaces-} more";
-
+    const input =
+        \\
+        \\text {-with spaces-} more
+        \\
+    ;
     const expected =
         \\<p>text <del class="markdown-deletion">with spaces</del> more</p>
         \\
@@ -105,19 +122,24 @@ test "deletion with spaces" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion at start of paragraph" {
-    const input = "{-deleted-} This is new.";
-
+    const input =
+        \\
+        \\{-deleted-} This is new.
+        \\
+    ;
     const expected =
         \\<p><del class="markdown-deletion">deleted</del> This is new.</p>
         \\
@@ -126,19 +148,24 @@ test "deletion at start of paragraph" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion at end of paragraph" {
-    const input = "This is {-deleted-}";
-
+    const input =
+        \\
+        \\This is {-deleted-}
+        \\
+    ;
     const expected =
         \\<p>This is <del class="markdown-deletion">deleted</del></p>
         \\
@@ -147,19 +174,24 @@ test "deletion at end of paragraph" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion with punctuation" {
-    const input = "text {-word!-} more";
-
+    const input =
+        \\
+        \\text {-word!-} more
+        \\
+    ;
     const expected =
         \\<p>text <del class="markdown-deletion">word!</del> more</p>
         \\
@@ -168,19 +200,24 @@ test "deletion with punctuation" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion with special characters" {
-    const input = "text {-a-b-} more";
-
+    const input =
+        \\
+        \\text {-a-b-} more
+        \\
+    ;
     const expected =
         \\<p>text <del class="markdown-deletion">a-b</del> more</p>
         \\
@@ -189,19 +226,24 @@ test "deletion with special characters" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion adjacent to text" {
-    const input = "test{-ing-}test";
-
+    const input =
+        \\
+        \\test{-ing-}test
+        \\
+    ;
     const expected =
         \\<p>test<del class="markdown-deletion">ing</del>test</p>
         \\
@@ -210,19 +252,24 @@ test "deletion adjacent to text" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "empty deletion" {
-    const input = "text{--}text";
-
+    const input =
+        \\
+        \\text{--}text
+        \\
+    ;
     const expected =
         \\<p>text{--}text</p>
         \\
@@ -231,19 +278,24 @@ test "empty deletion" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion with markdown inside" {
-    const input = "text {-**bold**-}";
-
+    const input =
+        \\
+        \\text {-**bold**-}
+        \\
+    ;
     const expected =
         \\<p>text <del class="markdown-deletion"><strong>bold</strong></del></p>
         \\
@@ -252,19 +304,24 @@ test "deletion with markdown inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion with code inside" {
-    const input = "text {-`code`-}";
-
+    const input =
+        \\
+        \\text {-`code`-}
+        \\
+    ;
     const expected =
         \\<p>text <del class="markdown-deletion"><code>code</code></del></p>
         \\
@@ -273,19 +330,24 @@ test "deletion with code inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "escaped braces should not be deletion" {
-    const input = "text \\{-not deletion\\-}";
-
+    const input =
+        \\
+        \\text \{-not deletion\-}
+        \\
+    ;
     const expected =
         \\<p>text {-not deletion-}</p>
         \\
@@ -294,19 +356,24 @@ test "escaped braces should not be deletion" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "unmatched opening deletion" {
-    const input = "text {-not closed";
-
+    const input =
+        \\
+        \\text {-not closed
+        \\
+    ;
     const expected =
         \\<p>text {-not closed</p>
         \\
@@ -315,19 +382,24 @@ test "unmatched opening deletion" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "unmatched closing deletion" {
-    const input = "text not opened-}";
-
+    const input =
+        \\
+        \\text not opened-}
+        \\
+    ;
     const expected =
         \\<p>text not opened-}</p>
         \\
@@ -336,19 +408,24 @@ test "unmatched closing deletion" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion in list item" {
-    const input = "- Item with {-deletion-}";
-
+    const input =
+        \\
+        \\- Item with {-deletion-}
+        \\
+    ;
     const expected =
         \\<ul>
         \\<li>Item with <del class="markdown-deletion">deletion</del></li>
@@ -359,19 +436,24 @@ test "deletion in list item" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion in blockquote" {
-    const input = "> Quote with {-deletion-}";
-
+    const input =
+        \\
+        \\> Quote with {-deletion-}
+        \\
+    ;
     const expected =
         \\<blockquote>
         \\<p>Quote with <del class="markdown-deletion">deletion</del></p>
@@ -382,19 +464,24 @@ test "deletion in blockquote" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion with plus inside" {
-    const input = "text {-plus - inside-}";
-
+    const input =
+        \\
+        \\text {-plus - inside-}
+        \\
+    ;
     const expected =
         \\<p>text <del class="markdown-deletion">plus - inside</del></p>
         \\
@@ -403,19 +490,24 @@ test "deletion with plus inside" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion at beginning of document" {
-    const input = "{-Start-} of document.";
-
+    const input =
+        \\
+        \\{-Start-} of document.
+        \\
+    ;
     const expected =
         \\<p><del class="markdown-deletion">Start</del> of document.</p>
         \\
@@ -424,19 +516,24 @@ test "deletion at beginning of document" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion at end of document" {
-    const input = "End of {-document-}";
-
+    const input =
+        \\
+        \\End of {-document-}
+        \\
+    ;
     const expected =
         \\<p>End of <del class="markdown-deletion">document</del></p>
         \\
@@ -445,19 +542,24 @@ test "deletion at end of document" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "multiple deletions in one line" {
-    const input = "{-first-} and {-second-} and {-third-}";
-
+    const input =
+        \\
+        \\{-first-} and {-second-} and {-third-}
+        \\
+    ;
     const expected =
         \\<p><del class="markdown-deletion">first</del> and <del class="markdown-deletion">second</del> and <del class="markdown-deletion">third</del></p>
         \\
@@ -466,19 +568,24 @@ test "multiple deletions in one line" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion with starting emphasis" {
-    const input = "{-deleted *text-} that shouldn't be bold*";
-
+    const input =
+        \\
+        \\{-deleted *text-} that shouldn't be bold*
+        \\
+    ;
     const expected =
         \\<p><del class="markdown-deletion">deleted *text</del> that shouldn't be bold*</p>
         \\
@@ -487,19 +594,24 @@ test "deletion with starting emphasis" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "deletion with ending emphasis" {
-    const input = "*this text should be {-deleted but not bold*-}";
-
+    const input =
+        \\
+        \\*this text should be {-deleted but not bold*-}
+        \\
+    ;
     const expected =
         \\<p>*this text should be <del class="markdown-deletion">deleted but not bold*</del></p>
         \\
@@ -508,12 +620,14 @@ test "deletion with ending emphasis" {
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);
     defer extended.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }

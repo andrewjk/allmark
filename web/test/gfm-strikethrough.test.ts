@@ -1,10 +1,9 @@
 import { renderHtmlSync } from "cmark-gfm";
 import { describe, expect, test } from "vite-plus/test";
 
-import parse from "../src/parse";
-import render from "../src/render";
 import gfm from "../src/rulesets/gfm";
 import htmlRenderers from "../src/rulesets/htmlRenderers";
+import transform from "../src/transform";
 
 const options = {
 	footnotes: true,
@@ -22,164 +21,262 @@ describe("strikethrough", () => {
 ~~Hi~~ Hello, world!
 `;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input.substring(1, input.length - 1), gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough single word", () => {
-		const input = `~~deleted~~`;
+		const input = `
+~~deleted~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough multiple words", () => {
-		const input = `~~this is deleted~~`;
+		const input = `
+~~this is deleted~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with spaces inside", () => {
-		const input = `~~  spaces  ~~`;
+		const input = `
+~~  spaces  ~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with emphasis", () => {
-		const input = `~~*bold and deleted*~~`;
+		const input = `
+~~*bold and deleted*~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough inside emphasis", () => {
-		const input = `*~~deleted in italic~~*`;
+		const input = `
+*~~deleted in italic~~*
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with code", () => {
-		const input = `~~code: \`var x\` here~~`;
+		const input = `
+~~code: \`var x\` here~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with link", () => {
-		const input = `~~[link text](http://example.com)~~`;
+		const input = `
+~~[link text](http://example.com)~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("multiple strikethroughs in one line", () => {
-		const input = `~~first~~ and ~~second~~ and ~~third~~`;
+		const input = `
+~~first~~ and ~~second~~ and ~~third~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough at start of paragraph", () => {
-		const input = `~~deleted~~ followed by normal text.`;
+		const input = `
+~~deleted~~ followed by normal text.
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough at end of paragraph", () => {
-		const input = `Normal text followed by ~~deleted~~`;
+		const input = `
+Normal text followed by ~~deleted~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough in list item", () => {
-		const input = `- ~~deleted item~~
-- normal item`;
+		const input = `
+- ~~deleted item~~
+- normal item
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with tildes inside", () => {
-		const input = `~~text with ~ tilde~~`;
+		const input = `
+~~text with ~ tilde~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with multiple tildes", () => {
-		const input = `~~~~double~~~~`;
+		const input = `
+~~~~double~~~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough across lines", () => {
-		const input = `~~line one
-line two~~`;
+		const input = `
+~~line one
+line two~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with punctuation", () => {
-		const input = `~~Hello, world!~~`;
+		const input = `
+~~Hello, world!~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with numbers", () => {
-		const input = `~~12345~~`;
+		const input = `
+~~12345~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough in table cell", () => {
-		const input = `| col1 | col2 |
+		const input = `
+| col1 | col2 |
 | ---- | ---- |
-| ~~deleted~~ | normal |`;
+| ~~deleted~~ | normal 
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough adjacent to regular text", () => {
-		const input = `normal~~deleted~~normal`;
+		const input = `
+normal~~deleted~~normal
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 
 	test("strikethrough with escaped characters", () => {
-		const input = `~~text with \\*asterisk\\*~~`;
+		const input = `
+~~text with \\*asterisk\\*~~
+`;
 		const expected = renderHtmlSync(input, options);
-		const doc = parse(input, gfm);
-		const html = render(doc, htmlRenderers);
-		expect(html.trim()).toBe(expected.trim());
+
+		const htmlSpaced = transform(input, gfm, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
 	});
 });

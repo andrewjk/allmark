@@ -32,19 +32,23 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SimpleFootnoteReference()
     {
-        var input = @"Text with a footnote[^1].
+        var input = @"
+Text with a footnote[^1].
 
-[^1]: This is the footnote content.";
+[^1]: This is the footnote content.
+";
         var expected = @"
 <p>Text with a footnote<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup>.</p>
 <section class=""footnotes"">
@@ -54,20 +58,24 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void MultipleFootnoteReferences()
     {
-        var input = @"First reference[^1] and second[^2].
+        var input = @"
+First reference[^1] and second[^2].
 
 [^1]: First footnote.
-[^2]: Second footnote.";
+[^2]: Second footnote.
+";
         var expected = @"
 <p>First reference<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup> and second<sup class=""footnote-ref""><a href=""#fn2"" id=""fnref2"">2</a></sup>.</p>
 <section class=""footnotes"">
@@ -80,19 +88,23 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteWithInlineFormatting()
     {
-        var input = @"Text[^1].
+        var input = @"
+Text[^1].
 
-[^1]: Footnote with **bold** and *italic* text.";
+[^1]: Footnote with **bold** and *italic* text.
+";
         var expected = @"
 <p>Text<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup>.</p>
 <section class=""footnotes"">
@@ -102,19 +114,23 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteWithCode()
     {
-        var input = @"Code reference[^1].
+        var input = @"
+Code reference[^1].
 
-[^1]: Footnote with `inline code`.";
+[^1]: Footnote with `inline code`.
+";
         var expected = @"
 <p>Code reference<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup>.</p>
 <section class=""footnotes"">
@@ -124,19 +140,23 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteWithLink()
     {
-        var input = @"Link reference[^1].
+        var input = @"
+Link reference[^1].
 
-[^1]: See [example](http://example.com).";
+[^1]: See [example](http://example.com).
+";
         var expected = @"
 <p>Link reference<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup>.</p>
 <section class=""footnotes"">
@@ -146,34 +166,42 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteReferenceNotAtDefinition()
     {
-        var input = @"Unknown footnote[^99].";
+        var input = @"
+Unknown footnote[^99].
+";
         var expected = @"
 <p>Unknown footnote[^99].</p>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteWithMultilineContent()
     {
-        var input = @"Multiline[^1].
+        var input = @"
+Multiline[^1].
 
 [^1]: First line
     Second line
-    Third line";
+    Third line
+";
         var expected = @"
 <p>Multiline<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup>.</p>
 <section class=""footnotes"">
@@ -185,19 +213,23 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void RepeatedFootnoteReference()
     {
-        var input = @"First[^1] and second[^1] use same footnote.
+        var input = @"
+First[^1] and second[^1] use same footnote.
 
-[^1]: Shared footnote content.";
+[^1]: Shared footnote content.
+";
         var expected = @"
 <p>First<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup> and second<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup> use same footnote.</p>
 <section class=""footnotes"">
@@ -207,21 +239,25 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteInList()
     {
-        var input = @"- Item with footnote[^1]
+        var input = @"
+- Item with footnote[^1]
 - Another item[^2]
 
 [^1]: First footnote.
-[^2]: Second footnote.";
+[^2]: Second footnote.
+";
         var expected = @"
 <ul>
 <li>Item with footnote<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup></li>
@@ -237,19 +273,23 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteInBlockquote()
     {
-        var input = @"> Quoted text with footnote[^1]
+        var input = @"
+> Quoted text with footnote[^1]
 
-[^1]: Footnote for quote.";
+[^1]: Footnote for quote.
+";
         var expected = @"
 <blockquote>
 <p>Quoted text with footnote<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup></p>
@@ -261,34 +301,42 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteWithSpecialCharactersInLabel()
     {
-        var input = @"Special label[^a-b_c].
+        var input = @"
+Special label[^a-b_c].
 
-[^a-b_c]: Footnote with special label.";
+[^a-b_c]: Footnote with special label.
+";
         var expected = @"
 <p>Special label[^a-b_c].</p>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void CaseInsensitiveFootnoteLabels()
     {
-        var input = @"Mixed case[^ABC].
+        var input = @"
+Mixed case[^ABC].
 
-[^abc]: Should match.";
+[^abc]: Should match.
+";
         var expected = @"
 <p>Mixed case<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup>.</p>
 <section class=""footnotes"">
@@ -298,20 +346,24 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteThenList()
     {
-        var input = @"Text[^1]
+        var input = @"
+Text[^1]
 
 [^1]: Here is the content  
-- and here is a list";
+- and here is a list
+";
         var expected = @"
 <p>Text<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup></p>
 <ul>
@@ -324,19 +376,23 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void TitleAfterFootnoteLabel()
     {
-        var input = @"Text[^1]
+        var input = @"
+Text[^1]
 
-[^1]: https://example.com test";
+[^1]: https://example.com test
+";
         var expected = @"
 <p>Text<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup></p>
 <section class=""footnotes"">
@@ -346,20 +402,24 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void LinkThenFootnote()
     {
-        var input = @"Text[^1] [foo]
+        var input = @"
+Text[^1] [foo]
 
 [foo]: https://example.com/foo
-[^1]: https://example.com/1 test";
+[^1]: https://example.com/1 test
+";
         var expected = @"
 <p>Text<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup> <a href=""https://example.com/foo"">foo</a></p>
 <section class=""footnotes"">
@@ -369,20 +429,24 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void FootnoteThenLink()
     {
-        var input = @"Text[^1] [foo]
+        var input = @"
+Text[^1] [foo]
 
 [^1]: https://example.com/1 test
-[foo]: https://example.com/foo";
+[foo]: https://example.com/foo
+";
         var expected = @"
 <p>Text<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup> [foo]</p>
 <section class=""footnotes"">
@@ -393,19 +457,23 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void SwallowFollowingBrackets()
     {
-        var input = @"[^1][asd]f]
+        var input = @"
+[^1][asd]f]
 
-[^1]: /footnote";
+[^1]: /footnote
+";
         var expected = @"
 <p><sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup>f]</p>
 <section class=""footnotes"">
@@ -415,38 +483,46 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void LinkReferenceTakesPrecedence()
     {
-        var input = @"[^1][foo]
+        var input = @"
+[^1][foo]
 
 [^1]: /footnote
 
-[foo]: /url";
+[foo]: /url
+";
         var expected = @"
 <p><a href=""/url"">^1</a></p>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void MultipleParagraphs()
     {
-        var input = @"Footnote 1 link[^first].
+        var input = @"
+Footnote 1 link[^first].
 
 [^first]: Footnote **can have markup**
 
-    and multiple paragraphs.";
+    and multiple paragraphs.
+";
         var expected = @"
 <p>Footnote 1 link<sup class=""footnote-ref""><a href=""#fn1"" id=""fnref1"">1</a></sup>.</p>
 <section class=""footnotes"">
@@ -457,10 +533,12 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 </li>
 </ol>
 </section>
-";
-        var doc = Parser.Execute(input, Gfm.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Gfm.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 }

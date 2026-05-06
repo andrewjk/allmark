@@ -14,11 +14,13 @@ This text was {-deleted-} recently.
 ";
         var expected = @"
 <p>This text was <del class=""markdown-deletion"">deleted</del> recently.</p>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -29,11 +31,13 @@ This text was {--deleted--} recently.
 ";
         var expected = @"
 <p>This text was <del class=""markdown-deletion"">deleted</del> recently.</p>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
@@ -44,245 +48,373 @@ This text was {---deleted---} recently.
 ";
         var expected = @"
 <p>This text was {---deleted---} recently.</p>
-";
-        var doc = Parser.Execute(input.Substring(1, input.Length - 1), Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionSingleCharacter()
     {
-        var input = @"text {-a-} more";
-        var expected = @"<p>text <del class=""markdown-deletion"">a</del> more</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text {-a-} more
+";
+        var expected = @"
+<p>text <del class=""markdown-deletion"">a</del> more</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionWithSpaces()
     {
-        var input = @"text {-with spaces-} more";
-        var expected = @"<p>text <del class=""markdown-deletion"">with spaces</del> more</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text {-with spaces-} more
+";
+        var expected = @"
+<p>text <del class=""markdown-deletion"">with spaces</del> more</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionAtStartOfParagraph()
     {
-        var input = @"{-deleted-} This is new.";
-        var expected = @"<p><del class=""markdown-deletion"">deleted</del> This is new.</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+{-deleted-} This is new.
+";
+        var expected = @"
+<p><del class=""markdown-deletion"">deleted</del> This is new.</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionAtEndOfParagraph()
     {
-        var input = @"This is {-deleted-}";
-        var expected = @"<p>This is <del class=""markdown-deletion"">deleted</del></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+This is {-deleted-}
+";
+        var expected = @"
+<p>This is <del class=""markdown-deletion"">deleted</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionWithPunctuation()
     {
-        var input = @"text {-word!-} more";
-        var expected = @"<p>text <del class=""markdown-deletion"">word!</del> more</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text {-word!-} more
+";
+        var expected = @"
+<p>text <del class=""markdown-deletion"">word!</del> more</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionWithSpecialCharacters()
     {
-        var input = @"text {-a-b-} more";
-        var expected = @"<p>text <del class=""markdown-deletion"">a-b</del> more</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text {-a-b-} more
+";
+        var expected = @"
+<p>text <del class=""markdown-deletion"">a-b</del> more</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionAdjacentToText()
     {
-        var input = @"test{-ing-}test";
-        var expected = @"<p>test<del class=""markdown-deletion"">ing</del>test</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+test{-ing-}test
+";
+        var expected = @"
+<p>test<del class=""markdown-deletion"">ing</del>test</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void EmptyDeletion()
     {
-        var input = @"text{--}text";
-        var expected = @"<p>text{--}text</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text{--}text
+";
+        var expected = @"
+<p>text{--}text</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionWithMarkdownInside()
     {
-        var input = @"text {-**bold**-}";
-        var expected = @"<p>text <del class=""markdown-deletion""><strong>bold</strong></del></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text {-**bold**-}
+";
+        var expected = @"
+<p>text <del class=""markdown-deletion""><strong>bold</strong></del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionWithCodeInside()
     {
-        var input = @"text {-`code`-}";
-        var expected = @"<p>text <del class=""markdown-deletion""><code>code</code></del></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text {-`code`-}
+";
+        var expected = @"
+<p>text <del class=""markdown-deletion""><code>code</code></del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void EscapedBracesShouldNotBeDeletion()
     {
-        var input = @"text \{-not deletion\-\}";
-        var expected = @"<p>text {-not deletion-}</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text \{-not deletion\-\}
+";
+        var expected = @"
+<p>text {-not deletion-}</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void UnmatchedOpeningDeletion()
     {
-        var input = @"text {-not closed";
-        var expected = @"<p>text {-not closed</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text {-not closed
+";
+        var expected = @"
+<p>text {-not closed</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void UnmatchedClosingDeletion()
     {
-        var input = @"text not opened-}";
-        var expected = @"<p>text not opened-}</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text not opened-}
+";
+        var expected = @"
+<p>text not opened-}</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionInListItem()
     {
-        var input = @"- Item with {-deletion-}";
-        var expected = @"<ul>
+        var input = @"
+- Item with {-deletion-}
+";
+        var expected = @"
+<ul>
 <li>Item with <del class=""markdown-deletion"">deletion</del></li>
-</ul>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+</ul>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionInBlockquote()
     {
-        var input = @"> Quote with {-deletion-}";
-        var expected = @"<blockquote>
+        var input = @"
+> Quote with {-deletion-}
+";
+        var expected = @"
+<blockquote>
 <p>Quote with <del class=""markdown-deletion"">deletion</del></p>
-</blockquote>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+</blockquote>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionWithPlusInside()
     {
-        var input = @"text {-plus - inside-}";
-        var expected = @"<p>text <del class=""markdown-deletion"">plus - inside</del></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+text {-plus - inside-}
+";
+        var expected = @"
+<p>text <del class=""markdown-deletion"">plus - inside</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionAtBeginningOfDocument()
     {
-        var input = @"{-Start-} of document.";
-        var expected = @"<p><del class=""markdown-deletion"">Start</del> of document.</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+{-Start-} of document.
+";
+        var expected = @"
+<p><del class=""markdown-deletion"">Start</del> of document.</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionAtEndOfDocument()
     {
-        var input = @"End of {-document-}";
-        var expected = @"<p>End of <del class=""markdown-deletion"">document</del></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+End of {-document-}
+";
+        var expected = @"
+<p>End of <del class=""markdown-deletion"">document</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void MultipleDeletionsInOneLine()
     {
-        var input = @"{-first-} and {-second-} and {-third-}";
-        var expected = @"<p><del class=""markdown-deletion"">first</del> and <del class=""markdown-deletion"">second</del> and <del class=""markdown-deletion"">third</del></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+{-first-} and {-second-} and {-third-}
+";
+        var expected = @"
+<p><del class=""markdown-deletion"">first</del> and <del class=""markdown-deletion"">second</del> and <del class=""markdown-deletion"">third</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionWithStartingEmphasis()
     {
-        var input = @"{-deleted *text-} that shouldn't be bold*";
-        var expected = @"<p><del class=""markdown-deletion"">deleted *text</del> that shouldn't be bold*</p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+{-deleted *text-} that shouldn't be bold*
+";
+        var expected = @"
+<p><del class=""markdown-deletion"">deleted *text</del> that shouldn't be bold*</p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 
     [TestMethod]
     public void DeletionWithEndingEmphasis()
     {
-        var input = @"*this text should be {-deleted but not bold*-}";
-        var expected = @"<p>*this text should be <del class=""markdown-deletion"">deleted but not bold*</del></p>";
-        var doc = Parser.Execute(input, Extended.RuleSet);
-        var html = Renderer.Execute(doc, HtmlRenderers.Renderers);
+        var input = @"
+*this text should be {-deleted but not bold*-}
+";
+        var expected = @"
+<p>*this text should be <del class=""markdown-deletion"">deleted but not bold*</del></p>
+".Substring(1);
 
-        Assert.AreEqual(expected.Trim(), html.Trim());
+        var htmlSpaced = Transformer.Execute(input, Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
     }
 }

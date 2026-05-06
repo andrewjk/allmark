@@ -52,7 +52,7 @@ ${tests
 		const expected = \`\n${t.expected.replaceAll("\\", "\\\\").replaceAll("`", "\\`")}\n\`;
 		const doc = parse(input.substring(1, input.length -1));
 		const html = render(doc);
-		expect(html.trim()).toBe(expected.trim());
+		expect(html).toBe(expected);
 	});
 `.slice(1);
 	})

@@ -1,12 +1,16 @@
 const std = @import("std");
 
-const parse = @import("allmark").parse;
-const render = @import("allmark").render;
+const transform = @import("allmark").transform;
 const gfm = @import("allmark").gfm;
+const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "spec alert" {
-    const input = "> [!NOTE]\n> Useful information that users should know, even when skimming content.";
-
+    const input =
+        \\
+        \\> [!NOTE]
+        \\> Useful information that users should know, even when skimming content.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -18,19 +22,25 @@ test "spec alert" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert tip" {
-    const input = "> [!TIP]\n> Helpful advice for doing things better or more easily.";
-
+    const input =
+        \\
+        \\> [!TIP]
+        \\> Helpful advice for doing things better or more easily.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-tip">
         \\<p class="markdown-alert-title">Tip</p>
@@ -42,19 +52,25 @@ test "alert tip" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert important" {
-    const input = "> [!IMPORTANT]\n> Key information users need to know to achieve their goal.";
-
+    const input =
+        \\
+        \\> [!IMPORTANT]
+        \\> Key information users need to know to achieve their goal.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-important">
         \\<p class="markdown-alert-title">Important</p>
@@ -66,19 +82,25 @@ test "alert important" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert warning" {
-    const input = "> [!WARNING]\n> Urgent info that needs immediate user attention to avoid problems.";
-
+    const input =
+        \\
+        \\> [!WARNING]
+        \\> Urgent info that needs immediate user attention to avoid problems.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-warning">
         \\<p class="markdown-alert-title">Warning</p>
@@ -90,19 +112,25 @@ test "alert warning" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert caution" {
-    const input = "> [!CAUTION]\n> Advises about risks or negative outcomes of certain actions.";
-
+    const input =
+        \\
+        \\> [!CAUTION]
+        \\> Advises about risks or negative outcomes of certain actions.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-caution">
         \\<p class="markdown-alert-title">Caution</p>
@@ -114,19 +142,27 @@ test "alert caution" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert with multiple paragraphs" {
-    const input = "> [!NOTE]\n> First paragraph of the note.\n>\n> Second paragraph of the note.";
-
+    const input =
+        \\
+        \\> [!NOTE]
+        \\> First paragraph of the note.
+        \\>
+        \\> Second paragraph of the note.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -139,19 +175,25 @@ test "alert with multiple paragraphs" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert with inline formatting" {
-    const input = "> [!NOTE]\n> This is **bold** and this is *italic* and this is `code`.";
-
+    const input =
+        \\
+        \\> [!NOTE]
+        \\> This is **bold** and this is *italic* and this is `code`.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -163,19 +205,28 @@ test "alert with inline formatting" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert with list" {
-    const input = "> [!NOTE]\n> Some important points:\n> - First point\n> - Second point\n> - Third point";
-
+    const input =
+        \\
+        \\> [!NOTE]
+        \\> Some important points:
+        \\> - First point
+        \\> - Second point
+        \\> - Third point
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -192,19 +243,27 @@ test "alert with list" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert with code block" {
-    const input = "> [!NOTE]\n> Example code:\n>\n> code block here";
-
+    const input =
+        \\
+        \\> [!NOTE]
+        \\> Example code:
+        \\>
+        \\> code block here
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -217,19 +276,25 @@ test "alert with code block" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert with link" {
-    const input = "> [!NOTE]\n> Check out the [documentation](https://example.com) for more info.";
-
+    const input =
+        \\
+        \\> [!NOTE]
+        \\> Check out the [documentation](https://example.com) for more info.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -241,19 +306,25 @@ test "alert with link" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert case insensitive" {
-    const input = "> [!note]\n> This should work with lowercase.";
-
+    const input =
+        \\
+        \\> [!note]
+        \\> This should work with lowercase.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -265,19 +336,25 @@ test "alert case insensitive" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "non alert blockquote" {
-    const input = "> This is just a regular blockquote.\n> It should not be treated as an alert.";
-
+    const input =
+        \\
+        \\> This is just a regular blockquote.
+        \\> It should not be treated as an alert.
+        \\
+    ;
     const expected =
         \\<blockquote>
         \\<p>This is just a regular blockquote.
@@ -289,19 +366,25 @@ test "non alert blockquote" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "blockquote with brackets but not alert" {
-    const input = "> [NOTE] This is not an alert syntax.\n> It should be a regular blockquote.";
-
+    const input =
+        \\
+        \\> [NOTE] This is not an alert syntax.
+        \\> It should be a regular blockquote.
+        \\
+    ;
     const expected =
         \\<blockquote>
         \\<p>[NOTE] This is not an alert syntax.
@@ -313,19 +396,27 @@ test "blockquote with brackets but not alert" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert with nested blockquote" {
-    const input = "> [!NOTE]\n> Outer alert content.\n>\n> > Nested blockquote inside alert.";
-
+    const input =
+        \\
+        \\> [!NOTE]
+        \\> Outer alert content.
+        \\>
+        \\> > Nested blockquote inside alert.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -340,19 +431,28 @@ test "alert with nested blockquote" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "consecutive alerts" {
-    const input = "> [!NOTE]\n> First alert.\n\n> [!WARNING]\n> Second alert.";
-
+    const input =
+        \\
+        \\> [!NOTE]
+        \\> First alert.
+        \\
+        \\> [!WARNING]
+        \\> Second alert.
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -368,19 +468,28 @@ test "consecutive alerts" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
 
 test "alert with empty content" {
-    const input = "> [!NOTE]\n>\n> Content after empty line.";
-
+    const input =
+        \\
+        \\
+        \\> [!NOTE]
+        \\>
+        \\> Content after empty line.
+        \\
+        \\
+    ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
@@ -392,12 +501,14 @@ test "alert with empty content" {
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
     defer gfm.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
 
-    const doc = try parse.execute(gpa, input, rules);
-    defer doc.deinit(gpa);
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const html = try render(gpa, doc, null, false);
-    defer gpa.free(html);
-
-    try std.testing.expectEqualStrings(expected, html);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
 }
