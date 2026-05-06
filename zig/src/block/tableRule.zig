@@ -32,10 +32,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 headers[hi] = cell.info orelse "";
             }
 
-            var rowLength = endOfLine - state.i;
-            if (state.src[endOfLine - 1] == '\n') {
-                rowLength -= 1;
-            }
+            const rowLength = endOfLine - state.i;
 
             const row = newBlock(state.allocator, "table_row", state.i, state.line, "", 0) catch unreachable;
             row.length = rowLength;
@@ -113,8 +110,14 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                     cells.items[x] = if (cells.items[x].len > 0) "center" else "right";
                 }
                 lastChar = nextChar;
-            } else if (isNewLine(nextChar)) {
+            } else if (nextChar == '\n') {
                 end += 1;
+                break;
+            } else if (nextChar == '\r') {
+                end += 1;
+                if (end < state.src.len and state.src[end] == '\n') {
+                    end += 1;
+                }
                 break;
             } else if (isSpace(state.src[end])) {
                 continue;

@@ -10,9 +10,20 @@ public static partial class Utils
         int endOfLine = state.I;
         for (; endOfLine < state.Src.Length; endOfLine++)
         {
-            if (IsNewLine(state.Src[endOfLine]))
+            var code = state.Src[endOfLine];
+            if (code == '\n')
             {
                 endOfLine++;
+                state.LineStart = endOfLine;
+                break;
+            }
+            else if (code == '\r')
+            {
+                endOfLine++;
+                if (Utils.GetChar(state.Src, endOfLine) == '\n')
+                {
+                    endOfLine++;
+                }
                 state.LineStart = endOfLine;
                 break;
             }

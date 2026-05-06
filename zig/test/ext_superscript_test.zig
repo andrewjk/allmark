@@ -28,6 +28,24 @@ test "superscript single" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript double" {
@@ -54,6 +72,24 @@ test "superscript double" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript triple" {
@@ -80,6 +116,24 @@ test "superscript triple" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript single character" {
@@ -106,6 +160,24 @@ test "superscript single character" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript with numbers" {
@@ -132,6 +204,24 @@ test "superscript with numbers" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "multiple superscripts in one line" {
@@ -158,6 +248,24 @@ test "multiple superscripts in one line" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript at start of paragraph" {
@@ -184,6 +292,24 @@ test "superscript at start of paragraph" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript at end of paragraph" {
@@ -210,6 +336,24 @@ test "superscript at end of paragraph" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript with punctuation" {
@@ -236,6 +380,24 @@ test "superscript with punctuation" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript with spaces" {
@@ -262,6 +424,24 @@ test "superscript with spaces" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript with special characters" {
@@ -288,6 +468,24 @@ test "superscript with special characters" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript adjacent to text" {
@@ -314,6 +512,24 @@ test "superscript adjacent to text" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "empty superscript" {
@@ -340,6 +556,24 @@ test "empty superscript" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript with markdown inside" {
@@ -366,6 +600,24 @@ test "superscript with markdown inside" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript with code inside" {
@@ -392,6 +644,24 @@ test "superscript with code inside" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "escaped caret should not be superscript" {
@@ -418,6 +688,24 @@ test "escaped caret should not be superscript" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "unmatched opening caret" {
@@ -444,6 +732,24 @@ test "unmatched opening caret" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "unmatched closing caret" {
@@ -470,6 +776,24 @@ test "unmatched closing caret" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript in list item" {
@@ -498,6 +822,24 @@ test "superscript in list item" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript in blockquote" {
@@ -526,6 +868,24 @@ test "superscript in blockquote" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "nested superscript" {
@@ -552,6 +912,24 @@ test "nested superscript" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "superscript with caret inside" {
@@ -578,4 +956,22 @@ test "superscript with caret inside" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }

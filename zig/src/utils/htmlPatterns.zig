@@ -3,13 +3,13 @@ const std = @import("std");
 pub const TAG_NAME = "[a-zA-Z][a-zA-Z0-9-]*";
 pub const ATTRIBUTE_NAME = "[a-zA-Z_:][a-zA-Z0-9_.:-]*";
 // HACK: `^\s` doesn't work without `\n` too??
-pub const UNQUOTED_VALUE = "[^\\s\\n\"'=<>`]+";
+pub const UNQUOTED_VALUE = "[^\\s\\r\\n\"'=<>`]+";
 pub const SINGLE_QUOTED_VALUE = "'[^']+'";
 pub const DOUBLE_QUOTED_VALUE = "\"[^\"]+\"";
 // NOTE: removed non-capturing groups `()`
 pub const ATTRIBUTE_VALUE = "(" ++ UNQUOTED_VALUE ++ "|" ++ SINGLE_QUOTED_VALUE ++ "|" ++ DOUBLE_QUOTED_VALUE ++ ")";
 pub const ATTRIBUTE_VALUE_SPEC = "\\s*=\\s*(" ++ ATTRIBUTE_VALUE ++ ")";
-pub const ATTRIBUTE = "\\s(" ++ ATTRIBUTE_NAME ++ ")(" ++ ATTRIBUTE_VALUE_SPEC ++ ")*";
+pub const ATTRIBUTE = "\\s+(" ++ ATTRIBUTE_NAME ++ ")(" ++ ATTRIBUTE_VALUE_SPEC ++ ")*";
 pub const OPEN_TAG = "<(" ++ TAG_NAME ++ ")(" ++ ATTRIBUTE ++ ")*\\s*\\/*>";
 pub const CLOSE_TAG = "<\\/(" ++ TAG_NAME ++ ")*\\s*>";
 pub const COMMENT = "<!---?>|<!--([^-]|-[^-]|--[^>])*-->";

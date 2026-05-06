@@ -29,7 +29,7 @@ const ATTRIBUTE_VALUE_SPEC = `\\s*=\\s*(?:${ATTRIBUTE_VALUE})`;
 
 // An attribute consists of whitespace, an attribute name, and an optional
 // attribute value specification.
-const ATTRIBUTE = `\\s(?:${ATTRIBUTE_NAME})(?:${ATTRIBUTE_VALUE_SPEC})*`;
+const ATTRIBUTE = `\\s+(?:${ATTRIBUTE_NAME})(?:${ATTRIBUTE_VALUE_SPEC})*`;
 
 // An open tag consists of a < character, a tag name, zero or more attributes,
 // optional whitespace, an optional / character, and a > character.

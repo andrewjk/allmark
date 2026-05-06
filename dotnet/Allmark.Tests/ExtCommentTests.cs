@@ -22,6 +22,12 @@ This text was {>>commented<<} recently.
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -39,6 +45,12 @@ text {>>a<<} more
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -56,6 +68,12 @@ text {>>with spaces<<} more
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -73,6 +91,12 @@ text {>>with spaces<<} more
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -90,6 +114,12 @@ This is {>>commented<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -107,6 +137,12 @@ text {>>word!<<} more
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -124,6 +160,12 @@ text {>>a-b<<} more
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -141,6 +183,12 @@ test{>>ing<<}test
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -158,6 +206,12 @@ text{>><<}text
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -175,6 +229,12 @@ text {>>**bold**<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -192,6 +252,12 @@ text {>>`code`<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -209,6 +275,12 @@ text \{>>not comment<<\}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -226,6 +298,12 @@ text {>>not closed
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -243,6 +321,12 @@ text not opened<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -262,6 +346,12 @@ text not opened<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -281,6 +371,12 @@ text not opened<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -298,6 +394,12 @@ text {>>some <text> inside<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -315,6 +417,12 @@ text {>>some <text> inside<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -332,6 +440,12 @@ End of {>>document<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -349,6 +463,12 @@ End of {>>document<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -366,6 +486,12 @@ End of {>>document<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -383,6 +509,12 @@ End of {>>document<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -400,6 +532,12 @@ text {>>plus + sign<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -417,6 +555,12 @@ text {>>minus - sign<<}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -434,5 +578,11 @@ text {+insertion {>>comment<<} end+}
 
         var htmlTrimmed = Transformer.Execute(input[1..^1], Extended.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Extended.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 }

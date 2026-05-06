@@ -1,6 +1,5 @@
 import type BlockParserState from "../types/BlockParserState";
-import { SPACE_CODE, TAB_CODE } from "../utils/charCodes";
-import isNewLine from "../utils/isNewLine";
+import { CARRIAGE_RETURN_CODE, NEW_LINE_CODE, SPACE_CODE, TAB_CODE } from "../utils/charCodes";
 import isSpace from "../utils/isSpace";
 
 export default function parseIndent(state: BlockParserState): void {
@@ -14,9 +13,15 @@ export default function parseIndent(state: BlockParserState): void {
 				// Set spaces to the next tabstop of 4 characters (e.g. for '  \t', set
 				// the spaces to 4)
 				state.indent += 4 - (state.indent % 4);
-			} else if (isNewLine(charCode)) {
+			} else if (charCode === NEW_LINE_CODE) {
 				state.hasBlankLine = true;
 				break;
+			} else if (charCode === CARRIAGE_RETURN_CODE) {
+				if (state.src.charCodeAt(state.i + 1) !== NEW_LINE_CODE) {
+					// Only break for a CR on its own, otherwise the LF will get caught next
+					state.hasBlankLine = true;
+					break;
+				}
 			} else {
 				break;
 			}

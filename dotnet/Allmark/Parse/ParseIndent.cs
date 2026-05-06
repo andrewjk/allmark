@@ -19,10 +19,19 @@ public static class ParseIndent
                 {
                     state.Indent += 4 - (state.Indent % 4);
                 }
-                else if (Utils.IsNewLine(c))
+                else if (c == '\n')
                 {
                     state.HasBlankLine = true;
                     break;
+                }
+                else if (c == '\r')
+                {
+                    if (Utils.GetChar(state.Src, state.I + 1) != '\n')
+                    {
+                        // Only break for a CR on its own, otherwise the LF will get caught next
+                        state.HasBlankLine = true;
+                        break;
+                    }
                 }
                 else
                 {

@@ -18,6 +18,12 @@ This text was {-deleted-} recently.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion double", () => {
@@ -33,6 +39,12 @@ This text was {--deleted--} recently.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion triple", () => {
@@ -48,6 +60,12 @@ This text was {---deleted---} recently.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion single character", () => {
@@ -63,6 +81,12 @@ text {-a-} more
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion with spaces", () => {
@@ -78,6 +102,12 @@ text {-with spaces-} more
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion at start of paragraph", () => {
@@ -93,6 +123,12 @@ text {-with spaces-} more
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion at end of paragraph", () => {
@@ -108,6 +144,12 @@ This is {-deleted-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion with punctuation", () => {
@@ -123,6 +165,12 @@ text {-word!-} more
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion with special characters", () => {
@@ -138,6 +186,12 @@ text {-a-b-} more
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion adjacent to text", () => {
@@ -153,6 +207,12 @@ test{-ing-}test
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("empty deletion", () => {
@@ -168,6 +228,12 @@ text{--}text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion with markdown inside", () => {
@@ -183,6 +249,12 @@ text {-**bold**-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion with code inside", () => {
@@ -198,6 +270,12 @@ text {-\`code\`-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("escaped braces should not be deletion", () => {
@@ -213,6 +291,12 @@ text \\{-not deletion\\-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("unmatched opening deletion", () => {
@@ -228,6 +312,12 @@ text {-not closed
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("unmatched closing deletion", () => {
@@ -243,6 +333,12 @@ text not opened-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion in list item", () => {
@@ -260,6 +356,12 @@ text not opened-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion in blockquote", () => {
@@ -277,6 +379,12 @@ text not opened-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion with plus inside", () => {
@@ -292,6 +400,12 @@ text {-plus - inside-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion at beginning of document", () => {
@@ -307,6 +421,12 @@ text {-plus - inside-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion at end of document", () => {
@@ -322,6 +442,12 @@ End of {-document-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("multiple deletions in one line", () => {
@@ -337,6 +463,12 @@ End of {-document-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion with starting emphasis", () => {
@@ -352,6 +484,12 @@ End of {-document-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("deletion with ending emphasis", () => {
@@ -367,5 +505,11 @@ End of {-document-}
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), extended, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 });

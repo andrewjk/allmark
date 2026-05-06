@@ -1,7 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import { BACKTICK_CODE, TILDE_CODE } from "../utils/charCodes";
+import { BACKTICK_CODE, CARRIAGE_RETURN_CODE, NEW_LINE_CODE, TILDE_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import decodeEntities from "../utils/decodeEntities";
 import escapeBackslashes from "../utils/escapeBackslashes";
@@ -88,7 +88,13 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			let markup = (charCode === BACKTICK_CODE ? "`" : "~").repeat(matched);
 
 			let info = "";
-			if (!isNewLine(state.src.charCodeAt(state.i + matched))) {
+			let endCode = state.src.charCodeAt(end);
+			if (endCode === NEW_LINE_CODE) {
+				end++;
+			} else if (endCode === CARRIAGE_RETURN_CODE) {
+				end++;
+				if (state.src.charCodeAt(end) === NEW_LINE_CODE) end++;
+			} else {
 				end = getEndOfLine(state);
 				info = state.src.substring(state.i + matched, end);
 
@@ -101,11 +107,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 				info = decodeEntities(info);
 				info = escapeBackslashes(info);
-			} else {
-				// TODO: I think the \n should go into the content and then it
-				// can be rendered without getting fancy about calculating where
-				// newlines go?
-				end++;
 			}
 
 			if (state.maybeContinue) {

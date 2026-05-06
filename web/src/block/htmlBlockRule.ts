@@ -1,10 +1,16 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import { ANGLE_LEFT_CODE, SLASH_CODE } from "../utils/charCodes";
+import {
+	ANGLE_LEFT_CODE,
+	CARRIAGE_RETURN_CODE,
+	NEW_LINE_CODE,
+	SLASH_CODE,
+} from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import { CLOSE_TAG, OPEN_TAG } from "../utils/htmlPatterns";
+import isNewLine from "../utils/isNewLine";
 import newBlock from "../utils/newBlock";
 
 // TODO: de-duplicate a lot of this code
@@ -98,7 +104,6 @@ function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail:
 			) {
 				let nextClosingTag = state.src.substring(end, end + closingTag.length).toLocaleLowerCase();
 				if (nextClosingTag === closingTag) {
-					//end += closingTag.length;
 					state.i = end;
 					end = getEndOfLine(state);
 					break;
@@ -264,7 +269,7 @@ function testHtmlCondition5(state: BlockParserState, parent: MarkdownNode, tail:
 }
 
 const HTML_REGEX_6 =
-	/^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s|\n|$|>|\/>)/i;
+	/^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s+|$|>|\/>)/i;
 
 /**
  * Start condition: line begins the string < or </ followed by one of the
@@ -320,19 +325,27 @@ function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail:
 		// block-level tags in (6), you must put the tag by itself on the first
 		// line (and it must be complete)"
 		// HACK: Maybe we could improve the regex?
-		let newLineIndex = match[0].indexOf("\n");
-		if (
-			(newLineIndex !== -1 && newLineIndex < match[0].length - 1) ||
-			(state.i + match[0].length < state.src.length && !match[0].endsWith("\n"))
-		) {
+		let end = state.i + match[0].length;
+		if (end < state.src.length && !isNewLine(state.src.charCodeAt(end - 1))) {
 			return false;
+		}
+		for (let i = state.i; i < end - 1; i++) {
+			if (isNewLine(state.src.charCodeAt(i))) {
+				return false;
+			}
 		}
 
 		// "All types of HTML blocks except type 7 may interrupt a paragraph.
 		// Blocks of type 7 may not interrupt a paragraph"
-		let lastNode = parent; //parent.children!.at(-1);
+		let lastNode = parent;
 		if (lastNode && lastNode.type === "paragraph" && !lastNode.blankAfter) {
 			let end = state.i + match[0].length;
+			if (
+				state.src.charCodeAt(end - 1) === CARRIAGE_RETURN_CODE &&
+				state.src.charCodeAt(end) === NEW_LINE_CODE
+			) {
+				end++;
+			}
 			let content = state.src.substring(state.i, end);
 			lastNode.content += content;
 			state.i = end;

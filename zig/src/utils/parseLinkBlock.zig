@@ -11,7 +11,7 @@ const isNewLine = @import("isNewLine.zig").isNewLine;
 const isSpaceFn = @import("isSpace.zig").isSpace;
 const mvzr = @import("mvzr");
 
-const BLANK_LINE_REGEX = "\\n[ \\t]*\\n";
+const BLANK_LINE_REGEX = "\\r?\\n[ \\t]*\\r?\\n|\\r[ \\t]*\\r";
 
 pub fn parseLinkBlock(state: *BlockParserState, start: usize) !?LinkReference {
     const spaces = try consumeSpaces(state.allocator, state.src, start);
@@ -112,7 +112,10 @@ pub fn parseLinkBlock(state: *BlockParserState, start: usize) !?LinkReference {
             return null;
         }
 
-        if (std.mem.indexOf(u8, title, "\n\n")) |_| {
+        const has_blank_in_title = std.mem.indexOf(u8, title, "\n\n") != null or
+            std.mem.indexOf(u8, title, "\r\n\r\n") != null or
+            std.mem.indexOf(u8, title, "\r\r") != null;
+        if (has_blank_in_title) {
             if (url_allocated) state.allocator.free(url);
             if (title_allocated) state.allocator.free(title);
             return null;
@@ -137,7 +140,7 @@ pub fn parseLinkBlock(state: *BlockParserState, start: usize) !?LinkReference {
             } else if (isSpaceFn(state.src[j])) {
                 continue;
             } else {
-                if (std.mem.indexOf(u8, spaces2, "\n") != null) {
+                if (std.mem.indexOf(u8, spaces2, "\n") != null or std.mem.indexOf(u8, spaces2, "\r") != null) {
                     if (title_allocated) state.allocator.free(title);
                     title = "";
                     i = urlEnd;

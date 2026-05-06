@@ -1,7 +1,12 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import { BACKSLASH_CODE, SPACE_CODE } from "../utils/charCodes";
+import {
+	BACKSLASH_CODE,
+	CARRIAGE_RETURN_CODE,
+	NEW_LINE_CODE,
+	SPACE_CODE,
+} from "../utils/charCodes";
 import isNewLine from "../utils/isNewLine";
 import newInline from "../utils/newInline";
 
@@ -21,10 +26,17 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 	let charCode = state.src.charCodeAt(state.i);
 
 	if (charCode === BACKSLASH_CODE && isNewLine(state.src.charCodeAt(state.i + 1))) {
+		let bump = 2;
+		if (
+			state.src.charCodeAt(state.i + 1) === CARRIAGE_RETURN_CODE &&
+			state.src.charCodeAt(state.i + 2) === NEW_LINE_CODE
+		) {
+			bump++;
+		}
 		let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "\\", 0);
 		hb.length = 2;
-		state.i += 2;
 		parent.children!.push(hb);
+		state.i += bump;
 		return true;
 	}
 
@@ -42,10 +54,17 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 			}
 		}
 		if (end - state.i >= 2) {
+			let bump = 1;
+			if (
+				state.src.charCodeAt(end) === CARRIAGE_RETURN_CODE &&
+				state.src.charCodeAt(end + 1) === NEW_LINE_CODE
+			) {
+				bump++;
+			}
 			let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "  ", 0);
 			hb.length = end - state.i;
-			state.i = end + 1;
 			parent.children!.push(hb);
+			state.i = end + bump;
 			return true;
 		}
 	}

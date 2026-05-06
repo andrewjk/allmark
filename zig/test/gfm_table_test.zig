@@ -43,6 +43,24 @@ test "spec table" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with alignment" {
@@ -92,6 +110,24 @@ test "table with alignment" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with inline formatting" {
@@ -143,6 +179,24 @@ test "table with inline formatting" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with missing cells" {
@@ -192,6 +246,24 @@ test "table with missing cells" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with extra cells" {
@@ -233,6 +305,24 @@ test "table with extra cells" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with only header" {
@@ -267,6 +357,24 @@ test "table with only header" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with empty cells" {
@@ -316,6 +424,24 @@ test "table with empty cells" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table without outer pipes" {
@@ -348,6 +474,24 @@ test "table without outer pipes" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with whitespace variations" {
@@ -391,6 +535,24 @@ test "table with whitespace variations" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with mixed content types" {
@@ -447,6 +609,24 @@ test "table with mixed content types" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with single column" {
@@ -490,6 +670,24 @@ test "table with single column" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "table with many columns" {
@@ -548,4 +746,22 @@ test "table with many columns" {
     const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
+    defer gpa.free(htmlCr3);
+    try std.testing.expectEqualStrings(expected, htmlCr3);
 }

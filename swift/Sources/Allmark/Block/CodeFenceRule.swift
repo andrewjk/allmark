@@ -53,17 +53,21 @@ func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 			let markup = String(repeating: char, count: matched)
 
 			var info = ""
-			if state.i + matched < src.count && !isNewLine(char: src[state.i + matched]) {
-				end = getEndOfLine(state: &state)
-				info = charToString(src, from: state.i + matched, to: end)
+			if state.i + matched < src.count {
+				let endChar = src[end]
+				if endChar == "\n" || endChar == "\r\n" || endChar == "\r" {
+					end += 1
+				} else {
+					end = getEndOfLine(state: &state)
+					info = charToString(src, from: state.i + matched, to: end)
 
-				// Info strings for backtick code blocks cannot contain backticks
-				if char == "`" && info.contains("`") {
-					return false
+					if char == "`" && info.contains("`") {
+						return false
+					}
+
+					info = decodeEntities(text: info)
+					info = escapeBackslashes(text: info)
 				}
-
-				info = decodeEntities(text: info)
-				info = escapeBackslashes(text: info)
 			} else {
 				end += 1
 			}

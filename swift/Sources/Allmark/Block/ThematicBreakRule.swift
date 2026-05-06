@@ -31,7 +31,7 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 
 			if nextChar == char {
 				matched += 1
-			} else if isNewLine(char: nextChar) {
+			} else if nextChar == "\n" || nextChar == "\r\n" || nextChar == "\r" {
 				end += 1
 				break
 			} else if isSpace(char: nextChar) {

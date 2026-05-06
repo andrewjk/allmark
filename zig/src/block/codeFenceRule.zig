@@ -57,7 +57,14 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             var info: []const u8 = "";
             var info_allocated = false;
             const infoStart = state.i + matched;
-            if (infoStart < state.src.len and !isNewLine(state.src[infoStart])) {
+            if (end < state.src.len and state.src[end] == '\n') {
+                end += 1;
+            } else if (end < state.src.len and state.src[end] == '\r') {
+                end += 1;
+                if (end < state.src.len and state.src[end] == '\n') {
+                    end += 1;
+                }
+            } else {
                 end = getEndOfLine(state);
                 info = state.src[infoStart..end];
 
@@ -70,8 +77,6 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 state.allocator.free(decoded);
                 info = escaped;
                 info_allocated = true;
-            } else {
-                end += 1;
             }
             defer if (info_allocated) state.allocator.free(info);
 

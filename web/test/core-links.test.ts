@@ -20,6 +20,12 @@ describe("links", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with title", () => {
@@ -36,6 +42,12 @@ describe("links", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with single quoted title", () => {
@@ -52,6 +64,12 @@ describe("links", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link in paragraph", () => {
@@ -68,6 +86,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("multiple links in one line", () => {
@@ -84,6 +108,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with emphasis", () => {
@@ -100,6 +130,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("emphasis around link", () => {
@@ -116,6 +152,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with code in text", () => {
@@ -132,6 +174,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link in list item", () => {
@@ -150,6 +198,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link in heading", () => {
@@ -166,6 +220,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("reference link definition and usage", () => {
@@ -184,6 +244,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("reference link with implicit label", () => {
@@ -202,6 +268,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("reference link with title", () => {
@@ -220,6 +292,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("multiple reference links", () => {
@@ -239,6 +317,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("autolink with http", () => {
@@ -255,6 +339,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("autolink with https", () => {
@@ -271,6 +361,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("autolink with ftp", () => {
@@ -287,6 +383,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("email autolink", () => {
@@ -303,6 +405,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with special characters in URL", () => {
@@ -319,6 +427,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with parentheses in URL", () => {
@@ -335,6 +449,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with spaces in title", () => {
@@ -351,6 +471,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with escaped brackets in text", () => {
@@ -367,6 +493,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("empty link text", () => {
@@ -383,6 +515,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with underscore in URL", () => {
@@ -399,6 +537,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("relative URL", () => {
@@ -415,6 +559,12 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("link with percent encoding", () => {
@@ -431,5 +581,11 @@ Visit [Google](https://google.com) for search.
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 });

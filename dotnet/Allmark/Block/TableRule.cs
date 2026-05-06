@@ -35,10 +35,6 @@ public static class TableRule
             var headers = lastNode.Children?[0].Children!.Select((c) => c.Info ?? "").ToList() ?? [];
 
             var rowLength = endOfLine - state.I;
-            if (state.Src[endOfLine - 1] == '\n')
-            {
-                rowLength--;
-            }
 
             var row = Utils.NewBlock("table_row", state.I, state.Line, "", 0);
             row.Length = rowLength;
@@ -99,10 +95,15 @@ public static class TableRule
                     }
                     lastChar = nextChar;
                 }
-                else if (Utils.IsNewLine(nextChar))
+                else if (nextChar == '\n')
                 {
-                    // TODO: Handle windows crlf
                     end++;
+                    break;
+                }
+                else if (nextChar == '\r')
+                {
+                    end++;
+                    if (Utils.GetChar(state.Src, end) == '\n') end++;
                     break;
                 }
                 else if (Utils.IsSpace(nextChar))

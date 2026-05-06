@@ -22,6 +22,12 @@ describe("html blocks", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML script tag - multi-line", () => {
@@ -44,6 +50,12 @@ alert('bye');
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML pre tag", () => {
@@ -60,6 +72,12 @@ alert('bye');
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML style tag", () => {
@@ -76,6 +94,12 @@ alert('bye');
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	// TODO:
@@ -93,6 +117,12 @@ alert('bye');
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML comment - single line", () => {
@@ -109,6 +139,12 @@ alert('bye');
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML comment - multi-line", () => {
@@ -131,6 +167,12 @@ multi-line comment
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML processing instruction", () => {
@@ -147,6 +189,12 @@ multi-line comment
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML declaration - DOCTYPE", () => {
@@ -163,6 +211,12 @@ multi-line comment
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML CDATA section", () => {
@@ -179,6 +233,12 @@ multi-line comment
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block-level div tag", () => {
@@ -195,6 +255,12 @@ multi-line comment
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML div with blank line after", () => {
@@ -214,6 +280,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML paragraph tag", () => {
@@ -230,6 +302,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML heading tags", () => {
@@ -246,6 +324,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML list tags", () => {
@@ -266,6 +350,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML table tag", () => {
@@ -282,6 +372,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block with indentation (less than 4 spaces)", () => {
@@ -298,6 +394,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block with 4 space indent should be code", () => {
@@ -315,6 +417,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML closing tag alone", () => {
@@ -331,6 +439,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML self-closing tag", () => {
@@ -347,6 +461,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML img tag", () => {
@@ -363,6 +483,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML hr tag", () => {
@@ -379,6 +505,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block followed by Markdown", () => {
@@ -398,6 +530,12 @@ Next paragraph
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Paragraph before HTML block type 7 should not interrupt", () => {
@@ -416,6 +554,12 @@ Paragraph text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML comment in paragraph", () => {
@@ -432,6 +576,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Multiple HTML blocks", () => {
@@ -451,6 +601,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block with attributes", () => {
@@ -467,6 +623,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML script tag with attributes", () => {
@@ -483,6 +645,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML form tag", () => {
@@ -499,6 +667,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML blockquote tag", () => {
@@ -515,6 +689,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML address tag", () => {
@@ -531,6 +711,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML article tag", () => {
@@ -547,6 +733,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML aside tag", () => {
@@ -563,6 +755,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML section tag", () => {
@@ -579,6 +777,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML nav tag", () => {
@@ -595,6 +799,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML footer tag", () => {
@@ -611,6 +821,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML header tag", () => {
@@ -627,6 +843,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML main tag", () => {
@@ -643,6 +865,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML figure tag", () => {
@@ -659,6 +887,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML figcaption tag", () => {
@@ -675,6 +909,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML details and summary tags", () => {
@@ -691,6 +931,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML dialog tag", () => {
@@ -707,6 +953,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML fieldset tag", () => {
@@ -723,6 +975,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML legend tag", () => {
@@ -739,6 +997,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML dl, dt, dd tags", () => {
@@ -755,6 +1019,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML link tag (empty)", () => {
@@ -771,6 +1041,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML base tag", () => {
@@ -787,6 +1063,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML basefont tag", () => {
@@ -803,6 +1085,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML center tag", () => {
@@ -819,6 +1107,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML col and colgroup tags", () => {
@@ -835,6 +1129,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML tbody, thead, tfoot, tr, th, td tags", () => {
@@ -851,6 +1151,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML caption tag", () => {
@@ -867,6 +1173,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML source tag", () => {
@@ -883,6 +1195,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML track tag", () => {
@@ -899,6 +1217,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML frameset, frame, noframes tags", () => {
@@ -915,6 +1239,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML noframes tag", () => {
@@ -931,6 +1261,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML iframe tag", () => {
@@ -947,6 +1283,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML param tag", () => {
@@ -963,6 +1305,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML dir tag", () => {
@@ -979,6 +1327,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML menu and menuitem tags", () => {
@@ -995,6 +1349,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML optgroup and option tags", () => {
@@ -1011,6 +1371,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML title tag in body (not head)", () => {
@@ -1027,6 +1393,12 @@ Text <!-- comment --> more text
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block with line breaks inside", () => {
@@ -1051,6 +1423,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block inside list", () => {
@@ -1074,6 +1452,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block inside blockquote", () => {
@@ -1092,6 +1476,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML case insensitive - uppercase", () => {
@@ -1108,6 +1498,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML script tag with mixed case", () => {
@@ -1124,6 +1520,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block with no content", () => {
@@ -1140,6 +1542,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML custom tag (non-block-level)", () => {
@@ -1156,6 +1564,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML comment ending on same line", () => {
@@ -1172,6 +1586,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML comment with multiple dashes", () => {
@@ -1188,6 +1608,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML CDATA with embedded brackets", () => {
@@ -1204,6 +1630,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML DOCTYPE with public identifier", () => {
@@ -1220,6 +1652,12 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("HTML block continues until blank line (type 6)", () => {
@@ -1243,5 +1681,11 @@ Line 3
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 });

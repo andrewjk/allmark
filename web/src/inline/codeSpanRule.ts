@@ -56,7 +56,7 @@ function testCodeSpan(state: InlineParserState, parent: MarkdownNode): boolean {
 			let content = state.src.substring(state.i, closeEnd - closeMatched);
 
 			// "[L]ine endings are converted to spaces"
-			content = content.replaceAll(/[\r\n]/g, " ");
+			content = content.replaceAll(/(\r?\n|\r)/g, " ");
 
 			// "If the resulting string both begins and ends with a space
 			// character, but does not consist entirely of space characters, a

@@ -35,8 +35,14 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                     return false;
                 }
                 matched += 1;
-            } else if (isNewLine(nextChar)) {
+            } else if (nextChar == '\n') {
                 end += 1;
+                break;
+            } else if (nextChar == '\r') {
+                end += 1;
+                if (end < state.src.len and state.src[end] == '\n') {
+                    end += 1;
+                }
                 break;
             } else if (!isSpace(nextChar)) {
                 return false;

@@ -33,7 +33,7 @@ public static class HtmlPatterns
 
     // An attribute consists of whitespace, an attribute name, and an optional
     // attribute value specification.
-    private const string Attribute = @$"\s(?:{AttributeName})(?:{AttributeValueSpec})*";
+    private const string Attribute = @$"\s+(?:{AttributeName})(?:{AttributeValueSpec})*";
 
     // An open tag consists of a < character, a tag name, zero or more attributes,
     // optional whitespace, an optional / character, and a > character.

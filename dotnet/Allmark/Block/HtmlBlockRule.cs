@@ -301,7 +301,7 @@ public static class HtmlBlockRule
         return false;
     }
 
-    private static readonly Regex HtmlRegex6 = new(@"^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s|\n|$|>|\/>)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex6 = new(@"^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s+|$|>|\/>)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     /// <summary>
     /// Start condition: line begins with string &lt; or &lt;/ followed by one of to
@@ -365,13 +365,17 @@ public static class HtmlBlockRule
             // block-level tags in (6), you must put to tag by itself on the first
             // line (and it must be complete)"
             // HACK: Maybe we could improve to regex?
-            var newLineIndex = match.Value.IndexOf('\n');
-            if (
-                (newLineIndex != -1 && newLineIndex < match.Value.Length - 1) ||
-                (state.I + match.Value.Length < state.Src.Length && !match.Value.EndsWith("\n"))
-            )
+            var matchEnd = state.I + match.Value.Length;
+            if (matchEnd < state.Src.Length && !Utils.IsNewLine(state.Src[matchEnd - 1]))
             {
                 return false;
+            }
+            for (var i = state.I; i < matchEnd - 1; i++)
+            {
+                if (Utils.IsNewLine(state.Src[i]))
+                {
+                    return false;
+                }
             }
 
             // "All types of HTML blocks except type 7 may interrupt a paragraph.
@@ -380,6 +384,13 @@ public static class HtmlBlockRule
             if (lastNode != null && lastNode.Type == "paragraph" && !lastNode.BlankAfter)
             {
                 var end = state.I + match.Value.Length;
+                if (
+    state.Src[end - 1] == '\r' &&
+    state.Src[end] == '\n'
+)
+                {
+                    end++;
+                }
                 var content = state.Src.Substring(state.I, end - state.I);
                 lastNode.Content += content;
                 state.I = end;

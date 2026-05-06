@@ -2,7 +2,6 @@ const std = @import("std");
 const BlockParserState = @import("../types/BlockParserState.zig").BlockParserState;
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
-const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
@@ -21,8 +20,14 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         while (end < state.src.len) : (end += 1) {
             if (state.src[end] == char) {
                 matched += 1;
-            } else if (isNewLine(state.src[end])) {
+            } else if (state.src[end] == '\n') {
                 end += 1;
+                break;
+            } else if (state.src[end] == '\r') {
+                end += 1;
+                if (end < state.src.len and state.src[end] == '\n') {
+                    end += 1;
+                }
                 break;
             } else if (!isSpace(state.src[end])) {
                 return false;

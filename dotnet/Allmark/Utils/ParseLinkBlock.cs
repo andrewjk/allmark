@@ -5,7 +5,7 @@ using Allmark.Types;
 
 public static partial class Utils
 {
-    private static readonly Regex BlankLineRegex = new(@"\n[ \t]*\n");
+    private static readonly Regex BlankLineRegex = new(@"\r?\n[ \t]*\r?\n|\r[ \t]*\r");
     private static readonly Regex LineBreakRegex = new(@"[\r\n]");
 
     public static LinkReference? ParseLinkBlock(BlockParserState state, int start, string end)
@@ -149,7 +149,7 @@ public static partial class Utils
                 {
                     // If the title is on a new line, only it is ignored,
                     // otherwise the whole link is ignored
-                    if (spaces.Contains('\n'))
+                    if (spaces.Contains('\n') || spaces.Contains('\r'))
                     {
                         title = "";
                         start = urlEnd;

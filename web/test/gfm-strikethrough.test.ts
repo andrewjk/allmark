@@ -27,6 +27,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough single word", () => {
@@ -40,6 +46,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough multiple words", () => {
@@ -53,6 +65,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with spaces inside", () => {
@@ -66,6 +84,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with emphasis", () => {
@@ -79,6 +103,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough inside emphasis", () => {
@@ -92,6 +122,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with code", () => {
@@ -105,6 +141,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with link", () => {
@@ -118,6 +160,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("multiple strikethroughs in one line", () => {
@@ -131,6 +179,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough at start of paragraph", () => {
@@ -144,6 +198,12 @@ describe("strikethrough", () => {
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough at end of paragraph", () => {
@@ -157,6 +217,12 @@ Normal text followed by ~~deleted~~
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough in list item", () => {
@@ -171,6 +237,12 @@ Normal text followed by ~~deleted~~
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with tildes inside", () => {
@@ -184,6 +256,12 @@ Normal text followed by ~~deleted~~
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with multiple tildes", () => {
@@ -197,6 +275,12 @@ Normal text followed by ~~deleted~~
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough across lines", () => {
@@ -211,6 +295,12 @@ line two~~
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with punctuation", () => {
@@ -224,6 +314,12 @@ line two~~
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with numbers", () => {
@@ -237,6 +333,12 @@ line two~~
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough in table cell", () => {
@@ -252,6 +354,12 @@ line two~~
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough adjacent to regular text", () => {
@@ -265,6 +373,12 @@ normal~~deleted~~normal
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough with escaped characters", () => {
@@ -278,5 +392,11 @@ normal~~deleted~~normal
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), gfm, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 });

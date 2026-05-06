@@ -71,7 +71,7 @@ public static class CodeSpanRule
                 var content = state.Src.Substring(state.I, closeEnd - closeMatched - state.I);
 
                 // "[L]ine endings are converted to spaces"
-                content = Regex.Replace(content, @"[\r\n]", " ");
+                content = Regex.Replace(content, @"(\r?\n|\r)", " ");
 
                 // "If the resulting string both begins and ends with a space
                 // character, but does not consist entirely of space characters, a

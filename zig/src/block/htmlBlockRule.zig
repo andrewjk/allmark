@@ -87,7 +87,7 @@ fn testHtmlCondition1(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         var tag_name_end = tag_name_start;
         while (tag_name_end < tag_match.len) : (tag_name_end += 1) {
             const c = tag_match[tag_name_end];
-            if (c == ' ' or c == '\n' or c == '>' or c == '/') {
+            if (c == ' ' or c == '\n' or c == '\r' or c == '>' or c == '/') {
                 break;
             }
         }
@@ -302,7 +302,7 @@ fn testHtmlCondition5(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 }
 
 // Simplified regex that matches any tag
-const HTML_REGEX_6 = "^<\\/?([a-zA-Z][a-zA-Z0-9-]*)(\\s|\\n|>|\\/>)";
+const HTML_REGEX_6 = "^<\\/?([a-zA-Z][a-zA-Z0-9-]*)(\\s+|>|\\/>)";
 
 // List of block-level tags (from CommonMark spec)
 const BLOCK_LEVEL_TAGS = [_][]const u8{
@@ -336,7 +336,7 @@ fn testHtmlCondition6(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         var tag_name_end = tag_name_start;
         while (tag_name_end < tag_match.len) : (tag_name_end += 1) {
             const c = tag_match[tag_name_end];
-            if (c == ' ' or c == '\n' or c == '>' or c == '/') {
+            if (c == ' ' or c == '\n' or c == '\r' or c == '>' or c == '/') {
                 break;
             }
         }
@@ -381,7 +381,7 @@ fn testHtmlCondition6(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 // NOTE: removed non-capturing groups `(?:)`
 // NOTE: removed `$` anchor as mvzr doesn't support it correctly
 const htmlPatterns = @import("../utils/htmlPatterns.zig");
-const HTML_REGEX_7 = "^(" ++ htmlPatterns.OPEN_TAG ++ "|" ++ htmlPatterns.CLOSE_TAG ++ ")\\s*";
+const HTML_REGEX_7 = "^(" ++ htmlPatterns.OPEN_TAG ++ "|" ++ htmlPatterns.CLOSE_TAG ++ ")[ \\t]*";
 
 fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
     const regex = mvzr.compile(HTML_REGEX_7) orelse return false;
@@ -394,34 +394,42 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         // block-level tags in (6), you must put the tag by itself on the first
         // line (and it must be complete)"
         const match_end = match.?.end;
+        const end = state.i + match_end;
 
-        // Can't have any newlines before the last one
-        var x: usize = 0;
-        while (x < match_end - 2) : (x += 1) {
-            if (tail[x] == '\n') {
-                return false;
-            }
-        }
-
-        // Must finish at the end of the source, or at a newline
-        if (match_end != tail.len and tail[match_end - 1] != '\n') {
+        if (end < state.src.len and !isNewLine(state.src[end])) {
             return false;
+        }
+        {
+            var i: usize = state.i;
+            while (i < end) : (i += 1) {
+                if (isNewLine(state.src[i])) {
+                    return false;
+                }
+            }
         }
 
         // "All types of HTML blocks except type 7 may interrupt a paragraph.
         // Blocks of type 7 may not interrupt a paragraph"
         if (std.mem.eql(u8, parent.type, "paragraph") and !parent.blankAfter) {
-            // Append the HTML tag to the paragraph content
+            var p_end = state.i + match_end;
+            if (p_end < state.src.len and state.src[p_end] == '\r') {
+                p_end += 1;
+                if (p_end < state.src.len and state.src[p_end] == '\n') {
+                    p_end += 1;
+                }
+            } else if (p_end < state.src.len and state.src[p_end] == '\n') {
+                p_end += 1;
+            }
             const old_content = parent.content;
-            const new_content = state.allocator.alloc(u8, old_content.len + match_end) catch unreachable;
+            const new_content = state.allocator.alloc(u8, old_content.len + (p_end - state.i)) catch unreachable;
             @memcpy(new_content[0..old_content.len], old_content);
-            @memcpy(new_content[old_content.len..], tail[0..match_end]);
+            @memcpy(new_content[old_content.len..], state.src[state.i..p_end]);
             if (parent.content_allocated) {
                 state.allocator.free(old_content);
             }
             parent.content = new_content;
             parent.content_allocated = true;
-            state.i += match_end;
+            state.i = p_end;
             return true;
         }
 

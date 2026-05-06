@@ -1,11 +1,16 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import { COLON_CODE, DASH_CODE, NEW_LINE_CODE, PIPE_CODE } from "../utils/charCodes";
+import {
+	CARRIAGE_RETURN_CODE,
+	COLON_CODE,
+	DASH_CODE,
+	NEW_LINE_CODE,
+	PIPE_CODE,
+} from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
-import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import newBlock from "../utils/newBlock";
 
@@ -30,9 +35,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		let row = newBlock("table_row", state.i, state.line, "", 0);
 		let rowLength = endOfLine - state.i;
-		if (state.src.charCodeAt(endOfLine - 1) === NEW_LINE_CODE) {
-			rowLength--;
-		}
 		row.length = rowLength;
 		lastNode.children!.push(row);
 
@@ -79,9 +81,14 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 					cells[x] = cells[x] ? "center" : "right";
 				}
 				lastCharCode = nextCharCode;
-			} else if (isNewLine(nextCharCode)) {
-				// TODO: Handle windows crlf
+			} else if (nextCharCode === NEW_LINE_CODE) {
 				end++;
+				break;
+			} else if (nextCharCode === CARRIAGE_RETURN_CODE) {
+				end++;
+				if (state.src.charCodeAt(end) === NEW_LINE_CODE) {
+					end++;
+				}
 				break;
 			} else if (isSpace(nextCharCode)) {
 				continue;

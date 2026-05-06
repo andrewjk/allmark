@@ -17,7 +17,7 @@ import isNewLine from "./isNewLine";
 import isSpace from "./isSpace";
 
 // TODO: Get this from utils??
-const BLANK_LINE_REGEX = /\n[ \t]*\n/;
+const BLANK_LINE_REGEX = /\r?\n[ \t]*\r?\n|\r[ \t]*\r/;
 
 export default function parseLinkBlock(
 	state: BlockParserState,
@@ -139,7 +139,7 @@ export default function parseLinkBlock(
 			} else {
 				// If the title is on a new line, only it is ignored,
 				// otherwise the whole link is ignored
-				if (spaces.includes("\n")) {
+				if (spaces.includes("\n") || spaces.includes("\r")) {
 					title = "";
 					start = urlEnd;
 					break;

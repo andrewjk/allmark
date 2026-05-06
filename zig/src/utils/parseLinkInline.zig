@@ -10,7 +10,7 @@ const isEscaped = @import("isEscaped.zig").isEscaped;
 const isSpace = @import("isSpace.zig").isSpace;
 const mvzr = @import("mvzr");
 
-const BLANK_LINE_REGEX = "\\n[ \\t]*\\n";
+const BLANK_LINE_REGEX = "\\r?\\n[ \\t]*\\r?\\n|\\r[ \\t]*\\r";
 
 pub fn parseLinkInline(allocator: std.mem.Allocator, state: *InlineParserState, start: usize, end_str: []const u8) !?LinkReference {
     _ = end_str;

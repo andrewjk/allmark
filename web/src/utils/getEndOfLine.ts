@@ -1,13 +1,19 @@
 import type BlockParserState from "../types/BlockParserState";
-import isNewLine from "./isNewLine";
-
-// TODO: This should be consumeUntil
+import { CARRIAGE_RETURN_CODE, NEW_LINE_CODE } from "./charCodes";
 
 export default function getEndOfLine(state: BlockParserState): number {
 	let endOfLine = state.i;
 	for (; endOfLine < state.src.length; endOfLine++) {
-		if (isNewLine(state.src.charCodeAt(endOfLine))) {
+		let code = state.src.charCodeAt(endOfLine);
+		if (code === NEW_LINE_CODE) {
 			endOfLine++;
+			state.lineStart = endOfLine;
+			break;
+		} else if (code === CARRIAGE_RETURN_CODE) {
+			endOfLine++;
+			if (state.src.charCodeAt(endOfLine) === NEW_LINE_CODE) {
+				endOfLine++;
+			}
 			state.lineStart = endOfLine;
 			break;
 		}

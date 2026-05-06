@@ -52,11 +52,17 @@ pub fn testCodeSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
 
             var new_content = std.ArrayList(u8).initCapacity(state.allocator, content.len) catch unreachable;
             defer new_content.deinit(state.allocator);
-            for (content) |c| {
-                if (c == '\r' or c == '\n') {
+            var ci: usize = 0;
+            while (ci < content.len) : (ci += 1) {
+                if (content[ci] == '\r') {
+                    if (ci + 1 < content.len and content[ci + 1] == '\n') {
+                        ci += 1;
+                    }
+                    new_content.append(state.allocator, ' ') catch unreachable;
+                } else if (content[ci] == '\n') {
                     new_content.append(state.allocator, ' ') catch unreachable;
                 } else {
-                    new_content.append(state.allocator, c) catch unreachable;
+                    new_content.append(state.allocator, content[ci]) catch unreachable;
                 }
             }
             content = new_content.items;

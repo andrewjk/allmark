@@ -61,8 +61,9 @@ func testCodeSpan(state: inout InlineParserState, parent: inout MarkdownNode) ->
 			var content = charToString(src, from: contentStart, to: contentEnd)
 
 			// "[L]ine endings are converted to spaces"
-			content = content.replacingOccurrences(of: "\r", with: " ")
+			content = content.replacingOccurrences(of: "\r\n", with: " ")
 			content = content.replacingOccurrences(of: "\n", with: " ")
+			content = content.replacingOccurrences(of: "\r", with: " ")
 
 			// "If the resulting string both begins and ends with a space
 			// character, but does not consist entirely of space characters, a

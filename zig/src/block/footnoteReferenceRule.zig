@@ -147,7 +147,10 @@ pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {
             return true;
         }
 
-        if (openNode.content.len >= 3 and std.mem.eql(u8, openNode.content[openNode.content.len - 3 ..], "  \n")) {
+        if (openNode.content.len >= 3 and std.mem.eql(u8, openNode.content[openNode.content.len - 3 ..], "  \n") or
+            openNode.content.len >= 3 and std.mem.eql(u8, openNode.content[openNode.content.len - 3 ..], "  \r") or
+            openNode.content.len >= 4 and std.mem.eql(u8, openNode.content[openNode.content.len - 4 ..], "  \r\n"))
+        {
             state.maybeContinue = true;
             node.maybeContinuing = true;
             return true;

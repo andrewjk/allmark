@@ -23,7 +23,7 @@ export default function parseBlockInlines(
 		let content = parent.content;
 		if (/[^\s]/.test(content)) {
 			// HACK: Not sure about this logic:
-			content = content.replaceAll(/(^\n\s+\n|\n\s*\n$)/g, "");
+			content = content.replaceAll(/(^\n\s+\n|^\r\s+\r|\n\s*\n$|\r\s*\r$)/g, "");
 			// TODO: Should be treating EOF as a newline
 			if (!content.endsWith("\n")) {
 				content += "\n";
@@ -38,10 +38,10 @@ export default function parseBlockInlines(
 		let content = parent.content;
 		if (/[^\s]/.test(content)) {
 			if (parent.indent > 0) {
-				content = content.replaceAll(new RegExp(`(^|\\n) {1,${parent.indent}}`, "g"), "$1");
+				content = content.replaceAll(new RegExp(`(^|\\n|\\r) {1,${parent.indent}}`, "g"), "$1");
 			}
 			// HACK: Not sure about this logic:
-			content = content.replaceAll(/^\n\s+\n/g, "");
+			content = content.replaceAll(/^\n\s+\n|^\r\s+\r/g, "");
 			// TODO: Should be treating EOF as a newline
 			if (!content.endsWith("\n")) {
 				content += "\n";

@@ -26,7 +26,7 @@ public static class ParseBlockInlines
             if (Regex.IsMatch(content, @"[^\s]"))
             {
                 // HACK: Not sure about this logic:
-                content = Regex.Replace(content, @"(^\n\s+\n|\n\s*\n$)", "");
+                content = Regex.Replace(content, @"(^\n\s+\n|^\r\s+\r|\n\s*\n$|\r\s*\r$)", "");
                 // TODO: Should be treating EOF as a newline
                 if (!content.EndsWith("\n"))
                 {
@@ -46,10 +46,10 @@ public static class ParseBlockInlines
             {
                 if (parent.Indent > 0)
                 {
-                    content = Regex.Replace(content, @$"(^|\n) {{1,{parent.Indent}}}", "$1");
+                    content = Regex.Replace(content, @$"(^|\n|\r) {{1,{parent.Indent}}}", "$1");
                 }
                 // HACK: Not sure about this logic:
-                content = Regex.Replace(content, @"^\n\s+\n", "");
+                content = Regex.Replace(content, @"^\n\s+\n|^\r\s+\r", "");
                 // TODO: Should be treating EOF as a newline
                 if (!content.EndsWith("\n"))
                 {

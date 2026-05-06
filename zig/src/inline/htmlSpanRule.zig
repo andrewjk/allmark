@@ -15,11 +15,12 @@ const mvzr = @import("mvzr");
 
 // NOTE: removed non-capturing groups `(?:)`
 const pattern = "^(" ++ OPEN_TAG ++ "|" ++ CLOSE_TAG ++ "|" ++ COMMENT ++ "|" ++ INSTRUCTION ++ "|" ++ DECLARATION ++ "|" ++ CDATA ++ ")";
-//const resources = mvzr.resourcesNeeded(pattern);
-//std.debug.print("RESOURCES: {any}\n", .{resources});
-const ProperlySizedRegex = mvzr.SizedRegex(118, 11);
+const ProperlySizedRegex = mvzr.SizedRegex(119, 11);
 
 pub fn testHtmlSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
+    //const resources = mvzr.resourcesNeeded(pattern);
+    //std.debug.print("RESOURCES: {any}\n", .{resources});
+
     if (std.mem.eql(u8, parent.type, "html_block")) {
         return false;
     }

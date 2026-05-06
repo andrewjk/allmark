@@ -60,7 +60,17 @@ public static class CodeFenceRule
                 var markup = new string(ch, matched);
 
                 var info = "";
-                if (state.I + matched < state.Src.Length && !Utils.IsNewLine(state.Src[state.I + matched]))
+                var endChar = Utils.GetChar(state.Src, end);
+                if (endChar == '\n')
+                {
+                    end++;
+                }
+                else if (endChar == '\r')
+                {
+                    end++;
+                    if (Utils.GetChar(state.Src, end) == '\n') end++;
+                }
+                else
                 {
                     end = Utils.GetEndOfLine(state);
                     info = state.Src.Substring(state.I + matched, end - (state.I + matched));
@@ -75,13 +85,6 @@ public static class CodeFenceRule
 
                     info = Utils.DecodeEntities(info);
                     info = Utils.EscapeBackslashes(info);
-                }
-                else
-                {
-                    // TODO: I think the \n should go into the content and then it
-                    // can be rendered without getting fancy about calculating where
-                    // newlines go?
-                    end++;
                 }
 
                 if (state.MaybeContinue)
