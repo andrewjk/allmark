@@ -26,12 +26,7 @@ public static class ParseIndent
                 }
                 else if (c == '\r')
                 {
-                    if (Utils.GetChar(state.Src, state.I + 1) != '\n')
-                    {
-                        // Only break for a CR on its own, otherwise the LF will get caught next
-                        state.HasBlankLine = true;
-                        break;
-                    }
+                    // Keep going...
                 }
                 else
                 {

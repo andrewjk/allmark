@@ -1,20 +1,12 @@
 import type InlineParserState from "../types/InlineParserState";
 import type MarkdownNode from "../types/MarkdownNode";
-import { CARRIAGE_RETURN_CODE, NEW_LINE_CODE } from "../utils/charCodes";
+import { NEW_LINE_CODE } from "../utils/charCodes";
 import isEscaped from "../utils/isEscaped";
 
 export default function parseInline(state: InlineParserState, parent: MarkdownNode): void {
 	while (state.i < state.src.length) {
 		let charCode = state.src.charCodeAt(state.i);
-		if (charCode === NEW_LINE_CODE || charCode === CARRIAGE_RETURN_CODE) {
-			// Treat Windows \r\n as \n
-			if (
-				charCode === CARRIAGE_RETURN_CODE &&
-				state.src.charCodeAt(state.i + 1) === NEW_LINE_CODE
-			) {
-				state.i++;
-			}
-
+		if (charCode === NEW_LINE_CODE) {
 			state.line += 1;
 			state.lineStart = state.i;
 		}

@@ -21,10 +21,18 @@ pub fn getMarkup(state: *BlockParserState) ?ListInfo {
 
     if (!is_bullet) return null;
 
+    var next_char: u8 = 0;
+    if (state.i + 1 < state.src.len) {
+        next_char = state.src[state.i + 1];
+        if (next_char == '\r' and state.i + 2 < state.src.len) {
+            next_char = state.src[state.i + 2];
+        }
+    }
+
     return ListInfo{
         .delimiter = char,
         .markup = state.src[state.i .. state.i + 1],
-        .is_blank = (state.i + 1 >= state.src.len) or isNewLine(state.src[state.i + 1]),
+        .is_blank = (state.i + 1 >= state.src.len) or next_char == '\n',
         .type = "list_bulleted",
     };
 }
@@ -110,8 +118,8 @@ fn testStartWithInfo(state: *BlockParserState, parent: *MarkdownNode, info: List
     var blank: bool = true;
     var j: usize = state.i + info.markup.len;
     while (j < state.src.len) : (j += 1) {
-        if (isNewLine(state.src[j])) break;
-        if (isSpace(state.src[j])) {
+        if (state.src[j] == '\n') break;
+        if (state.src[j] == '\r') {} else if (isSpace(state.src[j])) {
             spaces += 1;
         } else {
             blank = false;
@@ -204,7 +212,7 @@ pub fn testContinue(info: ?ListInfo, state: *BlockParserState, node: *MarkdownNo
         }
     }
 
-    if (isNewLine(char)) {
+    if (char == '\n') {
         return true;
     }
 

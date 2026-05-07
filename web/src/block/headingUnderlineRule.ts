@@ -1,7 +1,8 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import { CARRIAGE_RETURN_CODE, DASH_CODE, EQUALS_CODE, NEW_LINE_CODE } from "../utils/charCodes";
+import { DASH_CODE, EQUALS_CODE } from "../utils/charCodes";
+import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 
 const rule: BlockRule = {
@@ -58,14 +59,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 					return false;
 				}
 				matched++;
-			} else if (nextCharCode === NEW_LINE_CODE) {
+			} else if (isNewLine(nextCharCode)) {
 				end++;
-				break;
-			} else if (nextCharCode === CARRIAGE_RETURN_CODE) {
-				end++;
-				if (state.src.charCodeAt(end) === NEW_LINE_CODE) {
-					end++;
-				}
 				break;
 			} else if (isSpace(nextCharCode)) {
 				continue;

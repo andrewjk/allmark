@@ -1,8 +1,13 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import { ASTERISK_CODE, DASH_CODE, PLUS_CODE } from "../utils/charCodes";
-import isNewLine from "../utils/isNewLine";
+import {
+	ASTERISK_CODE,
+	CARRIAGE_RETURN_CODE,
+	DASH_CODE,
+	NEW_LINE_CODE,
+	PLUS_CODE,
+} from "../utils/charCodes";
 import isSpace from "../utils/isSpace";
 import { testListContinue, testListStart } from "./listRule";
 
@@ -40,14 +45,17 @@ function getMarkup(state: BlockParserState) {
 	let charCode = state.src.charCodeAt(state.i);
 	if (
 		(charCode === DASH_CODE || charCode === PLUS_CODE || charCode === ASTERISK_CODE) &&
-		// TODO: Should this be part of the isSpace/isNewLine check? i.e. eof counts as a space?
 		(state.i === state.src.length - 1 || isSpace(state.src.charCodeAt(state.i + 1)))
 	) {
-		let char = state.src[state.i];
+		let delimiter = state.src[state.i];
+		let nextCharCode = state.src.charCodeAt(state.i + 1);
+		if (nextCharCode === CARRIAGE_RETURN_CODE) {
+			nextCharCode = state.src.charCodeAt(state.i + 2);
+		}
 		return {
-			delimiter: char,
-			markup: char,
-			isBlank: state.i === state.src.length - 1 || isNewLine(state.src.charCodeAt(state.i + 1)),
+			delimiter,
+			markup: delimiter,
+			isBlank: state.i === state.src.length - 1 || nextCharCode === NEW_LINE_CODE,
 			type: "list_bulleted",
 		};
 	}

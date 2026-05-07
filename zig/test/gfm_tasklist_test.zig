@@ -40,16 +40,6 @@ test "spec tasklist" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with asterisk marker" {
@@ -88,16 +78,6 @@ test "tasklist with asterisk marker" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with plus marker" {
@@ -136,16 +116,6 @@ test "tasklist with plus marker" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist in ordered list" {
@@ -184,16 +154,6 @@ test "tasklist in ordered list" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with inline formatting" {
@@ -234,16 +194,6 @@ test "tasklist with inline formatting" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with code" {
@@ -282,16 +232,6 @@ test "tasklist with code" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with links" {
@@ -330,16 +270,6 @@ test "tasklist with links" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "nested tasklist" {
@@ -385,16 +315,6 @@ test "nested tasklist" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "mixed tasks and regular items" {
@@ -437,16 +357,6 @@ test "mixed tasks and regular items" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with single character" {
@@ -485,16 +395,6 @@ test "tasklist with single character" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with empty brackets" {
@@ -533,16 +433,6 @@ test "tasklist with empty brackets" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with uppercase X" {
@@ -581,16 +471,6 @@ test "tasklist with uppercase X" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist in blockquote" {
@@ -631,16 +511,6 @@ test "tasklist in blockquote" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with multiple paragraphs" {
@@ -686,16 +556,6 @@ test "tasklist with multiple paragraphs" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with sublist" {
@@ -741,16 +601,6 @@ test "tasklist with sublist" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with html entities" {
@@ -789,16 +639,6 @@ test "tasklist with html entities" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "tasklist with various whitespace" {
@@ -839,14 +679,4 @@ test "tasklist with various whitespace" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }

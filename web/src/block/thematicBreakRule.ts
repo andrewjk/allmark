@@ -1,14 +1,9 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import {
-	ASTERISK_CODE,
-	CARRIAGE_RETURN_CODE,
-	DASH_CODE,
-	NEW_LINE_CODE,
-	UNDERSCORE_CODE,
-} from "../utils/charCodes";
+import { ASTERISK_CODE, DASH_CODE, UNDERSCORE_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
+import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import newBlock from "../utils/newBlock";
 
@@ -40,14 +35,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			let nextCharCode = state.src.charCodeAt(end);
 			if (nextCharCode === charCode) {
 				matched++;
-			} else if (nextCharCode === NEW_LINE_CODE) {
+			} else if (isNewLine(nextCharCode)) {
 				end++;
-				break;
-			} else if (nextCharCode === CARRIAGE_RETURN_CODE) {
-				end++;
-				if (state.src.charCodeAt(end) === NEW_LINE_CODE) {
-					end++;
-				}
 				break;
 			} else if (isSpace(nextCharCode)) {
 				continue;

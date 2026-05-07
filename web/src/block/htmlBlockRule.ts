@@ -1,12 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import {
-	ANGLE_LEFT_CODE,
-	CARRIAGE_RETURN_CODE,
-	NEW_LINE_CODE,
-	SLASH_CODE,
-} from "../utils/charCodes";
+import { ANGLE_LEFT_CODE, SLASH_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import { CLOSE_TAG, OPEN_TAG } from "../utils/htmlPatterns";
@@ -309,7 +304,7 @@ function testHtmlCondition6(state: BlockParserState, parent: MarkdownNode, tail:
 	}
 }
 
-const HTML_REGEX_7 = new RegExp(`^(?:${OPEN_TAG}|${CLOSE_TAG})(?:\\s|$)`);
+const HTML_REGEX_7 = new RegExp(`^(?:${OPEN_TAG}|${CLOSE_TAG})(?:\\r?\\n|\\s|$)`);
 
 /**
  * Start condition: line begins with a complete open tag (with any tag name
@@ -340,12 +335,6 @@ function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail:
 		let lastNode = parent;
 		if (lastNode && lastNode.type === "paragraph" && !lastNode.blankAfter) {
 			let end = state.i + match[0].length;
-			if (
-				state.src.charCodeAt(end - 1) === CARRIAGE_RETURN_CODE &&
-				state.src.charCodeAt(end) === NEW_LINE_CODE
-			) {
-				end++;
-			}
 			let content = state.src.substring(state.i, end);
 			lastNode.content += content;
 			state.i = end;

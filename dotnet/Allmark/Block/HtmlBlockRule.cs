@@ -347,7 +347,7 @@ public static class HtmlBlockRule
         return false;
     }
 
-    private static readonly Regex HtmlRegex7 = new Regex(@$"^(?:{HtmlPatterns.OpenTag}|{HtmlPatterns.CloseTag})(?:\s|$)", RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex7 = new Regex(@$"^(?:{HtmlPatterns.OpenTag}|{HtmlPatterns.CloseTag})(?:\r?\n|\s|$)", RegexOptions.Compiled);
 
     /// <summary>
     /// Start condition: line begins with a complete open tag (with any tag name
@@ -384,13 +384,6 @@ public static class HtmlBlockRule
             if (lastNode != null && lastNode.Type == "paragraph" && !lastNode.BlankAfter)
             {
                 var end = state.I + match.Value.Length;
-                if (
-    state.Src[end - 1] == '\r' &&
-    state.Src[end] == '\n'
-)
-                {
-                    end++;
-                }
                 var content = state.Src.Substring(state.I, end - state.I);
                 lastNode.Content += content;
                 state.I = end;

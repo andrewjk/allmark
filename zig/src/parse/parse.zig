@@ -3,6 +3,7 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const BlockParserState = @import("../types/BlockParserState.zig").BlockParserState;
 const RuleSet = @import("../types/RuleSet.zig").RuleSet;
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
+const isSpace = @import("../utils/isSpace.zig").isSpace;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 const newInline = @import("../utils/newInline.zig").newInline;
@@ -13,9 +14,12 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*Ma
     const document = newBlock(allocator, "document", 0, 1, "", 0) catch unreachable;
 
     var i: usize = 0;
-    while (i < src.len) : (i += 1) {
-        if (!isNewLine(src[i])) {
+    var index: usize = 0;
+    while (index < src.len) : (index += 1) {
+        if (!isSpace(src[index])) {
             break;
+        } else if (isNewLine(src[index])) {
+            i = index + 1;
         }
     }
 

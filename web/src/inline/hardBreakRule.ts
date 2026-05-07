@@ -7,7 +7,6 @@ import {
 	NEW_LINE_CODE,
 	SPACE_CODE,
 } from "../utils/charCodes";
-import isNewLine from "../utils/isNewLine";
 import newInline from "../utils/newInline";
 
 const rule: InlineRule = {
@@ -25,46 +24,43 @@ export default rule;
 function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean {
 	let charCode = state.src.charCodeAt(state.i);
 
-	if (charCode === BACKSLASH_CODE && isNewLine(state.src.charCodeAt(state.i + 1))) {
-		let bump = 2;
-		if (
-			state.src.charCodeAt(state.i + 1) === CARRIAGE_RETURN_CODE &&
-			state.src.charCodeAt(state.i + 2) === NEW_LINE_CODE
-		) {
-			bump++;
+	if (charCode === BACKSLASH_CODE) {
+		let end = state.i + 2;
+		let nextCharCode = state.src.charCodeAt(state.i + 1);
+		if (nextCharCode === CARRIAGE_RETURN_CODE) {
+			nextCharCode = state.src.charCodeAt(state.i + 2);
+			end++;
 		}
-		let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "\\", 0);
-		hb.length = 2;
-		parent.children!.push(hb);
-		state.i += bump;
-		return true;
+		if (nextCharCode === NEW_LINE_CODE) {
+			let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "\\", 0);
+			hb.length = 2;
+			parent.children!.push(hb);
+			state.i = end;
+			return true;
+		}
 	}
 
 	if (charCode === SPACE_CODE) {
-		let end = state.i;
+		let spaces = 1;
+		let end = state.src.length;
 		for (let i = state.i + 1; i < state.src.length; i++) {
 			let nextCharCode = state.src.charCodeAt(i);
-			if (isNewLine(nextCharCode)) {
+			if (nextCharCode === NEW_LINE_CODE) {
 				end = i;
 				break;
+			} else if (nextCharCode === CARRIAGE_RETURN_CODE) {
+				// Keep going...
 			} else if (nextCharCode === SPACE_CODE) {
-				continue;
+				spaces++;
 			} else {
 				return false;
 			}
 		}
-		if (end - state.i >= 2) {
-			let bump = 1;
-			if (
-				state.src.charCodeAt(end) === CARRIAGE_RETURN_CODE &&
-				state.src.charCodeAt(end + 1) === NEW_LINE_CODE
-			) {
-				bump++;
-			}
+		if (spaces >= 2) {
 			let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "  ", 0);
-			hb.length = end - state.i;
+			hb.length = spaces;
 			parent.children!.push(hb);
-			state.i = end + bump;
+			state.i = end + 1;
 			return true;
 		}
 	}

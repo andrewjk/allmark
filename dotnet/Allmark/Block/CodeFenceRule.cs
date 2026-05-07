@@ -61,14 +61,9 @@ public static class CodeFenceRule
 
                 var info = "";
                 var endChar = Utils.GetChar(state.Src, end);
-                if (endChar == '\n')
+                if (Utils.IsNewLine(endChar))
                 {
                     end++;
-                }
-                else if (endChar == '\r')
-                {
-                    end++;
-                    if (Utils.GetChar(state.Src, end) == '\n') end++;
                 }
                 else
                 {

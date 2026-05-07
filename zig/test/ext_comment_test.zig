@@ -36,16 +36,6 @@ test "comment basic" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment single character" {
@@ -80,16 +70,6 @@ test "comment single character" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with spaces" {
@@ -124,16 +104,6 @@ test "comment with spaces" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment at start of paragraph" {
@@ -168,16 +138,6 @@ test "comment at start of paragraph" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment at end of paragraph" {
@@ -212,16 +172,6 @@ test "comment at end of paragraph" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with punctuation" {
@@ -256,16 +206,6 @@ test "comment with punctuation" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with special characters" {
@@ -300,16 +240,6 @@ test "comment with special characters" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment adjacent to text" {
@@ -344,16 +274,6 @@ test "comment adjacent to text" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "empty comment" {
@@ -388,16 +308,6 @@ test "empty comment" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with markdown inside" {
@@ -432,16 +342,6 @@ test "comment with markdown inside" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with code inside" {
@@ -476,16 +376,6 @@ test "comment with code inside" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "escaped braces should not be comment" {
@@ -520,16 +410,6 @@ test "escaped braces should not be comment" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "unmatched opening comment" {
@@ -564,16 +444,6 @@ test "unmatched opening comment" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "unmatched closing comment" {
@@ -608,16 +478,6 @@ test "unmatched closing comment" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment in list item" {
@@ -654,16 +514,6 @@ test "comment in list item" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment in blockquote" {
@@ -700,16 +550,6 @@ test "comment in blockquote" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with angle brackets inside" {
@@ -744,16 +584,6 @@ test "comment with angle brackets inside" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment at beginning of document" {
@@ -788,16 +618,6 @@ test "comment at beginning of document" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment at end of document" {
@@ -832,16 +652,6 @@ test "comment at end of document" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "multiple comments in one line" {
@@ -876,16 +686,6 @@ test "multiple comments in one line" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with starting emphasis" {
@@ -920,16 +720,6 @@ test "comment with starting emphasis" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with ending emphasis" {
@@ -964,16 +754,6 @@ test "comment with ending emphasis" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with plus signs inside" {
@@ -1008,16 +788,6 @@ test "comment with plus signs inside" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment with minus signs inside" {
@@ -1052,16 +822,6 @@ test "comment with minus signs inside" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "comment nested with other critic marks" {
@@ -1096,14 +856,4 @@ test "comment nested with other critic marks" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }

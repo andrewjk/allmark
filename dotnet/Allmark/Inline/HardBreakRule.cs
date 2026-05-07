@@ -17,34 +17,42 @@ public static class HardBreakRule
     {
         if (state.I + 1 < state.Src.Length)
         {
-            if (state.Src[state.I] == '\\' && Utils.IsNewLine(state.Src[state.I + 1]))
+            if (state.Src[state.I] == '\\')
             {
-                var bump = 2;
-                if (
-                    Utils.GetChar(state.Src, state.I + 1) == '\r' &&
-                    Utils.GetChar(state.Src, state.I + 2) == '\n'
-                )
+                var end = state.I + 2;
+                var nextChar = Utils.GetChar(state.Src, state.I + 1);
+                if (nextChar == '\r')
                 {
-                    bump++;
+                    nextChar = Utils.GetChar(state.Src, state.I + 2);
+                    end++;
                 }
-                var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);
-                hb.Length = 2;
-                parent.Children!.Add(hb);
-                state.I += bump;
-                return true;
+                if (nextChar == '\n')
+                {
+                    var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);
+                    hb.Length = 2;
+                    parent.Children!.Add(hb);
+                    state.I = end;
+                    return true;
+                }
             }
             else if (state.Src[state.I] == ' ')
             {
-                var end = state.I;
+                var end = state.Src.Length;
+                var spaces = 1;
                 for (var i = state.I + 1; i < state.Src.Length; i++)
                 {
-                    if (Utils.IsNewLine(state.Src[i]))
+                    if (state.Src[i] == '\n')
                     {
                         end = i;
                         break;
                     }
+                    else if (state.Src[i] == '\r')
+                    {
+                        // Keep going...
+                    }
                     else if (state.Src[i] == ' ')
                     {
+                        spaces++;
                         continue;
                     }
                     else
@@ -52,20 +60,12 @@ public static class HardBreakRule
                         return false;
                     }
                 }
-                if (end - state.I >= 2)
+                if (spaces >= 2)
                 {
-                    var bump = 1;
-                    if (
-                        Utils.GetChar(state.Src, end) == '\r' &&
-                        Utils.GetChar(state.Src, end + 1) == '\n'
-                    )
-                    {
-                        bump++;
-                    }
                     var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);
-                    hb.Length = end - state.I;
+                    hb.Length = spaces;
                     parent.Children!.Add(hb);
-                    state.I = end + bump;
+                    state.I = end + 1;
                     return true;
                 }
             }

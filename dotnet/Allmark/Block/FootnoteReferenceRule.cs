@@ -140,7 +140,7 @@ public static class FootnoteReferenceRule
         {
             if (
                 state.Indent >= 4 ||
-                Regex.IsMatch(openNode.Content, @"  \r?\n$|  \r$") ||
+                Regex.IsMatch(openNode.Content, @"  \r?\n$") ||
                 // GitHub swallows link references after footnote references
                 (Utils.GetChar(state.Src, state.I) == '[' && Utils.GetChar(state.Src, state.I + 1) != '^'))
             {

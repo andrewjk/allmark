@@ -47,7 +47,7 @@ func testHeadingUnderlineStart(state: inout BlockParserState, parent: MarkdownNo
 					}
 				}
 				matched += 1
-			} else if nextChar == "\n" || nextChar == "\r\n" || nextChar == "\r" {
+			} else if isNewLine(char: nextChar) {
 				end += 1
 				break
 			} else if isSpace(char: nextChar) {

@@ -54,16 +54,6 @@ test "spec footnote" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "simple footnote reference" {
@@ -107,16 +97,6 @@ test "simple footnote reference" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "multiple footnote references" {
@@ -164,16 +144,6 @@ test "multiple footnote references" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote with inline formatting" {
@@ -217,16 +187,6 @@ test "footnote with inline formatting" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote with code" {
@@ -270,16 +230,6 @@ test "footnote with code" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote with link" {
@@ -323,16 +273,6 @@ test "footnote with link" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote reference not at definition" {
@@ -367,16 +307,6 @@ test "footnote reference not at definition" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote with multiline content" {
@@ -424,16 +354,6 @@ test "footnote with multiline content" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "repeated footnote reference" {
@@ -477,16 +397,6 @@ test "repeated footnote reference" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote in list" {
@@ -538,16 +448,6 @@ test "footnote in list" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote in blockquote" {
@@ -593,16 +493,6 @@ test "footnote in blockquote" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote with special characters in label" {
@@ -639,16 +529,6 @@ test "footnote with special characters in label" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "case insensitive footnote labels" {
@@ -692,16 +572,6 @@ test "case insensitive footnote labels" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote then list" {
@@ -749,16 +619,6 @@ test "footnote then list" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "title after footnote label" {
@@ -802,16 +662,6 @@ test "title after footnote label" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "link then footnote" {
@@ -856,16 +706,6 @@ test "link then footnote" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "footnote then link" {
@@ -911,16 +751,6 @@ test "footnote then link" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "swallow following brackets" {
@@ -964,16 +794,6 @@ test "swallow following brackets" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "link reference takes precedence" {
@@ -1012,16 +832,6 @@ test "link reference takes precedence" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }
 
 test "multiple paragraphs" {
@@ -1068,14 +878,4 @@ test "multiple paragraphs" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
-    try std.testing.expectEqualStrings(expected, htmlCr3);
 }

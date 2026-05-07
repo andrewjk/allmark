@@ -46,15 +46,9 @@ public static class HeadingUnderlineRule
                     }
                     matched++;
                 }
-                else if (nextChar == '\n')
+                else if (Utils.IsNewLine(nextChar))
                 {
                     end++;
-                    break;
-                }
-                else if (nextChar == '\r')
-                {
-                    end++;
-                    if (Utils.GetChar(state.Src, end) == '\n') end++;
                     break;
                 }
                 else if (Utils.IsSpace(nextChar))

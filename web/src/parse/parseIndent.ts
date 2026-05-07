@@ -17,11 +17,7 @@ export default function parseIndent(state: BlockParserState): void {
 				state.hasBlankLine = true;
 				break;
 			} else if (charCode === CARRIAGE_RETURN_CODE) {
-				if (state.src.charCodeAt(state.i + 1) !== NEW_LINE_CODE) {
-					// Only break for a CR on its own, otherwise the LF will get caught next
-					state.hasBlankLine = true;
-					break;
-				}
+				// Keep going...
 			} else {
 				break;
 			}

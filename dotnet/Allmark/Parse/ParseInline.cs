@@ -9,14 +9,8 @@ public static class ParseInline
         while (state.I < state.Src.Length)
         {
             char c = Utils.GetChar(state.Src, state.I);
-            if (c == '\r' || c == '\n')
+            if (c == '\n')
             {
-                // Treat Windows \r\n as \n
-                if (c == '\r' && state.I + 1 < state.Src.Length && state.Src[state.I + 1] == '\n')
-                {
-                    state.I++;
-                }
-
                 state.Line += 1;
                 state.LineStart = state.I;
             }

@@ -11,7 +11,7 @@ func parseInline(state: inout InlineParserState, parent: MarkdownNode) {
 	while state.i < src.count {
 		let char = src[state.i]
 
-		if char == "\n" || char == "\r\n" || char == "\r" {
+		if isNewLine(char: char) {
 			state.line += 1
 			state.lineStart = state.i
 		}

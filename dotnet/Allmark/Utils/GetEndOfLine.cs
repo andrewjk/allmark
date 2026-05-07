@@ -17,16 +17,6 @@ public static partial class Utils
                 state.LineStart = endOfLine;
                 break;
             }
-            else if (code == '\r')
-            {
-                endOfLine++;
-                if (Utils.GetChar(state.Src, endOfLine) == '\n')
-                {
-                    endOfLine++;
-                }
-                state.LineStart = endOfLine;
-                break;
-            }
         }
         return endOfLine;
     }

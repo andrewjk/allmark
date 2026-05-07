@@ -29,7 +29,14 @@ pub fn getMarkup(state: *BlockParserState) ?ListInfo {
     if (!next_is_space) return null;
 
     const markup = state.src[state.i .. end + 1];
-    const is_blank = (end + 1 >= state.src.len) or isNewLine(state.src[end + 1]);
+    var next_char: u8 = 0;
+    if (end + 1 < state.src.len) {
+        next_char = state.src[end + 1];
+        if (next_char == '\r' and end + 2 < state.src.len) {
+            next_char = state.src[end + 2];
+        }
+    }
+    const is_blank = (end + 1 >= state.src.len) or next_char == '\n';
 
     return ListInfo{
         .delimiter = delimiter,

@@ -22,9 +22,6 @@ This text was {>>commented<<} recently.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment single character", () => {
@@ -43,9 +40,6 @@ text {>>a<<} more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with spaces", () => {
@@ -64,9 +58,6 @@ text {>>with spaces<<} more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment at start of paragraph", () => {
@@ -85,9 +76,6 @@ text {>>with spaces<<} more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment at end of paragraph", () => {
@@ -106,9 +94,6 @@ This is {>>commented<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with punctuation", () => {
@@ -127,9 +112,6 @@ text {>>word!<<} more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with special characters", () => {
@@ -148,9 +130,6 @@ text {>>a-b<<} more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment adjacent to text", () => {
@@ -169,9 +148,6 @@ test{>>ing<<}test
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("empty comment", () => {
@@ -190,9 +166,6 @@ text{>><<}text
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with markdown inside", () => {
@@ -211,9 +184,6 @@ text {>>**bold**<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with code inside", () => {
@@ -232,9 +202,6 @@ text {>>\`code\`<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("escaped braces should not be comment", () => {
@@ -253,9 +220,6 @@ text \\{>>not comment<<\\}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("unmatched opening comment", () => {
@@ -274,9 +238,6 @@ text {>>not closed
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("unmatched closing comment", () => {
@@ -295,9 +256,6 @@ text not opened<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment in list item", () => {
@@ -318,9 +276,6 @@ text not opened<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment in blockquote", () => {
@@ -341,9 +296,6 @@ text not opened<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with angle brackets inside", () => {
@@ -362,9 +314,6 @@ text {>>some <text> inside<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment at beginning of document", () => {
@@ -383,9 +332,6 @@ text {>>some <text> inside<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment at end of document", () => {
@@ -404,9 +350,6 @@ End of {>>document<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("multiple comments in one line", () => {
@@ -425,9 +368,6 @@ End of {>>document<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with starting emphasis", () => {
@@ -446,9 +386,6 @@ End of {>>document<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with ending emphasis", () => {
@@ -467,9 +404,6 @@ End of {>>document<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with plus signs inside", () => {
@@ -488,9 +422,6 @@ text {>>plus + sign<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment with minus signs inside", () => {
@@ -509,9 +440,6 @@ text {>>minus - sign<<}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("comment nested with other critic marks", () => {
@@ -530,8 +458,5 @@ text {+insertion {>>comment<<} end+}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 });

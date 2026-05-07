@@ -21,9 +21,6 @@ This should be ~down~ below everything else.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	// NOTE: GFM strikethrough must take precedence
@@ -43,9 +40,6 @@ This should be ~~down~~ below everything else.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript triple", () => {
@@ -64,9 +58,6 @@ This should be ~~~down~~~ below everything else.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript single character", () => {
@@ -85,9 +76,6 @@ H~2~O
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript with numbers", () => {
@@ -106,9 +94,6 @@ x~1~ + x~2~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("multiple subscripts in one line", () => {
@@ -127,9 +112,6 @@ a~i~ + b~j~ = c~k~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript at start of paragraph", () => {
@@ -148,9 +130,6 @@ a~i~ + b~j~ = c~k~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript at end of paragraph", () => {
@@ -169,9 +148,6 @@ See index~1~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript with punctuation", () => {
@@ -190,9 +166,6 @@ Hello~world!~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript with spaces", () => {
@@ -211,9 +184,6 @@ text ~with spaces~ more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript with special characters", () => {
@@ -232,9 +202,6 @@ math~i+j~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript adjacent to text", () => {
@@ -253,9 +220,6 @@ test~ing~test
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("empty subscript", () => {
@@ -274,9 +238,6 @@ text~~text
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript with markdown inside", () => {
@@ -295,9 +256,6 @@ text ~**bold**~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript with code inside", () => {
@@ -316,9 +274,6 @@ text ~\`code\`~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("escaped tilde should not be subscript", () => {
@@ -337,9 +292,6 @@ text \\~not subscript\\~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("unmatched opening tilde", () => {
@@ -358,9 +310,6 @@ text ~not closed
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("unmatched closing tilde", () => {
@@ -379,9 +328,6 @@ text not opened~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript in list item", () => {
@@ -402,9 +348,6 @@ text not opened~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript in blockquote", () => {
@@ -425,9 +368,6 @@ text not opened~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough vs subscript precedence", () => {
@@ -446,9 +386,6 @@ This is ~~deleted~~ text.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("subscript with tilde inside", () => {
@@ -467,9 +404,6 @@ text ~tilde ~ inside~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("strikethrough still works", () => {
@@ -488,8 +422,5 @@ text ~~struck~~, not subscripted
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 });

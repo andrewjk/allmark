@@ -116,9 +116,13 @@ public static class ListRule
         for (var j = state.I + info.Markup.Length; j < state.Src.Length; j++)
         {
             var nextChar = state.Src[j];
-            if (Utils.IsNewLine(nextChar))
+            if (nextChar == '\n')
             {
                 break;
+            }
+            else if (nextChar == '\r')
+            {
+                // Keep going...
             }
             else if (Utils.IsSpace(nextChar))
             {

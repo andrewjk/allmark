@@ -11,7 +11,7 @@ const isNewLine = @import("isNewLine.zig").isNewLine;
 const isSpaceFn = @import("isSpace.zig").isSpace;
 const mvzr = @import("mvzr");
 
-const BLANK_LINE_REGEX = "\\r?\\n[ \\t]*\\r?\\n|\\r[ \\t]*\\r";
+const BLANK_LINE_REGEX = "\\r?\\n[ \\t]*\\r?\\n";
 
 pub fn parseLinkBlock(state: *BlockParserState, start: usize) !?LinkReference {
     const spaces = try consumeSpaces(state.allocator, state.src, start);

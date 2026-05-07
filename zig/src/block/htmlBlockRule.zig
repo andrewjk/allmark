@@ -395,16 +395,19 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         // line (and it must be complete)"
         const match_end = match.?.end;
         const end = state.i + match_end;
-
-        if (end < state.src.len and !isNewLine(state.src[end])) {
-            return false;
+        if (end < state.src.len) {
+            var next_char = state.src[end];
+            if (next_char == '\r' and end + 1 < state.src.len) {
+                next_char = state.src[end + 1];
+            }
+            if (next_char != '\n') {
+                return false;
+            }
         }
-        {
-            var i: usize = state.i;
-            while (i < end) : (i += 1) {
-                if (isNewLine(state.src[i])) {
-                    return false;
-                }
+        var i: usize = state.i;
+        while (i < end) : (i += 1) {
+            if (isNewLine(state.src[i])) {
+                return false;
             }
         }
 
@@ -412,13 +415,10 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         // Blocks of type 7 may not interrupt a paragraph"
         if (std.mem.eql(u8, parent.type, "paragraph") and !parent.blankAfter) {
             var p_end = state.i + match_end;
-            if (p_end < state.src.len and state.src[p_end] == '\r') {
+            if (p_end < state.src.len and state.src[p_end] == '\n') {
                 p_end += 1;
-                if (p_end < state.src.len and state.src[p_end] == '\n') {
-                    p_end += 1;
-                }
-            } else if (p_end < state.src.len and state.src[p_end] == '\n') {
-                p_end += 1;
+            } else if (p_end + 1 < state.src.len and state.src[p_end] == '\r' and state.src[p_end + 1] == '\n') {
+                p_end += 2;
             }
             const old_content = parent.content;
             const new_content = state.allocator.alloc(u8, old_content.len + (p_end - state.i)) catch unreachable;

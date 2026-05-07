@@ -31,11 +31,16 @@ public static class ListOrderedRule
         if (orderedList)
         {
             var delimiter = Utils.GetChar(state.Src, end).ToString();
+            var nextChar = Utils.GetChar(state.Src, end + 1);
+            if (nextChar == '\r')
+            {
+                nextChar = Utils.GetChar(state.Src, end + 2);
+            }
             return new ListInfo
             {
                 Delimiter = delimiter,
                 Markup = numbers + delimiter,
-                IsBlank = end == state.Src.Length - 1 || Utils.IsNewLine(state.Src[end + 1]),
+                IsBlank = end == state.Src.Length - 1 || nextChar == '\n',
                 Type = "list_ordered"
             };
         }

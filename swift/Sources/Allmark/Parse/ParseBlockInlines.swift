@@ -25,12 +25,12 @@ func parseBlockInlines(
 		if content.range(of: "[^\\s]", options: .regularExpression) != nil {
 			// Remove leading/trailing blank lines
 			content = content.replacingOccurrences(
-				of: "(^\\n\\s+\\n|^\\r\\n\\s+\\r\\n|^\\r\\s+\\r|\\n\\s*\\n$|\\r\\n\\s*\\r\\n$|\\r\\s*\\r$)",
+				of: "(^\\r?\\n\\s+\\r?\\n|\\r?\\n\\s*\\r?\\n$)",
 				with: "",
 				options: .regularExpression
 			)
 			// Ensure content ends with newline
-			if !content.hasSuffix("\n"), !content.hasSuffix("\r\n"), !content.hasSuffix("\r") {
+			if !content.hasSuffix("\n"), !content.hasSuffix("\r\n") {
 				content += "\n"
 			}
 		}
@@ -51,7 +51,7 @@ func parseBlockInlines(
 		if content.range(of: "[^\\s]", options: .regularExpression) != nil {
 			// Remove equivalent opening indentation
 			if parent.indent > 0 {
-				let pattern = "(^|\\n|\\r\\n|\\r) {1,\(parent.indent)}"
+				let pattern = "(^|\\r?\\n) {1,\(parent.indent)}"
 				content = content.replacingOccurrences(
 					of: pattern,
 					with: "$1",
@@ -59,12 +59,12 @@ func parseBlockInlines(
 				)
 			}
 			content = content.replacingOccurrences(
-				of: "^\\n\\s+\\n|^\\r\\n\\s+\\r\\n|^\\r\\s+\\r",
+				of: "^\\r?\\n\\s+\\r?\\n",
 				with: "",
 				options: .regularExpression
 			)
 			// Ensure content ends with newline
-			if !content.hasSuffix("\n"), !content.hasSuffix("\r\n"), !content.hasSuffix("\r") {
+			if !content.hasSuffix("\n"), !content.hasSuffix("\r\n") {
 				content += "\n"
 			}
 		}

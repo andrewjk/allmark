@@ -26,10 +26,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -57,10 +53,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -88,10 +80,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -124,10 +112,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -158,10 +142,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -197,10 +177,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -236,10 +212,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -278,10 +250,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -314,10 +282,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -345,10 +309,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -387,10 +347,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -422,10 +378,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -457,10 +409,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -493,10 +441,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -533,10 +477,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -564,10 +504,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -595,10 +531,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -637,10 +569,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -668,10 +596,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -699,10 +623,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -733,10 +653,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -780,10 +696,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -811,10 +723,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -841,10 +749,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -872,10 +776,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -914,10 +814,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -954,10 +850,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 
@@ -996,10 +888,6 @@ struct CoreListBulletedTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-
-			let inputCr = input.replacingOccurrences(of: "\n", with: "\r")
-			let htmlCr = _transform(src: inputCr, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCr.replacingOccurrences(of: "\r\n", with: "\n").replacingOccurrences(of: "\r", with: "\n") == expected)
 		}
 	}
 }

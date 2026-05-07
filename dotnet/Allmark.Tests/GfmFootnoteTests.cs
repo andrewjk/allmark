@@ -42,9 +42,6 @@ This is a second line. <a href=""#fnref2"" class=""footnote-backref"">↩</a></p
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -74,9 +71,6 @@ Text with a footnote[^1].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -110,9 +104,6 @@ First reference[^1] and second[^2].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -142,9 +133,6 @@ Text[^1].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -174,9 +162,6 @@ Code reference[^1].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -206,9 +191,6 @@ Link reference[^1].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -229,9 +211,6 @@ Unknown footnote[^99].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -265,9 +244,6 @@ Third line <a href=""#fnref1"" class=""footnote-backref"">↩</a></p>
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -297,9 +273,6 @@ First[^1] and second[^1] use same footnote.
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -337,9 +310,6 @@ First[^1] and second[^1] use same footnote.
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -371,9 +341,6 @@ First[^1] and second[^1] use same footnote.
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -396,9 +363,6 @@ Special label[^a-b_c].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -428,9 +392,6 @@ Mixed case[^ABC].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -464,9 +425,6 @@ Text[^1]
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -496,9 +454,6 @@ Text[^1]
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -529,9 +484,6 @@ Text[^1] [foo]
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -563,9 +515,6 @@ Text[^1] [foo]
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -595,9 +544,6 @@ Text[^1] [foo]
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -622,9 +568,6 @@ Text[^1] [foo]
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 
     [TestMethod]
@@ -657,8 +600,5 @@ Footnote 1 link[^first].
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Gfm.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-
-        var htmlCr = Transformer.Execute(input.Replace("\n", "\r"), Gfm.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCr.Replace("\r\n", "\n").Replace("\r", "\n"));
     }
 }

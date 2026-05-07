@@ -96,7 +96,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 					cells[x] = cells[x].isEmpty ? "right" : "center"
 				}
 				lastChar = nextChar
-			} else if nextChar == "\n" || nextChar == "\r\n" || nextChar == "\r" {
+			} else if isNewLine(char: nextChar) {
 				end += 1
 				break
 			} else if isSpace(char: nextChar) {
@@ -160,7 +160,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 
 			let headerIndex = parent.index
 			var headerLength = parent.content.count
-			if parent.content.hasSuffix("\n") || parent.content.hasSuffix("\r\n") || parent.content.hasSuffix("\r") {
+			if parent.content.hasSuffix("\n") || parent.content.hasSuffix("\r\n") {
 				headerLength -= 1
 			}
 			let header = newBlock(

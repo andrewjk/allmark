@@ -19,14 +19,19 @@ public static class ListBulletedRule
         var ch = Utils.GetChar(state.Src, state.I);
         if (
             (ch == '-' || ch == '+' || ch == '*') &&
-            // TODO: Should this be part of the isSpace/isNewLine check? i.e. eof counts as a space?
             (state.I == state.Src.Length - 1 || Utils.IsSpace(state.Src[state.I + 1])))
         {
+            var delimiter = Utils.GetChar(state.Src, state.I).ToString();
+            var nextChar = Utils.GetChar(state.Src, state.I + 1);
+            if (nextChar == '\r')
+            {
+                nextChar = Utils.GetChar(state.Src, state.I + 2);
+            }
             return new ListInfo
             {
-                Delimiter = ch.ToString(),
-                Markup = ch.ToString(),
-                IsBlank = state.I == state.Src.Length - 1 || Utils.IsNewLine(state.Src[state.I + 1]),
+                Delimiter = delimiter,
+                Markup = delimiter,
+                IsBlank = state.I == state.Src.Length - 1 || nextChar == '\n',
                 Type = "list_bulleted"
             };
         }

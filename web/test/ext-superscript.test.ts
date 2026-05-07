@@ -21,9 +21,6 @@ This should be ^up^ above everything else.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript double", () => {
@@ -41,9 +38,6 @@ This should be ^^up^^ above everything else.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript triple", () => {
@@ -61,9 +55,6 @@ This should be ^^^up^^^ above everything else.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript single character", () => {
@@ -82,9 +73,6 @@ x^2^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript with numbers", () => {
@@ -103,9 +91,6 @@ E=mc^2^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("multiple superscripts in one line", () => {
@@ -124,9 +109,6 @@ x^2^ + y^2^ = z^2^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript at start of paragraph", () => {
@@ -145,9 +127,6 @@ x^2^ + y^2^ = z^2^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript at end of paragraph", () => {
@@ -166,9 +145,6 @@ See footnote^1^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript with punctuation", () => {
@@ -187,9 +163,6 @@ Hello^world!^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript with spaces", () => {
@@ -208,9 +181,6 @@ text ^with spaces^ more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript with special characters", () => {
@@ -229,9 +199,6 @@ math^2+3^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript adjacent to text", () => {
@@ -250,9 +217,6 @@ test^ing^test
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("empty superscript", () => {
@@ -271,9 +235,6 @@ text^^text
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript with markdown inside", () => {
@@ -292,9 +253,6 @@ text ^**bold**^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript with code inside", () => {
@@ -313,9 +271,6 @@ text ^\`code\`^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("escaped caret should not be superscript", () => {
@@ -334,9 +289,6 @@ text \\^not superscript\\^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("unmatched opening caret", () => {
@@ -355,9 +307,6 @@ text ^not closed
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("unmatched closing caret", () => {
@@ -376,9 +325,6 @@ text not opened^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript in list item", () => {
@@ -399,9 +345,6 @@ text not opened^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript in blockquote", () => {
@@ -422,9 +365,6 @@ text not opened^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("nested superscript", () => {
@@ -444,9 +384,6 @@ x^y^z^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("superscript with caret inside", () => {
@@ -465,8 +402,5 @@ text ^caret ^ inside^
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 });

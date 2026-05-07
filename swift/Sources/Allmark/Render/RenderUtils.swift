@@ -1,7 +1,7 @@
 import Foundation
 
 func startNewLine(node: MarkdownNode, state: inout RendererState) {
-	if !state.output.isEmpty, node.block, !state.output.hasSuffix("\n"), !state.output.hasSuffix("\r\n"), !state.output.hasSuffix("\r") {
+	if !state.output.isEmpty, node.block, !state.output.hasSuffix("\n"), !state.output.hasSuffix("\r\n") {
 		state.output += "\n"
 	}
 }

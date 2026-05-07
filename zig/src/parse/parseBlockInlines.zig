@@ -142,7 +142,7 @@ fn containsNonWhitespace(s: []const u8) bool {
 
 fn isBlankLine(s: []const u8, i: usize) bool {
     var j = i;
-    while (j < s.len and s[j] != '\n' and s[j] != '\r') : (j += 1) {
+    while (j < s.len and s[j] != '\n') : (j += 1) {
         if (!std.ascii.isWhitespace(s[j])) {
             return false;
         }
@@ -160,7 +160,7 @@ fn stripLeadingTrailingBlankLines(allocator: std.mem.Allocator, s: []const u8) !
     var first_non_blank: usize = 0;
     var i: usize = 0;
     while (i < s.len) : (i += 1) {
-        if (s[i] == '\n' or s[i] == '\r') {
+        if (s[i] == '\n') {
             first_non_blank = i;
         } else if (!std.ascii.isWhitespace(s[i])) {
             break;
@@ -170,7 +170,7 @@ fn stripLeadingTrailingBlankLines(allocator: std.mem.Allocator, s: []const u8) !
     var last_non_blank: usize = s.len - 1;
     var j: usize = s.len - 1;
     while (j >= 0) : (j -= 1) {
-        if (s[j] == '\n' or s[j] == '\r') {
+        if (s[j] == '\n') {
             last_non_blank = j;
         } else if (!std.ascii.isWhitespace(s[j])) {
             break;
@@ -194,7 +194,7 @@ fn removeIndent(allocator: std.mem.Allocator, s: []const u8, indent: usize) ![]c
 
     var i: usize = 0;
     while (i < s.len) {
-        const at_line_start = (i == 0 or s[i - 1] == '\n' or s[i - 1] == '\r');
+        const at_line_start = (i == 0 or s[i - 1] == '\n');
         if (at_line_start) {
             var spaces_to_remove: usize = 0;
             var j: usize = i;

@@ -55,7 +55,7 @@ func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 			var info = ""
 			if state.i + matched < src.count {
 				let endChar = src[end]
-				if endChar == "\n" || endChar == "\r\n" || endChar == "\r" {
+				if isNewLine(char: endChar) {
 					end += 1
 				} else {
 					end = getEndOfLine(state: &state)

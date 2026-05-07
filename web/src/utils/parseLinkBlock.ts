@@ -17,7 +17,7 @@ import isNewLine from "./isNewLine";
 import isSpace from "./isSpace";
 
 // TODO: Get this from utils??
-const BLANK_LINE_REGEX = /\r?\n[ \t]*\r?\n|\r[ \t]*\r/;
+const BLANK_LINE_REGEX = /\r?\n[ \t]*\r?\n/;
 
 export default function parseLinkBlock(
 	state: BlockParserState,

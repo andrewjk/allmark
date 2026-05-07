@@ -1,6 +1,7 @@
 import parseBlock from "../parse/parseBlock";
 import type BlockParserState from "../types/BlockParserState";
 import type MarkdownNode from "../types/MarkdownNode";
+import { CARRIAGE_RETURN_CODE, NEW_LINE_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
@@ -122,8 +123,10 @@ export function testListStart(
 	let blank = true;
 	for (let i = state.i + info.markup.length; i < state.src.length; i++) {
 		let nextCharCode = state.src.charCodeAt(i);
-		if (isNewLine(nextCharCode)) {
+		if (nextCharCode === NEW_LINE_CODE) {
 			break;
+		} else if (nextCharCode === CARRIAGE_RETURN_CODE) {
+			// Keep going...
 		} else if (isSpace(nextCharCode)) {
 			spaces++;
 		} else {

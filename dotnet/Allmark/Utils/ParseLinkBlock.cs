@@ -5,7 +5,7 @@ using Allmark.Types;
 
 public static partial class Utils
 {
-    private static readonly Regex BlankLineRegex = new(@"\r?\n[ \t]*\r?\n|\r[ \t]*\r");
+    private static readonly Regex BlankLineRegex = new(@"\r?\n[ \t]*\r?\n");
     private static readonly Regex LineBreakRegex = new(@"[\r\n]");
 
     public static LinkReference? ParseLinkBlock(BlockParserState state, int start, string end)

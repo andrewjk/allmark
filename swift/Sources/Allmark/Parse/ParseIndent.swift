@@ -16,7 +16,7 @@ func parseIndent(state: inout BlockParserState) {
 			state.indent += 1
 		} else if char == "\t" {
 			state.indent += 4 - (state.indent % 4)
-		} else if char == "\n" || char == "\r\n" || char == "\r" {
+		} else if isNewLine(char: char) {
 			state.hasBlankLine = true
 			break
 		} else {

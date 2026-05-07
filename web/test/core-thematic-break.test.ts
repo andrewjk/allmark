@@ -23,9 +23,6 @@ describe("thematic breaks", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Simple thematic break with asterisks", () => {
@@ -45,9 +42,6 @@ describe("thematic breaks", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Simple thematic break with underscores", () => {
@@ -67,9 +61,6 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with 4 dashes", () => {
@@ -89,9 +80,6 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with 5 asterisks", () => {
@@ -111,9 +99,6 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with spaces between characters", () => {
@@ -133,9 +118,6 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with tabs between characters", () => {
@@ -155,9 +137,6 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with 1 space indent", () => {
@@ -177,9 +156,6 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with 3 space indent", () => {
@@ -199,9 +175,6 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with 4 space indent should be code", () => {
@@ -222,9 +195,6 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break followed by paragraph without blank line", () => {
@@ -246,9 +216,6 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Multiple thematic breaks", () => {
@@ -271,9 +238,6 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break not valid - only 2 dashes", () => {
@@ -293,9 +257,6 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break not valid - only 2 asterisks", () => {
@@ -315,9 +276,6 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break not valid - only 2 underscores", () => {
@@ -337,9 +295,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break not valid - mixed characters", () => {
@@ -359,9 +314,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break not valid - mixed dashes and asterisks", () => {
@@ -381,9 +333,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break in blockquote", () => {
@@ -405,9 +354,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break in list item", () => {
@@ -431,9 +377,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with trailing spaces", () => {
@@ -453,9 +396,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with trailing tabs", () => {
@@ -475,9 +415,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break after list without blank line", () => {
@@ -503,9 +440,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break before list without blank line", () => {
@@ -529,9 +463,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break at end of document", () => {
@@ -555,9 +486,6 @@ __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break between paragraphs", () => {
@@ -583,9 +511,6 @@ Paragraph 2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break between paragraphs without blank lines", () => {
@@ -610,9 +535,6 @@ Paragraph 2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break after heading", () => {
@@ -634,9 +556,6 @@ Paragraph 2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break before heading", () => {
@@ -658,9 +577,6 @@ Paragraph 2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with code block above", () => {
@@ -685,9 +601,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with code block below", () => {
@@ -712,9 +625,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break in nested blockquote", () => {
@@ -741,9 +651,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with very long sequence", () => {
@@ -763,9 +670,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break not valid - starts with dash but has spaces", () => {
@@ -785,9 +689,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with inline elements above", () => {
@@ -810,9 +711,6 @@ Text with *emphasis*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with inline elements below", () => {
@@ -834,9 +732,6 @@ Text with **bold**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break between blockquotes", () => {
@@ -866,9 +761,6 @@ Text with **bold**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with setext heading", () => {
@@ -891,9 +783,6 @@ Heading
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break after ordered list", () => {
@@ -919,9 +808,6 @@ Heading
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Empty thematic break (should not match)", () => {
@@ -937,9 +823,6 @@ Heading
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Text that looks like thematic break but has other content", () => {
@@ -959,9 +842,6 @@ Heading
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break preceded by code fence", () => {
@@ -986,9 +866,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break not valid - less than 3 chars with spaces", () => {
@@ -1014,9 +891,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break after loose list", () => {
@@ -1047,9 +921,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break in fenced code block (should not be interpreted)", () => {
@@ -1072,9 +943,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break with mixed spacing", () => {
@@ -1094,9 +962,6 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 
 	test("Thematic break not valid - text after spaces", () => {
@@ -1116,8 +981,5 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
-
-		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
-		expect(htmlCr.replaceAll(/\r\n?/g, "\n")).toBe(expected);
 	});
 });

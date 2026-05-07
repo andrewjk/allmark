@@ -57,13 +57,8 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             var info: []const u8 = "";
             var info_allocated = false;
             const infoStart = state.i + matched;
-            if (end < state.src.len and state.src[end] == '\n') {
+            if (end < state.src.len and (state.src[end] == '\n')) {
                 end += 1;
-            } else if (end < state.src.len and state.src[end] == '\r') {
-                end += 1;
-                if (end < state.src.len and state.src[end] == '\n') {
-                    end += 1;
-                }
             } else {
                 end = getEndOfLine(state);
                 info = state.src[infoStart..end];

@@ -4,6 +4,7 @@ const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isAlphaNumeric = @import("../utils/isAlphaNumeric.zig").isAlphaNumeric;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
+const isSpace = @import("../utils/isSpace.zig").isSpace;
 const newText = @import("../utils/newText.zig").newText;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
@@ -23,7 +24,7 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
             appendChild(state.allocator, parent, lastNode) catch return false;
         } else if (isNewLine(char)) {
             var end = lastNode.content.len;
-            while (end > 0 and (lastNode.content[end - 1] == ' ' or lastNode.content[end - 1] == '\t')) {
+            while (end > 0 and isSpace(lastNode.content[end - 1])) {
                 end -= 1;
             }
             if (end < lastNode.content.len) {

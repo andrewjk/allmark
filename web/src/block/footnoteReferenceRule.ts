@@ -134,7 +134,7 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 	if (openNode.type === "paragraph") {
 		if (
 			state.indent >= 4 ||
-			/  \r?\n$|  \r$/.test(openNode.content) ||
+			/  \r?\n$/.test(openNode.content) ||
 			// GitHub swallows link references after footnote references
 			(state.src.charCodeAt(state.i) === BRACKET_OPEN_CODE &&
 				state.src.charCodeAt(state.i + 1) !== CARET_CODE)
