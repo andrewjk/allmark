@@ -9,6 +9,7 @@ const newBlock = @import("../utils/newBlock.zig").newBlock;
 const newInline = @import("../utils/newInline.zig").newInline;
 const parseLine = @import("./parseLine.zig").parseLine;
 const parseBlockInlines = @import("./parseBlockInlines.zig").parseBlockInlines;
+const extractFrontMatter = @import("../utils/extractFrontMatter.zig").extractFrontMatter;
 
 pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*MarkdownNode {
     const document = newBlock(allocator, "document", 0, 1, "", 0) catch unreachable;
@@ -20,6 +21,14 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*Ma
             break;
         } else if (isNewLine(src[index])) {
             i = index + 1;
+        }
+    }
+
+    var frontmatter: ?[]const u8 = null;
+    if (i < src.len and src[i] == '-') {
+        frontmatter = extractFrontMatter(allocator, document, src, index) catch null;
+        if (frontmatter) |fm| {
+            i = index + fm.len;
         }
     }
 
@@ -97,6 +106,10 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*Ma
     parseBlockInlines(allocator, document, rules.inlines, state.refs, state.footnotes) catch |err| {
         std.debug.print("Error parsing block inlines: {s}\n", .{@errorName(err)});
     };
+
+    if (frontmatter) |fm| {
+        document.info = fm;
+    }
 
     return document;
 }

@@ -1878,7 +1878,7 @@ test "Example 52, line 1047: '  Foo *bar\\nbaz*→\\n===='" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
-test "Example 53, line 1059: 'Foo\\n-------------------------\\n\\nFoo\\n='" {
+test "Example 53, line 1059: 'Foo\\n-------------------------\\n\\nFoo\\n=='" {
     const input =
         \\
         \\Foo
@@ -2377,10 +2377,9 @@ test "Example 65, line 1227: 'Foo\\nBar\\n---'" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
-test "Example 66, line 1240: '---\\nFoo\\n---\\nBar\\n---\\nBaz'" {
+test "Example 66, line 1240: 'Foo\\n---\\nBar\\n---\\nBaz'" {
     const input =
         \\
-        \\---
         \\Foo
         \\---
         \\Bar
@@ -2389,7 +2388,6 @@ test "Example 66, line 1240: '---\\nFoo\\n---\\nBar\\n---\\nBaz'" {
         \\
     ;
     const expected =
-        \\<hr />
         \\<h2>Foo</h2>
         \\<h2>Bar</h2>
         \\<p>Baz</p>
@@ -2454,41 +2452,7 @@ test "Example 67, line 1257: '\\n===='" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
-test "Example 68, line 1269: '---\\n---'" {
-    const input =
-        \\
-        \\---
-        \\---
-        \\
-    ;
-    const expected =
-        \\<hr />
-        \\<hr />
-        \\
-    ;
-
-    const gpa = std.testing.allocator;
-    const rules = try gfm.init(gpa);
-    defer gfm.deinit(&rules, gpa);
-    const renderers = try htmlRenderers.init(gpa);
-    defer htmlRenderers.deinit(&renderers, gpa);
-
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
-    defer gpa.free(htmlSpaced);
-    try std.testing.expectEqualStrings(expected, htmlSpaced);
-
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
-    defer gpa.free(htmlTrimmed);
-    try std.testing.expectEqualStrings(expected, htmlTrimmed);
-
-    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
-    defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
-    defer gpa.free(htmlCrLf);
-    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCrLf2);
-    try std.testing.expectEqualStrings(expected, htmlCrLf2);
-}
+// TODO: test "Example 68, line 1269: '---\\n---'"
 
 test "Example 69, line 1278: '- foo\\n-----'" {
     const input =

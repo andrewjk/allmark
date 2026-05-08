@@ -2,6 +2,7 @@ comptime {
     _ = @import("parser_test.zig");
     _ = @import("core_blockquote_test.zig");
     _ = @import("core_fenced_code_test.zig");
+    _ = @import("core_frontmatter_test.zig");
     _ = @import("core_heading_test.zig");
     _ = @import("core_html_block_test.zig");
     _ = @import("core_indented_code_test.zig");
