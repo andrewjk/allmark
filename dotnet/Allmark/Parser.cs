@@ -12,6 +12,7 @@ public static class Parser
         // Skip empty lines at start
         var start = 0;
         var i = 0;
+        var index = 0;
         for (; i < src.Length; i++)
         {
             if (!Utils.IsSpace(src[i]))
@@ -21,6 +22,18 @@ public static class Parser
             else if (Utils.IsNewLine(src[i]))
             {
                 start = i + 1;
+            }
+        }
+        index = i;
+
+        // Process frontmatter if found
+        string? frontmatter = null;
+        if (i < src.Length && src[i] == '-')
+        {
+            frontmatter = Utils.ExtractFrontMatter(document, src, index);
+            if (frontmatter != null)
+            {
+                start = index + frontmatter.Length;
             }
         }
 
@@ -62,6 +75,11 @@ public static class Parser
 
         // Stage 2 -- parse inlines for each block
         ParseBlockInlines.Execute(document, rules.Inlines, state.Refs, state.Footnotes);
+
+        if (frontmatter != null)
+        {
+            document.Info = frontmatter;
+        }
 
         return document;
     }
