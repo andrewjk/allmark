@@ -393,7 +393,8 @@ ${escapedExpected}
 	}`;
 	})
 	.join("\n\n")}
-}`;
+}
+`;
 }
 
 function toCamelCase(str: string): string {
