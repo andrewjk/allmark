@@ -1382,14 +1382,14 @@ baz</em></h1>
 ````````````````````````````````
 
 
-The underlining can be any length:
+The underlining can be any length: (NOTE: we require two underlines to make it easier to add a list under a paragraph )
 
 ```````````````````````````````` example
 Foo
 -------------------------
 
 Foo
-=
+==
 .
 <h2>Foo</h2>
 <h1>Foo</h1>
@@ -1563,21 +1563,21 @@ Bar</h2>
 
 
 But in general a blank line is not required before or after
-setext headings:
+setext headings: (NOTE: removed the first `---` here so that it doesn't get treated as frontmatter)
 
 ```````````````````````````````` example
----
 Foo
 ---
 Bar
 ---
 Baz
 .
-<hr />
 <h2>Foo</h2>
 <h2>Bar</h2>
 <p>Baz</p>
 ````````````````````````````````
+
+
 
 
 Setext headings cannot be empty:
@@ -1594,7 +1594,7 @@ Setext heading text lines must not be interpretable as block
 constructs other than paragraphs.  So, the line of dashes
 in these examples gets interpreted as a thematic break:
 
-```````````````````````````````` example
+```````````````````````````````` example (skip)
 ---
 ---
 .

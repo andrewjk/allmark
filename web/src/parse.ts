@@ -3,6 +3,7 @@ import { parseLine } from "./parse/parseLine";
 import type BlockParserState from "./types/BlockParserState";
 import type MarkdownNode from "./types/MarkdownNode";
 import type RuleSet from "./types/RuleSet";
+import { DASH_CODE, NEW_LINE_CODE } from "./utils/charCodes";
 import isNewLine from "./utils/isNewLine";
 import isSpace from "./utils/isSpace";
 import newBlock from "./utils/newBlock";
@@ -19,6 +20,15 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 			break;
 		} else if (isNewLine(nextCharCode)) {
 			i = index + 1;
+		}
+	}
+
+	// Process frontmatter if found
+	let frontmatter: string | undefined;
+	if (src.charCodeAt(index) === DASH_CODE) {
+		frontmatter = extractFrontMatter(document, src, index);
+		if (frontmatter !== undefined) {
+			i = index + frontmatter.length;
 		}
 	}
 
@@ -57,5 +67,35 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 	// Stage 2 -- parse the inlines for each block
 	parseBlockInlines(document, rules.inlines, state.refs, state.footnotes);
 
+	if (frontmatter !== undefined) {
+		document.info = frontmatter;
+	}
+
 	return document;
+}
+
+function extractFrontMatter(document: MarkdownNode, src: string, index: number) {
+	let frontmatter: string | undefined;
+
+	if (src.charCodeAt(index) === DASH_CODE && /^---\s*\r?\n/.test(src.substring(index))) {
+		let contentEnd = -1;
+		for (let j = index + 3; j < src.length; j++) {
+			if (src.charCodeAt(j) === DASH_CODE && /^---\s*\r?\n/.test(src.substring(j))) {
+				contentEnd = src.length;
+				for (let k = j + 3; k < src.length; k++) {
+					if (src.charCodeAt(k) === NEW_LINE_CODE) {
+						contentEnd = k;
+						break;
+					}
+				}
+			}
+		}
+		if (contentEnd !== -1) {
+			frontmatter = src.substring(index, contentEnd);
+			let i = contentEnd;
+			document.line = src.substring(0, i).split("\n").length;
+		}
+	}
+
+	return frontmatter;
 }

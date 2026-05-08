@@ -1,0 +1,85 @@
+"Frontmatter with YAML delimiters"
+
+```````````````````````````````` example
+---
+title: Test
+date: 2024-01-01
+---
+
+# Heading
+
+Content
+.
+<h1>Heading</h1>
+<p>Content</p>
+````````````````````````````````
+
+"Frontmatter at document start only"
+
+```````````````````````````````` example
+# Heading
+
+---
+title: Test
+---
+
+Content
+.
+<h1>Heading</h1>
+<hr />
+<h2>title: Test</h2>
+<p>Content</p>
+````````````````````````````````
+
+"Frontmatter with single line content"
+
+```````````````````````````````` example
+---
+title: Test
+---
+
+# Heading
+.
+<h1>Heading</h1>
+````````````````````````````````
+
+"Frontmatter with multiple lines"
+
+```````````````````````````````` example
+---
+title: Test
+date: 2024-01-01
+author: John Doe
+tags:
+  - one
+  - two
+---
+
+# Heading
+.
+<h1>Heading</h1>
+````````````````````````````````
+
+"Frontmatter with closing delimiter on separate line"
+
+```````````````````````````````` example
+---
+title: Test
+
+---
+
+# Heading
+.
+<h1>Heading</h1>
+````````````````````````````````
+
+"Frontmatter with content following closing delimiter"
+
+```````````````````````````````` example
+---
+title: Test
+---
+Content here
+.
+<p>Content here</p>
+````````````````````````````````

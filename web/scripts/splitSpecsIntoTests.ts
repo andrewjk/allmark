@@ -1,7 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-processSpecsFolder();
+await processSpecsFolder();
 await splitSpecsIntoTests("spec-cm.txt", "core");
 await splitSpecsIntoTests("spec-gfm.txt", "gfm");
 
@@ -142,7 +142,9 @@ function buildOutput(
 	withRenderHtmlSync: boolean,
 	describeName: string,
 ) {
-	const imports = withRenderHtmlSync ? `import { renderHtmlSync } from "cmark-gfm";\n` : "";
+	const isFrontmatter = testName === "core-frontmatter";
+	const imports =
+		withRenderHtmlSync && !isFrontmatter ? `import { renderHtmlSync } from "cmark-gfm";\n` : "";
 
 	const options =
 		testName === "core-html-block"
@@ -179,7 +181,7 @@ ${examples
 ${escapedInput}
 \`;
 		const expected = \`${escapedExpected}\`.substring(1);${
-			withRenderHtmlSync
+			withRenderHtmlSync && !isFrontmatter
 				? `
 		expect(expected).toBe(renderHtmlSync(input${options ? ", options" : ""}));`
 				: ""
@@ -511,11 +513,4 @@ ${inputLines};
 	})
 	.join("\n\n")}
 `;
-}
-
-function toSnakeCase(str: string): string {
-	return str
-		.replace(/([a-z])([A-Z])/g, "$1_$2")
-		.replace(/[\s-]+/g, "_")
-		.toLowerCase();
 }
