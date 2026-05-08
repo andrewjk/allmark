@@ -8,6 +8,7 @@ struct CoreListOrderedTests {
 		1. Item
 
 		"""
+
 		let expected = """
 		<ol>
 		<li>Item</li>
@@ -35,6 +36,7 @@ struct CoreListOrderedTests {
 		1) Item
 
 		"""
+
 		let expected = """
 		<ol>
 		<li>Item</li>
@@ -62,6 +64,7 @@ struct CoreListOrderedTests {
 		1. Item
 
 		"""
+
 		let expected = """
 		<ol>
 		<li>Item</li>
@@ -89,6 +92,7 @@ struct CoreListOrderedTests {
 		2. Item
 
 		"""
+
 		let expected = """
 		<ol start="2">
 		<li>Item</li>
@@ -116,6 +120,7 @@ struct CoreListOrderedTests {
 		10. Item
 
 		"""
+
 		let expected = """
 		<ol start="10">
 		<li>Item</li>
@@ -143,6 +148,7 @@ struct CoreListOrderedTests {
 		0. Item
 
 		"""
+
 		let expected = """
 		<ol start="0">
 		<li>Item</li>
@@ -170,6 +176,7 @@ struct CoreListOrderedTests {
 		123456789. Item
 
 		"""
+
 		let expected = """
 		<ol start="123456789">
 		<li>Item</li>
@@ -191,12 +198,13 @@ struct CoreListOrderedTests {
 		}
 	}
 
-	@Test func orderedListWithTooLargeNumber() async {
+	@Test func orderedListWithTooLargeNumber10Digits() async {
 		let input = """
 
 		1234567890. Item
 
 		"""
+
 		let expected = """
 		<p>1234567890. Item</p>
 
@@ -222,6 +230,7 @@ struct CoreListOrderedTests {
 		003. Item
 
 		"""
+
 		let expected = """
 		<ol start="3">
 		<li>Item</li>
@@ -404,7 +413,7 @@ struct CoreListOrderedTests {
 		}
 	}
 
-	@Test func nestedOrderedList() async {
+	@Test func nestedOrderedLists() async {
 		let input = """
 
 		1. Item 1
@@ -439,7 +448,7 @@ struct CoreListOrderedTests {
 		}
 	}
 
-	@Test func deepNestedOrderedList() async {
+	@Test func deepNestedOrderedLists() async {
 		let input = """
 
 		1. Level 1
@@ -515,6 +524,7 @@ struct CoreListOrderedTests {
 		1.
 
 		"""
+
 		let expected = """
 		<ol>
 		<li></li>
@@ -710,6 +720,7 @@ struct CoreListOrderedTests {
 		1. Item with *emphasis*
 
 		"""
+
 		let expected = """
 		<ol>
 		<li>Item with <em>emphasis</em></li>
@@ -737,6 +748,7 @@ struct CoreListOrderedTests {
 		1. Item with **bold**
 
 		"""
+
 		let expected = """
 		<ol>
 		<li>Item with <strong>bold</strong></li>
@@ -758,7 +770,7 @@ struct CoreListOrderedTests {
 		}
 	}
 
-	@Test func orderedListItemWithMultipleParagraphs() async {
+	@Test func orderedListItemWithMultipleParagraphsLoose() async {
 		let input = """
 
 		1. Item 1
@@ -802,6 +814,7 @@ struct CoreListOrderedTests {
 		1. [Link](https://example.com)
 
 		"""
+
 		let expected = """
 		<ol>
 		<li><a href="https://example.com">Link</a></li>
@@ -829,6 +842,7 @@ struct CoreListOrderedTests {
 		1. `inline code`
 
 		"""
+
 		let expected = """
 		<ol>
 		<li><code>inline code</code></li>
@@ -923,12 +937,13 @@ struct CoreListOrderedTests {
 		}
 	}
 
-	@Test func orderedListItemWithLeadingSpaces() async {
+	@Test func orderedListItemWithLeadingSpacesStillAList() async {
 		let input = """
 
 		   1. Item
 
 		"""
+
 		let expected = """
 		<ol>
 		<li>Item</li>
@@ -956,6 +971,7 @@ struct CoreListOrderedTests {
 		    1. Item
 
 		"""
+
 		let expected = """
 		<pre><code>1. Item
 		</code></pre>
@@ -982,6 +998,7 @@ struct CoreListOrderedTests {
 		1.    Item
 
 		"""
+
 		let expected = """
 		<ol>
 		<li>Item</li>
@@ -1041,7 +1058,7 @@ struct CoreListOrderedTests {
 		}
 	}
 
-	@Test func orderedListFollowedByBulletedList() async {
+	@Test func orderedListFollowedImmediatelyByBulletedList() async {
 		let input = """
 
 		1. Item 1
@@ -1060,6 +1077,44 @@ struct CoreListOrderedTests {
 		<li>Bullet 1</li>
 		<li>Bullet 2</li>
 		</ul>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
+	@Test func orderedListWithThematicBreakInItem() async {
+		let input = """
+
+		1. Item 1
+
+		   ---
+
+		2. Item 2
+
+		"""
+
+		let expected = """
+		<ol>
+		<li>
+		<p>Item 1</p>
+		<hr />
+		</li>
+		<li>
+		<p>Item 2</p>
+		</li>
+		</ol>
 
 		"""
 
@@ -1115,6 +1170,7 @@ struct CoreListOrderedTests {
 		5) Item
 
 		"""
+
 		let expected = """
 		<ol start="5">
 		<li>Item</li>
@@ -1177,6 +1233,7 @@ struct CoreListOrderedTests {
 		1.5 is a number
 
 		"""
+
 		let expected = """
 		<p>1.5 is a number</p>
 
@@ -1202,6 +1259,7 @@ struct CoreListOrderedTests {
 		1.Item
 
 		"""
+
 		let expected = """
 		<p>1.Item</p>
 
@@ -1227,47 +1285,10 @@ struct CoreListOrderedTests {
 		1.
 
 		"""
+
 		let expected = """
 		<ol>
 		<li></li>
-		</ol>
-
-		"""
-
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func orderedListWithThematicBreakInItem() async {
-		let input = """
-
-		1. Item 1
-
-		   ---
-
-		2. Item 2
-
-		"""
-
-		let expected = """
-		<ol>
-		<li>
-		<p>Item 1</p>
-		<hr />
-		</li>
-		<li>
-		<p>Item 2</p>
-		</li>
 		</ol>
 
 		"""

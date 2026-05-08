@@ -231,6 +231,7 @@ struct GfmFootnoteTests {
 		Unknown footnote[^99].
 
 		"""
+
 		let expected = """
 		<p>Unknown footnote[^99].</p>
 
@@ -657,6 +658,7 @@ struct GfmFootnoteTests {
 		[^1]: /footnote
 
 		[foo]: /url
+
 
 		"""
 

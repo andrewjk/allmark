@@ -86,6 +86,7 @@ struct ExtDeletionTests {
 		text {-a-} more
 
 		"""
+
 		let expected = """
 		<p>text <del class="markdown-deletion">a</del> more</p>
 
@@ -111,6 +112,7 @@ struct ExtDeletionTests {
 		text {-with spaces-} more
 
 		"""
+
 		let expected = """
 		<p>text <del class="markdown-deletion">with spaces</del> more</p>
 
@@ -136,6 +138,7 @@ struct ExtDeletionTests {
 		{-deleted-} This is new.
 
 		"""
+
 		let expected = """
 		<p><del class="markdown-deletion">deleted</del> This is new.</p>
 
@@ -161,6 +164,7 @@ struct ExtDeletionTests {
 		This is {-deleted-}
 
 		"""
+
 		let expected = """
 		<p>This is <del class="markdown-deletion">deleted</del></p>
 
@@ -186,6 +190,7 @@ struct ExtDeletionTests {
 		text {-word!-} more
 
 		"""
+
 		let expected = """
 		<p>text <del class="markdown-deletion">word!</del> more</p>
 
@@ -211,6 +216,7 @@ struct ExtDeletionTests {
 		text {-a-b-} more
 
 		"""
+
 		let expected = """
 		<p>text <del class="markdown-deletion">a-b</del> more</p>
 
@@ -236,6 +242,7 @@ struct ExtDeletionTests {
 		test{-ing-}test
 
 		"""
+
 		let expected = """
 		<p>test<del class="markdown-deletion">ing</del>test</p>
 
@@ -261,10 +268,12 @@ struct ExtDeletionTests {
 		text{--}text
 
 		"""
+
 		let expected = """
 		<p>text{--}text</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -285,6 +294,7 @@ struct ExtDeletionTests {
 		text {-**bold**-}
 
 		"""
+
 		let expected = """
 		<p>text <del class="markdown-deletion"><strong>bold</strong></del></p>
 
@@ -310,6 +320,7 @@ struct ExtDeletionTests {
 		text {-`code`-}
 
 		"""
+
 		let expected = """
 		<p>text <del class="markdown-deletion"><code>code</code></del></p>
 
@@ -335,10 +346,12 @@ struct ExtDeletionTests {
 		text \\{-not deletion\\-}
 
 		"""
+
 		let expected = """
 		<p>text {-not deletion-}</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -359,10 +372,12 @@ struct ExtDeletionTests {
 		text {-not closed
 
 		"""
+
 		let expected = """
 		<p>text {-not closed</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -383,10 +398,12 @@ struct ExtDeletionTests {
 		text not opened-}
 
 		"""
+
 		let expected = """
 		<p>text not opened-}</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -407,6 +424,7 @@ struct ExtDeletionTests {
 		- Item with {-deletion-}
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item with <del class="markdown-deletion">deletion</del></li>
@@ -434,6 +452,7 @@ struct ExtDeletionTests {
 		> Quote with {-deletion-}
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Quote with <del class="markdown-deletion">deletion</del></p>
@@ -461,6 +480,7 @@ struct ExtDeletionTests {
 		text {-plus - inside-}
 
 		"""
+
 		let expected = """
 		<p>text <del class="markdown-deletion">plus - inside</del></p>
 
@@ -486,6 +506,7 @@ struct ExtDeletionTests {
 		{-Start-} of document.
 
 		"""
+
 		let expected = """
 		<p><del class="markdown-deletion">Start</del> of document.</p>
 
@@ -511,6 +532,7 @@ struct ExtDeletionTests {
 		End of {-document-}
 
 		"""
+
 		let expected = """
 		<p>End of <del class="markdown-deletion">document</del></p>
 
@@ -536,6 +558,7 @@ struct ExtDeletionTests {
 		{-first-} and {-second-} and {-third-}
 
 		"""
+
 		let expected = """
 		<p><del class="markdown-deletion">first</del> and <del class="markdown-deletion">second</del> and <del class="markdown-deletion">third</del></p>
 
@@ -561,6 +584,7 @@ struct ExtDeletionTests {
 		{-deleted *text-} that shouldn't be bold*
 
 		"""
+
 		let expected = """
 		<p><del class="markdown-deletion">deleted *text</del> that shouldn't be bold*</p>
 
@@ -586,6 +610,7 @@ struct ExtDeletionTests {
 		*this text should be {-deleted but not bold*-}
 
 		"""
+
 		let expected = """
 		<p>*this text should be <del class="markdown-deletion">deleted but not bold*</del></p>
 

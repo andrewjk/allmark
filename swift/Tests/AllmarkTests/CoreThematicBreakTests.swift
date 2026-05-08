@@ -8,6 +8,7 @@ struct CoreThematicBreakTests {
 		---
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -33,6 +34,7 @@ struct CoreThematicBreakTests {
 		***
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -58,6 +60,7 @@ struct CoreThematicBreakTests {
 		___
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -83,6 +86,7 @@ struct CoreThematicBreakTests {
 		----
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -108,6 +112,7 @@ struct CoreThematicBreakTests {
 		*****
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -133,6 +138,7 @@ struct CoreThematicBreakTests {
 		- - -
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -155,9 +161,10 @@ struct CoreThematicBreakTests {
 	@Test func thematicBreakWithTabsBetweenCharacters() async {
 		let input = """
 
-		*\t*\t*
+		*	*	*
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -183,6 +190,7 @@ struct CoreThematicBreakTests {
 		 ---
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -208,6 +216,7 @@ struct CoreThematicBreakTests {
 		   ---
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -233,6 +242,7 @@ struct CoreThematicBreakTests {
 		    ---
 
 		"""
+
 		let expected = """
 		<pre><code>---
 		</code></pre>
@@ -316,6 +326,7 @@ struct CoreThematicBreakTests {
 		--
 
 		"""
+
 		let expected = """
 		<p>--</p>
 
@@ -341,6 +352,7 @@ struct CoreThematicBreakTests {
 		**
 
 		"""
+
 		let expected = """
 		<p>**</p>
 
@@ -366,6 +378,7 @@ struct CoreThematicBreakTests {
 		__
 
 		"""
+
 		let expected = """
 		<p>__</p>
 
@@ -391,6 +404,7 @@ struct CoreThematicBreakTests {
 		-*-
 
 		"""
+
 		let expected = """
 		<p>-*-</p>
 
@@ -416,6 +430,7 @@ struct CoreThematicBreakTests {
 		---***
 
 		"""
+
 		let expected = """
 		<p>---***</p>
 
@@ -441,6 +456,7 @@ struct CoreThematicBreakTests {
 		> ---
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<hr />
@@ -498,6 +514,7 @@ struct CoreThematicBreakTests {
 		---   
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -520,9 +537,10 @@ struct CoreThematicBreakTests {
 	@Test func thematicBreakWithTrailingTabs() async {
 		let input = """
 
-		***\t\t
+		***		
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -854,6 +872,7 @@ struct CoreThematicBreakTests {
 		--------------------------------------------------
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -879,6 +898,7 @@ struct CoreThematicBreakTests {
 		-   -   -
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -1052,12 +1072,38 @@ struct CoreThematicBreakTests {
 		}
 	}
 
+	@Test func emptyThematicBreakShouldNotMatch() async {
+		let input = """
+
+
+
+		"""
+
+		let expected = """
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
 	@Test func textThatLooksLikeThematicBreakButHasOtherContent() async {
 		let input = """
 
 		--- text
 
 		"""
+
 		let expected = """
 		<p>--- text</p>
 
@@ -1114,6 +1160,7 @@ struct CoreThematicBreakTests {
 		- -
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>
@@ -1176,7 +1223,7 @@ struct CoreThematicBreakTests {
 		}
 	}
 
-	@Test func thematicBreakInFencedCodeBlock() async {
+	@Test func thematicBreakInFencedCodeBlockShouldNotBeInterpreted() async {
 		let input = """
 
 		```
@@ -1211,6 +1258,7 @@ struct CoreThematicBreakTests {
 		  *  *  *  
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -1236,6 +1284,7 @@ struct CoreThematicBreakTests {
 		---   text
 
 		"""
+
 		let expected = """
 		<p>---   text</p>
 
@@ -1252,16 +1301,6 @@ struct CoreThematicBreakTests {
 			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func emptyThematicBreakShouldNotMatch() async {
-		let input = ""
-		let expected = ""
-		await MainActor.run {
-			let doc = _parse(src: input, rules: coreRuleSet)
-			let html = _render(doc: doc, renderers: htmlRenderers)
-			#expect(html.trimmingCharacters(in: .whitespacesAndNewlines) == expected)
 		}
 	}
 }

@@ -8,6 +8,7 @@ struct CoreListBulletedTests {
 		- Item
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item</li>
@@ -35,6 +36,7 @@ struct CoreListBulletedTests {
 		+ Item
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item</li>
@@ -62,6 +64,7 @@ struct CoreListBulletedTests {
 		* Item
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item</li>
@@ -291,6 +294,7 @@ struct CoreListBulletedTests {
 		-
 
 		"""
+
 		let expected = """
 		<ul>
 		<li></li>
@@ -486,6 +490,7 @@ struct CoreListBulletedTests {
 		- Item with *emphasis*
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item with <em>emphasis</em></li>
@@ -513,6 +518,7 @@ struct CoreListBulletedTests {
 		- Item with **bold**
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item with <strong>bold</strong></li>
@@ -534,7 +540,7 @@ struct CoreListBulletedTests {
 		}
 	}
 
-	@Test func bulletedListItemWithMultipleParagraphs() async {
+	@Test func bulletedListItemWithMultipleParagraphsLoose() async {
 		let input = """
 
 		- Item 1
@@ -578,6 +584,7 @@ struct CoreListBulletedTests {
 		- [Link](https://example.com)
 
 		"""
+
 		let expected = """
 		<ul>
 		<li><a href="https://example.com">Link</a></li>
@@ -605,6 +612,7 @@ struct CoreListBulletedTests {
 		- `inline code`
 
 		"""
+
 		let expected = """
 		<ul>
 		<li><code>inline code</code></li>
@@ -699,12 +707,13 @@ struct CoreListBulletedTests {
 		}
 	}
 
-	@Test func bulletedListItemWithLeadingSpaces() async {
+	@Test func bulletedListItemWithLeadingSpacesStillAList() async {
 		let input = """
 
 		   - Item
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item</li>
@@ -732,6 +741,7 @@ struct CoreListBulletedTests {
 		    - Item
 
 		"""
+
 		let expected = """
 		<pre><code>- Item
 		</code></pre>
@@ -758,6 +768,7 @@ struct CoreListBulletedTests {
 		-    Item
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item</li>

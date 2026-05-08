@@ -9,6 +9,7 @@ struct GfmTableTests {
 		| --- | --- |
 		| baz | bim |
 
+
 		"""
 
 		let expected = """
@@ -50,6 +51,7 @@ struct GfmTableTests {
 		| :--- | :----: | ----: |
 		| foo  |  bar   |   baz |
 		| a    |   b    |     c |
+
 
 		"""
 
@@ -101,6 +103,7 @@ struct GfmTableTests {
 		| *italic* | [link](url) |
 		| ~~strike~~ | `multi` |
 
+
 		"""
 
 		let expected = """
@@ -151,6 +154,7 @@ struct GfmTableTests {
 		| 1 | 2 |
 		| 1 |
 
+
 		"""
 
 		let expected = """
@@ -199,6 +203,7 @@ struct GfmTableTests {
 		| - | - |
 		| 1 | 2 | 3 | 4 |
 
+
 		"""
 
 		let expected = """
@@ -239,6 +244,7 @@ struct GfmTableTests {
 		| foo | bar |
 		| --- | --- |
 
+
 		"""
 
 		let expected = """
@@ -274,6 +280,7 @@ struct GfmTableTests {
 		| - | - | - |
 		|   | 2 |   |
 		| 1 |   | 3 |
+
 
 		"""
 
@@ -323,6 +330,7 @@ struct GfmTableTests {
 		- | - | -
 		1 | 2 | 3
 
+
 		"""
 
 		let expected = """
@@ -354,6 +362,7 @@ struct GfmTableTests {
 		|  a  |  b  |  c  |
 		| --- | --- | --- |
 		| 1   |   2 |3    |
+
 
 		"""
 
@@ -400,6 +409,7 @@ struct GfmTableTests {
 		| Code | `inline` |
 		| Bold | **strong** |
 		| Link | [text](http://example.com) |
+
 
 		"""
 
@@ -455,6 +465,7 @@ struct GfmTableTests {
 		| data   |
 		| more   |
 
+
 		"""
 
 		let expected = """
@@ -497,6 +508,7 @@ struct GfmTableTests {
 		| - | - | - | - | - | - |
 		| 1 | 2 | 3 | 4 | 5 | 6 |
 		| a | b | c | d | e | f |
+
 
 		"""
 

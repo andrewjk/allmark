@@ -21,6 +21,7 @@ async function processSpecsFolder() {
 			const testName = file.replace(".txt", "");
 			await generateTestFile(testName, content, "core", true, getDescribeName("core", file));
 			await generateCSharpTestFile(testName, content, "Core", "Core");
+			await generateSwiftTestFile(testName, content, "core");
 		} else if (file.startsWith("gfm-")) {
 			const testName = file.replace(".txt", "");
 			await generateTestFile(
@@ -32,10 +33,12 @@ async function processSpecsFolder() {
 				getDescribeName("gfm", file),
 			);
 			await generateCSharpTestFile(testName, content, "Gfm", "Gfm");
+			await generateSwiftTestFile(testName, content, "gfm");
 		} else if (file.startsWith("ext-")) {
 			const testName = file.replace(".txt", "");
 			await generateTestFile(testName, content, "extended", false, getDescribeName("ext", file));
 			await generateCSharpTestFile(testName, content, "Ext", "Extended");
+			await generateSwiftTestFile(testName, content, "extended");
 		}
 	}
 }
@@ -211,6 +214,12 @@ async function splitSpecsIntoTests(specFile: string, ruleSetName: string) {
 	const csharpPath = path.join("..", "dotnet", "Allmark.Tests", csharpClassName + ".cs");
 	await fs.writeFile(csharpPath, csharpOutput);
 	console.log(`Generated ${csharpPath} with ${examples.length} tests`);
+
+	const swiftStructName = toPascalCase(testName) + "Tests";
+	const swiftOutput = buildSwiftOutput(swiftStructName, examples, ruleSetName);
+	const swiftPath = path.join("..", "swift", "Tests", "AllmarkTests", swiftStructName + ".swift");
+	await fs.writeFile(swiftPath, swiftOutput);
+	console.log(`Generated ${swiftPath} with ${examples.length} tests`);
 }
 
 function buildOutputForSpecTests(testName: string, ruleSetName: string, examples: TestExample[]) {
@@ -261,19 +270,6 @@ ${escapedInput}
 `.trimStart();
 }
 
-function toPascalCase(str: string): string {
-	let result = str
-		.replace(/[^a-zA-Z0-9\s-]/g, "")
-		.replace(/(^|[-\s])(\w)/g, (_, __, char) => char.toUpperCase())
-		.replace(/[-\s]/g, "");
-
-	if (/^\d/.test(result)) {
-		result = "_" + result;
-	}
-
-	return result;
-}
-
 async function generateCSharpTestFile(
 	testName: string,
 	content: string,
@@ -288,11 +284,7 @@ async function generateCSharpTestFile(
 	console.log(`Generated ${testPath} with ${examples.length} tests`);
 }
 
-function buildCSharpOutput(
-	className: string,
-	examples: TestExample[],
-	ruleSetName: string,
-) {
+function buildCSharpOutput(className: string, examples: TestExample[], ruleSetName: string) {
 	return `using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Allmark.Rulesets;
 
@@ -328,4 +320,83 @@ ${escapedInput}
 	})
 	.join("\n\n")}
 }`;
+}
+
+function toPascalCase(str: string): string {
+	let result = str
+		.replace(/[^a-zA-Z0-9\s-]/g, "")
+		.replace(/(^|[-\s])(\w)/g, (_, __, char) => char.toUpperCase())
+		.replace(/[-\s]/g, "");
+
+	if (/^\d/.test(result)) {
+		result = "_" + result;
+	}
+
+	return result;
+}
+
+async function generateSwiftTestFile(testName: string, content: string, ruleSetName: string) {
+	const examples = parseSpecFile(content, true);
+	const structName = toPascalCase(testName) + "Tests";
+	const output = buildSwiftOutput(structName, examples, ruleSetName);
+	const testPath = path.join("..", "swift", "Tests", "AllmarkTests", structName + ".swift");
+	await fs.writeFile(testPath, output);
+	console.log(`Generated ${testPath} with ${examples.length} tests`);
+}
+
+function buildSwiftOutput(structName: string, examples: TestExample[], ruleSetName: string) {
+	return `@testable import Allmark
+import Testing
+
+struct ${structName} {
+${examples
+	.map((example) => {
+		const methodName = toCamelCase(example.description);
+		const escapedInput = example.input
+			.replaceAll("\\", "\\\\")
+			//.replaceAll('\\\\"', '\\"')
+			.split("\n")
+			.map((line) => (line ? `		${line}` : ""))
+			.join("\n");
+		const escapedExpected = example.expected
+			? example.expected
+					.replaceAll("\\", "\\\\")
+					//.replaceAll('\\\\"', '\\"')
+					.split("\n")
+					.map((line) => (line ? `		${line}` : ""))
+					.join("\n") + "\n"
+			: "";
+
+		return `	${example.skip ? "// TODO:\n\t/* @Test */" : "@Test"} func ${methodName}() async {
+		let input = """
+
+${escapedInput}
+
+		"""
+
+		let expected = """
+${escapedExpected}
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: ${ruleSetName}RuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: ${ruleSetName}RuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\\n", with: "\\r\\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: ${ruleSetName}RuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\\r\\n", with: "\\n") == expected)
+		}
+	}`;
+	})
+	.join("\n\n")}
+}`;
+}
+
+function toCamelCase(str: string): string {
+	const pascal = toPascalCase(str);
+	return pascal.charAt(0).toLowerCase() + pascal.slice(1);
 }

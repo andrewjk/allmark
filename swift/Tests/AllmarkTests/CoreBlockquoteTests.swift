@@ -8,6 +8,7 @@ struct CoreBlockquoteTests {
 		> Simple quote
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Simple quote</p>
@@ -99,6 +100,7 @@ struct CoreBlockquoteTests {
 		> With space
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>With space</p>
@@ -126,6 +128,7 @@ struct CoreBlockquoteTests {
 		>Without space
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Without space</p>
@@ -283,6 +286,7 @@ struct CoreBlockquoteTests {
 		> # Heading
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<h1>Heading</h1>
@@ -310,6 +314,7 @@ struct CoreBlockquoteTests {
 		> *italic* and **bold**
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p><em>italic</em> and <strong>bold</strong></p>
@@ -337,6 +342,7 @@ struct CoreBlockquoteTests {
 		> `code` inside quote
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p><code>code</code> inside quote</p>
@@ -364,6 +370,7 @@ struct CoreBlockquoteTests {
 		> [link](https://example.com)
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p><a href="https://example.com">link</a></p>
@@ -391,6 +398,7 @@ struct CoreBlockquoteTests {
 		 > Indented quote
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Indented quote</p>
@@ -418,6 +426,7 @@ struct CoreBlockquoteTests {
 		   > Indented quote
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Indented quote</p>
@@ -445,6 +454,7 @@ struct CoreBlockquoteTests {
 		    > Not a quote
 
 		"""
+
 		let expected = """
 		<pre><code>&gt; Not a quote
 		</code></pre>
@@ -643,6 +653,7 @@ struct CoreBlockquoteTests {
 		>
 
 		"""
+
 		let expected = """
 		<blockquote>
 		</blockquote>
@@ -669,6 +680,7 @@ struct CoreBlockquoteTests {
 		> 
 
 		"""
+
 		let expected = """
 		<blockquote>
 		</blockquote>
@@ -695,6 +707,7 @@ struct CoreBlockquoteTests {
 		> Last quote
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Last quote</p>
@@ -808,6 +821,34 @@ struct CoreBlockquoteTests {
 		}
 	}
 
+	@Test func blockquoteWithHTMLBlock() async {
+		let input = """
+
+		> <div>HTML</div>
+
+		"""
+
+		let expected = """
+		<blockquote>
+		<div>HTML</div>
+		</blockquote>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
 	@Test func blockquoteWithHardLineBreaks() async {
 		let input = """
 
@@ -844,6 +885,7 @@ struct CoreBlockquoteTests {
 		> ![alt](image.png)
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p><img src="image.png" alt="alt" /></p>
@@ -990,33 +1032,6 @@ struct CoreBlockquoteTests {
 		<li>Item 1</li>
 		<li>Item 2</li>
 		</ul>
-		</blockquote>
-
-		"""
-
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func blockquoteWithHTMLBlock() async {
-		let input = """
-
-		> <div>HTML</div>
-
-		"""
-		let expected = """
-		<blockquote>
-		<div>HTML</div>
 		</blockquote>
 
 		"""

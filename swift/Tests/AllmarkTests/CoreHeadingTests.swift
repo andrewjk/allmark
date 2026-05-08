@@ -2,12 +2,13 @@
 import Testing
 
 struct CoreHeadingTests {
-	@Test func atxHeadingLevel1() async {
+	@Test func aTXHeadingLevel1() async {
 		let input = """
 
 		# Heading 1
 
 		"""
+
 		let expected = """
 		<h1>Heading 1</h1>
 
@@ -27,12 +28,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingLevel2() async {
+	@Test func aTXHeadingLevel2() async {
 		let input = """
 
 		## Heading 2
 
 		"""
+
 		let expected = """
 		<h2>Heading 2</h2>
 
@@ -52,12 +54,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingLevel3() async {
+	@Test func aTXHeadingLevel3() async {
 		let input = """
 
 		### Heading 3
 
 		"""
+
 		let expected = """
 		<h3>Heading 3</h3>
 
@@ -77,12 +80,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingLevel4() async {
+	@Test func aTXHeadingLevel4() async {
 		let input = """
 
 		#### Heading 4
 
 		"""
+
 		let expected = """
 		<h4>Heading 4</h4>
 
@@ -102,12 +106,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingLevel5() async {
+	@Test func aTXHeadingLevel5() async {
 		let input = """
 
 		##### Heading 5
 
 		"""
+
 		let expected = """
 		<h5>Heading 5</h5>
 
@@ -127,12 +132,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingLevel6() async {
+	@Test func aTXHeadingLevel6() async {
 		let input = """
 
 		###### Heading 6
 
 		"""
+
 		let expected = """
 		<h6>Heading 6</h6>
 
@@ -152,12 +158,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithClosingSequence() async {
+	@Test func aTXHeadingWithClosingSequence() async {
 		let input = """
 
 		# Heading 1 #
 
 		"""
+
 		let expected = """
 		<h1>Heading 1</h1>
 
@@ -177,12 +184,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithMultipleClosingHashes() async {
+	@Test func aTXHeadingWithMultipleClosingHashes() async {
 		let input = """
 
 		## Heading 2 ###
 
 		"""
+
 		let expected = """
 		<h2>Heading 2</h2>
 
@@ -202,12 +210,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithClosingHashesAndSpaces() async {
+	@Test func aTXHeadingWithClosingHashesAndSpaces() async {
 		let input = """
 
 		# Heading 1 #  
 
 		"""
+
 		let expected = """
 		<h1>Heading 1</h1>
 
@@ -227,12 +236,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithInlineEmphasis() async {
+	@Test func aTXHeadingWithInlineEmphasis() async {
 		let input = """
 
 		# *Heading* with **emphasis**
 
 		"""
+
 		let expected = """
 		<h1><em>Heading</em> with <strong>emphasis</strong></h1>
 
@@ -252,12 +262,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithInlineCode() async {
+	@Test func aTXHeadingWithInlineCode() async {
 		let input = """
 
 		# Heading with `code`
 
 		"""
+
 		let expected = """
 		<h1>Heading with <code>code</code></h1>
 
@@ -277,12 +288,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithLink() async {
+	@Test func aTXHeadingWithLink() async {
 		let input = """
 
 		# Heading with [link](https://example.com)
 
 		"""
+
 		let expected = """
 		<h1>Heading with <a href="https://example.com">link</a></h1>
 
@@ -302,7 +314,7 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func setextHeadingLevel1WithEquals() async {
+	@Test func setextHeadingLevel1With() async {
 		let input = """
 
 		Heading 1
@@ -329,7 +341,7 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func setextHeadingLevel2WithDashes() async {
+	@Test func setextHeadingLevel2With() async {
 		let input = """
 
 		Heading 2
@@ -412,12 +424,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWith3SpaceIndent() async {
+	@Test func aTXHeadingWith3SpaceIndent() async {
 		let input = """
 
 		   # Heading 1
 
 		"""
+
 		let expected = """
 		<h1>Heading 1</h1>
 
@@ -437,12 +450,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWith4SpaceIndentShouldBeCode() async {
+	@Test func aTXHeadingWith4SpaceIndentShouldBeCode() async {
 		let input = """
 
 		    # Heading 1
 
 		"""
+
 		let expected = """
 		<pre><code># Heading 1
 		</code></pre>
@@ -463,12 +477,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithoutSpaceAfterHashIsParagraph() async {
+	@Test func aTXHeadingWithoutSpaceAfterIsParagraph() async {
 		let input = """
 
 		#Not a heading
 
 		"""
+
 		let expected = """
 		<p>#Not a heading</p>
 
@@ -488,12 +503,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWith7HashCharactersIsParagraph() async {
+	@Test func aTXHeadingWith7CharactersIsParagraph() async {
 		let input = """
 
 		####### Not a heading
 
 		"""
+
 		let expected = """
 		<p>####### Not a heading</p>
 
@@ -513,12 +529,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithEmptyContent() async {
+	@Test func aTXHeadingWithEmptyContent() async {
 		let input = """
 
 		# 
 
 		"""
+
 		let expected = """
 		<h1></h1>
 
@@ -538,12 +555,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithOnlyHashAndClosingHash() async {
+	@Test func aTXHeadingWithOnlyAndClosing() async {
 		let input = """
 
 		## #
 
 		"""
+
 		let expected = """
 		<h2></h2>
 
@@ -593,12 +611,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingEscapesClosingHashWithBackslash() async {
+	@Test func aTXHeadingEscapesClosingWithBackslash() async {
 		let input = """
 
 		# Heading with \\# escaped
 
 		"""
+
 		let expected = """
 		<h1>Heading with # escaped</h1>
 
@@ -618,12 +637,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingAtEndOfDocument() async {
+	@Test func aTXHeadingAtEndOfDocument() async {
 		let input = """
 
 		# Last heading
 
 		"""
+
 		let expected = """
 		<h1>Last heading</h1>
 
@@ -643,7 +663,7 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func multipleAtxHeadings() async {
+	@Test func multipleATXHeadings() async {
 		let input = """
 
 		# Heading 1
@@ -704,7 +724,7 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingPrecededByParagraphWithoutBlankLine() async {
+	@Test func aTXHeadingPrecededByParagraphWithoutBlankLine() async {
 		let input = """
 
 		Paragraph
@@ -732,12 +752,13 @@ struct CoreHeadingTests {
 		}
 	}
 
-	@Test func atxHeadingWithMixedInlineElements() async {
+	@Test func aTXHeadingWithMixedInlineElements() async {
 		let input = """
 
 		# **Bold** text, *italic* text, `code`, and [link](https://example.com)
 
 		"""
+
 		let expected = """
 		<h1><strong>Bold</strong> text, <em>italic</em> text, <code>code</code>, and <a href="https://example.com">link</a></h1>
 

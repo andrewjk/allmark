@@ -6,6 +6,7 @@ struct ExtCommentTests {
 		let input = """
 
 		This text was {>>commented<<} recently.
+		 
 
 		"""
 
@@ -34,10 +35,12 @@ struct ExtCommentTests {
 		text {>>a<<} more
 
 		"""
+
 		let expected = """
 		<p>text <span class="markdown-comment">a</span> more</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -58,6 +61,7 @@ struct ExtCommentTests {
 		text {>>with spaces<<} more
 
 		"""
+
 		let expected = """
 		<p>text <span class="markdown-comment">with spaces</span> more</p>
 
@@ -83,6 +87,7 @@ struct ExtCommentTests {
 		{>>commented<<} This is new.
 
 		"""
+
 		let expected = """
 		<p><span class="markdown-comment">commented</span> This is new.</p>
 
@@ -108,6 +113,7 @@ struct ExtCommentTests {
 		This is {>>commented<<}
 
 		"""
+
 		let expected = """
 		<p>This is <span class="markdown-comment">commented</span></p>
 
@@ -133,6 +139,7 @@ struct ExtCommentTests {
 		text {>>word!<<} more
 
 		"""
+
 		let expected = """
 		<p>text <span class="markdown-comment">word!</span> more</p>
 
@@ -158,6 +165,7 @@ struct ExtCommentTests {
 		text {>>a-b<<} more
 
 		"""
+
 		let expected = """
 		<p>text <span class="markdown-comment">a-b</span> more</p>
 
@@ -183,6 +191,7 @@ struct ExtCommentTests {
 		test{>>ing<<}test
 
 		"""
+
 		let expected = """
 		<p>test<span class="markdown-comment">ing</span>test</p>
 
@@ -208,10 +217,12 @@ struct ExtCommentTests {
 		text{>><<}text
 
 		"""
+
 		let expected = """
 		<p>text{&gt;&gt;&lt;&lt;}text</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -232,6 +243,7 @@ struct ExtCommentTests {
 		text {>>**bold**<<}
 
 		"""
+
 		let expected = """
 		<p>text <span class="markdown-comment"><strong>bold</strong></span></p>
 
@@ -257,6 +269,7 @@ struct ExtCommentTests {
 		text {>>`code`<<}
 
 		"""
+
 		let expected = """
 		<p>text <span class="markdown-comment"><code>code</code></span></p>
 
@@ -282,10 +295,12 @@ struct ExtCommentTests {
 		text \\{>>not comment<<\\}
 
 		"""
+
 		let expected = """
 		<p>text {&gt;&gt;not comment&lt;&lt;}</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -306,10 +321,12 @@ struct ExtCommentTests {
 		text {>>not closed
 
 		"""
+
 		let expected = """
 		<p>text {&gt;&gt;not closed</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -330,10 +347,12 @@ struct ExtCommentTests {
 		text not opened<<}
 
 		"""
+
 		let expected = """
 		<p>text not opened&lt;&lt;}</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -354,6 +373,7 @@ struct ExtCommentTests {
 		- Item with {>>comment<<}
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item with <span class="markdown-comment">comment</span></li>
@@ -381,6 +401,7 @@ struct ExtCommentTests {
 		> Quote with {>>comment<<}
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Quote with <span class="markdown-comment">comment</span></p>
@@ -405,11 +426,12 @@ struct ExtCommentTests {
 	@Test func commentWithAngleBracketsInside() async {
 		let input = """
 
-		text {>>some <text> inside<<} more
+		text {>>some <text> inside<<}
 
 		"""
+
 		let expected = """
-		<p>text <span class="markdown-comment">some <text> inside</span> more</p>
+		<p>text <span class="markdown-comment">some <text> inside</span></p>
 
 		"""
 
@@ -433,6 +455,7 @@ struct ExtCommentTests {
 		{>>Start<<} of document.
 
 		"""
+
 		let expected = """
 		<p><span class="markdown-comment">Start</span> of document.</p>
 
@@ -458,6 +481,7 @@ struct ExtCommentTests {
 		End of {>>document<<}
 
 		"""
+
 		let expected = """
 		<p>End of <span class="markdown-comment">document</span></p>
 
@@ -483,6 +507,7 @@ struct ExtCommentTests {
 		{>>first<<} and {>>second<<} and {>>third<<}
 
 		"""
+
 		let expected = """
 		<p><span class="markdown-comment">first</span> and <span class="markdown-comment">second</span> and <span class="markdown-comment">third</span></p>
 
@@ -508,6 +533,7 @@ struct ExtCommentTests {
 		{>>comment *text<<} that shouldn't be bold*
 
 		"""
+
 		let expected = """
 		<p><span class="markdown-comment">comment *text</span> that shouldn't be bold*</p>
 
@@ -533,6 +559,7 @@ struct ExtCommentTests {
 		*this text should be {>>commented but not bold*<<}
 
 		"""
+
 		let expected = """
 		<p>*this text should be <span class="markdown-comment">commented but not bold*</span></p>
 
@@ -558,6 +585,7 @@ struct ExtCommentTests {
 		text {>>plus + sign<<}
 
 		"""
+
 		let expected = """
 		<p>text <span class="markdown-comment">plus + sign</span></p>
 
@@ -583,6 +611,7 @@ struct ExtCommentTests {
 		text {>>minus - sign<<}
 
 		"""
+
 		let expected = """
 		<p>text <span class="markdown-comment">minus - sign</span></p>
 
@@ -608,6 +637,7 @@ struct ExtCommentTests {
 		text {+insertion {>>comment<<} end+}
 
 		"""
+
 		let expected = """
 		<p>text <ins class="markdown-insertion">insertion <span class="markdown-comment">comment</span> end</ins></p>
 

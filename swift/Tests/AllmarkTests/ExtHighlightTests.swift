@@ -86,10 +86,12 @@ struct ExtHighlightTests {
 		text =a= more
 
 		"""
+
 		let expected = """
 		<p>text <mark>a</mark> more</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -110,10 +112,12 @@ struct ExtHighlightTests {
 		=first= and =second= and =third=
 
 		"""
+
 		let expected = """
 		<p><mark>first</mark> and <mark>second</mark> and <mark>third</mark></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -134,10 +138,12 @@ struct ExtHighlightTests {
 		=highlighted= This is important.
 
 		"""
+
 		let expected = """
 		<p><mark>highlighted</mark> This is important.</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -158,10 +164,12 @@ struct ExtHighlightTests {
 		This is =highlighted=
 
 		"""
+
 		let expected = """
 		<p>This is <mark>highlighted</mark></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -182,10 +190,12 @@ struct ExtHighlightTests {
 		text =word!= more
 
 		"""
+
 		let expected = """
 		<p>text <mark>word!</mark> more</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -206,10 +216,12 @@ struct ExtHighlightTests {
 		text =with spaces= more
 
 		"""
+
 		let expected = """
 		<p>text <mark>with spaces</mark> more</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -230,10 +242,12 @@ struct ExtHighlightTests {
 		text =a+b= more
 
 		"""
+
 		let expected = """
 		<p>text <mark>a+b</mark> more</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -254,10 +268,12 @@ struct ExtHighlightTests {
 		test=ing=test
 
 		"""
+
 		let expected = """
 		<p>test<mark>ing</mark>test</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -278,10 +294,12 @@ struct ExtHighlightTests {
 		text==text
 
 		"""
+
 		let expected = """
 		<p>text==text</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -302,10 +320,12 @@ struct ExtHighlightTests {
 		text =**bold**=
 
 		"""
+
 		let expected = """
 		<p>text <mark><strong>bold</strong></mark></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -326,10 +346,12 @@ struct ExtHighlightTests {
 		text =`code`=
 
 		"""
+
 		let expected = """
 		<p>text <mark><code>code</code></mark></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -350,10 +372,12 @@ struct ExtHighlightTests {
 		text \\=not highlight\\=
 
 		"""
+
 		let expected = """
 		<p>text =not highlight=</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -374,10 +398,12 @@ struct ExtHighlightTests {
 		text =not closed
 
 		"""
+
 		let expected = """
 		<p>text =not closed</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -398,10 +424,12 @@ struct ExtHighlightTests {
 		text not opened=
 
 		"""
+
 		let expected = """
 		<p>text not opened=</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -422,6 +450,7 @@ struct ExtHighlightTests {
 		- Item with =highlight=
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item with <mark>highlight</mark></li>
@@ -449,6 +478,7 @@ struct ExtHighlightTests {
 		> Quote with =highlight=
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Quote with <mark>highlight</mark></p>
@@ -476,10 +506,12 @@ struct ExtHighlightTests {
 		text =equals = inside=
 
 		"""
+
 		let expected = """
 		<p>text <mark>equals = inside</mark></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -500,10 +532,12 @@ struct ExtHighlightTests {
 		=Start= of document.
 
 		"""
+
 		let expected = """
 		<p><mark>Start</mark> of document.</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -524,10 +558,12 @@ struct ExtHighlightTests {
 		End of =document=
 
 		"""
+
 		let expected = """
 		<p>End of <mark>document</mark></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)

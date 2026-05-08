@@ -8,6 +8,7 @@ struct GfmStrikethroughTests {
 		~~Hi~~ Hello, world!
 
 		"""
+
 		let expected = """
 		<p><del>Hi</del> Hello, world!</p>
 
@@ -33,6 +34,7 @@ struct GfmStrikethroughTests {
 		~~deleted~~
 
 		"""
+
 		let expected = """
 		<p><del>deleted</del></p>
 
@@ -58,6 +60,7 @@ struct GfmStrikethroughTests {
 		~~this is deleted~~
 
 		"""
+
 		let expected = """
 		<p><del>this is deleted</del></p>
 
@@ -83,6 +86,7 @@ struct GfmStrikethroughTests {
 		~~  spaces  ~~
 
 		"""
+
 		let expected = """
 		<p>~~  spaces  ~~</p>
 
@@ -108,6 +112,7 @@ struct GfmStrikethroughTests {
 		~~*bold and deleted*~~
 
 		"""
+
 		let expected = """
 		<p><del><em>bold and deleted</em></del></p>
 
@@ -133,6 +138,7 @@ struct GfmStrikethroughTests {
 		*~~deleted in italic~~*
 
 		"""
+
 		let expected = """
 		<p><em><del>deleted in italic</del></em></p>
 
@@ -158,6 +164,7 @@ struct GfmStrikethroughTests {
 		~~code: `var x` here~~
 
 		"""
+
 		let expected = """
 		<p><del>code: <code>var x</code> here</del></p>
 
@@ -183,6 +190,7 @@ struct GfmStrikethroughTests {
 		~~[link text](http://example.com)~~
 
 		"""
+
 		let expected = """
 		<p><del><a href="http://example.com">link text</a></del></p>
 
@@ -208,6 +216,7 @@ struct GfmStrikethroughTests {
 		~~first~~ and ~~second~~ and ~~third~~
 
 		"""
+
 		let expected = """
 		<p><del>first</del> and <del>second</del> and <del>third</del></p>
 
@@ -233,6 +242,7 @@ struct GfmStrikethroughTests {
 		~~deleted~~ followed by normal text.
 
 		"""
+
 		let expected = """
 		<p><del>deleted</del> followed by normal text.</p>
 
@@ -258,6 +268,7 @@ struct GfmStrikethroughTests {
 		Normal text followed by ~~deleted~~
 
 		"""
+
 		let expected = """
 		<p>Normal text followed by <del>deleted</del></p>
 
@@ -313,6 +324,7 @@ struct GfmStrikethroughTests {
 		~~text with ~ tilde~~
 
 		"""
+
 		let expected = """
 		<p><del>text with ~ tilde</del></p>
 
@@ -338,6 +350,7 @@ struct GfmStrikethroughTests {
 		~~~~double~~~~
 
 		"""
+
 		let expected = """
 		<pre><code class="language-double~~~~"></code></pre>
 
@@ -391,6 +404,7 @@ struct GfmStrikethroughTests {
 		~~Hello, world!~~
 
 		"""
+
 		let expected = """
 		<p><del>Hello, world!</del></p>
 
@@ -416,6 +430,7 @@ struct GfmStrikethroughTests {
 		~~12345~~
 
 		"""
+
 		let expected = """
 		<p><del>12345</del></p>
 
@@ -440,7 +455,7 @@ struct GfmStrikethroughTests {
 
 		| col1 | col2 |
 		| ---- | ---- |
-		| ~~deleted~~ | normal |
+		| ~~deleted~~ | normal 
 
 		"""
 
@@ -482,6 +497,7 @@ struct GfmStrikethroughTests {
 		normal~~deleted~~normal
 
 		"""
+
 		let expected = """
 		<p>normal<del>deleted</del>normal</p>
 
@@ -507,6 +523,7 @@ struct GfmStrikethroughTests {
 		~~text with \\*asterisk\\*~~
 
 		"""
+
 		let expected = """
 		<p><del>text with *asterisk*</del></p>
 

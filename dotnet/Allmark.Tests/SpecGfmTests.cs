@@ -1194,6 +1194,9 @@ baz</em></h1>
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
     }
 
+    // NOTE: We break from the spec here and require at least two underline
+    // chars to prevent things from jumping around when typing a list under
+    // a paragraph
     [TestMethod]
     public void Example53Line1059FoonNnFoon()
     {

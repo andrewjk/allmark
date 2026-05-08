@@ -1,13 +1,14 @@
 @testable import Allmark
 import Testing
 
-struct IndentedCodeTests {
+struct CoreIndentedCodeTests {
 	@Test func simple4SpaceIndentedCode() async {
 		let input = """
 
 		    code here
 
 		"""
+
 		let expected = """
 		<pre><code>code here
 		</code></pre>
@@ -31,9 +32,10 @@ struct IndentedCodeTests {
 	@Test func tabIndentedCode() async {
 		let input = """
 
-		\tcode here
+			code here
 
 		"""
+
 		let expected = """
 		<pre><code>code here
 		</code></pre>
@@ -54,7 +56,7 @@ struct IndentedCodeTests {
 		}
 	}
 
-	@Test func multilineIndentedCode() async {
+	@Test func multiLineIndentedCode() async {
 		let input = """
 
 		    line 1
@@ -91,6 +93,7 @@ struct IndentedCodeTests {
 		   code here
 
 		"""
+
 		let expected = """
 		<p>code here</p>
 
@@ -110,12 +113,13 @@ struct IndentedCodeTests {
 		}
 	}
 
-	@Test func fiveSpaceIndentedCode() async {
+	@Test func _5SpaceIndentedCode() async {
 		let input = """
 
 		     code here
 
 		"""
+
 		let expected = """
 		<pre><code> code here
 		</code></pre>
@@ -136,15 +140,42 @@ struct IndentedCodeTests {
 		}
 	}
 
-	@Test func eightSpaceIndentedCode() async {
+	@Test func _8SpaceIndentedCode() async {
 		let input = """
 
 		        code here
 
 		"""
+
 		let expected = """
 		<pre><code>    code here
 		</code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
+	@Test func emptyIndentedCodeBlock() async {
+		let input = """
+
+		    
+		    
+
+		"""
+
+		let expected = """
 
 		"""
 
@@ -257,6 +288,7 @@ struct IndentedCodeTests {
 		    code here  
 
 		"""
+
 		let expected = """
 		<pre><code>code here  
 		</code></pre>
@@ -306,12 +338,41 @@ struct IndentedCodeTests {
 		}
 	}
 
+	// TODO:
+	/* @Test */ func tabAfter4Spaces8SpacesTotal() async {
+		let input = """
+
+		    	code here
+
+		"""
+
+		let expected = """
+		<pre><code>	code here
+		</code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
 	@Test func indentedCodeWithBackticks() async {
 		let input = """
 
 		    `code`
 
 		"""
+
 		let expected = """
 		<pre><code>`code`
 		</code></pre>
@@ -338,6 +399,7 @@ struct IndentedCodeTests {
 		    ~code~
 
 		"""
+
 		let expected = """
 		<pre><code>~code~
 		</code></pre>
@@ -364,6 +426,7 @@ struct IndentedCodeTests {
 		    **bold**
 
 		"""
+
 		let expected = """
 		<pre><code>**bold**
 		</code></pre>
@@ -390,6 +453,7 @@ struct IndentedCodeTests {
 		>     code here
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<pre><code>code here
@@ -418,6 +482,7 @@ struct IndentedCodeTests {
 		-     code here
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>
@@ -448,6 +513,7 @@ struct IndentedCodeTests {
 		1.     code here
 
 		"""
+
 		let expected = """
 		<ol>
 		<li>
@@ -569,6 +635,7 @@ struct IndentedCodeTests {
 		    <>& "'\\
 
 		"""
+
 		let expected = """
 		<pre><code>&lt;&gt;&amp; &quot;'\\
 		</code></pre>
@@ -804,7 +871,7 @@ struct IndentedCodeTests {
 		}
 	}
 
-	@Test func indentedCodeWithAtxHeadingAbove() async {
+	@Test func indentedCodeWithATXHeadingAbove() async {
 		let input = """
 
 		# Heading
@@ -834,7 +901,7 @@ struct IndentedCodeTests {
 		}
 	}
 
-	@Test func indentedCodeWithAtxHeadingBelow() async {
+	@Test func indentedCodeWithATXHeadingBelow() async {
 		let input = """
 
 		    code here
@@ -989,6 +1056,7 @@ struct IndentedCodeTests {
 		    &lt;code&gt;
 
 		"""
+
 		let expected = """
 		<pre><code>&amp;lt;code&amp;gt;
 		</code></pre>
@@ -1051,9 +1119,37 @@ struct IndentedCodeTests {
 		    code here
 
 		"""
+
 		let expected = """
 		<pre><code>code here
 		</code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
+	@Test func indentedCodeBlockWithOnlyWhitespace() async {
+		let input = """
+
+		    
+		    
+		    
+
+		"""
+
+		let expected = """
 
 		"""
 
@@ -1105,11 +1201,40 @@ struct IndentedCodeTests {
 	@Test func singleTabIndented() async {
 		let input = """
 
-		\tcode here
+			code here
 
 		"""
+
 		let expected = """
 		<pre><code>code here
+		</code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
+	// TODO:
+	/* @Test */ func doubleTabIndented() async {
+		let input = """
+
+				code here
+
+		"""
+
+		let expected = """
+		<pre><code>	code here
 		</code></pre>
 
 		"""
@@ -1131,9 +1256,10 @@ struct IndentedCodeTests {
 	@Test func mixedTabAndSpaceIndentation() async {
 		let input = """
 
-		\t    code here
+			    code here
 
 		"""
+
 		let expected = """
 		<pre><code>    code here
 		</code></pre>
@@ -1154,12 +1280,13 @@ struct IndentedCodeTests {
 		}
 	}
 
-	@Test func threeSpacesShouldBeParagraph() async {
+	@Test func _3SpacesShouldBeParagraph() async {
 		let input = """
 
 		   code here
 
 		"""
+
 		let expected = """
 		<p>code here</p>
 
@@ -1179,12 +1306,13 @@ struct IndentedCodeTests {
 		}
 	}
 
-	@Test func sixSpacesIndentedCode() async {
+	@Test func _6SpacesIndentedCode() async {
 		let input = """
 
 		      code here
 
 		"""
+
 		let expected = """
 		<pre><code>  code here
 		</code></pre>
@@ -1205,12 +1333,13 @@ struct IndentedCodeTests {
 		}
 	}
 
-	@Test func twelveSpacesIndentedCode() async {
+	@Test func _12SpacesIndentedCode() async {
 		let input = """
 
 		            code here
 
 		"""
+
 		let expected = """
 		<pre><code>        code here
 		</code></pre>
@@ -1237,6 +1366,7 @@ struct IndentedCodeTests {
 		    hello 世界
 
 		"""
+
 		let expected = """
 		<pre><code>hello 世界
 		</code></pre>
@@ -1263,6 +1393,7 @@ struct IndentedCodeTests {
 		    [link](https://example.com)
 
 		"""
+
 		let expected = """
 		<pre><code>[link](https://example.com)
 		</code></pre>
@@ -1289,6 +1420,7 @@ struct IndentedCodeTests {
 		    ![alt](image.png)
 
 		"""
+
 		let expected = """
 		<pre><code>![alt](image.png)
 		</code></pre>
@@ -1315,6 +1447,7 @@ struct IndentedCodeTests {
 		    *italic*
 
 		"""
+
 		let expected = """
 		<pre><code>*italic*
 		</code></pre>
@@ -1341,6 +1474,7 @@ struct IndentedCodeTests {
 		    **bold**
 
 		"""
+
 		let expected = """
 		<pre><code>**bold**
 		</code></pre>
@@ -1367,58 +1501,13 @@ struct IndentedCodeTests {
 		    `inline code`
 
 		"""
+
 		let expected = """
 		<pre><code>`inline code`
 		</code></pre>
 
 		"""
 
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func emptyIndentedCodeBlock() async {
-		let input = """
-
-		    \n    
-
-		"""
-		let expected = """
-
-		"""
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func indentedCodeBlockWithOnlyWhitespace() async {
-		let input = """
-
-		    \n    \n    
-
-		"""
-		let expected = """
-
-		"""
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)

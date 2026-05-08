@@ -2,7 +2,7 @@
 import Testing
 
 struct SpecCmTests {
-	@Test func example1() async {
+	@Test func example1Line355Foobazbim() async {
 		let input = """
 
 			foo	baz		bim
@@ -29,7 +29,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example2() async {
+	@Test func example2Line362Foobazbim() async {
 		let input = """
 
 		  	foo	baz		bim
@@ -56,7 +56,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example3() async {
+	@Test func example3Line369AanA() async {
 		let input = """
 
 		    a	a
@@ -85,7 +85,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example4() async {
+	@Test func example4Line382Foonnbar() async {
 		let input = """
 
 		  - foo
@@ -118,7 +118,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example5() async {
+	@Test func example5Line395Foonnbar() async {
 		let input = """
 
 		- foo
@@ -152,7 +152,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example6() async {
+	@Test func example6Line418Foo() async {
 		let input = """
 
 		>		foo
@@ -181,7 +181,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example7() async {
+	@Test func example7Line427Foo() async {
 		let input = """
 
 		-		foo
@@ -212,7 +212,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example8() async {
+	@Test func example8Line439Foonbar() async {
 		let input = """
 
 		    foo
@@ -241,7 +241,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example9() async {
+	@Test func example9Line448FoonBarnBaz() async {
 		let input = """
 
 		 - foo
@@ -279,7 +279,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example10() async {
+	@Test func example10Line466Foo() async {
 		let input = """
 
 		#	Foo
@@ -305,7 +305,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example11() async {
+	@Test func example11Line472() async {
 		let input = """
 
 		*	*	*	
@@ -331,10 +331,10 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example12() async {
+	@Test func example12Line489() async {
 		let input = """
 
-		\\!\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~
+		\\!\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~
 
 		"""
 
@@ -357,7 +357,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example13() async {
+	@Test func example13Line499Aa3() async {
 		let input = """
 
 		\\	\\A\\a\\ \\3\\φ\\«
@@ -383,7 +383,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example14() async {
+	@Test func example14Line509NotEmphasizednbrNotATagnnotALinkfoonnotCoden1NotAListnNotAListnNotAHeadingnfooUrlNotAReferencenoumlNotACharacterEntity() async {
 		let input = """
 
 		\\*not emphasized*
@@ -425,7 +425,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example15() async {
+	@Test func example15Line534Emphasis() async {
 		let input = """
 
 		\\\\*emphasis*
@@ -451,7 +451,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example16() async {
+	@Test func example16Line543Foonbar() async {
 		let input = """
 
 		foo\\
@@ -479,7 +479,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example17() async {
+	@Test func example17Line555() async {
 		let input = """
 
 		`` \\[\\` ``
@@ -505,7 +505,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example18() async {
+	@Test func example18Line562() async {
 		let input = """
 
 		    \\[\\]
@@ -532,7 +532,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example19() async {
+	@Test func example19Line570Nn() async {
 		let input = """
 
 		~~~
@@ -561,7 +561,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example20() async {
+	@Test func example20Line580Httpsexamplecomfind() async {
 		let input = """
 
 		<https://example.com?find=\\*>
@@ -587,7 +587,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example21() async {
+	@Test func example21Line587AHrefbar() async {
 		let input = """
 
 		<a href="/bar\\/)">
@@ -613,7 +613,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example22() async {
+	@Test func example22Line597FoobarTitle() async {
 		let input = """
 
 		[foo](/bar\\* "ti\\*tle")
@@ -639,7 +639,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example23() async {
+	@Test func example23Line604FoonnfooBarTitle() async {
 		let input = """
 
 		[foo]
@@ -667,7 +667,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example24() async {
+	@Test func example24Line613Foobarnfoon() async {
 		let input = """
 
 		``` foo\\+bar
@@ -696,7 +696,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example25() async {
+	@Test func example25Line649NbspAmpCopyAEligDcaronnfrac34HilbertSpaceDifferentialDnClockwiseContourIntegralNgE() async {
 		let input = """
 
 		&nbsp; &amp; &copy; &AElig; &Dcaron;
@@ -726,7 +726,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example26() async {
+	@Test func example26Line6683512349920() async {
 		let input = """
 
 		&#35; &#1234; &#992; &#0;
@@ -752,7 +752,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example27() async {
+	@Test func example27Line681X22XD06Xcab() async {
 		let input = """
 
 		&#X22; &#XD06; &#xcab;
@@ -778,7 +778,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example28() async {
+	@Test func example28Line690NbspXXn87654321nabcdef0nThisIsNotDefinedHi() async {
 		let input = """
 
 		&nbsp &x; &#; &#x;
@@ -810,7 +810,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example29() async {
+	@Test func example29Line707Copy() async {
 		let input = """
 
 		&copy
@@ -836,7 +836,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example30() async {
+	@Test func example30Line717MadeUpEntity() async {
 		let input = """
 
 		&MadeUpEntity;
@@ -862,7 +862,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example31() async {
+	@Test func example31Line728AHrefoumloumlhtml() async {
 		let input = """
 
 		<a href="&ouml;&ouml;.html">
@@ -888,7 +888,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example32() async {
+	@Test func example32Line735FoofoumloumlFoumlouml() async {
 		let input = """
 
 		[foo](/f&ouml;&ouml; "f&ouml;&ouml;")
@@ -914,7 +914,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example33() async {
+	@Test func example33Line742FoonnfooFoumloumlFoumlouml() async {
 		let input = """
 
 		[foo]
@@ -942,7 +942,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example34() async {
+	@Test func example34Line751Foumloumlnfoon() async {
 		let input = """
 
 		``` f&ouml;&ouml;
@@ -971,7 +971,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example35() async {
+	@Test func example35Line764Foumlouml() async {
 		let input = """
 
 		`f&ouml;&ouml;`
@@ -997,7 +997,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example36() async {
+	@Test func example36Line771Foumlfouml() async {
 		let input = """
 
 		    f&ouml;f&ouml;
@@ -1024,7 +1024,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example37() async {
+	@Test func example37Line78342foo42nfoo() async {
 		let input = """
 
 		&#42;foo&#42;
@@ -1052,7 +1052,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example38() async {
+	@Test func example38Line79142FoonnFoo() async {
 		let input = """
 
 		&#42; foo
@@ -1083,7 +1083,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example39() async {
+	@Test func example39Line802Foo1010bar() async {
 		let input = """
 
 		foo&#10;&#10;bar
@@ -1111,7 +1111,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example40() async {
+	@Test func example40Line8109foo() async {
 		let input = """
 
 		&#9;foo
@@ -1137,7 +1137,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example41() async {
+	@Test func example41Line817AurlQuottitquot() async {
 		let input = """
 
 		[a](url &quot;tit&quot;)
@@ -1163,7 +1163,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example42() async {
+	@Test func example42Line840OnenTwo() async {
 		let input = """
 
 		- `one
@@ -1193,7 +1193,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example43() async {
+	@Test func example43Line879NN() async {
 		let input = """
 
 		***
@@ -1223,7 +1223,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example44() async {
+	@Test func example44Line892() async {
 		let input = """
 
 		+++
@@ -1249,7 +1249,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example45() async {
+	@Test func example45Line899() async {
 		let input = """
 
 		===
@@ -1275,7 +1275,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example46() async {
+	@Test func example46Line908Nn() async {
 		let input = """
 
 		--
@@ -1305,7 +1305,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example47() async {
+	@Test func example47Line921NN() async {
 		let input = """
 
 		 ***
@@ -1335,7 +1335,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example48() async {
+	@Test func example48Line934() async {
 		let input = """
 
 		    ***
@@ -1362,7 +1362,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example49() async {
+	@Test func example49Line942Foon() async {
 		let input = """
 
 		Foo
@@ -1390,7 +1390,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example50() async {
+	@Test func example50Line953() async {
 		let input = """
 
 		_____________________________________
@@ -1416,7 +1416,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example51() async {
+	@Test func example51Line962() async {
 		let input = """
 
 		 - - -
@@ -1442,7 +1442,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example52() async {
+	@Test func example52Line969() async {
 		let input = """
 
 		 **  * ** * ** * **
@@ -1468,7 +1468,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example53() async {
+	@Test func example53Line976() async {
 		let input = """
 
 		-     -      -      -
@@ -1494,7 +1494,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example54() async {
+	@Test func example54Line985() async {
 		let input = """
 
 		- - - -    
@@ -1520,7 +1520,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example55() async {
+	@Test func example55Line994AnnaNnA() async {
 		let input = """
 
 		_ _ _ _ a
@@ -1552,7 +1552,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example56() async {
+	@Test func example56Line1010() async {
 		let input = """
 
 		 *-*
@@ -1578,7 +1578,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example57() async {
+	@Test func example57Line1019FoonnBar() async {
 		let input = """
 
 		- foo
@@ -1612,7 +1612,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example58() async {
+	@Test func example58Line1036Foonnbar() async {
 		let input = """
 
 		Foo
@@ -1642,7 +1642,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example59() async {
+	@Test func example59Line1053FoonNbar() async {
 		let input = """
 
 		Foo
@@ -1671,7 +1671,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example60() async {
+	@Test func example60Line1066FoonNBar() async {
 		let input = """
 
 		* Foo
@@ -1705,7 +1705,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example61() async {
+	@Test func example61Line1083Foon() async {
 		let input = """
 
 		- Foo
@@ -1737,7 +1737,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example62() async {
+	@Test func example62Line1112FoonFoonFoonFoonFoonFoo() async {
 		let input = """
 
 		# foo
@@ -1773,7 +1773,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example63() async {
+	@Test func example63Line1131Foo() async {
 		let input = """
 
 		####### foo
@@ -1799,7 +1799,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example64() async {
+	@Test func example64Line11465Boltnnhashtag() async {
 		let input = """
 
 		#5 bolt
@@ -1828,7 +1828,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example65() async {
+	@Test func example65Line1158Foo() async {
 		let input = """
 
 		\\## foo
@@ -1854,7 +1854,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example66() async {
+	@Test func example66Line1167FooBarBaz() async {
 		let input = """
 
 		# foo *bar* \\*baz\\*
@@ -1880,7 +1880,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example67() async {
+	@Test func example67Line1176Foo() async {
 		let input = """
 
 		#                  foo                     
@@ -1906,7 +1906,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example68() async {
+	@Test func example68Line1185FoonFoonFoo() async {
 		let input = """
 
 		 ### foo
@@ -1936,7 +1936,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example69() async {
+	@Test func example69Line1198Foo() async {
 		let input = """
 
 		    # foo
@@ -1963,7 +1963,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example70() async {
+	@Test func example70Line1206FoonBar() async {
 		let input = """
 
 		foo
@@ -1991,7 +1991,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example71() async {
+	@Test func example71Line1217FooNBar() async {
 		let input = """
 
 		## foo ##
@@ -2019,7 +2019,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example72() async {
+	@Test func example72Line1228FooNFoo() async {
 		let input = """
 
 		# foo ##################################
@@ -2047,7 +2047,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example73() async {
+	@Test func example73Line1239Foo() async {
 		let input = """
 
 		### foo ###     
@@ -2073,7 +2073,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example74() async {
+	@Test func example74Line1250FooB() async {
 		let input = """
 
 		### foo ### b
@@ -2099,7 +2099,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example75() async {
+	@Test func example75Line1259Foo() async {
 		let input = """
 
 		# foo#
@@ -2125,7 +2125,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example76() async {
+	@Test func example76Line1269FooNFooNFoo() async {
 		let input = """
 
 		### foo \\###
@@ -2155,7 +2155,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example77() async {
+	@Test func example77Line1283NFoon() async {
 		let input = """
 
 		****
@@ -2185,7 +2185,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example78() async {
+	@Test func example78Line1294FooBarnBaznBarFoo() async {
 		let input = """
 
 		Foo bar
@@ -2215,7 +2215,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example79() async {
+	@Test func example79Line1307Nn() async {
 		let input = """
 
 		## 
@@ -2245,7 +2245,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example80() async {
+	@Test func example80Line1347FooBarnnnFooBarn() async {
 		let input = """
 
 		Foo *bar*
@@ -2276,7 +2276,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example81() async {
+	@Test func example81Line1361FooBarnbazn() async {
 		let input = """
 
 		Foo *bar
@@ -2305,7 +2305,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example82() async {
+	@Test func example82Line1375FooBarnbazn() async {
 		let input = """
 
 		  Foo *bar
@@ -2337,7 +2337,7 @@ struct SpecCmTests {
 	// NOTE: We break from the spec here and require at least two underline
 	// chars to prevent things from jumping around when typing a list under
 	// a paragraph
-	@Test func example83() async {
+	@Test func example83Line1387FoonNnFoon() async {
 		let input = """
 
 		Foo
@@ -2368,7 +2368,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example84() async {
+	@Test func example84Line1402FoonNnFoonNnFoon() async {
 		let input = """
 
 		   Foo
@@ -2403,7 +2403,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example85() async {
+	@Test func example85Line1420FoonNnFoon() async {
 		let input = """
 
 		    Foo
@@ -2438,7 +2438,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example86() async {
+	@Test func example86Line1439Foon() async {
 		let input = """
 
 		Foo
@@ -2465,7 +2465,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example87() async {
+	@Test func example87Line1449Foon() async {
 		let input = """
 
 		Foo
@@ -2493,7 +2493,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example88() async {
+	@Test func example88Line1460FoonNnFoon() async {
 		let input = """
 
 		Foo
@@ -2526,7 +2526,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example89() async {
+	@Test func example89Line1476FooN() async {
 		let input = """
 
 		Foo  
@@ -2553,7 +2553,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example90() async {
+	@Test func example90Line1486Foon() async {
 		let input = """
 
 		Foo\\
@@ -2580,7 +2580,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example91() async {
+	@Test func example91Line1497FoonNnnaTitleaLotnNofDashes() async {
 		let input = """
 
 		`Foo
@@ -2615,7 +2615,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example92() async {
+	@Test func example92Line1516Foon() async {
 		let input = """
 
 		> Foo
@@ -2645,7 +2645,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example93() async {
+	@Test func example93Line1527Foonbarn() async {
 		let input = """
 
 		> foo
@@ -2677,7 +2677,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example94() async {
+	@Test func example94Line1540Foon() async {
 		let input = """
 
 		- Foo
@@ -2707,7 +2707,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example95() async {
+	@Test func example95Line1555FoonBarn() async {
 		let input = """
 
 		Foo
@@ -2736,7 +2736,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example96() async {
+	@Test func example96Line1568NFoonNBarnNBaz() async {
 		let input = """
 
 		---
@@ -2770,8 +2770,9 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example97() async {
+	@Test func example97Line1585N() async {
 		let input = """
+
 
 		====
 
@@ -2796,7 +2797,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example98() async {
+	@Test func example98Line1597N() async {
 		let input = """
 
 		---
@@ -2824,7 +2825,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example99() async {
+	@Test func example99Line1606Foon() async {
 		let input = """
 
 		- foo
@@ -2854,7 +2855,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example100() async {
+	@Test func example100Line1617Foon() async {
 		let input = """
 
 		    foo
@@ -2883,7 +2884,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example101() async {
+	@Test func example101Line1627Foon() async {
 		let input = """
 
 		> foo
@@ -2913,7 +2914,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example102() async {
+	@Test func example102Line1641Foon() async {
 		let input = """
 
 		\\> foo
@@ -2940,7 +2941,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example103() async {
+	@Test func example103Line1672FoonnbarnNbaz() async {
 		let input = """
 
 		Foo
@@ -2972,7 +2973,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example104() async {
+	@Test func example104Line1688FoonbarnnNnbaz() async {
 		let input = """
 
 		Foo
@@ -3006,7 +3007,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example105() async {
+	@Test func example105Line1706FoonbarnNbaz() async {
 		let input = """
 
 		Foo
@@ -3038,7 +3039,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example106() async {
+	@Test func example106Line1721FoonbarnNbaz() async {
 		let input = """
 
 		Foo
@@ -3070,7 +3071,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example107() async {
+	@Test func example107Line1749ASimplenIndentedCodeBlock() async {
 		let input = """
 
 		    a simple
@@ -3099,7 +3100,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example108() async {
+	@Test func example108Line1763FoonnBar() async {
 		let input = """
 
 		  - foo
@@ -3132,7 +3133,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example109() async {
+	@Test func example109Line17771FoonnBar() async {
 		let input = """
 
 		1.  foo
@@ -3167,7 +3168,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example110() async {
+	@Test func example110Line1797AnHinnOne() async {
 		let input = """
 
 		    <a/>
@@ -3200,7 +3201,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example111() async {
+	@Test func example111Line1813Chunk1nnChunk2nNNNChunk3() async {
 		let input = """
 
 		    chunk1
@@ -3239,7 +3240,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example112() async {
+	@Test func example112Line1836Chunk1nNChunk2() async {
 		let input = """
 
 		    chunk1
@@ -3270,13 +3271,15 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example113() async {
+	@Test func example113Line1851FoonBarn() async {
 		let input = """
 
 		Foo
 		    bar
 
+
 		"""
+
 		let expected = """
 		<p>Foo
 		bar</p>
@@ -3297,7 +3300,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example114() async {
+	@Test func example114Line1865Foonbar() async {
 		let input = """
 
 		    foo
@@ -3326,7 +3329,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example115() async {
+	@Test func example115Line1878HeadingnFoonHeadingnNFoon() async {
 		let input = """
 
 		# Heading
@@ -3363,7 +3366,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example116() async {
+	@Test func example116Line1898FoonBar() async {
 		let input = """
 
 		        foo
@@ -3392,14 +3395,17 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example117() async {
+	@Test func example117Line1911NNFoonN() async {
 		let input = """
+
 
 		    
 		    foo
 		    
 
+
 		"""
+
 		let expected = """
 		<pre><code>foo
 		</code></pre>
@@ -3420,7 +3426,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example118() async {
+	@Test func example118Line1925Foo() async {
 		let input = """
 
 		    foo  
@@ -3447,7 +3453,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example119() async {
+	@Test func example119Line1980NnN() async {
 		let input = """
 
 		```
@@ -3478,7 +3484,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example120() async {
+	@Test func example120Line1994NnN() async {
 		let input = """
 
 		~~~
@@ -3509,7 +3515,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example121() async {
+	@Test func example121Line2007Nfoon() async {
 		let input = """
 
 		``
@@ -3537,7 +3543,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example122() async {
+	@Test func example122Line2018Naaann() async {
 		let input = """
 
 		```
@@ -3568,7 +3574,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example123() async {
+	@Test func example123Line2030Naaann() async {
 		let input = """
 
 		~~~
@@ -3599,7 +3605,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example124() async {
+	@Test func example124Line2044Naaann() async {
 		let input = """
 
 		````
@@ -3630,7 +3636,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example125() async {
+	@Test func example125Line2056Naaann() async {
 		let input = """
 
 		~~~~
@@ -3661,7 +3667,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example126() async {
+	@Test func example126Line2071() async {
 		let input = """
 
 		```
@@ -3687,7 +3693,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example127() async {
+	@Test func example127Line2078Nnnaaa() async {
 		let input = """
 
 		`````
@@ -3719,7 +3725,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example128() async {
+	@Test func example128Line2091NAaannbbb() async {
 		let input = """
 
 		> ```
@@ -3752,7 +3758,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example129() async {
+	@Test func example129Line2107NnN() async {
 		let input = """
 
 		```
@@ -3783,7 +3789,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example130() async {
+	@Test func example130Line2121N() async {
 		let input = """
 
 		```
@@ -3810,7 +3816,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example131() async {
+	@Test func example131Line2133NAaanaaan() async {
 		let input = """
 
 		 ```
@@ -3841,7 +3847,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example132() async {
+	@Test func example132Line2145NaaanAaanaaan() async {
 		let input = """
 
 		  ```
@@ -3874,7 +3880,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example133() async {
+	@Test func example133Line2159NAaanAaanAaan() async {
 		let input = """
 
 		   ```
@@ -3907,7 +3913,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example134() async {
+	@Test func example134Line2175NAaan() async {
 		let input = """
 
 		    ```
@@ -3938,7 +3944,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example135() async {
+	@Test func example135Line2190Naaan() async {
 		let input = """
 
 		```
@@ -3967,7 +3973,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example136() async {
+	@Test func example136Line2200Naaan() async {
 		let input = """
 
 		   ```
@@ -3996,7 +4002,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example137() async {
+	@Test func example137Line2212Naaan() async {
 		let input = """
 
 		```
@@ -4026,7 +4032,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example138() async {
+	@Test func example138Line2226Naaa() async {
 		let input = """
 
 		``` ```
@@ -4054,7 +4060,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example139() async {
+	@Test func example139Line2235Naaan() async {
 		let input = """
 
 		~~~~~~
@@ -4084,7 +4090,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example140() async {
+	@Test func example140Line2249Foonnbarnnbaz() async {
 		let input = """
 
 		foo
@@ -4117,7 +4123,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example141() async {
+	@Test func example141Line2266FoonNnbarnnBaz() async {
 		let input = """
 
 		foo
@@ -4151,7 +4157,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example142() async {
+	@Test func example142Line2288RubyndefFooxnReturn3nendn() async {
 		let input = """
 
 		```ruby
@@ -4184,7 +4190,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example143() async {
+	@Test func example143Line2302RubyStartline3NdefFooxnReturn3nendn() async {
 		let input = """
 
 		~~~~    ruby startline=3 $%@#$
@@ -4217,10 +4223,10 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example144() async {
+	@Test func example144Line2316N() async {
 		let input = """
 
-		```;
+		````;
 		````
 
 		"""
@@ -4244,7 +4250,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example145() async {
+	@Test func example145Line2326AaNfoo() async {
 		let input = """
 
 		``` aa ```
@@ -4272,7 +4278,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example146() async {
+	@Test func example146Line2337AaNfoon() async {
 		let input = """
 
 		~~~ aa ``` ~~~
@@ -4301,7 +4307,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example147() async {
+	@Test func example147Line2349NAaan() async {
 		let input = """
 
 		```
@@ -4330,7 +4336,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example148() async {
+	@Test func example148Line2428TabletrtdnprenHellonnworldnprentdtrtable() async {
 		let input = """
 
 		<table><tr><td>
@@ -4367,7 +4373,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example149() async {
+	@Test func example149Line2457TablenTrnTdnHinTdnTrntablennokay() async {
 		let input = """
 
 		<table>
@@ -4408,7 +4414,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example150() async {
+	@Test func example150Line2479DivnHellonFooa() async {
 		let input = """
 
 		 <div>
@@ -4438,7 +4444,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example151() async {
+	@Test func example151Line2492Divnfoo() async {
 		let input = """
 
 		</div>
@@ -4466,7 +4472,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example152() async {
+	@Test func example152Line2503DIVCLASSfoonnMarkdownnnDIV() async {
 		let input = """
 
 		<DIV CLASS="foo">
@@ -4498,7 +4504,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example153() async {
+	@Test func example153Line2519DivIdfoonClassbarndiv() async {
 		let input = """
 
 		<div id="foo"
@@ -4528,7 +4534,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example154() async {
+	@Test func example154Line2530DivIdfooClassbarnBazndiv() async {
 		let input = """
 
 		<div id="foo" class="bar
@@ -4558,7 +4564,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example155() async {
+	@Test func example155Line2542Divnfoonnbar() async {
 		let input = """
 
 		<div>
@@ -4589,7 +4595,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example156() async {
+	@Test func example156Line2558DivIdfoonhi() async {
 		let input = """
 
 		<div id="foo"
@@ -4617,7 +4623,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example157() async {
+	@Test func example157Line2567DivClassnfoo() async {
 		let input = """
 
 		<div class
@@ -4645,7 +4651,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example158() async {
+	@Test func example158Line2579DivNfoo() async {
 		let input = """
 
 		<div *???-&&&-<---
@@ -4673,7 +4679,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example159() async {
+	@Test func example159Line2591DivaHrefbarfooadiv() async {
 		let input = """
 
 		<div><a href="bar">*foo*</a></div>
@@ -4699,7 +4705,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example160() async {
+	@Test func example160Line2598Tabletrtdnfoontdtrtable() async {
 		let input = """
 
 		<table><tr><td>
@@ -4729,7 +4735,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example161() async {
+	@Test func example161Line2615DivdivnCnintX33n() async {
 		let input = """
 
 		<div></div>
@@ -4761,7 +4767,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example162() async {
+	@Test func example162Line2632AHreffoonbarna() async {
 		let input = """
 
 		<a href="foo">
@@ -4791,7 +4797,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example163() async {
+	@Test func example163Line2645WarningnbarnWarning() async {
 		let input = """
 
 		<Warning>
@@ -4821,7 +4827,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example164() async {
+	@Test func example164Line2656IClassfoonbarni() async {
 		let input = """
 
 		<i class="foo">
@@ -4851,7 +4857,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example165() async {
+	@Test func example165Line2667Insnbar() async {
 		let input = """
 
 		</ins>
@@ -4879,7 +4885,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example166() async {
+	@Test func example166Line2682Delnfoondel() async {
 		let input = """
 
 		<del>
@@ -4909,7 +4915,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example167() async {
+	@Test func example167Line2697Delnnfoonndel() async {
 		let input = """
 
 		<del>
@@ -4941,7 +4947,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example168() async {
+	@Test func example168Line2715Delfoodel() async {
 		let input = """
 
 		<del>*foo*</del>
@@ -4967,7 +4973,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example169() async {
+	@Test func example169Line2731PreLanguagehaskellcodenimportTextHTMLTagSoupnnmainIONmainPrintParseTagsTagsncodeprenokay() async {
 		let input = """
 
 		<pre language="haskell"><code>
@@ -5005,7 +5011,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example170() async {
+	@Test func example170Line2752ScriptTypetextjavascriptnJavaScriptExamplenndocumentgetElementByIddemoinnerHTMLHelloJavaScriptnscriptnokay() async {
 		let input = """
 
 		<script type="text/javascript">
@@ -5041,7 +5047,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example171() async {
+	@Test func example171Line2771Textareannfoonnbarnntextarea() async {
 		let input = """
 
 		<textarea>
@@ -5079,7 +5085,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example172() async {
+	@Test func example172Line2791StylenTypetextcssnh1ColorrednnpColorbluenstylenokay() async {
 		let input = """
 
 		<style
@@ -5117,7 +5123,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example173() async {
+	@Test func example173Line2814StylenTypetextcssnnfoo() async {
 		let input = """
 
 		<style
@@ -5149,7 +5155,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example174() async {
+	@Test func example174Line2827DivnFoonnbar() async {
 		let input = """
 
 		> <div>
@@ -5182,7 +5188,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example175() async {
+	@Test func example175Line2841DivnFoo() async {
 		let input = """
 
 		- <div>
@@ -5214,7 +5220,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example176() async {
+	@Test func example176Line2856Stylepcolorredstylenfoo() async {
 		let input = """
 
 		<style>p{color:red;}</style>
@@ -5242,7 +5248,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example177() async {
+	@Test func example177Line2865FooBarnbaz() async {
 		let input = """
 
 		<!-- foo -->*bar*
@@ -5270,7 +5276,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example178() async {
+	@Test func example178Line2877Scriptnfoonscript1Bar() async {
 		let input = """
 
 		<script>
@@ -5300,7 +5306,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example179() async {
+	@Test func example179Line2890FoonnbarnBazNokay() async {
 		let input = """
 
 		<!-- Foo
@@ -5334,7 +5340,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example180() async {
+	@Test func example180Line2908PhpnnEchoNnnokay() async {
 		let input = """
 
 		<?php
@@ -5370,7 +5376,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example181() async {
+	@Test func example181Line2927DOCTYPEHtml() async {
 		let input = """
 
 		<!DOCTYPE html>
@@ -5396,7 +5402,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example182() async {
+	@Test func example182Line2936CDATAnfunctionMatchwoabnnIfABA0ThenNReturn1nnElseNnReturn0nNnnokay() async {
 		let input = """
 
 		<![CDATA[
@@ -5446,7 +5452,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example183() async {
+	@Test func example183Line2970FooNnFoo() async {
 		let input = """
 
 		  <!-- foo -->
@@ -5476,7 +5482,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example184() async {
+	@Test func example184Line2981DivnnDiv() async {
 		let input = """
 
 		  <div>
@@ -5506,7 +5512,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example185() async {
+	@Test func example185Line2995Foondivnbarndiv() async {
 		let input = """
 
 		Foo
@@ -5538,7 +5544,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example186() async {
+	@Test func example186Line3012Divnbarndivnfoo() async {
 		let input = """
 
 		<div>
@@ -5570,7 +5576,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example187() async {
+	@Test func example187Line3027FoonaHrefbarnbaz() async {
 		let input = """
 
 		Foo
@@ -5600,7 +5606,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example188() async {
+	@Test func example188Line3068DivnnEmphasizedTextnndiv() async {
 		let input = """
 
 		<div>
@@ -5632,7 +5638,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example189() async {
+	@Test func example189Line3081DivnEmphasizedTextndiv() async {
 		let input = """
 
 		<div>
@@ -5662,7 +5668,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example190() async {
+	@Test func example190Line3103TablenntrnntdnHintdnntrnntable() async {
 		let input = """
 
 		<table>
@@ -5704,7 +5710,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example191() async {
+	@Test func example191Line3130TablennTrnnTdnHinTdnnTrnntable() async {
 		let input = """
 
 		<table>
@@ -5747,7 +5753,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example192() async {
+	@Test func example192Line3179FooUrlTitlennfoo() async {
 		let input = """
 
 		[foo]: /url "title"
@@ -5775,7 +5781,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example193() async {
+	@Test func example193Line3188FooNUrlNTheTitleNnfoo() async {
 		let input = """
 
 		   [foo]: 
@@ -5805,7 +5811,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example194() async {
+	@Test func example194Line3199FoobarmyurlTitleWithParensnnFoobar() async {
 		let input = """
 
 		[Foo*bar\\]]:my_(url) 'title (with parens)'
@@ -5833,7 +5839,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example195() async {
+	@Test func example195Line3208FooBarnmyUrlntitlennFooBar() async {
 		let input = """
 
 		[Foo bar]:
@@ -5863,7 +5869,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example196() async {
+	@Test func example196Line3221FooUrlNtitlenline1nline2nnnfoo() async {
 		let input = """
 
 		[foo]: /url '
@@ -5899,7 +5905,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example197() async {
+	@Test func example197Line3240FooUrlTitlennwithBlankLinennfoo() async {
 		let input = """
 
 		[foo]: /url 'title
@@ -5931,7 +5937,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example198() async {
+	@Test func example198Line3255Foonurlnnfoo() async {
 		let input = """
 
 		[foo]:
@@ -5960,7 +5966,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example199() async {
+	@Test func example199Line3267Foonnfoo() async {
 		let input = """
 
 		[foo]:
@@ -5989,7 +5995,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example200() async {
+	@Test func example200Line3279FooNnfoo() async {
 		let input = """
 
 		[foo]: <>
@@ -6017,7 +6023,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example201() async {
+	@Test func example201Line3290FooBarbaznnfoo() async {
 		let input = """
 
 		[foo]: <bar>(baz)
@@ -6046,7 +6052,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example202() async {
+	@Test func example202Line3303FooUrlbarbazFoobarbaznnfoo() async {
 		let input = """
 
 		[foo]: /url\\bar\\*baz "foo\\"bar\\baz"
@@ -6074,7 +6080,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example203() async {
+	@Test func example203Line3314FoonnfooUrl() async {
 		let input = """
 
 		[foo]
@@ -6102,7 +6108,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example204() async {
+	@Test func example204Line3326FoonnfooFirstnfooSecond() async {
 		let input = """
 
 		[foo]
@@ -6131,7 +6137,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example205() async {
+	@Test func example205Line3339FOOUrlnnFoo() async {
 		let input = """
 
 		[FOO]: /url
@@ -6159,7 +6165,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example206() async {
+	@Test func example206Line3348Nn() async {
 		let input = """
 
 		[ΑΓΩ]: /φου
@@ -6187,7 +6193,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example207() async {
+	@Test func example207Line3363FooUrl() async {
 		let input = """
 
 		[foo]: /url
@@ -6195,7 +6201,9 @@ struct SpecCmTests {
 		"""
 
 		let expected = """
+
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -6210,7 +6218,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example208() async {
+	@Test func example208Line3371NfoonUrlnbar() async {
 		let input = """
 
 		[
@@ -6239,7 +6247,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example209() async {
+	@Test func example209Line3384FooUrlTitleOk() async {
 		let input = """
 
 		[foo]: /url "title" ok
@@ -6265,7 +6273,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example210() async {
+	@Test func example210Line3393FooUrlntitleOk() async {
 		let input = """
 
 		[foo]: /url
@@ -6292,7 +6300,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example211() async {
+	@Test func example211Line3404FooUrlTitlennfoo() async {
 		let input = """
 
 		    [foo]: /url "title"
@@ -6322,7 +6330,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example212() async {
+	@Test func example212Line3418NfooUrlnnnfoo() async {
 		let input = """
 
 		```
@@ -6354,7 +6362,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example213() async {
+	@Test func example213Line3433FoonbarBaznnbar() async {
 		let input = """
 
 		Foo
@@ -6385,7 +6393,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example214() async {
+	@Test func example214Line3448FoonfooUrlnBar() async {
 		let input = """
 
 		# [Foo]
@@ -6416,7 +6424,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example215() async {
+	@Test func example215Line3459FooUrlnbarnnfoo() async {
 		let input = """
 
 		[foo]: /url
@@ -6446,7 +6454,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example216() async {
+	@Test func example216Line3469FooUrlnnfoo() async {
 		let input = """
 
 		[foo]: /url
@@ -6475,7 +6483,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example217() async {
+	@Test func example217Line3482FooFooUrlFoonbarBarUrlnBarnbazBazUrlnnfoonbarnbaz() async {
 		let input = """
 
 		[foo]: /foo-url "foo"
@@ -6510,7 +6518,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example218() async {
+	@Test func example218Line3503FoonnFooUrl() async {
 		let input = """
 
 		[foo]
@@ -6540,7 +6548,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example219() async {
+	@Test func example219Line3525Aaannbbb() async {
 		let input = """
 
 		aaa
@@ -6569,7 +6577,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example220() async {
+	@Test func example220Line3537Aaanbbbnncccnddd() async {
 		let input = """
 
 		aaa
@@ -6602,7 +6610,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example221() async {
+	@Test func example221Line3553Aaannnbbb() async {
 		let input = """
 
 		aaa
@@ -6632,7 +6640,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example222() async {
+	@Test func example222Line3566AaanBbb() async {
 		let input = """
 
 		  aaa
@@ -6660,7 +6668,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example223() async {
+	@Test func example223Line3578AaanBbbnCcc() async {
 		let input = """
 
 		aaa
@@ -6690,7 +6698,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example224() async {
+	@Test func example224Line3592Aaanbbb() async {
 		let input = """
 
 		   aaa
@@ -6718,7 +6726,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example225() async {
+	@Test func example225Line3601Aaanbbb() async {
 		let input = """
 
 		    aaa
@@ -6747,7 +6755,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example226() async {
+	@Test func example226Line3615AaaNbbb() async {
 		let input = """
 
 		aaa     
@@ -6775,7 +6783,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example227() async {
+	@Test func example227Line3632NnaaanNnAaann() async {
 		let input = """
 
 		  
@@ -6809,7 +6817,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example228() async {
+	@Test func example228Line3700FoonBarnBaz() async {
 		let input = """
 
 		> # Foo
@@ -6841,7 +6849,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example229() async {
+	@Test func example229Line3715FoonbarnBaz() async {
 		let input = """
 
 		># Foo
@@ -6873,7 +6881,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example230() async {
+	@Test func example230Line3730FoonBarnBaz() async {
 		let input = """
 
 		   > # Foo
@@ -6905,7 +6913,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example231() async {
+	@Test func example231Line3745FoonBarnBaz() async {
 		let input = """
 
 		    > # Foo
@@ -6936,7 +6944,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example232() async {
+	@Test func example232Line3760FoonBarnbaz() async {
 		let input = """
 
 		> # Foo
@@ -6968,7 +6976,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example233() async {
+	@Test func example233Line3776BarnbaznFoo() async {
 		let input = """
 
 		> bar
@@ -7000,7 +7008,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example234() async {
+	@Test func example234Line3800Foon() async {
 		let input = """
 
 		> foo
@@ -7030,7 +7038,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example235() async {
+	@Test func example235Line3820FoonBar() async {
 		let input = """
 
 		> - foo
@@ -7064,7 +7072,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example236() async {
+	@Test func example236Line3838FoonBar() async {
 		let input = """
 
 		>     foo
@@ -7096,7 +7104,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example237() async {
+	@Test func example237Line3851Nfoon() async {
 		let input = """
 
 		> ```
@@ -7128,7 +7136,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example238() async {
+	@Test func example238Line3867FoonBar() async {
 		let input = """
 
 		> foo
@@ -7158,7 +7166,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example239() async {
+	@Test func example239Line3891() async {
 		let input = """
 
 		>
@@ -7185,7 +7193,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example240() async {
+	@Test func example240Line3899NN() async {
 		let input = """
 
 		>
@@ -7214,7 +7222,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example241() async {
+	@Test func example241Line3911NFoon() async {
 		let input = """
 
 		>
@@ -7244,7 +7252,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example242() async {
+	@Test func example242Line3924FoonnBar() async {
 		let input = """
 
 		> foo
@@ -7277,7 +7285,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example243() async {
+	@Test func example243Line3946FoonBar() async {
 		let input = """
 
 		> foo
@@ -7307,7 +7315,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example244() async {
+	@Test func example244Line3959FoonnBar() async {
 		let input = """
 
 		> foo
@@ -7338,7 +7346,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example245() async {
+	@Test func example245Line3973FoonBar() async {
 		let input = """
 
 		foo
@@ -7368,7 +7376,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example246() async {
+	@Test func example246Line3987AaannBbb() async {
 		let input = """
 
 		> aaa
@@ -7402,7 +7410,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example247() async {
+	@Test func example247Line4005Barnbaz() async {
 		let input = """
 
 		> bar
@@ -7432,7 +7440,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example248() async {
+	@Test func example248Line4016Barnnbaz() async {
 		let input = """
 
 		> bar
@@ -7463,7 +7471,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example249() async {
+	@Test func example249Line4028Barnnbaz() async {
 		let input = """
 
 		> bar
@@ -7494,7 +7502,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example250() async {
+	@Test func example250Line4044Foonbar() async {
 		let input = """
 
 		> > > foo
@@ -7528,7 +7536,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example251() async {
+	@Test func example251Line4059FoonBarnbaz() async {
 		let input = """
 
 		>>> foo
@@ -7564,7 +7572,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example252() async {
+	@Test func example252Line4081CodennNotCode() async {
 		let input = """
 
 		>     code
@@ -7598,7 +7606,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example253() async {
+	@Test func example253Line4135AParagraphnwithTwoLinesnnIndentedCodennABlockQuote() async {
 		let input = """
 
 		A paragraph
@@ -7635,7 +7643,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example254() async {
+	@Test func example254Line41571AParagraphnWithTwoLinesnnIndentedCodennABlockQuote() async {
 		let input = """
 
 		1.  A paragraph
@@ -7676,7 +7684,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example255() async {
+	@Test func example255Line4190OnennTwo() async {
 		let input = """
 
 		- one
@@ -7707,7 +7715,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example256() async {
+	@Test func example256Line4202OnennTwo() async {
 		let input = """
 
 		- one
@@ -7740,7 +7748,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example257() async {
+	@Test func example257Line4216OnennTwo() async {
 		let input = """
 
 		 -    one
@@ -7772,7 +7780,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example258() async {
+	@Test func example258Line4229OnennTwo() async {
 		let input = """
 
 		 -    one
@@ -7805,7 +7813,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example259() async {
+	@Test func example259Line42511OnennTwo() async {
 		let input = """
 
 		   > > 1.  one
@@ -7842,7 +7850,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example260() async {
+	@Test func example260Line4278OnennTwo() async {
 		let input = """
 
 		>>- one
@@ -7877,7 +7885,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example261() async {
+	@Test func example261Line4297Onenn2two() async {
 		let input = """
 
 		-one
@@ -7906,7 +7914,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example262() async {
+	@Test func example262Line4310FoonnnBar() async {
 		let input = """
 
 		- foo
@@ -7940,7 +7948,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example263() async {
+	@Test func example263Line43271FoonnNBarnNnBaznnBam() async {
 		let input = """
 
 		1.  foo
@@ -7984,7 +7992,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example264() async {
+	@Test func example264Line4355FoonnBarnnnBaz() async {
 		let input = """
 
 		- Foo
@@ -8024,7 +8032,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example265() async {
+	@Test func example265Line4377123456789Ok() async {
 		let input = """
 
 		123456789. ok
@@ -8052,7 +8060,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example266() async {
+	@Test func example266Line43861234567890NotOk() async {
 		let input = """
 
 		1234567890. not ok
@@ -8078,7 +8086,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example267() async {
+	@Test func example267Line43950Ok() async {
 		let input = """
 
 		0. ok
@@ -8106,7 +8114,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example268() async {
+	@Test func example268Line4404003Ok() async {
 		let input = """
 
 		003. ok
@@ -8134,7 +8142,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example269() async {
+	@Test func example269Line44151NotOk() async {
 		let input = """
 
 		-1. not ok
@@ -8160,7 +8168,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example270() async {
+	@Test func example270Line4438FoonnBar() async {
 		let input = """
 
 		- foo
@@ -8194,7 +8202,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example271() async {
+	@Test func example271Line445510FoonnBar() async {
 		let input = """
 
 		  10.  foo
@@ -8228,7 +8236,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example272() async {
+	@Test func example272Line4474IndentedCodennparagraphnnMoreCode() async {
 		let input = """
 
 		    indented code
@@ -8262,7 +8270,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example273() async {
+	@Test func example273Line44891IndentedCodennParagraphnnMoreCode() async {
 		let input = """
 
 		1.     indented code
@@ -8300,7 +8308,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example274() async {
+	@Test func example274Line45111IndentedCodennParagraphnnMoreCode() async {
 		let input = """
 
 		1.      indented code
@@ -8338,7 +8346,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example275() async {
+	@Test func example275Line4538Foonnbar() async {
 		let input = """
 
 		   foo
@@ -8367,7 +8375,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example276() async {
+	@Test func example276Line4548FoonnBar() async {
 		let input = """
 
 		-    foo
@@ -8398,7 +8406,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example277() async {
+	@Test func example277Line4565FoonnBar() async {
 		let input = """
 
 		-  foo
@@ -8431,7 +8439,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example278() async {
+	@Test func example278Line4592NFoonNNBarnNNBaz() async {
 		let input = """
 
 		-
@@ -8474,7 +8482,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example279() async {
+	@Test func example279Line4618NFoo() async {
 		let input = """
 
 		-   
@@ -8503,7 +8511,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example280() async {
+	@Test func example280Line4632NnFoo() async {
 		let input = """
 
 		-
@@ -8534,7 +8542,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example281() async {
+	@Test func example281Line4646FoonNBar() async {
 		let input = """
 
 		- foo
@@ -8566,7 +8574,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example282() async {
+	@Test func example282Line4661FoonNBar() async {
 		let input = """
 
 		- foo
@@ -8598,7 +8606,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example283() async {
+	@Test func example283Line46761Foon2n3Bar() async {
 		let input = """
 
 		1. foo
@@ -8630,7 +8638,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example284() async {
+	@Test func example284Line4691() async {
 		let input = """
 
 		*
@@ -8658,7 +8666,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example285() async {
+	@Test func example285Line4701Foonnnfoon1() async {
 		let input = """
 
 		foo
@@ -8691,7 +8699,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example286() async {
+	@Test func example286Line47231AParagraphnWithTwoLinesnnIndentedCodennABlockQuote() async {
 		let input = """
 
 		 1.  A paragraph
@@ -8732,7 +8740,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example287() async {
+	@Test func example287Line47471AParagraphnWithTwoLinesnnIndentedCodennABlockQuote() async {
 		let input = """
 
 		  1.  A paragraph
@@ -8773,7 +8781,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example288() async {
+	@Test func example288Line47711AParagraphnWithTwoLinesnnIndentedCodennABlockQuote() async {
 		let input = """
 
 		   1.  A paragraph
@@ -8814,7 +8822,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example289() async {
+	@Test func example289Line47951AParagraphnWithTwoLinesnnIndentedCodennABlockQuote() async {
 		let input = """
 
 		    1.  A paragraph
@@ -8851,7 +8859,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example290() async {
+	@Test func example290Line48251AParagraphnwithTwoLinesnnIndentedCodennABlockQuote() async {
 		let input = """
 
 		  1.  A paragraph
@@ -8892,7 +8900,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example291() async {
+	@Test func example291Line48491AParagraphnWithTwoLines() async {
 		let input = """
 
 		  1.  A paragraph
@@ -8922,7 +8930,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example292() async {
+	@Test func example292Line48621BlockquotencontinuedHere() async {
 		let input = """
 
 		> 1. > Blockquote
@@ -8958,7 +8966,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example293() async {
+	@Test func example293Line48791BlockquotenContinuedHere() async {
 		let input = """
 
 		> 1. > Blockquote
@@ -8994,7 +9002,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example294() async {
+	@Test func example294Line4907FoonBarnBaznBoo() async {
 		let input = """
 
 		- foo
@@ -9037,7 +9045,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example295() async {
+	@Test func example295Line4933FoonBarnBaznBoo() async {
 		let input = """
 
 		- foo
@@ -9071,7 +9079,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example296() async {
+	@Test func example296Line495010FoonBar() async {
 		let input = """
 
 		10) foo
@@ -9104,7 +9112,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example297() async {
+	@Test func example297Line496610FoonBar() async {
 		let input = """
 
 		10) foo
@@ -9136,7 +9144,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example298() async {
+	@Test func example298Line4981Foo() async {
 		let input = """
 
 		- - foo
@@ -9168,7 +9176,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example299() async {
+	@Test func example299Line499412Foo() async {
 		let input = """
 
 		1. - 2. foo
@@ -9204,7 +9212,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example300() async {
+	@Test func example300Line5013FoonBarnNBaz() async {
 		let input = """
 
 		- # Foo
@@ -9240,7 +9248,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example301() async {
+	@Test func example301Line5249FoonBarnBaz() async {
 		let input = """
 
 		- foo
@@ -9274,7 +9282,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example302() async {
+	@Test func example302Line52641Foon2Barn3Baz() async {
 		let input = """
 
 		1. foo
@@ -9308,7 +9316,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example303() async {
+	@Test func example303Line5283FoonBarnBaz() async {
 		let input = """
 
 		Foo
@@ -9340,7 +9348,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example304() async {
+	@Test func example304Line5360TheNumberOfWindowsInMyHouseIsn14TheNumberOfDoorsIs6() async {
 		let input = """
 
 		The number of windows in my house is
@@ -9368,7 +9376,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example305() async {
+	@Test func example305Line5370TheNumberOfWindowsInMyHouseIsn1TheNumberOfDoorsIs6() async {
 		let input = """
 
 		The number of windows in my house is
@@ -9398,7 +9406,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example306() async {
+	@Test func example306Line5384FoonnBarnnnBaz() async {
 		let input = """
 
 		- foo
@@ -9439,7 +9447,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example307() async {
+	@Test func example307Line5405FoonBarnBaznnnBim() async {
 		let input = """
 
 		- foo
@@ -9483,7 +9491,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example308() async {
+	@Test func example308Line5435FoonBarnnNnBaznBim() async {
 		let input = """
 
 		- foo
@@ -9523,7 +9531,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example309() async {
+	@Test func example309Line5456FoonnNotcodennFoonnNnCode() async {
 		let input = """
 
 		-   foo
@@ -9568,7 +9576,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example310() async {
+	@Test func example310Line5487AnBnCnDnEnFnG() async {
 		let input = """
 
 		- a
@@ -9608,7 +9616,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example311() async {
+	@Test func example311Line55081Ann2Bnn3C() async {
 		let input = """
 
 		1. a
@@ -9648,7 +9656,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example312() async {
+	@Test func example312Line5532AnBnCnDnE() async {
 		let input = """
 
 		- a
@@ -9684,7 +9692,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example313() async {
+	@Test func example313Line55521Ann2Bnn3C() async {
 		let input = """
 
 		1. a
@@ -9723,7 +9731,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example314() async {
+	@Test func example314Line5575AnBnnC() async {
 		let input = """
 
 		- a
@@ -9762,7 +9770,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example315() async {
+	@Test func example315Line5597AnnnC() async {
 		let input = """
 
 		* a
@@ -9799,7 +9807,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example316() async {
+	@Test func example316Line5619AnBnnCnD() async {
 		let input = """
 
 		- a
@@ -9840,7 +9848,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example317() async {
+	@Test func example317Line5641AnBnnRefUrlnD() async {
 		let input = """
 
 		- a
@@ -9880,7 +9888,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example318() async {
+	@Test func example318Line5664AnNBnnnNC() async {
 		let input = """
 
 		- a
@@ -9921,7 +9929,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example319() async {
+	@Test func example319Line5690AnBnnCnD() async {
 		let input = """
 
 		- a
@@ -9961,7 +9969,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example320() async {
+	@Test func example320Line5714AnBnNC() async {
 		let input = """
 
 		* a
@@ -9997,7 +10005,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example321() async {
+	@Test func example321Line5734AnBnNCnND() async {
 		let input = """
 
 		- a
@@ -10037,7 +10045,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example322() async {
+	@Test func example322Line5757A() async {
 		let input = """
 
 		- a
@@ -10065,7 +10073,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example323() async {
+	@Test func example323Line5766AnB() async {
 		let input = """
 
 		- a
@@ -10098,7 +10106,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example324() async {
+	@Test func example324Line57831NFoonNnBar() async {
 		let input = """
 
 		1. ```
@@ -10134,7 +10142,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example325() async {
+	@Test func example325Line5802FoonBarnnBaz() async {
 		let input = """
 
 		* foo
@@ -10171,7 +10179,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example326() async {
+	@Test func example326Line5820AnBnCnnDnEnF() async {
 		let input = """
 
 		- a
@@ -10218,7 +10226,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example327() async {
+	@Test func example327Line5854Hilo() async {
 		let input = """
 
 		`hi`lo`
@@ -10244,7 +10252,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example328() async {
+	@Test func example328Line5886Foo() async {
 		let input = """
 
 		`foo`
@@ -10270,7 +10278,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example329() async {
+	@Test func example329Line5897FooBar() async {
 		let input = """
 
 		`` foo ` bar ``
@@ -10296,7 +10304,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example330() async {
+	@Test func example330Line5907() async {
 		let input = """
 
 		` `` `
@@ -10322,7 +10330,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example331() async {
+	@Test func example331Line5915() async {
 		let input = """
 
 		`  ``  `
@@ -10348,7 +10356,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example332() async {
+	@Test func example332Line5924A() async {
 		let input = """
 
 		` a`
@@ -10374,7 +10382,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example333() async {
+	@Test func example333Line5933B() async {
 		let input = """
 
 		` b `
@@ -10400,7 +10408,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example334() async {
+	@Test func example334Line5941N() async {
 		let input = """
 
 		` `
@@ -10428,7 +10436,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example335() async {
+	@Test func example335Line5952NfoonbarNbazn() async {
 		let input = """
 
 		``
@@ -10458,7 +10466,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example336() async {
+	@Test func example336Line5962NfooN() async {
 		let input = """
 
 		``
@@ -10486,7 +10494,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example337() async {
+	@Test func example337Line5973FooBarNbaz() async {
 		let input = """
 
 		`foo   bar 
@@ -10513,7 +10521,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example338() async {
+	@Test func example338Line5990Foobar() async {
 		let input = """
 
 		`foo\\`bar`
@@ -10539,7 +10547,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example339() async {
+	@Test func example339Line6001Foobar() async {
 		let input = """
 
 		``foo`bar``
@@ -10565,7 +10573,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example340() async {
+	@Test func example340Line6007FooBar() async {
 		let input = """
 
 		` foo `` bar `
@@ -10591,7 +10599,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example341() async {
+	@Test func example341Line6019Foo() async {
 		let input = """
 
 		*foo`*`
@@ -10617,7 +10625,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example342() async {
+	@Test func example342Line6028NotALinkfoo() async {
 		let input = """
 
 		[not a `link](/foo`)
@@ -10643,7 +10651,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example343() async {
+	@Test func example343Line6038AHref() async {
 		let input = """
 
 		`<a href="`">`
@@ -10669,7 +10677,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example344() async {
+	@Test func example344Line6047AHref() async {
 		let input = """
 
 		<a href="`">`
@@ -10695,7 +10703,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example345() async {
+	@Test func example345Line6056Httpsfoobarbaz() async {
 		let input = """
 
 		`<https://foo.bar.`baz>`
@@ -10721,7 +10729,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example346() async {
+	@Test func example346Line6065Httpsfoobarbaz() async {
 		let input = """
 
 		<https://foo.bar.`baz>`
@@ -10747,7 +10755,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example347() async {
+	@Test func example347Line6075Foo() async {
 		let input = """
 
 		```foo``
@@ -10773,7 +10781,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example348() async {
+	@Test func example348Line6082Foo() async {
 		let input = """
 
 		`foo
@@ -10799,7 +10807,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example349() async {
+	@Test func example349Line6091Foobar() async {
 		let input = """
 
 		`foo``bar``
@@ -10825,7 +10833,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example350() async {
+	@Test func example350Line6308FooBar() async {
 		let input = """
 
 		*foo bar*
@@ -10851,7 +10859,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example351() async {
+	@Test func example351Line6318AFooBar() async {
 		let input = """
 
 		a * foo bar*
@@ -10877,7 +10885,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example352() async {
+	@Test func example352Line6329Afoo() async {
 		let input = """
 
 		a*"foo"*
@@ -10903,7 +10911,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example353() async {
+	@Test func example353Line6338A() async {
 		let input = """
 
 		* a *
@@ -10929,7 +10937,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example354() async {
+	@Test func example354Line6347Alphannbravonncharlie() async {
 		let input = """
 
 		*$*alpha.
@@ -10961,7 +10969,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example355() async {
+	@Test func example355Line6362Foobar() async {
 		let input = """
 
 		foo*bar*
@@ -10987,7 +10995,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example356() async {
+	@Test func example356Line63695678() async {
 		let input = """
 
 		5*6*78
@@ -11013,7 +11021,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example357() async {
+	@Test func example357Line6378FooBar() async {
 		let input = """
 
 		_foo bar_
@@ -11039,7 +11047,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example358() async {
+	@Test func example358Line6388FooBar() async {
 		let input = """
 
 		_ foo bar_
@@ -11065,7 +11073,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example359() async {
+	@Test func example359Line6398Afoo() async {
 		let input = """
 
 		a_"foo"_
@@ -11091,7 +11099,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example360() async {
+	@Test func example360Line6407Foobar() async {
 		let input = """
 
 		foo_bar_
@@ -11117,7 +11125,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example361() async {
+	@Test func example361Line64145678() async {
 		let input = """
 
 		5_6_78
@@ -11143,7 +11151,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example362() async {
+	@Test func example362Line6421() async {
 		let input = """
 
 		пристаням_стремятся_
@@ -11169,7 +11177,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example363() async {
+	@Test func example363Line6431Aabbcc() async {
 		let input = """
 
 		aa_"bb"_cc
@@ -11195,7 +11203,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example364() async {
+	@Test func example364Line6442FooBar() async {
 		let input = """
 
 		foo-_(bar)_
@@ -11221,7 +11229,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example365() async {
+	@Test func example365Line6454Foo() async {
 		let input = """
 
 		_foo*
@@ -11247,7 +11255,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example366() async {
+	@Test func example366Line6464FooBar() async {
 		let input = """
 
 		*foo bar *
@@ -11273,7 +11281,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example367() async {
+	@Test func example367Line6473FooBarn() async {
 		let input = """
 
 		*foo bar
@@ -11301,7 +11309,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example368() async {
+	@Test func example368Line6486Foo() async {
 		let input = """
 
 		*(*foo)
@@ -11327,7 +11335,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example369() async {
+	@Test func example369Line6496Foo() async {
 		let input = """
 
 		*(*foo*)*
@@ -11353,7 +11361,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example370() async {
+	@Test func example370Line6505Foobar() async {
 		let input = """
 
 		*foo*bar
@@ -11379,7 +11387,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example371() async {
+	@Test func example371Line6518FooBar() async {
 		let input = """
 
 		_foo bar _
@@ -11405,7 +11413,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example372() async {
+	@Test func example372Line6528Foo() async {
 		let input = """
 
 		_(_foo)
@@ -11431,7 +11439,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example373() async {
+	@Test func example373Line6537Foo() async {
 		let input = """
 
 		_(_foo_)_
@@ -11457,7 +11465,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example374() async {
+	@Test func example374Line6546Foobar() async {
 		let input = """
 
 		_foo_bar
@@ -11483,7 +11491,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example375() async {
+	@Test func example375Line6553() async {
 		let input = """
 
 		_пристаням_стремятся
@@ -11509,7 +11517,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example376() async {
+	@Test func example376Line6560Foobarbaz() async {
 		let input = """
 
 		_foo_bar_baz_
@@ -11535,7 +11543,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example377() async {
+	@Test func example377Line6571Bar() async {
 		let input = """
 
 		_(bar)_.
@@ -11561,7 +11569,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example378() async {
+	@Test func example378Line6580FooBar() async {
 		let input = """
 
 		**foo bar**
@@ -11587,7 +11595,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example379() async {
+	@Test func example379Line6590FooBar() async {
 		let input = """
 
 		** foo bar**
@@ -11613,7 +11621,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example380() async {
+	@Test func example380Line6601Afoo() async {
 		let input = """
 
 		a**"foo"**
@@ -11639,7 +11647,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example381() async {
+	@Test func example381Line6610Foobar() async {
 		let input = """
 
 		foo**bar**
@@ -11665,7 +11673,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example382() async {
+	@Test func example382Line6619FooBar() async {
 		let input = """
 
 		__foo bar__
@@ -11691,7 +11699,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example383() async {
+	@Test func example383Line6629FooBar() async {
 		let input = """
 
 		__ foo bar__
@@ -11717,7 +11725,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example384() async {
+	@Test func example384Line6637NfooBar() async {
 		let input = """
 
 		__
@@ -11745,7 +11753,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example385() async {
+	@Test func example385Line6649Afoo() async {
 		let input = """
 
 		a__"foo"__
@@ -11771,7 +11779,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example386() async {
+	@Test func example386Line6658Foobar() async {
 		let input = """
 
 		foo__bar__
@@ -11797,7 +11805,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example387() async {
+	@Test func example387Line66655678() async {
 		let input = """
 
 		5__6__78
@@ -11823,7 +11831,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example388() async {
+	@Test func example388Line6672() async {
 		let input = """
 
 		пристаням__стремятся__
@@ -11849,7 +11857,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example389() async {
+	@Test func example389Line6679FooBarBaz() async {
 		let input = """
 
 		__foo, __bar__, baz__
@@ -11875,7 +11883,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example390() async {
+	@Test func example390Line6690FooBar() async {
 		let input = """
 
 		foo-__(bar)__
@@ -11901,7 +11909,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example391() async {
+	@Test func example391Line6703FooBar() async {
 		let input = """
 
 		**foo bar **
@@ -11927,7 +11935,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example392() async {
+	@Test func example392Line6716Foo() async {
 		let input = """
 
 		**(**foo)
@@ -11953,7 +11961,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example393() async {
+	@Test func example393Line6726Foo() async {
 		let input = """
 
 		*(**foo**)*
@@ -11979,7 +11987,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example394() async {
+	@Test func example394Line6733GomphocarpusGomphocarpusPhysocarpusSynnAsclepiasPhysocarpa() async {
 		let input = """
 
 		**Gomphocarpus (*Gomphocarpus physocarpus*, syn.
@@ -12007,7 +12015,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example395() async {
+	@Test func example395Line6742FooBarFoo() async {
 		let input = """
 
 		**foo "*bar*" foo**
@@ -12033,7 +12041,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example396() async {
+	@Test func example396Line6751Foobar() async {
 		let input = """
 
 		**foo**bar
@@ -12059,7 +12067,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example397() async {
+	@Test func example397Line6763FooBar() async {
 		let input = """
 
 		__foo bar __
@@ -12085,7 +12093,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example398() async {
+	@Test func example398Line6773Foo() async {
 		let input = """
 
 		__(__foo)
@@ -12111,7 +12119,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example399() async {
+	@Test func example399Line6783Foo() async {
 		let input = """
 
 		_(__foo__)_
@@ -12137,7 +12145,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example400() async {
+	@Test func example400Line6792Foobar() async {
 		let input = """
 
 		__foo__bar
@@ -12163,7 +12171,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example401() async {
+	@Test func example401Line6799() async {
 		let input = """
 
 		__пристаням__стремятся
@@ -12189,7 +12197,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example402() async {
+	@Test func example402Line6806Foobarbaz() async {
 		let input = """
 
 		__foo__bar__baz__
@@ -12215,7 +12223,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example403() async {
+	@Test func example403Line6817Bar() async {
 		let input = """
 
 		__(bar)__.
@@ -12241,7 +12249,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example404() async {
+	@Test func example404Line6829FooBarurl() async {
 		let input = """
 
 		*foo [bar](/url)*
@@ -12267,7 +12275,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example405() async {
+	@Test func example405Line6836Foonbar() async {
 		let input = """
 
 		*foo
@@ -12295,7 +12303,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example406() async {
+	@Test func example406Line6848FooBarBaz() async {
 		let input = """
 
 		_foo __bar__ baz_
@@ -12321,7 +12329,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example407() async {
+	@Test func example407Line6855FooBarBaz() async {
 		let input = """
 
 		_foo _bar_ baz_
@@ -12347,7 +12355,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example408() async {
+	@Test func example408Line6862FooBar() async {
 		let input = """
 
 		__foo_ bar_
@@ -12373,7 +12381,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example409() async {
+	@Test func example409Line6869FooBar() async {
 		let input = """
 
 		*foo *bar**
@@ -12399,7 +12407,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example410() async {
+	@Test func example410Line6876FooBarBaz() async {
 		let input = """
 
 		*foo **bar** baz*
@@ -12425,7 +12433,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example411() async {
+	@Test func example411Line6882Foobarbaz() async {
 		let input = """
 
 		*foo**bar**baz*
@@ -12451,7 +12459,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example412() async {
+	@Test func example412Line6906Foobar() async {
 		let input = """
 
 		*foo**bar*
@@ -12477,7 +12485,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example413() async {
+	@Test func example413Line6919FooBar() async {
 		let input = """
 
 		***foo** bar*
@@ -12503,7 +12511,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example414() async {
+	@Test func example414Line6926FooBar() async {
 		let input = """
 
 		*foo **bar***
@@ -12529,7 +12537,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example415() async {
+	@Test func example415Line6933Foobar() async {
 		let input = """
 
 		*foo**bar***
@@ -12555,7 +12563,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example416() async {
+	@Test func example416Line6944Foobarbaz() async {
 		let input = """
 
 		foo***bar***baz
@@ -12581,7 +12589,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example417() async {
+	@Test func example417Line6950Foobarbaz() async {
 		let input = """
 
 		foo******bar*********baz
@@ -12607,7 +12615,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example418() async {
+	@Test func example418Line6959FooBarBazBimBop() async {
 		let input = """
 
 		*foo **bar *baz* bim** bop*
@@ -12633,7 +12641,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example419() async {
+	@Test func example419Line6966FooBarurl() async {
 		let input = """
 
 		*foo [*bar*](/url)*
@@ -12659,7 +12667,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example420() async {
+	@Test func example420Line6975IsNotAnEmptyEmphasis() async {
 		let input = """
 
 		** is not an empty emphasis
@@ -12685,7 +12693,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example421() async {
+	@Test func example421Line6982IsNotAnEmptyStrongEmphasis() async {
 		let input = """
 
 		**** is not an empty strong emphasis
@@ -12711,7 +12719,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example422() async {
+	@Test func example422Line6995FooBarurl() async {
 		let input = """
 
 		**foo [bar](/url)**
@@ -12737,7 +12745,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example423() async {
+	@Test func example423Line7002Foonbar() async {
 		let input = """
 
 		**foo
@@ -12765,7 +12773,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example424() async {
+	@Test func example424Line7014FooBarBaz() async {
 		let input = """
 
 		__foo _bar_ baz__
@@ -12791,7 +12799,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example425() async {
+	@Test func example425Line7021FooBarBaz() async {
 		let input = """
 
 		__foo __bar__ baz__
@@ -12817,7 +12825,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example426() async {
+	@Test func example426Line7028FooBar() async {
 		let input = """
 
 		____foo__ bar__
@@ -12843,7 +12851,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example427() async {
+	@Test func example427Line7035FooBar() async {
 		let input = """
 
 		**foo **bar****
@@ -12869,7 +12877,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example428() async {
+	@Test func example428Line7042FooBarBaz() async {
 		let input = """
 
 		**foo *bar* baz**
@@ -12895,7 +12903,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example429() async {
+	@Test func example429Line7049Foobarbaz() async {
 		let input = """
 
 		**foo*bar*baz**
@@ -12921,7 +12929,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example430() async {
+	@Test func example430Line7056FooBar() async {
 		let input = """
 
 		***foo* bar**
@@ -12947,7 +12955,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example431() async {
+	@Test func example431Line7063FooBar() async {
 		let input = """
 
 		**foo *bar***
@@ -12973,7 +12981,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example432() async {
+	@Test func example432Line7072FooBarBaznbimBop() async {
 		let input = """
 
 		**foo *bar **baz**
@@ -13001,7 +13009,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example433() async {
+	@Test func example433Line7081FooBarurl() async {
 		let input = """
 
 		**foo [*bar*](/url)**
@@ -13027,7 +13035,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example434() async {
+	@Test func example434Line7090IsNotAnEmptyEmphasis() async {
 		let input = """
 
 		__ is not an empty emphasis
@@ -13053,7 +13061,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example435() async {
+	@Test func example435Line7097IsNotAnEmptyStrongEmphasis() async {
 		let input = """
 
 		____ is not an empty strong emphasis
@@ -13079,7 +13087,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example436() async {
+	@Test func example436Line7107Foo() async {
 		let input = """
 
 		foo ***
@@ -13105,7 +13113,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example437() async {
+	@Test func example437Line7114Foo() async {
 		let input = """
 
 		foo *\\**
@@ -13131,7 +13139,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example438() async {
+	@Test func example438Line7121Foo() async {
 		let input = """
 
 		foo *_*
@@ -13157,7 +13165,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example439() async {
+	@Test func example439Line7128Foo() async {
 		let input = """
 
 		foo *****
@@ -13183,7 +13191,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example440() async {
+	@Test func example440Line7135Foo() async {
 		let input = """
 
 		foo **\\***
@@ -13209,7 +13217,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example441() async {
+	@Test func example441Line7142Foo() async {
 		let input = """
 
 		foo **_**
@@ -13235,7 +13243,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example442() async {
+	@Test func example442Line7153Foo() async {
 		let input = """
 
 		**foo*
@@ -13261,7 +13269,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example443() async {
+	@Test func example443Line7160Foo() async {
 		let input = """
 
 		*foo**
@@ -13287,7 +13295,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example444() async {
+	@Test func example444Line7167Foo() async {
 		let input = """
 
 		***foo**
@@ -13313,7 +13321,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example445() async {
+	@Test func example445Line7174Foo() async {
 		let input = """
 
 		****foo*
@@ -13339,7 +13347,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example446() async {
+	@Test func example446Line7181Foo() async {
 		let input = """
 
 		**foo***
@@ -13365,7 +13373,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example447() async {
+	@Test func example447Line7188Foo() async {
 		let input = """
 
 		*foo****
@@ -13391,7 +13399,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example448() async {
+	@Test func example448Line7198Foo() async {
 		let input = """
 
 		foo ___
@@ -13417,7 +13425,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example449() async {
+	@Test func example449Line7205Foo() async {
 		let input = """
 
 		foo _\\__
@@ -13443,7 +13451,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example450() async {
+	@Test func example450Line7212Foo() async {
 		let input = """
 
 		foo _*_
@@ -13469,7 +13477,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example451() async {
+	@Test func example451Line7219Foo() async {
 		let input = """
 
 		foo _____
@@ -13495,7 +13503,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example452() async {
+	@Test func example452Line7226Foo() async {
 		let input = """
 
 		foo __\\___
@@ -13521,7 +13529,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example453() async {
+	@Test func example453Line7233Foo() async {
 		let input = """
 
 		foo __*__
@@ -13547,7 +13555,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example454() async {
+	@Test func example454Line7240Foo() async {
 		let input = """
 
 		__foo_
@@ -13573,7 +13581,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example455() async {
+	@Test func example455Line7251Foo() async {
 		let input = """
 
 		_foo__
@@ -13599,7 +13607,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example456() async {
+	@Test func example456Line7258Foo() async {
 		let input = """
 
 		___foo__
@@ -13625,7 +13633,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example457() async {
+	@Test func example457Line7265Foo() async {
 		let input = """
 
 		____foo_
@@ -13651,7 +13659,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example458() async {
+	@Test func example458Line7272Foo() async {
 		let input = """
 
 		__foo___
@@ -13677,7 +13685,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example459() async {
+	@Test func example459Line7279Foo() async {
 		let input = """
 
 		_foo____
@@ -13703,7 +13711,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example460() async {
+	@Test func example460Line7289Foo() async {
 		let input = """
 
 		**foo**
@@ -13729,7 +13737,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example461() async {
+	@Test func example461Line7296Foo() async {
 		let input = """
 
 		*_foo_*
@@ -13755,7 +13763,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example462() async {
+	@Test func example462Line7303Foo() async {
 		let input = """
 
 		__foo__
@@ -13781,7 +13789,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example463() async {
+	@Test func example463Line7310Foo() async {
 		let input = """
 
 		_*foo*_
@@ -13807,7 +13815,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example464() async {
+	@Test func example464Line7320Foo() async {
 		let input = """
 
 		****foo****
@@ -13833,7 +13841,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example465() async {
+	@Test func example465Line7327Foo() async {
 		let input = """
 
 		____foo____
@@ -13859,7 +13867,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example466() async {
+	@Test func example466Line7338Foo() async {
 		let input = """
 
 		******foo******
@@ -13885,7 +13893,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example467() async {
+	@Test func example467Line7347Foo() async {
 		let input = """
 
 		***foo***
@@ -13911,7 +13919,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example468() async {
+	@Test func example468Line7354Foo() async {
 		let input = """
 
 		_____foo_____
@@ -13937,7 +13945,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example469() async {
+	@Test func example469Line7363FooBarBaz() async {
 		let input = """
 
 		*foo _bar* baz_
@@ -13963,7 +13971,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example470() async {
+	@Test func example470Line7370FooBarBazBimBam() async {
 		let input = """
 
 		*foo __bar *baz bim__ bam*
@@ -13989,7 +13997,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example471() async {
+	@Test func example471Line7379FooBarBaz() async {
 		let input = """
 
 		**foo **bar baz**
@@ -14015,7 +14023,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example472() async {
+	@Test func example472Line7386FooBarBaz() async {
 		let input = """
 
 		*foo *bar baz*
@@ -14041,7 +14049,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example473() async {
+	@Test func example473Line7395Barurl() async {
 		let input = """
 
 		*[bar*](/url)
@@ -14067,7 +14075,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example474() async {
+	@Test func example474Line7402FooBarurl() async {
 		let input = """
 
 		_foo [bar_](/url)
@@ -14093,7 +14101,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example475() async {
+	@Test func example475Line7409ImgSrcfooTitle() async {
 		let input = """
 
 		*<img src="foo" title="*"/>
@@ -14119,7 +14127,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example476() async {
+	@Test func example476Line7416AHref() async {
 		let input = """
 
 		**<a href="**">
@@ -14145,7 +14153,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example477() async {
+	@Test func example477Line7423AHref() async {
 		let input = """
 
 		__<a href="__">
@@ -14171,7 +14179,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example478() async {
+	@Test func example478Line7430A() async {
 		let input = """
 
 		*a `*`*
@@ -14197,7 +14205,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example479() async {
+	@Test func example479Line7437A() async {
 		let input = """
 
 		_a `_`_
@@ -14223,7 +14231,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example480() async {
+	@Test func example480Line7444Ahttpsfoobarq() async {
 		let input = """
 
 		**a<https://foo.bar/?q=**>
@@ -14249,7 +14257,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example481() async {
+	@Test func example481Line7451Ahttpsfoobarq() async {
 		let input = """
 
 		__a<https://foo.bar/?q=__>
@@ -14275,7 +14283,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example482() async {
+	@Test func example482Line7539LinkuriTitle() async {
 		let input = """
 
 		[link](/uri "title")
@@ -14301,7 +14309,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example483() async {
+	@Test func example483Line7549Linkuri() async {
 		let input = """
 
 		[link](/uri)
@@ -14327,7 +14335,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example484() async {
+	@Test func example484Line7555Targetmd() async {
 		let input = """
 
 		[](./target.md)
@@ -14353,7 +14361,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example485() async {
+	@Test func example485Line7562Link() async {
 		let input = """
 
 		[link]()
@@ -14379,7 +14387,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example486() async {
+	@Test func example486Line7569Link() async {
 		let input = """
 
 		[link](<>)
@@ -14405,7 +14413,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example487() async {
+	@Test func example487Line7576() async {
 		let input = """
 
 		[]()
@@ -14431,7 +14439,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example488() async {
+	@Test func example488Line7585LinkmyUri() async {
 		let input = """
 
 		[link](/my uri)
@@ -14457,7 +14465,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example489() async {
+	@Test func example489Line7591LinkmyUri() async {
 		let input = """
 
 		[link](</my uri>)
@@ -14483,7 +14491,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example490() async {
+	@Test func example490Line7600Linkfoonbar() async {
 		let input = """
 
 		[link](foo
@@ -14511,7 +14519,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example491() async {
+	@Test func example491Line7608Linkfoonbar() async {
 		let input = """
 
 		[link](<foo
@@ -14539,7 +14547,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example492() async {
+	@Test func example492Line7619Abc() async {
 		let input = """
 
 		[a](<b)c>)
@@ -14565,7 +14573,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example493() async {
+	@Test func example493Line7627Linkfoo() async {
 		let input = """
 
 		[link](<foo\\>)
@@ -14591,7 +14599,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example494() async {
+	@Test func example494Line7636Abcnabcnabc() async {
 		let input = """
 
 		[a](<b)c
@@ -14621,7 +14629,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example495() async {
+	@Test func example495Line7648Linkfoo() async {
 		let input = """
 
 		[link](\\(foo\\))
@@ -14647,7 +14655,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example496() async {
+	@Test func example496Line7657Linkfooandbar() async {
 		let input = """
 
 		[link](foo(and(bar)))
@@ -14673,7 +14681,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example497() async {
+	@Test func example497Line7666Linkfooandbar() async {
 		let input = """
 
 		[link](foo(and(bar))
@@ -14699,7 +14707,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example498() async {
+	@Test func example498Line7673Linkfooandbar() async {
 		let input = """
 
 		[link](foo\\(and\\(bar\\))
@@ -14725,7 +14733,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example499() async {
+	@Test func example499Line7680Linkfooandbar() async {
 		let input = """
 
 		[link](<foo(and(bar)>)
@@ -14751,7 +14759,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example500() async {
+	@Test func example500Line7690Linkfoo() async {
 		let input = """
 
 		[link](foo\\)\\:)
@@ -14777,7 +14785,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example501() async {
+	@Test func example501Line7699Linkfragmentnnlinkhttpsexamplecomfragmentnnlinkhttpsexamplecomfoo3frag() async {
 		let input = """
 
 		[link](#fragment)
@@ -14809,7 +14817,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example502() async {
+	@Test func example502Line7715Linkfoobar() async {
 		let input = """
 
 		[link](foo\\bar)
@@ -14835,7 +14843,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example503() async {
+	@Test func example503Line7731Linkfoo20bauml() async {
 		let input = """
 
 		[link](foo%20b&auml;)
@@ -14861,7 +14869,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example504() async {
+	@Test func example504Line7742Linktitle() async {
 		let input = """
 
 		[link]("title")
@@ -14887,7 +14895,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example505() async {
+	@Test func example505Line7751LinkurlTitlenlinkurlTitlenlinkurlTitle() async {
 		let input = """
 
 		[link](/url "title")
@@ -14917,7 +14925,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example506() async {
+	@Test func example506Line7765LinkurlTitleQuot() async {
 		let input = """
 
 		[link](/url "title \\"&quot;")
@@ -14943,7 +14951,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example507() async {
+	@Test func example507Line7776LinkurlTitle() async {
 		let input = """
 
 		[link](/url "title")
@@ -14969,7 +14977,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example508() async {
+	@Test func example508Line7785LinkurlTitleAndTitle() async {
 		let input = """
 
 		[link](/url "title "and" title")
@@ -14995,7 +15003,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example509() async {
+	@Test func example509Line7794LinkurlTitleAndTitle() async {
 		let input = """
 
 		[link](/url 'title "and" title')
@@ -15021,7 +15029,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example510() async {
+	@Test func example510Line7819LinkUrinTitle() async {
 		let input = """
 
 		[link](   /uri
@@ -15048,7 +15056,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example511() async {
+	@Test func example511Line7830LinkUri() async {
 		let input = """
 
 		[link] (/uri)
@@ -15074,7 +15082,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example512() async {
+	@Test func example512Line7840LinkFooBaruri() async {
 		let input = """
 
 		[link [foo [bar]]](/uri)
@@ -15100,7 +15108,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example513() async {
+	@Test func example513Line7847LinkBaruri() async {
 		let input = """
 
 		[link] bar](/uri)
@@ -15126,7 +15134,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example514() async {
+	@Test func example514Line7854LinkBaruri() async {
 		let input = """
 
 		[link [bar](/uri)
@@ -15152,7 +15160,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example515() async {
+	@Test func example515Line7861LinkBaruri() async {
 		let input = """
 
 		[link \\[bar](/uri)
@@ -15178,7 +15186,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example516() async {
+	@Test func example516Line7870LinkFooBarUri() async {
 		let input = """
 
 		[link *foo **bar** `#`*](/uri)
@@ -15204,7 +15212,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example517() async {
+	@Test func example517Line7877Moonmoonjpguri() async {
 		let input = """
 
 		[![moon](moon.jpg)](/uri)
@@ -15230,7 +15238,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example518() async {
+	@Test func example518Line7886FooBaruriuri() async {
 		let input = """
 
 		[foo [bar](/uri)](/uri)
@@ -15256,7 +15264,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example519() async {
+	@Test func example519Line7893FooBarBazuriuriuri() async {
 		let input = """
 
 		[foo *[bar [baz](/uri)](/uri)*](/uri)
@@ -15282,7 +15290,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example520() async {
+	@Test func example520Line7900Foouri1uri2uri3() async {
 		let input = """
 
 		![[[foo](uri1)](uri2)](uri3)
@@ -15308,7 +15316,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example521() async {
+	@Test func example521Line7910Foouri() async {
 		let input = """
 
 		*[foo*](/uri)
@@ -15334,7 +15342,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example522() async {
+	@Test func example522Line7917FooBarbaz() async {
 		let input = """
 
 		[foo *bar](baz*)
@@ -15360,7 +15368,8 @@ struct SpecCmTests {
 		}
 	}
 
-	/*@Test*/ func example523() async {
+	// TODO:
+	/* @Test */ func example523Line7927FooBarBaz() async {
 		let input = """
 
 		*foo [bar* baz]
@@ -15386,7 +15395,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example524() async {
+	@Test func example524Line7937FooBarAttrbaz() async {
 		let input = """
 
 		[foo <bar attr="](baz)">
@@ -15412,7 +15421,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example525() async {
+	@Test func example525Line7944Foouri() async {
 		let input = """
 
 		[foo`](/uri)`
@@ -15438,7 +15447,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example526() async {
+	@Test func example526Line7951Foohttpsexamplecomsearchuri() async {
 		let input = """
 
 		[foo<https://example.com/?search=](uri)>
@@ -15464,7 +15473,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example527() async {
+	@Test func example527Line7989FoobarnnbarUrlTitle() async {
 		let input = """
 
 		[foo][bar]
@@ -15492,7 +15501,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example528() async {
+	@Test func example528Line8004LinkFooBarrefnnrefUri() async {
 		let input = """
 
 		[link [foo [bar]]][ref]
@@ -15520,7 +15529,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example529() async {
+	@Test func example529Line8013LinkBarrefnnrefUri() async {
 		let input = """
 
 		[link \\[bar][ref]
@@ -15548,7 +15557,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example530() async {
+	@Test func example530Line8024LinkFooBarRefnnrefUri() async {
 		let input = """
 
 		[link *foo **bar** `#`*][ref]
@@ -15576,7 +15585,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example531() async {
+	@Test func example531Line8033MoonmoonjpgrefnnrefUri() async {
 		let input = """
 
 		[![moon](moon.jpg)][ref]
@@ -15604,7 +15613,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example532() async {
+	@Test func example532Line8044FooBarurirefnnrefUri() async {
 		let input = """
 
 		[foo [bar](/uri)][ref]
@@ -15632,7 +15641,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example533() async {
+	@Test func example533Line8053FooBarBazrefrefnnrefUri() async {
 		let input = """
 
 		[foo *bar [baz][ref]*][ref]
@@ -15660,7 +15669,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example534() async {
+	@Test func example534Line8068FoorefnnrefUri() async {
 		let input = """
 
 		*[foo*][ref]
@@ -15688,7 +15697,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example535() async {
+	@Test func example535Line8077FooBarrefnnrefUri() async {
 		let input = """
 
 		[foo *bar][ref]*
@@ -15716,7 +15725,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example536() async {
+	@Test func example536Line8089FooBarAttrrefnnrefUri() async {
 		let input = """
 
 		[foo <bar attr="][ref]">
@@ -15744,7 +15753,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example537() async {
+	@Test func example537Line8098FoorefnnrefUri() async {
 		let input = """
 
 		[foo`][ref]`
@@ -15772,7 +15781,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example538() async {
+	@Test func example538Line8107FoohttpsexamplecomsearchrefnnrefUri() async {
 		let input = """
 
 		[foo<https://example.com/?search=][ref]>
@@ -15800,7 +15809,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example539() async {
+	@Test func example539Line8118FooBaRnnbarUrlTitle() async {
 		let input = """
 
 		[foo][BaR]
@@ -15828,7 +15837,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example540() async {
+	@Test func example540Line8129NnSSUrl() async {
 		let input = """
 
 		[ẞ]
@@ -15856,7 +15865,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example541() async {
+	@Test func example541Line8141FoonBarUrlnnBazFooBar() async {
 		let input = """
 
 		[Foo
@@ -15885,7 +15894,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example542() async {
+	@Test func example542Line8154FooBarnnbarUrlTitle() async {
 		let input = """
 
 		[foo] [bar]
@@ -15913,7 +15922,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example543() async {
+	@Test func example543Line8163FoonbarnnbarUrlTitle() async {
 		let input = """
 
 		[foo]
@@ -15943,7 +15952,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example544() async {
+	@Test func example544Line8204FooUrl1nnfooUrl2nnbarfoo() async {
 		let input = """
 
 		[foo]: /url1
@@ -15973,7 +15982,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example545() async {
+	@Test func example545Line8219BarfoonnfooUrl() async {
 		let input = """
 
 		[bar][foo\\!]
@@ -16001,7 +16010,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example546() async {
+	@Test func example546Line8231FoorefnnrefUri() async {
 		let input = """
 
 		[foo][ref[]
@@ -16030,7 +16039,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example547() async {
+	@Test func example547Line8241FoorefbarnnrefbarUri() async {
 		let input = """
 
 		[foo][ref[bar]]
@@ -16059,7 +16068,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example548() async {
+	@Test func example548Line8251FoonnfooUrl() async {
 		let input = """
 
 		[[[foo]]]
@@ -16088,7 +16097,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example549() async {
+	@Test func example549Line8261FoorefnnrefUri() async {
 		let input = """
 
 		[foo][ref\\[]
@@ -16116,7 +16125,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example550() async {
+	@Test func example550Line8272BarUrinnbar() async {
 		let input = """
 
 		[bar\\\\]: /uri
@@ -16144,7 +16153,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example551() async {
+	@Test func example551Line8284NnUri() async {
 		let input = """
 
 		[]
@@ -16173,7 +16182,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example552() async {
+	@Test func example552Line8294NNnnUri() async {
 		let input = """
 
 		[
@@ -16206,7 +16215,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example553() async {
+	@Test func example553Line8317FoonnfooUrlTitle() async {
 		let input = """
 
 		[foo][]
@@ -16234,7 +16243,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example554() async {
+	@Test func example554Line8326FooBarnnfooBarUrlTitle() async {
 		let input = """
 
 		[*foo* bar][]
@@ -16262,7 +16271,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example555() async {
+	@Test func example555Line8337FoonnfooUrlTitle() async {
 		let input = """
 
 		[Foo][]
@@ -16290,7 +16299,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example556() async {
+	@Test func example556Line8350FooNnnfooUrlTitle() async {
 		let input = """
 
 		[foo] 
@@ -16320,7 +16329,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example557() async {
+	@Test func example557Line8370FoonnfooUrlTitle() async {
 		let input = """
 
 		[foo]
@@ -16348,7 +16357,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example558() async {
+	@Test func example558Line8379FooBarnnfooBarUrlTitle() async {
 		let input = """
 
 		[*foo* bar]
@@ -16376,7 +16385,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example559() async {
+	@Test func example559Line8388FooBarnnfooBarUrlTitle() async {
 		let input = """
 
 		[[*foo* bar]]
@@ -16404,7 +16413,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example560() async {
+	@Test func example560Line8397BarFoonnfooUrl() async {
 		let input = """
 
 		[[bar [foo]
@@ -16432,7 +16441,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example561() async {
+	@Test func example561Line8408FoonnfooUrlTitle() async {
 		let input = """
 
 		[Foo]
@@ -16460,7 +16469,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example562() async {
+	@Test func example562Line8419FooBarnnfooUrl() async {
 		let input = """
 
 		[foo] bar
@@ -16488,7 +16497,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example563() async {
+	@Test func example563Line8431FoonnfooUrlTitle() async {
 		let input = """
 
 		\\[foo]
@@ -16516,7 +16525,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example564() async {
+	@Test func example564Line8443FooUrlnnfoo() async {
 		let input = """
 
 		[foo*]: /url
@@ -16544,7 +16553,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example565() async {
+	@Test func example565Line8455FoobarnnfooUrl1nbarUrl2() async {
 		let input = """
 
 		[foo][bar]
@@ -16573,7 +16582,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example566() async {
+	@Test func example566Line8464FoonnfooUrl1() async {
 		let input = """
 
 		[foo][]
@@ -16601,7 +16610,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example567() async {
+	@Test func example567Line8474FoonnfooUrl1() async {
 		let input = """
 
 		[foo]()
@@ -16629,7 +16638,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example568() async {
+	@Test func example568Line8482FoonotALinknnfooUrl1() async {
 		let input = """
 
 		[foo](not a link)
@@ -16657,7 +16666,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example569() async {
+	@Test func example569Line8493FoobarbaznnbazUrl() async {
 		let input = """
 
 		[foo][bar][baz]
@@ -16685,7 +16694,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example570() async {
+	@Test func example570Line8505FoobarbaznnbazUrl1nbarUrl2() async {
 		let input = """
 
 		[foo][bar][baz]
@@ -16714,7 +16723,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example571() async {
+	@Test func example571Line8518FoobarbaznnbazUrl1nfooUrl2() async {
 		let input = """
 
 		[foo][bar][baz]
@@ -16743,7 +16752,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example572() async {
+	@Test func example572Line8541FoourlTitle() async {
 		let input = """
 
 		![foo](/url "title")
@@ -16769,7 +16778,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example573() async {
+	@Test func example573Line8548FooBarnnfooBarTrainjpgTrainTracks() async {
 		let input = """
 
 		![foo *bar*]
@@ -16797,7 +16806,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example574() async {
+	@Test func example574Line8557FooBarurlurl2() async {
 		let input = """
 
 		![foo ![bar](/url)](/url2)
@@ -16823,7 +16832,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example575() async {
+	@Test func example575Line8564FooBarurlurl2() async {
 		let input = """
 
 		![foo [bar](/url)](/url2)
@@ -16849,7 +16858,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example576() async {
+	@Test func example576Line8578FooBarnnfooBarTrainjpgTrainTracks() async {
 		let input = """
 
 		![foo *bar*][]
@@ -16877,7 +16886,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example577() async {
+	@Test func example577Line8587FooBarfoobarnnFOOBARTrainjpgTrainTracks() async {
 		let input = """
 
 		![foo *bar*][foobar]
@@ -16905,7 +16914,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example578() async {
+	@Test func example578Line8596Footrainjpg() async {
 		let input = """
 
 		![foo](train.jpg)
@@ -16931,7 +16940,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example579() async {
+	@Test func example579Line8603MyFooBarpathtotrainjpgTitle() async {
 		let input = """
 
 		My ![foo bar](/path/to/train.jpg  "title"   )
@@ -16957,7 +16966,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example580() async {
+	@Test func example580Line8610Foourl() async {
 		let input = """
 
 		![foo](<url>)
@@ -16983,7 +16992,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example581() async {
+	@Test func example581Line8617Url() async {
 		let input = """
 
 		![](/url)
@@ -17009,7 +17018,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example582() async {
+	@Test func example582Line8626FoobarnnbarUrl() async {
 		let input = """
 
 		![foo][bar]
@@ -17037,7 +17046,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example583() async {
+	@Test func example583Line8635FoobarnnBARUrl() async {
 		let input = """
 
 		![foo][bar]
@@ -17065,7 +17074,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example584() async {
+	@Test func example584Line8646FoonnfooUrlTitle() async {
 		let input = """
 
 		![foo][]
@@ -17093,7 +17102,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example585() async {
+	@Test func example585Line8655FooBarnnfooBarUrlTitle() async {
 		let input = """
 
 		![*foo* bar][]
@@ -17121,7 +17130,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example586() async {
+	@Test func example586Line8666FoonnfooUrlTitle() async {
 		let input = """
 
 		![Foo][]
@@ -17149,7 +17158,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example587() async {
+	@Test func example587Line8678FooNnnfooUrlTitle() async {
 		let input = """
 
 		![foo] 
@@ -17179,7 +17188,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example588() async {
+	@Test func example588Line8691FoonnfooUrlTitle() async {
 		let input = """
 
 		![foo]
@@ -17207,7 +17216,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example589() async {
+	@Test func example589Line8700FooBarnnfooBarUrlTitle() async {
 		let input = """
 
 		![*foo* bar]
@@ -17235,7 +17244,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example590() async {
+	@Test func example590Line8711FoonnfooUrlTitle() async {
 		let input = """
 
 		![[foo]]
@@ -17264,7 +17273,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example591() async {
+	@Test func example591Line8723FoonnfooUrlTitle() async {
 		let input = """
 
 		![Foo]
@@ -17292,7 +17301,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example592() async {
+	@Test func example592Line8735FoonnfooUrlTitle() async {
 		let input = """
 
 		!\\[foo]
@@ -17320,7 +17329,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example593() async {
+	@Test func example593Line8747FoonnfooUrlTitle() async {
 		let input = """
 
 		\\![foo]
@@ -17348,7 +17357,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example594() async {
+	@Test func example594Line8780Httpfoobarbaz() async {
 		let input = """
 
 		<http://foo.bar.baz>
@@ -17374,7 +17383,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example595() async {
+	@Test func example595Line8787Httpsfoobarbaztestqhelloid22boolean() async {
 		let input = """
 
 		<https://foo.bar.baz/test?q=hello&id=22&boolean>
@@ -17400,7 +17409,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example596() async {
+	@Test func example596Line8794Ircfoobar2233baz() async {
 		let input = """
 
 		<irc://foo.bar:2233/baz>
@@ -17426,7 +17435,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example597() async {
+	@Test func example597Line8803MAILTOFOOBARBAZ() async {
 		let input = """
 
 		<MAILTO:FOO@BAR.BAZ>
@@ -17452,7 +17461,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example598() async {
+	@Test func example598Line8815Abcd() async {
 		let input = """
 
 		<a+b+c:d>
@@ -17478,7 +17487,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example599() async {
+	@Test func example599Line8822MadeUpSchemefoobar() async {
 		let input = """
 
 		<made-up-scheme://foo,bar>
@@ -17504,7 +17513,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example600() async {
+	@Test func example600Line8829Https() async {
 		let input = """
 
 		<https://../>
@@ -17530,7 +17539,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example601() async {
+	@Test func example601Line8836Localhost5001foo() async {
 		let input = """
 
 		<localhost:5001/foo>
@@ -17556,7 +17565,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example602() async {
+	@Test func example602Line8845HttpsfoobarbazBim() async {
 		let input = """
 
 		<https://foo.bar/baz bim>
@@ -17582,7 +17591,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example603() async {
+	@Test func example603Line8854Httpsexamplecom() async {
 		let input = """
 
 		<https://example.com/\\[\\>
@@ -17608,7 +17617,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example604() async {
+	@Test func example604Line8876Foobarexamplecom() async {
 		let input = """
 
 		<foo@bar.example.com>
@@ -17634,7 +17643,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example605() async {
+	@Test func example605Line8883FoospecialBarbazBar0com() async {
 		let input = """
 
 		<foo+special@Bar.baz-bar0.com>
@@ -17660,7 +17669,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example606() async {
+	@Test func example606Line8892Foobarexamplecom() async {
 		let input = """
 
 		<foo\\+@bar.example.com>
@@ -17686,7 +17695,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example607() async {
+	@Test func example607Line8901() async {
 		let input = """
 
 		<>
@@ -17712,7 +17721,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example608() async {
+	@Test func example608Line8908Httpsfoobar() async {
 		let input = """
 
 		< https://foo.bar >
@@ -17738,7 +17747,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example609() async {
+	@Test func example609Line8915Mabc() async {
 		let input = """
 
 		<m:abc>
@@ -17764,7 +17773,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example610() async {
+	@Test func example610Line8922Foobarbaz() async {
 		let input = """
 
 		<foo.bar.baz>
@@ -17790,7 +17799,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example611() async {
+	@Test func example611Line8929Httpsexamplecom() async {
 		let input = """
 
 		https://example.com
@@ -17816,7 +17825,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example612() async {
+	@Test func example612Line8936Foobarexamplecom() async {
 		let input = """
 
 		foo@bar.example.com
@@ -17842,7 +17851,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example613() async {
+	@Test func example613Line9016Ababc2c() async {
 		let input = """
 
 		<a><bab><c2c>
@@ -17868,7 +17877,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example614() async {
+	@Test func example614Line9025Ab2() async {
 		let input = """
 
 		<a/><b2/>
@@ -17894,7 +17903,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example615() async {
+	@Test func example615Line9034AB2ndatafoo() async {
 		let input = """
 
 		<a  /><b2
@@ -17922,7 +17931,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example616() async {
+	@Test func example616Line9045AFoobarBamBazEmemnbooleanZoop33zoop33() async {
 		let input = """
 
 		<a foo="bar" bam = 'baz <em>"</em>'
@@ -17950,7 +17959,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example617() async {
+	@Test func example617Line9056FooResponsiveImageSrcfoojpg() async {
 		let input = """
 
 		Foo <responsive-image src="foo.jpg" />
@@ -17976,7 +17985,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example618() async {
+	@Test func example618Line906533() async {
 		let input = """
 
 		<33> <__>
@@ -18002,7 +18011,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example619() async {
+	@Test func example619Line9074AHrefhi() async {
 		let input = """
 
 		<a h*#ref="hi">
@@ -18028,7 +18037,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example620() async {
+	@Test func example620Line9083AHrefhiAHrefhi() async {
 		let input = """
 
 		<a href="hi'> <a href=hi'>
@@ -18054,7 +18063,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example621() async {
+	@Test func example621Line9092AnfoobarNfooBarbaznbimbop() async {
 		let input = """
 
 		< a><
@@ -18086,7 +18095,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example622() async {
+	@Test func example622Line9107AHrefbartitletitle() async {
 		let input = """
 
 		<a href='bar'title=title>
@@ -18112,7 +18121,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example623() async {
+	@Test func example623Line9116Afoo() async {
 		let input = """
 
 		</a></foo >
@@ -18138,7 +18147,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example624() async {
+	@Test func example624Line9125AHreffoo() async {
 		let input = """
 
 		</a href="foo">
@@ -18164,7 +18173,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example625() async {
+	@Test func example625Line9134FooThisIsANcommentWithHyphens() async {
 		let input = """
 
 		foo <!-- this is a --
@@ -18192,7 +18201,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example626() async {
+	@Test func example626Line9142FooFooNnfooFoo() async {
 		let input = """
 
 		foo <!--> foo -->
@@ -18221,7 +18230,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example627() async {
+	@Test func example627Line9154FooPhpEchoA() async {
 		let input = """
 
 		foo <?php echo $a; ?>
@@ -18247,7 +18256,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example628() async {
+	@Test func example628Line9163FooELEMENTBrEMPTY() async {
 		let input = """
 
 		foo <!ELEMENT br EMPTY>
@@ -18273,7 +18282,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example629() async {
+	@Test func example629Line9172FooCDATA() async {
 		let input = """
 
 		foo <![CDATA[>&<]]>
@@ -18299,7 +18308,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example630() async {
+	@Test func example630Line9182FooAHrefouml() async {
 		let input = """
 
 		foo <a href="&ouml;">
@@ -18325,7 +18334,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example631() async {
+	@Test func example631Line9191FooAHref() async {
 		let input = """
 
 		foo <a href="\\*">
@@ -18351,10 +18360,10 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example632() async {
+	@Test func example632Line9198AHref() async {
 		let input = """
 
-		<a href="\"">
+		<a href="\\"">
 
 		"""
 
@@ -18377,7 +18386,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example633() async {
+	@Test func example633Line9212FooNbaz() async {
 		let input = """
 
 		foo  
@@ -18405,7 +18414,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example634() async {
+	@Test func example634Line9224Foonbaz() async {
 		let input = """
 
 		foo\\
@@ -18433,7 +18442,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example635() async {
+	@Test func example635Line9235FooNbaz() async {
 		let input = """
 
 		foo       
@@ -18461,7 +18470,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example636() async {
+	@Test func example636Line9246FooNBar() async {
 		let input = """
 
 		foo  
@@ -18489,7 +18498,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example637() async {
+	@Test func example637Line9255FoonBar() async {
 		let input = """
 
 		foo\\
@@ -18517,7 +18526,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example638() async {
+	@Test func example638Line9267FooNbar() async {
 		let input = """
 
 		*foo  
@@ -18545,7 +18554,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example639() async {
+	@Test func example639Line9276Foonbar() async {
 		let input = """
 
 		*foo\\
@@ -18573,7 +18582,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example640() async {
+	@Test func example640Line9287CodeNspan() async {
 		let input = """
 
 		`code  
@@ -18600,7 +18609,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example641() async {
+	@Test func example641Line9295Codenspan() async {
 		let input = """
 
 		`code\\
@@ -18627,7 +18636,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example642() async {
+	@Test func example642Line9305AHreffooNbar() async {
 		let input = """
 
 		<a href="foo  
@@ -18655,7 +18664,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example643() async {
+	@Test func example643Line9314AHreffoonbar() async {
 		let input = """
 
 		<a href="foo\\
@@ -18683,7 +18692,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example644() async {
+	@Test func example644Line9327Foo() async {
 		let input = """
 
 		foo\\
@@ -18709,7 +18718,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example645() async {
+	@Test func example645Line9334Foo() async {
 		let input = """
 
 		foo  
@@ -18735,7 +18744,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example646() async {
+	@Test func example646Line9341Foo() async {
 		let input = """
 
 		### foo\\
@@ -18761,7 +18770,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example647() async {
+	@Test func example647Line9348Foo() async {
 		let input = """
 
 		### foo  
@@ -18787,7 +18796,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example648() async {
+	@Test func example648Line9363Foonbaz() async {
 		let input = """
 
 		foo
@@ -18815,7 +18824,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example649() async {
+	@Test func example649Line9375FooNBaz() async {
 		let input = """
 
 		foo 
@@ -18843,7 +18852,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example650() async {
+	@Test func example650Line9395HelloThere() async {
 		let input = """
 
 		hello $.;'there
@@ -18869,7 +18878,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example651() async {
+	@Test func example651Line9402Foo() async {
 		let input = """
 
 		Foo χρῆν
@@ -18895,7 +18904,7 @@ struct SpecCmTests {
 		}
 	}
 
-	@Test func example652() async {
+	@Test func example652Line9411MultipleSpaces() async {
 		let input = """
 
 		Multiple     spaces

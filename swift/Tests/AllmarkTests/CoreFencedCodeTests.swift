@@ -203,7 +203,7 @@ struct CoreFencedCodeTests {
 		}
 	}
 
-	@Test func codeFenceWithMultilineContent() async {
+	@Test func codeFenceWithMultiLineContent() async {
 		let input = """
 
 		```
@@ -239,7 +239,7 @@ struct CoreFencedCodeTests {
 	@Test func codeFenceWith1SpaceIndent() async {
 		let input = """
 
-		```
+		 ```
 		code
 		```
 
@@ -749,6 +749,101 @@ struct CoreFencedCodeTests {
 		}
 	}
 
+	@Test func codeFenceInBlockquote() async {
+		let input = """
+
+		> ```
+		code
+		```
+
+		"""
+
+		let expected = """
+		<blockquote>
+		<pre><code></code></pre>
+		</blockquote>
+		<p>code</p>
+		<pre><code></code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
+	@Test func codeFenceInListItem() async {
+		let input = """
+
+		- ```
+		code
+		```
+
+		"""
+
+		let expected = """
+		<ul>
+		<li>
+		<pre><code></code></pre>
+		</li>
+		</ul>
+		<p>code</p>
+		<pre><code></code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
+	@Test func codeFenceWithTrailingSpacesAfterOpening() async {
+		let input = """
+
+		```   
+		code
+		```
+
+		"""
+
+		let expected = """
+		<pre><code>code
+		</code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
 	@Test func codeFenceWithTrailingSpacesAfterClosing() async {
 		let input = """
 
@@ -781,9 +876,9 @@ struct CoreFencedCodeTests {
 	@Test func codeFenceWithVeryLongOpening() async {
 		let input = """
 
-		``````````````
+		``````````
 		code
-		``````````````
+		``````````
 
 		"""
 
@@ -925,6 +1020,35 @@ struct CoreFencedCodeTests {
 		}
 	}
 
+	@Test func codeFenceWithTrailingWhitespaceOnClosingFence() async {
+		let input = """
+
+		```
+		code
+		```   
+
+		"""
+
+		let expected = """
+		<pre><code>code
+		</code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
 	@Test func codeFenceBetweenParagraphs() async {
 		let input = """
 
@@ -989,11 +1113,40 @@ struct CoreFencedCodeTests {
 		}
 	}
 
+	@Test func codeFenceWithHTMLEntitiesInInfo() async {
+		let input = """
+
+		```&lt;test&gt;
+		code
+		```
+
+		"""
+
+		let expected = """
+		<pre><code class="language-&lt;test&gt;">code
+		</code></pre>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
 	@Test func codeFenceWithIndentedContentLines() async {
 		let input = """
 
-		```
-		   indented
+		 ```
+		    indented
 		not indented
 		```
 
@@ -1107,7 +1260,7 @@ struct CoreFencedCodeTests {
 		}
 	}
 
-	@Test func codeFenceWithAtxHeadingBelow() async {
+	@Test func codeFenceWithATXHeadingBelow() async {
 		let input = """
 
 		```
@@ -1121,159 +1274,6 @@ struct CoreFencedCodeTests {
 		<pre><code>code
 		</code></pre>
 		<h1>Heading</h1>
-
-		"""
-
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func codeFenceWithTrailingSpacesAfterOpening() async {
-		let input = """
-
-		```   
-		code
-		```
-
-		"""
-
-		let expected = """
-		<pre><code>code
-		</code></pre>
-
-		"""
-
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func codeFenceWithHTMLEntitiesInInfo() async {
-		let input = """
-
-		```&lt;test&gt;
-		code
-		```
-
-		"""
-
-		let expected = """
-		<pre><code class="language-&lt;test&gt;">code
-		</code></pre>
-
-		"""
-
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func codeFenceInBlockquote() async {
-		let input = """
-
-		> ```
-		code
-		```
-
-		"""
-
-		let expected = """
-		<blockquote>
-		<pre><code></code></pre>
-		</blockquote>
-		<p>code</p>
-		<pre><code></code></pre>
-
-		"""
-
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func codeFenceInListItem() async {
-		let input = """
-
-		- ```
-		code
-		```
-
-		"""
-
-		let expected = """
-		<ul>
-		<li>
-		<pre><code></code></pre>
-		</li>
-		</ul>
-		<p>code</p>
-		<pre><code></code></pre>
-
-		"""
-
-		await MainActor.run {
-			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlSpaced == expected)
-
-			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
-			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlTrimmed == expected)
-
-			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
-			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
-			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
-		}
-	}
-
-	@Test func codeFenceWithTrailingWhitespaceOnClosingFence() async {
-		let input = """
-
-		```
-		code
-		```   
-
-		"""
-
-		let expected = """
-		<pre><code>code
-		</code></pre>
 
 		"""
 

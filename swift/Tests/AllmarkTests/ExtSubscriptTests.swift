@@ -28,7 +28,6 @@ struct ExtSubscriptTests {
 		}
 	}
 
-	// NOTE: GFM strikethrough must take precedence
 	@Test func subscriptDouble() async {
 		let input = """
 
@@ -87,10 +86,12 @@ struct ExtSubscriptTests {
 		H~2~O
 
 		"""
+
 		let expected = """
 		<p>H<sub>2</sub>O</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -111,10 +112,12 @@ struct ExtSubscriptTests {
 		x~1~ + x~2~
 
 		"""
+
 		let expected = """
 		<p>x<sub>1</sub> + x<sub>2</sub></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -135,10 +138,12 @@ struct ExtSubscriptTests {
 		a~i~ + b~j~ = c~k~
 
 		"""
+
 		let expected = """
 		<p>a<sub>i</sub> + b<sub>j</sub> = c<sub>k</sub></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -159,10 +164,12 @@ struct ExtSubscriptTests {
 		~note~ This is important.
 
 		"""
+
 		let expected = """
 		<p><sub>note</sub> This is important.</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -183,10 +190,12 @@ struct ExtSubscriptTests {
 		See index~1~
 
 		"""
+
 		let expected = """
 		<p>See index<sub>1</sub></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -207,10 +216,12 @@ struct ExtSubscriptTests {
 		Hello~world!~
 
 		"""
+
 		let expected = """
 		<p>Hello<sub>world!</sub></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -231,10 +242,12 @@ struct ExtSubscriptTests {
 		text ~with spaces~ more
 
 		"""
+
 		let expected = """
 		<p>text <sub>with spaces</sub> more</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -255,10 +268,12 @@ struct ExtSubscriptTests {
 		math~i+j~
 
 		"""
+
 		let expected = """
 		<p>math<sub>i+j</sub></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -279,10 +294,12 @@ struct ExtSubscriptTests {
 		test~ing~test
 
 		"""
+
 		let expected = """
 		<p>test<sub>ing</sub>test</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -303,10 +320,12 @@ struct ExtSubscriptTests {
 		text~~text
 
 		"""
+
 		let expected = """
 		<p>text~~text</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -327,10 +346,12 @@ struct ExtSubscriptTests {
 		text ~**bold**~
 
 		"""
+
 		let expected = """
 		<p>text <sub><strong>bold</strong></sub></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -351,10 +372,12 @@ struct ExtSubscriptTests {
 		text ~`code`~
 
 		"""
+
 		let expected = """
 		<p>text <sub><code>code</code></sub></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -375,10 +398,12 @@ struct ExtSubscriptTests {
 		text \\~not subscript\\~
 
 		"""
+
 		let expected = """
 		<p>text ~not subscript~</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -399,10 +424,12 @@ struct ExtSubscriptTests {
 		text ~not closed
 
 		"""
+
 		let expected = """
 		<p>text ~not closed</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -423,10 +450,12 @@ struct ExtSubscriptTests {
 		text not opened~
 
 		"""
+
 		let expected = """
 		<p>text not opened~</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -447,6 +476,7 @@ struct ExtSubscriptTests {
 		- Item with ~subscript~
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item with <sub>subscript</sub></li>
@@ -474,6 +504,7 @@ struct ExtSubscriptTests {
 		> Quote with ~subscript~
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Quote with <sub>subscript</sub></p>
@@ -501,10 +532,12 @@ struct ExtSubscriptTests {
 		This is ~~deleted~~ text.
 
 		"""
+
 		let expected = """
 		<p>This is <del>deleted</del> text.</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -525,10 +558,12 @@ struct ExtSubscriptTests {
 		text ~tilde ~ inside~
 
 		"""
+
 		let expected = """
 		<p>text <sub>tilde ~ inside</sub></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -549,10 +584,12 @@ struct ExtSubscriptTests {
 		text ~~struck~~, not subscripted
 
 		"""
+
 		let expected = """
 		<p>text <del>struck</del>, not subscripted</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)

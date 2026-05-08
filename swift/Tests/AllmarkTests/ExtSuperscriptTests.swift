@@ -86,10 +86,12 @@ struct ExtSuperscriptTests {
 		x^2^
 
 		"""
+
 		let expected = """
 		<p>x<sup>2</sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -110,10 +112,12 @@ struct ExtSuperscriptTests {
 		E=mc^2^
 
 		"""
+
 		let expected = """
 		<p>E=mc<sup>2</sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -134,10 +138,12 @@ struct ExtSuperscriptTests {
 		x^2^ + y^2^ = z^2^
 
 		"""
+
 		let expected = """
 		<p>x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -158,10 +164,12 @@ struct ExtSuperscriptTests {
 		^note^ This is important.
 
 		"""
+
 		let expected = """
 		<p><sup>note</sup> This is important.</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -182,10 +190,12 @@ struct ExtSuperscriptTests {
 		See footnote^1^
 
 		"""
+
 		let expected = """
 		<p>See footnote<sup>1</sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -206,10 +216,12 @@ struct ExtSuperscriptTests {
 		Hello^world!^
 
 		"""
+
 		let expected = """
 		<p>Hello<sup>world!</sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -230,10 +242,12 @@ struct ExtSuperscriptTests {
 		text ^with spaces^ more
 
 		"""
+
 		let expected = """
 		<p>text <sup>with spaces</sup> more</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -254,10 +268,12 @@ struct ExtSuperscriptTests {
 		math^2+3^
 
 		"""
+
 		let expected = """
 		<p>math<sup>2+3</sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -278,10 +294,12 @@ struct ExtSuperscriptTests {
 		test^ing^test
 
 		"""
+
 		let expected = """
 		<p>test<sup>ing</sup>test</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -302,10 +320,12 @@ struct ExtSuperscriptTests {
 		text^^text
 
 		"""
+
 		let expected = """
 		<p>text^^text</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -326,10 +346,12 @@ struct ExtSuperscriptTests {
 		text ^**bold**^
 
 		"""
+
 		let expected = """
 		<p>text <sup><strong>bold</strong></sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -350,10 +372,12 @@ struct ExtSuperscriptTests {
 		text ^`code`^
 
 		"""
+
 		let expected = """
 		<p>text <sup><code>code</code></sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -374,10 +398,12 @@ struct ExtSuperscriptTests {
 		text \\^not superscript\\^
 
 		"""
+
 		let expected = """
 		<p>text ^not superscript^</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -398,10 +424,12 @@ struct ExtSuperscriptTests {
 		text ^not closed
 
 		"""
+
 		let expected = """
 		<p>text ^not closed</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -422,10 +450,12 @@ struct ExtSuperscriptTests {
 		text not opened^
 
 		"""
+
 		let expected = """
 		<p>text not opened^</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -446,6 +476,7 @@ struct ExtSuperscriptTests {
 		- Item with ^superscript^
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item with <sup>superscript</sup></li>
@@ -473,6 +504,7 @@ struct ExtSuperscriptTests {
 		> Quote with ^superscript^
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Quote with <sup>superscript</sup></p>
@@ -500,11 +532,12 @@ struct ExtSuperscriptTests {
 		x^y^z^
 
 		"""
-		// The first pair of carets creates a superscript, leaving ^z^ as text
+
 		let expected = """
 		<p>x<sup>y</sup>z^</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -525,10 +558,12 @@ struct ExtSuperscriptTests {
 		text ^caret ^ inside^
 
 		"""
+
 		let expected = """
 		<p>text <sup>caret ^ inside</sup></p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)

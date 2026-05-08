@@ -2,12 +2,13 @@
 import Testing
 
 struct CoreHtmlBlockTests {
-	@Test func htmlScriptTagSingleLine() async {
+	@Test func hTMLScriptTagSingleLine() async {
 		let input = """
 
 		<script>alert('hi');</script>
 
 		"""
+
 		let expected = """
 		<script>alert('hi');</script>
 
@@ -27,7 +28,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlScriptTagMultiLine() async {
+	@Test func hTMLScriptTagMultiLine() async {
 		let input = """
 
 		<script>
@@ -59,12 +60,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlPreTag() async {
+	@Test func hTMLPreTag() async {
 		let input = """
 
 		<pre>code here</pre>
 
 		"""
+
 		let expected = """
 		<pre>code here</pre>
 
@@ -84,12 +86,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlStyleTag() async {
+	@Test func hTMLStyleTag() async {
 		let input = """
 
 		<style>body { color: red; }</style>
 
 		"""
+
 		let expected = """
 		<style>body { color: red; }</style>
 
@@ -109,12 +112,40 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCommentSingleLine() async {
+	// TODO:
+	/* @Test */ func hTMLTextareaTag() async {
+		let input = """
+
+		<textarea>Type here</textarea>
+
+		"""
+
+		let expected = """
+		<p><textarea>Type here</textarea></p>
+
+		"""
+
+		await MainActor.run {
+			let htmlSpaced = _transform(src: input, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlSpaced == expected)
+
+			let inputTrimmed = String(input[input.index(after: input.startIndex) ..< input.index(before: input.endIndex)])
+			let htmlTrimmed = _transform(src: inputTrimmed, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlTrimmed == expected)
+
+			let inputCrLf = input.replacingOccurrences(of: "\n", with: "\r\n")
+			let htmlCrLf = _transform(src: inputCrLf, rules: coreRuleSet, renderers: htmlRenderers)
+			#expect(htmlCrLf.replacingOccurrences(of: "\r\n", with: "\n") == expected)
+		}
+	}
+
+	@Test func hTMLCommentSingleLine() async {
 		let input = """
 
 		<!-- This is a comment -->
 
 		"""
+
 		let expected = """
 		<!-- This is a comment -->
 
@@ -134,7 +165,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCommentMultiLine() async {
+	@Test func hTMLCommentMultiLine() async {
 		let input = """
 
 		<!--
@@ -166,12 +197,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlProcessingInstruction() async {
+	@Test func hTMLProcessingInstruction() async {
 		let input = """
 
 		<?php echo 'hello'; ?>
 
 		"""
+
 		let expected = """
 		<?php echo 'hello'; ?>
 
@@ -191,12 +223,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlDeclarationDOCTYPE() async {
+	@Test func hTMLDeclarationDOCTYPE() async {
 		let input = """
 
 		<!DOCTYPE html>
 
 		"""
+
 		let expected = """
 		<!DOCTYPE html>
 
@@ -216,12 +249,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCDATASection() async {
+	@Test func hTMLCDATASection() async {
 		let input = """
 
 		<![CDATA[<greeting>Hello</greeting>]]>
 
 		"""
+
 		let expected = """
 		<![CDATA[<greeting>Hello</greeting>]]>
 
@@ -241,12 +275,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockLevelDivTag() async {
+	@Test func hTMLBlockLevelDivTag() async {
 		let input = """
 
 		<div>Content</div>
 
 		"""
+
 		let expected = """
 		<div>Content</div>
 
@@ -266,7 +301,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlDivWithBlankLineAfter() async {
+	@Test func hTMLDivWithBlankLineAfter() async {
 		let input = """
 
 		<div>Content</div>
@@ -295,12 +330,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlParagraphTag() async {
+	@Test func hTMLParagraphTag() async {
 		let input = """
 
 		<p>HTML paragraph</p>
 
 		"""
+
 		let expected = """
 		<p>HTML paragraph</p>
 
@@ -320,12 +356,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlHeadingTags() async {
+	@Test func hTMLHeadingTags() async {
 		let input = """
 
 		<h1>Heading</h1>
 
 		"""
+
 		let expected = """
 		<h1>Heading</h1>
 
@@ -345,7 +382,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlListTags() async {
+	@Test func hTMLListTags() async {
 		let input = """
 
 		<ul>
@@ -375,12 +412,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlTableTag() async {
+	@Test func hTMLTableTag() async {
 		let input = """
 
 		<table><tr><td>Cell</td></tr></table>
 
 		"""
+
 		let expected = """
 		<table><tr><td>Cell</td></tr></table>
 
@@ -400,12 +438,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockWithIndentationLessThan4Spaces() async {
+	@Test func hTMLBlockWithIndentationLessThan4Spaces() async {
 		let input = """
 
 		   <div>Indented</div>
 
 		"""
+
 		let expected = """
 		   <div>Indented</div>
 
@@ -425,12 +464,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockWith4SpaceIndentShouldBeCode() async {
+	@Test func hTMLBlockWith4SpaceIndentShouldBeCode() async {
 		let input = """
 
 		    <div>Code</div>
 
 		"""
+
 		let expected = """
 		<pre><code>&lt;div&gt;Code&lt;/div&gt;
 		</code></pre>
@@ -451,12 +491,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlClosingTagAlone() async {
+	@Test func hTMLClosingTagAlone() async {
 		let input = """
 
 		</div>
 
 		"""
+
 		let expected = """
 		</div>
 
@@ -476,12 +517,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlSelfClosingTag() async {
+	@Test func hTMLSelfClosingTag() async {
 		let input = """
 
 		<br />
 
 		"""
+
 		let expected = """
 		<br />
 
@@ -501,12 +543,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlImgTag() async {
+	@Test func hTMLImgTag() async {
 		let input = """
 
 		<img src="image.jpg" alt="Image">
 
 		"""
+
 		let expected = """
 		<img src="image.jpg" alt="Image">
 
@@ -526,12 +569,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlHrTag() async {
+	@Test func hTMLHrTag() async {
 		let input = """
 
 		<hr />
 
 		"""
+
 		let expected = """
 		<hr />
 
@@ -551,7 +595,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockFollowedByMarkdown() async {
+	@Test func hTMLBlockFollowedByMarkdown() async {
 		let input = """
 
 		<div>HTML</div>
@@ -580,7 +624,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func paragraphBeforeHtmlBlockType7ShouldNotInterrupt() async {
+	@Test func paragraphBeforeHTMLBlockType7ShouldNotInterrupt() async {
 		let input = """
 
 		Paragraph text
@@ -608,12 +652,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCommentInParagraph() async {
+	@Test func hTMLCommentInParagraph() async {
 		let input = """
 
 		Text <!-- comment --> more text
 
 		"""
+
 		let expected = """
 		<p>Text <!-- comment --> more text</p>
 
@@ -633,7 +678,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func multipleHtmlBlocks() async {
+	@Test func multipleHTMLBlocks() async {
 		let input = """
 
 		<div>First</div>
@@ -662,12 +707,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockWithAttributes() async {
+	@Test func hTMLBlockWithAttributes() async {
 		let input = """
 
 		<div class="container" id="main">Content</div>
 
 		"""
+
 		let expected = """
 		<div class="container" id="main">Content</div>
 
@@ -687,12 +733,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlScriptTagWithAttributes() async {
+	@Test func hTMLScriptTagWithAttributes() async {
 		let input = """
 
 		<script src="script.js" async></script>
 
 		"""
+
 		let expected = """
 		<script src="script.js" async></script>
 
@@ -712,12 +759,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlFormTag() async {
+	@Test func hTMLFormTag() async {
 		let input = """
 
 		<form action="/submit"> <input type="text"> </form>
 
 		"""
+
 		let expected = """
 		<form action="/submit"> <input type="text"> </form>
 
@@ -737,12 +785,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockquoteTag() async {
+	@Test func hTMLBlockquoteTag() async {
 		let input = """
 
 		<blockquote>Quote</blockquote>
 
 		"""
+
 		let expected = """
 		<blockquote>Quote</blockquote>
 
@@ -762,12 +811,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlAddressTag() async {
+	@Test func hTMLAddressTag() async {
 		let input = """
 
 		<address>123 Main St</address>
 
 		"""
+
 		let expected = """
 		<address>123 Main St</address>
 
@@ -787,12 +837,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlArticleTag() async {
+	@Test func hTMLArticleTag() async {
 		let input = """
 
 		<article>Content</article>
 
 		"""
+
 		let expected = """
 		<article>Content</article>
 
@@ -812,12 +863,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlAsideTag() async {
+	@Test func hTMLAsideTag() async {
 		let input = """
 
 		<aside>Sidebar</aside>
 
 		"""
+
 		let expected = """
 		<aside>Sidebar</aside>
 
@@ -837,12 +889,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlSectionTag() async {
+	@Test func hTMLSectionTag() async {
 		let input = """
 
 		<section>Section</section>
 
 		"""
+
 		let expected = """
 		<section>Section</section>
 
@@ -862,12 +915,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlNavTag() async {
+	@Test func hTMLNavTag() async {
 		let input = """
 
 		<nav>Menu</nav>
 
 		"""
+
 		let expected = """
 		<nav>Menu</nav>
 
@@ -887,12 +941,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlFooterTag() async {
+	@Test func hTMLFooterTag() async {
 		let input = """
 
 		<footer>Copyright</footer>
 
 		"""
+
 		let expected = """
 		<footer>Copyright</footer>
 
@@ -912,12 +967,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlHeaderTag() async {
+	@Test func hTMLHeaderTag() async {
 		let input = """
 
 		<header>Header</header>
 
 		"""
+
 		let expected = """
 		<header>Header</header>
 
@@ -937,12 +993,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlMainTag() async {
+	@Test func hTMLMainTag() async {
 		let input = """
 
 		<main>Main</main>
 
 		"""
+
 		let expected = """
 		<main>Main</main>
 
@@ -962,12 +1019,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlFigureTag() async {
+	@Test func hTMLFigureTag() async {
 		let input = """
 
 		<figure><img src="img.jpg"></figure>
 
 		"""
+
 		let expected = """
 		<figure><img src="img.jpg"></figure>
 
@@ -987,12 +1045,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlFigcaptionTag() async {
+	@Test func hTMLFigcaptionTag() async {
 		let input = """
 
 		<figcaption>Caption</figcaption>
 
 		"""
+
 		let expected = """
 		<figcaption>Caption</figcaption>
 
@@ -1012,12 +1071,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlDetailsAndSummaryTags() async {
+	@Test func hTMLDetailsAndSummaryTags() async {
 		let input = """
 
 		<details><summary>Click</summary>Content</details>
 
 		"""
+
 		let expected = """
 		<details><summary>Click</summary>Content</details>
 
@@ -1037,12 +1097,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlDialogTag() async {
+	@Test func hTMLDialogTag() async {
 		let input = """
 
 		<dialog>Dialog content</dialog>
 
 		"""
+
 		let expected = """
 		<dialog>Dialog content</dialog>
 
@@ -1062,12 +1123,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlFieldsetTag() async {
+	@Test func hTMLFieldsetTag() async {
 		let input = """
 
 		<fieldset>Field</fieldset>
 
 		"""
+
 		let expected = """
 		<fieldset>Field</fieldset>
 
@@ -1087,12 +1149,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlLegendTag() async {
+	@Test func hTMLLegendTag() async {
 		let input = """
 
 		<legend>Legend</legend>
 
 		"""
+
 		let expected = """
 		<legend>Legend</legend>
 
@@ -1112,12 +1175,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlDlDtDdTags() async {
+	@Test func hTMLDlDtDdTags() async {
 		let input = """
 
 		<dl><dt>Term</dt><dd>Definition</dd></dl>
 
 		"""
+
 		let expected = """
 		<dl><dt>Term</dt><dd>Definition</dd></dl>
 
@@ -1137,12 +1201,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlLinkTagEmpty() async {
+	@Test func hTMLLinkTagEmpty() async {
 		let input = """
 
 		<link rel="stylesheet" href="style.css">
 
 		"""
+
 		let expected = """
 		<link rel="stylesheet" href="style.css">
 
@@ -1162,12 +1227,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBaseTag() async {
+	@Test func hTMLBaseTag() async {
 		let input = """
 
 		<base href="https://example.com/">
 
 		"""
+
 		let expected = """
 		<base href="https://example.com/">
 
@@ -1187,12 +1253,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBasefontTag() async {
+	@Test func hTMLBasefontTag() async {
 		let input = """
 
 		<basefont face="Arial">
 
 		"""
+
 		let expected = """
 		<basefont face="Arial">
 
@@ -1212,12 +1279,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCenterTag() async {
+	@Test func hTMLCenterTag() async {
 		let input = """
 
 		<center>Centered</center>
 
 		"""
+
 		let expected = """
 		<center>Centered</center>
 
@@ -1237,12 +1305,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlColAndColgroupTags() async {
+	@Test func hTMLColAndColgroupTags() async {
 		let input = """
 
 		<colgroup><col span="2"></colgroup>
 
 		"""
+
 		let expected = """
 		<colgroup><col span="2"></colgroup>
 
@@ -1262,12 +1331,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlTbodyTheadTfootTrThTdTags() async {
+	@Test func hTMLTbodyTheadTfootTrThTdTags() async {
 		let input = """
 
 		<table><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>
 
 		"""
+
 		let expected = """
 		<table><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>
 
@@ -1287,12 +1357,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCaptionTag() async {
+	@Test func hTMLCaptionTag() async {
 		let input = """
 
 		<caption>Table caption</caption>
 
 		"""
+
 		let expected = """
 		<caption>Table caption</caption>
 
@@ -1312,12 +1383,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlSourceTag() async {
+	@Test func hTMLSourceTag() async {
 		let input = """
 
 		<source src="video.mp4" type="video/mp4">
 
 		"""
+
 		let expected = """
 		<source src="video.mp4" type="video/mp4">
 
@@ -1337,12 +1409,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlTrackTag() async {
+	@Test func hTMLTrackTag() async {
 		let input = """
 
 		<track src="captions.vtt" kind="captions">
 
 		"""
+
 		let expected = """
 		<track src="captions.vtt" kind="captions">
 
@@ -1362,12 +1435,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlFramesetFrameNoframesTags() async {
+	@Test func hTMLFramesetFrameNoframesTags() async {
 		let input = """
 
 		<frameset><frame src="frame.html"></frameset>
 
 		"""
+
 		let expected = """
 		<frameset><frame src="frame.html"></frameset>
 
@@ -1387,12 +1461,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlNoframesTag() async {
+	@Test func hTMLNoframesTag() async {
 		let input = """
 
 		<noframes>No frames</noframes>
 
 		"""
+
 		let expected = """
 		<noframes>No frames</noframes>
 
@@ -1412,12 +1487,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlIframeTag() async {
+	@Test func hTMLIframeTag() async {
 		let input = """
 
 		<iframe src="page.html"></iframe>
 
 		"""
+
 		let expected = """
 		<iframe src="page.html"></iframe>
 
@@ -1437,12 +1513,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlParamTag() async {
+	@Test func hTMLParamTag() async {
 		let input = """
 
 		<param name="autoplay" value="true">
 
 		"""
+
 		let expected = """
 		<param name="autoplay" value="true">
 
@@ -1462,12 +1539,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlDirTag() async {
+	@Test func hTMLDirTag() async {
 		let input = """
 
 		<dir><li>Item</li></dir>
 
 		"""
+
 		let expected = """
 		<dir><li>Item</li></dir>
 
@@ -1487,12 +1565,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlMenuAndMenuitemTags() async {
+	@Test func hTMLMenuAndMenuitemTags() async {
 		let input = """
 
 		<menu><menuitem>Item</menuitem></menu>
 
 		"""
+
 		let expected = """
 		<menu><menuitem>Item</menuitem></menu>
 
@@ -1512,12 +1591,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlOptgroupAndOptionTags() async {
+	@Test func hTMLOptgroupAndOptionTags() async {
 		let input = """
 
 		<select><optgroup label="Group"><option>Item</option></optgroup></select>
 
 		"""
+
 		let expected = """
 		<p><select><optgroup label="Group"><option>Item</option></optgroup></select></p>
 
@@ -1537,12 +1617,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlTitleTagInBodyNotHead() async {
+	@Test func hTMLTitleTagInBodyNotHead() async {
 		let input = """
 
 		<title>Page Title</title>
 
 		"""
+
 		let expected = """
 		<title>Page Title</title>
 
@@ -1562,7 +1643,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockWithLineBreaksInside() async {
+	@Test func hTMLBlockWithLineBreaksInside() async {
 		let input = """
 
 		<div>
@@ -1596,7 +1677,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockInsideList() async {
+	@Test func hTMLBlockInsideList() async {
 		let input = """
 
 		- Item
@@ -1629,12 +1710,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockInsideBlockquote() async {
+	@Test func hTMLBlockInsideBlockquote() async {
 		let input = """
 
 		> <div>HTML</div>
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<div>HTML</div>
@@ -1656,12 +1738,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCaseInsensitiveUppercase() async {
+	@Test func hTMLCaseInsensitiveUppercase() async {
 		let input = """
 
 		<DIV>Content</DIV>
 
 		"""
+
 		let expected = """
 		<DIV>Content</DIV>
 
@@ -1681,12 +1764,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlScriptTagWithMixedCase() async {
+	@Test func hTMLScriptTagWithMixedCase() async {
 		let input = """
 
 		<SCRIPT>alert('hi');</SCRIPT>
 
 		"""
+
 		let expected = """
 		<SCRIPT>alert('hi');</SCRIPT>
 
@@ -1706,12 +1790,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockWithNoContent() async {
+	@Test func hTMLBlockWithNoContent() async {
 		let input = """
 
 		<div></div>
 
 		"""
+
 		let expected = """
 		<div></div>
 
@@ -1731,12 +1816,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCustomTagNonBlockLevel() async {
+	@Test func hTMLCustomTagNonBlockLevel() async {
 		let input = """
 
 		<custom-tag>Content</custom-tag>
 
 		"""
+
 		let expected = """
 		<p><custom-tag>Content</custom-tag></p>
 
@@ -1756,12 +1842,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCommentEndingOnSameLine() async {
+	@Test func hTMLCommentEndingOnSameLine() async {
 		let input = """
 
 		<!-- comment -->
 
 		"""
+
 		let expected = """
 		<!-- comment -->
 
@@ -1781,12 +1868,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCommentWithMultipleDashes() async {
+	@Test func hTMLCommentWithMultipleDashes() async {
 		let input = """
 
 		<!-- --- comment --- -->
 
 		"""
+
 		let expected = """
 		<!-- --- comment --- -->
 
@@ -1806,12 +1894,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlCDATAWithEmbeddedBrackets() async {
+	@Test func hTMLCDATAWithEmbeddedBrackets() async {
 		let input = """
 
 		<![CDATA[<test>data</test>]]>
 
 		"""
+
 		let expected = """
 		<![CDATA[<test>data</test>]]>
 
@@ -1831,12 +1920,13 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlDOCTYPEWithPublicIdentifier() async {
+	@Test func hTMLDOCTYPEWithPublicIdentifier() async {
 		let input = """
 
 		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
 		"""
+
 		let expected = """
 		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -1856,7 +1946,7 @@ struct CoreHtmlBlockTests {
 		}
 	}
 
-	@Test func htmlBlockContinuesUntilBlankLineType6() async {
+	@Test func hTMLBlockContinuesUntilBlankLineType6() async {
 		let input = """
 
 		<div>Line 1

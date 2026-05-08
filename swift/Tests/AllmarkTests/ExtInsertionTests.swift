@@ -86,6 +86,7 @@ struct ExtInsertionTests {
 		text {+a+} more
 
 		"""
+
 		let expected = """
 		<p>text <ins class="markdown-insertion">a</ins> more</p>
 
@@ -111,6 +112,7 @@ struct ExtInsertionTests {
 		text {+with spaces+} more
 
 		"""
+
 		let expected = """
 		<p>text <ins class="markdown-insertion">with spaces</ins> more</p>
 
@@ -136,6 +138,7 @@ struct ExtInsertionTests {
 		{+inserted+} This is new.
 
 		"""
+
 		let expected = """
 		<p><ins class="markdown-insertion">inserted</ins> This is new.</p>
 
@@ -161,6 +164,7 @@ struct ExtInsertionTests {
 		This is {+inserted+}
 
 		"""
+
 		let expected = """
 		<p>This is <ins class="markdown-insertion">inserted</ins></p>
 
@@ -186,6 +190,7 @@ struct ExtInsertionTests {
 		text {+word!+} more
 
 		"""
+
 		let expected = """
 		<p>text <ins class="markdown-insertion">word!</ins> more</p>
 
@@ -211,6 +216,7 @@ struct ExtInsertionTests {
 		text {+a+b+} more
 
 		"""
+
 		let expected = """
 		<p>text <ins class="markdown-insertion">a+b</ins> more</p>
 
@@ -236,6 +242,7 @@ struct ExtInsertionTests {
 		test{+ing+}test
 
 		"""
+
 		let expected = """
 		<p>test<ins class="markdown-insertion">ing</ins>test</p>
 
@@ -261,10 +268,12 @@ struct ExtInsertionTests {
 		text{++}text
 
 		"""
+
 		let expected = """
 		<p>text{++}text</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -285,6 +294,7 @@ struct ExtInsertionTests {
 		text {+**bold**+}
 
 		"""
+
 		let expected = """
 		<p>text <ins class="markdown-insertion"><strong>bold</strong></ins></p>
 
@@ -310,6 +320,7 @@ struct ExtInsertionTests {
 		text {+`code`+}
 
 		"""
+
 		let expected = """
 		<p>text <ins class="markdown-insertion"><code>code</code></ins></p>
 
@@ -335,10 +346,12 @@ struct ExtInsertionTests {
 		text \\{+not insertion\\+}
 
 		"""
+
 		let expected = """
 		<p>text {+not insertion+}</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -359,10 +372,12 @@ struct ExtInsertionTests {
 		text {+not closed
 
 		"""
+
 		let expected = """
 		<p>text {+not closed</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -383,10 +398,12 @@ struct ExtInsertionTests {
 		text not opened+}
 
 		"""
+
 		let expected = """
 		<p>text not opened+}</p>
 
 		"""
+
 		await MainActor.run {
 			let htmlSpaced = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 			#expect(htmlSpaced == expected)
@@ -407,6 +424,7 @@ struct ExtInsertionTests {
 		- Item with {+insertion+}
 
 		"""
+
 		let expected = """
 		<ul>
 		<li>Item with <ins class="markdown-insertion">insertion</ins></li>
@@ -434,6 +452,7 @@ struct ExtInsertionTests {
 		> Quote with {+insertion+}
 
 		"""
+
 		let expected = """
 		<blockquote>
 		<p>Quote with <ins class="markdown-insertion">insertion</ins></p>
@@ -461,6 +480,7 @@ struct ExtInsertionTests {
 		text {+plus + inside+}
 
 		"""
+
 		let expected = """
 		<p>text <ins class="markdown-insertion">plus + inside</ins></p>
 
@@ -486,6 +506,7 @@ struct ExtInsertionTests {
 		{+Start+} of document.
 
 		"""
+
 		let expected = """
 		<p><ins class="markdown-insertion">Start</ins> of document.</p>
 
@@ -511,6 +532,7 @@ struct ExtInsertionTests {
 		End of {+document+}
 
 		"""
+
 		let expected = """
 		<p>End of <ins class="markdown-insertion">document</ins></p>
 
@@ -536,6 +558,7 @@ struct ExtInsertionTests {
 		{+first+} and {+second+} and {+third+}
 
 		"""
+
 		let expected = """
 		<p><ins class="markdown-insertion">first</ins> and <ins class="markdown-insertion">second</ins> and <ins class="markdown-insertion">third</ins></p>
 
@@ -561,6 +584,7 @@ struct ExtInsertionTests {
 		{+inserted *text+} that shouldn't be bold*
 
 		"""
+
 		let expected = """
 		<p><ins class="markdown-insertion">inserted *text</ins> that shouldn't be bold*</p>
 
@@ -586,6 +610,7 @@ struct ExtInsertionTests {
 		*this text should be {+inserted but not bold*+}
 
 		"""
+
 		let expected = """
 		<p>*this text should be <ins class="markdown-insertion">inserted but not bold*</ins></p>
 
