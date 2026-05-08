@@ -7,6 +7,7 @@ Guidelines for AI coding agents working in the allmark repository.
 Allmark is a Markdown parser library supporting CommonMark and GitHub Flavored Markdown (GFM).
 
 Multi-language implementation:
+
 - **TypeScript** (main): `/web` directory
 - **Swift**: `/swift` directory
 - **.NET**: `/dotnet` directory
@@ -15,6 +16,7 @@ Multi-language implementation:
 ## Build/Lint/Test Commands
 
 ### TypeScript (`/web`)
+
 ```bash
 pnpm check              # TypeScript + oxlint
 pnpm build              # Type check + bundle with tsdown
@@ -27,11 +29,13 @@ pnpm bench              # Run Allmark-only benchmarks
 ```
 
 ### TypeScript Comparative Benchmarks (`/bench`)
+
 ```bash
 pnpm bench              # Run comparative benchmarks (Allmark vs markdown-it, micromark, cmark-gfm)
 ```
 
 ### Swift (`/swift`)
+
 ```bash
 swift build                     # Build package
 swift test                      # Run tests
@@ -41,6 +45,7 @@ swift-format --in-place --recursive Sources/ Tests/
 ```
 
 ### .NET (`/dotnet`)
+
 ```bash
 dotnet build                    # Build solution
 dotnet test                     # Run tests
@@ -50,6 +55,7 @@ dotnet run --project Allmark.Benchmarks/Allmark.Benchmarks.csproj  # Run benchma
 ```
 
 ### Zig (`/zig`)
+
 ```bash
 zig build                       # Build
 zig build test                  # Run all tests (no output means all tests succeeded)
@@ -125,6 +131,7 @@ pub const BlockRule = struct {
 ## Architecture
 
 All implementations share similar structure:
+
 - `/block` - Block parsing rules
 - `/inline` - Inline parsing rules
 - `/parse` - Core parsing logic
@@ -136,6 +143,7 @@ All implementations share similar structure:
 ## Testing Patterns
 
 ### TypeScript (Vitest)
+
 ```typescript
 import { expect, test } from "vitest";
 import parse from "../src/parse";
@@ -144,13 +152,14 @@ import core from "../src/rulesets/core";
 import htmlRenderers from "../src/rulesets/htmlRenderers";
 
 test("description", () => {
-    const root = parse(input, core);
-    const html = render(root, htmlRenderers);
-    expect(html).toBe(expected);
+	const root = parse(input, core);
+	const html = render(root, htmlRenderers);
+	expect(html).toBe(expected);
 });
 ```
 
 ### Swift (Swift Testing)
+
 ```swift
 import Testing
 @testable import allmark
@@ -163,6 +172,7 @@ import Testing
 ```
 
 ### .NET (MSTest)
+
 ```csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Allmark;
@@ -177,6 +187,7 @@ public void BasicParse()
 ```
 
 ### Zig
+
 ```zig
 test "basic parse" {
     const root = parse(allocator, input, coreRuleSet, false);
@@ -184,3 +195,39 @@ test "basic parse" {
     try std.testing.expectEqualStrings(expected, html);
 }
 ```
+
+## Test Generation Infrastructure
+
+All tests are generated from spec files in `/web/specs/` using the `splitSpecsIntoTests.ts` script. This ensures test consistency across all language implementations.
+
+### Spec File Format
+
+Spec files use the CommonMark spec format:
+
+`````````````````````````````````
+"description"
+
+```````````````````````````````` example
+input markdown
+.
+expected html output
+`````````````````````````````````
+
+````
+
+- Tests can be skipped by adding `(skip)` after "example"
+- Tab characters are represented as `→` in spec files
+
+### Running Test Generation
+
+```bash
+cd web
+node --import tsx/esm scripts/splitSpecsIntoTests.ts
+````
+
+### Adding New Tests
+
+1. Add test case to appropriate spec file in `/web/specs/`
+2. Run the test generation script
+3. Verify tests pass in all language implementations
+4. Commit both the spec file and generated test files
