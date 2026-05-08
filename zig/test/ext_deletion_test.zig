@@ -448,14 +448,10 @@ test "deletion with code inside" {
 
 test "escaped braces should not be deletion" {
     const input =
-        \\
-        \\text \{-not deletion\-}
-        \\
-    ;
+        "\n" ++
+        "text \\{-not deletion\\-}\n";
     const expected =
-        \\<p>text {-not deletion-}</p>
-        \\
-    ;
+        "<p>text {-not deletion-}</p>\n";
 
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);

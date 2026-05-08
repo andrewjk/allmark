@@ -146,6 +146,8 @@ test "HTML style tag" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
+// TODO: test "HTML textarea tag"
+
 test "HTML comment - single line" {
     const input =
         \\
@@ -2148,6 +2150,84 @@ test "HTML block with line breaks inside" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
+test "HTML block inside list" {
+    const input =
+        \\
+        \\- Item
+        \\
+        \\  <div>HTML</div>
+        \\
+    ;
+    const expected =
+        \\<ul>
+        \\<li>
+        \\<p>Item</p>
+        \\<div>HTML</div>
+        \\</li>
+        \\</ul>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
+
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
+
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+}
+
+test "HTML block inside blockquote" {
+    const input =
+        \\
+        \\> <div>HTML</div>
+        \\
+        \\
+    ;
+    const expected =
+        \\<blockquote>
+        \\<div>HTML</div>
+        \\</blockquote>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
+
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
+
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+}
+
 test "HTML case insensitive - uppercase" {
     const input =
         \\
@@ -2435,84 +2515,6 @@ test "HTML block continues until blank line (type 6)" {
         \\Line 2
         \\Line 3
         \\<p>Next</p>
-        \\
-    ;
-
-    const gpa = std.testing.allocator;
-    const rules = try core.init(gpa);
-    defer core.deinit(&rules, gpa);
-    const renderers = try htmlRenderers.init(gpa);
-    defer htmlRenderers.deinit(&renderers, gpa);
-
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
-    defer gpa.free(htmlSpaced);
-    try std.testing.expectEqualStrings(expected, htmlSpaced);
-
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
-    defer gpa.free(htmlTrimmed);
-    try std.testing.expectEqualStrings(expected, htmlTrimmed);
-
-    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
-    defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
-    defer gpa.free(htmlCrLf);
-    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCrLf2);
-    try std.testing.expectEqualStrings(expected, htmlCrLf2);
-}
-
-test "HTML block inside list" {
-    const input =
-        \\
-        \\- Item
-        \\
-        \\  <div>HTML</div>
-        \\
-    ;
-    const expected =
-        \\<ul>
-        \\<li>
-        \\<p>Item</p>
-        \\<div>HTML</div>
-        \\</li>
-        \\</ul>
-        \\
-    ;
-
-    const gpa = std.testing.allocator;
-    const rules = try core.init(gpa);
-    defer core.deinit(&rules, gpa);
-    const renderers = try htmlRenderers.init(gpa);
-    defer htmlRenderers.deinit(&renderers, gpa);
-
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
-    defer gpa.free(htmlSpaced);
-    try std.testing.expectEqualStrings(expected, htmlSpaced);
-
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
-    defer gpa.free(htmlTrimmed);
-    try std.testing.expectEqualStrings(expected, htmlTrimmed);
-
-    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
-    defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
-    defer gpa.free(htmlCrLf);
-    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCrLf2);
-    try std.testing.expectEqualStrings(expected, htmlCrLf2);
-}
-
-test "HTML block inside blockquote" {
-    const input =
-        \\
-        \\> <div>HTML</div>
-        \\
-        \\
-    ;
-    const expected =
-        \\<blockquote>
-        \\<div>HTML</div>
-        \\</blockquote>
         \\
     ;
 

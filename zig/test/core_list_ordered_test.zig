@@ -1376,6 +1376,52 @@ test "Ordered list followed immediately by bulleted list" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
+test "Ordered list with thematic break in item" {
+    const input =
+        \\
+        \\1. Item 1
+        \\
+        \\   ---
+        \\
+        \\2. Item 2
+        \\
+    ;
+    const expected =
+        \\<ol>
+        \\<li>
+        \\<p>Item 1</p>
+        \\<hr />
+        \\</li>
+        \\<li>
+        \\<p>Item 2</p>
+        \\</li>
+        \\</ol>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
+
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
+
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+}
+
 test "Ordered list with paren delimiter multiple items" {
     const input =
         \\
@@ -1572,52 +1618,6 @@ test "Ordered list at end of line without space" {
     const expected =
         \\<ol>
         \\<li></li>
-        \\</ol>
-        \\
-    ;
-
-    const gpa = std.testing.allocator;
-    const rules = try core.init(gpa);
-    defer core.deinit(&rules, gpa);
-    const renderers = try htmlRenderers.init(gpa);
-    defer htmlRenderers.deinit(&renderers, gpa);
-
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
-    defer gpa.free(htmlSpaced);
-    try std.testing.expectEqualStrings(expected, htmlSpaced);
-
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
-    defer gpa.free(htmlTrimmed);
-    try std.testing.expectEqualStrings(expected, htmlTrimmed);
-
-    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
-    defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
-    defer gpa.free(htmlCrLf);
-    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCrLf2);
-    try std.testing.expectEqualStrings(expected, htmlCrLf2);
-}
-
-test "Ordered list with thematic break in item" {
-    const input =
-        \\
-        \\1. Item 1
-        \\
-        \\   ---
-        \\
-        \\2. Item 2
-        \\
-    ;
-    const expected =
-        \\<ol>
-        \\<li>
-        \\<p>Item 1</p>
-        \\<hr />
-        \\</li>
-        \\<li>
-        \\<p>Item 2</p>
-        \\</li>
         \\</ol>
         \\
     ;

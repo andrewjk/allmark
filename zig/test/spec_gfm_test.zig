@@ -6,7 +6,8 @@ const htmlRenderers = @import("allmark").htmlRenderers;
 
 test "Example 1, line 368: '→foo→baz→→bim'" {
     const input =
-        "\n\tfoo\tbaz\t\tbim\n";
+        "\n" ++
+        "\tfoo\tbaz\t\tbim\n";
     const expected =
         "<pre><code>foo\tbaz\t\tbim\n" ++
         "</code></pre>\n";
@@ -36,7 +37,8 @@ test "Example 1, line 368: '→foo→baz→→bim'" {
 
 test "Example 2, line 375: '  →foo→baz→→bim'" {
     const input =
-        "\n  \tfoo\tbaz\t\tbim\n";
+        "\n" ++
+        "  \tfoo\tbaz\t\tbim\n";
     const expected =
         "<pre><code>foo\tbaz\t\tbim\n" ++
         "</code></pre>\n";
@@ -66,7 +68,8 @@ test "Example 2, line 375: '  →foo→baz→→bim'" {
 
 test "Example 3, line 382: '    a→a\\n    ὐ→a'" {
     const input =
-        "\n    a\ta\n" ++
+        "\n" ++
+        "    a\ta\n" ++
         "    ὐ\ta\n";
     const expected =
         "<pre><code>a\ta\n" ++
@@ -98,16 +101,19 @@ test "Example 3, line 382: '    a→a\\n    ὐ→a'" {
 
 test "Example 4, line 395: '  - foo\\n\\n→bar'" {
     const input =
-        "\n  - foo\n" ++
+        "\n" ++
+        "  - foo\n" ++
         "\n" ++
         "\tbar\n";
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<p>bar</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\<p>bar</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -134,17 +140,20 @@ test "Example 4, line 395: '  - foo\\n\\n→bar'" {
 
 test "Example 5, line 408: '- foo\\n\\n→→bar'" {
     const input =
-        "\n- foo\n" ++
+        "\n" ++
+        "- foo\n" ++
         "\n" ++
         "\t\tbar\n";
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<pre><code>  bar\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\<pre><code>  bar
+        \\</code></pre>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -171,12 +180,15 @@ test "Example 5, line 408: '- foo\\n\\n→→bar'" {
 
 test "Example 6, line 431: '>→→foo'" {
     const input =
-        "\n>\t\tfoo\n";
+        "\n" ++
+        ">\t\tfoo\n";
     const expected =
-        "<blockquote>\n" ++
-        "<pre><code>  foo\n" ++
-        "</code></pre>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<pre><code>  foo
+        \\</code></pre>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -203,14 +215,17 @@ test "Example 6, line 431: '>→→foo'" {
 
 test "Example 7, line 440: '-→→foo'" {
     const input =
-        "\n-\t\tfoo\n";
+        "\n" ++
+        "-\t\tfoo\n";
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<pre><code>  foo\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<pre><code>  foo
+        \\</code></pre>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -237,12 +252,15 @@ test "Example 7, line 440: '-→→foo'" {
 
 test "Example 8, line 452: '    foo\\n→bar'" {
     const input =
-        "\n    foo\n" ++
+        "\n" ++
+        "    foo\n" ++
         "\tbar\n";
     const expected =
-        "<pre><code>foo\n" ++
-        "bar\n" ++
-        "</code></pre>\n";
+        \\<pre><code>foo
+        \\bar
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -269,21 +287,24 @@ test "Example 8, line 452: '    foo\\n→bar'" {
 
 test "Example 9, line 461: ' - foo\\n   - bar\\n→ - baz'" {
     const input =
-        "\n - foo\n" ++
+        "\n" ++
+        " - foo\n" ++
         "   - bar\n" ++
         "\t - baz\n";
     const expected =
-        "<ul>\n" ++
-        "<li>foo\n" ++
-        "<ul>\n" ++
-        "<li>bar\n" ++
-        "<ul>\n" ++
-        "<li>baz</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo
+        \\<ul>
+        \\<li>bar
+        \\<ul>
+        \\<li>baz</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -310,9 +331,12 @@ test "Example 9, line 461: ' - foo\\n   - bar\\n→ - baz'" {
 
 test "Example 10, line 479: '#→Foo'" {
     const input =
-        "\n#\tFoo\n";
+        "\n" ++
+        "#\tFoo\n";
     const expected =
-        "<h1>Foo</h1>\n";
+        \\<h1>Foo</h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -339,9 +363,12 @@ test "Example 10, line 479: '#→Foo'" {
 
 test "Example 11, line 485: '*→*→*→'" {
     const input =
-        "\n*\t*\t*\t\n";
+        "\n" ++
+        "*\t*\t*\t\n";
     const expected =
-        "<hr />\n";
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -368,13 +395,18 @@ test "Example 11, line 485: '*→*→*→'" {
 
 test "Example 12, line 512: '- `one\\n- two`'" {
     const input =
-        "\n- `one\n" ++
-        "- two`\n";
+        \\
+        \\- `one
+        \\- two`
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>`one</li>\n" ++
-        "<li>two`</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>`one</li>
+        \\<li>two`</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -401,13 +433,18 @@ test "Example 12, line 512: '- `one\\n- two`'" {
 
 test "Example 13, line 551: '***\\n---\\n___'" {
     const input =
-        "\n***\n" ++
-        "---\n" ++
-        "___\n";
+        \\
+        \\***
+        \\---
+        \\___
+        \\
+    ;
     const expected =
-        "<hr />\n" ++
-        "<hr />\n" ++
-        "<hr />\n";
+        \\<hr />
+        \\<hr />
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -434,9 +471,14 @@ test "Example 13, line 551: '***\\n---\\n___'" {
 
 test "Example 14, line 564: '+++'" {
     const input =
-        "\n+++\n";
+        \\
+        \\+++
+        \\
+    ;
     const expected =
-        "<p>+++</p>\n";
+        \\<p>+++</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -463,9 +505,14 @@ test "Example 14, line 564: '+++'" {
 
 test "Example 15, line 571: '==='" {
     const input =
-        "\n===\n";
+        \\
+        \\===
+        \\
+    ;
     const expected =
-        "<p>===</p>\n";
+        \\<p>===</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -492,13 +539,18 @@ test "Example 15, line 571: '==='" {
 
 test "Example 16, line 580: '--\\n**\\n__'" {
     const input =
-        "\n--\n" ++
-        "**\n" ++
-        "__\n";
+        \\
+        \\--
+        \\**
+        \\__
+        \\
+    ;
     const expected =
-        "<p>--\n" ++
-        "**\n" ++
-        "__</p>\n";
+        \\<p>--
+        \\**
+        \\__</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -525,13 +577,18 @@ test "Example 16, line 580: '--\\n**\\n__'" {
 
 test "Example 17, line 593: ' ***\\n  ***\\n   ***'" {
     const input =
-        "\n ***\n" ++
-        "  ***\n" ++
-        "   ***\n";
+        \\
+        \\ ***
+        \\  ***
+        \\   ***
+        \\
+    ;
     const expected =
-        "<hr />\n" ++
-        "<hr />\n" ++
-        "<hr />\n";
+        \\<hr />
+        \\<hr />
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -558,10 +615,15 @@ test "Example 17, line 593: ' ***\\n  ***\\n   ***'" {
 
 test "Example 18, line 606: '    ***'" {
     const input =
-        "\n    ***\n";
+        \\
+        \\    ***
+        \\
+    ;
     const expected =
-        "<pre><code>***\n" ++
-        "</code></pre>\n";
+        \\<pre><code>***
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -588,11 +650,16 @@ test "Example 18, line 606: '    ***'" {
 
 test "Example 19, line 614: 'Foo\\n    ***'" {
     const input =
-        "\nFoo\n" ++
-        "    ***\n";
+        \\
+        \\Foo
+        \\    ***
+        \\
+    ;
     const expected =
-        "<p>Foo\n" ++
-        "***</p>\n";
+        \\<p>Foo
+        \\***</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -619,9 +686,14 @@ test "Example 19, line 614: 'Foo\\n    ***'" {
 
 test "Example 20, line 625: '_____________________________________'" {
     const input =
-        "\n_____________________________________\n";
+        \\
+        \\_____________________________________
+        \\
+    ;
     const expected =
-        "<hr />\n";
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -648,9 +720,14 @@ test "Example 20, line 625: '_____________________________________'" {
 
 test "Example 21, line 634: ' - - -'" {
     const input =
-        "\n - - -\n";
+        \\
+        \\ - - -
+        \\
+    ;
     const expected =
-        "<hr />\n";
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -677,9 +754,14 @@ test "Example 21, line 634: ' - - -'" {
 
 test "Example 22, line 641: ' **  * ** * ** * **'" {
     const input =
-        "\n **  * ** * ** * **\n";
+        \\
+        \\ **  * ** * ** * **
+        \\
+    ;
     const expected =
-        "<hr />\n";
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -706,9 +788,14 @@ test "Example 22, line 641: ' **  * ** * ** * **'" {
 
 test "Example 23, line 648: '-     -      -      -'" {
     const input =
-        "\n-     -      -      -\n";
+        \\
+        \\-     -      -      -
+        \\
+    ;
     const expected =
-        "<hr />\n";
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -735,9 +822,14 @@ test "Example 23, line 648: '-     -      -      -'" {
 
 test "Example 24, line 657: '- - - -    '" {
     const input =
-        "\n- - - -    \n";
+        \\
+        \\- - - -    
+        \\
+    ;
     const expected =
-        "<hr />\n";
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -764,15 +856,20 @@ test "Example 24, line 657: '- - - -    '" {
 
 test "Example 25, line 666: '_ _ _ _ a\\n\\na------\\n\\n---a---'" {
     const input =
-        "\n_ _ _ _ a\n" ++
-        "\n" ++
-        "a------\n" ++
-        "\n" ++
-        "---a---\n";
+        \\
+        \\_ _ _ _ a
+        \\
+        \\a------
+        \\
+        \\---a---
+        \\
+    ;
     const expected =
-        "<p>_ _ _ _ a</p>\n" ++
-        "<p>a------</p>\n" ++
-        "<p>---a---</p>\n";
+        \\<p>_ _ _ _ a</p>
+        \\<p>a------</p>
+        \\<p>---a---</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -799,9 +896,14 @@ test "Example 25, line 666: '_ _ _ _ a\\n\\na------\\n\\n---a---'" {
 
 test "Example 26, line 682: ' *-*'" {
     const input =
-        "\n *-*\n";
+        \\
+        \\ *-*
+        \\
+    ;
     const expected =
-        "<p><em>-</em></p>\n";
+        \\<p><em>-</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -828,17 +930,22 @@ test "Example 26, line 682: ' *-*'" {
 
 test "Example 27, line 691: '- foo\\n***\\n- bar'" {
     const input =
-        "\n- foo\n" ++
-        "***\n" ++
-        "- bar\n";
+        \\
+        \\- foo
+        \\***
+        \\- bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "</ul>\n" ++
-        "<hr />\n" ++
-        "<ul>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\</ul>
+        \\<hr />
+        \\<ul>
+        \\<li>bar</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -865,13 +972,18 @@ test "Example 27, line 691: '- foo\\n***\\n- bar'" {
 
 test "Example 28, line 708: 'Foo\\n***\\nbar'" {
     const input =
-        "\nFoo\n" ++
-        "***\n" ++
-        "bar\n";
+        \\
+        \\Foo
+        \\***
+        \\bar
+        \\
+    ;
     const expected =
-        "<p>Foo</p>\n" ++
-        "<hr />\n" ++
-        "<p>bar</p>\n";
+        \\<p>Foo</p>
+        \\<hr />
+        \\<p>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -898,12 +1010,17 @@ test "Example 28, line 708: 'Foo\\n***\\nbar'" {
 
 test "Example 29, line 725: 'Foo\\n---\\nbar'" {
     const input =
-        "\nFoo\n" ++
-        "---\n" ++
-        "bar\n";
+        \\
+        \\Foo
+        \\---
+        \\bar
+        \\
+    ;
     const expected =
-        "<h2>Foo</h2>\n" ++
-        "<p>bar</p>\n";
+        \\<h2>Foo</h2>
+        \\<p>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -930,17 +1047,22 @@ test "Example 29, line 725: 'Foo\\n---\\nbar'" {
 
 test "Example 30, line 738: '* Foo\\n* * *\\n* Bar'" {
     const input =
-        "\n* Foo\n" ++
-        "* * *\n" ++
-        "* Bar\n";
+        \\
+        \\* Foo
+        \\* * *
+        \\* Bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>Foo</li>\n" ++
-        "</ul>\n" ++
-        "<hr />\n" ++
-        "<ul>\n" ++
-        "<li>Bar</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>Foo</li>
+        \\</ul>
+        \\<hr />
+        \\<ul>
+        \\<li>Bar</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -967,15 +1089,20 @@ test "Example 30, line 738: '* Foo\\n* * *\\n* Bar'" {
 
 test "Example 31, line 755: '- Foo\\n- * * *'" {
     const input =
-        "\n- Foo\n" ++
-        "- * * *\n";
+        \\
+        \\- Foo
+        \\- * * *
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>Foo</li>\n" ++
-        "<li>\n" ++
-        "<hr />\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>Foo</li>
+        \\<li>
+        \\<hr />
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1002,19 +1129,24 @@ test "Example 31, line 755: '- Foo\\n- * * *'" {
 
 test "Example 32, line 784: '# foo\\n## foo\\n### foo\\n#### foo\\n##### foo\\n###### foo'" {
     const input =
-        "\n# foo\n" ++
-        "## foo\n" ++
-        "### foo\n" ++
-        "#### foo\n" ++
-        "##### foo\n" ++
-        "###### foo\n";
+        \\
+        \\# foo
+        \\## foo
+        \\### foo
+        \\#### foo
+        \\##### foo
+        \\###### foo
+        \\
+    ;
     const expected =
-        "<h1>foo</h1>\n" ++
-        "<h2>foo</h2>\n" ++
-        "<h3>foo</h3>\n" ++
-        "<h4>foo</h4>\n" ++
-        "<h5>foo</h5>\n" ++
-        "<h6>foo</h6>\n";
+        \\<h1>foo</h1>
+        \\<h2>foo</h2>
+        \\<h3>foo</h3>
+        \\<h4>foo</h4>
+        \\<h5>foo</h5>
+        \\<h6>foo</h6>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1041,9 +1173,14 @@ test "Example 32, line 784: '# foo\\n## foo\\n### foo\\n#### foo\\n##### foo\\n#
 
 test "Example 33, line 803: '####### foo'" {
     const input =
-        "\n####### foo\n";
+        \\
+        \\####### foo
+        \\
+    ;
     const expected =
-        "<p>####### foo</p>\n";
+        \\<p>####### foo</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1070,12 +1207,17 @@ test "Example 33, line 803: '####### foo'" {
 
 test "Example 34, line 818: '#5 bolt\\n\\n#hashtag'" {
     const input =
-        "\n#5 bolt\n" ++
-        "\n" ++
-        "#hashtag\n";
+        \\
+        \\#5 bolt
+        \\
+        \\#hashtag
+        \\
+    ;
     const expected =
-        "<p>#5 bolt</p>\n" ++
-        "<p>#hashtag</p>\n";
+        \\<p>#5 bolt</p>
+        \\<p>#hashtag</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1102,7 +1244,8 @@ test "Example 34, line 818: '#5 bolt\\n\\n#hashtag'" {
 
 test "Example 35, line 830: '\\## foo'" {
     const input =
-        "\n\\## foo\n";
+        "\n" ++
+        "\\## foo\n";
     const expected =
         "<p>## foo</p>\n";
 
@@ -1131,7 +1274,8 @@ test "Example 35, line 830: '\\## foo'" {
 
 test "Example 36, line 839: '# foo *bar* \\*baz\\*'" {
     const input =
-        "\n# foo *bar* \\*baz\\*\n";
+        "\n" ++
+        "# foo *bar* \\*baz\\*\n";
     const expected =
         "<h1>foo <em>bar</em> *baz*</h1>\n";
 
@@ -1160,9 +1304,14 @@ test "Example 36, line 839: '# foo *bar* \\*baz\\*'" {
 
 test "Example 37, line 848: '#                  foo                     '" {
     const input =
-        "\n#                  foo                     \n";
+        \\
+        \\#                  foo                     
+        \\
+    ;
     const expected =
-        "<h1>foo</h1>\n";
+        \\<h1>foo</h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1189,13 +1338,18 @@ test "Example 37, line 848: '#                  foo                     '" {
 
 test "Example 38, line 857: ' ### foo\\n  ## foo\\n   # foo'" {
     const input =
-        "\n ### foo\n" ++
-        "  ## foo\n" ++
-        "   # foo\n";
+        \\
+        \\ ### foo
+        \\  ## foo
+        \\   # foo
+        \\
+    ;
     const expected =
-        "<h3>foo</h3>\n" ++
-        "<h2>foo</h2>\n" ++
-        "<h1>foo</h1>\n";
+        \\<h3>foo</h3>
+        \\<h2>foo</h2>
+        \\<h1>foo</h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1222,10 +1376,15 @@ test "Example 38, line 857: ' ### foo\\n  ## foo\\n   # foo'" {
 
 test "Example 39, line 870: '    # foo'" {
     const input =
-        "\n    # foo\n";
+        \\
+        \\    # foo
+        \\
+    ;
     const expected =
-        "<pre><code># foo\n" ++
-        "</code></pre>\n";
+        \\<pre><code># foo
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1252,11 +1411,16 @@ test "Example 39, line 870: '    # foo'" {
 
 test "Example 40, line 878: 'foo\\n    # bar'" {
     const input =
-        "\nfoo\n" ++
-        "    # bar\n";
+        \\
+        \\foo
+        \\    # bar
+        \\
+    ;
     const expected =
-        "<p>foo\n" ++
-        "# bar</p>\n";
+        \\<p>foo
+        \\# bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1283,11 +1447,16 @@ test "Example 40, line 878: 'foo\\n    # bar'" {
 
 test "Example 41, line 889: '## foo ##\\n  ###   bar    ###'" {
     const input =
-        "\n## foo ##\n" ++
-        "  ###   bar    ###\n";
+        \\
+        \\## foo ##
+        \\  ###   bar    ###
+        \\
+    ;
     const expected =
-        "<h2>foo</h2>\n" ++
-        "<h3>bar</h3>\n";
+        \\<h2>foo</h2>
+        \\<h3>bar</h3>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1314,11 +1483,16 @@ test "Example 41, line 889: '## foo ##\\n  ###   bar    ###'" {
 
 test "Example 42, line 900: '# foo ##################################\\n##### foo ##'" {
     const input =
-        "\n# foo ##################################\n" ++
-        "##### foo ##\n";
+        \\
+        \\# foo ##################################
+        \\##### foo ##
+        \\
+    ;
     const expected =
-        "<h1>foo</h1>\n" ++
-        "<h5>foo</h5>\n";
+        \\<h1>foo</h1>
+        \\<h5>foo</h5>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1345,9 +1519,14 @@ test "Example 42, line 900: '# foo ##################################\\n##### fo
 
 test "Example 43, line 911: '### foo ###     '" {
     const input =
-        "\n### foo ###     \n";
+        \\
+        \\### foo ###     
+        \\
+    ;
     const expected =
-        "<h3>foo</h3>\n";
+        \\<h3>foo</h3>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1374,9 +1553,14 @@ test "Example 43, line 911: '### foo ###     '" {
 
 test "Example 44, line 922: '### foo ### b'" {
     const input =
-        "\n### foo ### b\n";
+        \\
+        \\### foo ### b
+        \\
+    ;
     const expected =
-        "<h3>foo ### b</h3>\n";
+        \\<h3>foo ### b</h3>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1403,9 +1587,14 @@ test "Example 44, line 922: '### foo ### b'" {
 
 test "Example 45, line 931: '# foo#'" {
     const input =
-        "\n# foo#\n";
+        \\
+        \\# foo#
+        \\
+    ;
     const expected =
-        "<h1>foo#</h1>\n";
+        \\<h1>foo#</h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1432,7 +1621,8 @@ test "Example 45, line 931: '# foo#'" {
 
 test "Example 46, line 941: '### foo \\###\\n## foo #\\##\\n# foo \\#'" {
     const input =
-        "\n### foo \\###\n" ++
+        "\n" ++
+        "### foo \\###\n" ++
         "## foo #\\##\n" ++
         "# foo \\#\n";
     const expected =
@@ -1465,13 +1655,18 @@ test "Example 46, line 941: '### foo \\###\\n## foo #\\##\\n# foo \\#'" {
 
 test "Example 47, line 955: '****\\n## foo\\n****'" {
     const input =
-        "\n****\n" ++
-        "## foo\n" ++
-        "****\n";
+        \\
+        \\****
+        \\## foo
+        \\****
+        \\
+    ;
     const expected =
-        "<hr />\n" ++
-        "<h2>foo</h2>\n" ++
-        "<hr />\n";
+        \\<hr />
+        \\<h2>foo</h2>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1498,13 +1693,18 @@ test "Example 47, line 955: '****\\n## foo\\n****'" {
 
 test "Example 48, line 966: 'Foo bar\\n# baz\\nBar foo'" {
     const input =
-        "\nFoo bar\n" ++
-        "# baz\n" ++
-        "Bar foo\n";
+        \\
+        \\Foo bar
+        \\# baz
+        \\Bar foo
+        \\
+    ;
     const expected =
-        "<p>Foo bar</p>\n" ++
-        "<h1>baz</h1>\n" ++
-        "<p>Bar foo</p>\n";
+        \\<p>Foo bar</p>
+        \\<h1>baz</h1>
+        \\<p>Bar foo</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1531,13 +1731,18 @@ test "Example 48, line 966: 'Foo bar\\n# baz\\nBar foo'" {
 
 test "Example 49, line 979: '## \\n#\\n### ###'" {
     const input =
-        "\n## \n" ++
-        "#\n" ++
-        "### ###\n";
+        \\
+        \\## 
+        \\#
+        \\### ###
+        \\
+    ;
     const expected =
-        "<h2></h2>\n" ++
-        "<h1></h1>\n" ++
-        "<h3></h3>\n";
+        \\<h2></h2>
+        \\<h1></h1>
+        \\<h3></h3>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1564,14 +1769,19 @@ test "Example 49, line 979: '## \\n#\\n### ###'" {
 
 test "Example 50, line 1019: 'Foo *bar*\\n=========\\n\\nFoo *bar*\\n---------'" {
     const input =
-        "\nFoo *bar*\n" ++
-        "=========\n" ++
-        "\n" ++
-        "Foo *bar*\n" ++
-        "---------\n";
+        \\
+        \\Foo *bar*
+        \\=========
+        \\
+        \\Foo *bar*
+        \\---------
+        \\
+    ;
     const expected =
-        "<h1>Foo <em>bar</em></h1>\n" ++
-        "<h2>Foo <em>bar</em></h2>\n";
+        \\<h1>Foo <em>bar</em></h1>
+        \\<h2>Foo <em>bar</em></h2>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1598,12 +1808,17 @@ test "Example 50, line 1019: 'Foo *bar*\\n=========\\n\\nFoo *bar*\\n---------'"
 
 test "Example 51, line 1033: 'Foo *bar\\nbaz*\\n===='" {
     const input =
-        "\nFoo *bar\n" ++
-        "baz*\n" ++
-        "====\n";
+        \\
+        \\Foo *bar
+        \\baz*
+        \\====
+        \\
+    ;
     const expected =
-        "<h1>Foo <em>bar\n" ++
-        "baz</em></h1>\n";
+        \\<h1>Foo <em>bar
+        \\baz</em></h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1630,12 +1845,15 @@ test "Example 51, line 1033: 'Foo *bar\\nbaz*\\n===='" {
 
 test "Example 52, line 1047: '  Foo *bar\\nbaz*→\\n===='" {
     const input =
-        "\n  Foo *bar\n" ++
+        "\n" ++
+        "  Foo *bar\n" ++
         "baz*\t\n" ++
         "====\n";
     const expected =
-        "<h1>Foo <em>bar\n" ++
-        "baz</em></h1>\n";
+        \\<h1>Foo <em>bar
+        \\baz</em></h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1660,19 +1878,21 @@ test "Example 52, line 1047: '  Foo *bar\\nbaz*→\\n===='" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
-// NOTE: We break from the spec here and require at least two underline
-// chars to prevent things from jumping around when typing a list under
-// a paragraph
 test "Example 53, line 1059: 'Foo\\n-------------------------\\n\\nFoo\\n='" {
     const input =
-        "\nFoo\n" ++
-        "-------------------------\n" ++
-        "\n" ++
-        "Foo\n" ++
-        "==\n";
+        \\
+        \\Foo
+        \\-------------------------
+        \\
+        \\Foo
+        \\==
+        \\
+    ;
     const expected =
-        "<h2>Foo</h2>\n" ++
-        "<h1>Foo</h1>\n";
+        \\<h2>Foo</h2>
+        \\<h1>Foo</h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1699,18 +1919,23 @@ test "Example 53, line 1059: 'Foo\\n-------------------------\\n\\nFoo\\n='" {
 
 test "Example 54, line 1074: '   Foo\\n---\\n\\n  Foo\\n-----\\n\\n  Foo\\n  ==='" {
     const input =
-        "\n   Foo\n" ++
-        "---\n" ++
-        "\n" ++
-        "  Foo\n" ++
-        "-----\n" ++
-        "\n" ++
-        "  Foo\n" ++
-        "  ===\n";
+        \\
+        \\   Foo
+        \\---
+        \\
+        \\  Foo
+        \\-----
+        \\
+        \\  Foo
+        \\  ===
+        \\
+    ;
     const expected =
-        "<h2>Foo</h2>\n" ++
-        "<h2>Foo</h2>\n" ++
-        "<h1>Foo</h1>\n";
+        \\<h2>Foo</h2>
+        \\<h2>Foo</h2>
+        \\<h1>Foo</h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1737,18 +1962,23 @@ test "Example 54, line 1074: '   Foo\\n---\\n\\n  Foo\\n-----\\n\\n  Foo\\n  ===
 
 test "Example 55, line 1092: '    Foo\\n    ---\\n\\n    Foo\\n---'" {
     const input =
-        "\n    Foo\n" ++
-        "    ---\n" ++
-        "\n" ++
-        "    Foo\n" ++
-        "---\n";
+        \\
+        \\    Foo
+        \\    ---
+        \\
+        \\    Foo
+        \\---
+        \\
+    ;
     const expected =
-        "<pre><code>Foo\n" ++
-        "---\n" ++
-        "\n" ++
-        "Foo\n" ++
-        "</code></pre>\n" ++
-        "<hr />\n";
+        \\<pre><code>Foo
+        \\---
+        \\
+        \\Foo
+        \\</code></pre>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1775,10 +2005,15 @@ test "Example 55, line 1092: '    Foo\\n    ---\\n\\n    Foo\\n---'" {
 
 test "Example 56, line 1111: 'Foo\\n   ----      '" {
     const input =
-        "\nFoo\n" ++
-        "   ----      \n";
+        \\
+        \\Foo
+        \\   ----      
+        \\
+    ;
     const expected =
-        "<h2>Foo</h2>\n";
+        \\<h2>Foo</h2>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1805,11 +2040,16 @@ test "Example 56, line 1111: 'Foo\\n   ----      '" {
 
 test "Example 57, line 1121: 'Foo\\n    ---'" {
     const input =
-        "\nFoo\n" ++
-        "    ---\n";
+        \\
+        \\Foo
+        \\    ---
+        \\
+    ;
     const expected =
-        "<p>Foo\n" ++
-        "---</p>\n";
+        \\<p>Foo
+        \\---</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1836,16 +2076,21 @@ test "Example 57, line 1121: 'Foo\\n    ---'" {
 
 test "Example 58, line 1132: 'Foo\\n= =\\n\\nFoo\\n--- -'" {
     const input =
-        "\nFoo\n" ++
-        "= =\n" ++
-        "\n" ++
-        "Foo\n" ++
-        "--- -\n";
+        \\
+        \\Foo
+        \\= =
+        \\
+        \\Foo
+        \\--- -
+        \\
+    ;
     const expected =
-        "<p>Foo\n" ++
-        "= =</p>\n" ++
-        "<p>Foo</p>\n" ++
-        "<hr />\n";
+        \\<p>Foo
+        \\= =</p>
+        \\<p>Foo</p>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1872,10 +2117,15 @@ test "Example 58, line 1132: 'Foo\\n= =\\n\\nFoo\\n--- -'" {
 
 test "Example 59, line 1148: 'Foo  \\n-----'" {
     const input =
-        "\nFoo  \n" ++
-        "-----\n";
+        \\
+        \\Foo  
+        \\-----
+        \\
+    ;
     const expected =
-        "<h2>Foo</h2>\n";
+        \\<h2>Foo</h2>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1902,7 +2152,8 @@ test "Example 59, line 1148: 'Foo  \\n-----'" {
 
 test "Example 60, line 1158: 'Foo\\\\n----'" {
     const input =
-        "\nFoo\\\n" ++
+        "\n" ++
+        "Foo\\\n" ++
         "----\n";
     const expected =
         "<h2>Foo\\</h2>\n";
@@ -1932,18 +2183,23 @@ test "Example 60, line 1158: 'Foo\\\\n----'" {
 
 test "Example 61, line 1169: '`Foo\\n----\\n`\\n\\n<a title=\"a lot\\n---\\nof dashes\"/>'" {
     const input =
-        "\n`Foo\n" ++
-        "----\n" ++
-        "`\n" ++
-        "\n" ++
-        "<a title=\"a lot\n" ++
-        "---\n" ++
-        "of dashes\"/>\n";
+        \\
+        \\`Foo
+        \\----
+        \\`
+        \\
+        \\<a title="a lot
+        \\---
+        \\of dashes"/>
+        \\
+    ;
     const expected =
-        "<h2>`Foo</h2>\n" ++
-        "<p>`</p>\n" ++
-        "<h2>&lt;a title=&quot;a lot</h2>\n" ++
-        "<p>of dashes&quot;/&gt;</p>\n";
+        \\<h2>`Foo</h2>
+        \\<p>`</p>
+        \\<h2>&lt;a title=&quot;a lot</h2>
+        \\<p>of dashes&quot;/&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -1970,13 +2226,18 @@ test "Example 61, line 1169: '`Foo\\n----\\n`\\n\\n<a title=\"a lot\\n---\\nof d
 
 test "Example 62, line 1188: '> Foo\\n---'" {
     const input =
-        "\n> Foo\n" ++
-        "---\n";
+        \\
+        \\> Foo
+        \\---
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>Foo</p>\n" ++
-        "</blockquote>\n" ++
-        "<hr />\n";
+        \\<blockquote>
+        \\<p>Foo</p>
+        \\</blockquote>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2003,15 +2264,20 @@ test "Example 62, line 1188: '> Foo\\n---'" {
 
 test "Example 63, line 1199: '> foo\\nbar\\n==='" {
     const input =
-        "\n> foo\n" ++
-        "bar\n" ++
-        "===\n";
+        \\
+        \\> foo
+        \\bar
+        \\===
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>foo\n" ++
-        "bar\n" ++
-        "===</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>foo
+        \\bar
+        \\===</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2038,13 +2304,18 @@ test "Example 63, line 1199: '> foo\\nbar\\n==='" {
 
 test "Example 64, line 1212: '- Foo\\n---'" {
     const input =
-        "\n- Foo\n" ++
-        "---\n";
+        \\
+        \\- Foo
+        \\---
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>Foo</li>\n" ++
-        "</ul>\n" ++
-        "<hr />\n";
+        \\<ul>
+        \\<li>Foo</li>
+        \\</ul>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2071,12 +2342,17 @@ test "Example 64, line 1212: '- Foo\\n---'" {
 
 test "Example 65, line 1227: 'Foo\\nBar\\n---'" {
     const input =
-        "\nFoo\n" ++
-        "Bar\n" ++
-        "---\n";
+        \\
+        \\Foo
+        \\Bar
+        \\---
+        \\
+    ;
     const expected =
-        "<h2>Foo\n" ++
-        "Bar</h2>\n";
+        \\<h2>Foo
+        \\Bar</h2>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2103,17 +2379,22 @@ test "Example 65, line 1227: 'Foo\\nBar\\n---'" {
 
 test "Example 66, line 1240: '---\\nFoo\\n---\\nBar\\n---\\nBaz'" {
     const input =
-        "\n---\n" ++
-        "Foo\n" ++
-        "---\n" ++
-        "Bar\n" ++
-        "---\n" ++
-        "Baz\n";
+        \\
+        \\---
+        \\Foo
+        \\---
+        \\Bar
+        \\---
+        \\Baz
+        \\
+    ;
     const expected =
-        "<hr />\n" ++
-        "<h2>Foo</h2>\n" ++
-        "<h2>Bar</h2>\n" ++
-        "<p>Baz</p>\n";
+        \\<hr />
+        \\<h2>Foo</h2>
+        \\<h2>Bar</h2>
+        \\<p>Baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2140,10 +2421,15 @@ test "Example 66, line 1240: '---\\nFoo\\n---\\nBar\\n---\\nBaz'" {
 
 test "Example 67, line 1257: '\\n===='" {
     const input =
-        "\n\n" ++
-        "====\n";
+        \\
+        \\
+        \\====
+        \\
+    ;
     const expected =
-        "<p>====</p>\n";
+        \\<p>====</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2170,11 +2456,16 @@ test "Example 67, line 1257: '\\n===='" {
 
 test "Example 68, line 1269: '---\\n---'" {
     const input =
-        "\n---\n" ++
-        "---\n";
+        \\
+        \\---
+        \\---
+        \\
+    ;
     const expected =
-        "<hr />\n" ++
-        "<hr />\n";
+        \\<hr />
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2201,13 +2492,18 @@ test "Example 68, line 1269: '---\\n---'" {
 
 test "Example 69, line 1278: '- foo\\n-----'" {
     const input =
-        "\n- foo\n" ++
-        "-----\n";
+        \\
+        \\- foo
+        \\-----
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "</ul>\n" ++
-        "<hr />\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\</ul>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2234,12 +2530,17 @@ test "Example 69, line 1278: '- foo\\n-----'" {
 
 test "Example 70, line 1289: '    foo\\n---'" {
     const input =
-        "\n    foo\n" ++
-        "---\n";
+        \\
+        \\    foo
+        \\---
+        \\
+    ;
     const expected =
-        "<pre><code>foo\n" ++
-        "</code></pre>\n" ++
-        "<hr />\n";
+        \\<pre><code>foo
+        \\</code></pre>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2266,13 +2567,18 @@ test "Example 70, line 1289: '    foo\\n---'" {
 
 test "Example 71, line 1299: '> foo\\n-----'" {
     const input =
-        "\n> foo\n" ++
-        "-----\n";
+        \\
+        \\> foo
+        \\-----
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>foo</p>\n" ++
-        "</blockquote>\n" ++
-        "<hr />\n";
+        \\<blockquote>
+        \\<p>foo</p>
+        \\</blockquote>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2299,7 +2605,8 @@ test "Example 71, line 1299: '> foo\\n-----'" {
 
 test "Example 72, line 1313: '\\> foo\\n------'" {
     const input =
-        "\n\\> foo\n" ++
+        "\n" ++
+        "\\> foo\n" ++
         "------\n";
     const expected =
         "<h2>&gt; foo</h2>\n";
@@ -2329,15 +2636,20 @@ test "Example 72, line 1313: '\\> foo\\n------'" {
 
 test "Example 73, line 1344: 'Foo\\n\\nbar\\n---\\nbaz'" {
     const input =
-        "\nFoo\n" ++
-        "\n" ++
-        "bar\n" ++
-        "---\n" ++
-        "baz\n";
+        \\
+        \\Foo
+        \\
+        \\bar
+        \\---
+        \\baz
+        \\
+    ;
     const expected =
-        "<p>Foo</p>\n" ++
-        "<h2>bar</h2>\n" ++
-        "<p>baz</p>\n";
+        \\<p>Foo</p>
+        \\<h2>bar</h2>
+        \\<p>baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2364,17 +2676,22 @@ test "Example 73, line 1344: 'Foo\\n\\nbar\\n---\\nbaz'" {
 
 test "Example 74, line 1360: 'Foo\\nbar\\n\\n---\\n\\nbaz'" {
     const input =
-        "\nFoo\n" ++
-        "bar\n" ++
-        "\n" ++
-        "---\n" ++
-        "\n" ++
-        "baz\n";
+        \\
+        \\Foo
+        \\bar
+        \\
+        \\---
+        \\
+        \\baz
+        \\
+    ;
     const expected =
-        "<p>Foo\n" ++
-        "bar</p>\n" ++
-        "<hr />\n" ++
-        "<p>baz</p>\n";
+        \\<p>Foo
+        \\bar</p>
+        \\<hr />
+        \\<p>baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2401,15 +2718,20 @@ test "Example 74, line 1360: 'Foo\\nbar\\n\\n---\\n\\nbaz'" {
 
 test "Example 75, line 1378: 'Foo\\nbar\\n* * *\\nbaz'" {
     const input =
-        "\nFoo\n" ++
-        "bar\n" ++
-        "* * *\n" ++
-        "baz\n";
+        \\
+        \\Foo
+        \\bar
+        \\* * *
+        \\baz
+        \\
+    ;
     const expected =
-        "<p>Foo\n" ++
-        "bar</p>\n" ++
-        "<hr />\n" ++
-        "<p>baz</p>\n";
+        \\<p>Foo
+        \\bar</p>
+        \\<hr />
+        \\<p>baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2436,7 +2758,8 @@ test "Example 75, line 1378: 'Foo\\nbar\\n* * *\\nbaz'" {
 
 test "Example 76, line 1393: 'Foo\\nbar\\n\\---\\nbaz'" {
     const input =
-        "\nFoo\n" ++
+        "\n" ++
+        "Foo\n" ++
         "bar\n" ++
         "\\---\n" ++
         "baz\n";
@@ -2471,12 +2794,17 @@ test "Example 76, line 1393: 'Foo\\nbar\\n\\---\\nbaz'" {
 
 test "Example 77, line 1421: '    a simple\\n      indented code block'" {
     const input =
-        "\n    a simple\n" ++
-        "      indented code block\n";
+        \\
+        \\    a simple
+        \\      indented code block
+        \\
+    ;
     const expected =
-        "<pre><code>a simple\n" ++
-        "  indented code block\n" ++
-        "</code></pre>\n";
+        \\<pre><code>a simple
+        \\  indented code block
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2503,16 +2831,21 @@ test "Example 77, line 1421: '    a simple\\n      indented code block'" {
 
 test "Example 78, line 1435: '  - foo\\n\\n    bar'" {
     const input =
-        "\n  - foo\n" ++
-        "\n" ++
-        "    bar\n";
+        \\
+        \\  - foo
+        \\
+        \\    bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<p>bar</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\<p>bar</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2539,18 +2872,23 @@ test "Example 78, line 1435: '  - foo\\n\\n    bar'" {
 
 test "Example 79, line 1449: '1.  foo\\n\\n    - bar'" {
     const input =
-        "\n1.  foo\n" ++
-        "\n" ++
-        "    - bar\n";
+        \\
+        \\1.  foo
+        \\
+        \\    - bar
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<ul>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<p>foo</p>
+        \\<ul>
+        \\<li>bar</li>
+        \\</ul>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2577,16 +2915,21 @@ test "Example 79, line 1449: '1.  foo\\n\\n    - bar'" {
 
 test "Example 80, line 1469: '    <a/>\\n    *hi*\\n\\n    - one'" {
     const input =
-        "\n    <a/>\n" ++
-        "    *hi*\n" ++
-        "\n" ++
-        "    - one\n";
+        \\
+        \\    <a/>
+        \\    *hi*
+        \\
+        \\    - one
+        \\
+    ;
     const expected =
-        "<pre><code>&lt;a/&gt;\n" ++
-        "*hi*\n" ++
-        "\n" ++
-        "- one\n" ++
-        "</code></pre>\n";
+        \\<pre><code>&lt;a/&gt;
+        \\*hi*
+        \\
+        \\- one
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2613,22 +2956,27 @@ test "Example 80, line 1469: '    <a/>\\n    *hi*\\n\\n    - one'" {
 
 test "Example 81, line 1485: '    chunk1\\n\\n    chunk2\\n  \\n \\n \\n    chunk3'" {
     const input =
-        "\n    chunk1\n" ++
-        "\n" ++
-        "    chunk2\n" ++
-        "  \n" ++
-        " \n" ++
-        " \n" ++
-        "    chunk3\n";
+        \\
+        \\    chunk1
+        \\
+        \\    chunk2
+        \\  
+        \\ 
+        \\ 
+        \\    chunk3
+        \\
+    ;
     const expected =
-        "<pre><code>chunk1\n" ++
-        "\n" ++
-        "chunk2\n" ++
-        "\n" ++
-        "\n" ++
-        "\n" ++
-        "chunk3\n" ++
-        "</code></pre>\n";
+        \\<pre><code>chunk1
+        \\
+        \\chunk2
+        \\
+        \\
+        \\
+        \\chunk3
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2655,14 +3003,19 @@ test "Example 81, line 1485: '    chunk1\\n\\n    chunk2\\n  \\n \\n \\n    chun
 
 test "Example 82, line 1508: '    chunk1\\n      \\n      chunk2'" {
     const input =
-        "\n    chunk1\n" ++
-        "      \n" ++
-        "      chunk2\n";
+        \\
+        \\    chunk1
+        \\      
+        \\      chunk2
+        \\
+    ;
     const expected =
-        "<pre><code>chunk1\n" ++
-        "  \n" ++
-        "  chunk2\n" ++
-        "</code></pre>\n";
+        \\<pre><code>chunk1
+        \\  
+        \\  chunk2
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2689,12 +3042,17 @@ test "Example 82, line 1508: '    chunk1\\n      \\n      chunk2'" {
 
 test "Example 83, line 1523: 'Foo\\n    bar\\n'" {
     const input =
-        "\nFoo\n" ++
-        "    bar\n" ++
-        "\n";
+        \\
+        \\Foo
+        \\    bar
+        \\
+        \\
+    ;
     const expected =
-        "<p>Foo\n" ++
-        "bar</p>\n";
+        \\<p>Foo
+        \\bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2721,12 +3079,17 @@ test "Example 83, line 1523: 'Foo\\n    bar\\n'" {
 
 test "Example 84, line 1537: '    foo\\nbar'" {
     const input =
-        "\n    foo\n" ++
-        "bar\n";
+        \\
+        \\    foo
+        \\bar
+        \\
+    ;
     const expected =
-        "<pre><code>foo\n" ++
-        "</code></pre>\n" ++
-        "<p>bar</p>\n";
+        \\<pre><code>foo
+        \\</code></pre>
+        \\<p>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2753,20 +3116,25 @@ test "Example 84, line 1537: '    foo\\nbar'" {
 
 test "Example 85, line 1550: '# Heading\\n    foo\\nHeading\\n------\\n    foo\\n----'" {
     const input =
-        "\n# Heading\n" ++
-        "    foo\n" ++
-        "Heading\n" ++
-        "------\n" ++
-        "    foo\n" ++
-        "----\n";
+        \\
+        \\# Heading
+        \\    foo
+        \\Heading
+        \\------
+        \\    foo
+        \\----
+        \\
+    ;
     const expected =
-        "<h1>Heading</h1>\n" ++
-        "<pre><code>foo\n" ++
-        "</code></pre>\n" ++
-        "<h2>Heading</h2>\n" ++
-        "<pre><code>foo\n" ++
-        "</code></pre>\n" ++
-        "<hr />\n";
+        \\<h1>Heading</h1>
+        \\<pre><code>foo
+        \\</code></pre>
+        \\<h2>Heading</h2>
+        \\<pre><code>foo
+        \\</code></pre>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2793,12 +3161,17 @@ test "Example 85, line 1550: '# Heading\\n    foo\\nHeading\\n------\\n    foo\\
 
 test "Example 86, line 1570: '        foo\\n    bar'" {
     const input =
-        "\n        foo\n" ++
-        "    bar\n";
+        \\
+        \\        foo
+        \\    bar
+        \\
+    ;
     const expected =
-        "<pre><code>    foo\n" ++
-        "bar\n" ++
-        "</code></pre>\n";
+        \\<pre><code>    foo
+        \\bar
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2825,14 +3198,19 @@ test "Example 86, line 1570: '        foo\\n    bar'" {
 
 test "Example 87, line 1583: '\\n    \\n    foo\\n    \\n'" {
     const input =
-        "\n\n" ++
-        "    \n" ++
-        "    foo\n" ++
-        "    \n" ++
-        "\n";
+        \\
+        \\
+        \\    
+        \\    foo
+        \\    
+        \\
+        \\
+    ;
     const expected =
-        "<pre><code>foo\n" ++
-        "</code></pre>\n";
+        \\<pre><code>foo
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2859,10 +3237,15 @@ test "Example 87, line 1583: '\\n    \\n    foo\\n    \\n'" {
 
 test "Example 88, line 1597: '    foo  '" {
     const input =
-        "\n    foo  \n";
+        \\
+        \\    foo  
+        \\
+    ;
     const expected =
-        "<pre><code>foo  \n" ++
-        "</code></pre>\n";
+        \\<pre><code>foo  
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2889,14 +3272,19 @@ test "Example 88, line 1597: '    foo  '" {
 
 test "Example 89, line 1652: '```\\n<\\n >\\n```'" {
     const input =
-        "\n```\n" ++
-        "<\n" ++
-        " >\n" ++
-        "```\n";
+        \\
+        \\```
+        \\<
+        \\ >
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code>&lt;\n" ++
-        " &gt;\n" ++
-        "</code></pre>\n";
+        \\<pre><code>&lt;
+        \\ &gt;
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2923,14 +3311,19 @@ test "Example 89, line 1652: '```\\n<\\n >\\n```'" {
 
 test "Example 90, line 1666: '~~~\\n<\\n >\\n~~~'" {
     const input =
-        "\n~~~\n" ++
-        "<\n" ++
-        " >\n" ++
-        "~~~\n";
+        \\
+        \\~~~
+        \\<
+        \\ >
+        \\~~~
+        \\
+    ;
     const expected =
-        "<pre><code>&lt;\n" ++
-        " &gt;\n" ++
-        "</code></pre>\n";
+        \\<pre><code>&lt;
+        \\ &gt;
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2957,11 +3350,16 @@ test "Example 90, line 1666: '~~~\\n<\\n >\\n~~~'" {
 
 test "Example 91, line 1679: '``\\nfoo\\n``'" {
     const input =
-        "\n``\n" ++
-        "foo\n" ++
-        "``\n";
+        \\
+        \\``
+        \\foo
+        \\``
+        \\
+    ;
     const expected =
-        "<p><code>foo</code></p>\n";
+        \\<p><code>foo</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -2988,14 +3386,19 @@ test "Example 91, line 1679: '``\\nfoo\\n``'" {
 
 test "Example 92, line 1690: '```\\naaa\\n~~~\\n```'" {
     const input =
-        "\n```\n" ++
-        "aaa\n" ++
-        "~~~\n" ++
-        "```\n";
+        \\
+        \\```
+        \\aaa
+        \\~~~
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "~~~\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\~~~
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3022,14 +3425,19 @@ test "Example 92, line 1690: '```\\naaa\\n~~~\\n```'" {
 
 test "Example 93, line 1702: '~~~\\naaa\\n```\\n~~~'" {
     const input =
-        "\n~~~\n" ++
-        "aaa\n" ++
-        "```\n" ++
-        "~~~\n";
+        \\
+        \\~~~
+        \\aaa
+        \\```
+        \\~~~
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "```\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\```
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3056,14 +3464,19 @@ test "Example 93, line 1702: '~~~\\naaa\\n```\\n~~~'" {
 
 test "Example 94, line 1716: '````\\naaa\\n```\\n``````'" {
     const input =
-        "\n````\n" ++
-        "aaa\n" ++
-        "```\n" ++
-        "``````\n";
+        \\
+        \\````
+        \\aaa
+        \\```
+        \\``````
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "```\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\```
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3090,14 +3503,19 @@ test "Example 94, line 1716: '````\\naaa\\n```\\n``````'" {
 
 test "Example 95, line 1728: '~~~~\\naaa\\n~~~\\n~~~~'" {
     const input =
-        "\n~~~~\n" ++
-        "aaa\n" ++
-        "~~~\n" ++
-        "~~~~\n";
+        \\
+        \\~~~~
+        \\aaa
+        \\~~~
+        \\~~~~
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "~~~\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\~~~
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3124,9 +3542,14 @@ test "Example 95, line 1728: '~~~~\\naaa\\n~~~\\n~~~~'" {
 
 test "Example 96, line 1743: '```'" {
     const input =
-        "\n```\n";
+        \\
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code></code></pre>\n";
+        \\<pre><code></code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3153,15 +3576,20 @@ test "Example 96, line 1743: '```'" {
 
 test "Example 97, line 1750: '`````\\n\\n```\\naaa'" {
     const input =
-        "\n`````\n" ++
-        "\n" ++
-        "```\n" ++
-        "aaa\n";
+        \\
+        \\`````
+        \\
+        \\```
+        \\aaa
+        \\
+    ;
     const expected =
-        "<pre><code>\n" ++
-        "```\n" ++
-        "aaa\n" ++
-        "</code></pre>\n";
+        \\<pre><code>
+        \\```
+        \\aaa
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3188,16 +3616,21 @@ test "Example 97, line 1750: '`````\\n\\n```\\naaa'" {
 
 test "Example 98, line 1763: '> ```\\n> aaa\\n\\nbbb'" {
     const input =
-        "\n> ```\n" ++
-        "> aaa\n" ++
-        "\n" ++
-        "bbb\n";
+        \\
+        \\> ```
+        \\> aaa
+        \\
+        \\bbb
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<pre><code>aaa\n" ++
-        "</code></pre>\n" ++
-        "</blockquote>\n" ++
-        "<p>bbb</p>\n";
+        \\<blockquote>
+        \\<pre><code>aaa
+        \\</code></pre>
+        \\</blockquote>
+        \\<p>bbb</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3224,14 +3657,19 @@ test "Example 98, line 1763: '> ```\\n> aaa\\n\\nbbb'" {
 
 test "Example 99, line 1779: '```\\n\\n  \\n```'" {
     const input =
-        "\n```\n" ++
-        "\n" ++
-        "  \n" ++
-        "```\n";
+        \\
+        \\```
+        \\
+        \\  
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code>\n" ++
-        "  \n" ++
-        "</code></pre>\n";
+        \\<pre><code>
+        \\  
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3258,10 +3696,15 @@ test "Example 99, line 1779: '```\\n\\n  \\n```'" {
 
 test "Example 100, line 1793: '```\\n```'" {
     const input =
-        "\n```\n" ++
-        "```\n";
+        \\
+        \\```
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code></code></pre>\n";
+        \\<pre><code></code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3288,14 +3731,19 @@ test "Example 100, line 1793: '```\\n```'" {
 
 test "Example 101, line 1805: ' ```\\n aaa\\naaa\\n```'" {
     const input =
-        "\n ```\n" ++
-        " aaa\n" ++
-        "aaa\n" ++
-        "```\n";
+        \\
+        \\ ```
+        \\ aaa
+        \\aaa
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "aaa\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\aaa
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3322,16 +3770,21 @@ test "Example 101, line 1805: ' ```\\n aaa\\naaa\\n```'" {
 
 test "Example 102, line 1817: '  ```\\naaa\\n  aaa\\naaa\\n  ```'" {
     const input =
-        "\n  ```\n" ++
-        "aaa\n" ++
-        "  aaa\n" ++
-        "aaa\n" ++
-        "  ```\n";
+        \\
+        \\  ```
+        \\aaa
+        \\  aaa
+        \\aaa
+        \\  ```
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "aaa\n" ++
-        "aaa\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\aaa
+        \\aaa
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3358,16 +3811,21 @@ test "Example 102, line 1817: '  ```\\naaa\\n  aaa\\naaa\\n  ```'" {
 
 test "Example 103, line 1831: '   ```\\n   aaa\\n    aaa\\n  aaa\\n   ```'" {
     const input =
-        "\n   ```\n" ++
-        "   aaa\n" ++
-        "    aaa\n" ++
-        "  aaa\n" ++
-        "   ```\n";
+        \\
+        \\   ```
+        \\   aaa
+        \\    aaa
+        \\  aaa
+        \\   ```
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        " aaa\n" ++
-        "aaa\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\ aaa
+        \\aaa
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3394,14 +3852,19 @@ test "Example 103, line 1831: '   ```\\n   aaa\\n    aaa\\n  aaa\\n   ```'" {
 
 test "Example 104, line 1847: '    ```\\n    aaa\\n    ```'" {
     const input =
-        "\n    ```\n" ++
-        "    aaa\n" ++
-        "    ```\n";
+        \\
+        \\    ```
+        \\    aaa
+        \\    ```
+        \\
+    ;
     const expected =
-        "<pre><code>```\n" ++
-        "aaa\n" ++
-        "```\n" ++
-        "</code></pre>\n";
+        \\<pre><code>```
+        \\aaa
+        \\```
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3428,12 +3891,17 @@ test "Example 104, line 1847: '    ```\\n    aaa\\n    ```'" {
 
 test "Example 105, line 1862: '```\\naaa\\n  ```'" {
     const input =
-        "\n```\n" ++
-        "aaa\n" ++
-        "  ```\n";
+        \\
+        \\```
+        \\aaa
+        \\  ```
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3460,12 +3928,17 @@ test "Example 105, line 1862: '```\\naaa\\n  ```'" {
 
 test "Example 106, line 1872: '   ```\\naaa\\n  ```'" {
     const input =
-        "\n   ```\n" ++
-        "aaa\n" ++
-        "  ```\n";
+        \\
+        \\   ```
+        \\aaa
+        \\  ```
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3492,13 +3965,18 @@ test "Example 106, line 1872: '   ```\\naaa\\n  ```'" {
 
 test "Example 107, line 1884: '```\\naaa\\n    ```'" {
     const input =
-        "\n```\n" ++
-        "aaa\n" ++
-        "    ```\n";
+        \\
+        \\```
+        \\aaa
+        \\    ```
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "    ```\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\    ```
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3525,11 +4003,16 @@ test "Example 107, line 1884: '```\\naaa\\n    ```'" {
 
 test "Example 108, line 1898: '``` ```\\naaa'" {
     const input =
-        "\n``` ```\n" ++
-        "aaa\n";
+        \\
+        \\``` ```
+        \\aaa
+        \\
+    ;
     const expected =
-        "<p><code> </code>\n" ++
-        "aaa</p>\n";
+        \\<p><code> </code>
+        \\aaa</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3556,13 +4039,18 @@ test "Example 108, line 1898: '``` ```\\naaa'" {
 
 test "Example 109, line 1907: '~~~~~~\\naaa\\n~~~ ~~'" {
     const input =
-        "\n~~~~~~\n" ++
-        "aaa\n" ++
-        "~~~ ~~\n";
+        \\
+        \\~~~~~~
+        \\aaa
+        \\~~~ ~~
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "~~~ ~~\n" ++
-        "</code></pre>\n";
+        \\<pre><code>aaa
+        \\~~~ ~~
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3589,16 +4077,21 @@ test "Example 109, line 1907: '~~~~~~\\naaa\\n~~~ ~~'" {
 
 test "Example 110, line 1921: 'foo\\n```\\nbar\\n```\\nbaz'" {
     const input =
-        "\nfoo\n" ++
-        "```\n" ++
-        "bar\n" ++
-        "```\n" ++
-        "baz\n";
+        \\
+        \\foo
+        \\```
+        \\bar
+        \\```
+        \\baz
+        \\
+    ;
     const expected =
-        "<p>foo</p>\n" ++
-        "<pre><code>bar\n" ++
-        "</code></pre>\n" ++
-        "<p>baz</p>\n";
+        \\<p>foo</p>
+        \\<pre><code>bar
+        \\</code></pre>
+        \\<p>baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3625,17 +4118,22 @@ test "Example 110, line 1921: 'foo\\n```\\nbar\\n```\\nbaz'" {
 
 test "Example 111, line 1938: 'foo\\n---\\n~~~\\nbar\\n~~~\\n# baz'" {
     const input =
-        "\nfoo\n" ++
-        "---\n" ++
-        "~~~\n" ++
-        "bar\n" ++
-        "~~~\n" ++
-        "# baz\n";
+        \\
+        \\foo
+        \\---
+        \\~~~
+        \\bar
+        \\~~~
+        \\# baz
+        \\
+    ;
     const expected =
-        "<h2>foo</h2>\n" ++
-        "<pre><code>bar\n" ++
-        "</code></pre>\n" ++
-        "<h1>baz</h1>\n";
+        \\<h2>foo</h2>
+        \\<pre><code>bar
+        \\</code></pre>
+        \\<h1>baz</h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3662,16 +4160,21 @@ test "Example 111, line 1938: 'foo\\n---\\n~~~\\nbar\\n~~~\\n# baz'" {
 
 test "Example 112, line 1960: '```ruby\\ndef foo(x)\\n  return 3\\nend\\n```'" {
     const input =
-        "\n```ruby\n" ++
-        "def foo(x)\n" ++
-        "  return 3\n" ++
-        "end\n" ++
-        "```\n";
+        \\
+        \\```ruby
+        \\def foo(x)
+        \\  return 3
+        \\end
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code class=\"language-ruby\">def foo(x)\n" ++
-        "  return 3\n" ++
-        "end\n" ++
-        "</code></pre>\n";
+        \\<pre><code class="language-ruby">def foo(x)
+        \\  return 3
+        \\end
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3698,16 +4201,21 @@ test "Example 112, line 1960: '```ruby\\ndef foo(x)\\n  return 3\\nend\\n```'" {
 
 test "Example 113, line 1974: '~~~~    ruby startline=3 $%@#$\\ndef foo(x)\\n  return 3\\nend\\n~~~~~~~'" {
     const input =
-        "\n~~~~    ruby startline=3 $%@#$\n" ++
-        "def foo(x)\n" ++
-        "  return 3\n" ++
-        "end\n" ++
-        "~~~~~~~\n";
+        \\
+        \\~~~~    ruby startline=3 $%@#$
+        \\def foo(x)
+        \\  return 3
+        \\end
+        \\~~~~~~~
+        \\
+    ;
     const expected =
-        "<pre><code class=\"language-ruby\">def foo(x)\n" ++
-        "  return 3\n" ++
-        "end\n" ++
-        "</code></pre>\n";
+        \\<pre><code class="language-ruby">def foo(x)
+        \\  return 3
+        \\end
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3734,10 +4242,15 @@ test "Example 113, line 1974: '~~~~    ruby startline=3 $%@#$\\ndef foo(x)\\n  r
 
 test "Example 114, line 1988: '````;\\n````'" {
     const input =
-        "\n````;\n" ++
-        "````\n";
+        \\
+        \\````;
+        \\````
+        \\
+    ;
     const expected =
-        "<pre><code class=\"language-;\"></code></pre>\n";
+        \\<pre><code class="language-;"></code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3764,11 +4277,16 @@ test "Example 114, line 1988: '````;\\n````'" {
 
 test "Example 115, line 1998: '``` aa ```\\nfoo'" {
     const input =
-        "\n``` aa ```\n" ++
-        "foo\n";
+        \\
+        \\``` aa ```
+        \\foo
+        \\
+    ;
     const expected =
-        "<p><code>aa</code>\n" ++
-        "foo</p>\n";
+        \\<p><code>aa</code>
+        \\foo</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3795,12 +4313,17 @@ test "Example 115, line 1998: '``` aa ```\\nfoo'" {
 
 test "Example 116, line 2009: '~~~ aa ``` ~~~\\nfoo\\n~~~'" {
     const input =
-        "\n~~~ aa ``` ~~~\n" ++
-        "foo\n" ++
-        "~~~\n";
+        \\
+        \\~~~ aa ``` ~~~
+        \\foo
+        \\~~~
+        \\
+    ;
     const expected =
-        "<pre><code class=\"language-aa\">foo\n" ++
-        "</code></pre>\n";
+        \\<pre><code class="language-aa">foo
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3827,12 +4350,17 @@ test "Example 116, line 2009: '~~~ aa ``` ~~~\\nfoo\\n~~~'" {
 
 test "Example 117, line 2021: '```\\n``` aaa\\n```'" {
     const input =
-        "\n```\n" ++
-        "``` aaa\n" ++
-        "```\n";
+        \\
+        \\```
+        \\``` aaa
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code>``` aaa\n" ++
-        "</code></pre>\n";
+        \\<pre><code>``` aaa
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3859,20 +4387,25 @@ test "Example 117, line 2021: '```\\n``` aaa\\n```'" {
 
 test "Example 118, line 2100: '<table><tr><td>\\n<pre>\\n**Hello**,\\n\\n_world_.\\n</pre>\\n</td></tr></table>'" {
     const input =
-        "\n<table><tr><td>\n" ++
-        "<pre>\n" ++
-        "**Hello**,\n" ++
-        "\n" ++
-        "_world_.\n" ++
-        "</pre>\n" ++
-        "</td></tr></table>\n";
+        \\
+        \\<table><tr><td>
+        \\<pre>
+        \\**Hello**,
+        \\
+        \\_world_.
+        \\</pre>
+        \\</td></tr></table>
+        \\
+    ;
     const expected =
-        "<table><tr><td>\n" ++
-        "<pre>\n" ++
-        "**Hello**,\n" ++
-        "<p><em>world</em>.\n" ++
-        "</pre></p>\n" ++
-        "</td></tr></table>\n";
+        \\<table><tr><td>
+        \\<pre>
+        \\**Hello**,
+        \\<p><em>world</em>.
+        \\</pre></p>
+        \\</td></tr></table>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3899,24 +4432,29 @@ test "Example 118, line 2100: '<table><tr><td>\\n<pre>\\n**Hello**,\\n\\n_world_
 
 test "Example 119, line 2129: '<table>\\n  <tr>\\n    <td>\\n           hi\\n    </td>\\n  </tr>\\n</table>\\n\\nokay.'" {
     const input =
-        "\n<table>\n" ++
-        "  <tr>\n" ++
-        "    <td>\n" ++
-        "           hi\n" ++
-        "    </td>\n" ++
-        "  </tr>\n" ++
-        "</table>\n" ++
-        "\n" ++
-        "okay.\n";
+        \\
+        \\<table>
+        \\  <tr>
+        \\    <td>
+        \\           hi
+        \\    </td>
+        \\  </tr>
+        \\</table>
+        \\
+        \\okay.
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "  <tr>\n" ++
-        "    <td>\n" ++
-        "           hi\n" ++
-        "    </td>\n" ++
-        "  </tr>\n" ++
-        "</table>\n" ++
-        "<p>okay.</p>\n";
+        \\<table>
+        \\  <tr>
+        \\    <td>
+        \\           hi
+        \\    </td>
+        \\  </tr>
+        \\</table>
+        \\<p>okay.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3943,13 +4481,18 @@ test "Example 119, line 2129: '<table>\\n  <tr>\\n    <td>\\n           hi\\n   
 
 test "Example 120, line 2151: ' <div>\\n  *hello*\\n         <foo><a>'" {
     const input =
-        "\n <div>\n" ++
-        "  *hello*\n" ++
-        "         <foo><a>\n";
+        \\
+        \\ <div>
+        \\  *hello*
+        \\         <foo><a>
+        \\
+    ;
     const expected =
-        " <div>\n" ++
-        "  *hello*\n" ++
-        "         <foo><a>\n";
+        \\ <div>
+        \\  *hello*
+        \\         <foo><a>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -3976,11 +4519,16 @@ test "Example 120, line 2151: ' <div>\\n  *hello*\\n         <foo><a>'" {
 
 test "Example 121, line 2164: '</div>\\n*foo*'" {
     const input =
-        "\n</div>\n" ++
-        "*foo*\n";
+        \\
+        \\</div>
+        \\*foo*
+        \\
+    ;
     const expected =
-        "</div>\n" ++
-        "*foo*\n";
+        \\</div>
+        \\*foo*
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4007,15 +4555,20 @@ test "Example 121, line 2164: '</div>\\n*foo*'" {
 
 test "Example 122, line 2175: '<DIV CLASS=\"foo\">\\n\\n*Markdown*\\n\\n</DIV>'" {
     const input =
-        "\n<DIV CLASS=\"foo\">\n" ++
-        "\n" ++
-        "*Markdown*\n" ++
-        "\n" ++
-        "</DIV>\n";
+        \\
+        \\<DIV CLASS="foo">
+        \\
+        \\*Markdown*
+        \\
+        \\</DIV>
+        \\
+    ;
     const expected =
-        "<DIV CLASS=\"foo\">\n" ++
-        "<p><em>Markdown</em></p>\n" ++
-        "</DIV>\n";
+        \\<DIV CLASS="foo">
+        \\<p><em>Markdown</em></p>
+        \\</DIV>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4042,13 +4595,18 @@ test "Example 122, line 2175: '<DIV CLASS=\"foo\">\\n\\n*Markdown*\\n\\n</DIV>'"
 
 test "Example 123, line 2191: '<div id=\"foo\"\\n  class=\"bar\">\\n</div>'" {
     const input =
-        "\n<div id=\"foo\"\n" ++
-        "  class=\"bar\">\n" ++
-        "</div>\n";
+        \\
+        \\<div id="foo"
+        \\  class="bar">
+        \\</div>
+        \\
+    ;
     const expected =
-        "<div id=\"foo\"\n" ++
-        "  class=\"bar\">\n" ++
-        "</div>\n";
+        \\<div id="foo"
+        \\  class="bar">
+        \\</div>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4075,13 +4633,18 @@ test "Example 123, line 2191: '<div id=\"foo\"\\n  class=\"bar\">\\n</div>'" {
 
 test "Example 124, line 2202: '<div id=\"foo\" class=\"bar\\n  baz\">\\n</div>'" {
     const input =
-        "\n<div id=\"foo\" class=\"bar\n" ++
-        "  baz\">\n" ++
-        "</div>\n";
+        \\
+        \\<div id="foo" class="bar
+        \\  baz">
+        \\</div>
+        \\
+    ;
     const expected =
-        "<div id=\"foo\" class=\"bar\n" ++
-        "  baz\">\n" ++
-        "</div>\n";
+        \\<div id="foo" class="bar
+        \\  baz">
+        \\</div>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4108,14 +4671,19 @@ test "Example 124, line 2202: '<div id=\"foo\" class=\"bar\\n  baz\">\\n</div>'"
 
 test "Example 125, line 2214: '<div>\\n*foo*\\n\\n*bar*'" {
     const input =
-        "\n<div>\n" ++
-        "*foo*\n" ++
-        "\n" ++
-        "*bar*\n";
+        \\
+        \\<div>
+        \\*foo*
+        \\
+        \\*bar*
+        \\
+    ;
     const expected =
-        "<div>\n" ++
-        "*foo*\n" ++
-        "<p><em>bar</em></p>\n";
+        \\<div>
+        \\*foo*
+        \\<p><em>bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4142,11 +4710,16 @@ test "Example 125, line 2214: '<div>\\n*foo*\\n\\n*bar*'" {
 
 test "Example 126, line 2230: '<div id=\"foo\"\\n*hi*'" {
     const input =
-        "\n<div id=\"foo\"\n" ++
-        "*hi*\n";
+        \\
+        \\<div id="foo"
+        \\*hi*
+        \\
+    ;
     const expected =
-        "<div id=\"foo\"\n" ++
-        "*hi*\n";
+        \\<div id="foo"
+        \\*hi*
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4173,11 +4746,16 @@ test "Example 126, line 2230: '<div id=\"foo\"\\n*hi*'" {
 
 test "Example 127, line 2239: '<div class\\nfoo'" {
     const input =
-        "\n<div class\n" ++
-        "foo\n";
+        \\
+        \\<div class
+        \\foo
+        \\
+    ;
     const expected =
-        "<div class\n" ++
-        "foo\n";
+        \\<div class
+        \\foo
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4204,11 +4782,16 @@ test "Example 127, line 2239: '<div class\\nfoo'" {
 
 test "Example 128, line 2251: '<div *???-&&&-<---\\n*foo*'" {
     const input =
-        "\n<div *???-&&&-<---\n" ++
-        "*foo*\n";
+        \\
+        \\<div *???-&&&-<---
+        \\*foo*
+        \\
+    ;
     const expected =
-        "<div *???-&&&-<---\n" ++
-        "*foo*\n";
+        \\<div *???-&&&-<---
+        \\*foo*
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4235,9 +4818,14 @@ test "Example 128, line 2251: '<div *???-&&&-<---\\n*foo*'" {
 
 test "Example 129, line 2263: '<div><a href=\"bar\">*foo*</a></div>'" {
     const input =
-        "\n<div><a href=\"bar\">*foo*</a></div>\n";
+        \\
+        \\<div><a href="bar">*foo*</a></div>
+        \\
+    ;
     const expected =
-        "<div><a href=\"bar\">*foo*</a></div>\n";
+        \\<div><a href="bar">*foo*</a></div>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4264,13 +4852,18 @@ test "Example 129, line 2263: '<div><a href=\"bar\">*foo*</a></div>'" {
 
 test "Example 130, line 2270: '<table><tr><td>\\nfoo\\n</td></tr></table>'" {
     const input =
-        "\n<table><tr><td>\n" ++
-        "foo\n" ++
-        "</td></tr></table>\n";
+        \\
+        \\<table><tr><td>
+        \\foo
+        \\</td></tr></table>
+        \\
+    ;
     const expected =
-        "<table><tr><td>\n" ++
-        "foo\n" ++
-        "</td></tr></table>\n";
+        \\<table><tr><td>
+        \\foo
+        \\</td></tr></table>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4297,15 +4890,20 @@ test "Example 130, line 2270: '<table><tr><td>\\nfoo\\n</td></tr></table>'" {
 
 test "Example 131, line 2287: '<div></div>\\n``` c\\nint x = 33;\\n```'" {
     const input =
-        "\n<div></div>\n" ++
-        "``` c\n" ++
-        "int x = 33;\n" ++
-        "```\n";
+        \\
+        \\<div></div>
+        \\``` c
+        \\int x = 33;
+        \\```
+        \\
+    ;
     const expected =
-        "<div></div>\n" ++
-        "``` c\n" ++
-        "int x = 33;\n" ++
-        "```\n";
+        \\<div></div>
+        \\``` c
+        \\int x = 33;
+        \\```
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4332,13 +4930,18 @@ test "Example 131, line 2287: '<div></div>\\n``` c\\nint x = 33;\\n```'" {
 
 test "Example 132, line 2304: '<a href=\"foo\">\\n*bar*\\n</a>'" {
     const input =
-        "\n<a href=\"foo\">\n" ++
-        "*bar*\n" ++
-        "</a>\n";
+        \\
+        \\<a href="foo">
+        \\*bar*
+        \\</a>
+        \\
+    ;
     const expected =
-        "<a href=\"foo\">\n" ++
-        "*bar*\n" ++
-        "</a>\n";
+        \\<a href="foo">
+        \\*bar*
+        \\</a>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4365,13 +4968,18 @@ test "Example 132, line 2304: '<a href=\"foo\">\\n*bar*\\n</a>'" {
 
 test "Example 133, line 2317: '<Warning>\\n*bar*\\n</Warning>'" {
     const input =
-        "\n<Warning>\n" ++
-        "*bar*\n" ++
-        "</Warning>\n";
+        \\
+        \\<Warning>
+        \\*bar*
+        \\</Warning>
+        \\
+    ;
     const expected =
-        "<Warning>\n" ++
-        "*bar*\n" ++
-        "</Warning>\n";
+        \\<Warning>
+        \\*bar*
+        \\</Warning>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4398,13 +5006,18 @@ test "Example 133, line 2317: '<Warning>\\n*bar*\\n</Warning>'" {
 
 test "Example 134, line 2328: '<i class=\"foo\">\\n*bar*\\n</i>'" {
     const input =
-        "\n<i class=\"foo\">\n" ++
-        "*bar*\n" ++
-        "</i>\n";
+        \\
+        \\<i class="foo">
+        \\*bar*
+        \\</i>
+        \\
+    ;
     const expected =
-        "<i class=\"foo\">\n" ++
-        "*bar*\n" ++
-        "</i>\n";
+        \\<i class="foo">
+        \\*bar*
+        \\</i>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4431,11 +5044,16 @@ test "Example 134, line 2328: '<i class=\"foo\">\\n*bar*\\n</i>'" {
 
 test "Example 135, line 2339: '</ins>\\n*bar*'" {
     const input =
-        "\n</ins>\n" ++
-        "*bar*\n";
+        \\
+        \\</ins>
+        \\*bar*
+        \\
+    ;
     const expected =
-        "</ins>\n" ++
-        "*bar*\n";
+        \\</ins>
+        \\*bar*
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4462,13 +5080,18 @@ test "Example 135, line 2339: '</ins>\\n*bar*'" {
 
 test "Example 136, line 2354: '<del>\\n*foo*\\n</del>'" {
     const input =
-        "\n<del>\n" ++
-        "*foo*\n" ++
-        "</del>\n";
+        \\
+        \\<del>
+        \\*foo*
+        \\</del>
+        \\
+    ;
     const expected =
-        "<del>\n" ++
-        "*foo*\n" ++
-        "</del>\n";
+        \\<del>
+        \\*foo*
+        \\</del>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4495,15 +5118,20 @@ test "Example 136, line 2354: '<del>\\n*foo*\\n</del>'" {
 
 test "Example 137, line 2369: '<del>\\n\\n*foo*\\n\\n</del>'" {
     const input =
-        "\n<del>\n" ++
-        "\n" ++
-        "*foo*\n" ++
-        "\n" ++
-        "</del>\n";
+        \\
+        \\<del>
+        \\
+        \\*foo*
+        \\
+        \\</del>
+        \\
+    ;
     const expected =
-        "<del>\n" ++
-        "<p><em>foo</em></p>\n" ++
-        "</del>\n";
+        \\<del>
+        \\<p><em>foo</em></p>
+        \\</del>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4530,9 +5158,14 @@ test "Example 137, line 2369: '<del>\\n\\n*foo*\\n\\n</del>'" {
 
 test "Example 138, line 2387: '<del>*foo*</del>'" {
     const input =
-        "\n<del>*foo*</del>\n";
+        \\
+        \\<del>*foo*</del>
+        \\
+    ;
     const expected =
-        "<p><del><em>foo</em></del></p>\n";
+        \\<p><del><em>foo</em></del></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4559,21 +5192,26 @@ test "Example 138, line 2387: '<del>*foo*</del>'" {
 
 test "Example 139, line 2403: '<pre language=\"haskell\"><code>\\nimport Text.HTML.TagSoup\\n\\nmain :: IO ()\\nmain = print $ parseTags tags\\n</code></pre>\\nokay'" {
     const input =
-        "\n<pre language=\"haskell\"><code>\n" ++
-        "import Text.HTML.TagSoup\n" ++
-        "\n" ++
-        "main :: IO ()\n" ++
-        "main = print $ parseTags tags\n" ++
-        "</code></pre>\n" ++
-        "okay\n";
+        \\
+        \\<pre language="haskell"><code>
+        \\import Text.HTML.TagSoup
+        \\
+        \\main :: IO ()
+        \\main = print $ parseTags tags
+        \\</code></pre>
+        \\okay
+        \\
+    ;
     const expected =
-        "<pre language=\"haskell\"><code>\n" ++
-        "import Text.HTML.TagSoup\n" ++
-        "\n" ++
-        "main :: IO ()\n" ++
-        "main = print $ parseTags tags\n" ++
-        "</code></pre>\n" ++
-        "<p>okay</p>\n";
+        \\<pre language="haskell"><code>
+        \\import Text.HTML.TagSoup
+        \\
+        \\main :: IO ()
+        \\main = print $ parseTags tags
+        \\</code></pre>
+        \\<p>okay</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4600,19 +5238,24 @@ test "Example 139, line 2403: '<pre language=\"haskell\"><code>\\nimport Text.HT
 
 test "Example 140, line 2424: '<script type=\"text/javascript\">\\n// JavaScript example\\n\\ndocument.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\";\\n</script>\\nokay'" {
     const input =
-        "\n<script type=\"text/javascript\">\n" ++
-        "// JavaScript example\n" ++
-        "\n" ++
-        "document.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\";\n" ++
-        "</script>\n" ++
-        "okay\n";
+        \\
+        \\<script type="text/javascript">
+        \\// JavaScript example
+        \\
+        \\document.getElementById("demo").innerHTML = "Hello JavaScript!";
+        \\</script>
+        \\okay
+        \\
+    ;
     const expected =
-        "<script type=\"text/javascript\">\n" ++
-        "// JavaScript example\n" ++
-        "\n" ++
-        "document.getElementById(\"demo\").innerHTML = \"Hello JavaScript!\";\n" ++
-        "</script>\n" ++
-        "<p>okay</p>\n";
+        \\<script type="text/javascript">
+        \\// JavaScript example
+        \\
+        \\document.getElementById("demo").innerHTML = "Hello JavaScript!";
+        \\</script>
+        \\<p>okay</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4639,21 +5282,26 @@ test "Example 140, line 2424: '<script type=\"text/javascript\">\\n// JavaScript
 
 test "Example 141, line 2443: '<style\\n  type=\"text/css\">\\nh1 {color:red;}\\n\\np {color:blue;}\\n</style>\\nokay'" {
     const input =
-        "\n<style\n" ++
-        "  type=\"text/css\">\n" ++
-        "h1 {color:red;}\n" ++
-        "\n" ++
-        "p {color:blue;}\n" ++
-        "</style>\n" ++
-        "okay\n";
+        \\
+        \\<style
+        \\  type="text/css">
+        \\h1 {color:red;}
+        \\
+        \\p {color:blue;}
+        \\</style>
+        \\okay
+        \\
+    ;
     const expected =
-        "<style\n" ++
-        "  type=\"text/css\">\n" ++
-        "h1 {color:red;}\n" ++
-        "\n" ++
-        "p {color:blue;}\n" ++
-        "</style>\n" ++
-        "<p>okay</p>\n";
+        \\<style
+        \\  type="text/css">
+        \\h1 {color:red;}
+        \\
+        \\p {color:blue;}
+        \\</style>
+        \\<p>okay</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4680,15 +5328,20 @@ test "Example 141, line 2443: '<style\\n  type=\"text/css\">\\nh1 {color:red;}\\
 
 test "Example 142, line 2466: '<style\\n  type=\"text/css\">\\n\\nfoo'" {
     const input =
-        "\n<style\n" ++
-        "  type=\"text/css\">\n" ++
-        "\n" ++
-        "foo\n";
+        \\
+        \\<style
+        \\  type="text/css">
+        \\
+        \\foo
+        \\
+    ;
     const expected =
-        "<style\n" ++
-        "  type=\"text/css\">\n" ++
-        "\n" ++
-        "foo\n";
+        \\<style
+        \\  type="text/css">
+        \\
+        \\foo
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4715,16 +5368,21 @@ test "Example 142, line 2466: '<style\\n  type=\"text/css\">\\n\\nfoo'" {
 
 test "Example 143, line 2479: '> <div>\\n> foo\\n\\nbar'" {
     const input =
-        "\n> <div>\n" ++
-        "> foo\n" ++
-        "\n" ++
-        "bar\n";
+        \\
+        \\> <div>
+        \\> foo
+        \\
+        \\bar
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<div>\n" ++
-        "foo\n" ++
-        "</blockquote>\n" ++
-        "<p>bar</p>\n";
+        \\<blockquote>
+        \\<div>
+        \\foo
+        \\</blockquote>
+        \\<p>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4751,15 +5409,20 @@ test "Example 143, line 2479: '> <div>\\n> foo\\n\\nbar'" {
 
 test "Example 144, line 2493: '- <div>\\n- foo'" {
     const input =
-        "\n- <div>\n" ++
-        "- foo\n";
+        \\
+        \\- <div>
+        \\- foo
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<div>\n" ++
-        "</li>\n" ++
-        "<li>foo</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<div>
+        \\</li>
+        \\<li>foo</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4786,11 +5449,16 @@ test "Example 144, line 2493: '- <div>\\n- foo'" {
 
 test "Example 145, line 2508: '<style>p{color:red;}</style>\\n*foo*'" {
     const input =
-        "\n<style>p{color:red;}</style>\n" ++
-        "*foo*\n";
+        \\
+        \\<style>p{color:red;}</style>
+        \\*foo*
+        \\
+    ;
     const expected =
-        "<style>p{color:red;}</style>\n" ++
-        "<p><em>foo</em></p>\n";
+        \\<style>p{color:red;}</style>
+        \\<p><em>foo</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4817,11 +5485,16 @@ test "Example 145, line 2508: '<style>p{color:red;}</style>\\n*foo*'" {
 
 test "Example 146, line 2517: '<!-- foo -->*bar*\\n*baz*'" {
     const input =
-        "\n<!-- foo -->*bar*\n" ++
-        "*baz*\n";
+        \\
+        \\<!-- foo -->*bar*
+        \\*baz*
+        \\
+    ;
     const expected =
-        "<!-- foo -->*bar*\n" ++
-        "<p><em>baz</em></p>\n";
+        \\<!-- foo -->*bar*
+        \\<p><em>baz</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4848,13 +5521,18 @@ test "Example 146, line 2517: '<!-- foo -->*bar*\\n*baz*'" {
 
 test "Example 147, line 2529: '<script>\\nfoo\\n</script>1. *bar*'" {
     const input =
-        "\n<script>\n" ++
-        "foo\n" ++
-        "</script>1. *bar*\n";
+        \\
+        \\<script>
+        \\foo
+        \\</script>1. *bar*
+        \\
+    ;
     const expected =
-        "<script>\n" ++
-        "foo\n" ++
-        "</script>1. *bar*\n";
+        \\<script>
+        \\foo
+        \\</script>1. *bar*
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4881,17 +5559,22 @@ test "Example 147, line 2529: '<script>\\nfoo\\n</script>1. *bar*'" {
 
 test "Example 148, line 2542: '<!-- Foo\\n\\nbar\\n   baz -->\\nokay'" {
     const input =
-        "\n<!-- Foo\n" ++
-        "\n" ++
-        "bar\n" ++
-        "   baz -->\n" ++
-        "okay\n";
+        \\
+        \\<!-- Foo
+        \\
+        \\bar
+        \\   baz -->
+        \\okay
+        \\
+    ;
     const expected =
-        "<!-- Foo\n" ++
-        "\n" ++
-        "bar\n" ++
-        "   baz -->\n" ++
-        "<p>okay</p>\n";
+        \\<!-- Foo
+        \\
+        \\bar
+        \\   baz -->
+        \\<p>okay</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4918,19 +5601,24 @@ test "Example 148, line 2542: '<!-- Foo\\n\\nbar\\n   baz -->\\nokay'" {
 
 test "Example 149, line 2560: '<?php\\n\\n  echo '>';\\n\\n?>\\nokay'" {
     const input =
-        "\n<?php\n" ++
-        "\n" ++
-        "  echo '>';\n" ++
-        "\n" ++
-        "?>\n" ++
-        "okay\n";
+        \\
+        \\<?php
+        \\
+        \\  echo '>';
+        \\
+        \\?>
+        \\okay
+        \\
+    ;
     const expected =
-        "<?php\n" ++
-        "\n" ++
-        "  echo '>';\n" ++
-        "\n" ++
-        "?>\n" ++
-        "<p>okay</p>\n";
+        \\<?php
+        \\
+        \\  echo '>';
+        \\
+        \\?>
+        \\<p>okay</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4957,9 +5645,14 @@ test "Example 149, line 2560: '<?php\\n\\n  echo '>';\\n\\n?>\\nokay'" {
 
 test "Example 150, line 2579: '<!DOCTYPE html>'" {
     const input =
-        "\n<!DOCTYPE html>\n";
+        \\
+        \\<!DOCTYPE html>
+        \\
+    ;
     const expected =
-        "<!DOCTYPE html>\n";
+        \\<!DOCTYPE html>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -4986,33 +5679,38 @@ test "Example 150, line 2579: '<!DOCTYPE html>'" {
 
 test "Example 151, line 2588: '<![CDATA[\\nfunction matchwo(a,b)\\n{\\n  if (a < b && a < 0) then {\\n    return 1;\\n\\n  } else {\\n\\n    return 0;\\n  }\\n}\\n]]>\\nokay'" {
     const input =
-        "\n<![CDATA[\n" ++
-        "function matchwo(a,b)\n" ++
-        "{\n" ++
-        "  if (a < b && a < 0) then {\n" ++
-        "    return 1;\n" ++
-        "\n" ++
-        "  } else {\n" ++
-        "\n" ++
-        "    return 0;\n" ++
-        "  }\n" ++
-        "}\n" ++
-        "]]>\n" ++
-        "okay\n";
+        \\
+        \\<![CDATA[
+        \\function matchwo(a,b)
+        \\{
+        \\  if (a < b && a < 0) then {
+        \\    return 1;
+        \\
+        \\  } else {
+        \\
+        \\    return 0;
+        \\  }
+        \\}
+        \\]]>
+        \\okay
+        \\
+    ;
     const expected =
-        "<![CDATA[\n" ++
-        "function matchwo(a,b)\n" ++
-        "{\n" ++
-        "  if (a < b && a < 0) then {\n" ++
-        "    return 1;\n" ++
-        "\n" ++
-        "  } else {\n" ++
-        "\n" ++
-        "    return 0;\n" ++
-        "  }\n" ++
-        "}\n" ++
-        "]]>\n" ++
-        "<p>okay</p>\n";
+        \\<![CDATA[
+        \\function matchwo(a,b)
+        \\{
+        \\  if (a < b && a < 0) then {
+        \\    return 1;
+        \\
+        \\  } else {
+        \\
+        \\    return 0;
+        \\  }
+        \\}
+        \\]]>
+        \\<p>okay</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5039,13 +5737,18 @@ test "Example 151, line 2588: '<![CDATA[\\nfunction matchwo(a,b)\\n{\\n  if (a <
 
 test "Example 152, line 2621: '  <!-- foo -->\\n\\n    <!-- foo -->'" {
     const input =
-        "\n  <!-- foo -->\n" ++
-        "\n" ++
-        "    <!-- foo -->\n";
+        \\
+        \\  <!-- foo -->
+        \\
+        \\    <!-- foo -->
+        \\
+    ;
     const expected =
-        "  <!-- foo -->\n" ++
-        "<pre><code>&lt;!-- foo --&gt;\n" ++
-        "</code></pre>\n";
+        \\  <!-- foo -->
+        \\<pre><code>&lt;!-- foo --&gt;
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5072,13 +5775,18 @@ test "Example 152, line 2621: '  <!-- foo -->\\n\\n    <!-- foo -->'" {
 
 test "Example 153, line 2632: '  <div>\\n\\n    <div>'" {
     const input =
-        "\n  <div>\n" ++
-        "\n" ++
-        "    <div>\n";
+        \\
+        \\  <div>
+        \\
+        \\    <div>
+        \\
+    ;
     const expected =
-        "  <div>\n" ++
-        "<pre><code>&lt;div&gt;\n" ++
-        "</code></pre>\n";
+        \\  <div>
+        \\<pre><code>&lt;div&gt;
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5105,15 +5813,20 @@ test "Example 153, line 2632: '  <div>\\n\\n    <div>'" {
 
 test "Example 154, line 2646: 'Foo\\n<div>\\nbar\\n</div>'" {
     const input =
-        "\nFoo\n" ++
-        "<div>\n" ++
-        "bar\n" ++
-        "</div>\n";
+        \\
+        \\Foo
+        \\<div>
+        \\bar
+        \\</div>
+        \\
+    ;
     const expected =
-        "<p>Foo</p>\n" ++
-        "<div>\n" ++
-        "bar\n" ++
-        "</div>\n";
+        \\<p>Foo</p>
+        \\<div>
+        \\bar
+        \\</div>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5140,15 +5853,20 @@ test "Example 154, line 2646: 'Foo\\n<div>\\nbar\\n</div>'" {
 
 test "Example 155, line 2663: '<div>\\nbar\\n</div>\\n*foo*'" {
     const input =
-        "\n<div>\n" ++
-        "bar\n" ++
-        "</div>\n" ++
-        "*foo*\n";
+        \\
+        \\<div>
+        \\bar
+        \\</div>
+        \\*foo*
+        \\
+    ;
     const expected =
-        "<div>\n" ++
-        "bar\n" ++
-        "</div>\n" ++
-        "*foo*\n";
+        \\<div>
+        \\bar
+        \\</div>
+        \\*foo*
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5175,13 +5893,18 @@ test "Example 155, line 2663: '<div>\\nbar\\n</div>\\n*foo*'" {
 
 test "Example 156, line 2678: 'Foo\\n<a href=\"bar\">\\nbaz'" {
     const input =
-        "\nFoo\n" ++
-        "<a href=\"bar\">\n" ++
-        "baz\n";
+        \\
+        \\Foo
+        \\<a href="bar">
+        \\baz
+        \\
+    ;
     const expected =
-        "<p>Foo\n" ++
-        "<a href=\"bar\">\n" ++
-        "baz</p>\n";
+        \\<p>Foo
+        \\<a href="bar">
+        \\baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5208,15 +5931,20 @@ test "Example 156, line 2678: 'Foo\\n<a href=\"bar\">\\nbaz'" {
 
 test "Example 157, line 2719: '<div>\\n\\n*Emphasized* text.\\n\\n</div>'" {
     const input =
-        "\n<div>\n" ++
-        "\n" ++
-        "*Emphasized* text.\n" ++
-        "\n" ++
-        "</div>\n";
+        \\
+        \\<div>
+        \\
+        \\*Emphasized* text.
+        \\
+        \\</div>
+        \\
+    ;
     const expected =
-        "<div>\n" ++
-        "<p><em>Emphasized</em> text.</p>\n" ++
-        "</div>\n";
+        \\<div>
+        \\<p><em>Emphasized</em> text.</p>
+        \\</div>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5243,13 +5971,18 @@ test "Example 157, line 2719: '<div>\\n\\n*Emphasized* text.\\n\\n</div>'" {
 
 test "Example 158, line 2732: '<div>\\n*Emphasized* text.\\n</div>'" {
     const input =
-        "\n<div>\n" ++
-        "*Emphasized* text.\n" ++
-        "</div>\n";
+        \\
+        \\<div>
+        \\*Emphasized* text.
+        \\</div>
+        \\
+    ;
     const expected =
-        "<div>\n" ++
-        "*Emphasized* text.\n" ++
-        "</div>\n";
+        \\<div>
+        \\*Emphasized* text.
+        \\</div>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5276,25 +6009,30 @@ test "Example 158, line 2732: '<div>\\n*Emphasized* text.\\n</div>'" {
 
 test "Example 159, line 2754: '<table>\\n\\n<tr>\\n\\n<td>\\nHi\\n</td>\\n\\n</tr>\\n\\n</table>'" {
     const input =
-        "\n<table>\n" ++
-        "\n" ++
-        "<tr>\n" ++
-        "\n" ++
-        "<td>\n" ++
-        "Hi\n" ++
-        "</td>\n" ++
-        "\n" ++
-        "</tr>\n" ++
-        "\n" ++
-        "</table>\n";
+        \\
+        \\<table>
+        \\
+        \\<tr>
+        \\
+        \\<td>
+        \\Hi
+        \\</td>
+        \\
+        \\</tr>
+        \\
+        \\</table>
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "<tr>\n" ++
-        "<td>\n" ++
-        "Hi\n" ++
-        "</td>\n" ++
-        "</tr>\n" ++
-        "</table>\n";
+        \\<table>
+        \\<tr>
+        \\<td>
+        \\Hi
+        \\</td>
+        \\</tr>
+        \\</table>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5321,26 +6059,31 @@ test "Example 159, line 2754: '<table>\\n\\n<tr>\\n\\n<td>\\nHi\\n</td>\\n\\n</t
 
 test "Example 160, line 2781: '<table>\\n\\n  <tr>\\n\\n    <td>\\n      Hi\\n    </td>\\n\\n  </tr>\\n\\n</table>'" {
     const input =
-        "\n<table>\n" ++
-        "\n" ++
-        "  <tr>\n" ++
-        "\n" ++
-        "    <td>\n" ++
-        "      Hi\n" ++
-        "    </td>\n" ++
-        "\n" ++
-        "  </tr>\n" ++
-        "\n" ++
-        "</table>\n";
+        \\
+        \\<table>
+        \\
+        \\  <tr>
+        \\
+        \\    <td>
+        \\      Hi
+        \\    </td>
+        \\
+        \\  </tr>
+        \\
+        \\</table>
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "  <tr>\n" ++
-        "<pre><code>&lt;td&gt;\n" ++
-        "  Hi\n" ++
-        "&lt;/td&gt;\n" ++
-        "</code></pre>\n" ++
-        "  </tr>\n" ++
-        "</table>\n";
+        \\<table>
+        \\  <tr>
+        \\<pre><code>&lt;td&gt;
+        \\  Hi
+        \\&lt;/td&gt;
+        \\</code></pre>
+        \\  </tr>
+        \\</table>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5367,11 +6110,16 @@ test "Example 160, line 2781: '<table>\\n\\n  <tr>\\n\\n    <td>\\n      Hi\\n  
 
 test "Example 161, line 2829: '[foo]: /url \"title\"\\n\\n[foo]'" {
     const input =
-        "\n[foo]: /url \"title\"\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]: /url "title"
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
+        \\<p><a href="/url" title="title">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5398,13 +6146,18 @@ test "Example 161, line 2829: '[foo]: /url \"title\"\\n\\n[foo]'" {
 
 test "Example 162, line 2838: '   [foo]: \\n      /url  \\n           'the title'  \\n\\n[foo]'" {
     const input =
-        "\n   [foo]: \n" ++
-        "      /url  \n" ++
-        "           'the title'  \n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\   [foo]: 
+        \\      /url  
+        \\           'the title'  
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"the title\">foo</a></p>\n";
+        \\<p><a href="/url" title="the title">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5431,7 +6184,8 @@ test "Example 162, line 2838: '   [foo]: \\n      /url  \\n           'the title
 
 test "Example 163, line 2849: '[Foo*bar\\]]:my_(url) 'title (with parens)'\\n\\n[Foo*bar\\]]'" {
     const input =
-        "\n[Foo*bar\\]]:my_(url) 'title (with parens)'\n" ++
+        "\n" ++
+        "[Foo*bar\\]]:my_(url) 'title (with parens)'\n" ++
         "\n" ++
         "[Foo*bar\\]]\n";
     const expected =
@@ -5462,13 +6216,18 @@ test "Example 163, line 2849: '[Foo*bar\\]]:my_(url) 'title (with parens)'\\n\\n
 
 test "Example 164, line 2858: '[Foo bar]:\\n<my url>\\n'title'\\n\\n[Foo bar]'" {
     const input =
-        "\n[Foo bar]:\n" ++
-        "<my url>\n" ++
-        "'title'\n" ++
-        "\n" ++
-        "[Foo bar]\n";
+        \\
+        \\[Foo bar]:
+        \\<my url>
+        \\'title'
+        \\
+        \\[Foo bar]
+        \\
+    ;
     const expected =
-        "<p><a href=\"my%20url\" title=\"title\">Foo bar</a></p>\n";
+        \\<p><a href="my%20url" title="title">Foo bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5495,19 +6254,24 @@ test "Example 164, line 2858: '[Foo bar]:\\n<my url>\\n'title'\\n\\n[Foo bar]'" 
 
 test "Example 165, line 2871: '[foo]: /url '\\ntitle\\nline1\\nline2\\n'\\n\\n[foo]'" {
     const input =
-        "\n[foo]: /url '\n" ++
-        "title\n" ++
-        "line1\n" ++
-        "line2\n" ++
-        "'\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]: /url '
+        \\title
+        \\line1
+        \\line2
+        \\'
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"\n" ++
-        "title\n" ++
-        "line1\n" ++
-        "line2\n" ++
-        "\">foo</a></p>\n";
+        \\<p><a href="/url" title="
+        \\title
+        \\line1
+        \\line2
+        \\">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5534,15 +6298,20 @@ test "Example 165, line 2871: '[foo]: /url '\\ntitle\\nline1\\nline2\\n'\\n\\n[f
 
 test "Example 166, line 2890: '[foo]: /url 'title\\n\\nwith blank line'\\n\\n[foo]'" {
     const input =
-        "\n[foo]: /url 'title\n" ++
-        "\n" ++
-        "with blank line'\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]: /url 'title
+        \\
+        \\with blank line'
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p>[foo]: /url 'title</p>\n" ++
-        "<p>with blank line'</p>\n" ++
-        "<p>[foo]</p>\n";
+        \\<p>[foo]: /url 'title</p>
+        \\<p>with blank line'</p>
+        \\<p>[foo]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5569,12 +6338,17 @@ test "Example 166, line 2890: '[foo]: /url 'title\\n\\nwith blank line'\\n\\n[fo
 
 test "Example 167, line 2905: '[foo]:\\n/url\\n\\n[foo]'" {
     const input =
-        "\n[foo]:\n" ++
-        "/url\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]:
+        \\/url
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\">foo</a></p>\n";
+        \\<p><a href="/url">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5601,12 +6375,17 @@ test "Example 167, line 2905: '[foo]:\\n/url\\n\\n[foo]'" {
 
 test "Example 168, line 2917: '[foo]:\\n\\n[foo]'" {
     const input =
-        "\n[foo]:\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]:
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p>[foo]:</p>\n" ++
-        "<p>[foo]</p>\n";
+        \\<p>[foo]:</p>
+        \\<p>[foo]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5633,11 +6412,16 @@ test "Example 168, line 2917: '[foo]:\\n\\n[foo]'" {
 
 test "Example 169, line 2929: '[foo]: <>\\n\\n[foo]'" {
     const input =
-        "\n[foo]: <>\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]: <>
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p><a href=\"\">foo</a></p>\n";
+        \\<p><a href="">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5664,12 +6448,17 @@ test "Example 169, line 2929: '[foo]: <>\\n\\n[foo]'" {
 
 test "Example 170, line 2940: '[foo]: <bar>(baz)\\n\\n[foo]'" {
     const input =
-        "\n[foo]: <bar>(baz)\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]: <bar>(baz)
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p>[foo]: <bar>(baz)</p>\n" ++
-        "<p>[foo]</p>\n";
+        \\<p>[foo]: <bar>(baz)</p>
+        \\<p>[foo]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5696,7 +6485,8 @@ test "Example 170, line 2940: '[foo]: <bar>(baz)\\n\\n[foo]'" {
 
 test "Example 171, line 2953: '[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\\n\\n[foo]'" {
     const input =
-        "\n[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\n" ++
+        "\n" ++
+        "[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\n" ++
         "\n" ++
         "[foo]\n";
     const expected =
@@ -5727,11 +6517,16 @@ test "Example 171, line 2953: '[foo]: /url\\bar\\*baz \"foo\\\"bar\\baz\"\\n\\n[
 
 test "Example 172, line 2964: '[foo]\\n\\n[foo]: url'" {
     const input =
-        "\n[foo]\n" ++
-        "\n" ++
-        "[foo]: url\n";
+        \\
+        \\[foo]
+        \\
+        \\[foo]: url
+        \\
+    ;
     const expected =
-        "<p><a href=\"url\">foo</a></p>\n";
+        \\<p><a href="url">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5758,12 +6553,17 @@ test "Example 172, line 2964: '[foo]\\n\\n[foo]: url'" {
 
 test "Example 173, line 2976: '[foo]\\n\\n[foo]: first\\n[foo]: second'" {
     const input =
-        "\n[foo]\n" ++
-        "\n" ++
-        "[foo]: first\n" ++
-        "[foo]: second\n";
+        \\
+        \\[foo]
+        \\
+        \\[foo]: first
+        \\[foo]: second
+        \\
+    ;
     const expected =
-        "<p><a href=\"first\">foo</a></p>\n";
+        \\<p><a href="first">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5790,11 +6590,16 @@ test "Example 173, line 2976: '[foo]\\n\\n[foo]: first\\n[foo]: second'" {
 
 test "Example 174, line 2989: '[FOO]: /url\\n\\n[Foo]'" {
     const input =
-        "\n[FOO]: /url\n" ++
-        "\n" ++
-        "[Foo]\n";
+        \\
+        \\[FOO]: /url
+        \\
+        \\[Foo]
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\">Foo</a></p>\n";
+        \\<p><a href="/url">Foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5819,32 +6624,15 @@ test "Example 174, line 2989: '[FOO]: /url\\n\\n[Foo]'" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
-// TODO:
-//test "Example 175, line 2998: '[ΑΓΩ]: /φου\\n\\n[αγω]'" {
-//    const input =
-//        "[ΑΓΩ]: /φου\n" ++
-//        "\n" ++
-//        "[αγω]\n";
-//    const expected =
-//        "<p><a href=\"/%CF%86%CE%BF%CF%85\">αγω</a></p>\n";
-//
-//    const gpa = std.testing.allocator;
-//    const rules = try gfm.init(gpa);
-////
-//    const doc = try parse.execute(gpa, input, rules);
-//    defer doc.deinit(gpa);
-//
-//    const html = try render(gpa, doc, null, false);
-//    defer gpa.free(html);
-//
-//    try std.testing.expectEqualStrings(expected, html);
-//}
+// TODO: test "Example 175, line 2998: '[ΑΓΩ]: /φου\\n\\n[αγω]'"
 
 test "Example 176, line 3010: '[foo]: /url'" {
     const input =
-        "\n[foo]: /url\n";
-    const expected =
-        "";
+        \\
+        \\[foo]: /url
+        \\
+    ;
+    const expected = "";
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5871,12 +6659,17 @@ test "Example 176, line 3010: '[foo]: /url'" {
 
 test "Example 177, line 3018: '[\\nfoo\\n]: /url\\nbar'" {
     const input =
-        "\n[\n" ++
-        "foo\n" ++
-        "]: /url\n" ++
-        "bar\n";
+        \\
+        \\[
+        \\foo
+        \\]: /url
+        \\bar
+        \\
+    ;
     const expected =
-        "<p>bar</p>\n";
+        \\<p>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5903,9 +6696,14 @@ test "Example 177, line 3018: '[\\nfoo\\n]: /url\\nbar'" {
 
 test "Example 178, line 3031: '[foo]: /url \"title\" ok'" {
     const input =
-        "\n[foo]: /url \"title\" ok\n";
+        \\
+        \\[foo]: /url "title" ok
+        \\
+    ;
     const expected =
-        "<p>[foo]: /url &quot;title&quot; ok</p>\n";
+        \\<p>[foo]: /url &quot;title&quot; ok</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5932,10 +6730,15 @@ test "Example 178, line 3031: '[foo]: /url \"title\" ok'" {
 
 test "Example 179, line 3040: '[foo]: /url\\n\"title\" ok'" {
     const input =
-        "\n[foo]: /url\n" ++
-        "\"title\" ok\n";
+        \\
+        \\[foo]: /url
+        \\"title" ok
+        \\
+    ;
     const expected =
-        "<p>&quot;title&quot; ok</p>\n";
+        \\<p>&quot;title&quot; ok</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5962,13 +6765,18 @@ test "Example 179, line 3040: '[foo]: /url\\n\"title\" ok'" {
 
 test "Example 180, line 3051: '    [foo]: /url \"title\"\\n\\n[foo]'" {
     const input =
-        "\n    [foo]: /url \"title\"\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\    [foo]: /url "title"
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<pre><code>[foo]: /url &quot;title&quot;\n" ++
-        "</code></pre>\n" ++
-        "<p>[foo]</p>\n";
+        \\<pre><code>[foo]: /url &quot;title&quot;
+        \\</code></pre>
+        \\<p>[foo]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -5995,15 +6803,20 @@ test "Example 180, line 3051: '    [foo]: /url \"title\"\\n\\n[foo]'" {
 
 test "Example 181, line 3065: '```\\n[foo]: /url\\n```\\n\\n[foo]'" {
     const input =
-        "\n```\n" ++
-        "[foo]: /url\n" ++
-        "```\n" ++
-        "\n" ++
-        "[foo]\n";
+        \\
+        \\```
+        \\[foo]: /url
+        \\```
+        \\
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<pre><code>[foo]: /url\n" ++
-        "</code></pre>\n" ++
-        "<p>[foo]</p>\n";
+        \\<pre><code>[foo]: /url
+        \\</code></pre>
+        \\<p>[foo]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6030,14 +6843,19 @@ test "Example 181, line 3065: '```\\n[foo]: /url\\n```\\n\\n[foo]'" {
 
 test "Example 182, line 3080: 'Foo\\n[bar]: /baz\\n\\n[bar]'" {
     const input =
-        "\nFoo\n" ++
-        "[bar]: /baz\n" ++
-        "\n" ++
-        "[bar]\n";
+        \\
+        \\Foo
+        \\[bar]: /baz
+        \\
+        \\[bar]
+        \\
+    ;
     const expected =
-        "<p>Foo\n" ++
-        "[bar]: /baz</p>\n" ++
-        "<p>[bar]</p>\n";
+        \\<p>Foo
+        \\[bar]: /baz</p>
+        \\<p>[bar]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6064,14 +6882,19 @@ test "Example 182, line 3080: 'Foo\\n[bar]: /baz\\n\\n[bar]'" {
 
 test "Example 183, line 3095: '# [Foo]\\n[foo]: /url\\n> bar'" {
     const input =
-        "\n# [Foo]\n" ++
-        "[foo]: /url\n" ++
-        "> bar\n";
+        \\
+        \\# [Foo]
+        \\[foo]: /url
+        \\> bar
+        \\
+    ;
     const expected =
-        "<h1><a href=\"/url\">Foo</a></h1>\n" ++
-        "<blockquote>\n" ++
-        "<p>bar</p>\n" ++
-        "</blockquote>\n";
+        \\<h1><a href="/url">Foo</a></h1>
+        \\<blockquote>
+        \\<p>bar</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6098,13 +6921,18 @@ test "Example 183, line 3095: '# [Foo]\\n[foo]: /url\\n> bar'" {
 
 test "Example 184, line 3106: '[foo]: /url\\nbar\\n===\\n[foo]'" {
     const input =
-        "\n[foo]: /url\n" ++
-        "bar\n" ++
-        "===\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]: /url
+        \\bar
+        \\===
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<h1>bar</h1>\n" ++
-        "<p><a href=\"/url\">foo</a></p>\n";
+        \\<h1>bar</h1>
+        \\<p><a href="/url">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6131,12 +6959,17 @@ test "Example 184, line 3106: '[foo]: /url\\nbar\\n===\\n[foo]'" {
 
 test "Example 185, line 3116: '[foo]: /url\\n===\\n[foo]'" {
     const input =
-        "\n[foo]: /url\n" ++
-        "===\n" ++
-        "[foo]\n";
+        \\
+        \\[foo]: /url
+        \\===
+        \\[foo]
+        \\
+    ;
     const expected =
-        "<p>===\n" ++
-        "<a href=\"/url\">foo</a></p>\n";
+        \\<p>===
+        \\<a href="/url">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6163,18 +6996,23 @@ test "Example 185, line 3116: '[foo]: /url\\n===\\n[foo]'" {
 
 test "Example 186, line 3129: '[foo]: /foo-url \"foo\"\\n[bar]: /bar-url\\n  \"bar\"\\n[baz]: /baz-url\\n\\n[foo],\\n[bar],\\n[baz]'" {
     const input =
-        "\n[foo]: /foo-url \"foo\"\n" ++
-        "[bar]: /bar-url\n" ++
-        "  \"bar\"\n" ++
-        "[baz]: /baz-url\n" ++
-        "\n" ++
-        "[foo],\n" ++
-        "[bar],\n" ++
-        "[baz]\n";
+        \\
+        \\[foo]: /foo-url "foo"
+        \\[bar]: /bar-url
+        \\  "bar"
+        \\[baz]: /baz-url
+        \\
+        \\[foo],
+        \\[bar],
+        \\[baz]
+        \\
+    ;
     const expected =
-        "<p><a href=\"/foo-url\" title=\"foo\">foo</a>,\n" ++
-        "<a href=\"/bar-url\" title=\"bar\">bar</a>,\n" ++
-        "<a href=\"/baz-url\">baz</a></p>\n";
+        \\<p><a href="/foo-url" title="foo">foo</a>,
+        \\<a href="/bar-url" title="bar">bar</a>,
+        \\<a href="/baz-url">baz</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6201,13 +7039,18 @@ test "Example 186, line 3129: '[foo]: /foo-url \"foo\"\\n[bar]: /bar-url\\n  \"b
 
 test "Example 187, line 3150: '[foo]\\n\\n> [foo]: /url'" {
     const input =
-        "\n[foo]\n" ++
-        "\n" ++
-        "> [foo]: /url\n";
+        \\
+        \\[foo]
+        \\
+        \\> [foo]: /url
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\">foo</a></p>\n" ++
-        "<blockquote>\n" ++
-        "</blockquote>\n";
+        \\<p><a href="/url">foo</a></p>
+        \\<blockquote>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6234,9 +7077,11 @@ test "Example 187, line 3150: '[foo]\\n\\n> [foo]: /url'" {
 
 test "Example 188, line 3167: '[foo]: /url'" {
     const input =
-        "\n[foo]: /url\n";
-    const expected =
-        "";
+        \\
+        \\[foo]: /url
+        \\
+    ;
+    const expected = "";
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6263,12 +7108,17 @@ test "Example 188, line 3167: '[foo]: /url'" {
 
 test "Example 189, line 3184: 'aaa\\n\\nbbb'" {
     const input =
-        "\naaa\n" ++
-        "\n" ++
-        "bbb\n";
+        \\
+        \\aaa
+        \\
+        \\bbb
+        \\
+    ;
     const expected =
-        "<p>aaa</p>\n" ++
-        "<p>bbb</p>\n";
+        \\<p>aaa</p>
+        \\<p>bbb</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6295,16 +7145,21 @@ test "Example 189, line 3184: 'aaa\\n\\nbbb'" {
 
 test "Example 190, line 3196: 'aaa\\nbbb\\n\\nccc\\nddd'" {
     const input =
-        "\naaa\n" ++
-        "bbb\n" ++
-        "\n" ++
-        "ccc\n" ++
-        "ddd\n";
+        \\
+        \\aaa
+        \\bbb
+        \\
+        \\ccc
+        \\ddd
+        \\
+    ;
     const expected =
-        "<p>aaa\n" ++
-        "bbb</p>\n" ++
-        "<p>ccc\n" ++
-        "ddd</p>\n";
+        \\<p>aaa
+        \\bbb</p>
+        \\<p>ccc
+        \\ddd</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6331,13 +7186,18 @@ test "Example 190, line 3196: 'aaa\\nbbb\\n\\nccc\\nddd'" {
 
 test "Example 191, line 3212: 'aaa\\n\\n\\nbbb'" {
     const input =
-        "\naaa\n" ++
-        "\n" ++
-        "\n" ++
-        "bbb\n";
+        \\
+        \\aaa
+        \\
+        \\
+        \\bbb
+        \\
+    ;
     const expected =
-        "<p>aaa</p>\n" ++
-        "<p>bbb</p>\n";
+        \\<p>aaa</p>
+        \\<p>bbb</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6364,11 +7224,16 @@ test "Example 191, line 3212: 'aaa\\n\\n\\nbbb'" {
 
 test "Example 192, line 3225: '  aaa\\n bbb'" {
     const input =
-        "\n  aaa\n" ++
-        " bbb\n";
+        \\
+        \\  aaa
+        \\ bbb
+        \\
+    ;
     const expected =
-        "<p>aaa\n" ++
-        "bbb</p>\n";
+        \\<p>aaa
+        \\bbb</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6395,13 +7260,18 @@ test "Example 192, line 3225: '  aaa\\n bbb'" {
 
 test "Example 193, line 3237: 'aaa\\n             bbb\\n                                       ccc'" {
     const input =
-        "\naaa\n" ++
-        "             bbb\n" ++
-        "                                       ccc\n";
+        \\
+        \\aaa
+        \\             bbb
+        \\                                       ccc
+        \\
+    ;
     const expected =
-        "<p>aaa\n" ++
-        "bbb\n" ++
-        "ccc</p>\n";
+        \\<p>aaa
+        \\bbb
+        \\ccc</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6428,11 +7298,16 @@ test "Example 193, line 3237: 'aaa\\n             bbb\\n                        
 
 test "Example 194, line 3251: '   aaa\\nbbb'" {
     const input =
-        "\n   aaa\n" ++
-        "bbb\n";
+        \\
+        \\   aaa
+        \\bbb
+        \\
+    ;
     const expected =
-        "<p>aaa\n" ++
-        "bbb</p>\n";
+        \\<p>aaa
+        \\bbb</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6459,12 +7334,17 @@ test "Example 194, line 3251: '   aaa\\nbbb'" {
 
 test "Example 195, line 3260: '    aaa\\nbbb'" {
     const input =
-        "\n    aaa\n" ++
-        "bbb\n";
+        \\
+        \\    aaa
+        \\bbb
+        \\
+    ;
     const expected =
-        "<pre><code>aaa\n" ++
-        "</code></pre>\n" ++
-        "<p>bbb</p>\n";
+        \\<pre><code>aaa
+        \\</code></pre>
+        \\<p>bbb</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6491,11 +7371,16 @@ test "Example 195, line 3260: '    aaa\\nbbb'" {
 
 test "Example 196, line 3274: 'aaa     \\nbbb     '" {
     const input =
-        "\naaa     \n" ++
-        "bbb     \n";
+        \\
+        \\aaa     
+        \\bbb     
+        \\
+    ;
     const expected =
-        "<p>aaa<br />\n" ++
-        "bbb</p>\n";
+        \\<p>aaa<br />
+        \\bbb</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6522,17 +7407,22 @@ test "Example 196, line 3274: 'aaa     \\nbbb     '" {
 
 test "Example 197, line 3291: '  \\n\\naaa\\n  \\n\\n# aaa\\n\\n  '" {
     const input =
-        "\n  \n" ++
-        "\n" ++
-        "aaa\n" ++
-        "  \n" ++
-        "\n" ++
-        "# aaa\n" ++
-        "\n" ++
-        "  \n";
+        \\
+        \\  
+        \\
+        \\aaa
+        \\  
+        \\
+        \\# aaa
+        \\
+        \\  
+        \\
+    ;
     const expected =
-        "<p>aaa</p>\n" ++
-        "<h1>aaa</h1>\n";
+        \\<p>aaa</p>
+        \\<h1>aaa</h1>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6559,24 +7449,29 @@ test "Example 197, line 3291: '  \\n\\naaa\\n  \\n\\n# aaa\\n\\n  '" {
 
 test "Example 198, line 3326: '| foo | bar |\\n| --- | --- |\\n| baz | bim |'" {
     const input =
-        "\n| foo | bar |\n" ++
-        "| --- | --- |\n" ++
-        "| baz | bim |\n";
+        \\
+        \\| foo | bar |
+        \\| --- | --- |
+        \\| baz | bim |
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "<thead>\n" ++
-        "<tr>\n" ++
-        "<th>foo</th>\n" ++
-        "<th>bar</th>\n" ++
-        "</tr>\n" ++
-        "</thead>\n" ++
-        "<tbody>\n" ++
-        "<tr>\n" ++
-        "<td>baz</td>\n" ++
-        "<td>bim</td>\n" ++
-        "</tr>\n" ++
-        "</tbody>\n" ++
-        "</table>\n";
+        \\<table>
+        \\<thead>
+        \\<tr>
+        \\<th>foo</th>
+        \\<th>bar</th>
+        \\</tr>
+        \\</thead>
+        \\<tbody>
+        \\<tr>
+        \\<td>baz</td>
+        \\<td>bim</td>
+        \\</tr>
+        \\</tbody>
+        \\</table>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6603,24 +7498,29 @@ test "Example 198, line 3326: '| foo | bar |\\n| --- | --- |\\n| baz | bim |'" {
 
 test "Example 199, line 3350: '| abc | defghi |\\n:-: | -----------:\\nbar | baz'" {
     const input =
-        "\n| abc | defghi |\n" ++
-        ":-: | -----------:\n" ++
-        "bar | baz\n";
+        \\
+        \\| abc | defghi |
+        \\:-: | -----------:
+        \\bar | baz
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "<thead>\n" ++
-        "<tr>\n" ++
-        "<th align=\"center\">abc</th>\n" ++
-        "<th align=\"right\">defghi</th>\n" ++
-        "</tr>\n" ++
-        "</thead>\n" ++
-        "<tbody>\n" ++
-        "<tr>\n" ++
-        "<td align=\"center\">bar</td>\n" ++
-        "<td align=\"right\">baz</td>\n" ++
-        "</tr>\n" ++
-        "</tbody>\n" ++
-        "</table>\n";
+        \\<table>
+        \\<thead>
+        \\<tr>
+        \\<th align="center">abc</th>
+        \\<th align="right">defghi</th>
+        \\</tr>
+        \\</thead>
+        \\<tbody>
+        \\<tr>
+        \\<td align="center">bar</td>
+        \\<td align="right">baz</td>
+        \\</tr>
+        \\</tbody>
+        \\</table>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6647,7 +7547,8 @@ test "Example 199, line 3350: '| abc | defghi |\\n:-: | -----------:\\nbar | baz
 
 test "Example 200, line 3374: '| f\\|oo  |\\n| ------ |\\n| b `\\|` az |\\n| b **\\|** im |'" {
     const input =
-        "\n| f\\|oo  |\n" ++
+        "\n" ++
+        "| f\\|oo  |\n" ++
         "| ------ |\n" ++
         "| b `\\|` az |\n" ++
         "| b **\\|** im |\n";
@@ -6693,28 +7594,33 @@ test "Example 200, line 3374: '| f\\|oo  |\\n| ------ |\\n| b `\\|` az |\\n| b *
 
 test "Example 201, line 3400: '| abc | def |\\n| --- | --- |\\n| bar | baz |\\n> bar'" {
     const input =
-        "\n| abc | def |\n" ++
-        "| --- | --- |\n" ++
-        "| bar | baz |\n" ++
-        "> bar\n";
+        \\
+        \\| abc | def |
+        \\| --- | --- |
+        \\| bar | baz |
+        \\> bar
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "<thead>\n" ++
-        "<tr>\n" ++
-        "<th>abc</th>\n" ++
-        "<th>def</th>\n" ++
-        "</tr>\n" ++
-        "</thead>\n" ++
-        "<tbody>\n" ++
-        "<tr>\n" ++
-        "<td>bar</td>\n" ++
-        "<td>baz</td>\n" ++
-        "</tr>\n" ++
-        "</tbody>\n" ++
-        "</table>\n" ++
-        "<blockquote>\n" ++
-        "<p>bar</p>\n" ++
-        "</blockquote>\n";
+        \\<table>
+        \\<thead>
+        \\<tr>
+        \\<th>abc</th>
+        \\<th>def</th>
+        \\</tr>
+        \\</thead>
+        \\<tbody>
+        \\<tr>
+        \\<td>bar</td>
+        \\<td>baz</td>
+        \\</tr>
+        \\</tbody>
+        \\</table>
+        \\<blockquote>
+        \\<p>bar</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6741,32 +7647,37 @@ test "Example 201, line 3400: '| abc | def |\\n| --- | --- |\\n| bar | baz |\\n>
 
 test "Example 202, line 3425: '| abc | def |\\n| --- | --- |\\n| bar | baz |\\nbar\\n\\nbar'" {
     const input =
-        "\n| abc | def |\n" ++
-        "| --- | --- |\n" ++
-        "| bar | baz |\n" ++
-        "bar\n" ++
-        "\n" ++
-        "bar\n";
+        \\
+        \\| abc | def |
+        \\| --- | --- |
+        \\| bar | baz |
+        \\bar
+        \\
+        \\bar
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "<thead>\n" ++
-        "<tr>\n" ++
-        "<th>abc</th>\n" ++
-        "<th>def</th>\n" ++
-        "</tr>\n" ++
-        "</thead>\n" ++
-        "<tbody>\n" ++
-        "<tr>\n" ++
-        "<td>bar</td>\n" ++
-        "<td>baz</td>\n" ++
-        "</tr>\n" ++
-        "<tr>\n" ++
-        "<td>bar</td>\n" ++
-        "<td></td>\n" ++
-        "</tr>\n" ++
-        "</tbody>\n" ++
-        "</table>\n" ++
-        "<p>bar</p>\n";
+        \\<table>
+        \\<thead>
+        \\<tr>
+        \\<th>abc</th>
+        \\<th>def</th>
+        \\</tr>
+        \\</thead>
+        \\<tbody>
+        \\<tr>
+        \\<td>bar</td>
+        \\<td>baz</td>
+        \\</tr>
+        \\<tr>
+        \\<td>bar</td>
+        \\<td></td>
+        \\</tr>
+        \\</tbody>
+        \\</table>
+        \\<p>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6793,13 +7704,18 @@ test "Example 202, line 3425: '| abc | def |\\n| --- | --- |\\n| bar | baz |\\nb
 
 test "Example 203, line 3457: '| abc | def |\\n| --- |\\n| bar |'" {
     const input =
-        "\n| abc | def |\n" ++
-        "| --- |\n" ++
-        "| bar |\n";
+        \\
+        \\| abc | def |
+        \\| --- |
+        \\| bar |
+        \\
+    ;
     const expected =
-        "<p>| abc | def |\n" ++
-        "| --- |\n" ++
-        "| bar |</p>\n";
+        \\<p>| abc | def |
+        \\| --- |
+        \\| bar |</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6826,29 +7742,34 @@ test "Example 203, line 3457: '| abc | def |\\n| --- |\\n| bar |'" {
 
 test "Example 204, line 3471: '| abc | def |\\n| --- | --- |\\n| bar |\\n| bar | baz | boo |'" {
     const input =
-        "\n| abc | def |\n" ++
-        "| --- | --- |\n" ++
-        "| bar |\n" ++
-        "| bar | baz | boo |\n";
+        \\
+        \\| abc | def |
+        \\| --- | --- |
+        \\| bar |
+        \\| bar | baz | boo |
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "<thead>\n" ++
-        "<tr>\n" ++
-        "<th>abc</th>\n" ++
-        "<th>def</th>\n" ++
-        "</tr>\n" ++
-        "</thead>\n" ++
-        "<tbody>\n" ++
-        "<tr>\n" ++
-        "<td>bar</td>\n" ++
-        "<td></td>\n" ++
-        "</tr>\n" ++
-        "<tr>\n" ++
-        "<td>bar</td>\n" ++
-        "<td>baz</td>\n" ++
-        "</tr>\n" ++
-        "</tbody>\n" ++
-        "</table>\n";
+        \\<table>
+        \\<thead>
+        \\<tr>
+        \\<th>abc</th>
+        \\<th>def</th>
+        \\</tr>
+        \\</thead>
+        \\<tbody>
+        \\<tr>
+        \\<td>bar</td>
+        \\<td></td>
+        \\</tr>
+        \\<tr>
+        \\<td>bar</td>
+        \\<td>baz</td>
+        \\</tr>
+        \\</tbody>
+        \\</table>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6875,17 +7796,22 @@ test "Example 204, line 3471: '| abc | def |\\n| --- | --- |\\n| bar |\\n| bar |
 
 test "Example 205, line 3499: '| abc | def |\\n| --- | --- |'" {
     const input =
-        "\n| abc | def |\n" ++
-        "| --- | --- |\n";
+        \\
+        \\| abc | def |
+        \\| --- | --- |
+        \\
+    ;
     const expected =
-        "<table>\n" ++
-        "<thead>\n" ++
-        "<tr>\n" ++
-        "<th>abc</th>\n" ++
-        "<th>def</th>\n" ++
-        "</tr>\n" ++
-        "</thead>\n" ++
-        "</table>\n";
+        \\<table>
+        \\<thead>
+        \\<tr>
+        \\<th>abc</th>
+        \\<th>def</th>
+        \\</tr>
+        \\</thead>
+        \\</table>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6912,15 +7838,20 @@ test "Example 205, line 3499: '| abc | def |\\n| --- | --- |'" {
 
 test "Example 206, line 3565: '> # Foo\\n> bar\\n> baz'" {
     const input =
-        "\n> # Foo\n" ++
-        "> bar\n" ++
-        "> baz\n";
+        \\
+        \\> # Foo
+        \\> bar
+        \\> baz
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<h1>Foo</h1>\n" ++
-        "<p>bar\n" ++
-        "baz</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<h1>Foo</h1>
+        \\<p>bar
+        \\baz</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6947,15 +7878,20 @@ test "Example 206, line 3565: '> # Foo\\n> bar\\n> baz'" {
 
 test "Example 207, line 3580: '># Foo\\n>bar\\n> baz'" {
     const input =
-        "\n># Foo\n" ++
-        ">bar\n" ++
-        "> baz\n";
+        \\
+        \\># Foo
+        \\>bar
+        \\> baz
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<h1>Foo</h1>\n" ++
-        "<p>bar\n" ++
-        "baz</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<h1>Foo</h1>
+        \\<p>bar
+        \\baz</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -6982,15 +7918,20 @@ test "Example 207, line 3580: '># Foo\\n>bar\\n> baz'" {
 
 test "Example 208, line 3595: '   > # Foo\\n   > bar\\n > baz'" {
     const input =
-        "\n   > # Foo\n" ++
-        "   > bar\n" ++
-        " > baz\n";
+        \\
+        \\   > # Foo
+        \\   > bar
+        \\ > baz
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<h1>Foo</h1>\n" ++
-        "<p>bar\n" ++
-        "baz</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<h1>Foo</h1>
+        \\<p>bar
+        \\baz</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7017,14 +7958,19 @@ test "Example 208, line 3595: '   > # Foo\\n   > bar\\n > baz'" {
 
 test "Example 209, line 3610: '    > # Foo\\n    > bar\\n    > baz'" {
     const input =
-        "\n    > # Foo\n" ++
-        "    > bar\n" ++
-        "    > baz\n";
+        \\
+        \\    > # Foo
+        \\    > bar
+        \\    > baz
+        \\
+    ;
     const expected =
-        "<pre><code>&gt; # Foo\n" ++
-        "&gt; bar\n" ++
-        "&gt; baz\n" ++
-        "</code></pre>\n";
+        \\<pre><code>&gt; # Foo
+        \\&gt; bar
+        \\&gt; baz
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7051,15 +7997,20 @@ test "Example 209, line 3610: '    > # Foo\\n    > bar\\n    > baz'" {
 
 test "Example 210, line 3625: '> # Foo\\n> bar\\nbaz'" {
     const input =
-        "\n> # Foo\n" ++
-        "> bar\n" ++
-        "baz\n";
+        \\
+        \\> # Foo
+        \\> bar
+        \\baz
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<h1>Foo</h1>\n" ++
-        "<p>bar\n" ++
-        "baz</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<h1>Foo</h1>
+        \\<p>bar
+        \\baz</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7086,15 +8037,20 @@ test "Example 210, line 3625: '> # Foo\\n> bar\\nbaz'" {
 
 test "Example 211, line 3641: '> bar\\nbaz\\n> foo'" {
     const input =
-        "\n> bar\n" ++
-        "baz\n" ++
-        "> foo\n";
+        \\
+        \\> bar
+        \\baz
+        \\> foo
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>bar\n" ++
-        "baz\n" ++
-        "foo</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>bar
+        \\baz
+        \\foo</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7121,13 +8077,18 @@ test "Example 211, line 3641: '> bar\\nbaz\\n> foo'" {
 
 test "Example 212, line 3665: '> foo\\n---'" {
     const input =
-        "\n> foo\n" ++
-        "---\n";
+        \\
+        \\> foo
+        \\---
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>foo</p>\n" ++
-        "</blockquote>\n" ++
-        "<hr />\n";
+        \\<blockquote>
+        \\<p>foo</p>
+        \\</blockquote>
+        \\<hr />
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7154,17 +8115,22 @@ test "Example 212, line 3665: '> foo\\n---'" {
 
 test "Example 213, line 3685: '> - foo\\n- bar'" {
     const input =
-        "\n> - foo\n" ++
-        "- bar\n";
+        \\
+        \\> - foo
+        \\- bar
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "</ul>\n" ++
-        "</blockquote>\n" ++
-        "<ul>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n";
+        \\<blockquote>
+        \\<ul>
+        \\<li>foo</li>
+        \\</ul>
+        \\</blockquote>
+        \\<ul>
+        \\<li>bar</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7191,15 +8157,20 @@ test "Example 213, line 3685: '> - foo\\n- bar'" {
 
 test "Example 214, line 3703: '>     foo\\n    bar'" {
     const input =
-        "\n>     foo\n" ++
-        "    bar\n";
+        \\
+        \\>     foo
+        \\    bar
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<pre><code>foo\n" ++
-        "</code></pre>\n" ++
-        "</blockquote>\n" ++
-        "<pre><code>bar\n" ++
-        "</code></pre>\n";
+        \\<blockquote>
+        \\<pre><code>foo
+        \\</code></pre>
+        \\</blockquote>
+        \\<pre><code>bar
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7226,15 +8197,20 @@ test "Example 214, line 3703: '>     foo\\n    bar'" {
 
 test "Example 215, line 3716: '> ```\\nfoo\\n```'" {
     const input =
-        "\n> ```\n" ++
-        "foo\n" ++
-        "```\n";
+        \\
+        \\> ```
+        \\foo
+        \\```
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<pre><code></code></pre>\n" ++
-        "</blockquote>\n" ++
-        "<p>foo</p>\n" ++
-        "<pre><code></code></pre>\n";
+        \\<blockquote>
+        \\<pre><code></code></pre>
+        \\</blockquote>
+        \\<p>foo</p>
+        \\<pre><code></code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7261,13 +8237,18 @@ test "Example 215, line 3716: '> ```\\nfoo\\n```'" {
 
 test "Example 216, line 3732: '> foo\\n    - bar'" {
     const input =
-        "\n> foo\n" ++
-        "    - bar\n";
+        \\
+        \\> foo
+        \\    - bar
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>foo\n" ++
-        "- bar</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>foo
+        \\- bar</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7294,10 +8275,15 @@ test "Example 216, line 3732: '> foo\\n    - bar'" {
 
 test "Example 217, line 3756: '>'" {
     const input =
-        "\n>\n";
+        \\
+        \\>
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7324,12 +8310,17 @@ test "Example 217, line 3756: '>'" {
 
 test "Example 218, line 3764: '>\\n>  \\n> '" {
     const input =
-        "\n>\n" ++
-        ">  \n" ++
-        "> \n";
+        \\
+        \\>
+        \\>  
+        \\> 
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7356,13 +8347,18 @@ test "Example 218, line 3764: '>\\n>  \\n> '" {
 
 test "Example 219, line 3776: '>\\n> foo\\n>  '" {
     const input =
-        "\n>\n" ++
-        "> foo\n" ++
-        ">  \n";
+        \\
+        \\>
+        \\> foo
+        \\>  
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>foo</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>foo</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7389,16 +8385,21 @@ test "Example 219, line 3776: '>\\n> foo\\n>  '" {
 
 test "Example 220, line 3789: '> foo\\n\\n> bar'" {
     const input =
-        "\n> foo\n" ++
-        "\n" ++
-        "> bar\n";
+        \\
+        \\> foo
+        \\
+        \\> bar
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>foo</p>\n" ++
-        "</blockquote>\n" ++
-        "<blockquote>\n" ++
-        "<p>bar</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>foo</p>
+        \\</blockquote>
+        \\<blockquote>
+        \\<p>bar</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7425,13 +8426,18 @@ test "Example 220, line 3789: '> foo\\n\\n> bar'" {
 
 test "Example 221, line 3811: '> foo\\n> bar'" {
     const input =
-        "\n> foo\n" ++
-        "> bar\n";
+        \\
+        \\> foo
+        \\> bar
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>foo\n" ++
-        "bar</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>foo
+        \\bar</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7458,14 +8464,19 @@ test "Example 221, line 3811: '> foo\\n> bar'" {
 
 test "Example 222, line 3824: '> foo\\n>\\n> bar'" {
     const input =
-        "\n> foo\n" ++
-        ">\n" ++
-        "> bar\n";
+        \\
+        \\> foo
+        \\>
+        \\> bar
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>foo</p>\n" ++
-        "<p>bar</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>foo</p>
+        \\<p>bar</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7492,13 +8503,18 @@ test "Example 222, line 3824: '> foo\\n>\\n> bar'" {
 
 test "Example 223, line 3838: 'foo\\n> bar'" {
     const input =
-        "\nfoo\n" ++
-        "> bar\n";
+        \\
+        \\foo
+        \\> bar
+        \\
+    ;
     const expected =
-        "<p>foo</p>\n" ++
-        "<blockquote>\n" ++
-        "<p>bar</p>\n" ++
-        "</blockquote>\n";
+        \\<p>foo</p>
+        \\<blockquote>
+        \\<p>bar</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7525,17 +8541,22 @@ test "Example 223, line 3838: 'foo\\n> bar'" {
 
 test "Example 224, line 3852: '> aaa\\n***\\n> bbb'" {
     const input =
-        "\n> aaa\n" ++
-        "***\n" ++
-        "> bbb\n";
+        \\
+        \\> aaa
+        \\***
+        \\> bbb
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>aaa</p>\n" ++
-        "</blockquote>\n" ++
-        "<hr />\n" ++
-        "<blockquote>\n" ++
-        "<p>bbb</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>aaa</p>
+        \\</blockquote>
+        \\<hr />
+        \\<blockquote>
+        \\<p>bbb</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7562,13 +8583,18 @@ test "Example 224, line 3852: '> aaa\\n***\\n> bbb'" {
 
 test "Example 225, line 3870: '> bar\\nbaz'" {
     const input =
-        "\n> bar\n" ++
-        "baz\n";
+        \\
+        \\> bar
+        \\baz
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>bar\n" ++
-        "baz</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<p>bar
+        \\baz</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7595,14 +8621,19 @@ test "Example 225, line 3870: '> bar\\nbaz'" {
 
 test "Example 226, line 3881: '> bar\\n\\nbaz'" {
     const input =
-        "\n> bar\n" ++
-        "\n" ++
-        "baz\n";
+        \\
+        \\> bar
+        \\
+        \\baz
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>bar</p>\n" ++
-        "</blockquote>\n" ++
-        "<p>baz</p>\n";
+        \\<blockquote>
+        \\<p>bar</p>
+        \\</blockquote>
+        \\<p>baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7629,14 +8660,19 @@ test "Example 226, line 3881: '> bar\\n\\nbaz'" {
 
 test "Example 227, line 3893: '> bar\\n>\\nbaz'" {
     const input =
-        "\n> bar\n" ++
-        ">\n" ++
-        "baz\n";
+        \\
+        \\> bar
+        \\>
+        \\baz
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<p>bar</p>\n" ++
-        "</blockquote>\n" ++
-        "<p>baz</p>\n";
+        \\<blockquote>
+        \\<p>bar</p>
+        \\</blockquote>
+        \\<p>baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7663,17 +8699,22 @@ test "Example 227, line 3893: '> bar\\n>\\nbaz'" {
 
 test "Example 228, line 3909: '> > > foo\\nbar'" {
     const input =
-        "\n> > > foo\n" ++
-        "bar\n";
+        \\
+        \\> > > foo
+        \\bar
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<blockquote>\n" ++
-        "<blockquote>\n" ++
-        "<p>foo\n" ++
-        "bar</p>\n" ++
-        "</blockquote>\n" ++
-        "</blockquote>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<blockquote>
+        \\<blockquote>
+        \\<p>foo
+        \\bar</p>
+        \\</blockquote>
+        \\</blockquote>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7700,19 +8741,24 @@ test "Example 228, line 3909: '> > > foo\\nbar'" {
 
 test "Example 229, line 3924: '>>> foo\\n> bar\\n>>baz'" {
     const input =
-        "\n>>> foo\n" ++
-        "> bar\n" ++
-        ">>baz\n";
+        \\
+        \\>>> foo
+        \\> bar
+        \\>>baz
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<blockquote>\n" ++
-        "<blockquote>\n" ++
-        "<p>foo\n" ++
-        "bar\n" ++
-        "baz</p>\n" ++
-        "</blockquote>\n" ++
-        "</blockquote>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<blockquote>
+        \\<blockquote>
+        \\<p>foo
+        \\bar
+        \\baz</p>
+        \\</blockquote>
+        \\</blockquote>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7739,17 +8785,22 @@ test "Example 229, line 3924: '>>> foo\\n> bar\\n>>baz'" {
 
 test "Example 230, line 3946: '>     code\\n\\n>    not code'" {
     const input =
-        "\n>     code\n" ++
-        "\n" ++
-        ">    not code\n";
+        \\
+        \\>     code
+        \\
+        \\>    not code
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<pre><code>code\n" ++
-        "</code></pre>\n" ++
-        "</blockquote>\n" ++
-        "<blockquote>\n" ++
-        "<p>not code</p>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<pre><code>code
+        \\</code></pre>
+        \\</blockquote>
+        \\<blockquote>
+        \\<p>not code</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7776,20 +8827,25 @@ test "Example 230, line 3946: '>     code\\n\\n>    not code'" {
 
 test "Example 231, line 4000: 'A paragraph\\nwith two lines.\\n\\n    indented code\\n\\n> A block quote.'" {
     const input =
-        "\nA paragraph\n" ++
-        "with two lines.\n" ++
-        "\n" ++
-        "    indented code\n" ++
-        "\n" ++
-        "> A block quote.\n";
+        \\
+        \\A paragraph
+        \\with two lines.
+        \\
+        \\    indented code
+        \\
+        \\> A block quote.
+        \\
+    ;
     const expected =
-        "<p>A paragraph\n" ++
-        "with two lines.</p>\n" ++
-        "<pre><code>indented code\n" ++
-        "</code></pre>\n" ++
-        "<blockquote>\n" ++
-        "<p>A block quote.</p>\n" ++
-        "</blockquote>\n";
+        \\<p>A paragraph
+        \\with two lines.</p>
+        \\<pre><code>indented code
+        \\</code></pre>
+        \\<blockquote>
+        \\<p>A block quote.</p>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7816,24 +8872,29 @@ test "Example 231, line 4000: 'A paragraph\\nwith two lines.\\n\\n    indented c
 
 test "Example 232, line 4022: '1.  A paragraph\\n    with two lines.\\n\\n        indented code\\n\\n    > A block quote.'" {
     const input =
-        "\n1.  A paragraph\n" ++
-        "    with two lines.\n" ++
-        "\n" ++
-        "        indented code\n" ++
-        "\n" ++
-        "    > A block quote.\n";
+        \\
+        \\1.  A paragraph
+        \\    with two lines.
+        \\
+        \\        indented code
+        \\
+        \\    > A block quote.
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>A paragraph\n" ++
-        "with two lines.</p>\n" ++
-        "<pre><code>indented code\n" ++
-        "</code></pre>\n" ++
-        "<blockquote>\n" ++
-        "<p>A block quote.</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<p>A paragraph
+        \\with two lines.</p>
+        \\<pre><code>indented code
+        \\</code></pre>
+        \\<blockquote>
+        \\<p>A block quote.</p>
+        \\</blockquote>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7860,14 +8921,19 @@ test "Example 232, line 4022: '1.  A paragraph\\n    with two lines.\\n\\n      
 
 test "Example 233, line 4055: '- one\\n\\n two'" {
     const input =
-        "\n- one\n" ++
-        "\n" ++
-        " two\n";
+        \\
+        \\- one
+        \\
+        \\ two
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>one</li>\n" ++
-        "</ul>\n" ++
-        "<p>two</p>\n";
+        \\<ul>
+        \\<li>one</li>
+        \\</ul>
+        \\<p>two</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7894,16 +8960,21 @@ test "Example 233, line 4055: '- one\\n\\n two'" {
 
 test "Example 234, line 4067: '- one\\n\\n  two'" {
     const input =
-        "\n- one\n" ++
-        "\n" ++
-        "  two\n";
+        \\
+        \\- one
+        \\
+        \\  two
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>one</p>\n" ++
-        "<p>two</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>one</p>
+        \\<p>two</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7930,15 +9001,20 @@ test "Example 234, line 4067: '- one\\n\\n  two'" {
 
 test "Example 235, line 4081: ' -    one\\n\\n     two'" {
     const input =
-        "\n -    one\n" ++
-        "\n" ++
-        "     two\n";
+        \\
+        \\ -    one
+        \\
+        \\     two
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>one</li>\n" ++
-        "</ul>\n" ++
-        "<pre><code> two\n" ++
-        "</code></pre>\n";
+        \\<ul>
+        \\<li>one</li>
+        \\</ul>
+        \\<pre><code> two
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -7965,16 +9041,21 @@ test "Example 235, line 4081: ' -    one\\n\\n     two'" {
 
 test "Example 236, line 4094: ' -    one\\n\\n      two'" {
     const input =
-        "\n -    one\n" ++
-        "\n" ++
-        "      two\n";
+        \\
+        \\ -    one
+        \\
+        \\      two
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>one</p>\n" ++
-        "<p>two</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>one</p>
+        \\<p>two</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8001,20 +9082,25 @@ test "Example 236, line 4094: ' -    one\\n\\n      two'" {
 
 test "Example 237, line 4116: '   > > 1.  one\\n>>\\n>>     two'" {
     const input =
-        "\n   > > 1.  one\n" ++
-        ">>\n" ++
-        ">>     two\n";
+        \\
+        \\   > > 1.  one
+        \\>>
+        \\>>     two
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<blockquote>\n" ++
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>one</p>\n" ++
-        "<p>two</p>\n" ++
-        "</li>\n" ++
-        "</ol>\n" ++
-        "</blockquote>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<blockquote>
+        \\<ol>
+        \\<li>
+        \\<p>one</p>
+        \\<p>two</p>
+        \\</li>
+        \\</ol>
+        \\</blockquote>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8041,18 +9127,23 @@ test "Example 237, line 4116: '   > > 1.  one\\n>>\\n>>     two'" {
 
 test "Example 238, line 4143: '>>- one\\n>>\\n  >  > two'" {
     const input =
-        "\n>>- one\n" ++
-        ">>\n" ++
-        "  >  > two\n";
+        \\
+        \\>>- one
+        \\>>
+        \\  >  > two
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<blockquote>\n" ++
-        "<ul>\n" ++
-        "<li>one</li>\n" ++
-        "</ul>\n" ++
-        "<p>two</p>\n" ++
-        "</blockquote>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<blockquote>
+        \\<ul>
+        \\<li>one</li>
+        \\</ul>
+        \\<p>two</p>
+        \\</blockquote>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8079,12 +9170,17 @@ test "Example 238, line 4143: '>>- one\\n>>\\n  >  > two'" {
 
 test "Example 239, line 4162: '-one\\n\\n2.two'" {
     const input =
-        "\n-one\n" ++
-        "\n" ++
-        "2.two\n";
+        \\
+        \\-one
+        \\
+        \\2.two
+        \\
+    ;
     const expected =
-        "<p>-one</p>\n" ++
-        "<p>2.two</p>\n";
+        \\<p>-one</p>
+        \\<p>2.two</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8111,17 +9207,22 @@ test "Example 239, line 4162: '-one\\n\\n2.two'" {
 
 test "Example 240, line 4175: '- foo\\n\\n\\n  bar'" {
     const input =
-        "\n- foo\n" ++
-        "\n" ++
-        "\n" ++
-        "  bar\n";
+        \\
+        \\- foo
+        \\
+        \\
+        \\  bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<p>bar</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\<p>bar</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8148,27 +9249,32 @@ test "Example 240, line 4175: '- foo\\n\\n\\n  bar'" {
 
 test "Example 241, line 4192: '1.  foo\\n\\n    ```\\n    bar\\n    ```\\n\\n    baz\\n\\n    > bam'" {
     const input =
-        "\n1.  foo\n" ++
-        "\n" ++
-        "    ```\n" ++
-        "    bar\n" ++
-        "    ```\n" ++
-        "\n" ++
-        "    baz\n" ++
-        "\n" ++
-        "    > bam\n";
+        \\
+        \\1.  foo
+        \\
+        \\    ```
+        \\    bar
+        \\    ```
+        \\
+        \\    baz
+        \\
+        \\    > bam
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<pre><code>bar\n" ++
-        "</code></pre>\n" ++
-        "<p>baz</p>\n" ++
-        "<blockquote>\n" ++
-        "<p>bam</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<p>foo</p>
+        \\<pre><code>bar
+        \\</code></pre>
+        \\<p>baz</p>
+        \\<blockquote>
+        \\<p>bam</p>
+        \\</blockquote>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8195,23 +9301,28 @@ test "Example 241, line 4192: '1.  foo\\n\\n    ```\\n    bar\\n    ```\\n\\n   
 
 test "Example 242, line 4220: '- Foo\\n\\n      bar\\n\\n\\n      baz'" {
     const input =
-        "\n- Foo\n" ++
-        "\n" ++
-        "      bar\n" ++
-        "\n" ++
-        "\n" ++
-        "      baz\n";
+        \\
+        \\- Foo
+        \\
+        \\      bar
+        \\
+        \\
+        \\      baz
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>Foo</p>\n" ++
-        "<pre><code>bar\n" ++
-        "\n" ++
-        "\n" ++
-        "baz\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>Foo</p>
+        \\<pre><code>bar
+        \\
+        \\
+        \\baz
+        \\</code></pre>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8238,11 +9349,16 @@ test "Example 242, line 4220: '- Foo\\n\\n      bar\\n\\n\\n      baz'" {
 
 test "Example 243, line 4242: '123456789. ok'" {
     const input =
-        "\n123456789. ok\n";
+        \\
+        \\123456789. ok
+        \\
+    ;
     const expected =
-        "<ol start=\"123456789\">\n" ++
-        "<li>ok</li>\n" ++
-        "</ol>\n";
+        \\<ol start="123456789">
+        \\<li>ok</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8269,9 +9385,14 @@ test "Example 243, line 4242: '123456789. ok'" {
 
 test "Example 244, line 4251: '1234567890. not ok'" {
     const input =
-        "\n1234567890. not ok\n";
+        \\
+        \\1234567890. not ok
+        \\
+    ;
     const expected =
-        "<p>1234567890. not ok</p>\n";
+        \\<p>1234567890. not ok</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8298,11 +9419,16 @@ test "Example 244, line 4251: '1234567890. not ok'" {
 
 test "Example 245, line 4260: '0. ok'" {
     const input =
-        "\n0. ok\n";
+        \\
+        \\0. ok
+        \\
+    ;
     const expected =
-        "<ol start=\"0\">\n" ++
-        "<li>ok</li>\n" ++
-        "</ol>\n";
+        \\<ol start="0">
+        \\<li>ok</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8329,11 +9455,16 @@ test "Example 245, line 4260: '0. ok'" {
 
 test "Example 246, line 4269: '003. ok'" {
     const input =
-        "\n003. ok\n";
+        \\
+        \\003. ok
+        \\
+    ;
     const expected =
-        "<ol start=\"3\">\n" ++
-        "<li>ok</li>\n" ++
-        "</ol>\n";
+        \\<ol start="3">
+        \\<li>ok</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8360,9 +9491,14 @@ test "Example 246, line 4269: '003. ok'" {
 
 test "Example 247, line 4280: '-1. not ok'" {
     const input =
-        "\n-1. not ok\n";
+        \\
+        \\-1. not ok
+        \\
+    ;
     const expected =
-        "<p>-1. not ok</p>\n";
+        \\<p>-1. not ok</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8389,17 +9525,22 @@ test "Example 247, line 4280: '-1. not ok'" {
 
 test "Example 248, line 4303: '- foo\\n\\n      bar'" {
     const input =
-        "\n- foo\n" ++
-        "\n" ++
-        "      bar\n";
+        \\
+        \\- foo
+        \\
+        \\      bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<pre><code>bar\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\<pre><code>bar
+        \\</code></pre>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8426,17 +9567,22 @@ test "Example 248, line 4303: '- foo\\n\\n      bar'" {
 
 test "Example 249, line 4320: '  10.  foo\\n\\n           bar'" {
     const input =
-        "\n  10.  foo\n" ++
-        "\n" ++
-        "           bar\n";
+        \\
+        \\  10.  foo
+        \\
+        \\           bar
+        \\
+    ;
     const expected =
-        "<ol start=\"10\">\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<pre><code>bar\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol start="10">
+        \\<li>
+        \\<p>foo</p>
+        \\<pre><code>bar
+        \\</code></pre>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8463,17 +9609,22 @@ test "Example 249, line 4320: '  10.  foo\\n\\n           bar'" {
 
 test "Example 250, line 4339: '    indented code\\n\\nparagraph\\n\\n    more code'" {
     const input =
-        "\n    indented code\n" ++
-        "\n" ++
-        "paragraph\n" ++
-        "\n" ++
-        "    more code\n";
+        \\
+        \\    indented code
+        \\
+        \\paragraph
+        \\
+        \\    more code
+        \\
+    ;
     const expected =
-        "<pre><code>indented code\n" ++
-        "</code></pre>\n" ++
-        "<p>paragraph</p>\n" ++
-        "<pre><code>more code\n" ++
-        "</code></pre>\n";
+        \\<pre><code>indented code
+        \\</code></pre>
+        \\<p>paragraph</p>
+        \\<pre><code>more code
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8500,21 +9651,26 @@ test "Example 250, line 4339: '    indented code\\n\\nparagraph\\n\\n    more co
 
 test "Example 251, line 4354: '1.     indented code\\n\\n   paragraph\\n\\n       more code'" {
     const input =
-        "\n1.     indented code\n" ++
-        "\n" ++
-        "   paragraph\n" ++
-        "\n" ++
-        "       more code\n";
+        \\
+        \\1.     indented code
+        \\
+        \\   paragraph
+        \\
+        \\       more code
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<pre><code>indented code\n" ++
-        "</code></pre>\n" ++
-        "<p>paragraph</p>\n" ++
-        "<pre><code>more code\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<pre><code>indented code
+        \\</code></pre>
+        \\<p>paragraph</p>
+        \\<pre><code>more code
+        \\</code></pre>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8541,21 +9697,26 @@ test "Example 251, line 4354: '1.     indented code\\n\\n   paragraph\\n\\n     
 
 test "Example 252, line 4376: '1.      indented code\\n\\n   paragraph\\n\\n       more code'" {
     const input =
-        "\n1.      indented code\n" ++
-        "\n" ++
-        "   paragraph\n" ++
-        "\n" ++
-        "       more code\n";
+        \\
+        \\1.      indented code
+        \\
+        \\   paragraph
+        \\
+        \\       more code
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<pre><code> indented code\n" ++
-        "</code></pre>\n" ++
-        "<p>paragraph</p>\n" ++
-        "<pre><code>more code\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<pre><code> indented code
+        \\</code></pre>
+        \\<p>paragraph</p>
+        \\<pre><code>more code
+        \\</code></pre>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8582,12 +9743,17 @@ test "Example 252, line 4376: '1.      indented code\\n\\n   paragraph\\n\\n    
 
 test "Example 253, line 4403: '   foo\\n\\nbar'" {
     const input =
-        "\n   foo\n" ++
-        "\n" ++
-        "bar\n";
+        \\
+        \\   foo
+        \\
+        \\bar
+        \\
+    ;
     const expected =
-        "<p>foo</p>\n" ++
-        "<p>bar</p>\n";
+        \\<p>foo</p>
+        \\<p>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8614,14 +9780,19 @@ test "Example 253, line 4403: '   foo\\n\\nbar'" {
 
 test "Example 254, line 4413: '-    foo\\n\\n  bar'" {
     const input =
-        "\n-    foo\n" ++
-        "\n" ++
-        "  bar\n";
+        \\
+        \\-    foo
+        \\
+        \\  bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "</ul>\n" ++
-        "<p>bar</p>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\</ul>
+        \\<p>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8648,16 +9819,21 @@ test "Example 254, line 4413: '-    foo\\n\\n  bar'" {
 
 test "Example 255, line 4430: '-  foo\\n\\n   bar'" {
     const input =
-        "\n-  foo\n" ++
-        "\n" ++
-        "   bar\n";
+        \\
+        \\-  foo
+        \\
+        \\   bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<p>bar</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\<p>bar</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8684,26 +9860,31 @@ test "Example 255, line 4430: '-  foo\\n\\n   bar'" {
 
 test "Example 256, line 4458: '-\\n  foo\\n-\\n  ```\\n  bar\\n  ```\\n-\\n      baz'" {
     const input =
-        "\n-\n" ++
-        "  foo\n" ++
-        "-\n" ++
-        "  ```\n" ++
-        "  bar\n" ++
-        "  ```\n" ++
-        "-\n" ++
-        "      baz\n";
+        \\
+        \\-
+        \\  foo
+        \\-
+        \\  ```
+        \\  bar
+        \\  ```
+        \\-
+        \\      baz
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "<li>\n" ++
-        "<pre><code>bar\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<pre><code>baz\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\<li>
+        \\<pre><code>bar
+        \\</code></pre>
+        \\</li>
+        \\<li>
+        \\<pre><code>baz
+        \\</code></pre>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8730,12 +9911,17 @@ test "Example 256, line 4458: '-\\n  foo\\n-\\n  ```\\n  bar\\n  ```\\n-\\n     
 
 test "Example 257, line 4484: '-   \\n  foo'" {
     const input =
-        "\n-   \n" ++
-        "  foo\n";
+        \\
+        \\-   
+        \\  foo
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8762,14 +9948,19 @@ test "Example 257, line 4484: '-   \\n  foo'" {
 
 test "Example 258, line 4498: '-\\n\\n  foo'" {
     const input =
-        "\n-\n" ++
-        "\n" ++
-        "  foo\n";
+        \\
+        \\-
+        \\
+        \\  foo
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li></li>\n" ++
-        "</ul>\n" ++
-        "<p>foo</p>\n";
+        \\<ul>
+        \\<li></li>
+        \\</ul>
+        \\<p>foo</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8796,15 +9987,20 @@ test "Example 258, line 4498: '-\\n\\n  foo'" {
 
 test "Example 259, line 4512: '- foo\\n-\\n- bar'" {
     const input =
-        "\n- foo\n" ++
-        "-\n" ++
-        "- bar\n";
+        \\
+        \\- foo
+        \\-
+        \\- bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "<li></li>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\<li></li>
+        \\<li>bar</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8831,15 +10027,20 @@ test "Example 259, line 4512: '- foo\\n-\\n- bar'" {
 
 test "Example 260, line 4527: '- foo\\n-   \\n- bar'" {
     const input =
-        "\n- foo\n" ++
-        "-   \n" ++
-        "- bar\n";
+        \\
+        \\- foo
+        \\-   
+        \\- bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "<li></li>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\<li></li>
+        \\<li>bar</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8866,15 +10067,20 @@ test "Example 260, line 4527: '- foo\\n-   \\n- bar'" {
 
 test "Example 261, line 4542: '1. foo\\n2.\\n3. bar'" {
     const input =
-        "\n1. foo\n" ++
-        "2.\n" ++
-        "3. bar\n";
+        \\
+        \\1. foo
+        \\2.
+        \\3. bar
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>foo</li>\n" ++
-        "<li></li>\n" ++
-        "<li>bar</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>foo</li>
+        \\<li></li>
+        \\<li>bar</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8901,11 +10107,16 @@ test "Example 261, line 4542: '1. foo\\n2.\\n3. bar'" {
 
 test "Example 262, line 4557: '*'" {
     const input =
-        "\n*\n";
+        \\
+        \\*
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li></li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li></li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8932,16 +10143,21 @@ test "Example 262, line 4557: '*'" {
 
 test "Example 263, line 4567: 'foo\\n*\\n\\nfoo\\n1.'" {
     const input =
-        "\nfoo\n" ++
-        "*\n" ++
-        "\n" ++
-        "foo\n" ++
-        "1.\n";
+        \\
+        \\foo
+        \\*
+        \\
+        \\foo
+        \\1.
+        \\
+    ;
     const expected =
-        "<p>foo\n" ++
-        "*</p>\n" ++
-        "<p>foo\n" ++
-        "1.</p>\n";
+        \\<p>foo
+        \\*</p>
+        \\<p>foo
+        \\1.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -8968,24 +10184,29 @@ test "Example 263, line 4567: 'foo\\n*\\n\\nfoo\\n1.'" {
 
 test "Example 264, line 4589: ' 1.  A paragraph\\n     with two lines.\\n\\n         indented code\\n\\n     > A block quote.'" {
     const input =
-        "\n 1.  A paragraph\n" ++
-        "     with two lines.\n" ++
-        "\n" ++
-        "         indented code\n" ++
-        "\n" ++
-        "     > A block quote.\n";
+        \\
+        \\ 1.  A paragraph
+        \\     with two lines.
+        \\
+        \\         indented code
+        \\
+        \\     > A block quote.
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>A paragraph\n" ++
-        "with two lines.</p>\n" ++
-        "<pre><code>indented code\n" ++
-        "</code></pre>\n" ++
-        "<blockquote>\n" ++
-        "<p>A block quote.</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<p>A paragraph
+        \\with two lines.</p>
+        \\<pre><code>indented code
+        \\</code></pre>
+        \\<blockquote>
+        \\<p>A block quote.</p>
+        \\</blockquote>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9012,24 +10233,29 @@ test "Example 264, line 4589: ' 1.  A paragraph\\n     with two lines.\\n\\n    
 
 test "Example 265, line 4613: '  1.  A paragraph\\n      with two lines.\\n\\n          indented code\\n\\n      > A block quote.'" {
     const input =
-        "\n  1.  A paragraph\n" ++
-        "      with two lines.\n" ++
-        "\n" ++
-        "          indented code\n" ++
-        "\n" ++
-        "      > A block quote.\n";
+        \\
+        \\  1.  A paragraph
+        \\      with two lines.
+        \\
+        \\          indented code
+        \\
+        \\      > A block quote.
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>A paragraph\n" ++
-        "with two lines.</p>\n" ++
-        "<pre><code>indented code\n" ++
-        "</code></pre>\n" ++
-        "<blockquote>\n" ++
-        "<p>A block quote.</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<p>A paragraph
+        \\with two lines.</p>
+        \\<pre><code>indented code
+        \\</code></pre>
+        \\<blockquote>
+        \\<p>A block quote.</p>
+        \\</blockquote>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9056,24 +10282,29 @@ test "Example 265, line 4613: '  1.  A paragraph\\n      with two lines.\\n\\n  
 
 test "Example 266, line 4637: '   1.  A paragraph\\n       with two lines.\\n\\n           indented code\\n\\n       > A block quote.'" {
     const input =
-        "\n   1.  A paragraph\n" ++
-        "       with two lines.\n" ++
-        "\n" ++
-        "           indented code\n" ++
-        "\n" ++
-        "       > A block quote.\n";
+        \\
+        \\   1.  A paragraph
+        \\       with two lines.
+        \\
+        \\           indented code
+        \\
+        \\       > A block quote.
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>A paragraph\n" ++
-        "with two lines.</p>\n" ++
-        "<pre><code>indented code\n" ++
-        "</code></pre>\n" ++
-        "<blockquote>\n" ++
-        "<p>A block quote.</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<p>A paragraph
+        \\with two lines.</p>
+        \\<pre><code>indented code
+        \\</code></pre>
+        \\<blockquote>
+        \\<p>A block quote.</p>
+        \\</blockquote>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9100,20 +10331,25 @@ test "Example 266, line 4637: '   1.  A paragraph\\n       with two lines.\\n\\n
 
 test "Example 267, line 4661: '    1.  A paragraph\\n        with two lines.\\n\\n            indented code\\n\\n        > A block quote.'" {
     const input =
-        "\n    1.  A paragraph\n" ++
-        "        with two lines.\n" ++
-        "\n" ++
-        "            indented code\n" ++
-        "\n" ++
-        "        > A block quote.\n";
+        \\
+        \\    1.  A paragraph
+        \\        with two lines.
+        \\
+        \\            indented code
+        \\
+        \\        > A block quote.
+        \\
+    ;
     const expected =
-        "<pre><code>1.  A paragraph\n" ++
-        "    with two lines.\n" ++
-        "\n" ++
-        "        indented code\n" ++
-        "\n" ++
-        "    &gt; A block quote.\n" ++
-        "</code></pre>\n";
+        \\<pre><code>1.  A paragraph
+        \\    with two lines.
+        \\
+        \\        indented code
+        \\
+        \\    &gt; A block quote.
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9140,24 +10376,29 @@ test "Example 267, line 4661: '    1.  A paragraph\\n        with two lines.\\n\
 
 test "Example 268, line 4691: '  1.  A paragraph\\nwith two lines.\\n\\n          indented code\\n\\n      > A block quote.'" {
     const input =
-        "\n  1.  A paragraph\n" ++
-        "with two lines.\n" ++
-        "\n" ++
-        "          indented code\n" ++
-        "\n" ++
-        "      > A block quote.\n";
+        \\
+        \\  1.  A paragraph
+        \\with two lines.
+        \\
+        \\          indented code
+        \\
+        \\      > A block quote.
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>A paragraph\n" ++
-        "with two lines.</p>\n" ++
-        "<pre><code>indented code\n" ++
-        "</code></pre>\n" ++
-        "<blockquote>\n" ++
-        "<p>A block quote.</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<p>A paragraph
+        \\with two lines.</p>
+        \\<pre><code>indented code
+        \\</code></pre>
+        \\<blockquote>
+        \\<p>A block quote.</p>
+        \\</blockquote>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9184,13 +10425,18 @@ test "Example 268, line 4691: '  1.  A paragraph\\nwith two lines.\\n\\n        
 
 test "Example 269, line 4715: '  1.  A paragraph\\n    with two lines.'" {
     const input =
-        "\n  1.  A paragraph\n" ++
-        "    with two lines.\n";
+        \\
+        \\  1.  A paragraph
+        \\    with two lines.
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>A paragraph\n" ++
-        "with two lines.</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>A paragraph
+        \\with two lines.</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9217,19 +10463,24 @@ test "Example 269, line 4715: '  1.  A paragraph\\n    with two lines.'" {
 
 test "Example 270, line 4728: '> 1. > Blockquote\\ncontinued here.'" {
     const input =
-        "\n> 1. > Blockquote\n" ++
-        "continued here.\n";
+        \\
+        \\> 1. > Blockquote
+        \\continued here.
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<blockquote>\n" ++
-        "<p>Blockquote\n" ++
-        "continued here.</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "</ol>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<ol>
+        \\<li>
+        \\<blockquote>
+        \\<p>Blockquote
+        \\continued here.</p>
+        \\</blockquote>
+        \\</li>
+        \\</ol>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9256,19 +10507,24 @@ test "Example 270, line 4728: '> 1. > Blockquote\\ncontinued here.'" {
 
 test "Example 271, line 4745: '> 1. > Blockquote\\n> continued here.'" {
     const input =
-        "\n> 1. > Blockquote\n" ++
-        "> continued here.\n";
+        \\
+        \\> 1. > Blockquote
+        \\> continued here.
+        \\
+    ;
     const expected =
-        "<blockquote>\n" ++
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<blockquote>\n" ++
-        "<p>Blockquote\n" ++
-        "continued here.</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "</ol>\n" ++
-        "</blockquote>\n";
+        \\<blockquote>
+        \\<ol>
+        \\<li>
+        \\<blockquote>
+        \\<p>Blockquote
+        \\continued here.</p>
+        \\</blockquote>
+        \\</li>
+        \\</ol>
+        \\</blockquote>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9295,26 +10551,31 @@ test "Example 271, line 4745: '> 1. > Blockquote\\n> continued here.'" {
 
 test "Example 272, line 4773: '- foo\\n  - bar\\n    - baz\\n      - boo'" {
     const input =
-        "\n- foo\n" ++
-        "  - bar\n" ++
-        "    - baz\n" ++
-        "      - boo\n";
+        \\
+        \\- foo
+        \\  - bar
+        \\    - baz
+        \\      - boo
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo\n" ++
-        "<ul>\n" ++
-        "<li>bar\n" ++
-        "<ul>\n" ++
-        "<li>baz\n" ++
-        "<ul>\n" ++
-        "<li>boo</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo
+        \\<ul>
+        \\<li>bar
+        \\<ul>
+        \\<li>baz
+        \\<ul>
+        \\<li>boo</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9341,17 +10602,22 @@ test "Example 272, line 4773: '- foo\\n  - bar\\n    - baz\\n      - boo'" {
 
 test "Example 273, line 4799: '- foo\\n - bar\\n  - baz\\n   - boo'" {
     const input =
-        "\n- foo\n" ++
-        " - bar\n" ++
-        "  - baz\n" ++
-        "   - boo\n";
+        \\
+        \\- foo
+        \\ - bar
+        \\  - baz
+        \\   - boo
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "<li>bar</li>\n" ++
-        "<li>baz</li>\n" ++
-        "<li>boo</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\<li>bar</li>
+        \\<li>baz</li>
+        \\<li>boo</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9378,16 +10644,21 @@ test "Example 273, line 4799: '- foo\\n - bar\\n  - baz\\n   - boo'" {
 
 test "Example 274, line 4816: '10) foo\\n    - bar'" {
     const input =
-        "\n10) foo\n" ++
-        "    - bar\n";
+        \\
+        \\10) foo
+        \\    - bar
+        \\
+    ;
     const expected =
-        "<ol start=\"10\">\n" ++
-        "<li>foo\n" ++
-        "<ul>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol start="10">
+        \\<li>foo
+        \\<ul>
+        \\<li>bar</li>
+        \\</ul>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9414,15 +10685,20 @@ test "Example 274, line 4816: '10) foo\\n    - bar'" {
 
 test "Example 275, line 4832: '10) foo\\n   - bar'" {
     const input =
-        "\n10) foo\n" ++
-        "   - bar\n";
+        \\
+        \\10) foo
+        \\   - bar
+        \\
+    ;
     const expected =
-        "<ol start=\"10\">\n" ++
-        "<li>foo</li>\n" ++
-        "</ol>\n" ++
-        "<ul>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n";
+        \\<ol start="10">
+        \\<li>foo</li>
+        \\</ol>
+        \\<ul>
+        \\<li>bar</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9449,15 +10725,20 @@ test "Example 275, line 4832: '10) foo\\n   - bar'" {
 
 test "Example 276, line 4847: '- - foo'" {
     const input =
-        "\n- - foo\n";
+        \\
+        \\- - foo
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<ul>
+        \\<li>foo</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9484,19 +10765,24 @@ test "Example 276, line 4847: '- - foo'" {
 
 test "Example 277, line 4860: '1. - 2. foo'" {
     const input =
-        "\n1. - 2. foo\n";
+        \\
+        \\1. - 2. foo
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<ol start=\"2\">\n" ++
-        "<li>foo</li>\n" ++
-        "</ol>\n" ++
-        "</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<ul>
+        \\<li>
+        \\<ol start="2">
+        \\<li>foo</li>
+        \\</ol>
+        \\</li>
+        \\</ul>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9523,19 +10809,24 @@ test "Example 277, line 4860: '1. - 2. foo'" {
 
 test "Example 278, line 4879: '- # Foo\\n- Bar\\n  ---\\n  baz'" {
     const input =
-        "\n- # Foo\n" ++
-        "- Bar\n" ++
-        "  ---\n" ++
-        "  baz\n";
+        \\
+        \\- # Foo
+        \\- Bar
+        \\  ---
+        \\  baz
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<h1>Foo</h1>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<h2>Bar</h2>\n" ++
-        "baz</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<h1>Foo</h1>
+        \\</li>
+        \\<li>
+        \\<h2>Bar</h2>
+        \\baz</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9562,13 +10853,18 @@ test "Example 278, line 4879: '- # Foo\\n- Bar\\n  ---\\n  baz'" {
 
 test "Example 279, line 5108: '- [ ] foo\\n- [x] bar'" {
     const input =
-        "\n- [ ] foo\n" ++
-        "- [x] bar\n";
+        \\
+        \\- [ ] foo
+        \\- [x] bar
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li><input type=\"checkbox\" disabled=\"\" /> foo</li>\n" ++
-        "<li><input type=\"checkbox\" checked=\"\" disabled=\"\" /> bar</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li><input type="checkbox" disabled="" /> foo</li>
+        \\<li><input type="checkbox" checked="" disabled="" /> bar</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9595,20 +10891,25 @@ test "Example 279, line 5108: '- [ ] foo\\n- [x] bar'" {
 
 test "Example 280, line 5120: '- [x] foo\\n  - [ ] bar\\n  - [x] baz\\n- [ ] bim'" {
     const input =
-        "\n- [x] foo\n" ++
-        "  - [ ] bar\n" ++
-        "  - [x] baz\n" ++
-        "- [ ] bim\n";
+        \\
+        \\- [x] foo
+        \\  - [ ] bar
+        \\  - [x] baz
+        \\- [ ] bim
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li><input type=\"checkbox\" checked=\"\" disabled=\"\" /> foo\n" ++
-        "<ul>\n" ++
-        "<li><input type=\"checkbox\" disabled=\"\" /> bar</li>\n" ++
-        "<li><input type=\"checkbox\" checked=\"\" disabled=\"\" /> baz</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "<li><input type=\"checkbox\" disabled=\"\" /> bim</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li><input type="checkbox" checked="" disabled="" /> foo
+        \\<ul>
+        \\<li><input type="checkbox" disabled="" /> bar</li>
+        \\<li><input type="checkbox" checked="" disabled="" /> baz</li>
+        \\</ul>
+        \\</li>
+        \\<li><input type="checkbox" disabled="" /> bim</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9635,17 +10936,22 @@ test "Example 280, line 5120: '- [x] foo\\n  - [ ] bar\\n  - [x] baz\\n- [ ] bim
 
 test "Example 281, line 5172: '- foo\\n- bar\\n+ baz'" {
     const input =
-        "\n- foo\n" ++
-        "- bar\n" ++
-        "+ baz\n";
+        \\
+        \\- foo
+        \\- bar
+        \\+ baz
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n" ++
-        "<ul>\n" ++
-        "<li>baz</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\<li>bar</li>
+        \\</ul>
+        \\<ul>
+        \\<li>baz</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9672,17 +10978,22 @@ test "Example 281, line 5172: '- foo\\n- bar\\n+ baz'" {
 
 test "Example 282, line 5187: '1. foo\\n2. bar\\n3) baz'" {
     const input =
-        "\n1. foo\n" ++
-        "2. bar\n" ++
-        "3) baz\n";
+        \\
+        \\1. foo
+        \\2. bar
+        \\3) baz
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>foo</li>\n" ++
-        "<li>bar</li>\n" ++
-        "</ol>\n" ++
-        "<ol start=\"3\">\n" ++
-        "<li>baz</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>foo</li>
+        \\<li>bar</li>
+        \\</ol>
+        \\<ol start="3">
+        \\<li>baz</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9709,15 +11020,20 @@ test "Example 282, line 5187: '1. foo\\n2. bar\\n3) baz'" {
 
 test "Example 283, line 5206: 'Foo\\n- bar\\n- baz'" {
     const input =
-        "\nFoo\n" ++
-        "- bar\n" ++
-        "- baz\n";
+        \\
+        \\Foo
+        \\- bar
+        \\- baz
+        \\
+    ;
     const expected =
-        "<p>Foo</p>\n" ++
-        "<ul>\n" ++
-        "<li>bar</li>\n" ++
-        "<li>baz</li>\n" ++
-        "</ul>\n";
+        \\<p>Foo</p>
+        \\<ul>
+        \\<li>bar</li>
+        \\<li>baz</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9744,11 +11060,16 @@ test "Example 283, line 5206: 'Foo\\n- bar\\n- baz'" {
 
 test "Example 284, line 5283: 'The number of windows in my house is\\n14.  The number of doors is 6.'" {
     const input =
-        "\nThe number of windows in my house is\n" ++
-        "14.  The number of doors is 6.\n";
+        \\
+        \\The number of windows in my house is
+        \\14.  The number of doors is 6.
+        \\
+    ;
     const expected =
-        "<p>The number of windows in my house is\n" ++
-        "14.  The number of doors is 6.</p>\n";
+        \\<p>The number of windows in my house is
+        \\14.  The number of doors is 6.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9775,13 +11096,18 @@ test "Example 284, line 5283: 'The number of windows in my house is\\n14.  The n
 
 test "Example 285, line 5293: 'The number of windows in my house is\\n1.  The number of doors is 6.'" {
     const input =
-        "\nThe number of windows in my house is\n" ++
-        "1.  The number of doors is 6.\n";
+        \\
+        \\The number of windows in my house is
+        \\1.  The number of doors is 6.
+        \\
+    ;
     const expected =
-        "<p>The number of windows in my house is</p>\n" ++
-        "<ol>\n" ++
-        "<li>The number of doors is 6.</li>\n" ++
-        "</ol>\n";
+        \\<p>The number of windows in my house is</p>
+        \\<ol>
+        \\<li>The number of doors is 6.</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9808,24 +11134,29 @@ test "Example 285, line 5293: 'The number of windows in my house is\\n1.  The nu
 
 test "Example 286, line 5307: '- foo\\n\\n- bar\\n\\n\\n- baz'" {
     const input =
-        "\n- foo\n" ++
-        "\n" ++
-        "- bar\n" ++
-        "\n" ++
-        "\n" ++
-        "- baz\n";
+        \\
+        \\- foo
+        \\
+        \\- bar
+        \\
+        \\
+        \\- baz
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>bar</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>baz</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\</li>
+        \\<li>
+        \\<p>bar</p>
+        \\</li>
+        \\<li>
+        \\<p>baz</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9852,27 +11183,32 @@ test "Example 286, line 5307: '- foo\\n\\n- bar\\n\\n\\n- baz'" {
 
 test "Example 287, line 5328: '- foo\\n  - bar\\n    - baz\\n\\n\\n      bim'" {
     const input =
-        "\n- foo\n" ++
-        "  - bar\n" ++
-        "    - baz\n" ++
-        "\n" ++
-        "\n" ++
-        "      bim\n";
+        \\
+        \\- foo
+        \\  - bar
+        \\    - baz
+        \\
+        \\
+        \\      bim
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo\n" ++
-        "<ul>\n" ++
-        "<li>bar\n" ++
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>baz</p>\n" ++
-        "<p>bim</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo
+        \\<ul>
+        \\<li>bar
+        \\<ul>
+        \\<li>
+        \\<p>baz</p>
+        \\<p>bim</p>
+        \\</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9899,23 +11235,28 @@ test "Example 287, line 5328: '- foo\\n  - bar\\n    - baz\\n\\n\\n      bim'" {
 
 test "Example 288, line 5358: '- foo\\n- bar\\n\\n<!-- -->\\n\\n- baz\\n- bim'" {
     const input =
-        "\n- foo\n" ++
-        "- bar\n" ++
-        "\n" ++
-        "<!-- -->\n" ++
-        "\n" ++
-        "- baz\n" ++
-        "- bim\n";
+        \\
+        \\- foo
+        \\- bar
+        \\
+        \\<!-- -->
+        \\
+        \\- baz
+        \\- bim
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n" ++
-        "<!-- -->\n" ++
-        "<ul>\n" ++
-        "<li>baz</li>\n" ++
-        "<li>bim</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>foo</li>
+        \\<li>bar</li>
+        \\</ul>
+        \\<!-- -->
+        \\<ul>
+        \\<li>baz</li>
+        \\<li>bim</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9942,28 +11283,33 @@ test "Example 288, line 5358: '- foo\\n- bar\\n\\n<!-- -->\\n\\n- baz\\n- bim'" 
 
 test "Example 289, line 5379: '-   foo\\n\\n    notcode\\n\\n-   foo\\n\\n<!-- -->\\n\\n    code'" {
     const input =
-        "\n-   foo\n" ++
-        "\n" ++
-        "    notcode\n" ++
-        "\n" ++
-        "-   foo\n" ++
-        "\n" ++
-        "<!-- -->\n" ++
-        "\n" ++
-        "    code\n";
+        \\
+        \\-   foo
+        \\
+        \\    notcode
+        \\
+        \\-   foo
+        \\
+        \\<!-- -->
+        \\
+        \\    code
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<p>notcode</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n" ++
-        "<!-- -->\n" ++
-        "<pre><code>code\n" ++
-        "</code></pre>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\<p>notcode</p>
+        \\</li>
+        \\<li>
+        \\<p>foo</p>
+        \\</li>
+        \\</ul>
+        \\<!-- -->
+        \\<pre><code>code
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -9990,23 +11336,28 @@ test "Example 289, line 5379: '-   foo\\n\\n    notcode\\n\\n-   foo\\n\\n<!-- -
 
 test "Example 290, line 5410: '- a\\n - b\\n  - c\\n   - d\\n  - e\\n - f\\n- g'" {
     const input =
-        "\n- a\n" ++
-        " - b\n" ++
-        "  - c\n" ++
-        "   - d\n" ++
-        "  - e\n" ++
-        " - f\n" ++
-        "- g\n";
+        \\
+        \\- a
+        \\ - b
+        \\  - c
+        \\   - d
+        \\  - e
+        \\ - f
+        \\- g
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>a</li>\n" ++
-        "<li>b</li>\n" ++
-        "<li>c</li>\n" ++
-        "<li>d</li>\n" ++
-        "<li>e</li>\n" ++
-        "<li>f</li>\n" ++
-        "<li>g</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>a</li>
+        \\<li>b</li>
+        \\<li>c</li>
+        \\<li>d</li>
+        \\<li>e</li>
+        \\<li>f</li>
+        \\<li>g</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10033,23 +11384,28 @@ test "Example 290, line 5410: '- a\\n - b\\n  - c\\n   - d\\n  - e\\n - f\\n- g'
 
 test "Example 291, line 5431: '1. a\\n\\n  2. b\\n\\n   3. c'" {
     const input =
-        "\n1. a\n" ++
-        "\n" ++
-        "  2. b\n" ++
-        "\n" ++
-        "   3. c\n";
+        \\
+        \\1. a
+        \\
+        \\  2. b
+        \\
+        \\   3. c
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>a</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>b</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>c</p>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<p>a</p>
+        \\</li>
+        \\<li>
+        \\<p>b</p>
+        \\</li>
+        \\<li>
+        \\<p>c</p>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10076,19 +11432,24 @@ test "Example 291, line 5431: '1. a\\n\\n  2. b\\n\\n   3. c'" {
 
 test "Example 292, line 5455: '- a\\n - b\\n  - c\\n   - d\\n    - e'" {
     const input =
-        "\n- a\n" ++
-        " - b\n" ++
-        "  - c\n" ++
-        "   - d\n" ++
-        "    - e\n";
+        \\
+        \\- a
+        \\ - b
+        \\  - c
+        \\   - d
+        \\    - e
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>a</li>\n" ++
-        "<li>b</li>\n" ++
-        "<li>c</li>\n" ++
-        "<li>d\n" ++
-        "- e</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>a</li>
+        \\<li>b</li>
+        \\<li>c</li>
+        \\<li>d
+        \\- e</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10115,22 +11476,27 @@ test "Example 292, line 5455: '- a\\n - b\\n  - c\\n   - d\\n    - e'" {
 
 test "Example 293, line 5475: '1. a\\n\\n  2. b\\n\\n    3. c'" {
     const input =
-        "\n1. a\n" ++
-        "\n" ++
-        "  2. b\n" ++
-        "\n" ++
-        "    3. c\n";
+        \\
+        \\1. a
+        \\
+        \\  2. b
+        \\
+        \\    3. c
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<p>a</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>b</p>\n" ++
-        "</li>\n" ++
-        "</ol>\n" ++
-        "<pre><code>3. c\n" ++
-        "</code></pre>\n";
+        \\<ol>
+        \\<li>
+        \\<p>a</p>
+        \\</li>
+        \\<li>
+        \\<p>b</p>
+        \\</li>
+        \\</ol>
+        \\<pre><code>3. c
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10157,22 +11523,27 @@ test "Example 293, line 5475: '1. a\\n\\n  2. b\\n\\n    3. c'" {
 
 test "Example 294, line 5498: '- a\\n- b\\n\\n- c'" {
     const input =
-        "\n- a\n" ++
-        "- b\n" ++
-        "\n" ++
-        "- c\n";
+        \\
+        \\- a
+        \\- b
+        \\
+        \\- c
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>a</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>b</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>c</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>a</p>
+        \\</li>
+        \\<li>
+        \\<p>b</p>
+        \\</li>
+        \\<li>
+        \\<p>c</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10199,20 +11570,25 @@ test "Example 294, line 5498: '- a\\n- b\\n\\n- c'" {
 
 test "Example 295, line 5520: '* a\\n*\\n\\n* c'" {
     const input =
-        "\n* a\n" ++
-        "*\n" ++
-        "\n" ++
-        "* c\n";
+        \\
+        \\* a
+        \\*
+        \\
+        \\* c
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>a</p>\n" ++
-        "</li>\n" ++
-        "<li></li>\n" ++
-        "<li>\n" ++
-        "<p>c</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>a</p>
+        \\</li>
+        \\<li></li>
+        \\<li>
+        \\<p>c</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10239,24 +11615,29 @@ test "Example 295, line 5520: '* a\\n*\\n\\n* c'" {
 
 test "Example 296, line 5542: '- a\\n- b\\n\\n  c\\n- d'" {
     const input =
-        "\n- a\n" ++
-        "- b\n" ++
-        "\n" ++
-        "  c\n" ++
-        "- d\n";
+        \\
+        \\- a
+        \\- b
+        \\
+        \\  c
+        \\- d
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>a</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>b</p>\n" ++
-        "<p>c</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>d</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>a</p>
+        \\</li>
+        \\<li>
+        \\<p>b</p>
+        \\<p>c</p>
+        \\</li>
+        \\<li>
+        \\<p>d</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10283,23 +11664,28 @@ test "Example 296, line 5542: '- a\\n- b\\n\\n  c\\n- d'" {
 
 test "Example 297, line 5564: '- a\\n- b\\n\\n  [ref]: /url\\n- d'" {
     const input =
-        "\n- a\n" ++
-        "- b\n" ++
-        "\n" ++
-        "  [ref]: /url\n" ++
-        "- d\n";
+        \\
+        \\- a
+        \\- b
+        \\
+        \\  [ref]: /url
+        \\- d
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>a</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>b</p>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>d</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>a</p>
+        \\</li>
+        \\<li>
+        \\<p>b</p>
+        \\</li>
+        \\<li>
+        \\<p>d</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10326,24 +11712,29 @@ test "Example 297, line 5564: '- a\\n- b\\n\\n  [ref]: /url\\n- d'" {
 
 test "Example 298, line 5587: '- a\\n- ```\\n  b\\n\\n\\n  ```\\n- c'" {
     const input =
-        "\n- a\n" ++
-        "- ```\n" ++
-        "  b\n" ++
-        "\n" ++
-        "\n" ++
-        "  ```\n" ++
-        "- c\n";
+        \\
+        \\- a
+        \\- ```
+        \\  b
+        \\
+        \\
+        \\  ```
+        \\- c
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>a</li>\n" ++
-        "<li>\n" ++
-        "<pre><code>b\n" ++
-        "\n" ++
-        "\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "<li>c</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>a</li>
+        \\<li>
+        \\<pre><code>b
+        \\
+        \\
+        \\</code></pre>
+        \\</li>
+        \\<li>c</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10370,23 +11761,28 @@ test "Example 298, line 5587: '- a\\n- ```\\n  b\\n\\n\\n  ```\\n- c'" {
 
 test "Example 299, line 5613: '- a\\n  - b\\n\\n    c\\n- d'" {
     const input =
-        "\n- a\n" ++
-        "  - b\n" ++
-        "\n" ++
-        "    c\n" ++
-        "- d\n";
+        \\
+        \\- a
+        \\  - b
+        \\
+        \\    c
+        \\- d
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>a\n" ++
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>b</p>\n" ++
-        "<p>c</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "<li>d</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>a
+        \\<ul>
+        \\<li>
+        \\<p>b</p>
+        \\<p>c</p>
+        \\</li>
+        \\</ul>
+        \\</li>
+        \\<li>d</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10413,19 +11809,24 @@ test "Example 299, line 5613: '- a\\n  - b\\n\\n    c\\n- d'" {
 
 test "Example 300, line 5637: '* a\\n  > b\\n  >\\n* c'" {
     const input =
-        "\n* a\n" ++
-        "  > b\n" ++
-        "  >\n" ++
-        "* c\n";
+        \\
+        \\* a
+        \\  > b
+        \\  >
+        \\* c
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>a\n" ++
-        "<blockquote>\n" ++
-        "<p>b</p>\n" ++
-        "</blockquote>\n" ++
-        "</li>\n" ++
-        "<li>c</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>a
+        \\<blockquote>
+        \\<p>b</p>
+        \\</blockquote>
+        \\</li>
+        \\<li>c</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10452,23 +11853,28 @@ test "Example 300, line 5637: '* a\\n  > b\\n  >\\n* c'" {
 
 test "Example 301, line 5657: '- a\\n  > b\\n  ```\\n  c\\n  ```\\n- d'" {
     const input =
-        "\n- a\n" ++
-        "  > b\n" ++
-        "  ```\n" ++
-        "  c\n" ++
-        "  ```\n" ++
-        "- d\n";
+        \\
+        \\- a
+        \\  > b
+        \\  ```
+        \\  c
+        \\  ```
+        \\- d
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>a\n" ++
-        "<blockquote>\n" ++
-        "<p>b</p>\n" ++
-        "</blockquote>\n" ++
-        "<pre><code>c\n" ++
-        "</code></pre>\n" ++
-        "</li>\n" ++
-        "<li>d</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>a
+        \\<blockquote>
+        \\<p>b</p>
+        \\</blockquote>
+        \\<pre><code>c
+        \\</code></pre>
+        \\</li>
+        \\<li>d</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10495,11 +11901,16 @@ test "Example 301, line 5657: '- a\\n  > b\\n  ```\\n  c\\n  ```\\n- d'" {
 
 test "Example 302, line 5680: '- a'" {
     const input =
-        "\n- a\n";
+        \\
+        \\- a
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>a</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>a</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10526,16 +11937,21 @@ test "Example 302, line 5680: '- a'" {
 
 test "Example 303, line 5689: '- a\\n  - b'" {
     const input =
-        "\n- a\n" ++
-        "  - b\n";
+        \\
+        \\- a
+        \\  - b
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>a\n" ++
-        "<ul>\n" ++
-        "<li>b</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>a
+        \\<ul>
+        \\<li>b</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10562,19 +11978,24 @@ test "Example 303, line 5689: '- a\\n  - b'" {
 
 test "Example 304, line 5706: '1. ```\\n   foo\\n   ```\\n\\n   bar'" {
     const input =
-        "\n1. ```\n" ++
-        "   foo\n" ++
-        "   ```\n" ++
-        "\n" ++
-        "   bar\n";
+        \\
+        \\1. ```
+        \\   foo
+        \\   ```
+        \\
+        \\   bar
+        \\
+    ;
     const expected =
-        "<ol>\n" ++
-        "<li>\n" ++
-        "<pre><code>foo\n" ++
-        "</code></pre>\n" ++
-        "<p>bar</p>\n" ++
-        "</li>\n" ++
-        "</ol>\n";
+        \\<ol>
+        \\<li>
+        \\<pre><code>foo
+        \\</code></pre>
+        \\<p>bar</p>
+        \\</li>
+        \\</ol>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10601,20 +12022,25 @@ test "Example 304, line 5706: '1. ```\\n   foo\\n   ```\\n\\n   bar'" {
 
 test "Example 305, line 5725: '* foo\\n  * bar\\n\\n  baz'" {
     const input =
-        "\n* foo\n" ++
-        "  * bar\n" ++
-        "\n" ++
-        "  baz\n";
+        \\
+        \\* foo
+        \\  * bar
+        \\
+        \\  baz
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>foo</p>\n" ++
-        "<ul>\n" ++
-        "<li>bar</li>\n" ++
-        "</ul>\n" ++
-        "<p>baz</p>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>foo</p>
+        \\<ul>
+        \\<li>bar</li>
+        \\</ul>
+        \\<p>baz</p>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10641,30 +12067,35 @@ test "Example 305, line 5725: '* foo\\n  * bar\\n\\n  baz'" {
 
 test "Example 306, line 5743: '- a\\n  - b\\n  - c\\n\\n- d\\n  - e\\n  - f'" {
     const input =
-        "\n- a\n" ++
-        "  - b\n" ++
-        "  - c\n" ++
-        "\n" ++
-        "- d\n" ++
-        "  - e\n" ++
-        "  - f\n";
+        \\
+        \\- a
+        \\  - b
+        \\  - c
+        \\
+        \\- d
+        \\  - e
+        \\  - f
+        \\
+    ;
     const expected =
-        "<ul>\n" ++
-        "<li>\n" ++
-        "<p>a</p>\n" ++
-        "<ul>\n" ++
-        "<li>b</li>\n" ++
-        "<li>c</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "<li>\n" ++
-        "<p>d</p>\n" ++
-        "<ul>\n" ++
-        "<li>e</li>\n" ++
-        "<li>f</li>\n" ++
-        "</ul>\n" ++
-        "</li>\n" ++
-        "</ul>\n";
+        \\<ul>
+        \\<li>
+        \\<p>a</p>
+        \\<ul>
+        \\<li>b</li>
+        \\<li>c</li>
+        \\</ul>
+        \\</li>
+        \\<li>
+        \\<p>d</p>
+        \\<ul>
+        \\<li>e</li>
+        \\<li>f</li>
+        \\</ul>
+        \\</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10691,9 +12122,14 @@ test "Example 306, line 5743: '- a\\n  - b\\n  - c\\n\\n- d\\n  - e\\n  - f'" {
 
 test "Example 307, line 5777: '`hi`lo`'" {
     const input =
-        "\n`hi`lo`\n";
+        \\
+        \\`hi`lo`
+        \\
+    ;
     const expected =
-        "<p><code>hi</code>lo`</p>\n";
+        \\<p><code>hi</code>lo`</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -10720,7 +12156,8 @@ test "Example 307, line 5777: '`hi`lo`'" {
 
 test "Example 308, line 5791: '\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~'" {
     const input =
-        "\n\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~\n";
+        "\n" ++
+        "\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~\n";
     const expected =
         "<p>!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~</p>\n";
 
@@ -10749,7 +12186,8 @@ test "Example 308, line 5791: '\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:
 
 test "Example 309, line 5801: '\\→\\A\\a\\ \\3\\φ\\«'" {
     const input =
-        "\n\\\t\\A\\a\\ \\3\\φ\\«\n";
+        "\n" ++
+        "\\\t\\A\\a\\ \\3\\φ\\«\n";
     const expected =
         "<p>\\\t\\A\\a\\ \\3\\φ\\«</p>\n";
 
@@ -10778,7 +12216,8 @@ test "Example 309, line 5801: '\\→\\A\\a\\ \\3\\φ\\«'" {
 
 test "Example 310, line 5811: '\\*not emphasized*\\n\\<br/> not a tag\\n\\[not a link](/foo)\\n\\`not code`\\n1\\. not a list\\n\\* not a list\\n\\# not a heading\\n\\[foo]: /url \"not a reference\"\\n\\&ouml; not a character entity'" {
     const input =
-        "\n\\*not emphasized*\n" ++
+        "\n" ++
+        "\\*not emphasized*\n" ++
         "\\<br/> not a tag\n" ++
         "\\[not a link](/foo)\n" ++
         "\\`not code`\n" ++
@@ -10823,7 +12262,8 @@ test "Example 310, line 5811: '\\*not emphasized*\\n\\<br/> not a tag\\n\\[not a
 
 test "Example 311, line 5836: '\\\\*emphasis*'" {
     const input =
-        "\n\\\\*emphasis*\n";
+        "\n" ++
+        "\\\\*emphasis*\n";
     const expected =
         "<p>\\<em>emphasis</em></p>\n";
 
@@ -10852,7 +12292,8 @@ test "Example 311, line 5836: '\\\\*emphasis*'" {
 
 test "Example 312, line 5845: 'foo\\\\nbar'" {
     const input =
-        "\nfoo\\\n" ++
+        "\n" ++
+        "foo\\\n" ++
         "bar\n";
     const expected =
         "<p>foo<br />\n" ++
@@ -10883,7 +12324,8 @@ test "Example 312, line 5845: 'foo\\\\nbar'" {
 
 test "Example 313, line 5857: '`` \\[\\` ``'" {
     const input =
-        "\n`` \\[\\` ``\n";
+        "\n" ++
+        "`` \\[\\` ``\n";
     const expected =
         "<p><code>\\[\\`</code></p>\n";
 
@@ -10912,7 +12354,8 @@ test "Example 313, line 5857: '`` \\[\\` ``'" {
 
 test "Example 314, line 5864: '    \\[\\]'" {
     const input =
-        "\n    \\[\\]\n";
+        "\n" ++
+        "    \\[\\]\n";
     const expected =
         "<pre><code>\\[\\]\n" ++
         "</code></pre>\n";
@@ -10942,7 +12385,8 @@ test "Example 314, line 5864: '    \\[\\]'" {
 
 test "Example 315, line 5872: '~~~\\n\\[\\]\\n~~~'" {
     const input =
-        "\n~~~\n" ++
+        "\n" ++
+        "~~~\n" ++
         "\\[\\]\n" ++
         "~~~\n";
     const expected =
@@ -10974,7 +12418,8 @@ test "Example 315, line 5872: '~~~\\n\\[\\]\\n~~~'" {
 
 test "Example 316, line 5882: '<http://example.com?find=\\*>'" {
     const input =
-        "\n<http://example.com?find=\\*>\n";
+        "\n" ++
+        "<http://example.com?find=\\*>\n";
     const expected =
         "<p><a href=\"http://example.com?find=%5C*\">http://example.com?find=\\*</a></p>\n";
 
@@ -11003,7 +12448,8 @@ test "Example 316, line 5882: '<http://example.com?find=\\*>'" {
 
 test "Example 317, line 5889: '<a href=\"/bar\\/)\">'" {
     const input =
-        "\n<a href=\"/bar\\/)\">\n";
+        "\n" ++
+        "<a href=\"/bar\\/)\">\n";
     const expected =
         "<a href=\"/bar\\/)\">\n";
 
@@ -11032,7 +12478,8 @@ test "Example 317, line 5889: '<a href=\"/bar\\/)\">'" {
 
 test "Example 318, line 5899: '[foo](/bar\\* \"ti\\*tle\")'" {
     const input =
-        "\n[foo](/bar\\* \"ti\\*tle\")\n";
+        "\n" ++
+        "[foo](/bar\\* \"ti\\*tle\")\n";
     const expected =
         "<p><a href=\"/bar*\" title=\"ti*tle\">foo</a></p>\n";
 
@@ -11061,7 +12508,8 @@ test "Example 318, line 5899: '[foo](/bar\\* \"ti\\*tle\")'" {
 
 test "Example 319, line 5906: '[foo]\\n\\n[foo]: /bar\\* \"ti\\*tle\"'" {
     const input =
-        "\n[foo]\n" ++
+        "\n" ++
+        "[foo]\n" ++
         "\n" ++
         "[foo]: /bar\\* \"ti\\*tle\"\n";
     const expected =
@@ -11092,7 +12540,8 @@ test "Example 319, line 5906: '[foo]\\n\\n[foo]: /bar\\* \"ti\\*tle\"'" {
 
 test "Example 320, line 5915: '``` foo\\+bar\\nfoo\\n```'" {
     const input =
-        "\n``` foo\\+bar\n" ++
+        "\n" ++
+        "``` foo\\+bar\n" ++
         "foo\n" ++
         "```\n";
     const expected =
@@ -11124,13 +12573,18 @@ test "Example 320, line 5915: '``` foo\\+bar\\nfoo\\n```'" {
 
 test "Example 321, line 5952: '&nbsp; &amp; &copy; &AElig; &Dcaron;\\n&frac34; &HilbertSpace; &DifferentialD;\\n&ClockwiseContourIntegral; &ngE;'" {
     const input =
-        "\n&nbsp; &amp; &copy; &AElig; &Dcaron;\n" ++
-        "&frac34; &HilbertSpace; &DifferentialD;\n" ++
-        "&ClockwiseContourIntegral; &ngE;\n";
+        \\
+        \\&nbsp; &amp; &copy; &AElig; &Dcaron;
+        \\&frac34; &HilbertSpace; &DifferentialD;
+        \\&ClockwiseContourIntegral; &ngE;
+        \\
+    ;
     const expected =
-        "<p>  &amp; © Æ Ď\n" ++
-        "¾ ℋ ⅆ\n" ++
-        "∲ ≧̸</p>\n";
+        \\<p>  &amp; © Æ Ď
+        \\¾ ℋ ⅆ
+        \\∲ ≧̸</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11157,9 +12611,14 @@ test "Example 321, line 5952: '&nbsp; &amp; &copy; &AElig; &Dcaron;\\n&frac34; &
 
 test "Example 322, line 5971: '&#35; &#1234; &#992; &#0;'" {
     const input =
-        "\n&#35; &#1234; &#992; &#0;\n";
+        \\
+        \\&#35; &#1234; &#992; &#0;
+        \\
+    ;
     const expected =
-        "<p># Ӓ Ϡ �</p>\n";
+        \\<p># Ӓ Ϡ �</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11186,9 +12645,14 @@ test "Example 322, line 5971: '&#35; &#1234; &#992; &#0;'" {
 
 test "Example 323, line 5984: '&#X22; &#XD06; &#xcab;'" {
     const input =
-        "\n&#X22; &#XD06; &#xcab;\n";
+        \\
+        \\&#X22; &#XD06; &#xcab;
+        \\
+    ;
     const expected =
-        "<p>&quot; ആ ಫ</p>\n";
+        \\<p>&quot; ആ ಫ</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11215,15 +12679,20 @@ test "Example 323, line 5984: '&#X22; &#XD06; &#xcab;'" {
 
 test "Example 324, line 5993: '&nbsp &x; &#; &#x;\\n&#987654321;\\n&#abcdef0;\\n&ThisIsNotDefined; &hi?;'" {
     const input =
-        "\n&nbsp &x; &#; &#x;\n" ++
-        "&#987654321;\n" ++
-        "&#abcdef0;\n" ++
-        "&ThisIsNotDefined; &hi?;\n";
+        \\
+        \\&nbsp &x; &#; &#x;
+        \\&#987654321;
+        \\&#abcdef0;
+        \\&ThisIsNotDefined; &hi?;
+        \\
+    ;
     const expected =
-        "<p>&amp;nbsp &amp;x; &amp;#; &amp;#x;\n" ++
-        "&amp;#987654321;\n" ++
-        "&amp;#abcdef0;\n" ++
-        "&amp;ThisIsNotDefined; &amp;hi?;</p>\n";
+        \\<p>&amp;nbsp &amp;x; &amp;#; &amp;#x;
+        \\&amp;#987654321;
+        \\&amp;#abcdef0;
+        \\&amp;ThisIsNotDefined; &amp;hi?;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11250,9 +12719,14 @@ test "Example 324, line 5993: '&nbsp &x; &#; &#x;\\n&#987654321;\\n&#abcdef0;\\n
 
 test "Example 325, line 6010: '&copy'" {
     const input =
-        "\n&copy\n";
+        \\
+        \\&copy
+        \\
+    ;
     const expected =
-        "<p>&amp;copy</p>\n";
+        \\<p>&amp;copy</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11279,9 +12753,14 @@ test "Example 325, line 6010: '&copy'" {
 
 test "Example 326, line 6020: '&MadeUpEntity;'" {
     const input =
-        "\n&MadeUpEntity;\n";
+        \\
+        \\&MadeUpEntity;
+        \\
+    ;
     const expected =
-        "<p>&amp;MadeUpEntity;</p>\n";
+        \\<p>&amp;MadeUpEntity;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11308,9 +12787,14 @@ test "Example 326, line 6020: '&MadeUpEntity;'" {
 
 test "Example 327, line 6031: '<a href=\"&ouml;&ouml;.html\">'" {
     const input =
-        "\n<a href=\"&ouml;&ouml;.html\">\n";
+        \\
+        \\<a href="&ouml;&ouml;.html">
+        \\
+    ;
     const expected =
-        "<a href=\"&ouml;&ouml;.html\">\n";
+        \\<a href="&ouml;&ouml;.html">
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11337,9 +12821,14 @@ test "Example 327, line 6031: '<a href=\"&ouml;&ouml;.html\">'" {
 
 test "Example 328, line 6038: '[foo](/f&ouml;&ouml; \"f&ouml;&ouml;\")'" {
     const input =
-        "\n[foo](/f&ouml;&ouml; \"f&ouml;&ouml;\")\n";
+        \\
+        \\[foo](/f&ouml;&ouml; "f&ouml;&ouml;")
+        \\
+    ;
     const expected =
-        "<p><a href=\"/f%C3%B6%C3%B6\" title=\"föö\">foo</a></p>\n";
+        \\<p><a href="/f%C3%B6%C3%B6" title="föö">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11366,11 +12855,16 @@ test "Example 328, line 6038: '[foo](/f&ouml;&ouml; \"f&ouml;&ouml;\")'" {
 
 test "Example 329, line 6045: '[foo]\\n\\n[foo]: /f&ouml;&ouml; \"f&ouml;&ouml;\"'" {
     const input =
-        "\n[foo]\n" ++
-        "\n" ++
-        "[foo]: /f&ouml;&ouml; \"f&ouml;&ouml;\"\n";
+        \\
+        \\[foo]
+        \\
+        \\[foo]: /f&ouml;&ouml; "f&ouml;&ouml;"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/f%C3%B6%C3%B6\" title=\"föö\">foo</a></p>\n";
+        \\<p><a href="/f%C3%B6%C3%B6" title="föö">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11397,12 +12891,17 @@ test "Example 329, line 6045: '[foo]\\n\\n[foo]: /f&ouml;&ouml; \"f&ouml;&ouml;\
 
 test "Example 330, line 6054: '``` f&ouml;&ouml;\\nfoo\\n```'" {
     const input =
-        "\n``` f&ouml;&ouml;\n" ++
-        "foo\n" ++
-        "```\n";
+        \\
+        \\``` f&ouml;&ouml;
+        \\foo
+        \\```
+        \\
+    ;
     const expected =
-        "<pre><code class=\"language-föö\">foo\n" ++
-        "</code></pre>\n";
+        \\<pre><code class="language-föö">foo
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11429,9 +12928,14 @@ test "Example 330, line 6054: '``` f&ouml;&ouml;\\nfoo\\n```'" {
 
 test "Example 331, line 6067: '`f&ouml;&ouml;`'" {
     const input =
-        "\n`f&ouml;&ouml;`\n";
+        \\
+        \\`f&ouml;&ouml;`
+        \\
+    ;
     const expected =
-        "<p><code>f&amp;ouml;&amp;ouml;</code></p>\n";
+        \\<p><code>f&amp;ouml;&amp;ouml;</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11458,10 +12962,15 @@ test "Example 331, line 6067: '`f&ouml;&ouml;`'" {
 
 test "Example 332, line 6074: '    f&ouml;f&ouml;'" {
     const input =
-        "\n    f&ouml;f&ouml;\n";
+        \\
+        \\    f&ouml;f&ouml;
+        \\
+    ;
     const expected =
-        "<pre><code>f&amp;ouml;f&amp;ouml;\n" ++
-        "</code></pre>\n";
+        \\<pre><code>f&amp;ouml;f&amp;ouml;
+        \\</code></pre>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11488,11 +12997,16 @@ test "Example 332, line 6074: '    f&ouml;f&ouml;'" {
 
 test "Example 333, line 6086: '&#42;foo&#42;\\n*foo*'" {
     const input =
-        "\n&#42;foo&#42;\n" ++
-        "*foo*\n";
+        \\
+        \\&#42;foo&#42;
+        \\*foo*
+        \\
+    ;
     const expected =
-        "<p>*foo*\n" ++
-        "<em>foo</em></p>\n";
+        \\<p>*foo*
+        \\<em>foo</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11519,14 +13033,19 @@ test "Example 333, line 6086: '&#42;foo&#42;\\n*foo*'" {
 
 test "Example 334, line 6094: '&#42; foo\\n\\n* foo'" {
     const input =
-        "\n&#42; foo\n" ++
-        "\n" ++
-        "* foo\n";
+        \\
+        \\&#42; foo
+        \\
+        \\* foo
+        \\
+    ;
     const expected =
-        "<p>* foo</p>\n" ++
-        "<ul>\n" ++
-        "<li>foo</li>\n" ++
-        "</ul>\n";
+        \\<p>* foo</p>
+        \\<ul>
+        \\<li>foo</li>
+        \\</ul>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11553,11 +13072,16 @@ test "Example 334, line 6094: '&#42; foo\\n\\n* foo'" {
 
 test "Example 335, line 6105: 'foo&#10;&#10;bar'" {
     const input =
-        "\nfoo&#10;&#10;bar\n";
+        \\
+        \\foo&#10;&#10;bar
+        \\
+    ;
     const expected =
-        "<p>foo\n" ++
-        "\n" ++
-        "bar</p>\n";
+        \\<p>foo
+        \\
+        \\bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11584,7 +13108,10 @@ test "Example 335, line 6105: 'foo&#10;&#10;bar'" {
 
 test "Example 336, line 6113: '&#9;foo'" {
     const input =
-        "\n&#9;foo\n";
+        \\
+        \\&#9;foo
+        \\
+    ;
     const expected =
         "<p>\tfoo</p>\n";
 
@@ -11613,9 +13140,14 @@ test "Example 336, line 6113: '&#9;foo'" {
 
 test "Example 337, line 6120: '[a](url &quot;tit&quot;)'" {
     const input =
-        "\n[a](url &quot;tit&quot;)\n";
+        \\
+        \\[a](url &quot;tit&quot;)
+        \\
+    ;
     const expected =
-        "<p>[a](url &quot;tit&quot;)</p>\n";
+        \\<p>[a](url &quot;tit&quot;)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11642,9 +13174,14 @@ test "Example 337, line 6120: '[a](url &quot;tit&quot;)'" {
 
 test "Example 338, line 6148: '`foo`'" {
     const input =
-        "\n`foo`\n";
+        \\
+        \\`foo`
+        \\
+    ;
     const expected =
-        "<p><code>foo</code></p>\n";
+        \\<p><code>foo</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11671,9 +13208,14 @@ test "Example 338, line 6148: '`foo`'" {
 
 test "Example 339, line 6159: '`` foo ` bar ``'" {
     const input =
-        "\n`` foo ` bar ``\n";
+        \\
+        \\`` foo ` bar ``
+        \\
+    ;
     const expected =
-        "<p><code>foo ` bar</code></p>\n";
+        \\<p><code>foo ` bar</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11700,9 +13242,14 @@ test "Example 339, line 6159: '`` foo ` bar ``'" {
 
 test "Example 340, line 6169: '` `` `'" {
     const input =
-        "\n` `` `\n";
+        \\
+        \\` `` `
+        \\
+    ;
     const expected =
-        "<p><code>``</code></p>\n";
+        \\<p><code>``</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11729,9 +13276,14 @@ test "Example 340, line 6169: '` `` `'" {
 
 test "Example 341, line 6177: '`  ``  `'" {
     const input =
-        "\n`  ``  `\n";
+        \\
+        \\`  ``  `
+        \\
+    ;
     const expected =
-        "<p><code> `` </code></p>\n";
+        \\<p><code> `` </code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11758,9 +13310,14 @@ test "Example 341, line 6177: '`  ``  `'" {
 
 test "Example 342, line 6186: '` a`'" {
     const input =
-        "\n` a`\n";
+        \\
+        \\` a`
+        \\
+    ;
     const expected =
-        "<p><code> a</code></p>\n";
+        \\<p><code> a</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11787,9 +13344,14 @@ test "Example 342, line 6186: '` a`'" {
 
 test "Example 343, line 6195: '` b `'" {
     const input =
-        "\n` b `\n";
+        \\
+        \\` b `
+        \\
+    ;
     const expected =
-        "<p><code> b </code></p>\n";
+        \\<p><code> b </code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11816,11 +13378,16 @@ test "Example 343, line 6195: '` b `'" {
 
 test "Example 344, line 6203: '` `\\n`  `'" {
     const input =
-        "\n` `\n" ++
-        "`  `\n";
+        \\
+        \\` `
+        \\`  `
+        \\
+    ;
     const expected =
-        "<p><code> </code>\n" ++
-        "<code>  </code></p>\n";
+        \\<p><code> </code>
+        \\<code>  </code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11847,13 +13414,18 @@ test "Example 344, line 6203: '` `\\n`  `'" {
 
 test "Example 345, line 6214: '``\\nfoo\\nbar  \\nbaz\\n``'" {
     const input =
-        "\n``\n" ++
-        "foo\n" ++
-        "bar  \n" ++
-        "baz\n" ++
-        "``\n";
+        \\
+        \\``
+        \\foo
+        \\bar  
+        \\baz
+        \\``
+        \\
+    ;
     const expected =
-        "<p><code>foo bar   baz</code></p>\n";
+        \\<p><code>foo bar   baz</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11880,11 +13452,16 @@ test "Example 345, line 6214: '``\\nfoo\\nbar  \\nbaz\\n``'" {
 
 test "Example 346, line 6224: '``\\nfoo \\n``'" {
     const input =
-        "\n``\n" ++
-        "foo \n" ++
-        "``\n";
+        \\
+        \\``
+        \\foo 
+        \\``
+        \\
+    ;
     const expected =
-        "<p><code>foo </code></p>\n";
+        \\<p><code>foo </code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11911,10 +13488,15 @@ test "Example 346, line 6224: '``\\nfoo \\n``'" {
 
 test "Example 347, line 6235: '`foo   bar \\nbaz`'" {
     const input =
-        "\n`foo   bar \n" ++
-        "baz`\n";
+        \\
+        \\`foo   bar 
+        \\baz`
+        \\
+    ;
     const expected =
-        "<p><code>foo   bar  baz</code></p>\n";
+        \\<p><code>foo   bar  baz</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11941,7 +13523,8 @@ test "Example 347, line 6235: '`foo   bar \\nbaz`'" {
 
 test "Example 348, line 6252: '`foo\\`bar`'" {
     const input =
-        "\n`foo\\`bar`\n";
+        "\n" ++
+        "`foo\\`bar`\n";
     const expected =
         "<p><code>foo\\</code>bar`</p>\n";
 
@@ -11970,9 +13553,14 @@ test "Example 348, line 6252: '`foo\\`bar`'" {
 
 test "Example 349, line 6263: '``foo`bar``'" {
     const input =
-        "\n``foo`bar``\n";
+        \\
+        \\``foo`bar``
+        \\
+    ;
     const expected =
-        "<p><code>foo`bar</code></p>\n";
+        \\<p><code>foo`bar</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -11999,9 +13587,14 @@ test "Example 349, line 6263: '``foo`bar``'" {
 
 test "Example 350, line 6269: '` foo `` bar `'" {
     const input =
-        "\n` foo `` bar `\n";
+        \\
+        \\` foo `` bar `
+        \\
+    ;
     const expected =
-        "<p><code>foo `` bar</code></p>\n";
+        \\<p><code>foo `` bar</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12028,9 +13621,14 @@ test "Example 350, line 6269: '` foo `` bar `'" {
 
 test "Example 351, line 6281: '*foo`*`'" {
     const input =
-        "\n*foo`*`\n";
+        \\
+        \\*foo`*`
+        \\
+    ;
     const expected =
-        "<p>*foo<code>*</code></p>\n";
+        \\<p>*foo<code>*</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12057,9 +13655,14 @@ test "Example 351, line 6281: '*foo`*`'" {
 
 test "Example 352, line 6290: '[not a `link](/foo`)'" {
     const input =
-        "\n[not a `link](/foo`)\n";
+        \\
+        \\[not a `link](/foo`)
+        \\
+    ;
     const expected =
-        "<p>[not a <code>link](/foo</code>)</p>\n";
+        \\<p>[not a <code>link](/foo</code>)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12086,9 +13689,14 @@ test "Example 352, line 6290: '[not a `link](/foo`)'" {
 
 test "Example 353, line 6300: '`<a href=\"`\">`'" {
     const input =
-        "\n`<a href=\"`\">`\n";
+        \\
+        \\`<a href="`">`
+        \\
+    ;
     const expected =
-        "<p><code>&lt;a href=&quot;</code>&quot;&gt;`</p>\n";
+        \\<p><code>&lt;a href=&quot;</code>&quot;&gt;`</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12115,9 +13723,14 @@ test "Example 353, line 6300: '`<a href=\"`\">`'" {
 
 test "Example 354, line 6309: '<a href=\"`\">`'" {
     const input =
-        "\n<a href=\"`\">`\n";
+        \\
+        \\<a href="`">`
+        \\
+    ;
     const expected =
-        "<p><a href=\"`\">`</p>\n";
+        \\<p><a href="`">`</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12144,9 +13757,14 @@ test "Example 354, line 6309: '<a href=\"`\">`'" {
 
 test "Example 355, line 6318: '`<http://foo.bar.`baz>`'" {
     const input =
-        "\n`<http://foo.bar.`baz>`\n";
+        \\
+        \\`<http://foo.bar.`baz>`
+        \\
+    ;
     const expected =
-        "<p><code>&lt;http://foo.bar.</code>baz&gt;`</p>\n";
+        \\<p><code>&lt;http://foo.bar.</code>baz&gt;`</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12173,9 +13791,14 @@ test "Example 355, line 6318: '`<http://foo.bar.`baz>`'" {
 
 test "Example 356, line 6327: '<http://foo.bar.`baz>`'" {
     const input =
-        "\n<http://foo.bar.`baz>`\n";
+        \\
+        \\<http://foo.bar.`baz>`
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://foo.bar.%60baz\">http://foo.bar.`baz</a>`</p>\n";
+        \\<p><a href="http://foo.bar.%60baz">http://foo.bar.`baz</a>`</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12202,9 +13825,14 @@ test "Example 356, line 6327: '<http://foo.bar.`baz>`'" {
 
 test "Example 357, line 6337: '```foo``'" {
     const input =
-        "\n```foo``\n";
+        \\
+        \\```foo``
+        \\
+    ;
     const expected =
-        "<p>```foo``</p>\n";
+        \\<p>```foo``</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12231,9 +13859,14 @@ test "Example 357, line 6337: '```foo``'" {
 
 test "Example 358, line 6344: '`foo'" {
     const input =
-        "\n`foo\n";
+        \\
+        \\`foo
+        \\
+    ;
     const expected =
-        "<p>`foo</p>\n";
+        \\<p>`foo</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12260,9 +13893,14 @@ test "Example 358, line 6344: '`foo'" {
 
 test "Example 359, line 6353: '`foo``bar``'" {
     const input =
-        "\n`foo``bar``\n";
+        \\
+        \\`foo``bar``
+        \\
+    ;
     const expected =
-        "<p>`foo<code>bar</code></p>\n";
+        \\<p>`foo<code>bar</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12289,9 +13927,14 @@ test "Example 359, line 6353: '`foo``bar``'" {
 
 test "Example 360, line 6570: '*foo bar*'" {
     const input =
-        "\n*foo bar*\n";
+        \\
+        \\*foo bar*
+        \\
+    ;
     const expected =
-        "<p><em>foo bar</em></p>\n";
+        \\<p><em>foo bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12318,9 +13961,14 @@ test "Example 360, line 6570: '*foo bar*'" {
 
 test "Example 361, line 6580: 'a * foo bar*'" {
     const input =
-        "\na * foo bar*\n";
+        \\
+        \\a * foo bar*
+        \\
+    ;
     const expected =
-        "<p>a * foo bar*</p>\n";
+        \\<p>a * foo bar*</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12347,9 +13995,14 @@ test "Example 361, line 6580: 'a * foo bar*'" {
 
 test "Example 362, line 6591: 'a*\"foo\"*'" {
     const input =
-        "\na*\"foo\"*\n";
+        \\
+        \\a*"foo"*
+        \\
+    ;
     const expected =
-        "<p>a*&quot;foo&quot;*</p>\n";
+        \\<p>a*&quot;foo&quot;*</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12376,9 +14029,14 @@ test "Example 362, line 6591: 'a*\"foo\"*'" {
 
 test "Example 363, line 6600: '* a *'" {
     const input =
-        "\n* a *\n";
+        \\
+        \\* a *
+        \\
+    ;
     const expected =
-        "<p>* a *</p>\n";
+        \\<p>* a *</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12405,9 +14063,14 @@ test "Example 363, line 6600: '* a *'" {
 
 test "Example 364, line 6609: 'foo*bar*'" {
     const input =
-        "\nfoo*bar*\n";
+        \\
+        \\foo*bar*
+        \\
+    ;
     const expected =
-        "<p>foo<em>bar</em></p>\n";
+        \\<p>foo<em>bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12434,9 +14097,14 @@ test "Example 364, line 6609: 'foo*bar*'" {
 
 test "Example 365, line 6616: '5*6*78'" {
     const input =
-        "\n5*6*78\n";
+        \\
+        \\5*6*78
+        \\
+    ;
     const expected =
-        "<p>5<em>6</em>78</p>\n";
+        \\<p>5<em>6</em>78</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12463,9 +14131,14 @@ test "Example 365, line 6616: '5*6*78'" {
 
 test "Example 366, line 6625: '_foo bar_'" {
     const input =
-        "\n_foo bar_\n";
+        \\
+        \\_foo bar_
+        \\
+    ;
     const expected =
-        "<p><em>foo bar</em></p>\n";
+        \\<p><em>foo bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12492,9 +14165,14 @@ test "Example 366, line 6625: '_foo bar_'" {
 
 test "Example 367, line 6635: '_ foo bar_'" {
     const input =
-        "\n_ foo bar_\n";
+        \\
+        \\_ foo bar_
+        \\
+    ;
     const expected =
-        "<p>_ foo bar_</p>\n";
+        \\<p>_ foo bar_</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12521,9 +14199,14 @@ test "Example 367, line 6635: '_ foo bar_'" {
 
 test "Example 368, line 6645: 'a_\"foo\"_'" {
     const input =
-        "\na_\"foo\"_\n";
+        \\
+        \\a_"foo"_
+        \\
+    ;
     const expected =
-        "<p>a_&quot;foo&quot;_</p>\n";
+        \\<p>a_&quot;foo&quot;_</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12550,9 +14233,14 @@ test "Example 368, line 6645: 'a_\"foo\"_'" {
 
 test "Example 369, line 6654: 'foo_bar_'" {
     const input =
-        "\nfoo_bar_\n";
+        \\
+        \\foo_bar_
+        \\
+    ;
     const expected =
-        "<p>foo_bar_</p>\n";
+        \\<p>foo_bar_</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12579,9 +14267,14 @@ test "Example 369, line 6654: 'foo_bar_'" {
 
 test "Example 370, line 6661: '5_6_78'" {
     const input =
-        "\n5_6_78\n";
+        \\
+        \\5_6_78
+        \\
+    ;
     const expected =
-        "<p>5_6_78</p>\n";
+        \\<p>5_6_78</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12608,9 +14301,14 @@ test "Example 370, line 6661: '5_6_78'" {
 
 test "Example 371, line 6668: 'пристаням_стремятся_'" {
     const input =
-        "\nпристаням_стремятся_\n";
+        \\
+        \\пристаням_стремятся_
+        \\
+    ;
     const expected =
-        "<p>пристаням_стремятся_</p>\n";
+        \\<p>пристаням_стремятся_</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12637,9 +14335,14 @@ test "Example 371, line 6668: 'пристаням_стремятся_'" {
 
 test "Example 372, line 6678: 'aa_\"bb\"_cc'" {
     const input =
-        "\naa_\"bb\"_cc\n";
+        \\
+        \\aa_"bb"_cc
+        \\
+    ;
     const expected =
-        "<p>aa_&quot;bb&quot;_cc</p>\n";
+        \\<p>aa_&quot;bb&quot;_cc</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12666,9 +14369,14 @@ test "Example 372, line 6678: 'aa_\"bb\"_cc'" {
 
 test "Example 373, line 6689: 'foo-_(bar)_'" {
     const input =
-        "\nfoo-_(bar)_\n";
+        \\
+        \\foo-_(bar)_
+        \\
+    ;
     const expected =
-        "<p>foo-<em>(bar)</em></p>\n";
+        \\<p>foo-<em>(bar)</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12695,9 +14403,14 @@ test "Example 373, line 6689: 'foo-_(bar)_'" {
 
 test "Example 374, line 6701: '_foo*'" {
     const input =
-        "\n_foo*\n";
+        \\
+        \\_foo*
+        \\
+    ;
     const expected =
-        "<p>_foo*</p>\n";
+        \\<p>_foo*</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12724,9 +14437,14 @@ test "Example 374, line 6701: '_foo*'" {
 
 test "Example 375, line 6711: '*foo bar *'" {
     const input =
-        "\n*foo bar *\n";
+        \\
+        \\*foo bar *
+        \\
+    ;
     const expected =
-        "<p>*foo bar *</p>\n";
+        \\<p>*foo bar *</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12753,11 +14471,16 @@ test "Example 375, line 6711: '*foo bar *'" {
 
 test "Example 376, line 6720: '*foo bar\\n*'" {
     const input =
-        "\n*foo bar\n" ++
-        "*\n";
+        \\
+        \\*foo bar
+        \\*
+        \\
+    ;
     const expected =
-        "<p>*foo bar\n" ++
-        "*</p>\n";
+        \\<p>*foo bar
+        \\*</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12784,9 +14507,14 @@ test "Example 376, line 6720: '*foo bar\\n*'" {
 
 test "Example 377, line 6733: '*(*foo)'" {
     const input =
-        "\n*(*foo)\n";
+        \\
+        \\*(*foo)
+        \\
+    ;
     const expected =
-        "<p>*(*foo)</p>\n";
+        \\<p>*(*foo)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12813,9 +14541,14 @@ test "Example 377, line 6733: '*(*foo)'" {
 
 test "Example 378, line 6743: '*(*foo*)*'" {
     const input =
-        "\n*(*foo*)*\n";
+        \\
+        \\*(*foo*)*
+        \\
+    ;
     const expected =
-        "<p><em>(<em>foo</em>)</em></p>\n";
+        \\<p><em>(<em>foo</em>)</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12842,9 +14575,14 @@ test "Example 378, line 6743: '*(*foo*)*'" {
 
 test "Example 379, line 6752: '*foo*bar'" {
     const input =
-        "\n*foo*bar\n";
+        \\
+        \\*foo*bar
+        \\
+    ;
     const expected =
-        "<p><em>foo</em>bar</p>\n";
+        \\<p><em>foo</em>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12871,9 +14609,14 @@ test "Example 379, line 6752: '*foo*bar'" {
 
 test "Example 380, line 6765: '_foo bar _'" {
     const input =
-        "\n_foo bar _\n";
+        \\
+        \\_foo bar _
+        \\
+    ;
     const expected =
-        "<p>_foo bar _</p>\n";
+        \\<p>_foo bar _</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12900,9 +14643,14 @@ test "Example 380, line 6765: '_foo bar _'" {
 
 test "Example 381, line 6775: '_(_foo)'" {
     const input =
-        "\n_(_foo)\n";
+        \\
+        \\_(_foo)
+        \\
+    ;
     const expected =
-        "<p>_(_foo)</p>\n";
+        \\<p>_(_foo)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12929,9 +14677,14 @@ test "Example 381, line 6775: '_(_foo)'" {
 
 test "Example 382, line 6784: '_(_foo_)_'" {
     const input =
-        "\n_(_foo_)_\n";
+        \\
+        \\_(_foo_)_
+        \\
+    ;
     const expected =
-        "<p><em>(<em>foo</em>)</em></p>\n";
+        \\<p><em>(<em>foo</em>)</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12958,9 +14711,14 @@ test "Example 382, line 6784: '_(_foo_)_'" {
 
 test "Example 383, line 6793: '_foo_bar'" {
     const input =
-        "\n_foo_bar\n";
+        \\
+        \\_foo_bar
+        \\
+    ;
     const expected =
-        "<p>_foo_bar</p>\n";
+        \\<p>_foo_bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -12987,9 +14745,14 @@ test "Example 383, line 6793: '_foo_bar'" {
 
 test "Example 384, line 6800: '_пристаням_стремятся'" {
     const input =
-        "\n_пристаням_стремятся\n";
+        \\
+        \\_пристаням_стремятся
+        \\
+    ;
     const expected =
-        "<p>_пристаням_стремятся</p>\n";
+        \\<p>_пристаням_стремятся</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13016,9 +14779,14 @@ test "Example 384, line 6800: '_пристаням_стремятся'" {
 
 test "Example 385, line 6807: '_foo_bar_baz_'" {
     const input =
-        "\n_foo_bar_baz_\n";
+        \\
+        \\_foo_bar_baz_
+        \\
+    ;
     const expected =
-        "<p><em>foo_bar_baz</em></p>\n";
+        \\<p><em>foo_bar_baz</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13045,9 +14813,14 @@ test "Example 385, line 6807: '_foo_bar_baz_'" {
 
 test "Example 386, line 6818: '_(bar)_.'" {
     const input =
-        "\n_(bar)_.\n";
+        \\
+        \\_(bar)_.
+        \\
+    ;
     const expected =
-        "<p><em>(bar)</em>.</p>\n";
+        \\<p><em>(bar)</em>.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13074,9 +14847,14 @@ test "Example 386, line 6818: '_(bar)_.'" {
 
 test "Example 387, line 6827: '**foo bar**'" {
     const input =
-        "\n**foo bar**\n";
+        \\
+        \\**foo bar**
+        \\
+    ;
     const expected =
-        "<p><strong>foo bar</strong></p>\n";
+        \\<p><strong>foo bar</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13103,9 +14881,14 @@ test "Example 387, line 6827: '**foo bar**'" {
 
 test "Example 388, line 6837: '** foo bar**'" {
     const input =
-        "\n** foo bar**\n";
+        \\
+        \\** foo bar**
+        \\
+    ;
     const expected =
-        "<p>** foo bar**</p>\n";
+        \\<p>** foo bar**</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13132,9 +14915,14 @@ test "Example 388, line 6837: '** foo bar**'" {
 
 test "Example 389, line 6848: 'a**\"foo\"**'" {
     const input =
-        "\na**\"foo\"**\n";
+        \\
+        \\a**"foo"**
+        \\
+    ;
     const expected =
-        "<p>a**&quot;foo&quot;**</p>\n";
+        \\<p>a**&quot;foo&quot;**</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13161,9 +14949,14 @@ test "Example 389, line 6848: 'a**\"foo\"**'" {
 
 test "Example 390, line 6857: 'foo**bar**'" {
     const input =
-        "\nfoo**bar**\n";
+        \\
+        \\foo**bar**
+        \\
+    ;
     const expected =
-        "<p>foo<strong>bar</strong></p>\n";
+        \\<p>foo<strong>bar</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13190,9 +14983,14 @@ test "Example 390, line 6857: 'foo**bar**'" {
 
 test "Example 391, line 6866: '__foo bar__'" {
     const input =
-        "\n__foo bar__\n";
+        \\
+        \\__foo bar__
+        \\
+    ;
     const expected =
-        "<p><strong>foo bar</strong></p>\n";
+        \\<p><strong>foo bar</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13219,9 +15017,14 @@ test "Example 391, line 6866: '__foo bar__'" {
 
 test "Example 392, line 6876: '__ foo bar__'" {
     const input =
-        "\n__ foo bar__\n";
+        \\
+        \\__ foo bar__
+        \\
+    ;
     const expected =
-        "<p>__ foo bar__</p>\n";
+        \\<p>__ foo bar__</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13248,11 +15051,16 @@ test "Example 392, line 6876: '__ foo bar__'" {
 
 test "Example 393, line 6884: '__\\nfoo bar__'" {
     const input =
-        "\n__\n" ++
-        "foo bar__\n";
+        \\
+        \\__
+        \\foo bar__
+        \\
+    ;
     const expected =
-        "<p>__\n" ++
-        "foo bar__</p>\n";
+        \\<p>__
+        \\foo bar__</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13279,9 +15087,14 @@ test "Example 393, line 6884: '__\\nfoo bar__'" {
 
 test "Example 394, line 6896: 'a__\"foo\"__'" {
     const input =
-        "\na__\"foo\"__\n";
+        \\
+        \\a__"foo"__
+        \\
+    ;
     const expected =
-        "<p>a__&quot;foo&quot;__</p>\n";
+        \\<p>a__&quot;foo&quot;__</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13308,9 +15121,14 @@ test "Example 394, line 6896: 'a__\"foo\"__'" {
 
 test "Example 395, line 6905: 'foo__bar__'" {
     const input =
-        "\nfoo__bar__\n";
+        \\
+        \\foo__bar__
+        \\
+    ;
     const expected =
-        "<p>foo__bar__</p>\n";
+        \\<p>foo__bar__</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13337,9 +15155,14 @@ test "Example 395, line 6905: 'foo__bar__'" {
 
 test "Example 396, line 6912: '5__6__78'" {
     const input =
-        "\n5__6__78\n";
+        \\
+        \\5__6__78
+        \\
+    ;
     const expected =
-        "<p>5__6__78</p>\n";
+        \\<p>5__6__78</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13366,9 +15189,14 @@ test "Example 396, line 6912: '5__6__78'" {
 
 test "Example 397, line 6919: 'пристаням__стремятся__'" {
     const input =
-        "\nпристаням__стремятся__\n";
+        \\
+        \\пристаням__стремятся__
+        \\
+    ;
     const expected =
-        "<p>пристаням__стремятся__</p>\n";
+        \\<p>пристаням__стремятся__</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13395,9 +15223,14 @@ test "Example 397, line 6919: 'пристаням__стремятся__'" {
 
 test "Example 398, line 6926: '__foo, __bar__, baz__'" {
     const input =
-        "\n__foo, __bar__, baz__\n";
+        \\
+        \\__foo, __bar__, baz__
+        \\
+    ;
     const expected =
-        "<p><strong>foo, <strong>bar</strong>, baz</strong></p>\n";
+        \\<p><strong>foo, <strong>bar</strong>, baz</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13424,9 +15257,14 @@ test "Example 398, line 6926: '__foo, __bar__, baz__'" {
 
 test "Example 399, line 6937: 'foo-__(bar)__'" {
     const input =
-        "\nfoo-__(bar)__\n";
+        \\
+        \\foo-__(bar)__
+        \\
+    ;
     const expected =
-        "<p>foo-<strong>(bar)</strong></p>\n";
+        \\<p>foo-<strong>(bar)</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13453,9 +15291,14 @@ test "Example 399, line 6937: 'foo-__(bar)__'" {
 
 test "Example 400, line 6950: '**foo bar **'" {
     const input =
-        "\n**foo bar **\n";
+        \\
+        \\**foo bar **
+        \\
+    ;
     const expected =
-        "<p>**foo bar **</p>\n";
+        \\<p>**foo bar **</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13482,9 +15325,14 @@ test "Example 400, line 6950: '**foo bar **'" {
 
 test "Example 401, line 6963: '**(**foo)'" {
     const input =
-        "\n**(**foo)\n";
+        \\
+        \\**(**foo)
+        \\
+    ;
     const expected =
-        "<p>**(**foo)</p>\n";
+        \\<p>**(**foo)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13511,9 +15359,14 @@ test "Example 401, line 6963: '**(**foo)'" {
 
 test "Example 402, line 6973: '*(**foo**)*'" {
     const input =
-        "\n*(**foo**)*\n";
+        \\
+        \\*(**foo**)*
+        \\
+    ;
     const expected =
-        "<p><em>(<strong>foo</strong>)</em></p>\n";
+        \\<p><em>(<strong>foo</strong>)</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13540,11 +15393,16 @@ test "Example 402, line 6973: '*(**foo**)*'" {
 
 test "Example 403, line 6980: '**Gomphocarpus (*Gomphocarpus physocarpus*, syn.\\n*Asclepias physocarpa*)**'" {
     const input =
-        "\n**Gomphocarpus (*Gomphocarpus physocarpus*, syn.\n" ++
-        "*Asclepias physocarpa*)**\n";
+        \\
+        \\**Gomphocarpus (*Gomphocarpus physocarpus*, syn.
+        \\*Asclepias physocarpa*)**
+        \\
+    ;
     const expected =
-        "<p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.\n" ++
-        "<em>Asclepias physocarpa</em>)</strong></p>\n";
+        \\<p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.
+        \\<em>Asclepias physocarpa</em>)</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13571,9 +15429,14 @@ test "Example 403, line 6980: '**Gomphocarpus (*Gomphocarpus physocarpus*, syn.\
 
 test "Example 404, line 6989: '**foo \"*bar*\" foo**'" {
     const input =
-        "\n**foo \"*bar*\" foo**\n";
+        \\
+        \\**foo "*bar*" foo**
+        \\
+    ;
     const expected =
-        "<p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>\n";
+        \\<p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13600,9 +15463,14 @@ test "Example 404, line 6989: '**foo \"*bar*\" foo**'" {
 
 test "Example 405, line 6998: '**foo**bar'" {
     const input =
-        "\n**foo**bar\n";
+        \\
+        \\**foo**bar
+        \\
+    ;
     const expected =
-        "<p><strong>foo</strong>bar</p>\n";
+        \\<p><strong>foo</strong>bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13629,9 +15497,14 @@ test "Example 405, line 6998: '**foo**bar'" {
 
 test "Example 406, line 7010: '__foo bar __'" {
     const input =
-        "\n__foo bar __\n";
+        \\
+        \\__foo bar __
+        \\
+    ;
     const expected =
-        "<p>__foo bar __</p>\n";
+        \\<p>__foo bar __</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13658,9 +15531,14 @@ test "Example 406, line 7010: '__foo bar __'" {
 
 test "Example 407, line 7020: '__(__foo)'" {
     const input =
-        "\n__(__foo)\n";
+        \\
+        \\__(__foo)
+        \\
+    ;
     const expected =
-        "<p>__(__foo)</p>\n";
+        \\<p>__(__foo)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13687,9 +15565,14 @@ test "Example 407, line 7020: '__(__foo)'" {
 
 test "Example 408, line 7030: '_(__foo__)_'" {
     const input =
-        "\n_(__foo__)_\n";
+        \\
+        \\_(__foo__)_
+        \\
+    ;
     const expected =
-        "<p><em>(<strong>foo</strong>)</em></p>\n";
+        \\<p><em>(<strong>foo</strong>)</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13716,9 +15599,14 @@ test "Example 408, line 7030: '_(__foo__)_'" {
 
 test "Example 409, line 7039: '__foo__bar'" {
     const input =
-        "\n__foo__bar\n";
+        \\
+        \\__foo__bar
+        \\
+    ;
     const expected =
-        "<p>__foo__bar</p>\n";
+        \\<p>__foo__bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13745,9 +15633,14 @@ test "Example 409, line 7039: '__foo__bar'" {
 
 test "Example 410, line 7046: '__пристаням__стремятся'" {
     const input =
-        "\n__пристаням__стремятся\n";
+        \\
+        \\__пристаням__стремятся
+        \\
+    ;
     const expected =
-        "<p>__пристаням__стремятся</p>\n";
+        \\<p>__пристаням__стремятся</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13774,9 +15667,14 @@ test "Example 410, line 7046: '__пристаням__стремятся'" {
 
 test "Example 411, line 7053: '__foo__bar__baz__'" {
     const input =
-        "\n__foo__bar__baz__\n";
+        \\
+        \\__foo__bar__baz__
+        \\
+    ;
     const expected =
-        "<p><strong>foo__bar__baz</strong></p>\n";
+        \\<p><strong>foo__bar__baz</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13803,9 +15701,14 @@ test "Example 411, line 7053: '__foo__bar__baz__'" {
 
 test "Example 412, line 7064: '__(bar)__.'" {
     const input =
-        "\n__(bar)__.\n";
+        \\
+        \\__(bar)__.
+        \\
+    ;
     const expected =
-        "<p><strong>(bar)</strong>.</p>\n";
+        \\<p><strong>(bar)</strong>.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13832,9 +15735,14 @@ test "Example 412, line 7064: '__(bar)__.'" {
 
 test "Example 413, line 7076: '*foo [bar](/url)*'" {
     const input =
-        "\n*foo [bar](/url)*\n";
+        \\
+        \\*foo [bar](/url)*
+        \\
+    ;
     const expected =
-        "<p><em>foo <a href=\"/url\">bar</a></em></p>\n";
+        \\<p><em>foo <a href="/url">bar</a></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13861,11 +15769,16 @@ test "Example 413, line 7076: '*foo [bar](/url)*'" {
 
 test "Example 414, line 7083: '*foo\\nbar*'" {
     const input =
-        "\n*foo\n" ++
-        "bar*\n";
+        \\
+        \\*foo
+        \\bar*
+        \\
+    ;
     const expected =
-        "<p><em>foo\n" ++
-        "bar</em></p>\n";
+        \\<p><em>foo
+        \\bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13892,9 +15805,14 @@ test "Example 414, line 7083: '*foo\\nbar*'" {
 
 test "Example 415, line 7095: '_foo __bar__ baz_'" {
     const input =
-        "\n_foo __bar__ baz_\n";
+        \\
+        \\_foo __bar__ baz_
+        \\
+    ;
     const expected =
-        "<p><em>foo <strong>bar</strong> baz</em></p>\n";
+        \\<p><em>foo <strong>bar</strong> baz</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13921,9 +15839,14 @@ test "Example 415, line 7095: '_foo __bar__ baz_'" {
 
 test "Example 416, line 7102: '_foo _bar_ baz_'" {
     const input =
-        "\n_foo _bar_ baz_\n";
+        \\
+        \\_foo _bar_ baz_
+        \\
+    ;
     const expected =
-        "<p><em>foo <em>bar</em> baz</em></p>\n";
+        \\<p><em>foo <em>bar</em> baz</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13950,9 +15873,14 @@ test "Example 416, line 7102: '_foo _bar_ baz_'" {
 
 test "Example 417, line 7109: '__foo_ bar_'" {
     const input =
-        "\n__foo_ bar_\n";
+        \\
+        \\__foo_ bar_
+        \\
+    ;
     const expected =
-        "<p><em><em>foo</em> bar</em></p>\n";
+        \\<p><em><em>foo</em> bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -13979,9 +15907,14 @@ test "Example 417, line 7109: '__foo_ bar_'" {
 
 test "Example 418, line 7116: '*foo *bar**'" {
     const input =
-        "\n*foo *bar**\n";
+        \\
+        \\*foo *bar**
+        \\
+    ;
     const expected =
-        "<p><em>foo <em>bar</em></em></p>\n";
+        \\<p><em>foo <em>bar</em></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14008,9 +15941,14 @@ test "Example 418, line 7116: '*foo *bar**'" {
 
 test "Example 419, line 7123: '*foo **bar** baz*'" {
     const input =
-        "\n*foo **bar** baz*\n";
+        \\
+        \\*foo **bar** baz*
+        \\
+    ;
     const expected =
-        "<p><em>foo <strong>bar</strong> baz</em></p>\n";
+        \\<p><em>foo <strong>bar</strong> baz</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14037,9 +15975,14 @@ test "Example 419, line 7123: '*foo **bar** baz*'" {
 
 test "Example 420, line 7129: '*foo**bar**baz*'" {
     const input =
-        "\n*foo**bar**baz*\n";
+        \\
+        \\*foo**bar**baz*
+        \\
+    ;
     const expected =
-        "<p><em>foo<strong>bar</strong>baz</em></p>\n";
+        \\<p><em>foo<strong>bar</strong>baz</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14066,9 +16009,14 @@ test "Example 420, line 7129: '*foo**bar**baz*'" {
 
 test "Example 421, line 7153: '*foo**bar*'" {
     const input =
-        "\n*foo**bar*\n";
+        \\
+        \\*foo**bar*
+        \\
+    ;
     const expected =
-        "<p><em>foo**bar</em></p>\n";
+        \\<p><em>foo**bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14095,9 +16043,14 @@ test "Example 421, line 7153: '*foo**bar*'" {
 
 test "Example 422, line 7166: '***foo** bar*'" {
     const input =
-        "\n***foo** bar*\n";
+        \\
+        \\***foo** bar*
+        \\
+    ;
     const expected =
-        "<p><em><strong>foo</strong> bar</em></p>\n";
+        \\<p><em><strong>foo</strong> bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14124,9 +16077,14 @@ test "Example 422, line 7166: '***foo** bar*'" {
 
 test "Example 423, line 7173: '*foo **bar***'" {
     const input =
-        "\n*foo **bar***\n";
+        \\
+        \\*foo **bar***
+        \\
+    ;
     const expected =
-        "<p><em>foo <strong>bar</strong></em></p>\n";
+        \\<p><em>foo <strong>bar</strong></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14153,9 +16111,14 @@ test "Example 423, line 7173: '*foo **bar***'" {
 
 test "Example 424, line 7180: '*foo**bar***'" {
     const input =
-        "\n*foo**bar***\n";
+        \\
+        \\*foo**bar***
+        \\
+    ;
     const expected =
-        "<p><em>foo<strong>bar</strong></em></p>\n";
+        \\<p><em>foo<strong>bar</strong></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14182,9 +16145,14 @@ test "Example 424, line 7180: '*foo**bar***'" {
 
 test "Example 425, line 7191: 'foo***bar***baz'" {
     const input =
-        "\nfoo***bar***baz\n";
+        \\
+        \\foo***bar***baz
+        \\
+    ;
     const expected =
-        "<p>foo<em><strong>bar</strong></em>baz</p>\n";
+        \\<p>foo<em><strong>bar</strong></em>baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14211,9 +16179,14 @@ test "Example 425, line 7191: 'foo***bar***baz'" {
 
 test "Example 426, line 7197: 'foo******bar*********baz'" {
     const input =
-        "\nfoo******bar*********baz\n";
+        \\
+        \\foo******bar*********baz
+        \\
+    ;
     const expected =
-        "<p>foo<strong><strong><strong>bar</strong></strong></strong>***baz</p>\n";
+        \\<p>foo<strong><strong><strong>bar</strong></strong></strong>***baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14240,9 +16213,14 @@ test "Example 426, line 7197: 'foo******bar*********baz'" {
 
 test "Example 427, line 7206: '*foo **bar *baz* bim** bop*'" {
     const input =
-        "\n*foo **bar *baz* bim** bop*\n";
+        \\
+        \\*foo **bar *baz* bim** bop*
+        \\
+    ;
     const expected =
-        "<p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>\n";
+        \\<p><em>foo <strong>bar <em>baz</em> bim</strong> bop</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14269,9 +16247,14 @@ test "Example 427, line 7206: '*foo **bar *baz* bim** bop*'" {
 
 test "Example 428, line 7213: '*foo [*bar*](/url)*'" {
     const input =
-        "\n*foo [*bar*](/url)*\n";
+        \\
+        \\*foo [*bar*](/url)*
+        \\
+    ;
     const expected =
-        "<p><em>foo <a href=\"/url\"><em>bar</em></a></em></p>\n";
+        \\<p><em>foo <a href="/url"><em>bar</em></a></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14298,9 +16281,14 @@ test "Example 428, line 7213: '*foo [*bar*](/url)*'" {
 
 test "Example 429, line 7222: '** is not an empty emphasis'" {
     const input =
-        "\n** is not an empty emphasis\n";
+        \\
+        \\** is not an empty emphasis
+        \\
+    ;
     const expected =
-        "<p>** is not an empty emphasis</p>\n";
+        \\<p>** is not an empty emphasis</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14327,9 +16315,14 @@ test "Example 429, line 7222: '** is not an empty emphasis'" {
 
 test "Example 430, line 7229: '**** is not an empty strong emphasis'" {
     const input =
-        "\n**** is not an empty strong emphasis\n";
+        \\
+        \\**** is not an empty strong emphasis
+        \\
+    ;
     const expected =
-        "<p>**** is not an empty strong emphasis</p>\n";
+        \\<p>**** is not an empty strong emphasis</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14356,9 +16349,14 @@ test "Example 430, line 7229: '**** is not an empty strong emphasis'" {
 
 test "Example 431, line 7242: '**foo [bar](/url)**'" {
     const input =
-        "\n**foo [bar](/url)**\n";
+        \\
+        \\**foo [bar](/url)**
+        \\
+    ;
     const expected =
-        "<p><strong>foo <a href=\"/url\">bar</a></strong></p>\n";
+        \\<p><strong>foo <a href="/url">bar</a></strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14385,11 +16383,16 @@ test "Example 431, line 7242: '**foo [bar](/url)**'" {
 
 test "Example 432, line 7249: '**foo\\nbar**'" {
     const input =
-        "\n**foo\n" ++
-        "bar**\n";
+        \\
+        \\**foo
+        \\bar**
+        \\
+    ;
     const expected =
-        "<p><strong>foo\n" ++
-        "bar</strong></p>\n";
+        \\<p><strong>foo
+        \\bar</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14416,9 +16419,14 @@ test "Example 432, line 7249: '**foo\\nbar**'" {
 
 test "Example 433, line 7261: '__foo _bar_ baz__'" {
     const input =
-        "\n__foo _bar_ baz__\n";
+        \\
+        \\__foo _bar_ baz__
+        \\
+    ;
     const expected =
-        "<p><strong>foo <em>bar</em> baz</strong></p>\n";
+        \\<p><strong>foo <em>bar</em> baz</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14445,9 +16453,14 @@ test "Example 433, line 7261: '__foo _bar_ baz__'" {
 
 test "Example 434, line 7268: '__foo __bar__ baz__'" {
     const input =
-        "\n__foo __bar__ baz__\n";
+        \\
+        \\__foo __bar__ baz__
+        \\
+    ;
     const expected =
-        "<p><strong>foo <strong>bar</strong> baz</strong></p>\n";
+        \\<p><strong>foo <strong>bar</strong> baz</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14474,9 +16487,14 @@ test "Example 434, line 7268: '__foo __bar__ baz__'" {
 
 test "Example 435, line 7275: '____foo__ bar__'" {
     const input =
-        "\n____foo__ bar__\n";
+        \\
+        \\____foo__ bar__
+        \\
+    ;
     const expected =
-        "<p><strong><strong>foo</strong> bar</strong></p>\n";
+        \\<p><strong><strong>foo</strong> bar</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14503,9 +16521,14 @@ test "Example 435, line 7275: '____foo__ bar__'" {
 
 test "Example 436, line 7282: '**foo **bar****'" {
     const input =
-        "\n**foo **bar****\n";
+        \\
+        \\**foo **bar****
+        \\
+    ;
     const expected =
-        "<p><strong>foo <strong>bar</strong></strong></p>\n";
+        \\<p><strong>foo <strong>bar</strong></strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14532,9 +16555,14 @@ test "Example 436, line 7282: '**foo **bar****'" {
 
 test "Example 437, line 7289: '**foo *bar* baz**'" {
     const input =
-        "\n**foo *bar* baz**\n";
+        \\
+        \\**foo *bar* baz**
+        \\
+    ;
     const expected =
-        "<p><strong>foo <em>bar</em> baz</strong></p>\n";
+        \\<p><strong>foo <em>bar</em> baz</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14561,9 +16589,14 @@ test "Example 437, line 7289: '**foo *bar* baz**'" {
 
 test "Example 438, line 7296: '**foo*bar*baz**'" {
     const input =
-        "\n**foo*bar*baz**\n";
+        \\
+        \\**foo*bar*baz**
+        \\
+    ;
     const expected =
-        "<p><strong>foo<em>bar</em>baz</strong></p>\n";
+        \\<p><strong>foo<em>bar</em>baz</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14590,9 +16623,14 @@ test "Example 438, line 7296: '**foo*bar*baz**'" {
 
 test "Example 439, line 7303: '***foo* bar**'" {
     const input =
-        "\n***foo* bar**\n";
+        \\
+        \\***foo* bar**
+        \\
+    ;
     const expected =
-        "<p><strong><em>foo</em> bar</strong></p>\n";
+        \\<p><strong><em>foo</em> bar</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14619,9 +16657,14 @@ test "Example 439, line 7303: '***foo* bar**'" {
 
 test "Example 440, line 7310: '**foo *bar***'" {
     const input =
-        "\n**foo *bar***\n";
+        \\
+        \\**foo *bar***
+        \\
+    ;
     const expected =
-        "<p><strong>foo <em>bar</em></strong></p>\n";
+        \\<p><strong>foo <em>bar</em></strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14648,11 +16691,16 @@ test "Example 440, line 7310: '**foo *bar***'" {
 
 test "Example 441, line 7319: '**foo *bar **baz**\\nbim* bop**'" {
     const input =
-        "\n**foo *bar **baz**\n" ++
-        "bim* bop**\n";
+        \\
+        \\**foo *bar **baz**
+        \\bim* bop**
+        \\
+    ;
     const expected =
-        "<p><strong>foo <em>bar <strong>baz</strong>\n" ++
-        "bim</em> bop</strong></p>\n";
+        \\<p><strong>foo <em>bar <strong>baz</strong>
+        \\bim</em> bop</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14679,9 +16727,14 @@ test "Example 441, line 7319: '**foo *bar **baz**\\nbim* bop**'" {
 
 test "Example 442, line 7328: '**foo [*bar*](/url)**'" {
     const input =
-        "\n**foo [*bar*](/url)**\n";
+        \\
+        \\**foo [*bar*](/url)**
+        \\
+    ;
     const expected =
-        "<p><strong>foo <a href=\"/url\"><em>bar</em></a></strong></p>\n";
+        \\<p><strong>foo <a href="/url"><em>bar</em></a></strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14708,9 +16761,14 @@ test "Example 442, line 7328: '**foo [*bar*](/url)**'" {
 
 test "Example 443, line 7337: '__ is not an empty emphasis'" {
     const input =
-        "\n__ is not an empty emphasis\n";
+        \\
+        \\__ is not an empty emphasis
+        \\
+    ;
     const expected =
-        "<p>__ is not an empty emphasis</p>\n";
+        \\<p>__ is not an empty emphasis</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14737,9 +16795,14 @@ test "Example 443, line 7337: '__ is not an empty emphasis'" {
 
 test "Example 444, line 7344: '____ is not an empty strong emphasis'" {
     const input =
-        "\n____ is not an empty strong emphasis\n";
+        \\
+        \\____ is not an empty strong emphasis
+        \\
+    ;
     const expected =
-        "<p>____ is not an empty strong emphasis</p>\n";
+        \\<p>____ is not an empty strong emphasis</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14766,9 +16829,14 @@ test "Example 444, line 7344: '____ is not an empty strong emphasis'" {
 
 test "Example 445, line 7354: 'foo ***'" {
     const input =
-        "\nfoo ***\n";
+        \\
+        \\foo ***
+        \\
+    ;
     const expected =
-        "<p>foo ***</p>\n";
+        \\<p>foo ***</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14795,7 +16863,8 @@ test "Example 445, line 7354: 'foo ***'" {
 
 test "Example 446, line 7361: 'foo *\\**'" {
     const input =
-        "\nfoo *\\**\n";
+        "\n" ++
+        "foo *\\**\n";
     const expected =
         "<p>foo <em>*</em></p>\n";
 
@@ -14824,9 +16893,14 @@ test "Example 446, line 7361: 'foo *\\**'" {
 
 test "Example 447, line 7368: 'foo *_*'" {
     const input =
-        "\nfoo *_*\n";
+        \\
+        \\foo *_*
+        \\
+    ;
     const expected =
-        "<p>foo <em>_</em></p>\n";
+        \\<p>foo <em>_</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14853,9 +16927,14 @@ test "Example 447, line 7368: 'foo *_*'" {
 
 test "Example 448, line 7375: 'foo *****'" {
     const input =
-        "\nfoo *****\n";
+        \\
+        \\foo *****
+        \\
+    ;
     const expected =
-        "<p>foo *****</p>\n";
+        \\<p>foo *****</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14882,7 +16961,8 @@ test "Example 448, line 7375: 'foo *****'" {
 
 test "Example 449, line 7382: 'foo **\\***'" {
     const input =
-        "\nfoo **\\***\n";
+        "\n" ++
+        "foo **\\***\n";
     const expected =
         "<p>foo <strong>*</strong></p>\n";
 
@@ -14911,9 +16991,14 @@ test "Example 449, line 7382: 'foo **\\***'" {
 
 test "Example 450, line 7389: 'foo **_**'" {
     const input =
-        "\nfoo **_**\n";
+        \\
+        \\foo **_**
+        \\
+    ;
     const expected =
-        "<p>foo <strong>_</strong></p>\n";
+        \\<p>foo <strong>_</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14940,9 +17025,14 @@ test "Example 450, line 7389: 'foo **_**'" {
 
 test "Example 451, line 7400: '**foo*'" {
     const input =
-        "\n**foo*\n";
+        \\
+        \\**foo*
+        \\
+    ;
     const expected =
-        "<p>*<em>foo</em></p>\n";
+        \\<p>*<em>foo</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14969,9 +17059,14 @@ test "Example 451, line 7400: '**foo*'" {
 
 test "Example 452, line 7407: '*foo**'" {
     const input =
-        "\n*foo**\n";
+        \\
+        \\*foo**
+        \\
+    ;
     const expected =
-        "<p><em>foo</em>*</p>\n";
+        \\<p><em>foo</em>*</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -14998,9 +17093,14 @@ test "Example 452, line 7407: '*foo**'" {
 
 test "Example 453, line 7414: '***foo**'" {
     const input =
-        "\n***foo**\n";
+        \\
+        \\***foo**
+        \\
+    ;
     const expected =
-        "<p>*<strong>foo</strong></p>\n";
+        \\<p>*<strong>foo</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15027,9 +17127,14 @@ test "Example 453, line 7414: '***foo**'" {
 
 test "Example 454, line 7421: '****foo*'" {
     const input =
-        "\n****foo*\n";
+        \\
+        \\****foo*
+        \\
+    ;
     const expected =
-        "<p>***<em>foo</em></p>\n";
+        \\<p>***<em>foo</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15056,9 +17161,14 @@ test "Example 454, line 7421: '****foo*'" {
 
 test "Example 455, line 7428: '**foo***'" {
     const input =
-        "\n**foo***\n";
+        \\
+        \\**foo***
+        \\
+    ;
     const expected =
-        "<p><strong>foo</strong>*</p>\n";
+        \\<p><strong>foo</strong>*</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15085,9 +17195,14 @@ test "Example 455, line 7428: '**foo***'" {
 
 test "Example 456, line 7435: '*foo****'" {
     const input =
-        "\n*foo****\n";
+        \\
+        \\*foo****
+        \\
+    ;
     const expected =
-        "<p><em>foo</em>***</p>\n";
+        \\<p><em>foo</em>***</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15114,9 +17229,14 @@ test "Example 456, line 7435: '*foo****'" {
 
 test "Example 457, line 7445: 'foo ___'" {
     const input =
-        "\nfoo ___\n";
+        \\
+        \\foo ___
+        \\
+    ;
     const expected =
-        "<p>foo ___</p>\n";
+        \\<p>foo ___</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15143,7 +17263,8 @@ test "Example 457, line 7445: 'foo ___'" {
 
 test "Example 458, line 7452: 'foo _\\__'" {
     const input =
-        "\nfoo _\\__\n";
+        "\n" ++
+        "foo _\\__\n";
     const expected =
         "<p>foo <em>_</em></p>\n";
 
@@ -15172,9 +17293,14 @@ test "Example 458, line 7452: 'foo _\\__'" {
 
 test "Example 459, line 7459: 'foo _*_'" {
     const input =
-        "\nfoo _*_\n";
+        \\
+        \\foo _*_
+        \\
+    ;
     const expected =
-        "<p>foo <em>*</em></p>\n";
+        \\<p>foo <em>*</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15201,9 +17327,14 @@ test "Example 459, line 7459: 'foo _*_'" {
 
 test "Example 460, line 7466: 'foo _____'" {
     const input =
-        "\nfoo _____\n";
+        \\
+        \\foo _____
+        \\
+    ;
     const expected =
-        "<p>foo _____</p>\n";
+        \\<p>foo _____</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15230,7 +17361,8 @@ test "Example 460, line 7466: 'foo _____'" {
 
 test "Example 461, line 7473: 'foo __\\___'" {
     const input =
-        "\nfoo __\\___\n";
+        "\n" ++
+        "foo __\\___\n";
     const expected =
         "<p>foo <strong>_</strong></p>\n";
 
@@ -15259,9 +17391,14 @@ test "Example 461, line 7473: 'foo __\\___'" {
 
 test "Example 462, line 7480: 'foo __*__'" {
     const input =
-        "\nfoo __*__\n";
+        \\
+        \\foo __*__
+        \\
+    ;
     const expected =
-        "<p>foo <strong>*</strong></p>\n";
+        \\<p>foo <strong>*</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15288,9 +17425,14 @@ test "Example 462, line 7480: 'foo __*__'" {
 
 test "Example 463, line 7487: '__foo_'" {
     const input =
-        "\n__foo_\n";
+        \\
+        \\__foo_
+        \\
+    ;
     const expected =
-        "<p>_<em>foo</em></p>\n";
+        \\<p>_<em>foo</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15317,9 +17459,14 @@ test "Example 463, line 7487: '__foo_'" {
 
 test "Example 464, line 7498: '_foo__'" {
     const input =
-        "\n_foo__\n";
+        \\
+        \\_foo__
+        \\
+    ;
     const expected =
-        "<p><em>foo</em>_</p>\n";
+        \\<p><em>foo</em>_</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15346,9 +17493,14 @@ test "Example 464, line 7498: '_foo__'" {
 
 test "Example 465, line 7505: '___foo__'" {
     const input =
-        "\n___foo__\n";
+        \\
+        \\___foo__
+        \\
+    ;
     const expected =
-        "<p>_<strong>foo</strong></p>\n";
+        \\<p>_<strong>foo</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15375,9 +17527,14 @@ test "Example 465, line 7505: '___foo__'" {
 
 test "Example 466, line 7512: '____foo_'" {
     const input =
-        "\n____foo_\n";
+        \\
+        \\____foo_
+        \\
+    ;
     const expected =
-        "<p>___<em>foo</em></p>\n";
+        \\<p>___<em>foo</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15404,9 +17561,14 @@ test "Example 466, line 7512: '____foo_'" {
 
 test "Example 467, line 7519: '__foo___'" {
     const input =
-        "\n__foo___\n";
+        \\
+        \\__foo___
+        \\
+    ;
     const expected =
-        "<p><strong>foo</strong>_</p>\n";
+        \\<p><strong>foo</strong>_</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15433,9 +17595,14 @@ test "Example 467, line 7519: '__foo___'" {
 
 test "Example 468, line 7526: '_foo____'" {
     const input =
-        "\n_foo____\n";
+        \\
+        \\_foo____
+        \\
+    ;
     const expected =
-        "<p><em>foo</em>___</p>\n";
+        \\<p><em>foo</em>___</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15462,9 +17629,14 @@ test "Example 468, line 7526: '_foo____'" {
 
 test "Example 469, line 7536: '**foo**'" {
     const input =
-        "\n**foo**\n";
+        \\
+        \\**foo**
+        \\
+    ;
     const expected =
-        "<p><strong>foo</strong></p>\n";
+        \\<p><strong>foo</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15491,9 +17663,14 @@ test "Example 469, line 7536: '**foo**'" {
 
 test "Example 470, line 7543: '*_foo_*'" {
     const input =
-        "\n*_foo_*\n";
+        \\
+        \\*_foo_*
+        \\
+    ;
     const expected =
-        "<p><em><em>foo</em></em></p>\n";
+        \\<p><em><em>foo</em></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15520,9 +17697,14 @@ test "Example 470, line 7543: '*_foo_*'" {
 
 test "Example 471, line 7550: '__foo__'" {
     const input =
-        "\n__foo__\n";
+        \\
+        \\__foo__
+        \\
+    ;
     const expected =
-        "<p><strong>foo</strong></p>\n";
+        \\<p><strong>foo</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15549,9 +17731,14 @@ test "Example 471, line 7550: '__foo__'" {
 
 test "Example 472, line 7557: '_*foo*_'" {
     const input =
-        "\n_*foo*_\n";
+        \\
+        \\_*foo*_
+        \\
+    ;
     const expected =
-        "<p><em><em>foo</em></em></p>\n";
+        \\<p><em><em>foo</em></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15578,9 +17765,14 @@ test "Example 472, line 7557: '_*foo*_'" {
 
 test "Example 473, line 7567: '****foo****'" {
     const input =
-        "\n****foo****\n";
+        \\
+        \\****foo****
+        \\
+    ;
     const expected =
-        "<p><strong><strong>foo</strong></strong></p>\n";
+        \\<p><strong><strong>foo</strong></strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15607,9 +17799,14 @@ test "Example 473, line 7567: '****foo****'" {
 
 test "Example 474, line 7574: '____foo____'" {
     const input =
-        "\n____foo____\n";
+        \\
+        \\____foo____
+        \\
+    ;
     const expected =
-        "<p><strong><strong>foo</strong></strong></p>\n";
+        \\<p><strong><strong>foo</strong></strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15636,9 +17833,14 @@ test "Example 474, line 7574: '____foo____'" {
 
 test "Example 475, line 7585: '******foo******'" {
     const input =
-        "\n******foo******\n";
+        \\
+        \\******foo******
+        \\
+    ;
     const expected =
-        "<p><strong><strong><strong>foo</strong></strong></strong></p>\n";
+        \\<p><strong><strong><strong>foo</strong></strong></strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15665,9 +17867,14 @@ test "Example 475, line 7585: '******foo******'" {
 
 test "Example 476, line 7594: '***foo***'" {
     const input =
-        "\n***foo***\n";
+        \\
+        \\***foo***
+        \\
+    ;
     const expected =
-        "<p><em><strong>foo</strong></em></p>\n";
+        \\<p><em><strong>foo</strong></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15694,9 +17901,14 @@ test "Example 476, line 7594: '***foo***'" {
 
 test "Example 477, line 7601: '_____foo_____'" {
     const input =
-        "\n_____foo_____\n";
+        \\
+        \\_____foo_____
+        \\
+    ;
     const expected =
-        "<p><em><strong><strong>foo</strong></strong></em></p>\n";
+        \\<p><em><strong><strong>foo</strong></strong></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15723,9 +17935,14 @@ test "Example 477, line 7601: '_____foo_____'" {
 
 test "Example 478, line 7610: '*foo _bar* baz_'" {
     const input =
-        "\n*foo _bar* baz_\n";
+        \\
+        \\*foo _bar* baz_
+        \\
+    ;
     const expected =
-        "<p><em>foo _bar</em> baz_</p>\n";
+        \\<p><em>foo _bar</em> baz_</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15752,9 +17969,14 @@ test "Example 478, line 7610: '*foo _bar* baz_'" {
 
 test "Example 479, line 7617: '*foo __bar *baz bim__ bam*'" {
     const input =
-        "\n*foo __bar *baz bim__ bam*\n";
+        \\
+        \\*foo __bar *baz bim__ bam*
+        \\
+    ;
     const expected =
-        "<p><em>foo <strong>bar *baz bim</strong> bam</em></p>\n";
+        \\<p><em>foo <strong>bar *baz bim</strong> bam</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15781,9 +18003,14 @@ test "Example 479, line 7617: '*foo __bar *baz bim__ bam*'" {
 
 test "Example 480, line 7626: '**foo **bar baz**'" {
     const input =
-        "\n**foo **bar baz**\n";
+        \\
+        \\**foo **bar baz**
+        \\
+    ;
     const expected =
-        "<p>**foo <strong>bar baz</strong></p>\n";
+        \\<p>**foo <strong>bar baz</strong></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15810,9 +18037,14 @@ test "Example 480, line 7626: '**foo **bar baz**'" {
 
 test "Example 481, line 7633: '*foo *bar baz*'" {
     const input =
-        "\n*foo *bar baz*\n";
+        \\
+        \\*foo *bar baz*
+        \\
+    ;
     const expected =
-        "<p>*foo <em>bar baz</em></p>\n";
+        \\<p>*foo <em>bar baz</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15839,9 +18071,14 @@ test "Example 481, line 7633: '*foo *bar baz*'" {
 
 test "Example 482, line 7642: '*[bar*](/url)'" {
     const input =
-        "\n*[bar*](/url)\n";
+        \\
+        \\*[bar*](/url)
+        \\
+    ;
     const expected =
-        "<p>*<a href=\"/url\">bar*</a></p>\n";
+        \\<p>*<a href="/url">bar*</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15868,9 +18105,14 @@ test "Example 482, line 7642: '*[bar*](/url)'" {
 
 test "Example 483, line 7649: '_foo [bar_](/url)'" {
     const input =
-        "\n_foo [bar_](/url)\n";
+        \\
+        \\_foo [bar_](/url)
+        \\
+    ;
     const expected =
-        "<p>_foo <a href=\"/url\">bar_</a></p>\n";
+        \\<p>_foo <a href="/url">bar_</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15897,9 +18139,14 @@ test "Example 483, line 7649: '_foo [bar_](/url)'" {
 
 test "Example 484, line 7656: '*<img src=\"foo\" title=\"*\"/>'" {
     const input =
-        "\n*<img src=\"foo\" title=\"*\"/>\n";
+        \\
+        \\*<img src="foo" title="*"/>
+        \\
+    ;
     const expected =
-        "<p>*<img src=\"foo\" title=\"*\"/></p>\n";
+        \\<p>*<img src="foo" title="*"/></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15926,9 +18173,14 @@ test "Example 484, line 7656: '*<img src=\"foo\" title=\"*\"/>'" {
 
 test "Example 485, line 7663: '**<a href=\"**\">'" {
     const input =
-        "\n**<a href=\"**\">\n";
+        \\
+        \\**<a href="**">
+        \\
+    ;
     const expected =
-        "<p>**<a href=\"**\"></p>\n";
+        \\<p>**<a href="**"></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15955,9 +18207,14 @@ test "Example 485, line 7663: '**<a href=\"**\">'" {
 
 test "Example 486, line 7670: '__<a href=\"__\">'" {
     const input =
-        "\n__<a href=\"__\">\n";
+        \\
+        \\__<a href="__">
+        \\
+    ;
     const expected =
-        "<p>__<a href=\"__\"></p>\n";
+        \\<p>__<a href="__"></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -15984,9 +18241,14 @@ test "Example 486, line 7670: '__<a href=\"__\">'" {
 
 test "Example 487, line 7677: '*a `*`*'" {
     const input =
-        "\n*a `*`*\n";
+        \\
+        \\*a `*`*
+        \\
+    ;
     const expected =
-        "<p><em>a <code>*</code></em></p>\n";
+        \\<p><em>a <code>*</code></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16013,9 +18275,14 @@ test "Example 487, line 7677: '*a `*`*'" {
 
 test "Example 488, line 7684: '_a `_`_'" {
     const input =
-        "\n_a `_`_\n";
+        \\
+        \\_a `_`_
+        \\
+    ;
     const expected =
-        "<p><em>a <code>_</code></em></p>\n";
+        \\<p><em>a <code>_</code></em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16042,9 +18309,14 @@ test "Example 488, line 7684: '_a `_`_'" {
 
 test "Example 489, line 7691: '**a<http://foo.bar/?q=**>'" {
     const input =
-        "\n**a<http://foo.bar/?q=**>\n";
+        \\
+        \\**a<http://foo.bar/?q=**>
+        \\
+    ;
     const expected =
-        "<p>**a<a href=\"http://foo.bar/?q=**\">http://foo.bar/?q=**</a></p>\n";
+        \\<p>**a<a href="http://foo.bar/?q=**">http://foo.bar/?q=**</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16071,9 +18343,14 @@ test "Example 489, line 7691: '**a<http://foo.bar/?q=**>'" {
 
 test "Example 490, line 7698: '__a<http://foo.bar/?q=__>'" {
     const input =
-        "\n__a<http://foo.bar/?q=__>\n";
+        \\
+        \\__a<http://foo.bar/?q=__>
+        \\
+    ;
     const expected =
-        "<p>__a<a href=\"http://foo.bar/?q=__\">http://foo.bar/?q=__</a></p>\n";
+        \\<p>__a<a href="http://foo.bar/?q=__">http://foo.bar/?q=__</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16100,9 +18377,14 @@ test "Example 490, line 7698: '__a<http://foo.bar/?q=__>'" {
 
 test "Example 491, line 7714: '~~Hi~~ Hello, world!'" {
     const input =
-        "\n~~Hi~~ Hello, world!\n";
+        \\
+        \\~~Hi~~ Hello, world!
+        \\
+    ;
     const expected =
-        "<p><del>Hi</del> Hello, world!</p>\n";
+        \\<p><del>Hi</del> Hello, world!</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16129,12 +18411,17 @@ test "Example 491, line 7714: '~~Hi~~ Hello, world!'" {
 
 test "Example 492, line 7723: 'This ~~has a\\n\\nnew paragraph~~.'" {
     const input =
-        "\nThis ~~has a\n" ++
-        "\n" ++
-        "new paragraph~~.\n";
+        \\
+        \\This ~~has a
+        \\
+        \\new paragraph~~.
+        \\
+    ;
     const expected =
-        "<p>This ~~has a</p>\n" ++
-        "<p>new paragraph~~.</p>\n";
+        \\<p>This ~~has a</p>
+        \\<p>new paragraph~~.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16161,9 +18448,14 @@ test "Example 492, line 7723: 'This ~~has a\\n\\nnew paragraph~~.'" {
 
 test "Example 493, line 7734: 'This will ~~~not~~~ strike.'" {
     const input =
-        "\nThis will ~~~not~~~ strike.\n";
+        \\
+        \\This will ~~~not~~~ strike.
+        \\
+    ;
     const expected =
-        "<p>This will ~~~not~~~ strike.</p>\n";
+        \\<p>This will ~~~not~~~ strike.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16190,9 +18482,14 @@ test "Example 493, line 7734: 'This will ~~~not~~~ strike.'" {
 
 test "Example 494, line 7817: '[link](/uri \"title\")'" {
     const input =
-        "\n[link](/uri \"title\")\n";
+        \\
+        \\[link](/uri "title")
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\" title=\"title\">link</a></p>\n";
+        \\<p><a href="/uri" title="title">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16219,9 +18516,14 @@ test "Example 494, line 7817: '[link](/uri \"title\")'" {
 
 test "Example 495, line 7826: '[link](/uri)'" {
     const input =
-        "\n[link](/uri)\n";
+        \\
+        \\[link](/uri)
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\">link</a></p>\n";
+        \\<p><a href="/uri">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16248,9 +18550,14 @@ test "Example 495, line 7826: '[link](/uri)'" {
 
 test "Example 496, line 7835: '[link]()'" {
     const input =
-        "\n[link]()\n";
+        \\
+        \\[link]()
+        \\
+    ;
     const expected =
-        "<p><a href=\"\">link</a></p>\n";
+        \\<p><a href="">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16277,9 +18584,14 @@ test "Example 496, line 7835: '[link]()'" {
 
 test "Example 497, line 7842: '[link](<>)'" {
     const input =
-        "\n[link](<>)\n";
+        \\
+        \\[link](<>)
+        \\
+    ;
     const expected =
-        "<p><a href=\"\">link</a></p>\n";
+        \\<p><a href="">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16306,9 +18618,14 @@ test "Example 497, line 7842: '[link](<>)'" {
 
 test "Example 498, line 7851: '[link](/my uri)'" {
     const input =
-        "\n[link](/my uri)\n";
+        \\
+        \\[link](/my uri)
+        \\
+    ;
     const expected =
-        "<p>[link](/my uri)</p>\n";
+        \\<p>[link](/my uri)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16335,9 +18652,14 @@ test "Example 498, line 7851: '[link](/my uri)'" {
 
 test "Example 499, line 7857: '[link](</my uri>)'" {
     const input =
-        "\n[link](</my uri>)\n";
+        \\
+        \\[link](</my uri>)
+        \\
+    ;
     const expected =
-        "<p><a href=\"/my%20uri\">link</a></p>\n";
+        \\<p><a href="/my%20uri">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16364,11 +18686,16 @@ test "Example 499, line 7857: '[link](</my uri>)'" {
 
 test "Example 500, line 7866: '[link](foo\\nbar)'" {
     const input =
-        "\n[link](foo\n" ++
-        "bar)\n";
+        \\
+        \\[link](foo
+        \\bar)
+        \\
+    ;
     const expected =
-        "<p>[link](foo\n" ++
-        "bar)</p>\n";
+        \\<p>[link](foo
+        \\bar)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16395,11 +18722,16 @@ test "Example 500, line 7866: '[link](foo\\nbar)'" {
 
 test "Example 501, line 7874: '[link](<foo\\nbar>)'" {
     const input =
-        "\n[link](<foo\n" ++
-        "bar>)\n";
+        \\
+        \\[link](<foo
+        \\bar>)
+        \\
+    ;
     const expected =
-        "<p>[link](<foo\n" ++
-        "bar>)</p>\n";
+        \\<p>[link](<foo
+        \\bar>)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16426,9 +18758,14 @@ test "Example 501, line 7874: '[link](<foo\\nbar>)'" {
 
 test "Example 502, line 7885: '[a](<b)c>)'" {
     const input =
-        "\n[a](<b)c>)\n";
+        \\
+        \\[a](<b)c>)
+        \\
+    ;
     const expected =
-        "<p><a href=\"b)c\">a</a></p>\n";
+        \\<p><a href="b)c">a</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16455,7 +18792,8 @@ test "Example 502, line 7885: '[a](<b)c>)'" {
 
 test "Example 503, line 7893: '[link](<foo\\>)'" {
     const input =
-        "\n[link](<foo\\>)\n";
+        "\n" ++
+        "[link](<foo\\>)\n";
     const expected =
         "<p>[link](&lt;foo&gt;)</p>\n";
 
@@ -16484,13 +18822,18 @@ test "Example 503, line 7893: '[link](<foo\\>)'" {
 
 test "Example 504, line 7902: '[a](<b)c\\n[a](<b)c>\\n[a](<b>c)'" {
     const input =
-        "\n[a](<b)c\n" ++
-        "[a](<b)c>\n" ++
-        "[a](<b>c)\n";
+        \\
+        \\[a](<b)c
+        \\[a](<b)c>
+        \\[a](<b>c)
+        \\
+    ;
     const expected =
-        "<p>[a](&lt;b)c\n" ++
-        "[a](&lt;b)c&gt;\n" ++
-        "[a](<b>c)</p>\n";
+        \\<p>[a](&lt;b)c
+        \\[a](&lt;b)c&gt;
+        \\[a](<b>c)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16517,7 +18860,8 @@ test "Example 504, line 7902: '[a](<b)c\\n[a](<b)c>\\n[a](<b>c)'" {
 
 test "Example 505, line 7914: '[link](\\(foo\\))'" {
     const input =
-        "\n[link](\\(foo\\))\n";
+        "\n" ++
+        "[link](\\(foo\\))\n";
     const expected =
         "<p><a href=\"(foo)\">link</a></p>\n";
 
@@ -16546,9 +18890,14 @@ test "Example 505, line 7914: '[link](\\(foo\\))'" {
 
 test "Example 506, line 7923: '[link](foo(and(bar)))'" {
     const input =
-        "\n[link](foo(and(bar)))\n";
+        \\
+        \\[link](foo(and(bar)))
+        \\
+    ;
     const expected =
-        "<p><a href=\"foo(and(bar))\">link</a></p>\n";
+        \\<p><a href="foo(and(bar))">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16575,7 +18924,8 @@ test "Example 506, line 7923: '[link](foo(and(bar)))'" {
 
 test "Example 507, line 7932: '[link](foo\\(and\\(bar\\))'" {
     const input =
-        "\n[link](foo\\(and\\(bar\\))\n";
+        "\n" ++
+        "[link](foo\\(and\\(bar\\))\n";
     const expected =
         "<p><a href=\"foo(and(bar)\">link</a></p>\n";
 
@@ -16604,9 +18954,14 @@ test "Example 507, line 7932: '[link](foo\\(and\\(bar\\))'" {
 
 test "Example 508, line 7939: '[link](<foo(and(bar)>)'" {
     const input =
-        "\n[link](<foo(and(bar)>)\n";
+        \\
+        \\[link](<foo(and(bar)>)
+        \\
+    ;
     const expected =
-        "<p><a href=\"foo(and(bar)\">link</a></p>\n";
+        \\<p><a href="foo(and(bar)">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16633,7 +18988,8 @@ test "Example 508, line 7939: '[link](<foo(and(bar)>)'" {
 
 test "Example 509, line 7949: '[link](foo\\)\\:)'" {
     const input =
-        "\n[link](foo\\)\\:)\n";
+        "\n" ++
+        "[link](foo\\)\\:)\n";
     const expected =
         "<p><a href=\"foo):\">link</a></p>\n";
 
@@ -16662,15 +19018,20 @@ test "Example 509, line 7949: '[link](foo\\)\\:)'" {
 
 test "Example 510, line 7958: '[link](#fragment)\\n\\n[link](http://example.com#fragment)\\n\\n[link](http://example.com?foo=3#frag)'" {
     const input =
-        "\n[link](#fragment)\n" ++
-        "\n" ++
-        "[link](http://example.com#fragment)\n" ++
-        "\n" ++
-        "[link](http://example.com?foo=3#frag)\n";
+        \\
+        \\[link](#fragment)
+        \\
+        \\[link](http://example.com#fragment)
+        \\
+        \\[link](http://example.com?foo=3#frag)
+        \\
+    ;
     const expected =
-        "<p><a href=\"#fragment\">link</a></p>\n" ++
-        "<p><a href=\"http://example.com#fragment\">link</a></p>\n" ++
-        "<p><a href=\"http://example.com?foo=3#frag\">link</a></p>\n";
+        \\<p><a href="#fragment">link</a></p>
+        \\<p><a href="http://example.com#fragment">link</a></p>
+        \\<p><a href="http://example.com?foo=3#frag">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16697,7 +19058,8 @@ test "Example 510, line 7958: '[link](#fragment)\\n\\n[link](http://example.com#
 
 test "Example 511, line 7974: '[link](foo\\bar)'" {
     const input =
-        "\n[link](foo\\bar)\n";
+        "\n" ++
+        "[link](foo\\bar)\n";
     const expected =
         "<p><a href=\"foo%5Cbar\">link</a></p>\n";
 
@@ -16726,9 +19088,14 @@ test "Example 511, line 7974: '[link](foo\\bar)'" {
 
 test "Example 512, line 7990: '[link](foo%20b&auml;)'" {
     const input =
-        "\n[link](foo%20b&auml;)\n";
+        \\
+        \\[link](foo%20b&auml;)
+        \\
+    ;
     const expected =
-        "<p><a href=\"foo%20b%C3%A4\">link</a></p>\n";
+        \\<p><a href="foo%20b%C3%A4">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16755,9 +19122,14 @@ test "Example 512, line 7990: '[link](foo%20b&auml;)'" {
 
 test "Example 513, line 8001: '[link](\"title\")'" {
     const input =
-        "\n[link](\"title\")\n";
+        \\
+        \\[link]("title")
+        \\
+    ;
     const expected =
-        "<p><a href=\"%22title%22\">link</a></p>\n";
+        \\<p><a href="%22title%22">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16784,13 +19156,18 @@ test "Example 513, line 8001: '[link](\"title\")'" {
 
 test "Example 514, line 8010: '[link](/url \"title\")\\n[link](/url 'title')\\n[link](/url (title))'" {
     const input =
-        "\n[link](/url \"title\")\n" ++
-        "[link](/url 'title')\n" ++
-        "[link](/url (title))\n";
+        \\
+        \\[link](/url "title")
+        \\[link](/url 'title')
+        \\[link](/url (title))
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">link</a>\n" ++
-        "<a href=\"/url\" title=\"title\">link</a>\n" ++
-        "<a href=\"/url\" title=\"title\">link</a></p>\n";
+        \\<p><a href="/url" title="title">link</a>
+        \\<a href="/url" title="title">link</a>
+        \\<a href="/url" title="title">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16817,7 +19194,8 @@ test "Example 514, line 8010: '[link](/url \"title\")\\n[link](/url 'title')\\n[
 
 test "Example 515, line 8024: '[link](/url \"title \\\"&quot;\")'" {
     const input =
-        "\n[link](/url \"title \\\"&quot;\")\n";
+        "\n" ++
+        "[link](/url \"title \\\"&quot;\")\n";
     const expected =
         "<p><a href=\"/url\" title=\"title &quot;&quot;\">link</a></p>\n";
 
@@ -16846,9 +19224,14 @@ test "Example 515, line 8024: '[link](/url \"title \\\"&quot;\")'" {
 
 test "Example 516, line 8034: '[link](/url \"title\")'" {
     const input =
-        "\n[link](/url \"title\")\n";
+        \\
+        \\[link](/url "title")
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url%C2%A0%22title%22\">link</a></p>\n";
+        \\<p><a href="/url%C2%A0%22title%22">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16875,9 +19258,14 @@ test "Example 516, line 8034: '[link](/url \"title\")'" {
 
 test "Example 517, line 8043: '[link](/url \"title \"and\" title\")'" {
     const input =
-        "\n[link](/url \"title \"and\" title\")\n";
+        \\
+        \\[link](/url "title "and" title")
+        \\
+    ;
     const expected =
-        "<p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>\n";
+        \\<p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16904,9 +19292,14 @@ test "Example 517, line 8043: '[link](/url \"title \"and\" title\")'" {
 
 test "Example 518, line 8052: '[link](/url 'title \"and\" title')'" {
     const input =
-        "\n[link](/url 'title \"and\" title')\n";
+        \\
+        \\[link](/url 'title "and" title')
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title &quot;and&quot; title\">link</a></p>\n";
+        \\<p><a href="/url" title="title &quot;and&quot; title">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16933,10 +19326,15 @@ test "Example 518, line 8052: '[link](/url 'title \"and\" title')'" {
 
 test "Example 519, line 8076: '[link](   /uri\\n  \"title\"  )'" {
     const input =
-        "\n[link](   /uri\n" ++
-        "  \"title\"  )\n";
+        \\
+        \\[link](   /uri
+        \\  "title"  )
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\" title=\"title\">link</a></p>\n";
+        \\<p><a href="/uri" title="title">link</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16963,9 +19361,14 @@ test "Example 519, line 8076: '[link](   /uri\\n  \"title\"  )'" {
 
 test "Example 520, line 8087: '[link] (/uri)'" {
     const input =
-        "\n[link] (/uri)\n";
+        \\
+        \\[link] (/uri)
+        \\
+    ;
     const expected =
-        "<p>[link] (/uri)</p>\n";
+        \\<p>[link] (/uri)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -16992,9 +19395,14 @@ test "Example 520, line 8087: '[link] (/uri)'" {
 
 test "Example 521, line 8097: '[link [foo [bar]]](/uri)'" {
     const input =
-        "\n[link [foo [bar]]](/uri)\n";
+        \\
+        \\[link [foo [bar]]](/uri)
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\">link [foo [bar]]</a></p>\n";
+        \\<p><a href="/uri">link [foo [bar]]</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17021,9 +19429,14 @@ test "Example 521, line 8097: '[link [foo [bar]]](/uri)'" {
 
 test "Example 522, line 8104: '[link] bar](/uri)'" {
     const input =
-        "\n[link] bar](/uri)\n";
+        \\
+        \\[link] bar](/uri)
+        \\
+    ;
     const expected =
-        "<p>[link] bar](/uri)</p>\n";
+        \\<p>[link] bar](/uri)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17050,9 +19463,14 @@ test "Example 522, line 8104: '[link] bar](/uri)'" {
 
 test "Example 523, line 8111: '[link [bar](/uri)'" {
     const input =
-        "\n[link [bar](/uri)\n";
+        \\
+        \\[link [bar](/uri)
+        \\
+    ;
     const expected =
-        "<p>[link <a href=\"/uri\">bar</a></p>\n";
+        \\<p>[link <a href="/uri">bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17079,7 +19497,8 @@ test "Example 523, line 8111: '[link [bar](/uri)'" {
 
 test "Example 524, line 8118: '[link \\[bar](/uri)'" {
     const input =
-        "\n[link \\[bar](/uri)\n";
+        "\n" ++
+        "[link \\[bar](/uri)\n";
     const expected =
         "<p><a href=\"/uri\">link [bar</a></p>\n";
 
@@ -17108,9 +19527,14 @@ test "Example 524, line 8118: '[link \\[bar](/uri)'" {
 
 test "Example 525, line 8127: '[link *foo **bar** `#`*](/uri)'" {
     const input =
-        "\n[link *foo **bar** `#`*](/uri)\n";
+        \\
+        \\[link *foo **bar** `#`*](/uri)
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>\n";
+        \\<p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17137,9 +19561,14 @@ test "Example 525, line 8127: '[link *foo **bar** `#`*](/uri)'" {
 
 test "Example 526, line 8134: '[![moon](moon.jpg)](/uri)'" {
     const input =
-        "\n[![moon](moon.jpg)](/uri)\n";
+        \\
+        \\[![moon](moon.jpg)](/uri)
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\"><img src=\"moon.jpg\" alt=\"moon\" /></a></p>\n";
+        \\<p><a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17166,9 +19595,14 @@ test "Example 526, line 8134: '[![moon](moon.jpg)](/uri)'" {
 
 test "Example 527, line 8143: '[foo [bar](/uri)](/uri)'" {
     const input =
-        "\n[foo [bar](/uri)](/uri)\n";
+        \\
+        \\[foo [bar](/uri)](/uri)
+        \\
+    ;
     const expected =
-        "<p>[foo <a href=\"/uri\">bar</a>](/uri)</p>\n";
+        \\<p>[foo <a href="/uri">bar</a>](/uri)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17195,9 +19629,14 @@ test "Example 527, line 8143: '[foo [bar](/uri)](/uri)'" {
 
 test "Example 528, line 8150: '[foo *[bar [baz](/uri)](/uri)*](/uri)'" {
     const input =
-        "\n[foo *[bar [baz](/uri)](/uri)*](/uri)\n";
+        \\
+        \\[foo *[bar [baz](/uri)](/uri)*](/uri)
+        \\
+    ;
     const expected =
-        "<p>[foo <em>[bar <a href=\"/uri\">baz</a>](/uri)</em>](/uri)</p>\n";
+        \\<p>[foo <em>[bar <a href="/uri">baz</a>](/uri)</em>](/uri)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17224,9 +19663,14 @@ test "Example 528, line 8150: '[foo *[bar [baz](/uri)](/uri)*](/uri)'" {
 
 test "Example 529, line 8157: '![[[foo](uri1)](uri2)](uri3)'" {
     const input =
-        "\n![[[foo](uri1)](uri2)](uri3)\n";
+        \\
+        \\![[[foo](uri1)](uri2)](uri3)
+        \\
+    ;
     const expected =
-        "<p><img src=\"uri3\" alt=\"[foo](uri2)\" /></p>\n";
+        \\<p><img src="uri3" alt="[foo](uri2)" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17253,9 +19697,14 @@ test "Example 529, line 8157: '![[[foo](uri1)](uri2)](uri3)'" {
 
 test "Example 530, line 8167: '*[foo*](/uri)'" {
     const input =
-        "\n*[foo*](/uri)\n";
+        \\
+        \\*[foo*](/uri)
+        \\
+    ;
     const expected =
-        "<p>*<a href=\"/uri\">foo*</a></p>\n";
+        \\<p>*<a href="/uri">foo*</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17282,9 +19731,14 @@ test "Example 530, line 8167: '*[foo*](/uri)'" {
 
 test "Example 531, line 8174: '[foo *bar](baz*)'" {
     const input =
-        "\n[foo *bar](baz*)\n";
+        \\
+        \\[foo *bar](baz*)
+        \\
+    ;
     const expected =
-        "<p><a href=\"baz*\">foo *bar</a></p>\n";
+        \\<p><a href="baz*">foo *bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17309,30 +19763,18 @@ test "Example 531, line 8174: '[foo *bar](baz*)'" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
-// TODO:
-//test "Example 532, line 8184: '*foo [bar* baz]'" {
-//    const input =
-//        "*foo [bar* baz]\n";
-//    const expected =
-//        "<p><em>foo [bar</em> baz]</p>\n";
-//
-//    const gpa = std.testing.allocator;
-//    const rules = try gfm.init(gpa);
-////
-//    const doc = try parse.execute(gpa, input, rules);
-//    defer doc.deinit(gpa);
-//
-//    const html = try render(gpa, doc, null, false);
-//    defer gpa.free(html);
-//
-//    try std.testing.expectEqualStrings(expected, html);
-//}
+// TODO: test "Example 532, line 8184: '*foo [bar* baz]'"
 
 test "Example 533, line 8194: '[foo <bar attr=\"](baz)\">'" {
     const input =
-        "\n[foo <bar attr=\"](baz)\">\n";
+        \\
+        \\[foo <bar attr="](baz)">
+        \\
+    ;
     const expected =
-        "<p>[foo <bar attr=\"](baz)\"></p>\n";
+        \\<p>[foo <bar attr="](baz)"></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17359,9 +19801,14 @@ test "Example 533, line 8194: '[foo <bar attr=\"](baz)\">'" {
 
 test "Example 534, line 8201: '[foo`](/uri)`'" {
     const input =
-        "\n[foo`](/uri)`\n";
+        \\
+        \\[foo`](/uri)`
+        \\
+    ;
     const expected =
-        "<p>[foo<code>](/uri)</code></p>\n";
+        \\<p>[foo<code>](/uri)</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17388,9 +19835,14 @@ test "Example 534, line 8201: '[foo`](/uri)`'" {
 
 test "Example 535, line 8208: '[foo<http://example.com/?search=](uri)>'" {
     const input =
-        "\n[foo<http://example.com/?search=](uri)>\n";
+        \\
+        \\[foo<http://example.com/?search=](uri)>
+        \\
+    ;
     const expected =
-        "<p>[foo<a href=\"http://example.com/?search=%5D(uri)\">http://example.com/?search=](uri)</a></p>\n";
+        \\<p>[foo<a href="http://example.com/?search=%5D(uri)">http://example.com/?search=](uri)</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17417,11 +19869,16 @@ test "Example 535, line 8208: '[foo<http://example.com/?search=](uri)>'" {
 
 test "Example 536, line 8246: '[foo][bar]\\n\\n[bar]: /url \"title\"'" {
     const input =
-        "\n[foo][bar]\n" ++
-        "\n" ++
-        "[bar]: /url \"title\"\n";
+        \\
+        \\[foo][bar]
+        \\
+        \\[bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
+        \\<p><a href="/url" title="title">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17448,11 +19905,16 @@ test "Example 536, line 8246: '[foo][bar]\\n\\n[bar]: /url \"title\"'" {
 
 test "Example 537, line 8261: '[link [foo [bar]]][ref]\\n\\n[ref]: /uri'" {
     const input =
-        "\n[link [foo [bar]]][ref]\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[link [foo [bar]]][ref]
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\">link [foo [bar]]</a></p>\n";
+        \\<p><a href="/uri">link [foo [bar]]</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17479,7 +19941,8 @@ test "Example 537, line 8261: '[link [foo [bar]]][ref]\\n\\n[ref]: /uri'" {
 
 test "Example 538, line 8270: '[link \\[bar][ref]\\n\\n[ref]: /uri'" {
     const input =
-        "\n[link \\[bar][ref]\n" ++
+        "\n" ++
+        "[link \\[bar][ref]\n" ++
         "\n" ++
         "[ref]: /uri\n";
     const expected =
@@ -17510,11 +19973,16 @@ test "Example 538, line 8270: '[link \\[bar][ref]\\n\\n[ref]: /uri'" {
 
 test "Example 539, line 8281: '[link *foo **bar** `#`*][ref]\\n\\n[ref]: /uri'" {
     const input =
-        "\n[link *foo **bar** `#`*][ref]\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[link *foo **bar** `#`*][ref]
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>\n";
+        \\<p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17541,11 +20009,16 @@ test "Example 539, line 8281: '[link *foo **bar** `#`*][ref]\\n\\n[ref]: /uri'" 
 
 test "Example 540, line 8290: '[![moon](moon.jpg)][ref]\\n\\n[ref]: /uri'" {
     const input =
-        "\n[![moon](moon.jpg)][ref]\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[![moon](moon.jpg)][ref]
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\"><img src=\"moon.jpg\" alt=\"moon\" /></a></p>\n";
+        \\<p><a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17572,11 +20045,16 @@ test "Example 540, line 8290: '[![moon](moon.jpg)][ref]\\n\\n[ref]: /uri'" {
 
 test "Example 541, line 8301: '[foo [bar](/uri)][ref]\\n\\n[ref]: /uri'" {
     const input =
-        "\n[foo [bar](/uri)][ref]\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[foo [bar](/uri)][ref]
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p>[foo <a href=\"/uri\">bar</a>]<a href=\"/uri\">ref</a></p>\n";
+        \\<p>[foo <a href="/uri">bar</a>]<a href="/uri">ref</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17603,11 +20081,16 @@ test "Example 541, line 8301: '[foo [bar](/uri)][ref]\\n\\n[ref]: /uri'" {
 
 test "Example 542, line 8310: '[foo *bar [baz][ref]*][ref]\\n\\n[ref]: /uri'" {
     const input =
-        "\n[foo *bar [baz][ref]*][ref]\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[foo *bar [baz][ref]*][ref]
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p>[foo <em>bar <a href=\"/uri\">baz</a></em>]<a href=\"/uri\">ref</a></p>\n";
+        \\<p>[foo <em>bar <a href="/uri">baz</a></em>]<a href="/uri">ref</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17634,11 +20117,16 @@ test "Example 542, line 8310: '[foo *bar [baz][ref]*][ref]\\n\\n[ref]: /uri'" {
 
 test "Example 543, line 8325: '*[foo*][ref]\\n\\n[ref]: /uri'" {
     const input =
-        "\n*[foo*][ref]\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\*[foo*][ref]
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p>*<a href=\"/uri\">foo*</a></p>\n";
+        \\<p>*<a href="/uri">foo*</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17665,11 +20153,16 @@ test "Example 543, line 8325: '*[foo*][ref]\\n\\n[ref]: /uri'" {
 
 test "Example 544, line 8334: '[foo *bar][ref]\\n\\n[ref]: /uri'" {
     const input =
-        "\n[foo *bar][ref]\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[foo *bar][ref]
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p><a href=\"/uri\">foo *bar</a></p>\n";
+        \\<p><a href="/uri">foo *bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17696,11 +20189,16 @@ test "Example 544, line 8334: '[foo *bar][ref]\\n\\n[ref]: /uri'" {
 
 test "Example 545, line 8346: '[foo <bar attr=\"][ref]\">\\n\\n[ref]: /uri'" {
     const input =
-        "\n[foo <bar attr=\"][ref]\">\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[foo <bar attr="][ref]">
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p>[foo <bar attr=\"][ref]\"></p>\n";
+        \\<p>[foo <bar attr="][ref]"></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17727,11 +20225,16 @@ test "Example 545, line 8346: '[foo <bar attr=\"][ref]\">\\n\\n[ref]: /uri'" {
 
 test "Example 546, line 8355: '[foo`][ref]`\\n\\n[ref]: /uri'" {
     const input =
-        "\n[foo`][ref]`\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[foo`][ref]`
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p>[foo<code>][ref]</code></p>\n";
+        \\<p>[foo<code>][ref]</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17758,11 +20261,16 @@ test "Example 546, line 8355: '[foo`][ref]`\\n\\n[ref]: /uri'" {
 
 test "Example 547, line 8364: '[foo<http://example.com/?search=][ref]>\\n\\n[ref]: /uri'" {
     const input =
-        "\n[foo<http://example.com/?search=][ref]>\n" ++
-        "\n" ++
-        "[ref]: /uri\n";
+        \\
+        \\[foo<http://example.com/?search=][ref]>
+        \\
+        \\[ref]: /uri
+        \\
+    ;
     const expected =
-        "<p>[foo<a href=\"http://example.com/?search=%5D%5Bref%5D\">http://example.com/?search=][ref]</a></p>\n";
+        \\<p>[foo<a href="http://example.com/?search=%5D%5Bref%5D">http://example.com/?search=][ref]</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17789,11 +20297,16 @@ test "Example 547, line 8364: '[foo<http://example.com/?search=][ref]>\\n\\n[ref
 
 test "Example 548, line 8375: '[foo][BaR]\\n\\n[bar]: /url \"title\"'" {
     const input =
-        "\n[foo][BaR]\n" ++
-        "\n" ++
-        "[bar]: /url \"title\"\n";
+        \\
+        \\[foo][BaR]
+        \\
+        \\[bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
+        \\<p><a href="/url" title="title">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17818,35 +20331,21 @@ test "Example 548, line 8375: '[foo][BaR]\\n\\n[bar]: /url \"title\"'" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
-// TODO:
-//test "Example 549, line 8386: '[Толпой][Толпой] is a Russian word.\\n\\n[ТОЛПОЙ]: /url'" {
-//    const input =
-//        "[Толпой][Толпой] is a Russian word.\n" ++
-//        "\n" ++
-//        "[ТОЛПОЙ]: /url\n";
-//    const expected =
-//        "<p><a href=\"/url\">Толпой</a> is a Russian word.</p>\n";
-//
-//    const gpa = std.testing.allocator;
-//    const rules = try gfm.init(gpa);
-////
-//    const doc = try parse.execute(gpa, input, rules);
-//    defer doc.deinit(gpa);
-//
-//    const html = try render(gpa, doc, null, false);
-//    defer gpa.free(html);
-//
-//    try std.testing.expectEqualStrings(expected, html);
-//}
+// TODO: test "Example 549, line 8386: '[Толпой][Толпой] is a Russian word.\\n\\n[ТОЛПОЙ]: /url'"
 
 test "Example 550, line 8398: '[Foo\\n  bar]: /url\\n\\n[Baz][Foo bar]'" {
     const input =
-        "\n[Foo\n" ++
-        "  bar]: /url\n" ++
-        "\n" ++
-        "[Baz][Foo bar]\n";
+        \\
+        \\[Foo
+        \\  bar]: /url
+        \\
+        \\[Baz][Foo bar]
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\">Baz</a></p>\n";
+        \\<p><a href="/url">Baz</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17873,11 +20372,16 @@ test "Example 550, line 8398: '[Foo\\n  bar]: /url\\n\\n[Baz][Foo bar]'" {
 
 test "Example 551, line 8411: '[foo] [bar]\\n\\n[bar]: /url \"title\"'" {
     const input =
-        "\n[foo] [bar]\n" ++
-        "\n" ++
-        "[bar]: /url \"title\"\n";
+        \\
+        \\[foo] [bar]
+        \\
+        \\[bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p>[foo] <a href=\"/url\" title=\"title\">bar</a></p>\n";
+        \\<p>[foo] <a href="/url" title="title">bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17904,13 +20408,18 @@ test "Example 551, line 8411: '[foo] [bar]\\n\\n[bar]: /url \"title\"'" {
 
 test "Example 552, line 8420: '[foo]\\n[bar]\\n\\n[bar]: /url \"title\"'" {
     const input =
-        "\n[foo]\n" ++
-        "[bar]\n" ++
-        "\n" ++
-        "[bar]: /url \"title\"\n";
+        \\
+        \\[foo]
+        \\[bar]
+        \\
+        \\[bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p>[foo]\n" ++
-        "<a href=\"/url\" title=\"title\">bar</a></p>\n";
+        \\<p>[foo]
+        \\<a href="/url" title="title">bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17937,13 +20446,18 @@ test "Example 552, line 8420: '[foo]\\n[bar]\\n\\n[bar]: /url \"title\"'" {
 
 test "Example 553, line 8461: '[foo]: /url1\\n\\n[foo]: /url2\\n\\n[bar][foo]'" {
     const input =
-        "\n[foo]: /url1\n" ++
-        "\n" ++
-        "[foo]: /url2\n" ++
-        "\n" ++
-        "[bar][foo]\n";
+        \\
+        \\[foo]: /url1
+        \\
+        \\[foo]: /url2
+        \\
+        \\[bar][foo]
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url1\">bar</a></p>\n";
+        \\<p><a href="/url1">bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -17970,7 +20484,8 @@ test "Example 553, line 8461: '[foo]: /url1\\n\\n[foo]: /url2\\n\\n[bar][foo]'" 
 
 test "Example 554, line 8476: '[bar][foo\\!]\\n\\n[foo!]: /url'" {
     const input =
-        "\n[bar][foo\\!]\n" ++
+        "\n" ++
+        "[bar][foo\\!]\n" ++
         "\n" ++
         "[foo!]: /url\n";
     const expected =
@@ -18001,12 +20516,17 @@ test "Example 554, line 8476: '[bar][foo\\!]\\n\\n[foo!]: /url'" {
 
 test "Example 555, line 8488: '[foo][ref[]\\n\\n[ref[]: /uri'" {
     const input =
-        "\n[foo][ref[]\n" ++
-        "\n" ++
-        "[ref[]: /uri\n";
+        \\
+        \\[foo][ref[]
+        \\
+        \\[ref[]: /uri
+        \\
+    ;
     const expected =
-        "<p>[foo][ref[]</p>\n" ++
-        "<p>[ref[]: /uri</p>\n";
+        \\<p>[foo][ref[]</p>
+        \\<p>[ref[]: /uri</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18033,12 +20553,17 @@ test "Example 555, line 8488: '[foo][ref[]\\n\\n[ref[]: /uri'" {
 
 test "Example 556, line 8498: '[foo][ref[bar]]\\n\\n[ref[bar]]: /uri'" {
     const input =
-        "\n[foo][ref[bar]]\n" ++
-        "\n" ++
-        "[ref[bar]]: /uri\n";
+        \\
+        \\[foo][ref[bar]]
+        \\
+        \\[ref[bar]]: /uri
+        \\
+    ;
     const expected =
-        "<p>[foo][ref[bar]]</p>\n" ++
-        "<p>[ref[bar]]: /uri</p>\n";
+        \\<p>[foo][ref[bar]]</p>
+        \\<p>[ref[bar]]: /uri</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18065,12 +20590,17 @@ test "Example 556, line 8498: '[foo][ref[bar]]\\n\\n[ref[bar]]: /uri'" {
 
 test "Example 557, line 8508: '[[[foo]]]\\n\\n[[[foo]]]: /url'" {
     const input =
-        "\n[[[foo]]]\n" ++
-        "\n" ++
-        "[[[foo]]]: /url\n";
+        \\
+        \\[[[foo]]]
+        \\
+        \\[[[foo]]]: /url
+        \\
+    ;
     const expected =
-        "<p>[[[foo]]]</p>\n" ++
-        "<p>[[[foo]]]: /url</p>\n";
+        \\<p>[[[foo]]]</p>
+        \\<p>[[[foo]]]: /url</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18097,7 +20627,8 @@ test "Example 557, line 8508: '[[[foo]]]\\n\\n[[[foo]]]: /url'" {
 
 test "Example 558, line 8518: '[foo][ref\\[]\\n\\n[ref\\[]: /uri'" {
     const input =
-        "\n[foo][ref\\[]\n" ++
+        "\n" ++
+        "[foo][ref\\[]\n" ++
         "\n" ++
         "[ref\\[]: /uri\n";
     const expected =
@@ -18128,7 +20659,8 @@ test "Example 558, line 8518: '[foo][ref\\[]\\n\\n[ref\\[]: /uri'" {
 
 test "Example 559, line 8529: '[bar\\\\]: /uri\\n\\n[bar\\\\]'" {
     const input =
-        "\n[bar\\\\]: /uri\n" ++
+        "\n" ++
+        "[bar\\\\]: /uri\n" ++
         "\n" ++
         "[bar\\\\]\n";
     const expected =
@@ -18159,12 +20691,17 @@ test "Example 559, line 8529: '[bar\\\\]: /uri\\n\\n[bar\\\\]'" {
 
 test "Example 560, line 8540: '[]\\n\\n[]: /uri'" {
     const input =
-        "\n[]\n" ++
-        "\n" ++
-        "[]: /uri\n";
+        \\
+        \\[]
+        \\
+        \\[]: /uri
+        \\
+    ;
     const expected =
-        "<p>[]</p>\n" ++
-        "<p>[]: /uri</p>\n";
+        \\<p>[]</p>
+        \\<p>[]: /uri</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18191,16 +20728,21 @@ test "Example 560, line 8540: '[]\\n\\n[]: /uri'" {
 
 test "Example 561, line 8550: '[\\n ]\\n\\n[\\n ]: /uri'" {
     const input =
-        "\n[\n" ++
-        " ]\n" ++
-        "\n" ++
-        "[\n" ++
-        " ]: /uri\n";
+        \\
+        \\[
+        \\ ]
+        \\
+        \\[
+        \\ ]: /uri
+        \\
+    ;
     const expected =
-        "<p>[\n" ++
-        "]</p>\n" ++
-        "<p>[\n" ++
-        "]: /uri</p>\n";
+        \\<p>[
+        \\]</p>
+        \\<p>[
+        \\]: /uri</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18227,11 +20769,16 @@ test "Example 561, line 8550: '[\\n ]\\n\\n[\\n ]: /uri'" {
 
 test "Example 562, line 8573: '[foo][]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n[foo][]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\[foo][]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
+        \\<p><a href="/url" title="title">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18258,11 +20805,16 @@ test "Example 562, line 8573: '[foo][]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 563, line 8582: '[*foo* bar][]\\n\\n[*foo* bar]: /url \"title\"'" {
     const input =
-        "\n[*foo* bar][]\n" ++
-        "\n" ++
-        "[*foo* bar]: /url \"title\"\n";
+        \\
+        \\[*foo* bar][]
+        \\
+        \\[*foo* bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\"><em>foo</em> bar</a></p>\n";
+        \\<p><a href="/url" title="title"><em>foo</em> bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18289,11 +20841,16 @@ test "Example 563, line 8582: '[*foo* bar][]\\n\\n[*foo* bar]: /url \"title\"'" 
 
 test "Example 564, line 8593: '[Foo][]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n[Foo][]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\[Foo][]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">Foo</a></p>\n";
+        \\<p><a href="/url" title="title">Foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18320,13 +20877,18 @@ test "Example 564, line 8593: '[Foo][]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 565, line 8606: '[foo] \\n[]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n[foo] \n" ++
-        "[]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\[foo] 
+        \\[]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">foo</a>\n" ++
-        "[]</p>\n";
+        \\<p><a href="/url" title="title">foo</a>
+        \\[]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18353,11 +20915,16 @@ test "Example 565, line 8606: '[foo] \\n[]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 566, line 8626: '[foo]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n[foo]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\[foo]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">foo</a></p>\n";
+        \\<p><a href="/url" title="title">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18384,11 +20951,16 @@ test "Example 566, line 8626: '[foo]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 567, line 8635: '[*foo* bar]\\n\\n[*foo* bar]: /url \"title\"'" {
     const input =
-        "\n[*foo* bar]\n" ++
-        "\n" ++
-        "[*foo* bar]: /url \"title\"\n";
+        \\
+        \\[*foo* bar]
+        \\
+        \\[*foo* bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\"><em>foo</em> bar</a></p>\n";
+        \\<p><a href="/url" title="title"><em>foo</em> bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18415,11 +20987,16 @@ test "Example 567, line 8635: '[*foo* bar]\\n\\n[*foo* bar]: /url \"title\"'" {
 
 test "Example 568, line 8644: '[[*foo* bar]]\\n\\n[*foo* bar]: /url \"title\"'" {
     const input =
-        "\n[[*foo* bar]]\n" ++
-        "\n" ++
-        "[*foo* bar]: /url \"title\"\n";
+        \\
+        \\[[*foo* bar]]
+        \\
+        \\[*foo* bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p>[<a href=\"/url\" title=\"title\"><em>foo</em> bar</a>]</p>\n";
+        \\<p>[<a href="/url" title="title"><em>foo</em> bar</a>]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18446,11 +21023,16 @@ test "Example 568, line 8644: '[[*foo* bar]]\\n\\n[*foo* bar]: /url \"title\"'" 
 
 test "Example 569, line 8653: '[[bar [foo]\\n\\n[foo]: /url'" {
     const input =
-        "\n[[bar [foo]\n" ++
-        "\n" ++
-        "[foo]: /url\n";
+        \\
+        \\[[bar [foo]
+        \\
+        \\[foo]: /url
+        \\
+    ;
     const expected =
-        "<p>[[bar <a href=\"/url\">foo</a></p>\n";
+        \\<p>[[bar <a href="/url">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18477,11 +21059,16 @@ test "Example 569, line 8653: '[[bar [foo]\\n\\n[foo]: /url'" {
 
 test "Example 570, line 8664: '[Foo]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n[Foo]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\[Foo]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\" title=\"title\">Foo</a></p>\n";
+        \\<p><a href="/url" title="title">Foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18508,11 +21095,16 @@ test "Example 570, line 8664: '[Foo]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 571, line 8675: '[foo] bar\\n\\n[foo]: /url'" {
     const input =
-        "\n[foo] bar\n" ++
-        "\n" ++
-        "[foo]: /url\n";
+        \\
+        \\[foo] bar
+        \\
+        \\[foo]: /url
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url\">foo</a> bar</p>\n";
+        \\<p><a href="/url">foo</a> bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18539,7 +21131,8 @@ test "Example 571, line 8675: '[foo] bar\\n\\n[foo]: /url'" {
 
 test "Example 572, line 8687: '\\[foo]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n\\[foo]\n" ++
+        "\n" ++
+        "\\[foo]\n" ++
         "\n" ++
         "[foo]: /url \"title\"\n";
     const expected =
@@ -18570,11 +21163,16 @@ test "Example 572, line 8687: '\\[foo]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 573, line 8699: '[foo*]: /url\\n\\n*[foo*]'" {
     const input =
-        "\n[foo*]: /url\n" ++
-        "\n" ++
-        "*[foo*]\n";
+        \\
+        \\[foo*]: /url
+        \\
+        \\*[foo*]
+        \\
+    ;
     const expected =
-        "<p>*<a href=\"/url\">foo*</a></p>\n";
+        \\<p>*<a href="/url">foo*</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18601,12 +21199,17 @@ test "Example 573, line 8699: '[foo*]: /url\\n\\n*[foo*]'" {
 
 test "Example 574, line 8711: '[foo][bar]\\n\\n[foo]: /url1\\n[bar]: /url2'" {
     const input =
-        "\n[foo][bar]\n" ++
-        "\n" ++
-        "[foo]: /url1\n" ++
-        "[bar]: /url2\n";
+        \\
+        \\[foo][bar]
+        \\
+        \\[foo]: /url1
+        \\[bar]: /url2
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url2\">foo</a></p>\n";
+        \\<p><a href="/url2">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18633,11 +21236,16 @@ test "Example 574, line 8711: '[foo][bar]\\n\\n[foo]: /url1\\n[bar]: /url2'" {
 
 test "Example 575, line 8720: '[foo][]\\n\\n[foo]: /url1'" {
     const input =
-        "\n[foo][]\n" ++
-        "\n" ++
-        "[foo]: /url1\n";
+        \\
+        \\[foo][]
+        \\
+        \\[foo]: /url1
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url1\">foo</a></p>\n";
+        \\<p><a href="/url1">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18664,11 +21272,16 @@ test "Example 575, line 8720: '[foo][]\\n\\n[foo]: /url1'" {
 
 test "Example 576, line 8730: '[foo]()\\n\\n[foo]: /url1'" {
     const input =
-        "\n[foo]()\n" ++
-        "\n" ++
-        "[foo]: /url1\n";
+        \\
+        \\[foo]()
+        \\
+        \\[foo]: /url1
+        \\
+    ;
     const expected =
-        "<p><a href=\"\">foo</a></p>\n";
+        \\<p><a href="">foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18695,11 +21308,16 @@ test "Example 576, line 8730: '[foo]()\\n\\n[foo]: /url1'" {
 
 test "Example 577, line 8738: '[foo](not a link)\\n\\n[foo]: /url1'" {
     const input =
-        "\n[foo](not a link)\n" ++
-        "\n" ++
-        "[foo]: /url1\n";
+        \\
+        \\[foo](not a link)
+        \\
+        \\[foo]: /url1
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url1\">foo</a>(not a link)</p>\n";
+        \\<p><a href="/url1">foo</a>(not a link)</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18726,11 +21344,16 @@ test "Example 577, line 8738: '[foo](not a link)\\n\\n[foo]: /url1'" {
 
 test "Example 578, line 8749: '[foo][bar][baz]\\n\\n[baz]: /url'" {
     const input =
-        "\n[foo][bar][baz]\n" ++
-        "\n" ++
-        "[baz]: /url\n";
+        \\
+        \\[foo][bar][baz]
+        \\
+        \\[baz]: /url
+        \\
+    ;
     const expected =
-        "<p>[foo]<a href=\"/url\">bar</a></p>\n";
+        \\<p>[foo]<a href="/url">bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18757,12 +21380,17 @@ test "Example 578, line 8749: '[foo][bar][baz]\\n\\n[baz]: /url'" {
 
 test "Example 579, line 8761: '[foo][bar][baz]\\n\\n[baz]: /url1\\n[bar]: /url2'" {
     const input =
-        "\n[foo][bar][baz]\n" ++
-        "\n" ++
-        "[baz]: /url1\n" ++
-        "[bar]: /url2\n";
+        \\
+        \\[foo][bar][baz]
+        \\
+        \\[baz]: /url1
+        \\[bar]: /url2
+        \\
+    ;
     const expected =
-        "<p><a href=\"/url2\">foo</a><a href=\"/url1\">baz</a></p>\n";
+        \\<p><a href="/url2">foo</a><a href="/url1">baz</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18789,12 +21417,17 @@ test "Example 579, line 8761: '[foo][bar][baz]\\n\\n[baz]: /url1\\n[bar]: /url2'
 
 test "Example 580, line 8774: '[foo][bar][baz]\\n\\n[baz]: /url1\\n[foo]: /url2'" {
     const input =
-        "\n[foo][bar][baz]\n" ++
-        "\n" ++
-        "[baz]: /url1\n" ++
-        "[foo]: /url2\n";
+        \\
+        \\[foo][bar][baz]
+        \\
+        \\[baz]: /url1
+        \\[foo]: /url2
+        \\
+    ;
     const expected =
-        "<p>[foo]<a href=\"/url1\">bar</a></p>\n";
+        \\<p>[foo]<a href="/url1">bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18821,9 +21454,14 @@ test "Example 580, line 8774: '[foo][bar][baz]\\n\\n[baz]: /url1\\n[foo]: /url2'
 
 test "Example 581, line 8797: '![foo](/url \"title\")'" {
     const input =
-        "\n![foo](/url \"title\")\n";
+        \\
+        \\![foo](/url "title")
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n";
+        \\<p><img src="/url" alt="foo" title="title" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18850,11 +21488,16 @@ test "Example 581, line 8797: '![foo](/url \"title\")'" {
 
 test "Example 582, line 8804: '![foo *bar*]\\n\\n[foo *bar*]: train.jpg \"train & tracks\"'" {
     const input =
-        "\n![foo *bar*]\n" ++
-        "\n" ++
-        "[foo *bar*]: train.jpg \"train & tracks\"\n";
+        \\
+        \\![foo *bar*]
+        \\
+        \\[foo *bar*]: train.jpg "train & tracks"
+        \\
+    ;
     const expected =
-        "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n";
+        \\<p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18881,9 +21524,14 @@ test "Example 582, line 8804: '![foo *bar*]\\n\\n[foo *bar*]: train.jpg \"train 
 
 test "Example 583, line 8813: '![foo ![bar](/url)](/url2)'" {
     const input =
-        "\n![foo ![bar](/url)](/url2)\n";
+        \\
+        \\![foo ![bar](/url)](/url2)
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url2\" alt=\"foo bar\" /></p>\n";
+        \\<p><img src="/url2" alt="foo bar" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18910,9 +21558,14 @@ test "Example 583, line 8813: '![foo ![bar](/url)](/url2)'" {
 
 test "Example 584, line 8820: '![foo [bar](/url)](/url2)'" {
     const input =
-        "\n![foo [bar](/url)](/url2)\n";
+        \\
+        \\![foo [bar](/url)](/url2)
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url2\" alt=\"foo bar\" /></p>\n";
+        \\<p><img src="/url2" alt="foo bar" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18939,11 +21592,16 @@ test "Example 584, line 8820: '![foo [bar](/url)](/url2)'" {
 
 test "Example 585, line 8834: '![foo *bar*][]\\n\\n[foo *bar*]: train.jpg \"train & tracks\"'" {
     const input =
-        "\n![foo *bar*][]\n" ++
-        "\n" ++
-        "[foo *bar*]: train.jpg \"train & tracks\"\n";
+        \\
+        \\![foo *bar*][]
+        \\
+        \\[foo *bar*]: train.jpg "train & tracks"
+        \\
+    ;
     const expected =
-        "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n";
+        \\<p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -18970,11 +21628,16 @@ test "Example 585, line 8834: '![foo *bar*][]\\n\\n[foo *bar*]: train.jpg \"trai
 
 test "Example 586, line 8843: '![foo *bar*][foobar]\\n\\n[FOOBAR]: train.jpg \"train & tracks\"'" {
     const input =
-        "\n![foo *bar*][foobar]\n" ++
-        "\n" ++
-        "[FOOBAR]: train.jpg \"train & tracks\"\n";
+        \\
+        \\![foo *bar*][foobar]
+        \\
+        \\[FOOBAR]: train.jpg "train & tracks"
+        \\
+    ;
     const expected =
-        "<p><img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>\n";
+        \\<p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19001,9 +21664,14 @@ test "Example 586, line 8843: '![foo *bar*][foobar]\\n\\n[FOOBAR]: train.jpg \"t
 
 test "Example 587, line 8852: '![foo](train.jpg)'" {
     const input =
-        "\n![foo](train.jpg)\n";
+        \\
+        \\![foo](train.jpg)
+        \\
+    ;
     const expected =
-        "<p><img src=\"train.jpg\" alt=\"foo\" /></p>\n";
+        \\<p><img src="train.jpg" alt="foo" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19030,9 +21698,14 @@ test "Example 587, line 8852: '![foo](train.jpg)'" {
 
 test "Example 588, line 8859: 'My ![foo bar](/path/to/train.jpg  \"title\"   )'" {
     const input =
-        "\nMy ![foo bar](/path/to/train.jpg  \"title\"   )\n";
+        \\
+        \\My ![foo bar](/path/to/train.jpg  "title"   )
+        \\
+    ;
     const expected =
-        "<p>My <img src=\"/path/to/train.jpg\" alt=\"foo bar\" title=\"title\" /></p>\n";
+        \\<p>My <img src="/path/to/train.jpg" alt="foo bar" title="title" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19059,9 +21732,14 @@ test "Example 588, line 8859: 'My ![foo bar](/path/to/train.jpg  \"title\"   )'"
 
 test "Example 589, line 8866: '![foo](<url>)'" {
     const input =
-        "\n![foo](<url>)\n";
+        \\
+        \\![foo](<url>)
+        \\
+    ;
     const expected =
-        "<p><img src=\"url\" alt=\"foo\" /></p>\n";
+        \\<p><img src="url" alt="foo" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19088,9 +21766,14 @@ test "Example 589, line 8866: '![foo](<url>)'" {
 
 test "Example 590, line 8873: '![](/url)'" {
     const input =
-        "\n![](/url)\n";
+        \\
+        \\![](/url)
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"\" /></p>\n";
+        \\<p><img src="/url" alt="" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19117,11 +21800,16 @@ test "Example 590, line 8873: '![](/url)'" {
 
 test "Example 591, line 8882: '![foo][bar]\\n\\n[bar]: /url'" {
     const input =
-        "\n![foo][bar]\n" ++
-        "\n" ++
-        "[bar]: /url\n";
+        \\
+        \\![foo][bar]
+        \\
+        \\[bar]: /url
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"foo\" /></p>\n";
+        \\<p><img src="/url" alt="foo" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19148,11 +21836,16 @@ test "Example 591, line 8882: '![foo][bar]\\n\\n[bar]: /url'" {
 
 test "Example 592, line 8891: '![foo][bar]\\n\\n[BAR]: /url'" {
     const input =
-        "\n![foo][bar]\n" ++
-        "\n" ++
-        "[BAR]: /url\n";
+        \\
+        \\![foo][bar]
+        \\
+        \\[BAR]: /url
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"foo\" /></p>\n";
+        \\<p><img src="/url" alt="foo" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19179,11 +21872,16 @@ test "Example 592, line 8891: '![foo][bar]\\n\\n[BAR]: /url'" {
 
 test "Example 593, line 8902: '![foo][]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n![foo][]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\![foo][]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n";
+        \\<p><img src="/url" alt="foo" title="title" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19210,11 +21908,16 @@ test "Example 593, line 8902: '![foo][]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 594, line 8911: '![*foo* bar][]\\n\\n[*foo* bar]: /url \"title\"'" {
     const input =
-        "\n![*foo* bar][]\n" ++
-        "\n" ++
-        "[*foo* bar]: /url \"title\"\n";
+        \\
+        \\![*foo* bar][]
+        \\
+        \\[*foo* bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>\n";
+        \\<p><img src="/url" alt="foo bar" title="title" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19241,11 +21944,16 @@ test "Example 594, line 8911: '![*foo* bar][]\\n\\n[*foo* bar]: /url \"title\"'"
 
 test "Example 595, line 8922: '![Foo][]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n![Foo][]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\![Foo][]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>\n";
+        \\<p><img src="/url" alt="Foo" title="title" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19272,13 +21980,18 @@ test "Example 595, line 8922: '![Foo][]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 596, line 8934: '![foo] \\n[]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n![foo] \n" ++
-        "[]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\![foo] 
+        \\[]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"foo\" title=\"title\" />\n" ++
-        "[]</p>\n";
+        \\<p><img src="/url" alt="foo" title="title" />
+        \\[]</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19305,11 +22018,16 @@ test "Example 596, line 8934: '![foo] \\n[]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 597, line 8947: '![foo]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n![foo]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\![foo]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"foo\" title=\"title\" /></p>\n";
+        \\<p><img src="/url" alt="foo" title="title" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19336,11 +22054,16 @@ test "Example 597, line 8947: '![foo]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 598, line 8956: '![*foo* bar]\\n\\n[*foo* bar]: /url \"title\"'" {
     const input =
-        "\n![*foo* bar]\n" ++
-        "\n" ++
-        "[*foo* bar]: /url \"title\"\n";
+        \\
+        \\![*foo* bar]
+        \\
+        \\[*foo* bar]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>\n";
+        \\<p><img src="/url" alt="foo bar" title="title" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19367,12 +22090,17 @@ test "Example 598, line 8956: '![*foo* bar]\\n\\n[*foo* bar]: /url \"title\"'" {
 
 test "Example 599, line 8967: '![[foo]]\\n\\n[[foo]]: /url \"title\"'" {
     const input =
-        "\n![[foo]]\n" ++
-        "\n" ++
-        "[[foo]]: /url \"title\"\n";
+        \\
+        \\![[foo]]
+        \\
+        \\[[foo]]: /url "title"
+        \\
+    ;
     const expected =
-        "<p>![[foo]]</p>\n" ++
-        "<p>[[foo]]: /url &quot;title&quot;</p>\n";
+        \\<p>![[foo]]</p>
+        \\<p>[[foo]]: /url &quot;title&quot;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19399,11 +22127,16 @@ test "Example 599, line 8967: '![[foo]]\\n\\n[[foo]]: /url \"title\"'" {
 
 test "Example 600, line 8979: '![Foo]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n![Foo]\n" ++
-        "\n" ++
-        "[foo]: /url \"title\"\n";
+        \\
+        \\![Foo]
+        \\
+        \\[foo]: /url "title"
+        \\
+    ;
     const expected =
-        "<p><img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>\n";
+        \\<p><img src="/url" alt="Foo" title="title" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19430,7 +22163,8 @@ test "Example 600, line 8979: '![Foo]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 601, line 8991: '!\\[foo]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n!\\[foo]\n" ++
+        "\n" ++
+        "!\\[foo]\n" ++
         "\n" ++
         "[foo]: /url \"title\"\n";
     const expected =
@@ -19461,7 +22195,8 @@ test "Example 601, line 8991: '!\\[foo]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 602, line 9003: '\\![foo]\\n\\n[foo]: /url \"title\"'" {
     const input =
-        "\n\\![foo]\n" ++
+        "\n" ++
+        "\\![foo]\n" ++
         "\n" ++
         "[foo]: /url \"title\"\n";
     const expected =
@@ -19492,9 +22227,14 @@ test "Example 602, line 9003: '\\![foo]\\n\\n[foo]: /url \"title\"'" {
 
 test "Example 603, line 9036: '<http://foo.bar.baz>'" {
     const input =
-        "\n<http://foo.bar.baz>\n";
+        \\
+        \\<http://foo.bar.baz>
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://foo.bar.baz\">http://foo.bar.baz</a></p>\n";
+        \\<p><a href="http://foo.bar.baz">http://foo.bar.baz</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19521,9 +22261,14 @@ test "Example 603, line 9036: '<http://foo.bar.baz>'" {
 
 test "Example 604, line 9043: '<http://foo.bar.baz/test?q=hello&id=22&boolean>'" {
     const input =
-        "\n<http://foo.bar.baz/test?q=hello&id=22&boolean>\n";
+        \\
+        \\<http://foo.bar.baz/test?q=hello&id=22&boolean>
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean\">http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean</a></p>\n";
+        \\<p><a href="http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean">http://foo.bar.baz/test?q=hello&amp;id=22&amp;boolean</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19550,9 +22295,14 @@ test "Example 604, line 9043: '<http://foo.bar.baz/test?q=hello&id=22&boolean>'"
 
 test "Example 605, line 9050: '<irc://foo.bar:2233/baz>'" {
     const input =
-        "\n<irc://foo.bar:2233/baz>\n";
+        \\
+        \\<irc://foo.bar:2233/baz>
+        \\
+    ;
     const expected =
-        "<p><a href=\"irc://foo.bar:2233/baz\">irc://foo.bar:2233/baz</a></p>\n";
+        \\<p><a href="irc://foo.bar:2233/baz">irc://foo.bar:2233/baz</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19579,9 +22329,14 @@ test "Example 605, line 9050: '<irc://foo.bar:2233/baz>'" {
 
 test "Example 606, line 9059: '<MAILTO:FOO@BAR.BAZ>'" {
     const input =
-        "\n<MAILTO:FOO@BAR.BAZ>\n";
+        \\
+        \\<MAILTO:FOO@BAR.BAZ>
+        \\
+    ;
     const expected =
-        "<p><a href=\"MAILTO:FOO@BAR.BAZ\">MAILTO:FOO@BAR.BAZ</a></p>\n";
+        \\<p><a href="MAILTO:FOO@BAR.BAZ">MAILTO:FOO@BAR.BAZ</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19608,9 +22363,14 @@ test "Example 606, line 9059: '<MAILTO:FOO@BAR.BAZ>'" {
 
 test "Example 607, line 9071: '<a+b+c:d>'" {
     const input =
-        "\n<a+b+c:d>\n";
+        \\
+        \\<a+b+c:d>
+        \\
+    ;
     const expected =
-        "<p><a href=\"a+b+c:d\">a+b+c:d</a></p>\n";
+        \\<p><a href="a+b+c:d">a+b+c:d</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19637,9 +22397,14 @@ test "Example 607, line 9071: '<a+b+c:d>'" {
 
 test "Example 608, line 9078: '<made-up-scheme://foo,bar>'" {
     const input =
-        "\n<made-up-scheme://foo,bar>\n";
+        \\
+        \\<made-up-scheme://foo,bar>
+        \\
+    ;
     const expected =
-        "<p><a href=\"made-up-scheme://foo,bar\">made-up-scheme://foo,bar</a></p>\n";
+        \\<p><a href="made-up-scheme://foo,bar">made-up-scheme://foo,bar</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19666,9 +22431,14 @@ test "Example 608, line 9078: '<made-up-scheme://foo,bar>'" {
 
 test "Example 609, line 9085: '<http://../>'" {
     const input =
-        "\n<http://../>\n";
+        \\
+        \\<http://../>
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://../\">http://../</a></p>\n";
+        \\<p><a href="http://../">http://../</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19695,9 +22465,14 @@ test "Example 609, line 9085: '<http://../>'" {
 
 test "Example 610, line 9092: '<localhost:5001/foo>'" {
     const input =
-        "\n<localhost:5001/foo>\n";
+        \\
+        \\<localhost:5001/foo>
+        \\
+    ;
     const expected =
-        "<p><a href=\"localhost:5001/foo\">localhost:5001/foo</a></p>\n";
+        \\<p><a href="localhost:5001/foo">localhost:5001/foo</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19724,9 +22499,14 @@ test "Example 610, line 9092: '<localhost:5001/foo>'" {
 
 test "Example 611, line 9101: '<http://foo.bar/baz bim>'" {
     const input =
-        "\n<http://foo.bar/baz bim>\n";
+        \\
+        \\<http://foo.bar/baz bim>
+        \\
+    ;
     const expected =
-        "<p>&lt;http://foo.bar/baz bim&gt;</p>\n";
+        \\<p>&lt;http://foo.bar/baz bim&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19753,7 +22533,8 @@ test "Example 611, line 9101: '<http://foo.bar/baz bim>'" {
 
 test "Example 612, line 9110: '<http://example.com/\\[\\>'" {
     const input =
-        "\n<http://example.com/\\[\\>\n";
+        "\n" ++
+        "<http://example.com/\\[\\>\n";
     const expected =
         "<p><a href=\"http://example.com/%5C%5B%5C\">http://example.com/\\[\\</a></p>\n";
 
@@ -19782,9 +22563,14 @@ test "Example 612, line 9110: '<http://example.com/\\[\\>'" {
 
 test "Example 613, line 9132: '<foo@bar.example.com>'" {
     const input =
-        "\n<foo@bar.example.com>\n";
+        \\
+        \\<foo@bar.example.com>
+        \\
+    ;
     const expected =
-        "<p><a href=\"mailto:foo@bar.example.com\">foo@bar.example.com</a></p>\n";
+        \\<p><a href="mailto:foo@bar.example.com">foo@bar.example.com</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19811,9 +22597,14 @@ test "Example 613, line 9132: '<foo@bar.example.com>'" {
 
 test "Example 614, line 9139: '<foo+special@Bar.baz-bar0.com>'" {
     const input =
-        "\n<foo+special@Bar.baz-bar0.com>\n";
+        \\
+        \\<foo+special@Bar.baz-bar0.com>
+        \\
+    ;
     const expected =
-        "<p><a href=\"mailto:foo+special@Bar.baz-bar0.com\">foo+special@Bar.baz-bar0.com</a></p>\n";
+        \\<p><a href="mailto:foo+special@Bar.baz-bar0.com">foo+special@Bar.baz-bar0.com</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19840,7 +22631,8 @@ test "Example 614, line 9139: '<foo+special@Bar.baz-bar0.com>'" {
 
 test "Example 615, line 9148: '<foo\\+@bar.example.com>'" {
     const input =
-        "\n<foo\\+@bar.example.com>\n";
+        "\n" ++
+        "<foo\\+@bar.example.com>\n";
     const expected =
         "<p>&lt;foo+@bar.example.com&gt;</p>\n";
 
@@ -19869,9 +22661,14 @@ test "Example 615, line 9148: '<foo\\+@bar.example.com>'" {
 
 test "Example 616, line 9157: '<>'" {
     const input =
-        "\n<>\n";
+        \\
+        \\<>
+        \\
+    ;
     const expected =
-        "<p>&lt;&gt;</p>\n";
+        \\<p>&lt;&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19898,9 +22695,14 @@ test "Example 616, line 9157: '<>'" {
 
 test "Example 617, line 9164: '< http://foo.bar >'" {
     const input =
-        "\n< http://foo.bar >\n";
+        \\
+        \\< http://foo.bar >
+        \\
+    ;
     const expected =
-        "<p>&lt; http://foo.bar &gt;</p>\n";
+        \\<p>&lt; http://foo.bar &gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19927,9 +22729,14 @@ test "Example 617, line 9164: '< http://foo.bar >'" {
 
 test "Example 618, line 9171: '<m:abc>'" {
     const input =
-        "\n<m:abc>\n";
+        \\
+        \\<m:abc>
+        \\
+    ;
     const expected =
-        "<p>&lt;m:abc&gt;</p>\n";
+        \\<p>&lt;m:abc&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19956,9 +22763,14 @@ test "Example 618, line 9171: '<m:abc>'" {
 
 test "Example 619, line 9178: '<foo.bar.baz>'" {
     const input =
-        "\n<foo.bar.baz>\n";
+        \\
+        \\<foo.bar.baz>
+        \\
+    ;
     const expected =
-        "<p>&lt;foo.bar.baz&gt;</p>\n";
+        \\<p>&lt;foo.bar.baz&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -19985,9 +22797,14 @@ test "Example 619, line 9178: '<foo.bar.baz>'" {
 
 test "Example 620, line 9185: 'http://example.com'" {
     const input =
-        "\nhttp://example.com\n";
+        \\
+        \\http://example.com
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://example.com\">http://example.com</a></p>\n";
+        \\<p><a href="http://example.com">http://example.com</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20014,9 +22831,14 @@ test "Example 620, line 9185: 'http://example.com'" {
 
 test "Example 621, line 9192: 'foo@bar.example.com'" {
     const input =
-        "\nfoo@bar.example.com\n";
+        \\
+        \\foo@bar.example.com
+        \\
+    ;
     const expected =
-        "<p><a href=\"mailto:foo@bar.example.com\">foo@bar.example.com</a></p>\n";
+        \\<p><a href="mailto:foo@bar.example.com">foo@bar.example.com</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20043,9 +22865,14 @@ test "Example 621, line 9192: 'foo@bar.example.com'" {
 
 test "Example 622, line 9221: 'www.commonmark.org'" {
     const input =
-        "\nwww.commonmark.org\n";
+        \\
+        \\www.commonmark.org
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://www.commonmark.org\">www.commonmark.org</a></p>\n";
+        \\<p><a href="http://www.commonmark.org">www.commonmark.org</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20072,9 +22899,14 @@ test "Example 622, line 9221: 'www.commonmark.org'" {
 
 test "Example 623, line 9229: 'Visit www.commonmark.org/help for more information.'" {
     const input =
-        "\nVisit www.commonmark.org/help for more information.\n";
+        \\
+        \\Visit www.commonmark.org/help for more information.
+        \\
+    ;
     const expected =
-        "<p>Visit <a href=\"http://www.commonmark.org/help\">www.commonmark.org/help</a> for more information.</p>\n";
+        \\<p>Visit <a href="http://www.commonmark.org/help">www.commonmark.org/help</a> for more information.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20101,12 +22933,17 @@ test "Example 623, line 9229: 'Visit www.commonmark.org/help for more informatio
 
 test "Example 624, line 9241: 'Visit www.commonmark.org.\\n\\nVisit www.commonmark.org/a.b.'" {
     const input =
-        "\nVisit www.commonmark.org.\n" ++
-        "\n" ++
-        "Visit www.commonmark.org/a.b.\n";
+        \\
+        \\Visit www.commonmark.org.
+        \\
+        \\Visit www.commonmark.org/a.b.
+        \\
+    ;
     const expected =
-        "<p>Visit <a href=\"http://www.commonmark.org\">www.commonmark.org</a>.</p>\n" ++
-        "<p>Visit <a href=\"http://www.commonmark.org/a.b\">www.commonmark.org/a.b</a>.</p>\n";
+        \\<p>Visit <a href="http://www.commonmark.org">www.commonmark.org</a>.</p>
+        \\<p>Visit <a href="http://www.commonmark.org/a.b">www.commonmark.org/a.b</a>.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20133,18 +22970,23 @@ test "Example 624, line 9241: 'Visit www.commonmark.org.\\n\\nVisit www.commonma
 
 test "Example 625, line 9255: 'www.google.com/search?q=Markup+(business)\\n\\nwww.google.com/search?q=Markup+(business)))\\n\\n(www.google.com/search?q=Markup+(business))\\n\\n(www.google.com/search?q=Markup+(business)'" {
     const input =
-        "\nwww.google.com/search?q=Markup+(business)\n" ++
-        "\n" ++
-        "www.google.com/search?q=Markup+(business)))\n" ++
-        "\n" ++
-        "(www.google.com/search?q=Markup+(business))\n" ++
-        "\n" ++
-        "(www.google.com/search?q=Markup+(business)\n";
+        \\
+        \\www.google.com/search?q=Markup+(business)
+        \\
+        \\www.google.com/search?q=Markup+(business)))
+        \\
+        \\(www.google.com/search?q=Markup+(business))
+        \\
+        \\(www.google.com/search?q=Markup+(business)
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://www.google.com/search?q=Markup+(business)\">www.google.com/search?q=Markup+(business)</a></p>\n" ++
-        "<p><a href=\"http://www.google.com/search?q=Markup+(business)\">www.google.com/search?q=Markup+(business)</a>))</p>\n" ++
-        "<p>(<a href=\"http://www.google.com/search?q=Markup+(business)\">www.google.com/search?q=Markup+(business)</a>)</p>\n" ++
-        "<p>(<a href=\"http://www.google.com/search?q=Markup+(business)\">www.google.com/search?q=Markup+(business)</a></p>\n";
+        \\<p><a href="http://www.google.com/search?q=Markup+(business)">www.google.com/search?q=Markup+(business)</a></p>
+        \\<p><a href="http://www.google.com/search?q=Markup+(business)">www.google.com/search?q=Markup+(business)</a>))</p>
+        \\<p>(<a href="http://www.google.com/search?q=Markup+(business)">www.google.com/search?q=Markup+(business)</a>)</p>
+        \\<p>(<a href="http://www.google.com/search?q=Markup+(business)">www.google.com/search?q=Markup+(business)</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20171,9 +23013,14 @@ test "Example 625, line 9255: 'www.google.com/search?q=Markup+(business)\\n\\nww
 
 test "Example 626, line 9274: 'www.google.com/search?q=(business))+ok'" {
     const input =
-        "\nwww.google.com/search?q=(business))+ok\n";
+        \\
+        \\www.google.com/search?q=(business))+ok
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://www.google.com/search?q=(business))+ok\">www.google.com/search?q=(business))+ok</a></p>\n";
+        \\<p><a href="http://www.google.com/search?q=(business))+ok">www.google.com/search?q=(business))+ok</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20200,12 +23047,17 @@ test "Example 626, line 9274: 'www.google.com/search?q=(business))+ok'" {
 
 test "Example 627, line 9285: 'www.google.com/search?q=commonmark&hl=en\\n\\nwww.google.com/search?q=commonmark&hl;'" {
     const input =
-        "\nwww.google.com/search?q=commonmark&hl=en\n" ++
-        "\n" ++
-        "www.google.com/search?q=commonmark&hl;\n";
+        \\
+        \\www.google.com/search?q=commonmark&hl=en
+        \\
+        \\www.google.com/search?q=commonmark&hl;
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://www.google.com/search?q=commonmark&amp;hl=en\">www.google.com/search?q=commonmark&amp;hl=en</a></p>\n" ++
-        "<p><a href=\"http://www.google.com/search?q=commonmark\">www.google.com/search?q=commonmark</a>&amp;hl;</p>\n";
+        \\<p><a href="http://www.google.com/search?q=commonmark&amp;hl=en">www.google.com/search?q=commonmark&amp;hl=en</a></p>
+        \\<p><a href="http://www.google.com/search?q=commonmark">www.google.com/search?q=commonmark</a>&amp;hl;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20232,9 +23084,14 @@ test "Example 627, line 9285: 'www.google.com/search?q=commonmark&hl=en\\n\\nwww
 
 test "Example 628, line 9296: 'www.commonmark.org/he<lp'" {
     const input =
-        "\nwww.commonmark.org/he<lp\n";
+        \\
+        \\www.commonmark.org/he<lp
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://www.commonmark.org/he\">www.commonmark.org/he</a>&lt;lp</p>\n";
+        \\<p><a href="http://www.commonmark.org/he">www.commonmark.org/he</a>&lt;lp</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20261,15 +23118,20 @@ test "Example 628, line 9296: 'www.commonmark.org/he<lp'" {
 
 test "Example 629, line 9307: 'http://commonmark.org\\n\\n(Visit https://encrypted.google.com/search?q=Markup+(business))\\n\\nAnonymous FTP is available at ftp://foo.bar.baz.'" {
     const input =
-        "\nhttp://commonmark.org\n" ++
-        "\n" ++
-        "(Visit https://encrypted.google.com/search?q=Markup+(business))\n" ++
-        "\n" ++
-        "Anonymous FTP is available at ftp://foo.bar.baz.\n";
+        \\
+        \\http://commonmark.org
+        \\
+        \\(Visit https://encrypted.google.com/search?q=Markup+(business))
+        \\
+        \\Anonymous FTP is available at ftp://foo.bar.baz.
+        \\
+    ;
     const expected =
-        "<p><a href=\"http://commonmark.org\">http://commonmark.org</a></p>\n" ++
-        "<p>(Visit <a href=\"https://encrypted.google.com/search?q=Markup+(business)\">https://encrypted.google.com/search?q=Markup+(business)</a>)</p>\n" ++
-        "<p>Anonymous FTP is available at <a href=\"ftp://foo.bar.baz\">ftp://foo.bar.baz</a>.</p>\n";
+        \\<p><a href="http://commonmark.org">http://commonmark.org</a></p>
+        \\<p>(Visit <a href="https://encrypted.google.com/search?q=Markup+(business)">https://encrypted.google.com/search?q=Markup+(business)</a>)</p>
+        \\<p>Anonymous FTP is available at <a href="ftp://foo.bar.baz">ftp://foo.bar.baz</a>.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20296,9 +23158,14 @@ test "Example 629, line 9307: 'http://commonmark.org\\n\\n(Visit https://encrypt
 
 test "Example 630, line 9333: 'foo@bar.baz'" {
     const input =
-        "\nfoo@bar.baz\n";
+        \\
+        \\foo@bar.baz
+        \\
+    ;
     const expected =
-        "<p><a href=\"mailto:foo@bar.baz\">foo@bar.baz</a></p>\n";
+        \\<p><a href="mailto:foo@bar.baz">foo@bar.baz</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20325,9 +23192,14 @@ test "Example 630, line 9333: 'foo@bar.baz'" {
 
 test "Example 631, line 9341: 'hello@mail+xyz.example isn't valid, but hello+xyz@mail.example is.'" {
     const input =
-        "\nhello@mail+xyz.example isn't valid, but hello+xyz@mail.example is.\n";
+        \\
+        \\hello@mail+xyz.example isn't valid, but hello+xyz@mail.example is.
+        \\
+    ;
     const expected =
-        "<p>hello@mail+xyz.example isn't valid, but <a href=\"mailto:hello+xyz@mail.example\">hello+xyz@mail.example</a> is.</p>\n";
+        \\<p>hello@mail+xyz.example isn't valid, but <a href="mailto:hello+xyz@mail.example">hello+xyz@mail.example</a> is.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20354,18 +23226,23 @@ test "Example 631, line 9341: 'hello@mail+xyz.example isn't valid, but hello+xyz
 
 test "Example 632, line 9351: 'a.b-c_d@a.b\\n\\na.b-c_d@a.b.\\n\\na.b-c_d@a.b-\\n\\na.b-c_d@a.b_'" {
     const input =
-        "\na.b-c_d@a.b\n" ++
-        "\n" ++
-        "a.b-c_d@a.b.\n" ++
-        "\n" ++
-        "a.b-c_d@a.b-\n" ++
-        "\n" ++
-        "a.b-c_d@a.b_\n";
+        \\
+        \\a.b-c_d@a.b
+        \\
+        \\a.b-c_d@a.b.
+        \\
+        \\a.b-c_d@a.b-
+        \\
+        \\a.b-c_d@a.b_
+        \\
+    ;
     const expected =
-        "<p><a href=\"mailto:a.b-c_d@a.b\">a.b-c_d@a.b</a></p>\n" ++
-        "<p><a href=\"mailto:a.b-c_d@a.b\">a.b-c_d@a.b</a>.</p>\n" ++
-        "<p>a.b-c_d@a.b-</p>\n" ++
-        "<p>a.b-c_d@a.b_</p>\n";
+        \\<p><a href="mailto:a.b-c_d@a.b">a.b-c_d@a.b</a></p>
+        \\<p><a href="mailto:a.b-c_d@a.b">a.b-c_d@a.b</a>.</p>
+        \\<p>a.b-c_d@a.b-</p>
+        \\<p>a.b-c_d@a.b_</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20392,30 +23269,35 @@ test "Example 632, line 9351: 'a.b-c_d@a.b\\n\\na.b-c_d@a.b.\\n\\na.b-c_d@a.b-\\
 
 test "Example 633, line 9375: 'mailto:foo@bar.baz\\n\\nmailto:a.b-c_d@a.b\\n\\nmailto:a.b-c_d@a.b.\\n\\nmailto:a.b-c_d@a.b/\\n\\nmailto:a.b-c_d@a.b-\\n\\nmailto:a.b-c_d@a.b_\\n\\nxmpp:foo@bar.baz\\n\\nxmpp:foo@bar.baz.'" {
     const input =
-        "\nmailto:foo@bar.baz\n" ++
-        "\n" ++
-        "mailto:a.b-c_d@a.b\n" ++
-        "\n" ++
-        "mailto:a.b-c_d@a.b.\n" ++
-        "\n" ++
-        "mailto:a.b-c_d@a.b/\n" ++
-        "\n" ++
-        "mailto:a.b-c_d@a.b-\n" ++
-        "\n" ++
-        "mailto:a.b-c_d@a.b_\n" ++
-        "\n" ++
-        "xmpp:foo@bar.baz\n" ++
-        "\n" ++
-        "xmpp:foo@bar.baz.\n";
+        \\
+        \\mailto:foo@bar.baz
+        \\
+        \\mailto:a.b-c_d@a.b
+        \\
+        \\mailto:a.b-c_d@a.b.
+        \\
+        \\mailto:a.b-c_d@a.b/
+        \\
+        \\mailto:a.b-c_d@a.b-
+        \\
+        \\mailto:a.b-c_d@a.b_
+        \\
+        \\xmpp:foo@bar.baz
+        \\
+        \\xmpp:foo@bar.baz.
+        \\
+    ;
     const expected =
-        "<p><a href=\"mailto:foo@bar.baz\">mailto:foo@bar.baz</a></p>\n" ++
-        "<p><a href=\"mailto:a.b-c_d@a.b\">mailto:a.b-c_d@a.b</a></p>\n" ++
-        "<p><a href=\"mailto:a.b-c_d@a.b\">mailto:a.b-c_d@a.b</a>.</p>\n" ++
-        "<p><a href=\"mailto:a.b-c_d@a.b\">mailto:a.b-c_d@a.b</a>/</p>\n" ++
-        "<p>mailto:a.b-c_d@a.b-</p>\n" ++
-        "<p>mailto:a.b-c_d@a.b_</p>\n" ++
-        "<p><a href=\"xmpp:foo@bar.baz\">xmpp:foo@bar.baz</a></p>\n" ++
-        "<p><a href=\"xmpp:foo@bar.baz\">xmpp:foo@bar.baz</a>.</p>\n";
+        \\<p><a href="mailto:foo@bar.baz">mailto:foo@bar.baz</a></p>
+        \\<p><a href="mailto:a.b-c_d@a.b">mailto:a.b-c_d@a.b</a></p>
+        \\<p><a href="mailto:a.b-c_d@a.b">mailto:a.b-c_d@a.b</a>.</p>
+        \\<p><a href="mailto:a.b-c_d@a.b">mailto:a.b-c_d@a.b</a>/</p>
+        \\<p>mailto:a.b-c_d@a.b-</p>
+        \\<p>mailto:a.b-c_d@a.b_</p>
+        \\<p><a href="xmpp:foo@bar.baz">xmpp:foo@bar.baz</a></p>
+        \\<p><a href="xmpp:foo@bar.baz">xmpp:foo@bar.baz</a>.</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20442,15 +23324,20 @@ test "Example 633, line 9375: 'mailto:foo@bar.baz\\n\\nmailto:a.b-c_d@a.b\\n\\nm
 
 test "Example 634, line 9406: 'xmpp:foo@bar.baz/txt\\n\\nxmpp:foo@bar.baz/txt@bin\\n\\nxmpp:foo@bar.baz/txt@bin.com'" {
     const input =
-        "\nxmpp:foo@bar.baz/txt\n" ++
-        "\n" ++
-        "xmpp:foo@bar.baz/txt@bin\n" ++
-        "\n" ++
-        "xmpp:foo@bar.baz/txt@bin.com\n";
+        \\
+        \\xmpp:foo@bar.baz/txt
+        \\
+        \\xmpp:foo@bar.baz/txt@bin
+        \\
+        \\xmpp:foo@bar.baz/txt@bin.com
+        \\
+    ;
     const expected =
-        "<p><a href=\"xmpp:foo@bar.baz/txt\">xmpp:foo@bar.baz/txt</a></p>\n" ++
-        "<p><a href=\"xmpp:foo@bar.baz/txt@bin\">xmpp:foo@bar.baz/txt@bin</a></p>\n" ++
-        "<p><a href=\"xmpp:foo@bar.baz/txt@bin.com\">xmpp:foo@bar.baz/txt@bin.com</a></p>\n";
+        \\<p><a href="xmpp:foo@bar.baz/txt">xmpp:foo@bar.baz/txt</a></p>
+        \\<p><a href="xmpp:foo@bar.baz/txt@bin">xmpp:foo@bar.baz/txt@bin</a></p>
+        \\<p><a href="xmpp:foo@bar.baz/txt@bin.com">xmpp:foo@bar.baz/txt@bin.com</a></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20477,9 +23364,14 @@ test "Example 634, line 9406: 'xmpp:foo@bar.baz/txt\\n\\nxmpp:foo@bar.baz/txt@bi
 
 test "Example 635, line 9420: 'xmpp:foo@bar.baz/txt/bin'" {
     const input =
-        "\nxmpp:foo@bar.baz/txt/bin\n";
+        \\
+        \\xmpp:foo@bar.baz/txt/bin
+        \\
+    ;
     const expected =
-        "<p><a href=\"xmpp:foo@bar.baz/txt\">xmpp:foo@bar.baz/txt</a>/bin</p>\n";
+        \\<p><a href="xmpp:foo@bar.baz/txt">xmpp:foo@bar.baz/txt</a>/bin</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20506,9 +23398,14 @@ test "Example 635, line 9420: 'xmpp:foo@bar.baz/txt/bin'" {
 
 test "Example 636, line 9502: '<a><bab><c2c>'" {
     const input =
-        "\n<a><bab><c2c>\n";
+        \\
+        \\<a><bab><c2c>
+        \\
+    ;
     const expected =
-        "<p><a><bab><c2c></p>\n";
+        \\<p><a><bab><c2c></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20535,9 +23432,14 @@ test "Example 636, line 9502: '<a><bab><c2c>'" {
 
 test "Example 637, line 9511: '<a/><b2/>'" {
     const input =
-        "\n<a/><b2/>\n";
+        \\
+        \\<a/><b2/>
+        \\
+    ;
     const expected =
-        "<p><a/><b2/></p>\n";
+        \\<p><a/><b2/></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20564,11 +23466,16 @@ test "Example 637, line 9511: '<a/><b2/>'" {
 
 test "Example 638, line 9520: '<a  /><b2\\ndata=\"foo\" >'" {
     const input =
-        "\n<a  /><b2\n" ++
-        "data=\"foo\" >\n";
+        \\
+        \\<a  /><b2
+        \\data="foo" >
+        \\
+    ;
     const expected =
-        "<p><a  /><b2\n" ++
-        "data=\"foo\" ></p>\n";
+        \\<p><a  /><b2
+        \\data="foo" ></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20595,11 +23502,16 @@ test "Example 638, line 9520: '<a  /><b2\\ndata=\"foo\" >'" {
 
 test "Example 639, line 9531: '<a foo=\"bar\" bam = 'baz <em>\"</em>'\\n_boolean zoop:33=zoop:33 />'" {
     const input =
-        "\n<a foo=\"bar\" bam = 'baz <em>\"</em>'\n" ++
-        "_boolean zoop:33=zoop:33 />\n";
+        \\
+        \\<a foo="bar" bam = 'baz <em>"</em>'
+        \\_boolean zoop:33=zoop:33 />
+        \\
+    ;
     const expected =
-        "<p><a foo=\"bar\" bam = 'baz <em>\"</em>'\n" ++
-        "_boolean zoop:33=zoop:33 /></p>\n";
+        \\<p><a foo="bar" bam = 'baz <em>"</em>'
+        \\_boolean zoop:33=zoop:33 /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20626,9 +23538,14 @@ test "Example 639, line 9531: '<a foo=\"bar\" bam = 'baz <em>\"</em>'\\n_boolean
 
 test "Example 640, line 9542: 'Foo <responsive-image src=\"foo.jpg\" />'" {
     const input =
-        "\nFoo <responsive-image src=\"foo.jpg\" />\n";
+        \\
+        \\Foo <responsive-image src="foo.jpg" />
+        \\
+    ;
     const expected =
-        "<p>Foo <responsive-image src=\"foo.jpg\" /></p>\n";
+        \\<p>Foo <responsive-image src="foo.jpg" /></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20655,9 +23572,14 @@ test "Example 640, line 9542: 'Foo <responsive-image src=\"foo.jpg\" />'" {
 
 test "Example 641, line 9551: '<33> <__>'" {
     const input =
-        "\n<33> <__>\n";
+        \\
+        \\<33> <__>
+        \\
+    ;
     const expected =
-        "<p>&lt;33&gt; &lt;__&gt;</p>\n";
+        \\<p>&lt;33&gt; &lt;__&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20684,9 +23606,14 @@ test "Example 641, line 9551: '<33> <__>'" {
 
 test "Example 642, line 9560: '<a h*#ref=\"hi\">'" {
     const input =
-        "\n<a h*#ref=\"hi\">\n";
+        \\
+        \\<a h*#ref="hi">
+        \\
+    ;
     const expected =
-        "<p>&lt;a h*#ref=&quot;hi&quot;&gt;</p>\n";
+        \\<p>&lt;a h*#ref=&quot;hi&quot;&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20713,9 +23640,14 @@ test "Example 642, line 9560: '<a h*#ref=\"hi\">'" {
 
 test "Example 643, line 9569: '<a href=\"hi'> <a href=hi'>'" {
     const input =
-        "\n<a href=\"hi'> <a href=hi'>\n";
+        \\
+        \\<a href="hi'> <a href=hi'>
+        \\
+    ;
     const expected =
-        "<p>&lt;a href=&quot;hi'&gt; &lt;a href=hi'&gt;</p>\n";
+        \\<p>&lt;a href=&quot;hi'&gt; &lt;a href=hi'&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20742,15 +23674,20 @@ test "Example 643, line 9569: '<a href=\"hi'> <a href=hi'>'" {
 
 test "Example 644, line 9578: '< a><\\nfoo><bar/ >\\n<foo bar=baz\\nbim!bop />'" {
     const input =
-        "\n< a><\n" ++
-        "foo><bar/ >\n" ++
-        "<foo bar=baz\n" ++
-        "bim!bop />\n";
+        \\
+        \\< a><
+        \\foo><bar/ >
+        \\<foo bar=baz
+        \\bim!bop />
+        \\
+    ;
     const expected =
-        "<p>&lt; a&gt;&lt;\n" ++
-        "foo&gt;&lt;bar/ &gt;\n" ++
-        "&lt;foo bar=baz\n" ++
-        "bim!bop /&gt;</p>\n";
+        \\<p>&lt; a&gt;&lt;
+        \\foo&gt;&lt;bar/ &gt;
+        \\&lt;foo bar=baz
+        \\bim!bop /&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20777,9 +23714,14 @@ test "Example 644, line 9578: '< a><\\nfoo><bar/ >\\n<foo bar=baz\\nbim!bop />'"
 
 test "Example 645, line 9593: '<a href='bar'title=title>'" {
     const input =
-        "\n<a href='bar'title=title>\n";
+        \\
+        \\<a href='bar'title=title>
+        \\
+    ;
     const expected =
-        "<p>&lt;a href='bar'title=title&gt;</p>\n";
+        \\<p>&lt;a href='bar'title=title&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20806,9 +23748,14 @@ test "Example 645, line 9593: '<a href='bar'title=title>'" {
 
 test "Example 646, line 9602: '</a></foo >'" {
     const input =
-        "\n</a></foo >\n";
+        \\
+        \\</a></foo >
+        \\
+    ;
     const expected =
-        "<p></a></foo ></p>\n";
+        \\<p></a></foo ></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20835,9 +23782,14 @@ test "Example 646, line 9602: '</a></foo >'" {
 
 test "Example 647, line 9611: '</a href=\"foo\">'" {
     const input =
-        "\n</a href=\"foo\">\n";
+        \\
+        \\</a href="foo">
+        \\
+    ;
     const expected =
-        "<p>&lt;/a href=&quot;foo&quot;&gt;</p>\n";
+        \\<p>&lt;/a href=&quot;foo&quot;&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20864,11 +23816,16 @@ test "Example 647, line 9611: '</a href=\"foo\">'" {
 
 test "Example 648, line 9620: 'foo <!-- this is a --\\ncomment - with hyphens -->'" {
     const input =
-        "\nfoo <!-- this is a --\n" ++
-        "comment - with hyphens -->\n";
+        \\
+        \\foo <!-- this is a --
+        \\comment - with hyphens -->
+        \\
+    ;
     const expected =
-        "<p>foo <!-- this is a --\n" ++
-        "comment - with hyphens --></p>\n";
+        \\<p>foo <!-- this is a --
+        \\comment - with hyphens --></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20895,11 +23852,16 @@ test "Example 648, line 9620: 'foo <!-- this is a --\\ncomment - with hyphens --
 
 test "Example 649, line 9628: 'foo <!-- this is a --\\ncomment - with hyphens -->'" {
     const input =
-        "\nfoo <!-- this is a --\n" ++
-        "comment - with hyphens -->\n";
+        \\
+        \\foo <!-- this is a --
+        \\comment - with hyphens -->
+        \\
+    ;
     const expected =
-        "<p>foo <!-- this is a --\n" ++
-        "comment - with hyphens --></p>\n";
+        \\<p>foo <!-- this is a --
+        \\comment - with hyphens --></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20926,12 +23888,17 @@ test "Example 649, line 9628: 'foo <!-- this is a --\\ncomment - with hyphens --
 
 test "Example 650, line 9636: 'foo <!--> foo -->\\n\\nfoo <!---> foo -->'" {
     const input =
-        "\nfoo <!--> foo -->\n" ++
-        "\n" ++
-        "foo <!---> foo -->\n";
+        \\
+        \\foo <!--> foo -->
+        \\
+        \\foo <!---> foo -->
+        \\
+    ;
     const expected =
-        "<p>foo <!--> foo --&gt;</p>\n" ++
-        "<p>foo <!---> foo --&gt;</p>\n";
+        \\<p>foo <!--> foo --&gt;</p>
+        \\<p>foo <!---> foo --&gt;</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20958,9 +23925,14 @@ test "Example 650, line 9636: 'foo <!--> foo -->\\n\\nfoo <!---> foo -->'" {
 
 test "Example 651, line 9648: 'foo <?php echo $a; ?>'" {
     const input =
-        "\nfoo <?php echo $a; ?>\n";
+        \\
+        \\foo <?php echo $a; ?>
+        \\
+    ;
     const expected =
-        "<p>foo <?php echo $a; ?></p>\n";
+        \\<p>foo <?php echo $a; ?></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -20987,9 +23959,14 @@ test "Example 651, line 9648: 'foo <?php echo $a; ?>'" {
 
 test "Example 652, line 9657: 'foo <!ELEMENT br EMPTY>'" {
     const input =
-        "\nfoo <!ELEMENT br EMPTY>\n";
+        \\
+        \\foo <!ELEMENT br EMPTY>
+        \\
+    ;
     const expected =
-        "<p>foo <!ELEMENT br EMPTY></p>\n";
+        \\<p>foo <!ELEMENT br EMPTY></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21016,9 +23993,14 @@ test "Example 652, line 9657: 'foo <!ELEMENT br EMPTY>'" {
 
 test "Example 653, line 9666: 'foo <![CDATA[>&<]]>'" {
     const input =
-        "\nfoo <![CDATA[>&<]]>\n";
+        \\
+        \\foo <![CDATA[>&<]]>
+        \\
+    ;
     const expected =
-        "<p>foo <![CDATA[>&<]]></p>\n";
+        \\<p>foo <![CDATA[>&<]]></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21045,9 +24027,14 @@ test "Example 653, line 9666: 'foo <![CDATA[>&<]]>'" {
 
 test "Example 654, line 9676: 'foo <a href=\"&ouml;\">'" {
     const input =
-        "\nfoo <a href=\"&ouml;\">\n";
+        \\
+        \\foo <a href="&ouml;">
+        \\
+    ;
     const expected =
-        "<p>foo <a href=\"&ouml;\"></p>\n";
+        \\<p>foo <a href="&ouml;"></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21074,7 +24061,8 @@ test "Example 654, line 9676: 'foo <a href=\"&ouml;\">'" {
 
 test "Example 655, line 9685: 'foo <a href=\"\\*\">'" {
     const input =
-        "\nfoo <a href=\"\\*\">\n";
+        "\n" ++
+        "foo <a href=\"\\*\">\n";
     const expected =
         "<p>foo <a href=\"\\*\"></p>\n";
 
@@ -21103,7 +24091,8 @@ test "Example 655, line 9685: 'foo <a href=\"\\*\">'" {
 
 test "Example 656, line 9692: '<a href=\"\\\"\">'" {
     const input =
-        "\n<a href=\"\\\"\">\n";
+        "\n" ++
+        "<a href=\"\\\"\">\n";
     const expected =
         "<p>&lt;a href=&quot;&quot;&quot;&gt;</p>\n";
 
@@ -21130,38 +24119,20 @@ test "Example 656, line 9692: '<a href=\"\\\"\">'" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
-//test "Example 657, line 9723: '<strong> <title> <style> <em>\\n\\n<blockquote>\\n  <xmp> is disallowed.  <XMP> is also disallowed.\\n</blockquote>'" {
-//    const input =
-//        "<strong> <title> <style> <em>\n" ++
-//        "\n" ++
-//        "<blockquote>\n" ++
-//        "  <xmp> is disallowed.  <XMP> is also disallowed.\n" ++
-//        "</blockquote>\n";
-//    const expected =
-//        "<p><strong> &lt;title> &lt;style> <em></p>\n" ++
-//        "<blockquote>\n" ++
-//        "  &lt;xmp> is disallowed.  &lt;XMP> is also disallowed.\n" ++
-//        "</blockquote>\n";
-//
-//    const gpa = std.testing.allocator;
-//    const rules = try gfm.init(gpa);
-////
-//    const doc = try parse.execute(gpa, input, rules);
-//    defer doc.deinit(gpa);
-//
-//    const html = try render(gpa, doc, null, false);
-//    defer gpa.free(html);
-//
-//    try std.testing.expectEqualStrings(expected, html);
-//}
+// TODO: test "Example 657, line 9723: '<strong> <title> <style> <em>\\n\\n<blockquote>\\n  <xmp> is disallowed.  <XMP> is also disallowed.\\n</blockquote>'"
 
 test "Example 658, line 9745: 'foo  \\nbaz'" {
     const input =
-        "\nfoo  \n" ++
-        "baz\n";
+        \\
+        \\foo  
+        \\baz
+        \\
+    ;
     const expected =
-        "<p>foo<br />\n" ++
-        "baz</p>\n";
+        \\<p>foo<br />
+        \\baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21188,7 +24159,8 @@ test "Example 658, line 9745: 'foo  \\nbaz'" {
 
 test "Example 659, line 9757: 'foo\\\\nbaz'" {
     const input =
-        "\nfoo\\\n" ++
+        "\n" ++
+        "foo\\\n" ++
         "baz\n";
     const expected =
         "<p>foo<br />\n" ++
@@ -21219,11 +24191,16 @@ test "Example 659, line 9757: 'foo\\\\nbaz'" {
 
 test "Example 660, line 9768: 'foo       \\nbaz'" {
     const input =
-        "\nfoo       \n" ++
-        "baz\n";
+        \\
+        \\foo       
+        \\baz
+        \\
+    ;
     const expected =
-        "<p>foo<br />\n" ++
-        "baz</p>\n";
+        \\<p>foo<br />
+        \\baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21250,11 +24227,16 @@ test "Example 660, line 9768: 'foo       \\nbaz'" {
 
 test "Example 661, line 9779: 'foo  \\n     bar'" {
     const input =
-        "\nfoo  \n" ++
-        "     bar\n";
+        \\
+        \\foo  
+        \\     bar
+        \\
+    ;
     const expected =
-        "<p>foo<br />\n" ++
-        "bar</p>\n";
+        \\<p>foo<br />
+        \\bar</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21281,7 +24263,8 @@ test "Example 661, line 9779: 'foo  \\n     bar'" {
 
 test "Example 662, line 9788: 'foo\\\\n     bar'" {
     const input =
-        "\nfoo\\\n" ++
+        "\n" ++
+        "foo\\\n" ++
         "     bar\n";
     const expected =
         "<p>foo<br />\n" ++
@@ -21312,11 +24295,16 @@ test "Example 662, line 9788: 'foo\\\\n     bar'" {
 
 test "Example 663, line 9800: '*foo  \\nbar*'" {
     const input =
-        "\n*foo  \n" ++
-        "bar*\n";
+        \\
+        \\*foo  
+        \\bar*
+        \\
+    ;
     const expected =
-        "<p><em>foo<br />\n" ++
-        "bar</em></p>\n";
+        \\<p><em>foo<br />
+        \\bar</em></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21343,7 +24331,8 @@ test "Example 663, line 9800: '*foo  \\nbar*'" {
 
 test "Example 664, line 9809: '*foo\\\\nbar*'" {
     const input =
-        "\n*foo\\\n" ++
+        "\n" ++
+        "*foo\\\n" ++
         "bar*\n";
     const expected =
         "<p><em>foo<br />\n" ++
@@ -21374,10 +24363,15 @@ test "Example 664, line 9809: '*foo\\\\nbar*'" {
 
 test "Example 665, line 9820: '`code  \\nspan`'" {
     const input =
-        "\n`code  \n" ++
-        "span`\n";
+        \\
+        \\`code  
+        \\span`
+        \\
+    ;
     const expected =
-        "<p><code>code   span</code></p>\n";
+        \\<p><code>code   span</code></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21404,7 +24398,8 @@ test "Example 665, line 9820: '`code  \\nspan`'" {
 
 test "Example 666, line 9828: '`code\\\\nspan`'" {
     const input =
-        "\n`code\\\n" ++
+        "\n" ++
+        "`code\\\n" ++
         "span`\n";
     const expected =
         "<p><code>code\\ span</code></p>\n";
@@ -21434,11 +24429,16 @@ test "Example 666, line 9828: '`code\\\\nspan`'" {
 
 test "Example 667, line 9838: '<a href=\"foo  \\nbar\">'" {
     const input =
-        "\n<a href=\"foo  \n" ++
-        "bar\">\n";
+        \\
+        \\<a href="foo  
+        \\bar">
+        \\
+    ;
     const expected =
-        "<p><a href=\"foo  \n" ++
-        "bar\"></p>\n";
+        \\<p><a href="foo  
+        \\bar"></p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21465,7 +24465,8 @@ test "Example 667, line 9838: '<a href=\"foo  \\nbar\">'" {
 
 test "Example 668, line 9847: '<a href=\"foo\\\\nbar\">'" {
     const input =
-        "\n<a href=\"foo\\\n" ++
+        "\n" ++
+        "<a href=\"foo\\\n" ++
         "bar\">\n";
     const expected =
         "<p><a href=\"foo\\\n" ++
@@ -21496,7 +24497,8 @@ test "Example 668, line 9847: '<a href=\"foo\\\\nbar\">'" {
 
 test "Example 669, line 9860: 'foo\\'" {
     const input =
-        "\nfoo\\\n";
+        "\n" ++
+        "foo\\\n";
     const expected =
         "<p>foo\\</p>\n";
 
@@ -21525,9 +24527,14 @@ test "Example 669, line 9860: 'foo\\'" {
 
 test "Example 670, line 9867: 'foo  '" {
     const input =
-        "\nfoo  \n";
+        \\
+        \\foo  
+        \\
+    ;
     const expected =
-        "<p>foo</p>\n";
+        \\<p>foo</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21554,7 +24561,8 @@ test "Example 670, line 9867: 'foo  '" {
 
 test "Example 671, line 9874: '### foo\\'" {
     const input =
-        "\n### foo\\\n";
+        "\n" ++
+        "### foo\\\n";
     const expected =
         "<h3>foo\\</h3>\n";
 
@@ -21583,9 +24591,14 @@ test "Example 671, line 9874: '### foo\\'" {
 
 test "Example 672, line 9881: '### foo  '" {
     const input =
-        "\n### foo  \n";
+        \\
+        \\### foo  
+        \\
+    ;
     const expected =
-        "<h3>foo</h3>\n";
+        \\<h3>foo</h3>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21612,11 +24625,16 @@ test "Example 672, line 9881: '### foo  '" {
 
 test "Example 673, line 9896: 'foo\\nbaz'" {
     const input =
-        "\nfoo\n" ++
-        "baz\n";
+        \\
+        \\foo
+        \\baz
+        \\
+    ;
     const expected =
-        "<p>foo\n" ++
-        "baz</p>\n";
+        \\<p>foo
+        \\baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21643,11 +24661,16 @@ test "Example 673, line 9896: 'foo\\nbaz'" {
 
 test "Example 674, line 9908: 'foo \\n baz'" {
     const input =
-        "\nfoo \n" ++
-        " baz\n";
+        \\
+        \\foo 
+        \\ baz
+        \\
+    ;
     const expected =
-        "<p>foo\n" ++
-        "baz</p>\n";
+        \\<p>foo
+        \\baz</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21674,9 +24697,14 @@ test "Example 674, line 9908: 'foo \\n baz'" {
 
 test "Example 675, line 9928: 'hello $.;'there'" {
     const input =
-        "\nhello $.;'there\n";
+        \\
+        \\hello $.;'there
+        \\
+    ;
     const expected =
-        "<p>hello $.;'there</p>\n";
+        \\<p>hello $.;'there</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21703,9 +24731,14 @@ test "Example 675, line 9928: 'hello $.;'there'" {
 
 test "Example 676, line 9935: 'Foo χρῆν'" {
     const input =
-        "\nFoo χρῆν\n";
+        \\
+        \\Foo χρῆν
+        \\
+    ;
     const expected =
-        "<p>Foo χρῆν</p>\n";
+        \\<p>Foo χρῆν</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);
@@ -21732,9 +24765,14 @@ test "Example 676, line 9935: 'Foo χρῆν'" {
 
 test "Example 677, line 9944: 'Multiple     spaces'" {
     const input =
-        "\nMultiple     spaces\n";
+        \\
+        \\Multiple     spaces
+        \\
+    ;
     const expected =
-        "<p>Multiple     spaces</p>\n";
+        \\<p>Multiple     spaces</p>
+        \\
+    ;
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);

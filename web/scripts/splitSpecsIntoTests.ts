@@ -22,6 +22,7 @@ async function processSpecsFolder() {
 			await generateTestFile(testName, content, "core", true, getDescribeName("core", file));
 			await generateCSharpTestFile(testName, content, "Core", "Core");
 			await generateSwiftTestFile(testName, content, "core");
+			await generateZigTestFile(testName, content, "core");
 		} else if (file.startsWith("gfm-")) {
 			const testName = file.replace(".txt", "");
 			await generateTestFile(
@@ -34,11 +35,13 @@ async function processSpecsFolder() {
 			);
 			await generateCSharpTestFile(testName, content, "Gfm", "Gfm");
 			await generateSwiftTestFile(testName, content, "gfm");
+			await generateZigTestFile(testName, content, "gfm");
 		} else if (file.startsWith("ext-")) {
 			const testName = file.replace(".txt", "");
 			await generateTestFile(testName, content, "extended", false, getDescribeName("ext", file));
 			await generateCSharpTestFile(testName, content, "Ext", "Extended");
 			await generateSwiftTestFile(testName, content, "extended");
+			await generateZigTestFile(testName, content, "extended");
 		}
 	}
 }
@@ -220,6 +223,12 @@ async function splitSpecsIntoTests(specFile: string, ruleSetName: string) {
 	const swiftPath = path.join("..", "swift", "Tests", "AllmarkTests", swiftStructName + ".swift");
 	await fs.writeFile(swiftPath, swiftOutput);
 	console.log(`Generated ${swiftPath} with ${examples.length} tests`);
+
+	const zigFileName = testName.replace(/-/g, "_") + "_test.zig";
+	const zigOutput = buildZigOutput(zigFileName, examples, ruleSetName, true);
+	const zigPath = path.join("..", "zig", "test", zigFileName);
+	await fs.writeFile(zigPath, zigOutput);
+	console.log(`Generated ${zigPath} with ${examples.length} tests`);
 }
 
 function buildOutputForSpecTests(testName: string, ruleSetName: string, examples: TestExample[]) {
@@ -400,4 +409,113 @@ ${escapedExpected}
 function toCamelCase(str: string): string {
 	const pascal = toPascalCase(str);
 	return pascal.charAt(0).toLowerCase() + pascal.slice(1);
+}
+
+async function generateZigTestFile(testName: string, content: string, ruleSetName: string) {
+	const examples = parseSpecFile(content, true);
+	const fileName = testName.replace(/-/g, "_") + "_test.zig";
+	const output = buildZigOutput(fileName, examples, ruleSetName, false);
+	const testPath = path.join("..", "zig", "test", fileName);
+	await fs.writeFile(testPath, output);
+	console.log(`Generated ${testPath} with ${examples.length} tests`);
+}
+
+function buildZigOutput(
+	_fileName: string,
+	examples: TestExample[],
+	ruleSetName: string,
+	_isSpec: boolean,
+) {
+	return `const std = @import("std");
+
+const transform = @import("allmark").transform;
+const ${ruleSetName} = @import("allmark").${ruleSetName};
+const htmlRenderers = @import("allmark").htmlRenderers;
+
+${examples
+	.map((example) => {
+		const testName = example.description.replaceAll("\\", "\\\\").replaceAll('"', '\\"');
+		let inputLines: string;
+		let expectedLines: string;
+
+		if (example.input.includes("\t") || example.input.includes("\\")) {
+			inputLines = example.input
+				.replaceAll("\\", "\\\\")
+				.replaceAll("\t", "\\t")
+				.replaceAll('"', '\\"')
+				.split("\n")
+				.map((line) => `        "${line}\\n"`)
+				.join(" ++\n");
+			inputLines = `        "\\n" ++\n${inputLines}`;
+		} else {
+			inputLines = example.input
+				.replaceAll("\\", "\\\\")
+				.split("\n")
+				.map((line) => `        \\\\${line}`)
+				.join("\n");
+			inputLines = `        \\\\\n${inputLines}\n        \\\\\n    `;
+		}
+
+		if (!example.expected) {
+			expectedLines = ' ""';
+		} else if (example.expected.includes("\t") || example.input.includes("\\")) {
+			expectedLines = example.expected
+				.replaceAll("\\", "\\\\")
+				.replaceAll("\t", "\\t")
+				.replaceAll('"', '\\"')
+				.split("\n")
+				.map((line) => `        "${line}\\n"`)
+				.join(" ++\n");
+			expectedLines = `\n${expectedLines}`;
+		} else {
+			expectedLines = example.expected
+				.replaceAll("\\", "\\\\")
+				.split("\n")
+				.map((line) => `        \\\\${line}`)
+				.join("\n");
+			expectedLines = `\n${expectedLines}\n        \\\\\n    `;
+		}
+
+		// I don't think Zig has a test skip?
+		if (example.skip) {
+			return `// TODO: test "${testName}"`;
+		}
+
+		return `${example.skip ? "// TODO:\n" : ""}test "${testName}" {
+    const input =
+${inputLines};
+    const expected =${expectedLines};
+
+    const gpa = std.testing.allocator;
+    const rules = try ${ruleSetName}.init(gpa);
+    defer ${ruleSetName}.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
+
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
+
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\\n", "\\r\\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\\r\\n", "\\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+}`;
+	})
+	.join("\n\n")}
+`;
+}
+
+function toSnakeCase(str: string): string {
+	return str
+		.replace(/([a-z])([A-Z])/g, "$1_$2")
+		.replace(/[\s-]+/g, "_")
+		.toLowerCase();
 }

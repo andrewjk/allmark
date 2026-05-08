@@ -805,6 +805,7 @@ test "link reference takes precedence" {
         \\
         \\[foo]: /url
         \\
+        \\
     ;
     const expected =
         \\<p><a href="/url">^1</a></p>

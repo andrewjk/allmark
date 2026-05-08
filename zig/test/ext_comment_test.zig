@@ -8,6 +8,7 @@ test "comment basic" {
     const input =
         \\
         \\This text was {>>commented<<} recently.
+        \\ 
         \\
     ;
     const expected =
@@ -380,14 +381,10 @@ test "comment with code inside" {
 
 test "escaped braces should not be comment" {
     const input =
-        \\
-        \\text \{>>not comment<<\}
-        \\
-    ;
+        "\n" ++
+        "text \\{>>not comment<<\\}\n";
     const expected =
-        \\<p>text {&gt;&gt;not comment&lt;&lt;}</p>
-        \\
-    ;
+        "<p>text {&gt;&gt;not comment&lt;&lt;}</p>\n";
 
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);

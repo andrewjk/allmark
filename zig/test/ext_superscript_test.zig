@@ -516,14 +516,10 @@ test "superscript with code inside" {
 
 test "escaped caret should not be superscript" {
     const input =
-        \\
-        \\text \^not superscript\^
-        \\
-    ;
+        "\n" ++
+        "text \\^not superscript\\^\n";
     const expected =
-        \\<p>text ^not superscript^</p>
-        \\
-    ;
+        "<p>text ^not superscript^</p>\n";
 
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);

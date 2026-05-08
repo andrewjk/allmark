@@ -799,14 +799,10 @@ test "Setext heading requires paragraph content" {
 
 test "ATX heading escapes closing # with backslash" {
     const input =
-        \\
-        \\# Heading with \# escaped
-        \\
-    ;
+        "\n" ++
+        "# Heading with \\# escaped\n";
     const expected =
-        \\<h1>Heading with # escaped</h1>
-        \\
-    ;
+        "<h1>Heading with # escaped</h1>\n";
 
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);

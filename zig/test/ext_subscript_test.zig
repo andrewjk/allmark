@@ -516,14 +516,10 @@ test "subscript with code inside" {
 
 test "escaped tilde should not be subscript" {
     const input =
-        \\
-        \\text \~not subscript\~
-        \\
-    ;
+        "\n" ++
+        "text \\~not subscript\\~\n";
     const expected =
-        \\<p>text ~not subscript~</p>
-        \\
-    ;
+        "<p>text ~not subscript~</p>\n";
 
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);

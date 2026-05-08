@@ -482,14 +482,10 @@ test "highlight with code inside" {
 
 test "escaped equals should not be highlight" {
     const input =
-        \\
-        \\text \=not highlight\=
-        \\
-    ;
+        "\n" ++
+        "text \\=not highlight\\=\n";
     const expected =
-        \\<p>text =not highlight=</p>
-        \\
-    ;
+        "<p>text =not highlight=</p>\n";
 
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);

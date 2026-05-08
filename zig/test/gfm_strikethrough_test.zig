@@ -593,7 +593,7 @@ test "strikethrough in table cell" {
         \\
         \\| col1 | col2 |
         \\| ---- | ---- |
-        \\| ~~deleted~~ | normal |
+        \\| ~~deleted~~ | normal 
         \\
     ;
     const expected =
@@ -673,14 +673,10 @@ test "strikethrough adjacent to regular text" {
 
 test "strikethrough with escaped characters" {
     const input =
-        \\
-        \\~~text with \*asterisk\*~~
-        \\
-    ;
+        "\n" ++
+        "~~text with \\*asterisk\\*~~\n";
     const expected =
-        \\<p><del>text with *asterisk*</del></p>
-        \\
-    ;
+        "<p><del>text with *asterisk*</del></p>\n";
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);

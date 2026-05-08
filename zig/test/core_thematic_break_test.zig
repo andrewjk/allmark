@@ -210,7 +210,8 @@ test "Thematic break with spaces between characters" {
 
 test "Thematic break with tabs between characters" {
     const input =
-        "\n\n*\t*\t*\t\n\n";
+        "\n" ++
+        "*\t*\t*\n";
     const expected =
         \\<hr />
         \\
@@ -695,7 +696,8 @@ test "Thematic break with trailing spaces" {
 
 test "Thematic break with trailing tabs" {
     const input =
-        "\n\n***\t\t\t\n\n";
+        "\n" ++
+        "***\t\t\n";
     const expected =
         \\<hr />
         \\

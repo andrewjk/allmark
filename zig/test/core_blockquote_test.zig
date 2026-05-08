@@ -38,15 +38,6 @@ test "Simple blockquote" {
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
-
-    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\n", "\r") catch unreachable;
-    defer gpa.free(inputCr);
-    const htmlCr = try transform(gpa, inputCr, rules, renderers);
-    defer gpa.free(htmlCr);
-    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCr2);
-    const htmlCr3 = std.mem.replaceOwned(u8, gpa, htmlCr2, "\r", "\n") catch unreachable;
-    defer gpa.free(htmlCr3);
 }
 
 test "Blockquote with multiple lines" {

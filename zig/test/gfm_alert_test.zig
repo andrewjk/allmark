@@ -325,14 +325,17 @@ test "alert with code block" {
         \\> [!NOTE]
         \\> Example code:
         \\>
-        \\> code block here
+        \\> ```
+        \\> console.log("Hello World");
+        \\> ```
         \\
     ;
     const expected =
         \\<div class="markdown-alert markdown-alert-note">
         \\<p class="markdown-alert-title">Note</p>
         \\<p>Example code:</p>
-        \\<p>code block here</p>
+        \\<pre><code>console.log(&quot;Hello World&quot;);
+        \\</code></pre>
         \\</div>
         \\
     ;
@@ -603,11 +606,9 @@ test "consecutive alerts" {
 test "alert with empty content" {
     const input =
         \\
-        \\
         \\> [!NOTE]
         \\>
         \\> Content after empty line.
-        \\
         \\
     ;
     const expected =

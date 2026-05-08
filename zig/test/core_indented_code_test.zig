@@ -41,7 +41,8 @@ test "Simple 4-space indented code" {
 
 test "Tab-indented code" {
     const input =
-        "\n\n\tcode here\n\n";
+        "\n" ++
+        "\tcode here\n";
     const expected =
         \\<pre><code>code here
         \\</code></pre>
@@ -190,6 +191,38 @@ test "8-space indented code" {
         \\</code></pre>
         \\
     ;
+
+    const gpa = std.testing.allocator;
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
+
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
+
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+}
+
+test "Empty indented code block" {
+    const input =
+        \\
+        \\    
+        \\    
+        \\
+    ;
+    const expected = "";
 
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
@@ -398,6 +431,8 @@ test "Mixed 4-space and 8-space indentation" {
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
+
+// TODO: test "Tab after 4 spaces - 8 spaces total"
 
 test "Indented code with backticks" {
     const input =
@@ -736,15 +771,11 @@ test "Multiple indented code blocks" {
 
 test "Indented code with special characters" {
     const input =
-        \\
-        \\    <>& "'\
-        \\
-    ;
+        "\n" ++
+        "    <>& \"'\\\n";
     const expected =
-        \\<pre><code>&lt;&gt;&amp; &quot;'\
-        \\</code></pre>
-        \\
-    ;
+        "<pre><code>&lt;&gt;&amp; &quot;'\\\n" ++
+        "</code></pre>\n";
 
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);
@@ -1381,6 +1412,39 @@ test "Indented code block at end of document" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
+test "Indented code block with only whitespace" {
+    const input =
+        \\
+        \\    
+        \\    
+        \\    
+        \\
+    ;
+    const expected = "";
+
+    const gpa = std.testing.allocator;
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
+
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
+
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+}
+
 test "Indented code block with varying indentation" {
     const input =
         \\
@@ -1422,7 +1486,8 @@ test "Indented code block with varying indentation" {
 
 test "Single tab indented" {
     const input =
-        "\n\n\tcode here\n\n";
+        "\n" ++
+        "\tcode here\n";
     const expected =
         \\<pre><code>code here
         \\</code></pre>
@@ -1452,9 +1517,12 @@ test "Single tab indented" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
+// TODO: test "Double tab indented"
+
 test "Mixed tab and space indentation" {
     const input =
-        "\n\n\t    code here\n\n";
+        "\n" ++
+        "\t    code here\n";
     const expected =
         \\<pre><code>    code here
         \\</code></pre>
@@ -1774,73 +1842,6 @@ test "Indented code with inline code" {
         \\</code></pre>
         \\
     ;
-
-    const gpa = std.testing.allocator;
-    const rules = try core.init(gpa);
-    defer core.deinit(&rules, gpa);
-    const renderers = try htmlRenderers.init(gpa);
-    defer htmlRenderers.deinit(&renderers, gpa);
-
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
-    defer gpa.free(htmlSpaced);
-    try std.testing.expectEqualStrings(expected, htmlSpaced);
-
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
-    defer gpa.free(htmlTrimmed);
-    try std.testing.expectEqualStrings(expected, htmlTrimmed);
-
-    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
-    defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
-    defer gpa.free(htmlCrLf);
-    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCrLf2);
-    try std.testing.expectEqualStrings(expected, htmlCrLf2);
-}
-
-test "Empty indented code block" {
-    // Input: newline + 4 spaces + newline + 4 spaces (substring(1) removes first newline)
-    const input =
-        \\
-        \\    
-        \\    
-        \\
-    ;
-    const expected = "";
-
-    const gpa = std.testing.allocator;
-    const rules = try core.init(gpa);
-    defer core.deinit(&rules, gpa);
-    const renderers = try htmlRenderers.init(gpa);
-    defer htmlRenderers.deinit(&renderers, gpa);
-
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
-    defer gpa.free(htmlSpaced);
-    try std.testing.expectEqualStrings(expected, htmlSpaced);
-
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
-    defer gpa.free(htmlTrimmed);
-    try std.testing.expectEqualStrings(expected, htmlTrimmed);
-
-    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
-    defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
-    defer gpa.free(htmlCrLf);
-    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCrLf2);
-    try std.testing.expectEqualStrings(expected, htmlCrLf2);
-}
-
-test "Indented code block with only whitespace" {
-    // Input: newline + 4 spaces + newline + 4 spaces + newline + 4 spaces (substring(1) removes first newline)
-    const input =
-        \\
-        \\    
-        \\    
-        \\    
-        \\
-    ;
-    const expected = "";
 
     const gpa = std.testing.allocator;
     const rules = try core.init(gpa);

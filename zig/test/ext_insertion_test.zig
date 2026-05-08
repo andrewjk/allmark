@@ -448,14 +448,10 @@ test "insertion with code inside" {
 
 test "escaped braces should not be insertion" {
     const input =
-        \\
-        \\text \{+not insertion\+}
-        \\
-    ;
+        "\n" ++
+        "text \\{+not insertion\\+}\n";
     const expected =
-        \\<p>text {+not insertion+}</p>
-        \\
-    ;
+        "<p>text {+not insertion+}</p>\n";
 
     const gpa = std.testing.allocator;
     const rules = try extended.init(gpa);

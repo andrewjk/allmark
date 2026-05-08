@@ -11,6 +11,7 @@ test "spec table" {
         \\| --- | --- |
         \\| baz | bim |
         \\
+        \\
     ;
     const expected =
         \\<table>
@@ -60,6 +61,7 @@ test "table with alignment" {
         \\| :--- | :----: | ----: |
         \\| foo  |  bar   |   baz |
         \\| a    |   b    |     c |
+        \\
         \\
     ;
     const expected =
@@ -119,6 +121,7 @@ test "table with inline formatting" {
         \\| *italic* | [link](url) |
         \\| ~~strike~~ | `multi` |
         \\
+        \\
     ;
     const expected =
         \\<table>
@@ -177,6 +180,7 @@ test "table with missing cells" {
         \\| 1 | 2 |
         \\| 1 |
         \\
+        \\
     ;
     const expected =
         \\<table>
@@ -233,6 +237,7 @@ test "table with extra cells" {
         \\| - | - |
         \\| 1 | 2 | 3 | 4 |
         \\
+        \\
     ;
     const expected =
         \\<table>
@@ -281,6 +286,7 @@ test "table with only header" {
         \\| foo | bar |
         \\| --- | --- |
         \\
+        \\
     ;
     const expected =
         \\<table>
@@ -324,6 +330,7 @@ test "table with empty cells" {
         \\| - | - | - |
         \\|   | 2 |   |
         \\| 1 |   | 3 |
+        \\
         \\
     ;
     const expected =
@@ -381,6 +388,7 @@ test "table without outer pipes" {
         \\- | - | -
         \\1 | 2 | 3
         \\
+        \\
     ;
     const expected =
         \\<p>a | b | c</p>
@@ -420,6 +428,7 @@ test "table with whitespace variations" {
         \\|  a  |  b  |  c  |
         \\| --- | --- | --- |
         \\| 1   |   2 |3    |
+        \\
         \\
     ;
     const expected =
@@ -474,6 +483,7 @@ test "table with mixed content types" {
         \\| Code | `inline` |
         \\| Bold | **strong** |
         \\| Link | [text](http://example.com) |
+        \\
         \\
     ;
     const expected =
@@ -537,6 +547,7 @@ test "table with single column" {
         \\| data   |
         \\| more   |
         \\
+        \\
     ;
     const expected =
         \\<table>
@@ -587,6 +598,7 @@ test "table with many columns" {
         \\| - | - | - | - | - | - |
         \\| 1 | 2 | 3 | 4 | 5 | 6 |
         \\| a | b | c | d | e | f |
+        \\
         \\
     ;
     const expected =

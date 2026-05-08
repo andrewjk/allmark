@@ -1033,6 +1033,43 @@ test "Code fence in list item" {
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
 }
 
+test "Code fence with trailing spaces after opening" {
+    const input =
+        \\
+        \\```   
+        \\code
+        \\```
+        \\
+    ;
+    const expected =
+        \\<pre><code>code
+        \\</code></pre>
+        \\
+    ;
+
+    const gpa = std.testing.allocator;
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
+
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
+
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+}
+
 test "Code fence with trailing spaces after closing" {
     const input =
         \\
@@ -1339,14 +1376,47 @@ test "Code fence between paragraphs" {
 
 test "Code fence with backslash in info string" {
     const input =
+        "\n" ++
+        "```javascript\\test\n" ++
+        "code\n" ++
+        "```\n";
+    const expected =
+        "<pre><code class=\"language-javascript\\test\">code\n" ++
+        "</code></pre>\n";
+
+    const gpa = std.testing.allocator;
+    const rules = try core.init(gpa);
+    defer core.deinit(&rules, gpa);
+    const renderers = try htmlRenderers.init(gpa);
+    defer htmlRenderers.deinit(&renderers, gpa);
+
+    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    defer gpa.free(htmlSpaced);
+    try std.testing.expectEqualStrings(expected, htmlSpaced);
+
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    defer gpa.free(htmlTrimmed);
+    try std.testing.expectEqualStrings(expected, htmlTrimmed);
+
+    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
+    defer gpa.free(inputCrLf);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    defer gpa.free(htmlCrLf);
+    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
+    defer gpa.free(htmlCrLf2);
+    try std.testing.expectEqualStrings(expected, htmlCrLf2);
+}
+
+test "Code fence with HTML entities in info" {
+    const input =
         \\
-        \\```javascript\test
+        \\```&lt;test&gt;
         \\code
         \\```
         \\
     ;
     const expected =
-        \\<pre><code class="language-javascript\test">code
+        \\<pre><code class="language-&lt;test&gt;">code
         \\</code></pre>
         \\
     ;
@@ -1537,80 +1607,6 @@ test "Code fence with ATX heading below" {
         \\<pre><code>code
         \\</code></pre>
         \\<h1>Heading</h1>
-        \\
-    ;
-
-    const gpa = std.testing.allocator;
-    const rules = try core.init(gpa);
-    defer core.deinit(&rules, gpa);
-    const renderers = try htmlRenderers.init(gpa);
-    defer htmlRenderers.deinit(&renderers, gpa);
-
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
-    defer gpa.free(htmlSpaced);
-    try std.testing.expectEqualStrings(expected, htmlSpaced);
-
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
-    defer gpa.free(htmlTrimmed);
-    try std.testing.expectEqualStrings(expected, htmlTrimmed);
-
-    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
-    defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
-    defer gpa.free(htmlCrLf);
-    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCrLf2);
-    try std.testing.expectEqualStrings(expected, htmlCrLf2);
-}
-
-test "Code fence with trailing spaces after opening" {
-    const input =
-        \\
-        \\```   
-        \\code
-        \\```
-        \\
-    ;
-    const expected =
-        \\<pre><code>code
-        \\</code></pre>
-        \\
-    ;
-
-    const gpa = std.testing.allocator;
-    const rules = try core.init(gpa);
-    defer core.deinit(&rules, gpa);
-    const renderers = try htmlRenderers.init(gpa);
-    defer htmlRenderers.deinit(&renderers, gpa);
-
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
-    defer gpa.free(htmlSpaced);
-    try std.testing.expectEqualStrings(expected, htmlSpaced);
-
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
-    defer gpa.free(htmlTrimmed);
-    try std.testing.expectEqualStrings(expected, htmlTrimmed);
-
-    const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
-    defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
-    defer gpa.free(htmlCrLf);
-    const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
-    defer gpa.free(htmlCrLf2);
-    try std.testing.expectEqualStrings(expected, htmlCrLf2);
-}
-
-test "Code fence with HTML entities in info" {
-    const input =
-        \\
-        \\```&lt;test&gt;
-        \\code
-        \\```
-        \\
-    ;
-    const expected =
-        \\<pre><code class="language-&lt;test&gt;">code
-        \\</code></pre>
         \\
     ;
 

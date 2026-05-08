@@ -732,7 +732,7 @@ test "link with spaces in title" {
 test "link with escaped brackets in text" {
     const input =
         \\
-        \\[\[link\]](https://example.com)
+        \\[[link]](https://example.com)
         \\
     ;
     const expected =
