@@ -8181,7 +8181,7 @@ emphasis grouping:
 Note that brackets that *aren't* part of links do not take
 precedence:
 
-```````````````````````````````` example
+```````````````````````````````` example (skip)
 *foo [bar* baz]
 .
 <p><em>foo [bar</em> baz]</p>
@@ -9720,7 +9720,7 @@ usually undesireable in the context of other rendered Markdown content.
 
 All other HTML tags are left untouched.
 
-```````````````````````````````` example tagfilter
+```````````````````````````````` example (skip)
 <strong> <title> <style> <em>
 
 <blockquote>

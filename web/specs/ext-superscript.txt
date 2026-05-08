@@ -1,0 +1,179 @@
+"superscript single"
+
+```````````````````````````````` example
+This should be ^up^ above everything else.
+.
+<p>This should be <sup>up</sup> above everything else.</p>
+````````````````````````````````
+
+"superscript double"
+
+```````````````````````````````` example
+This should be ^^up^^ above everything else.
+.
+<p>This should be <sup>up</sup> above everything else.</p>
+````````````````````````````````
+
+"superscript triple"
+
+```````````````````````````````` example
+This should be ^^^up^^^ above everything else.
+.
+<p>This should be ^^^up^^^ above everything else.</p>
+````````````````````````````````
+
+"superscript single character"
+
+```````````````````````````````` example
+x^2^
+.
+<p>x<sup>2</sup></p>
+````````````````````````````````
+
+"superscript with numbers"
+
+```````````````````````````````` example
+E=mc^2^
+.
+<p>E=mc<sup>2</sup></p>
+````````````````````````````````
+
+"multiple superscripts in one line"
+
+```````````````````````````````` example
+x^2^ + y^2^ = z^2^
+.
+<p>x<sup>2</sup> + y<sup>2</sup> = z<sup>2</sup></p>
+````````````````````````````````
+
+"superscript at start of paragraph"
+
+```````````````````````````````` example
+^note^ This is important.
+.
+<p><sup>note</sup> This is important.</p>
+````````````````````````````````
+
+"superscript at end of paragraph"
+
+```````````````````````````````` example
+See footnote^1^
+.
+<p>See footnote<sup>1</sup></p>
+````````````````````````````````
+
+"superscript with punctuation"
+
+```````````````````````````````` example
+Hello^world!^
+.
+<p>Hello<sup>world!</sup></p>
+````````````````````````````````
+
+"superscript with spaces"
+
+```````````````````````````````` example
+text ^with spaces^ more
+.
+<p>text <sup>with spaces</sup> more</p>
+````````````````````````````````
+
+"superscript with special characters"
+
+```````````````````````````````` example
+math^2+3^
+.
+<p>math<sup>2+3</sup></p>
+````````````````````````````````
+
+"superscript adjacent to text"
+
+```````````````````````````````` example
+test^ing^test
+.
+<p>test<sup>ing</sup>test</p>
+````````````````````````````````
+
+"empty superscript"
+
+```````````````````````````````` example
+text^^text
+.
+<p>text^^text</p>
+````````````````````````````````
+
+"superscript with markdown inside"
+
+```````````````````````````````` example
+text ^**bold**^
+.
+<p>text <sup><strong>bold</strong></sup></p>
+````````````````````````````````
+
+"superscript with code inside"
+
+```````````````````````````````` example
+text ^`code`^
+.
+<p>text <sup><code>code</code></sup></p>
+````````````````````````````````
+
+"escaped caret should not be superscript"
+
+```````````````````````````````` example
+text \^not superscript\^
+.
+<p>text ^not superscript^</p>
+````````````````````````````````
+
+"unmatched opening caret"
+
+```````````````````````````````` example
+text ^not closed
+.
+<p>text ^not closed</p>
+````````````````````````````````
+
+"unmatched closing caret"
+
+```````````````````````````````` example
+text not opened^
+.
+<p>text not opened^</p>
+````````````````````````````````
+
+"superscript in list item"
+
+```````````````````````````````` example
+- Item with ^superscript^
+.
+<ul>
+<li>Item with <sup>superscript</sup></li>
+</ul>
+````````````````````````````````
+
+"superscript in blockquote"
+
+```````````````````````````````` example
+> Quote with ^superscript^
+.
+<blockquote>
+<p>Quote with <sup>superscript</sup></p>
+</blockquote>
+````````````````````````````````
+
+"nested superscript"
+
+```````````````````````````````` example
+x^y^z^
+.
+<p>x<sup>y</sup>z^</p>
+````````````````````````````````
+
+"superscript with caret inside"
+
+```````````````````````````````` example
+text ^caret ^ inside^
+.
+<p>text <sup>caret ^ inside</sup></p>
+````````````````````````````````

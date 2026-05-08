@@ -1,0 +1,179 @@
+"highlight single"
+
+```````````````````````````````` example
+This should be =highlighted= as it is important.
+.
+<p>This should be <mark>highlighted</mark> as it is important.</p>
+````````````````````````````````
+
+"highlight double"
+
+```````````````````````````````` example
+This should be ==highlighted== as it is important.
+.
+<p>This should be <mark>highlighted</mark> as it is important.</p>
+````````````````````````````````
+
+"highlight triple"
+
+```````````````````````````````` example
+This should be ===highlighted=== as it is important.
+.
+<p>This should be ===highlighted=== as it is important.</p>
+````````````````````````````````
+
+"highlight single character"
+
+```````````````````````````````` example
+text =a= more
+.
+<p>text <mark>a</mark> more</p>
+````````````````````````````````
+
+"multiple highlights in one line"
+
+```````````````````````````````` example
+=first= and =second= and =third=
+.
+<p><mark>first</mark> and <mark>second</mark> and <mark>third</mark></p>
+````````````````````````````````
+
+"highlight at start of paragraph"
+
+```````````````````````````````` example
+=highlighted= This is important.
+.
+<p><mark>highlighted</mark> This is important.</p>
+````````````````````````````````
+
+"highlight at end of paragraph"
+
+```````````````````````````````` example
+This is =highlighted=
+.
+<p>This is <mark>highlighted</mark></p>
+````````````````````````````````
+
+"highlight with punctuation"
+
+```````````````````````````````` example
+text =word!= more
+.
+<p>text <mark>word!</mark> more</p>
+````````````````````````````````
+
+"highlight with spaces"
+
+```````````````````````````````` example
+text =with spaces= more
+.
+<p>text <mark>with spaces</mark> more</p>
+````````````````````````````````
+
+"highlight with special characters"
+
+```````````````````````````````` example
+text =a+b= more
+.
+<p>text <mark>a+b</mark> more</p>
+````````````````````````````````
+
+"highlight adjacent to text"
+
+```````````````````````````````` example
+test=ing=test
+.
+<p>test<mark>ing</mark>test</p>
+````````````````````````````````
+
+"empty highlight"
+
+```````````````````````````````` example
+text==text
+.
+<p>text==text</p>
+````````````````````````````````
+
+"highlight with markdown inside"
+
+```````````````````````````````` example
+text =**bold**=
+.
+<p>text <mark><strong>bold</strong></mark></p>
+````````````````````````````````
+
+"highlight with code inside"
+
+```````````````````````````````` example
+text =`code`=
+.
+<p>text <mark><code>code</code></mark></p>
+````````````````````````````````
+
+"escaped equals should not be highlight"
+
+```````````````````````````````` example
+text \=not highlight\=
+.
+<p>text =not highlight=</p>
+````````````````````````````````
+
+"unmatched opening equals"
+
+```````````````````````````````` example
+text =not closed
+.
+<p>text =not closed</p>
+````````````````````````````````
+
+"unmatched closing equals"
+
+```````````````````````````````` example
+text not opened=
+.
+<p>text not opened=</p>
+````````````````````````````````
+
+"highlight in list item"
+
+```````````````````````````````` example
+- Item with =highlight=
+.
+<ul>
+<li>Item with <mark>highlight</mark></li>
+</ul>
+````````````````````````````````
+
+"highlight in blockquote"
+
+```````````````````````````````` example
+> Quote with =highlight=
+.
+<blockquote>
+<p>Quote with <mark>highlight</mark></p>
+</blockquote>
+````````````````````````````````
+
+"highlight with equals inside"
+
+```````````````````````````````` example
+text =equals = inside=
+.
+<p>text <mark>equals = inside</mark></p>
+````````````````````````````````
+
+"highlight at beginning of document"
+
+```````````````````````````````` example
+=Start= of document.
+.
+<p><mark>Start</mark> of document.</p>
+````````````````````````````````
+
+"highlight at end of document"
+
+```````````````````````````````` example
+End of =document=
+.
+<p>End of <mark>document</mark></p>
+````````````````````````````````

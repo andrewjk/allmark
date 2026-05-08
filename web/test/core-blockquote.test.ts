@@ -652,6 +652,9 @@ Back to outer</li>
 
 		const htmlTrimmed = transform(input.substring(1, input.length - 1), core, htmlRenderers);
 		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
 	});
 
 	test("Blockquote with hard line breaks", () => {

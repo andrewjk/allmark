@@ -4,7 +4,7 @@ import extended from "../src/rulesets/extended";
 import htmlRenderers from "../src/rulesets/htmlRenderers";
 import transform from "../src/transform";
 
-describe("criticmark comment", () => {
+describe("comment", () => {
 	test("comment basic", () => {
 		const input = `
 This text was {>>commented<<} recently.

@@ -30,6 +30,7 @@ This should be ^^up^^ above everything else.
 		const expected = `
 <p>This should be <sup>up</sup> above everything else.</p>
 `.substring(1);
+
 		const htmlSpaced = transform(input, extended, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
 
@@ -47,6 +48,7 @@ This should be ^^^up^^^ above everything else.
 		const expected = `
 <p>This should be ^^^up^^^ above everything else.</p>
 `.substring(1);
+
 		const htmlSpaced = transform(input, extended, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
 
@@ -371,7 +373,6 @@ text not opened^
 		const input = `
 x^y^z^
 `;
-		// The first pair of carets creates a superscript, leaving ^z^ as text
 		const expected = `
 <p>x<sup>y</sup>z^</p>
 `.substring(1);

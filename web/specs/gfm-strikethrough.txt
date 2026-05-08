@@ -1,0 +1,180 @@
+"spec strikethrough"
+
+```````````````````````````````` example
+~~Hi~~ Hello, world!
+.
+<p><del>Hi</del> Hello, world!</p>
+````````````````````````````````
+
+"strikethrough single word"
+
+```````````````````````````````` example
+~~deleted~~
+.
+<p><del>deleted</del></p>
+````````````````````````````````
+
+"strikethrough multiple words"
+
+```````````````````````````````` example
+~~this is deleted~~
+.
+<p><del>this is deleted</del></p>
+````````````````````````````````
+
+"strikethrough with spaces inside"
+
+```````````````````````````````` example
+~~  spaces  ~~
+.
+<p>~~  spaces  ~~</p>
+````````````````````````````````
+
+"strikethrough with emphasis"
+
+```````````````````````````````` example
+~~*bold and deleted*~~
+.
+<p><del><em>bold and deleted</em></del></p>
+````````````````````````````````
+
+"strikethrough inside emphasis"
+
+```````````````````````````````` example
+*~~deleted in italic~~*
+.
+<p><em><del>deleted in italic</del></em></p>
+````````````````````````````````
+
+"strikethrough with code"
+
+```````````````````````````````` example
+~~code: `var x` here~~
+.
+<p><del>code: <code>var x</code> here</del></p>
+````````````````````````````````
+
+"strikethrough with link"
+
+```````````````````````````````` example
+~~[link text](http://example.com)~~
+.
+<p><del><a href="http://example.com">link text</a></del></p>
+````````````````````````````````
+
+"multiple strikethroughs in one line"
+
+```````````````````````````````` example
+~~first~~ and ~~second~~ and ~~third~~
+.
+<p><del>first</del> and <del>second</del> and <del>third</del></p>
+````````````````````````````````
+
+"strikethrough at start of paragraph"
+
+```````````````````````````````` example
+~~deleted~~ followed by normal text.
+.
+<p><del>deleted</del> followed by normal text.</p>
+````````````````````````````````
+
+"strikethrough at end of paragraph"
+
+```````````````````````````````` example
+Normal text followed by ~~deleted~~
+.
+<p>Normal text followed by <del>deleted</del></p>
+````````````````````````````````
+
+"strikethrough in list item"
+
+```````````````````````````````` example
+- ~~deleted item~~
+- normal item
+.
+<ul>
+<li><del>deleted item</del></li>
+<li>normal item</li>
+</ul>
+````````````````````````````````
+
+"strikethrough with tildes inside"
+
+```````````````````````````````` example
+~~text with ~ tilde~~
+.
+<p><del>text with ~ tilde</del></p>
+````````````````````````````````
+
+"strikethrough with multiple tildes"
+
+```````````````````````````````` example
+~~~~double~~~~
+.
+<pre><code class="language-double~~~~"></code></pre>
+````````````````````````````````
+
+"strikethrough across lines"
+
+```````````````````````````````` example
+~~line one
+line two~~
+.
+<p><del>line one
+line two</del></p>
+````````````````````````````````
+
+"strikethrough with punctuation"
+
+```````````````````````````````` example
+~~Hello, world!~~
+.
+<p><del>Hello, world!</del></p>
+````````````````````````````````
+
+"strikethrough with numbers"
+
+```````````````````````````````` example
+~~12345~~
+.
+<p><del>12345</del></p>
+````````````````````````````````
+
+"strikethrough in table cell"
+
+```````````````````````````````` example
+| col1 | col2 |
+| ---- | ---- |
+| ~~deleted~~ | normal 
+.
+<table>
+<thead>
+<tr>
+<th>col1</th>
+<th>col2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><del>deleted</del></td>
+<td>normal</td>
+</tr>
+</tbody>
+</table>
+````````````````````````````````
+
+"strikethrough adjacent to regular text"
+
+```````````````````````````````` example
+normal~~deleted~~normal
+.
+<p>normal<del>deleted</del>normal</p>
+````````````````````````````````
+
+"strikethrough with escaped characters"
+
+```````````````````````````````` example
+~~text with \*asterisk\*~~
+.
+<p><del>text with *asterisk*</del></p>
+````````````````````````````````

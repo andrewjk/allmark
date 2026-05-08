@@ -1,0 +1,435 @@
+"Simple blockquote"
+
+```````````````````````````````` example
+> Simple quote
+.
+<blockquote>
+<p>Simple quote</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with multiple lines"
+
+```````````````````````````````` example
+> Line 1
+> Line 2
+> Line 3
+.
+<blockquote>
+<p>Line 1
+Line 2
+Line 3</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with lazy continuation"
+
+```````````````````````````````` example
+> Line 1
+Line 2
+> Line 3
+.
+<blockquote>
+<p>Line 1
+Line 2
+Line 3</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with space after >"
+
+```````````````````````````````` example
+> With space
+.
+<blockquote>
+<p>With space</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote without space after >"
+
+```````````````````````````````` example
+>Without space
+.
+<blockquote>
+<p>Without space</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with multiple paragraphs"
+
+```````````````````````````````` example
+> Paragraph 1
+>
+> Paragraph 2
+.
+<blockquote>
+<p>Paragraph 1</p>
+<p>Paragraph 2</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with code block"
+
+```````````````````````````````` example
+>     code block
+>     more code
+.
+<blockquote>
+<pre><code>code block
+more code
+</code></pre>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with list"
+
+```````````````````````````````` example
+> - Item 1
+> - Item 2
+.
+<blockquote>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with nested blockquote"
+
+```````````````````````````````` example
+> Outer
+>> Inner
+>>> Innerer
+.
+<blockquote>
+<p>Outer</p>
+<blockquote>
+<p>Inner</p>
+<blockquote>
+<p>Innerer</p>
+</blockquote>
+</blockquote>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with heading"
+
+```````````````````````````````` example
+> # Heading
+.
+<blockquote>
+<h1>Heading</h1>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with inline emphasis"
+
+```````````````````````````````` example
+> *italic* and **bold**
+.
+<blockquote>
+<p><em>italic</em> and <strong>bold</strong></p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with inline code"
+
+```````````````````````````````` example
+> `code` inside quote
+.
+<blockquote>
+<p><code>code</code> inside quote</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with link"
+
+```````````````````````````````` example
+> [link](https://example.com)
+.
+<blockquote>
+<p><a href="https://example.com">link</a></p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with 1 space indent"
+
+```````````````````````````````` example
+ > Indented quote
+.
+<blockquote>
+<p>Indented quote</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with 3 space indent"
+
+```````````````````````````````` example
+   > Indented quote
+.
+<blockquote>
+<p>Indented quote</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with 4 space indent should be code"
+
+```````````````````````````````` example
+    > Not a quote
+.
+<pre><code>&gt; Not a quote
+</code></pre>
+````````````````````````````````
+
+"Multiple consecutive blockquotes"
+
+```````````````````````````````` example
+> Quote 1
+
+> Quote 2
+.
+<blockquote>
+<p>Quote 1</p>
+</blockquote>
+<blockquote>
+<p>Quote 2</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote preceded by paragraph without blank line"
+
+```````````````````````````````` example
+Paragraph
+> Quote
+.
+<p>Paragraph</p>
+<blockquote>
+<p>Quote</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with thematic break"
+
+```````````````````````````````` example
+> Text
+>
+> ---
+.
+<blockquote>
+<p>Text</p>
+<hr />
+</blockquote>
+````````````````````````````````
+
+"Blockquote with multiple blocks"
+
+```````````````````````````````` example
+> Paragraph
+>
+> - List item
+>
+> Code:
+>     code
+.
+<blockquote>
+<p>Paragraph</p>
+<ul>
+<li>List item</li>
+</ul>
+<p>Code:
+code</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with complex nested content"
+
+```````````````````````````````` example
+> Quote
+>
+>> Nested quote
+>>
+>> - List in nested
+> Back to outer
+.
+<blockquote>
+<p>Quote</p>
+<blockquote>
+<p>Nested quote</p>
+<ul>
+<li>List in nested
+Back to outer</li>
+</ul>
+</blockquote>
+</blockquote>
+````````````````````````````````
+
+"Empty blockquote"
+
+```````````````````````````````` example
+>
+.
+<blockquote>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with only space"
+
+```````````````````````````````` example
+> 
+.
+<blockquote>
+</blockquote>
+````````````````````````````````
+
+"Blockquote at end of document"
+
+```````````````````````````````` example
+> Last quote
+.
+<blockquote>
+<p>Last quote</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with fenced code block"
+
+```````````````````````````````` example
+> ```
+> code
+> ```
+.
+<blockquote>
+<pre><code>code
+</code></pre>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with ordered list"
+
+```````````````````````````````` example
+> 1. First
+> 2. Second
+.
+<blockquote>
+<ol>
+<li>First</li>
+<li>Second</li>
+</ol>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with setext heading"
+
+```````````````````````````````` example
+> Heading
+> =======
+.
+<blockquote>
+<h1>Heading</h1>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with HTML block"
+
+```````````````````````````````` example
+> <div>HTML</div>
+.
+<blockquote>
+<div>HTML</div>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with hard line breaks"
+
+```````````````````````````````` example
+> Line 1  
+> Line 2
+.
+<blockquote>
+<p>Line 1<br />
+Line 2</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with image"
+
+```````````````````````````````` example
+> ![alt](image.png)
+.
+<blockquote>
+<p><img src="image.png" alt="alt" /></p>
+</blockquote>
+````````````````````````````````
+
+"Deeply nested blockquotes"
+
+```````````````````````````````` example
+> Level 1
+>> Level 2
+>>> Level 3
+>>>> Level 4
+.
+<blockquote>
+<p>Level 1</p>
+<blockquote>
+<p>Level 2</p>
+<blockquote>
+<p>Level 3</p>
+<blockquote>
+<p>Level 4</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with mixed lazy continuation"
+
+```````````````````````````````` example
+> Line 1
+> Line 2
+Line 3 (lazy)
+> Line 4
+.
+<blockquote>
+<p>Line 1
+Line 2
+Line 3 (lazy)
+Line 4</p>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with loose list"
+
+```````````````````````````````` example
+> - Item 1
+>
+> - Item 2
+.
+<blockquote>
+<ul>
+<li>
+<p>Item 1</p>
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ul>
+</blockquote>
+````````````````````````````````
+
+"Blockquote with tight list"
+
+```````````````````````````````` example
+> - Item 1
+> - Item 2
+.
+<blockquote>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+</blockquote>
+````````````````````````````````

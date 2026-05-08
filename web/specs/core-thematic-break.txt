@@ -1,0 +1,472 @@
+"Simple thematic break with dashes"
+
+```````````````````````````````` example
+---
+.
+<hr />
+````````````````````````````````
+
+"Simple thematic break with asterisks"
+
+```````````````````````````````` example
+***
+.
+<hr />
+````````````````````````````````
+
+"Simple thematic break with underscores"
+
+```````````````````````````````` example
+___
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with 4 dashes"
+
+```````````````````````````````` example
+----
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with 5 asterisks"
+
+```````````````````````````````` example
+*****
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with spaces between characters"
+
+```````````````````````````````` example
+- - -
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with tabs between characters"
+
+```````````````````````````````` example
+*	*	*
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with 1 space indent"
+
+```````````````````````````````` example
+ ---
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with 3 space indent"
+
+```````````````````````````````` example
+   ---
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with 4 space indent should be code"
+
+```````````````````````````````` example
+    ---
+.
+<pre><code>---
+</code></pre>
+````````````````````````````````
+
+"Thematic break followed by paragraph without blank line"
+
+```````````````````````````````` example
+---
+Paragraph
+.
+<hr />
+<p>Paragraph</p>
+````````````````````````````````
+
+"Multiple thematic breaks"
+
+```````````````````````````````` example
+---
+
+***
+.
+<hr />
+<hr />
+````````````````````````````````
+
+"Thematic break not valid - only 2 dashes"
+
+```````````````````````````````` example
+--
+.
+<p>--</p>
+````````````````````````````````
+
+"Thematic break not valid - only 2 asterisks"
+
+```````````````````````````````` example
+**
+.
+<p>**</p>
+````````````````````````````````
+
+"Thematic break not valid - only 2 underscores"
+
+```````````````````````````````` example
+__
+.
+<p>__</p>
+````````````````````````````````
+
+"Thematic break not valid - mixed characters"
+
+```````````````````````````````` example
+-*-
+.
+<p>-*-</p>
+````````````````````````````````
+
+"Thematic break not valid - mixed dashes and asterisks"
+
+```````````````````````````````` example
+---***
+.
+<p>---***</p>
+````````````````````````````````
+
+"Thematic break in blockquote"
+
+```````````````````````````````` example
+> ---
+.
+<blockquote>
+<hr />
+</blockquote>
+````````````````````````````````
+
+"Thematic break in list item"
+
+```````````````````````````````` example
+- Item
+---
+.
+<ul>
+<li>Item</li>
+</ul>
+<hr />
+````````````````````````````````
+
+"Thematic break with trailing spaces"
+
+```````````````````````````````` example
+---   
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with trailing tabs"
+
+```````````````````````````````` example
+***		
+.
+<hr />
+````````````````````````````````
+
+"Thematic break after list without blank line"
+
+```````````````````````````````` example
+- Item 1
+- Item 2
+---
+.
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+<hr />
+````````````````````````````````
+
+"Thematic break before list without blank line"
+
+```````````````````````````````` example
+---
+- Item
+.
+<hr />
+<ul>
+<li>Item</li>
+</ul>
+````````````````````````````````
+
+"Thematic break at end of document"
+
+```````````````````````````````` example
+> Quote
+---
+.
+<blockquote>
+<p>Quote</p>
+</blockquote>
+<hr />
+````````````````````````````````
+
+"Thematic break between paragraphs"
+
+```````````````````````````````` example
+Paragraph 1
+
+---
+
+Paragraph 2
+.
+<p>Paragraph 1</p>
+<hr />
+<p>Paragraph 2</p>
+````````````````````````````````
+
+"Thematic break between paragraphs without blank lines"
+
+```````````````````````````````` example
+Paragraph 1
+
+---
+Paragraph 2
+.
+<p>Paragraph 1</p>
+<hr />
+<p>Paragraph 2</p>
+````````````````````````````````
+
+"Thematic break after heading"
+
+```````````````````````````````` example
+# Heading
+---
+.
+<h1>Heading</h1>
+<hr />
+````````````````````````````````
+
+"Thematic break before heading"
+
+```````````````````````````````` example
+---
+# Heading
+.
+<hr />
+<h1>Heading</h1>
+````````````````````````````````
+
+"Thematic break with code block above"
+
+```````````````````````````````` example
+```
+code
+```
+---
+.
+<pre><code>code
+</code></pre>
+<hr />
+````````````````````````````````
+
+"Thematic break with code block below"
+
+```````````````````````````````` example
+---
+```
+code
+```
+.
+<hr />
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Thematic break in nested blockquote"
+
+```````````````````````````````` example
+> Quote
+>
+> ---
+> More quote
+.
+<blockquote>
+<p>Quote</p>
+<hr />
+<p>More quote</p>
+</blockquote>
+````````````````````````````````
+
+"Thematic break with very long sequence"
+
+```````````````````````````````` example
+--------------------------------------------------
+.
+<hr />
+````````````````````````````````
+
+"Thematic break not valid - starts with dash but has spaces"
+
+```````````````````````````````` example
+-   -   -
+.
+<hr />
+````````````````````````````````
+
+"Thematic break with inline elements above"
+
+```````````````````````````````` example
+Text with *emphasis*
+
+---
+.
+<p>Text with <em>emphasis</em></p>
+<hr />
+````````````````````````````````
+
+"Thematic break with inline elements below"
+
+```````````````````````````````` example
+---
+Text with **bold**
+.
+<hr />
+<p>Text with <strong>bold</strong></p>
+````````````````````````````````
+
+"Thematic break between blockquotes"
+
+```````````````````````````````` example
+> Quote 1
+
+---
+
+> Quote 2
+.
+<blockquote>
+<p>Quote 1</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>Quote 2</p>
+</blockquote>
+````````````````````````````````
+
+"Thematic break with setext heading"
+
+```````````````````````````````` example
+Heading
+=======
+---
+.
+<h1>Heading</h1>
+<hr />
+````````````````````````````````
+
+"Thematic break after ordered list"
+
+```````````````````````````````` example
+1. First
+2. Second
+---
+.
+<ol>
+<li>First</li>
+<li>Second</li>
+</ol>
+<hr />
+````````````````````````````````
+
+"Empty thematic break (should not match)"
+
+```````````````````````````````` example
+
+.
+````````````````````````````````
+"Text that looks like thematic break but has other content"
+
+```````````````````````````````` example
+--- text
+.
+<p>--- text</p>
+````````````````````````````````
+
+"Thematic break preceded by code fence"
+
+```````````````````````````````` example
+```
+code
+```
+---
+.
+<pre><code>code
+</code></pre>
+<hr />
+````````````````````````````````
+
+"Thematic break not valid - less than 3 chars with spaces"
+
+```````````````````````````````` example
+- -
+.
+<ul>
+<li>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+````````````````````````````````
+
+"Thematic break after loose list"
+
+```````````````````````````````` example
+- Item 1
+
+- Item 2
+---
+.
+<ul>
+<li>
+<p>Item 1</p>
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ul>
+<hr />
+````````````````````````````````
+
+"Thematic break in fenced code block (should not be interpreted)"
+
+```````````````````````````````` example
+```
+---
+```
+.
+<pre><code>---
+</code></pre>
+````````````````````````````````
+
+"Thematic break with mixed spacing"
+
+```````````````````````````````` example
+  *  *  *  
+.
+<hr />
+````````````````````````````````
+
+"Thematic break not valid - text after spaces"
+
+```````````````````````````````` example
+---   text
+.
+<p>---   text</p>
+````````````````````````````````

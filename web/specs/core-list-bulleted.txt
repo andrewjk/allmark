@@ -1,0 +1,395 @@
+"Simple bulleted list with dashes"
+
+```````````````````````````````` example
+- Item
+.
+<ul>
+<li>Item</li>
+</ul>
+````````````````````````````````
+
+"Simple bulleted list with plus"
+
+```````````````````````````````` example
++ Item
+.
+<ul>
+<li>Item</li>
+</ul>
+````````````````````````````````
+
+"Simple bulleted list with asterisks"
+
+```````````````````````````````` example
+* Item
+.
+<ul>
+<li>Item</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list with multiple items"
+
+```````````````````````````````` example
+- Item 1
+- Item 2
+- Item 3
+.
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+````````````````````````````````
+
+"Tight bulleted list"
+
+```````````````````````````````` example
+- Item 1
+- Item 2
+.
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+````````````````````````````````
+
+"Loose bulleted list with blank lines"
+
+```````````````````````````````` example
+- Item 1
+
+- Item 2
+.
+<ul>
+<li>
+<p>Item 1</p>
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ul>
+````````````````````````````````
+
+"Nested bulleted lists"
+
+```````````````````````````````` example
+- Item 1
+  - Nested item
+- Item 2
+.
+<ul>
+<li>Item 1
+<ul>
+<li>Nested item</li>
+</ul>
+</li>
+<li>Item 2</li>
+</ul>
+````````````````````````````````
+
+"Deep nested bulleted lists"
+
+```````````````````````````````` example
+- Level 1
+  - Level 2
+    - Level 3
+.
+<ul>
+<li>Level 1
+<ul>
+<li>Level 2
+<ul>
+<li>Level 3</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list in blockquote"
+
+```````````````````````````````` example
+> - Item 1
+> - Item 2
+.
+<blockquote>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+</blockquote>
+````````````````````````````````
+
+"Empty list item"
+
+```````````````````````````````` example
+-
+.
+<ul>
+<li></li>
+</ul>
+````````````````````````````````
+
+"Bulleted list with paragraphs"
+
+```````````````````````````````` example
+- Item 1
+
+  Paragraph in item 1
+
+- Item 2
+.
+<ul>
+<li>
+<p>Item 1</p>
+<p>Paragraph in item 1</p>
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list preceded by paragraph"
+
+```````````````````````````````` example
+Paragraph
+
+- Item
+.
+<p>Paragraph</p>
+<ul>
+<li>Item</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list followed by paragraph"
+
+```````````````````````````````` example
+- Item
+
+Paragraph
+.
+<ul>
+<li>Item</li>
+</ul>
+<p>Paragraph</p>
+````````````````````````````````
+
+"Mixed bullet markers should not be same list"
+
+```````````````````````````````` example
+- Item 1
++ Item 2
+.
+<ul>
+<li>Item 1</li>
+</ul>
+<ul>
+<li>Item 2</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list with code block"
+
+```````````````````````````````` example
+- Item
+
+  ```
+  code
+  ```
+.
+<ul>
+<li>
+<p>Item</p>
+<pre><code>code
+</code></pre>
+</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list with inline formatting"
+
+```````````````````````````````` example
+- Item with *emphasis*
+.
+<ul>
+<li>Item with <em>emphasis</em></li>
+</ul>
+````````````````````````````````
+
+"Bulleted list with bold"
+
+```````````````````````````````` example
+- Item with **bold**
+.
+<ul>
+<li>Item with <strong>bold</strong></li>
+</ul>
+````````````````````````````````
+
+"Bulleted list item with multiple paragraphs (loose)"
+
+```````````````````````````````` example
+- Item 1
+
+  Second paragraph
+
+- Item 2
+.
+<ul>
+<li>
+<p>Item 1</p>
+<p>Second paragraph</p>
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list with links"
+
+```````````````````````````````` example
+- [Link](https://example.com)
+.
+<ul>
+<li><a href="https://example.com">Link</a></li>
+</ul>
+````````````````````````````````
+
+"Bulleted list with code span"
+
+```````````````````````````````` example
+- `inline code`
+.
+<ul>
+<li><code>inline code</code></li>
+</ul>
+````````````````````````````````
+
+"Bulleted list at end of document"
+
+```````````````````````````````` example
+- Item 1
+- Item 2
+.
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+````````````````````````````````
+
+"Multiple separate bulleted lists"
+
+```````````````````````````````` example
+- List 1 item 1
+- List 1 item 2
+
+- List 2 item 1
+- List 2 item 2
+.
+<ul>
+<li>
+<p>List 1 item 1</p>
+</li>
+<li>
+<p>List 1 item 2</p>
+</li>
+<li>
+<p>List 2 item 1</p>
+</li>
+<li>
+<p>List 2 item 2</p>
+</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list item with leading spaces (still a list)"
+
+```````````````````````````````` example
+   - Item
+.
+<ul>
+<li>Item</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list item with 4 spaces indent should be code"
+
+```````````````````````````````` example
+    - Item
+.
+<pre><code>- Item
+</code></pre>
+````````````````````````````````
+
+"Bulleted list with only spaces after marker"
+
+```````````````````````````````` example
+-    Item
+.
+<ul>
+<li>Item</li>
+</ul>
+````````````````````````````````
+
+"Nested lists with different markers"
+
+```````````````````````````````` example
+- Dash
+  + Plus
+    * Star
+.
+<ul>
+<li>Dash
+<ul>
+<li>Plus
+<ul>
+<li>Star</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+````````````````````````````````
+
+"Bulleted list followed immediately by ordered list"
+
+```````````````````````````````` example
+- Item 1
+- Item 2
+1. Ordered 1
+2. Ordered 2
+.
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+<ol>
+<li>Ordered 1</li>
+<li>Ordered 2</li>
+</ol>
+````````````````````````````````
+
+"Bulleted list with thematic break in item"
+
+```````````````````````````````` example
+- Item 1
+
+  ---
+
+- Item 2
+.
+<ul>
+<li>
+<p>Item 1</p>
+<hr />
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ul>
+````````````````````````````````

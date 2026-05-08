@@ -1,0 +1,548 @@
+"Simple ordered list with period delimiter"
+
+```````````````````````````````` example
+1. Item
+.
+<ol>
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Simple ordered list with paren delimiter"
+
+```````````````````````````````` example
+1) Item
+.
+<ol>
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list starting at 1"
+
+```````````````````````````````` example
+1. Item
+.
+<ol>
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list starting at 2"
+
+```````````````````````````````` example
+2. Item
+.
+<ol start="2">
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list starting at 10"
+
+```````````````````````````````` example
+10. Item
+.
+<ol start="10">
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list starting at 0"
+
+```````````````````````````````` example
+0. Item
+.
+<ol start="0">
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with large start number"
+
+```````````````````````````````` example
+123456789. Item
+.
+<ol start="123456789">
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with too large number (10+ digits)"
+
+```````````````````````````````` example
+1234567890. Item
+.
+<p>1234567890. Item</p>
+````````````````````````````````
+
+"Ordered list with leading zeros"
+
+```````````````````````````````` example
+003. Item
+.
+<ol start="3">
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with multiple items"
+
+```````````````````````````````` example
+1. Item 1
+2. Item 2
+3. Item 3
+.
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with sequential numbers disregarded"
+
+```````````````````````````````` example
+1. Item 1
+1. Item 2
+1. Item 3
+.
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with mixed numbers disregarded"
+
+```````````````````````````````` example
+1. Item 1
+5. Item 2
+3. Item 3
+.
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+````````````````````````````````
+
+"Tight ordered list"
+
+```````````````````````````````` example
+1. Item 1
+2. Item 2
+.
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+</ol>
+````````````````````````````````
+
+"Loose ordered list with blank lines"
+
+```````````````````````````````` example
+1. Item 1
+
+2. Item 2
+.
+<ol>
+<li>
+<p>Item 1</p>
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ol>
+````````````````````````````````
+
+"Nested ordered lists"
+
+```````````````````````````````` example
+1. Item 1
+   1. Nested item
+2. Item 2
+.
+<ol>
+<li>Item 1
+<ol>
+<li>Nested item</li>
+</ol>
+</li>
+<li>Item 2</li>
+</ol>
+````````````````````````````````
+
+"Deep nested ordered lists"
+
+```````````````````````````````` example
+1. Level 1
+   1. Level 2
+      1. Level 3
+.
+<ol>
+<li>Level 1
+<ol>
+<li>Level 2
+<ol>
+<li>Level 3</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+````````````````````````````````
+
+"Ordered list in blockquote"
+
+```````````````````````````````` example
+> 1. Item 1
+> 2. Item 2
+.
+<blockquote>
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+</ol>
+</blockquote>
+````````````````````````````````
+
+"Empty ordered list item"
+
+```````````````````````````````` example
+1.
+.
+<ol>
+<li></li>
+</ol>
+````````````````````````````````
+
+"Ordered list with paragraphs"
+
+```````````````````````````````` example
+1. Item 1
+
+   Paragraph in item 1
+
+2. Item 2
+.
+<ol>
+<li>
+<p>Item 1</p>
+<p>Paragraph in item 1</p>
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ol>
+````````````````````````````````
+
+"Ordered list preceded by paragraph"
+
+```````````````````````````````` example
+Paragraph
+
+1. Item
+.
+<p>Paragraph</p>
+<ol>
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list followed by paragraph"
+
+```````````````````````````````` example
+1. Item
+
+Paragraph
+.
+<ol>
+<li>Item</li>
+</ol>
+<p>Paragraph</p>
+````````````````````````````````
+
+"Mixed delimiters should not be same list"
+
+```````````````````````````````` example
+1. Item 1
+1) Item 2
+.
+<ol>
+<li>Item 1</li>
+</ol>
+<ol>
+<li>Item 2</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with code block"
+
+```````````````````````````````` example
+1. Item
+
+   ```
+   code
+   ```
+.
+<ol>
+<li>
+<p>Item</p>
+<pre><code>code
+</code></pre>
+</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with inline formatting"
+
+```````````````````````````````` example
+1. Item with *emphasis*
+.
+<ol>
+<li>Item with <em>emphasis</em></li>
+</ol>
+````````````````````````````````
+
+"Ordered list with bold"
+
+```````````````````````````````` example
+1. Item with **bold**
+.
+<ol>
+<li>Item with <strong>bold</strong></li>
+</ol>
+````````````````````````````````
+
+"Ordered list item with multiple paragraphs (loose)"
+
+```````````````````````````````` example
+1. Item 1
+
+   Second paragraph
+
+2. Item 2
+.
+<ol>
+<li>
+<p>Item 1</p>
+<p>Second paragraph</p>
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with links"
+
+```````````````````````````````` example
+1. [Link](https://example.com)
+.
+<ol>
+<li><a href="https://example.com">Link</a></li>
+</ol>
+````````````````````````````````
+
+"Ordered list with code span"
+
+```````````````````````````````` example
+1. `inline code`
+.
+<ol>
+<li><code>inline code</code></li>
+</ol>
+````````````````````````````````
+
+"Ordered list at end of document"
+
+```````````````````````````````` example
+1. Item 1
+2. Item 2
+.
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+</ol>
+````````````````````````````````
+
+"Multiple separate ordered lists"
+
+```````````````````````````````` example
+1. List 1 item 1
+2. List 1 item 2
+
+1. List 2 item 1
+2. List 2 item 2
+.
+<ol>
+<li>
+<p>List 1 item 1</p>
+</li>
+<li>
+<p>List 1 item 2</p>
+</li>
+<li>
+<p>List 2 item 1</p>
+</li>
+<li>
+<p>List 2 item 2</p>
+</li>
+</ol>
+````````````````````````````````
+
+"Ordered list item with leading spaces (still a list)"
+
+```````````````````````````````` example
+   1. Item
+.
+<ol>
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list item with 4 spaces indent should be code"
+
+```````````````````````````````` example
+    1. Item
+.
+<pre><code>1. Item
+</code></pre>
+````````````````````````````````
+
+"Ordered list with only spaces after marker"
+
+```````````````````````````````` example
+1.    Item
+.
+<ol>
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Nested ordered and bulleted lists"
+
+```````````````````````````````` example
+1. Ordered
+   - Bulleted
+      1. Nested ordered
+.
+<ol>
+<li>Ordered
+<ul>
+<li>Bulleted
+<ol>
+<li>Nested ordered</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+````````````````````````````````
+
+"Ordered list followed immediately by bulleted list"
+
+```````````````````````````````` example
+1. Item 1
+2. Item 2
+- Bullet 1
+- Bullet 2
+.
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+</ol>
+<ul>
+<li>Bullet 1</li>
+<li>Bullet 2</li>
+</ul>
+````````````````````````````````
+
+"Ordered list with thematic break in item"
+
+```````````````````````````````` example
+1. Item 1
+
+   ---
+
+2. Item 2
+.
+<ol>
+<li>
+<p>Item 1</p>
+<hr />
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with paren delimiter multiple items"
+
+```````````````````````````````` example
+1) Item 1
+2) Item 2
+3) Item 3
+.
+<ol>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+````````````````````````````````
+
+"Ordered list with paren delimiter starting at 5"
+
+```````````````````````````````` example
+5) Item
+.
+<ol start="5">
+<li>Item</li>
+</ol>
+````````````````````````````````
+
+"Ordered list item with nested bulleted list"
+
+```````````````````````````````` example
+1. Item
+   - Nested bullet
+   - Another bullet
+.
+<ol>
+<li>Item
+<ul>
+<li>Nested bullet</li>
+<li>Another bullet</li>
+</ul>
+</li>
+</ol>
+````````````````````````````````
+
+"Not an ordered list - text after number"
+
+```````````````````````````````` example
+1.5 is a number
+.
+<p>1.5 is a number</p>
+````````````````````````````````
+
+"Not an ordered list - no space after delimiter"
+
+```````````````````````````````` example
+1.Item
+.
+<p>1.Item</p>
+````````````````````````````````
+
+"Ordered list at end of line without space"
+
+```````````````````````````````` example
+1.
+.
+<ol>
+<li></li>
+</ol>
+````````````````````````````````

@@ -23,7 +23,6 @@ This should be ~down~ below everything else.
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
 	});
 
-	// NOTE: GFM strikethrough must take precedence
 	test("subscript double", () => {
 		const input = `
 This should be ~~down~~ below everything else.

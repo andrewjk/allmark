@@ -1,0 +1,187 @@
+"subscript single"
+
+```````````````````````````````` example
+This should be ~down~ below everything else.
+.
+<p>This should be <sub>down</sub> below everything else.</p>
+````````````````````````````````
+
+"subscript double"
+
+```````````````````````````````` example
+This should be ~~down~~ below everything else.
+.
+<p>This should be <del>down</del> below everything else.</p>
+````````````````````````````````
+
+"subscript triple"
+
+```````````````````````````````` example
+This should be ~~~down~~~ below everything else.
+.
+<p>This should be ~~~down~~~ below everything else.</p>
+````````````````````````````````
+
+"subscript single character"
+
+```````````````````````````````` example
+H~2~O
+.
+<p>H<sub>2</sub>O</p>
+````````````````````````````````
+
+"subscript with numbers"
+
+```````````````````````````````` example
+x~1~ + x~2~
+.
+<p>x<sub>1</sub> + x<sub>2</sub></p>
+````````````````````````````````
+
+"multiple subscripts in one line"
+
+```````````````````````````````` example
+a~i~ + b~j~ = c~k~
+.
+<p>a<sub>i</sub> + b<sub>j</sub> = c<sub>k</sub></p>
+````````````````````````````````
+
+"subscript at start of paragraph"
+
+```````````````````````````````` example
+~note~ This is important.
+.
+<p><sub>note</sub> This is important.</p>
+````````````````````````````````
+
+"subscript at end of paragraph"
+
+```````````````````````````````` example
+See index~1~
+.
+<p>See index<sub>1</sub></p>
+````````````````````````````````
+
+"subscript with punctuation"
+
+```````````````````````````````` example
+Hello~world!~
+.
+<p>Hello<sub>world!</sub></p>
+````````````````````````````````
+
+"subscript with spaces"
+
+```````````````````````````````` example
+text ~with spaces~ more
+.
+<p>text <sub>with spaces</sub> more</p>
+````````````````````````````````
+
+"subscript with special characters"
+
+```````````````````````````````` example
+math~i+j~
+.
+<p>math<sub>i+j</sub></p>
+````````````````````````````````
+
+"subscript adjacent to text"
+
+```````````````````````````````` example
+test~ing~test
+.
+<p>test<sub>ing</sub>test</p>
+````````````````````````````````
+
+"empty subscript"
+
+```````````````````````````````` example
+text~~text
+.
+<p>text~~text</p>
+````````````````````````````````
+
+"subscript with markdown inside"
+
+```````````````````````````````` example
+text ~**bold**~
+.
+<p>text <sub><strong>bold</strong></sub></p>
+````````````````````````````````
+
+"subscript with code inside"
+
+```````````````````````````````` example
+text ~`code`~
+.
+<p>text <sub><code>code</code></sub></p>
+````````````````````````````````
+
+"escaped tilde should not be subscript"
+
+```````````````````````````````` example
+text \~not subscript\~
+.
+<p>text ~not subscript~</p>
+````````````````````````````````
+
+"unmatched opening tilde"
+
+```````````````````````````````` example
+text ~not closed
+.
+<p>text ~not closed</p>
+````````````````````````````````
+
+"unmatched closing tilde"
+
+```````````````````````````````` example
+text not opened~
+.
+<p>text not opened~</p>
+````````````````````````````````
+
+"subscript in list item"
+
+```````````````````````````````` example
+- Item with ~subscript~
+.
+<ul>
+<li>Item with <sub>subscript</sub></li>
+</ul>
+````````````````````````````````
+
+"subscript in blockquote"
+
+```````````````````````````````` example
+> Quote with ~subscript~
+.
+<blockquote>
+<p>Quote with <sub>subscript</sub></p>
+</blockquote>
+````````````````````````````````
+
+"strikethrough vs subscript precedence"
+
+```````````````````````````````` example
+This is ~~deleted~~ text.
+.
+<p>This is <del>deleted</del> text.</p>
+````````````````````````````````
+
+"subscript with tilde inside"
+
+```````````````````````````````` example
+text ~tilde ~ inside~
+.
+<p>text <sub>tilde ~ inside</sub></p>
+````````````````````````````````
+
+"strikethrough still works"
+
+```````````````````````````````` example
+text ~~struck~~, not subscripted
+.
+<p>text <del>struck</del>, not subscripted</p>
+````````````````````````````````

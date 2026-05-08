@@ -1,0 +1,514 @@
+"Simple code fence with backticks"
+
+```````````````````````````````` example
+```
+code
+```
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Simple code fence with tildes"
+
+```````````````````````````````` example
+~~~
+code
+~~~
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with 4 backticks"
+
+```````````````````````````````` example
+````
+code
+````
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with 5 tildes"
+
+```````````````````````````````` example
+~~~~~
+code
+~~~~~
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with language specifier"
+
+```````````````````````````````` example
+```javascript
+const x = 1;
+```
+.
+<pre><code class="language-javascript">const x = 1;
+</code></pre>
+````````````````````````````````
+
+"Code fence with language specifier and extra text"
+
+```````````````````````````````` example
+```javascript extra
+const x = 1;
+```
+.
+<pre><code class="language-javascript">const x = 1;
+</code></pre>
+````````````````````````````````
+
+"Code fence with empty content"
+
+```````````````````````````````` example
+```
+```
+.
+<pre><code></code></pre>
+````````````````````````````````
+
+"Code fence with multi-line content"
+
+```````````````````````````````` example
+```
+line 1
+line 2
+line 3
+```
+.
+<pre><code>line 1
+line 2
+line 3
+</code></pre>
+````````````````````````````````
+
+"Code fence with 1 space indent"
+
+```````````````````````````````` example
+ ```
+code
+```
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with 3 space indent"
+
+```````````````````````````````` example
+   ```
+code
+```
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with 4 space indent should be code"
+
+```````````````````````````````` example
+    ```
+code
+```
+.
+<pre><code>```
+</code></pre>
+<p>code</p>
+<pre><code></code></pre>
+````````````````````````````````
+
+"Code fence interrupts paragraph"
+
+```````````````````````````````` example
+Paragraph
+```
+code
+```
+.
+<p>Paragraph</p>
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence without space after opening"
+
+```````````````````````````````` example
+```code
+```
+.
+<pre><code class="language-code"></code></pre>
+````````````````````````````````
+
+"Code fence with blank line in content"
+
+```````````````````````````````` example
+```
+line 1
+
+line 2
+```
+.
+<pre><code>line 1
+
+line 2
+</code></pre>
+````````````````````````````````
+
+"Code fence not valid - only 2 backticks"
+
+```````````````````````````````` example
+``
+code
+``
+.
+<p><code>code</code></p>
+````````````````````````````````
+
+"Code fence not valid - only 2 tildes"
+
+```````````````````````````````` example
+~~
+code
+~~
+.
+<p>~~
+code
+~~</p>
+````````````````````````````````
+
+"Code fence not valid - mixed backticks and tildes"
+
+```````````````````````````````` example
+`~`
+code
+`~`
+.
+<p><code>~</code>
+code
+<code>~</code></p>
+````````````````````````````````
+
+"Code fence not valid - info string with backticks"
+
+```````````````````````````````` example
+```code with backtick`
+code
+```
+.
+<p>```code with backtick`
+code</p>
+<pre><code></code></pre>
+````````````````````````````````
+
+"Code fence with backticks in content"
+
+```````````````````````````````` example
+```
+code with `backticks`
+```
+.
+<pre><code>code with `backticks`
+</code></pre>
+````````````````````````````````
+
+"Code fence with tildes in content"
+
+```````````````````````````````` example
+~~~
+code with ~tildes~
+~~~
+.
+<pre><code>code with ~tildes~
+</code></pre>
+````````````````````````````````
+
+"Code fence preceded by paragraph without blank line"
+
+```````````````````````````````` example
+Paragraph
+```
+code
+```
+.
+<p>Paragraph</p>
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence followed by paragraph without blank line"
+
+```````````````````````````````` example
+```
+code
+```
+Paragraph
+.
+<pre><code>code
+</code></pre>
+<p>Paragraph</p>
+````````````````````````````````
+
+"Multiple code fences"
+
+```````````````````````````````` example
+```
+code1
+```
+
+```
+code2
+```
+.
+<pre><code>code1
+</code></pre>
+<pre><code>code2
+</code></pre>
+````````````````````````````````
+
+"Code fence with inline markdown in content"
+
+```````````````````````````````` example
+```
+*not italic*
+**not bold**
+```
+.
+<pre><code>*not italic*
+**not bold**
+</code></pre>
+````````````````````````````````
+
+"Code fence at end of document"
+
+```````````````````````````````` example
+```
+code
+```
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence in blockquote"
+
+```````````````````````````````` example
+> ```
+code
+```
+.
+<blockquote>
+<pre><code></code></pre>
+</blockquote>
+<p>code</p>
+<pre><code></code></pre>
+````````````````````````````````
+
+"Code fence in list item"
+
+```````````````````````````````` example
+- ```
+code
+```
+.
+<ul>
+<li>
+<pre><code></code></pre>
+</li>
+</ul>
+<p>code</p>
+<pre><code></code></pre>
+````````````````````````````````
+
+"Code fence with trailing spaces after opening"
+
+```````````````````````````````` example
+```   
+code
+```
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with trailing spaces after closing"
+
+```````````````````````````````` example
+```
+code
+```   
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with very long opening"
+
+```````````````````````````````` example
+``````````
+code
+``````````
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with shorter closing"
+
+```````````````````````````````` example
+`````
+code
+```
+.
+<pre><code>code
+```
+</code></pre>
+````````````````````````````````
+
+"Code fence not valid - closing fence shorter than opening"
+
+```````````````````````````````` example
+```
+code
+``
+.
+<pre><code>code
+``
+</code></pre>
+````````````````````````````````
+
+"Code fence with language containing numbers"
+
+```````````````````````````````` example
+```python3
+import x
+```
+.
+<pre><code class="language-python3">import x
+</code></pre>
+````````````````````````````````
+
+"Code fence with language containing dashes"
+
+```````````````````````````````` example
+```c++
+int main() {}
+```
+.
+<pre><code class="language-c++">int main() {}
+</code></pre>
+````````````````````````````````
+
+"Code fence with trailing whitespace on closing fence"
+
+```````````````````````````````` example
+```
+code
+```   
+.
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence between paragraphs"
+
+```````````````````````````````` example
+Paragraph 1
+
+```
+code
+```
+
+Paragraph 2
+.
+<p>Paragraph 1</p>
+<pre><code>code
+</code></pre>
+<p>Paragraph 2</p>
+````````````````````````````````
+
+"Code fence with backslash in info string"
+
+```````````````````````````````` example
+```javascript\test
+code
+```
+.
+<pre><code class="language-javascript\test">code
+</code></pre>
+````````````````````````````````
+
+"Code fence with HTML entities in info"
+
+```````````````````````````````` example
+```&lt;test&gt;
+code
+```
+.
+<pre><code class="language-&lt;test&gt;">code
+</code></pre>
+````````````````````````````````
+
+"Code fence with indented content lines"
+
+```````````````````````````````` example
+ ```
+    indented
+not indented
+```
+.
+<pre><code>   indented
+not indented
+</code></pre>
+````````````````````````````````
+
+"Code fence not valid - space between fence chars"
+
+```````````````````````````````` example
+` ` `
+code
+` ` `
+.
+<p><code> </code> <code>code</code> <code> </code></p>
+````````````````````````````````
+
+"Code fence with only info string"
+
+```````````````````````````````` example
+```javascript
+```
+.
+<pre><code class="language-javascript"></code></pre>
+````````````````````````````````
+
+"Code fence with setext heading above"
+
+```````````````````````````````` example
+Heading
+=======
+```
+code
+```
+.
+<h1>Heading</h1>
+<pre><code>code
+</code></pre>
+````````````````````````````````
+
+"Code fence with ATX heading below"
+
+```````````````````````````````` example
+```
+code
+```
+# Heading
+.
+<pre><code>code
+</code></pre>
+<h1>Heading</h1>
+````````````````````````````````

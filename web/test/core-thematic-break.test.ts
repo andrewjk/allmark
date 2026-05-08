@@ -122,7 +122,7 @@ ___
 
 	test("Thematic break with tabs between characters", () => {
 		const input = `
-*\t*\t*
+*	*	*
 `;
 		const expected = `
 <hr />
@@ -400,7 +400,7 @@ __
 
 	test("Thematic break with trailing tabs", () => {
 		const input = `
-***\t\t
+***		
 `;
 		const expected = `
 <hr />
@@ -811,8 +811,11 @@ Heading
 	});
 
 	test("Empty thematic break (should not match)", () => {
-		const input = "";
-		const expected = "";
+		const input = `
+
+`;
+		const expected = `
+`.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 
 		const htmlSpaced = transform(input, core, htmlRenderers);

@@ -1,0 +1,195 @@
+"deletion single"
+
+```````````````````````````````` example
+This text was {-deleted-} recently.
+.
+<p>This text was <del class="markdown-deletion">deleted</del> recently.</p>
+````````````````````````````````
+
+"deletion double"
+
+```````````````````````````````` example
+This text was {--deleted--} recently.
+.
+<p>This text was <del class="markdown-deletion">deleted</del> recently.</p>
+````````````````````````````````
+
+"deletion triple"
+
+```````````````````````````````` example
+This text was {---deleted---} recently.
+.
+<p>This text was {---deleted---} recently.</p>
+````````````````````````````````
+
+"deletion single character"
+
+```````````````````````````````` example
+text {-a-} more
+.
+<p>text <del class="markdown-deletion">a</del> more</p>
+````````````````````````````````
+
+"deletion with spaces"
+
+```````````````````````````````` example
+text {-with spaces-} more
+.
+<p>text <del class="markdown-deletion">with spaces</del> more</p>
+````````````````````````````````
+
+"deletion at start of paragraph"
+
+```````````````````````````````` example
+{-deleted-} This is new.
+.
+<p><del class="markdown-deletion">deleted</del> This is new.</p>
+````````````````````````````````
+
+"deletion at end of paragraph"
+
+```````````````````````````````` example
+This is {-deleted-}
+.
+<p>This is <del class="markdown-deletion">deleted</del></p>
+````````````````````````````````
+
+"deletion with punctuation"
+
+```````````````````````````````` example
+text {-word!-} more
+.
+<p>text <del class="markdown-deletion">word!</del> more</p>
+````````````````````````````````
+
+"deletion with special characters"
+
+```````````````````````````````` example
+text {-a-b-} more
+.
+<p>text <del class="markdown-deletion">a-b</del> more</p>
+````````````````````````````````
+
+"deletion adjacent to text"
+
+```````````````````````````````` example
+test{-ing-}test
+.
+<p>test<del class="markdown-deletion">ing</del>test</p>
+````````````````````````````````
+
+"empty deletion"
+
+```````````````````````````````` example
+text{--}text
+.
+<p>text{--}text</p>
+````````````````````````````````
+
+"deletion with markdown inside"
+
+```````````````````````````````` example
+text {-**bold**-}
+.
+<p>text <del class="markdown-deletion"><strong>bold</strong></del></p>
+````````````````````````````````
+
+"deletion with code inside"
+
+```````````````````````````````` example
+text {-`code`-}
+.
+<p>text <del class="markdown-deletion"><code>code</code></del></p>
+````````````````````````````````
+
+"escaped braces should not be deletion"
+
+```````````````````````````````` example
+text \{-not deletion\-}
+.
+<p>text {-not deletion-}</p>
+````````````````````````````````
+
+"unmatched opening deletion"
+
+```````````````````````````````` example
+text {-not closed
+.
+<p>text {-not closed</p>
+````````````````````````````````
+
+"unmatched closing deletion"
+
+```````````````````````````````` example
+text not opened-}
+.
+<p>text not opened-}</p>
+````````````````````````````````
+
+"deletion in list item"
+
+```````````````````````````````` example
+- Item with {-deletion-}
+.
+<ul>
+<li>Item with <del class="markdown-deletion">deletion</del></li>
+</ul>
+````````````````````````````````
+
+"deletion in blockquote"
+
+```````````````````````````````` example
+> Quote with {-deletion-}
+.
+<blockquote>
+<p>Quote with <del class="markdown-deletion">deletion</del></p>
+</blockquote>
+````````````````````````````````
+
+"deletion with plus inside"
+
+```````````````````````````````` example
+text {-plus - inside-}
+.
+<p>text <del class="markdown-deletion">plus - inside</del></p>
+````````````````````````````````
+
+"deletion at beginning of document"
+
+```````````````````````````````` example
+{-Start-} of document.
+.
+<p><del class="markdown-deletion">Start</del> of document.</p>
+````````````````````````````````
+
+"deletion at end of document"
+
+```````````````````````````````` example
+End of {-document-}
+.
+<p>End of <del class="markdown-deletion">document</del></p>
+````````````````````````````````
+
+"multiple deletions in one line"
+
+```````````````````````````````` example
+{-first-} and {-second-} and {-third-}
+.
+<p><del class="markdown-deletion">first</del> and <del class="markdown-deletion">second</del> and <del class="markdown-deletion">third</del></p>
+````````````````````````````````
+
+"deletion with starting emphasis"
+
+```````````````````````````````` example
+{-deleted *text-} that shouldn't be bold*
+.
+<p><del class="markdown-deletion">deleted *text</del> that shouldn't be bold*</p>
+````````````````````````````````
+
+"deletion with ending emphasis"
+
+```````````````````````````````` example
+*this text should be {-deleted but not bold*-}
+.
+<p>*this text should be <del class="markdown-deletion">deleted but not bold*</del></p>
+````````````````````````````````

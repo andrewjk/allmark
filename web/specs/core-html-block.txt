@@ -1,0 +1,643 @@
+"HTML script tag - single line"
+
+```````````````````````````````` example
+<script>alert('hi');</script>
+.
+<script>alert('hi');</script>
+````````````````````````````````
+
+"HTML script tag - multi-line"
+
+```````````````````````````````` example
+<script>
+alert('hi');
+alert('bye');
+</script>
+.
+<script>
+alert('hi');
+alert('bye');
+</script>
+````````````````````````````````
+
+"HTML pre tag"
+
+```````````````````````````````` example
+<pre>code here</pre>
+.
+<pre>code here</pre>
+````````````````````````````````
+
+"HTML style tag"
+
+```````````````````````````````` example
+<style>body { color: red; }</style>
+.
+<style>body { color: red; }</style>
+````````````````````````````````
+
+"HTML textarea tag"
+
+```````````````````````````````` example (skip)
+<textarea>Type here</textarea>
+.
+<p><textarea>Type here</textarea></p>
+````````````````````````````````
+
+"HTML comment - single line"
+
+```````````````````````````````` example
+<!-- This is a comment -->
+.
+<!-- This is a comment -->
+````````````````````````````````
+
+"HTML comment - multi-line"
+
+```````````````````````````````` example
+<!--
+This is a
+multi-line comment
+-->
+.
+<!--
+This is a
+multi-line comment
+-->
+````````````````````````````````
+
+"HTML processing instruction"
+
+```````````````````````````````` example
+<?php echo 'hello'; ?>
+.
+<?php echo 'hello'; ?>
+````````````````````````````````
+
+"HTML declaration - DOCTYPE"
+
+```````````````````````````````` example
+<!DOCTYPE html>
+.
+<!DOCTYPE html>
+````````````````````````````````
+
+"HTML CDATA section"
+
+```````````````````````````````` example
+<![CDATA[<greeting>Hello</greeting>]]>
+.
+<![CDATA[<greeting>Hello</greeting>]]>
+````````````````````````````````
+
+"HTML block-level div tag"
+
+```````````````````````````````` example
+<div>Content</div>
+.
+<div>Content</div>
+````````````````````````````````
+
+"HTML div with blank line after"
+
+```````````````````````````````` example
+<div>Content</div>
+
+Next paragraph
+.
+<div>Content</div>
+<p>Next paragraph</p>
+````````````````````````````````
+
+"HTML paragraph tag"
+
+```````````````````````````````` example
+<p>HTML paragraph</p>
+.
+<p>HTML paragraph</p>
+````````````````````````````````
+
+"HTML heading tags"
+
+```````````````````````````````` example
+<h1>Heading</h1>
+.
+<h1>Heading</h1>
+````````````````````````````````
+
+"HTML list tags"
+
+```````````````````````````````` example
+<ul>
+<li>Item</li>
+</ul>
+.
+<ul>
+<li>Item</li>
+</ul>
+````````````````````````````````
+
+"HTML table tag"
+
+```````````````````````````````` example
+<table><tr><td>Cell</td></tr></table>
+.
+<table><tr><td>Cell</td></tr></table>
+````````````````````````````````
+
+"HTML block with indentation (less than 4 spaces)"
+
+```````````````````````````````` example
+   <div>Indented</div>
+.
+   <div>Indented</div>
+````````````````````````````````
+
+"HTML block with 4 space indent should be code"
+
+```````````````````````````````` example
+    <div>Code</div>
+.
+<pre><code>&lt;div&gt;Code&lt;/div&gt;
+</code></pre>
+````````````````````````````````
+
+"HTML closing tag alone"
+
+```````````````````````````````` example
+</div>
+.
+</div>
+````````````````````````````````
+
+"HTML self-closing tag"
+
+```````````````````````````````` example
+<br />
+.
+<br />
+````````````````````````````````
+
+"HTML img tag"
+
+```````````````````````````````` example
+<img src="image.jpg" alt="Image">
+.
+<img src="image.jpg" alt="Image">
+````````````````````````````````
+
+"HTML hr tag"
+
+```````````````````````````````` example
+<hr />
+.
+<hr />
+````````````````````````````````
+
+"HTML block followed by Markdown"
+
+```````````````````````````````` example
+<div>HTML</div>
+
+# Markdown Heading
+.
+<div>HTML</div>
+<h1>Markdown Heading</h1>
+````````````````````````````````
+
+"Paragraph before HTML block type 7 should not interrupt"
+
+```````````````````````````````` example
+Paragraph text
+<span>inline</span>
+.
+<p>Paragraph text
+<span>inline</span></p>
+````````````````````````````````
+
+"HTML comment in paragraph"
+
+```````````````````````````````` example
+Text <!-- comment --> more text
+.
+<p>Text <!-- comment --> more text</p>
+````````````````````````````````
+
+"Multiple HTML blocks"
+
+```````````````````````````````` example
+<div>First</div>
+
+<div>Second</div>
+.
+<div>First</div>
+<div>Second</div>
+````````````````````````````````
+
+"HTML block with attributes"
+
+```````````````````````````````` example
+<div class="container" id="main">Content</div>
+.
+<div class="container" id="main">Content</div>
+````````````````````````````````
+
+"HTML script tag with attributes"
+
+```````````````````````````````` example
+<script src="script.js" async></script>
+.
+<script src="script.js" async></script>
+````````````````````````````````
+
+"HTML form tag"
+
+```````````````````````````````` example
+<form action="/submit"> <input type="text"> </form>
+.
+<form action="/submit"> <input type="text"> </form>
+````````````````````````````````
+
+"HTML blockquote tag"
+
+```````````````````````````````` example
+<blockquote>Quote</blockquote>
+.
+<blockquote>Quote</blockquote>
+````````````````````````````````
+
+"HTML address tag"
+
+```````````````````````````````` example
+<address>123 Main St</address>
+.
+<address>123 Main St</address>
+````````````````````````````````
+
+"HTML article tag"
+
+```````````````````````````````` example
+<article>Content</article>
+.
+<article>Content</article>
+````````````````````````````````
+
+"HTML aside tag"
+
+```````````````````````````````` example
+<aside>Sidebar</aside>
+.
+<aside>Sidebar</aside>
+````````````````````````````````
+
+"HTML section tag"
+
+```````````````````````````````` example
+<section>Section</section>
+.
+<section>Section</section>
+````````````````````````````````
+
+"HTML nav tag"
+
+```````````````````````````````` example
+<nav>Menu</nav>
+.
+<nav>Menu</nav>
+````````````````````````````````
+
+"HTML footer tag"
+
+```````````````````````````````` example
+<footer>Copyright</footer>
+.
+<footer>Copyright</footer>
+````````````````````````````````
+
+"HTML header tag"
+
+```````````````````````````````` example
+<header>Header</header>
+.
+<header>Header</header>
+````````````````````````````````
+
+"HTML main tag"
+
+```````````````````````````````` example
+<main>Main</main>
+.
+<main>Main</main>
+````````````````````````````````
+
+"HTML figure tag"
+
+```````````````````````````````` example
+<figure><img src="img.jpg"></figure>
+.
+<figure><img src="img.jpg"></figure>
+````````````````````````````````
+
+"HTML figcaption tag"
+
+```````````````````````````````` example
+<figcaption>Caption</figcaption>
+.
+<figcaption>Caption</figcaption>
+````````````````````````````````
+
+"HTML details and summary tags"
+
+```````````````````````````````` example
+<details><summary>Click</summary>Content</details>
+.
+<details><summary>Click</summary>Content</details>
+````````````````````````````````
+
+"HTML dialog tag"
+
+```````````````````````````````` example
+<dialog>Dialog content</dialog>
+.
+<dialog>Dialog content</dialog>
+````````````````````````````````
+
+"HTML fieldset tag"
+
+```````````````````````````````` example
+<fieldset>Field</fieldset>
+.
+<fieldset>Field</fieldset>
+````````````````````````````````
+
+"HTML legend tag"
+
+```````````````````````````````` example
+<legend>Legend</legend>
+.
+<legend>Legend</legend>
+````````````````````````````````
+
+"HTML dl, dt, dd tags"
+
+```````````````````````````````` example
+<dl><dt>Term</dt><dd>Definition</dd></dl>
+.
+<dl><dt>Term</dt><dd>Definition</dd></dl>
+````````````````````````````````
+
+"HTML link tag (empty)"
+
+```````````````````````````````` example
+<link rel="stylesheet" href="style.css">
+.
+<link rel="stylesheet" href="style.css">
+````````````````````````````````
+
+"HTML base tag"
+
+```````````````````````````````` example
+<base href="https://example.com/">
+.
+<base href="https://example.com/">
+````````````````````````````````
+
+"HTML basefont tag"
+
+```````````````````````````````` example
+<basefont face="Arial">
+.
+<basefont face="Arial">
+````````````````````````````````
+
+"HTML center tag"
+
+```````````````````````````````` example
+<center>Centered</center>
+.
+<center>Centered</center>
+````````````````````````````````
+
+"HTML col and colgroup tags"
+
+```````````````````````````````` example
+<colgroup><col span="2"></colgroup>
+.
+<colgroup><col span="2"></colgroup>
+````````````````````````````````
+
+"HTML tbody, thead, tfoot, tr, th, td tags"
+
+```````````````````````````````` example
+<table><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>
+.
+<table><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>
+````````````````````````````````
+
+"HTML caption tag"
+
+```````````````````````````````` example
+<caption>Table caption</caption>
+.
+<caption>Table caption</caption>
+````````````````````````````````
+
+"HTML source tag"
+
+```````````````````````````````` example
+<source src="video.mp4" type="video/mp4">
+.
+<source src="video.mp4" type="video/mp4">
+````````````````````````````````
+
+"HTML track tag"
+
+```````````````````````````````` example
+<track src="captions.vtt" kind="captions">
+.
+<track src="captions.vtt" kind="captions">
+````````````````````````````````
+
+"HTML frameset, frame, noframes tags"
+
+```````````````````````````````` example
+<frameset><frame src="frame.html"></frameset>
+.
+<frameset><frame src="frame.html"></frameset>
+````````````````````````````````
+
+"HTML noframes tag"
+
+```````````````````````````````` example
+<noframes>No frames</noframes>
+.
+<noframes>No frames</noframes>
+````````````````````````````````
+
+"HTML iframe tag"
+
+```````````````````````````````` example
+<iframe src="page.html"></iframe>
+.
+<iframe src="page.html"></iframe>
+````````````````````````````````
+
+"HTML param tag"
+
+```````````````````````````````` example
+<param name="autoplay" value="true">
+.
+<param name="autoplay" value="true">
+````````````````````````````````
+
+"HTML dir tag"
+
+```````````````````````````````` example
+<dir><li>Item</li></dir>
+.
+<dir><li>Item</li></dir>
+````````````````````````````````
+
+"HTML menu and menuitem tags"
+
+```````````````````````````````` example
+<menu><menuitem>Item</menuitem></menu>
+.
+<menu><menuitem>Item</menuitem></menu>
+````````````````````````````````
+
+"HTML optgroup and option tags"
+
+```````````````````````````````` example
+<select><optgroup label="Group"><option>Item</option></optgroup></select>
+.
+<p><select><optgroup label="Group"><option>Item</option></optgroup></select></p>
+````````````````````````````````
+
+"HTML title tag in body (not head)"
+
+```````````````````````````````` example
+<title>Page Title</title>
+.
+<title>Page Title</title>
+````````````````````````````````
+
+"HTML block with line breaks inside"
+
+```````````````````````````````` example
+<div>
+Line 1
+Line 2
+Line 3
+</div>
+.
+<div>
+Line 1
+Line 2
+Line 3
+</div>
+````````````````````````````````
+
+"HTML block inside list"
+
+```````````````````````````````` example
+- Item
+
+  <div>HTML</div>
+.
+<ul>
+<li>
+<p>Item</p>
+<div>HTML</div>
+</li>
+</ul>
+````````````````````````````````
+
+"HTML block inside blockquote"
+
+```````````````````````````````` example
+> <div>HTML</div>
+.
+<blockquote>
+<div>HTML</div>
+</blockquote>
+````````````````````````````````
+
+"HTML case insensitive - uppercase"
+
+```````````````````````````````` example
+<DIV>Content</DIV>
+.
+<DIV>Content</DIV>
+````````````````````````````````
+
+"HTML script tag with mixed case"
+
+```````````````````````````````` example
+<SCRIPT>alert('hi');</SCRIPT>
+.
+<SCRIPT>alert('hi');</SCRIPT>
+````````````````````````````````
+
+"HTML block with no content"
+
+```````````````````````````````` example
+<div></div>
+.
+<div></div>
+````````````````````````````````
+
+"HTML custom tag (non-block-level)"
+
+```````````````````````````````` example
+<custom-tag>Content</custom-tag>
+.
+<p><custom-tag>Content</custom-tag></p>
+````````````````````````````````
+
+"HTML comment ending on same line"
+
+```````````````````````````````` example
+<!-- comment -->
+.
+<!-- comment -->
+````````````````````````````````
+
+"HTML comment with multiple dashes"
+
+```````````````````````````````` example
+<!-- --- comment --- -->
+.
+<!-- --- comment --- -->
+````````````````````````````````
+
+"HTML CDATA with embedded brackets"
+
+```````````````````````````````` example
+<![CDATA[<test>data</test>]]>
+.
+<![CDATA[<test>data</test>]]>
+````````````````````````````````
+
+"HTML DOCTYPE with public identifier"
+
+```````````````````````````````` example
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+.
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+````````````````````````````````
+
+"HTML block continues until blank line (type 6)"
+
+```````````````````````````````` example
+<div>Line 1
+Line 2
+Line 3
+
+Next
+.
+<div>Line 1
+Line 2
+Line 3
+<p>Next</p>
+````````````````````````````````

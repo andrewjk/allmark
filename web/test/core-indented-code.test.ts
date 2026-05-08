@@ -28,7 +28,7 @@ describe("indented code", () => {
 
 	test("Tab-indented code", () => {
 		const input = `
-\tcode here
+	code here
 `;
 		const expected = `
 <pre><code>code here
@@ -134,7 +134,8 @@ line 3
     
     
 `;
-		const expected = "";
+		const expected = `
+`.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 
 		const htmlSpaced = transform(input, core, htmlRenderers);
@@ -260,10 +261,10 @@ code here</p>
 	// TODO:
 	test.skip("Tab after 4 spaces - 8 spaces total", () => {
 		const input = `
-    \tcode here
+    	code here
 `;
 		const expected = `
-<pre><code>\tcode here
+<pre><code>	code here
 </code></pre>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
@@ -876,7 +877,8 @@ Paragraph
     
     
 `;
-		const expected = "";
+		const expected = `
+`.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
 
 		const htmlSpaced = transform(input, core, htmlRenderers);
@@ -915,7 +917,7 @@ Paragraph
 
 	test("Single tab indented", () => {
 		const input = `
-\tcode here
+	code here
 `;
 		const expected = `
 <pre><code>code here
@@ -936,10 +938,10 @@ Paragraph
 	// TODO:
 	test.skip("Double tab indented", () => {
 		const input = `
-\t\tcode here
+		code here
 `;
 		const expected = `
-<pre><code>\tcode here
+<pre><code>	code here
 </code></pre>
 `.substring(1);
 		expect(expected).toBe(renderHtmlSync(input));
@@ -956,7 +958,7 @@ Paragraph
 
 	test("Mixed tab and space indentation", () => {
 		const input = `
-\t    code here
+	    code here
 `;
 		const expected = `
 <pre><code>    code here

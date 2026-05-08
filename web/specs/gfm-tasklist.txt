@@ -1,0 +1,234 @@
+"spec tasklist"
+
+```````````````````````````````` example
+- [ ] foo
+- [x] bar
+.
+<ul>
+<li><input type="checkbox" disabled="" /> foo</li>
+<li><input type="checkbox" checked="" disabled="" /> bar</li>
+</ul>
+````````````````````````````````
+
+"tasklist with asterisk marker"
+
+```````````````````````````````` example
+* [ ] unchecked
+* [x] checked
+.
+<ul>
+<li><input type="checkbox" disabled="" /> unchecked</li>
+<li><input type="checkbox" checked="" disabled="" /> checked</li>
+</ul>
+````````````````````````````````
+
+"tasklist with plus marker"
+
+```````````````````````````````` example
++ [ ] unchecked
++ [x] checked
+.
+<ul>
+<li><input type="checkbox" disabled="" /> unchecked</li>
+<li><input type="checkbox" checked="" disabled="" /> checked</li>
+</ul>
+````````````````````````````````
+
+"tasklist in ordered list"
+
+```````````````````````````````` example
+1. [ ] unchecked item
+2. [x] checked item
+.
+<ol>
+<li><input type="checkbox" disabled="" /> unchecked item</li>
+<li><input type="checkbox" checked="" disabled="" /> checked item</li>
+</ol>
+````````````````````````````````
+
+"tasklist with inline formatting"
+
+```````````````````````````````` example
+- [ ] **bold** task
+- [x] *italic* task
+- [ ] ~~strikethrough~~ task
+.
+<ul>
+<li><input type="checkbox" disabled="" /> <strong>bold</strong> task</li>
+<li><input type="checkbox" checked="" disabled="" /> <em>italic</em> task</li>
+<li><input type="checkbox" disabled="" /> <del>strikethrough</del> task</li>
+</ul>
+````````````````````````````````
+
+"tasklist with code"
+
+```````````````````````````````` example
+- [ ] task with `code`
+- [x] another `code` task
+.
+<ul>
+<li><input type="checkbox" disabled="" /> task with <code>code</code></li>
+<li><input type="checkbox" checked="" disabled="" /> another <code>code</code> task</li>
+</ul>
+````````````````````````````````
+
+"tasklist with links"
+
+```````````````````````````````` example
+- [ ] task with [link](http://example.com)
+- [x] checked [link](http://example.com) task
+.
+<ul>
+<li><input type="checkbox" disabled="" /> task with <a href="http://example.com">link</a></li>
+<li><input type="checkbox" checked="" disabled="" /> checked <a href="http://example.com">link</a> task</li>
+</ul>
+````````````````````````````````
+
+"nested tasklist"
+
+```````````````````````````````` example
+- [ ] parent task
+  - [ ] child task 1
+  - [x] child task 2
+- [x] another parent
+.
+<ul>
+<li><input type="checkbox" disabled="" /> parent task
+<ul>
+<li><input type="checkbox" disabled="" /> child task 1</li>
+<li><input type="checkbox" checked="" disabled="" /> child task 2</li>
+</ul>
+</li>
+<li><input type="checkbox" checked="" disabled="" /> another parent</li>
+</ul>
+````````````````````````````````
+
+"mixed tasks and regular items"
+
+```````````````````````````````` example
+- [ ] task item
+- regular item
+- [x] checked task
+- another regular item
+.
+<ul>
+<li><input type="checkbox" disabled="" /> task item</li>
+<li>regular item</li>
+<li><input type="checkbox" checked="" disabled="" /> checked task</li>
+<li>another regular item</li>
+</ul>
+````````````````````````````````
+
+"tasklist with single character"
+
+```````````````````````````````` example
+- [ ] a
+- [x] b
+.
+<ul>
+<li><input type="checkbox" disabled="" /> a</li>
+<li><input type="checkbox" checked="" disabled="" /> b</li>
+</ul>
+````````````````````````````````
+
+"tasklist with empty brackets"
+
+```````````````````````````````` example
+- [ ] 
+- [x] 
+.
+<ul>
+<li><input type="checkbox" disabled="" /> </li>
+<li><input type="checkbox" checked="" disabled="" /> </li>
+</ul>
+````````````````````````````````
+
+"tasklist with uppercase X"
+
+```````````````````````````````` example
+- [ ] unchecked
+- [X] checked with uppercase
+.
+<ul>
+<li><input type="checkbox" disabled="" /> unchecked</li>
+<li><input type="checkbox" checked="" disabled="" /> checked with uppercase</li>
+</ul>
+````````````````````````````````
+
+"tasklist in blockquote"
+
+```````````````````````````````` example
+> - [ ] quoted task
+> - [x] checked quoted task
+.
+<blockquote>
+<ul>
+<li>[ ] quoted task</li>
+<li>[x] checked quoted task</li>
+</ul>
+</blockquote>
+````````````````````````````````
+
+"tasklist with multiple paragraphs"
+
+```````````````````````````````` example
+- [ ] task with paragraph
+
+  continuation paragraph
+- [x] another task
+.
+<ul>
+<li><input type="checkbox" disabled="" /> 
+<p>task with paragraph</p>
+<p>continuation paragraph</p>
+</li>
+<li><input type="checkbox" checked="" disabled="" /> 
+<p>another task</p>
+</li>
+</ul>
+````````````````````````````````
+
+"tasklist with sublist"
+
+```````````````````````````````` example
+- [ ] task with sublist
+  - subitem 1
+  - subitem 2
+- [x] checked task
+.
+<ul>
+<li><input type="checkbox" disabled="" /> task with sublist
+<ul>
+<li>subitem 1</li>
+<li>subitem 2</li>
+</ul>
+</li>
+<li><input type="checkbox" checked="" disabled="" /> checked task</li>
+</ul>
+````````````````````````````````
+
+"tasklist with html entities"
+
+```````````````````````````````` example
+- [ ] task with &amp; entity
+- [x] task with &lt;HTML&gt;
+.
+<ul>
+<li><input type="checkbox" disabled="" /> task with &amp; entity</li>
+<li><input type="checkbox" checked="" disabled="" /> task with &lt;HTML&gt;</li>
+</ul>
+````````````````````````````````
+
+"tasklist with various whitespace"
+
+```````````````````````````````` example
+- [ ]one
+- [  ] two
+- [ x] three
+.
+<ul>
+<li>[ ]one</li>
+<li>[  ] two</li>
+<li>[ x] three</li>
+</ul>
+````````````````````````````````

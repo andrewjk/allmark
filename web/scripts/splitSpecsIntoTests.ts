@@ -1,64 +1,252 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-await splitSpecsIntoTests("spec-cm.txt");
-await splitSpecsIntoTests("spec-gfm.txt");
+processSpecsFolder();
+await splitSpecsIntoTests("spec-cm.txt", "core");
+await splitSpecsIntoTests("spec-gfm.txt", "gfm");
 
-async function splitSpecsIntoTests(specFile: string) {
-	const specPath = path.join(".", "test", specFile);
-	const input = await fs.readFile(specPath, "utf-8");
-	const lines = input.split("\n");
+async function processSpecsFolder() {
+	const specsDir = path.join(".", "specs");
+	const files = await fs.readdir(specsDir);
 
-	let tests: {
-		input: string;
-		expected: string;
-		header: string;
-	}[] = [];
+	for (const file of files) {
+		if (!file.endsWith(".txt")) {
+			continue;
+		}
+
+		const specPath = path.join(specsDir, file);
+		const content = await fs.readFile(specPath, "utf-8");
+
+		if (file.startsWith("core-")) {
+			const testName = file.replace(".txt", "");
+			await generateTestFile(testName, content, "core", true, getDescribeName("core", file));
+		} else if (file.startsWith("gfm-")) {
+			const testName = file.replace(".txt", "");
+			await generateTestFile(
+				testName,
+				content,
+				"gfm",
+				// TODO: cmark-gfm doesn't produce alerts?
+				!file.includes("alert"),
+				getDescribeName("gfm", file),
+			);
+		} else if (file.startsWith("ext-")) {
+			const testName = file.replace(".txt", "");
+			await generateTestFile(testName, content, "extended", false, getDescribeName("ext", file));
+		}
+	}
+}
+
+function getDescribeName(prefix: string, fileName: string): string {
+	const name = fileName.replace(`${prefix}-`, "").replace(".txt", "");
+	const baseName = name.replace(/-/g, " ");
+
+	if (prefix === "core") {
+		if (baseName === "fenced code") return "fenced code";
+		if (baseName === "indented code") return "indented code";
+		if (baseName === "links") return "links";
+		if (baseName === "list bulleted") return "bulleted lists";
+		if (baseName === "list ordered") return "ordered lists";
+		return `${baseName}s`;
+	}
+
+	//if (prefix === "ext") {
+	//	if (baseName === "comment") return "critic comments";
+	//	if (baseName === "deletion") return "critic deletions";
+	//	if (baseName === "insertion") return "critic insertions";
+	//	if (baseName === "highlight") return "highlight";
+	//	return `${baseName}s`;
+	//}
+
+	return baseName;
+}
+
+interface TestExample {
+	input: string;
+	expected: string;
+	description: string;
+	skip: boolean;
+}
+
+function parseSpecFile(content: string, withDescriptions: boolean): TestExample[] {
+	const lines = content.split("\n");
+	const examples: TestExample[] = [];
+	let currentDescription = "";
+
 	for (let i = 0; i < lines.length; i++) {
-		if (lines[i].startsWith("```````````````````````````````` example")) {
-			let example: string[] = [];
+		const line = lines[i];
+
+		if (withDescriptions && line.startsWith('"') && line.endsWith('"')) {
+			currentDescription = line.slice(1, -1);
+			continue;
+		}
+
+		if (line.includes("```````````````````````````````` example")) {
+			const skip = line.includes("(skip)");
+			let exampleLines: string[] = [];
 			for (let j = i + 1; j < lines.length; j++) {
 				if (lines[j].startsWith("````````````````````````````````")) {
-					let parts = example.join("\n").replaceAll("→", "\t").split("\n.");
+					const exampleText = exampleLines.join("\n");
+					const parts = exampleText.replaceAll("→", "\t").split("\n.");
 					let input = parts[0];
 					let expected = parts[1] ?? "";
 					if (expected.startsWith("\n")) {
 						expected = expected.substring(1);
 					}
-					let header = `Example ${tests.length + 1}, line ${i + 1}: '${input.replaceAll("\n", "\\n").replaceAll("\t", "→")}'`;
-					tests.push({ input, expected, header });
+
+					const description = withDescriptions
+						? currentDescription
+						: `Example ${examples.length + 1}, line ${i + 1}: '${input.replaceAll("\n", "\\n").replaceAll("\t", "→")}'`;
+
+					examples.push({ input, expected, description, skip });
+					currentDescription = "";
 					i = j;
 					break;
 				} else {
-					example.push(lines[j]);
+					exampleLines.push(lines[j]);
 				}
 			}
 		}
 	}
 
-	const testName = specFile.split(".")[0];
+	return examples;
+}
 
-	const output = `
-import { describe, expect, test } from "vitest";
-import parse from "../src/parse";
-import render from "../src/render";
-
-describe("${testName}", () => {
-${tests
-	.map((t) => {
-		return `
-	test("${t.header.replaceAll("\\", "\\\\").replaceAll('"', '\\"')}", () => {
-		const input = \`\n${t.input.replaceAll("\\", "\\\\").replaceAll("`", "\\`")}\n\`;
-		const expected = \`\n${t.expected.replaceAll("\\", "\\\\").replaceAll("`", "\\`")}\n\`;
-		const doc = parse(input.substring(1, input.length -1));
-		const html = render(doc);
-		expect(html).toBe(expected);
-	});
-`.slice(1);
-	})
-	.join("\n")}
-});
-`.trimStart();
+async function generateTestFile(
+	testName: string,
+	content: string,
+	ruleSetName: string,
+	withRenderHtmlSync: boolean,
+	describeName: string,
+) {
+	const examples = parseSpecFile(content, true);
+	const output = buildOutput(testName, examples, ruleSetName, withRenderHtmlSync, describeName);
 	const testPath = path.join(".", "test", testName + ".test.ts");
 	await fs.writeFile(testPath, output);
+	console.log(`Generated ${testPath} with ${examples.length} tests`);
+}
+
+function buildOutput(
+	testName: string,
+	examples: TestExample[],
+	ruleSetName: string,
+	withRenderHtmlSync: boolean,
+	describeName: string,
+) {
+	const imports = withRenderHtmlSync ? `import { renderHtmlSync } from "cmark-gfm";\n` : "";
+
+	const options =
+		testName === "core-html-block"
+			? "{ unsafe: true }"
+			: withRenderHtmlSync && testName.startsWith("gfm-")
+				? `{
+	footnotes: true,
+	extensions: {
+		strikethrough: true,
+		table: true,
+		tasklist: true,
+		autolink: true,
+	},
+}`
+				: "";
+
+	return `${imports}import { describe, expect, test } from "vite-plus/test";
+
+import ${ruleSetName} from "../src/rulesets/${ruleSetName}";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
+import transform from "../src/transform";
+${options ? `\nconst options = ${options};\n` : ""}
+describe("${describeName}", () => {
+${examples
+	.map((example) => {
+		const escapedDescription = example.description.replaceAll("\\", "\\\\");
+		const escapedInput = example.input.replaceAll("\\", "\\\\").replaceAll("`", "\\`");
+		const escapedExpected = example.expected
+			? "\n" + example.expected.replaceAll("\\", "\\\\").replaceAll("`", "\\`") + "\n"
+			: "\n";
+
+		return `	${example.skip ? "// TODO:\n\ttest.skip" : "test"}("${escapedDescription}", () => {
+		const input = \`
+${escapedInput}
+\`;
+		const expected = \`${escapedExpected}\`.substring(1);${
+			withRenderHtmlSync
+				? `
+		expect(expected).toBe(renderHtmlSync(input${options ? ", options" : ""}));`
+				: ""
+		}
+
+		const htmlSpaced = transform(input, ${ruleSetName}, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), ${ruleSetName}, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\\n", "\\r\\n"), ${ruleSetName}, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\\r\\n", "\\n")).toBe(expected);
+	});`;
+	})
+	.join("\n\n")}
+});
+`.trimStart();
+}
+
+async function splitSpecsIntoTests(specFile: string, ruleSetName: string) {
+	const specPath = path.join(".", "specs", specFile);
+	const input = await fs.readFile(specPath, "utf-8");
+	const examples = parseSpecFile(input, false);
+
+	const testName = specFile.split(".")[0];
+	const output = buildOutputForSpecTests(testName, ruleSetName, examples);
+	const testPath = path.join(".", "test", testName + ".test.ts");
+	await fs.writeFile(testPath, output);
+	console.log(`Generated ${testPath} with ${examples.length} tests`);
+}
+
+function buildOutputForSpecTests(testName: string, ruleSetName: string, examples: TestExample[]) {
+	return `
+import { describe, expect, test } from "vite-plus/test";
+
+import ${ruleSetName} from "../src/rulesets/${ruleSetName}";
+import htmlRenderers from "../src/rulesets/htmlRenderers";
+import transform from "../src/transform";
+
+describe("${testName}", () => {
+${examples
+	.map((example) => {
+		let singleQuoteCount = 0;
+		let doubleQuoteCount = 0;
+		for (let char of example.description) {
+			if (char === "'") singleQuoteCount++;
+			else if (char === '"') doubleQuoteCount++;
+		}
+		let escapedDescription = example.description.replaceAll("\\", "\\\\");
+		escapedDescription =
+			doubleQuoteCount > singleQuoteCount
+				? "'" + escapedDescription.replaceAll("'", "\\'") + "'"
+				: '"' + escapedDescription.replaceAll('"', '\\"') + '"';
+		const escapedInput = example.input.replaceAll("\\", "\\\\").replaceAll("`", "\\`");
+		const escapedExpected = example.expected
+			? "\n" + example.expected.replaceAll("\\", "\\\\").replaceAll("`", "\\`") + "\n"
+			: "\n";
+
+		return `	${example.skip ? "// TODO:\n\ttest.skip" : "test"}(${escapedDescription}, () => {
+		const input = \`
+${escapedInput}
+\`;
+		const expected = \`${escapedExpected}\`.substring(1);
+
+		const htmlSpaced = transform(input, ${ruleSetName}, htmlRenderers);
+		expect(htmlSpaced).toBe(expected);
+
+		const htmlTrimmed = transform(input.substring(1, input.length - 1), ${ruleSetName}, htmlRenderers);
+		expect(htmlTrimmed).toBe(expected);
+
+		const htmlCrLf = transform(input.replaceAll("\\n", "\\r\\n"), ${ruleSetName}, htmlRenderers);
+		expect(htmlCrLf.replaceAll("\\r\\n", "\\n")).toBe(expected);
+	});`;
+	})
+	.join("\n\n")}
+});
+`.trimStart();
 }

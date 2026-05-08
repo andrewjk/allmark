@@ -20,7 +20,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~Hi~~ Hello, world!
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>Hi</del> Hello, world!</p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -36,7 +39,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~deleted~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>deleted</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -52,7 +58,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~this is deleted~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>this is deleted</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -68,7 +77,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~  spaces  ~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p>~~  spaces  ~~</p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -84,7 +96,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~*bold and deleted*~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del><em>bold and deleted</em></del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -100,7 +115,10 @@ describe("strikethrough", () => {
 		const input = `
 *~~deleted in italic~~*
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><em><del>deleted in italic</del></em></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -116,7 +134,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~code: \`var x\` here~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>code: <code>var x</code> here</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -132,7 +153,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~[link text](http://example.com)~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del><a href="http://example.com">link text</a></del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -148,7 +172,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~first~~ and ~~second~~ and ~~third~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>first</del> and <del>second</del> and <del>third</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -164,7 +191,10 @@ describe("strikethrough", () => {
 		const input = `
 ~~deleted~~ followed by normal text.
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>deleted</del> followed by normal text.</p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -180,7 +210,10 @@ describe("strikethrough", () => {
 		const input = `
 Normal text followed by ~~deleted~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p>Normal text followed by <del>deleted</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -197,7 +230,13 @@ Normal text followed by ~~deleted~~
 - ~~deleted item~~
 - normal item
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<ul>
+<li><del>deleted item</del></li>
+<li>normal item</li>
+</ul>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -213,7 +252,10 @@ Normal text followed by ~~deleted~~
 		const input = `
 ~~text with ~ tilde~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>text with ~ tilde</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -229,7 +271,10 @@ Normal text followed by ~~deleted~~
 		const input = `
 ~~~~double~~~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<pre><code class="language-double~~~~"></code></pre>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -246,7 +291,11 @@ Normal text followed by ~~deleted~~
 ~~line one
 line two~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>line one
+line two</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -262,7 +311,10 @@ line two~~
 		const input = `
 ~~Hello, world!~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>Hello, world!</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -278,7 +330,10 @@ line two~~
 		const input = `
 ~~12345~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>12345</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -296,7 +351,23 @@ line two~~
 | ---- | ---- |
 | ~~deleted~~ | normal 
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<table>
+<thead>
+<tr>
+<th>col1</th>
+<th>col2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><del>deleted</del></td>
+<td>normal</td>
+</tr>
+</tbody>
+</table>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -312,7 +383,10 @@ line two~~
 		const input = `
 normal~~deleted~~normal
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p>normal<del>deleted</del>normal</p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);
@@ -328,7 +402,10 @@ normal~~deleted~~normal
 		const input = `
 ~~text with \\*asterisk\\*~~
 `;
-		const expected = renderHtmlSync(input, options);
+		const expected = `
+<p><del>text with *asterisk*</del></p>
+`.substring(1);
+		expect(expected).toBe(renderHtmlSync(input, options));
 
 		const htmlSpaced = transform(input, gfm, htmlRenderers);
 		expect(htmlSpaced).toBe(expected);

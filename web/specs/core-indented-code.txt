@@ -1,0 +1,563 @@
+"Simple 4-space indented code"
+
+```````````````````````````````` example
+    code here
+.
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Tab-indented code"
+
+```````````````````````````````` example
+	code here
+.
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Multi-line indented code"
+
+```````````````````````````````` example
+    line 1
+    line 2
+    line 3
+.
+<pre><code>line 1
+line 2
+line 3
+</code></pre>
+````````````````````````````````
+
+"Less than 4 spaces should be paragraph"
+
+```````````````````````````````` example
+   code here
+.
+<p>code here</p>
+````````````````````````````````
+
+"5-space indented code"
+
+```````````````````````````````` example
+     code here
+.
+<pre><code> code here
+</code></pre>
+````````````````````````````````
+
+"8-space indented code"
+
+```````````````````````````````` example
+        code here
+.
+<pre><code>    code here
+</code></pre>
+````````````````````````````````
+
+"Empty indented code block"
+
+```````````````````````````````` example
+    
+    
+.
+````````````````````````````````
+
+"Indented code block with blank line in middle"
+
+```````````````````````````````` example
+    line 1
+
+    line 2
+.
+<pre><code>line 1
+
+line 2
+</code></pre>
+````````````````````````````````
+
+"Indented code block interrupts paragraph with blank line"
+
+```````````````````````````````` example
+Paragraph
+
+    code here
+.
+<p>Paragraph</p>
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Indented code block does not interrupt paragraph without blank line"
+
+```````````````````````````````` example
+Paragraph
+    code here
+.
+<p>Paragraph
+code here</p>
+````````````````````````````````
+
+"Indented code block with trailing spaces"
+
+```````````````````````````````` example
+    code here  
+.
+<pre><code>code here  
+</code></pre>
+````````````````````````````````
+
+"Mixed 4-space and 8-space indentation"
+
+```````````````````````````````` example
+    line 1
+        line 2
+.
+<pre><code>line 1
+    line 2
+</code></pre>
+````````````````````````````````
+
+"Tab after 4 spaces - 8 spaces total"
+
+```````````````````````````````` example (skip)
+    	code here
+.
+<pre><code>	code here
+</code></pre>
+````````````````````````````````
+
+"Indented code with backticks"
+
+```````````````````````````````` example
+    `code`
+.
+<pre><code>`code`
+</code></pre>
+````````````````````````````````
+
+"Indented code with tildes"
+
+```````````````````````````````` example
+    ~code~
+.
+<pre><code>~code~
+</code></pre>
+````````````````````````````````
+
+"Indented code with asterisks"
+
+```````````````````````````````` example
+    **bold**
+.
+<pre><code>**bold**
+</code></pre>
+````````````````````````````````
+
+"Indented code in blockquote"
+
+```````````````````````````````` example
+>     code here
+.
+<blockquote>
+<pre><code>code here
+</code></pre>
+</blockquote>
+````````````````````````````````
+
+"Indented code in list item"
+
+```````````````````````````````` example
+-     code here
+.
+<ul>
+<li>
+<pre><code>code here
+</code></pre>
+</li>
+</ul>
+````````````````````````````````
+
+"Indented code in ordered list"
+
+```````````````````````````````` example
+1.     code here
+.
+<ol>
+<li>
+<pre><code>code here
+</code></pre>
+</li>
+</ol>
+````````````````````````````````
+
+"Indented code followed by paragraph"
+
+```````````````````````````````` example
+    code here
+
+Paragraph
+.
+<pre><code>code here
+</code></pre>
+<p>Paragraph</p>
+````````````````````````````````
+
+"Paragraph followed by indented code"
+
+```````````````````````````````` example
+Paragraph
+
+    code here
+.
+<p>Paragraph</p>
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Multiple indented code blocks"
+
+```````````````````````````````` example
+    code 1
+
+    code 2
+.
+<pre><code>code 1
+
+code 2
+</code></pre>
+````````````````````````````````
+
+"Indented code with special characters"
+
+```````````````````````````````` example
+    <>& "'\
+.
+<pre><code>&lt;&gt;&amp; &quot;'\
+</code></pre>
+````````````````````````````````
+
+"Indented code with mixed indentation"
+
+```````````````````````````````` example
+    line 1
+      line 2
+  line 3
+.
+<pre><code>line 1
+  line 2
+</code></pre>
+<p>line 3</p>
+````````````````````````````````
+
+"Indented code block after heading"
+
+```````````````````````````````` example
+# Heading
+
+    code here
+.
+<h1>Heading</h1>
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Indented code block before heading"
+
+```````````````````````````````` example
+    code here
+
+# Heading
+.
+<pre><code>code here
+</code></pre>
+<h1>Heading</h1>
+````````````````````````````````
+
+"Indented code block after thematic break"
+
+```````````````````````````````` example
+---
+
+    code here
+.
+<hr />
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Indented code block before thematic break"
+
+```````````````````````````````` example
+    code here
+
+---
+.
+<pre><code>code here
+</code></pre>
+<hr />
+````````````````````````````````
+
+"Indented code with fenced code block above"
+
+```````````````````````````````` example
+```
+ fenced code
+```
+    indented code
+.
+<pre><code> fenced code
+</code></pre>
+<pre><code>indented code
+</code></pre>
+````````````````````````````````
+
+"Indented code with fenced code block below"
+
+```````````````````````````````` example
+    indented code
+```
+ fenced code
+```
+.
+<pre><code>indented code
+</code></pre>
+<pre><code> fenced code
+</code></pre>
+````````````````````````````````
+
+"Indented code with ATX heading above"
+
+```````````````````````````````` example
+# Heading
+
+    code here
+.
+<h1>Heading</h1>
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Indented code with ATX heading below"
+
+```````````````````````````````` example
+    code here
+
+# Heading
+.
+<pre><code>code here
+</code></pre>
+<h1>Heading</h1>
+````````````````````````````````
+
+"Indented code with setext heading above"
+
+```````````````````````````````` example
+Heading
+=======
+
+    code here
+.
+<h1>Heading</h1>
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Indented code with setext heading below"
+
+```````````````````````````````` example
+    code here
+
+Heading
+=======
+.
+<pre><code>code here
+</code></pre>
+<h1>Heading</h1>
+````````````````````````````````
+
+"Indented code preceded by paragraph without blank line"
+
+```````````````````````````````` example
+Paragraph
+    code here
+.
+<p>Paragraph
+code here</p>
+````````````````````````````````
+
+"Paragraph preceded by indented code without blank line"
+
+```````````````````````````````` example
+    code here
+Paragraph
+.
+<pre><code>code here
+</code></pre>
+<p>Paragraph</p>
+````````````````````````````````
+
+"Indented code with HTML entities"
+
+```````````````````````````````` example
+    &lt;code&gt;
+.
+<pre><code>&amp;lt;code&amp;gt;
+</code></pre>
+````````````````````````````````
+
+"Indented code block in nested list"
+
+```````````````````````````````` example
+-     code 1
+-     code 2
+.
+<ul>
+<li>
+<pre><code>code 1
+</code></pre>
+</li>
+<li>
+<pre><code>code 2
+</code></pre>
+</li>
+</ul>
+````````````````````````````````
+
+"Indented code block at end of document"
+
+```````````````````````````````` example
+    code here
+.
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Indented code block with only whitespace"
+
+```````````````````````````````` example
+    
+    
+    
+.
+````````````````````````````````
+
+"Indented code block with varying indentation"
+
+```````````````````````````````` example
+    level 1
+      level 2
+  level 3
+.
+<pre><code>level 1
+  level 2
+</code></pre>
+<p>level 3</p>
+````````````````````````````````
+
+"Single tab indented"
+
+```````````````````````````````` example
+	code here
+.
+<pre><code>code here
+</code></pre>
+````````````````````````````````
+
+"Double tab indented"
+
+```````````````````````````````` example (skip)
+		code here
+.
+<pre><code>	code here
+</code></pre>
+````````````````````````````````
+
+"Mixed tab and space indentation"
+
+```````````````````````````````` example
+	    code here
+.
+<pre><code>    code here
+</code></pre>
+````````````````````````````````
+
+"3 spaces - should be paragraph"
+
+```````````````````````````````` example
+   code here
+.
+<p>code here</p>
+````````````````````````````````
+
+"6 spaces indented code"
+
+```````````````````````````````` example
+      code here
+.
+<pre><code>  code here
+</code></pre>
+````````````````````````````````
+
+"12 spaces indented code"
+
+```````````````````````````````` example
+            code here
+.
+<pre><code>        code here
+</code></pre>
+````````````````````````````````
+
+"Code block with unicode characters"
+
+```````````````````````````````` example
+    hello 世界
+.
+<pre><code>hello 世界
+</code></pre>
+````````````````````````````````
+
+"Indented code with inline link"
+
+```````````````````````````````` example
+    [link](https://example.com)
+.
+<pre><code>[link](https://example.com)
+</code></pre>
+````````````````````````````````
+
+"Indented code with inline image"
+
+```````````````````````````````` example
+    ![alt](image.png)
+.
+<pre><code>![alt](image.png)
+</code></pre>
+````````````````````````````````
+
+"Indented code with emphasis"
+
+```````````````````````````````` example
+    *italic*
+.
+<pre><code>*italic*
+</code></pre>
+````````````````````````````````
+
+"Indented code with strong"
+
+```````````````````````````````` example
+    **bold**
+.
+<pre><code>**bold**
+</code></pre>
+````````````````````````````````
+
+"Indented code with inline code"
+
+```````````````````````````````` example
+    `inline code`
+.
+<pre><code>`inline code`
+</code></pre>
+````````````````````````````````

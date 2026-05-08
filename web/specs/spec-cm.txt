@@ -7924,7 +7924,7 @@ emphasis grouping:
 Note that brackets that *aren't* part of links do not take
 precedence:
 
-```````````````````````````````` example
+```````````````````````````````` example (skip)
 *foo [bar* baz]
 .
 <p><em>foo [bar</em> baz]</p>

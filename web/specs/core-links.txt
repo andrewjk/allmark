@@ -1,0 +1,218 @@
+"basic inline link"
+
+```````````````````````````````` example
+[Google](https://google.com)
+.
+<p><a href="https://google.com">Google</a></p>
+````````````````````````````````
+
+"link with title"
+
+```````````````````````````````` example
+[Google](https://google.com "Search Engine")
+.
+<p><a href="https://google.com" title="Search Engine">Google</a></p>
+````````````````````````````````
+
+"link with single quoted title"
+
+```````````````````````````````` example
+[Google](https://google.com 'Search Engine')
+.
+<p><a href="https://google.com" title="Search Engine">Google</a></p>
+````````````````````````````````
+
+"link in paragraph"
+
+```````````````````````````````` example
+Visit [Google](https://google.com) for search.
+.
+<p>Visit <a href="https://google.com">Google</a> for search.</p>
+````````````````````````````````
+
+"multiple links in one line"
+
+```````````````````````````````` example
+[Google](https://google.com) and [GitHub](https://github.com)
+.
+<p><a href="https://google.com">Google</a> and <a href="https://github.com">GitHub</a></p>
+````````````````````````````````
+
+"link with emphasis"
+
+```````````````````````````````` example
+[*Google*](https://google.com)
+.
+<p><a href="https://google.com"><em>Google</em></a></p>
+````````````````````````````````
+
+"emphasis around link"
+
+```````````````````````````````` example
+*[Google](https://google.com)*
+.
+<p><em><a href="https://google.com">Google</a></em></p>
+````````````````````````````````
+
+"link with code in text"
+
+```````````````````````````````` example
+[`const`](https://example.com)
+.
+<p><a href="https://example.com"><code>const</code></a></p>
+````````````````````````````````
+
+"link in list item"
+
+```````````````````````````````` example
+- [Link](https://example.com)
+.
+<ul>
+<li><a href="https://example.com">Link</a></li>
+</ul>
+````````````````````````````````
+
+"link in heading"
+
+```````````````````````````````` example
+# See [Google](https://google.com)
+.
+<h1>See <a href="https://google.com">Google</a></h1>
+````````````````````````````````
+
+"reference link definition and usage"
+
+```````````````````````````````` example
+[Google][google]
+
+[google]: https://google.com
+.
+<p><a href="https://google.com">Google</a></p>
+````````````````````````````````
+
+"reference link with implicit label"
+
+```````````````````````````````` example
+[Google][]
+
+[Google]: https://google.com
+.
+<p><a href="https://google.com">Google</a></p>
+````````````````````````````````
+
+"reference link with title"
+
+```````````````````````````````` example
+[Google][google]
+
+[google]: https://google.com "Search Engine"
+.
+<p><a href="https://google.com" title="Search Engine">Google</a></p>
+````````````````````````````````
+
+"multiple reference links"
+
+```````````````````````````````` example
+[Google][google] and [GitHub][github]
+
+[google]: https://google.com
+[github]: https://github.com
+.
+<p><a href="https://google.com">Google</a> and <a href="https://github.com">GitHub</a></p>
+````````````````````````````````
+
+"autolink with http"
+
+```````````````````````````````` example
+<http://example.com>
+.
+<p><a href="http://example.com">http://example.com</a></p>
+````````````````````````````````
+
+"autolink with https"
+
+```````````````````````````````` example
+<https://example.com>
+.
+<p><a href="https://example.com">https://example.com</a></p>
+````````````````````````````````
+
+"autolink with ftp"
+
+```````````````````````````````` example
+<ftp://example.com>
+.
+<p><a href="ftp://example.com">ftp://example.com</a></p>
+````````````````````````````````
+
+"email autolink"
+
+```````````````````````````````` example
+<user@example.com>
+.
+<p><a href="mailto:user@example.com">user@example.com</a></p>
+````````````````````````````````
+
+"link with special characters in URL"
+
+```````````````````````````````` example
+[Link](https://example.com/path?query=value&other=123#anchor)
+.
+<p><a href="https://example.com/path?query=value&amp;other=123#anchor">Link</a></p>
+````````````````````````````````
+
+"link with parentheses in URL"
+
+```````````````````````````````` example
+[Link](https://example.com/path(with)parentheses)
+.
+<p><a href="https://example.com/path(with)parentheses">Link</a></p>
+````````````````````````````````
+
+"link with spaces in title"
+
+```````````````````````````````` example
+[Link](https://example.com "This is a title")
+.
+<p><a href="https://example.com" title="This is a title">Link</a></p>
+````````````````````````````````
+
+"link with escaped brackets in text"
+
+```````````````````````````````` example
+[[link]](https://example.com)
+.
+<p><a href="https://example.com">[link]</a></p>
+````````````````````````````````
+
+"empty link text"
+
+```````````````````````````````` example
+[](https://example.com)
+.
+<p><a href="https://example.com"></a></p>
+````````````````````````````````
+
+"link with underscore in URL"
+
+```````````````````````````````` example
+[Link](https://example.com/path_with_underscore)
+.
+<p><a href="https://example.com/path_with_underscore">Link</a></p>
+````````````````````````````````
+
+"relative URL"
+
+```````````````````````````````` example
+[Link](/path/to/page)
+.
+<p><a href="/path/to/page">Link</a></p>
+````````````````````````````````
+
+"link with percent encoding"
+
+```````````````````````````````` example
+[Link](https://example.com/path%20with%20spaces)
+.
+<p><a href="https://example.com/path%20with%20spaces">Link</a></p>
+````````````````````````````````

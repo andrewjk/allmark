@@ -1,0 +1,204 @@
+"comment basic"
+
+```````````````````````````````` example
+This text was {>>commented<<} recently.
+ 
+.
+<p>This text was <span class="markdown-comment">commented</span> recently.</p>
+````````````````````````````````
+
+"comment single character"
+
+```````````````````````````````` example
+text {>>a<<} more
+.
+<p>text <span class="markdown-comment">a</span> more</p>
+````````````````````````````````
+
+"comment with spaces"
+
+```````````````````````````````` example
+text {>>with spaces<<} more
+.
+<p>text <span class="markdown-comment">with spaces</span> more</p>
+````````````````````````````````
+
+"comment at start of paragraph"
+
+```````````````````````````````` example
+{>>commented<<} This is new.
+.
+<p><span class="markdown-comment">commented</span> This is new.</p>
+````````````````````````````````
+
+"comment at end of paragraph"
+
+```````````````````````````````` example
+This is {>>commented<<}
+.
+<p>This is <span class="markdown-comment">commented</span></p>
+````````````````````````````````
+
+"comment with punctuation"
+
+```````````````````````````````` example
+text {>>word!<<} more
+.
+<p>text <span class="markdown-comment">word!</span> more</p>
+````````````````````````````````
+
+"comment with special characters"
+
+```````````````````````````````` example
+text {>>a-b<<} more
+.
+<p>text <span class="markdown-comment">a-b</span> more</p>
+````````````````````````````````
+
+"comment adjacent to text"
+
+```````````````````````````````` example
+test{>>ing<<}test
+.
+<p>test<span class="markdown-comment">ing</span>test</p>
+````````````````````````````````
+
+"empty comment"
+
+```````````````````````````````` example
+text{>><<}text
+.
+<p>text{&gt;&gt;&lt;&lt;}text</p>
+````````````````````````````````
+
+"comment with markdown inside"
+
+```````````````````````````````` example
+text {>>**bold**<<}
+.
+<p>text <span class="markdown-comment"><strong>bold</strong></span></p>
+````````````````````````````````
+
+"comment with code inside"
+
+```````````````````````````````` example
+text {>>`code`<<}
+.
+<p>text <span class="markdown-comment"><code>code</code></span></p>
+````````````````````````````````
+
+"escaped braces should not be comment"
+
+```````````````````````````````` example
+text \{>>not comment<<\}
+.
+<p>text {&gt;&gt;not comment&lt;&lt;}</p>
+````````````````````````````````
+
+"unmatched opening comment"
+
+```````````````````````````````` example
+text {>>not closed
+.
+<p>text {&gt;&gt;not closed</p>
+````````````````````````````````
+
+"unmatched closing comment"
+
+```````````````````````````````` example
+text not opened<<}
+.
+<p>text not opened&lt;&lt;}</p>
+````````````````````````````````
+
+"comment in list item"
+
+```````````````````````````````` example
+- Item with {>>comment<<}
+.
+<ul>
+<li>Item with <span class="markdown-comment">comment</span></li>
+</ul>
+````````````````````````````````
+
+"comment in blockquote"
+
+```````````````````````````````` example
+> Quote with {>>comment<<}
+.
+<blockquote>
+<p>Quote with <span class="markdown-comment">comment</span></p>
+</blockquote>
+````````````````````````````````
+
+"comment with angle brackets inside"
+
+```````````````````````````````` example
+text {>>some <text> inside<<}
+.
+<p>text <span class="markdown-comment">some <text> inside</span></p>
+````````````````````````````````
+
+"comment at beginning of document"
+
+```````````````````````````````` example
+{>>Start<<} of document.
+.
+<p><span class="markdown-comment">Start</span> of document.</p>
+````````````````````````````````
+
+"comment at end of document"
+
+```````````````````````````````` example
+End of {>>document<<}
+.
+<p>End of <span class="markdown-comment">document</span></p>
+````````````````````````````````
+
+"multiple comments in one line"
+
+```````````````````````````````` example
+{>>first<<} and {>>second<<} and {>>third<<}
+.
+<p><span class="markdown-comment">first</span> and <span class="markdown-comment">second</span> and <span class="markdown-comment">third</span></p>
+````````````````````````````````
+
+"comment with starting emphasis"
+
+```````````````````````````````` example
+{>>comment *text<<} that shouldn't be bold*
+.
+<p><span class="markdown-comment">comment *text</span> that shouldn't be bold*</p>
+````````````````````````````````
+
+"comment with ending emphasis"
+
+```````````````````````````````` example
+*this text should be {>>commented but not bold*<<}
+.
+<p>*this text should be <span class="markdown-comment">commented but not bold*</span></p>
+````````````````````````````````
+
+"comment with plus signs inside"
+
+```````````````````````````````` example
+text {>>plus + sign<<}
+.
+<p>text <span class="markdown-comment">plus + sign</span></p>
+````````````````````````````````
+
+"comment with minus signs inside"
+
+```````````````````````````````` example
+text {>>minus - sign<<}
+.
+<p>text <span class="markdown-comment">minus - sign</span></p>
+````````````````````````````````
+
+"comment nested with other critic marks"
+
+```````````````````````````````` example
+text {+insertion {>>comment<<} end+}
+.
+<p>text <ins class="markdown-insertion">insertion <span class="markdown-comment">comment</span> end</ins></p>
+````````````````````````````````
