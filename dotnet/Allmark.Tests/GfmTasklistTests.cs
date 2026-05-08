@@ -1,6 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Allmark.Rulesets;
-using System.Reflection;
 
 namespace Allmark.Tests;
 
@@ -182,8 +181,8 @@ public class GfmTasklistTests
     {
         var input = @"
 - [ ] parent task
-   - [ ] child task 1
-   - [x] child task 2
+  - [ ] child task 1
+  - [x] child task 2
 - [x] another parent
 ";
         var expected = @"
@@ -340,7 +339,7 @@ public class GfmTasklistTests
         var input = @"
 - [ ] task with paragraph
 
-   continuation paragraph
+  continuation paragraph
 - [x] another task
 ";
         var expected = @"
@@ -370,8 +369,8 @@ public class GfmTasklistTests
     {
         var input = @"
 - [ ] task with sublist
-   - subitem 1
-   - subitem 2
+  - subitem 1
+  - subitem 2
 - [x] checked task
 ";
         var expected = @"

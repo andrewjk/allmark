@@ -13,6 +13,7 @@ public class GfmTableTests
 | foo | bar |
 | --- | --- |
 | baz | bim |
+
 ";
         var expected = @"
 <table>
@@ -49,6 +50,7 @@ public class GfmTableTests
 | :--- | :----: | ----: |
 | foo  |  bar   |   baz |
 | a    |   b    |     c |
+
 ";
         var expected = @"
 <table>
@@ -93,6 +95,7 @@ public class GfmTableTests
 | **bold** | `code` |
 | *italic* | [link](url) |
 | ~~strike~~ | `multi` |
+
 ";
         var expected = @"
 <table>
@@ -137,6 +140,7 @@ public class GfmTableTests
 | - | - | - |
 | 1 | 2 |
 | 1 |
+
 ";
         var expected = @"
 <table>
@@ -179,6 +183,7 @@ public class GfmTableTests
 | a | b |
 | - | - |
 | 1 | 2 | 3 | 4 |
+
 ";
         var expected = @"
 <table>
@@ -213,6 +218,7 @@ public class GfmTableTests
         var input = @"
 | foo | bar |
 | --- | --- |
+
 ";
         var expected = @"
 <table>
@@ -243,6 +249,7 @@ public class GfmTableTests
 | - | - | - |
 |   | 2 |   |
 | 1 |   | 3 |
+
 ";
         var expected = @"
 <table>
@@ -285,6 +292,7 @@ public class GfmTableTests
 a | b | c
 - | - | -
 1 | 2 | 3
+
 ";
         var expected = @"
 <p>a | b | c</p>
@@ -311,6 +319,7 @@ a | b | c
 |  a  |  b  |  c  |
 | --- | --- | --- |
 | 1   |   2 |3    |
+
 ";
         var expected = @"
 <table>
@@ -351,6 +360,7 @@ a | b | c
 | Code | `inline` |
 | Bold | **strong** |
 | Link | [text](http://example.com) |
+
 ";
         var expected = @"
 <table>
@@ -399,6 +409,7 @@ a | b | c
 | ------ |
 | data   |
 | more   |
+
 ";
         var expected = @"
 <table>
@@ -436,6 +447,7 @@ a | b | c
 | - | - | - | - | - | - |
 | 1 | 2 | 3 | 4 | 5 | 6 |
 | a | b | c | d | e | f |
+
 ";
         var expected = @"
 <table>

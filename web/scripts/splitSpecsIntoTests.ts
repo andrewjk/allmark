@@ -20,6 +20,7 @@ async function processSpecsFolder() {
 		if (file.startsWith("core-")) {
 			const testName = file.replace(".txt", "");
 			await generateTestFile(testName, content, "core", true, getDescribeName("core", file));
+			await generateCSharpTestFile(testName, content, "Core", "Core");
 		} else if (file.startsWith("gfm-")) {
 			const testName = file.replace(".txt", "");
 			await generateTestFile(
@@ -30,9 +31,11 @@ async function processSpecsFolder() {
 				!file.includes("alert"),
 				getDescribeName("gfm", file),
 			);
+			await generateCSharpTestFile(testName, content, "Gfm", "Gfm");
 		} else if (file.startsWith("ext-")) {
 			const testName = file.replace(".txt", "");
 			await generateTestFile(testName, content, "extended", false, getDescribeName("ext", file));
+			await generateCSharpTestFile(testName, content, "Ext", "Extended");
 		}
 	}
 }
@@ -201,6 +204,13 @@ async function splitSpecsIntoTests(specFile: string, ruleSetName: string) {
 	const testPath = path.join(".", "test", testName + ".test.ts");
 	await fs.writeFile(testPath, output);
 	console.log(`Generated ${testPath} with ${examples.length} tests`);
+
+	const csharpClassName = toPascalCase(testName) + "Tests";
+	const csharpRuleSetName = toPascalCase(ruleSetName);
+	const csharpOutput = buildCSharpOutput(csharpClassName, examples, csharpRuleSetName);
+	const csharpPath = path.join("..", "dotnet", "Allmark.Tests", csharpClassName + ".cs");
+	await fs.writeFile(csharpPath, csharpOutput);
+	console.log(`Generated ${csharpPath} with ${examples.length} tests`);
 }
 
 function buildOutputForSpecTests(testName: string, ruleSetName: string, examples: TestExample[]) {
@@ -249,4 +259,73 @@ ${escapedInput}
 	.join("\n\n")}
 });
 `.trimStart();
+}
+
+function toPascalCase(str: string): string {
+	let result = str
+		.replace(/[^a-zA-Z0-9\s-]/g, "")
+		.replace(/(^|[-\s])(\w)/g, (_, __, char) => char.toUpperCase())
+		.replace(/[-\s]/g, "");
+
+	if (/^\d/.test(result)) {
+		result = "_" + result;
+	}
+
+	return result;
+}
+
+async function generateCSharpTestFile(
+	testName: string,
+	content: string,
+	_classPrefix: string,
+	ruleSetName: string,
+) {
+	const examples = parseSpecFile(content, true);
+	const className = toPascalCase(testName) + "Tests";
+	const output = buildCSharpOutput(className, examples, ruleSetName);
+	const testPath = path.join("..", "dotnet", "Allmark.Tests", className + ".cs");
+	await fs.writeFile(testPath, output);
+	console.log(`Generated ${testPath} with ${examples.length} tests`);
+}
+
+function buildCSharpOutput(
+	className: string,
+	examples: TestExample[],
+	ruleSetName: string,
+) {
+	return `using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Allmark.Rulesets;
+
+namespace Allmark.Tests;
+
+[TestClass]
+public class ${className}
+{
+${examples
+	.map((example) => {
+		const methodName = toPascalCase(example.description);
+		const escapedInput = example.input.replaceAll('"', '""');
+		const escapedExpected = example.expected ? example.expected.replaceAll('"', '""') : "";
+		const expectedString = escapedExpected ? `\n${escapedExpected}\n` : "\n";
+
+		return `    ${example.skip ? "// TODO:\n    [Ignore]\n    " : ""}[TestMethod]
+    public void ${methodName}()
+    {
+        var input = @"
+${escapedInput}
+";
+        var expected = @"${expectedString}".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, ${ruleSetName}.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], ${ruleSetName}.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\\n", "\\r\\n"), ${ruleSetName}.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\\r\\n", "\\n"));
+    }`;
+	})
+	.join("\n\n")}
+}`;
 }

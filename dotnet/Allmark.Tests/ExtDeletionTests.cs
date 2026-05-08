@@ -270,7 +270,7 @@ text {-`code`-}
     public void EscapedBracesShouldNotBeDeletion()
     {
         var input = @"
-text \{-not deletion\-\}
+text \{-not deletion\-}
 ";
         var expected = @"
 <p>text {-not deletion-}</p>

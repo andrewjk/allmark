@@ -4,10 +4,10 @@ using Allmark.Rulesets;
 namespace Allmark.Tests;
 
 [TestClass]
-public class HtmlBlockTests
+public class CoreHtmlBlockTests
 {
     [TestMethod]
-    public void HtmlScriptTagSingleLine()
+    public void HTMLScriptTagSingleLine()
     {
         var input = @"
 <script>alert('hi');</script>
@@ -27,7 +27,7 @@ public class HtmlBlockTests
     }
 
     [TestMethod]
-    public void HtmlScriptTagMultiLine()
+    public void HTMLScriptTagMultiLine()
     {
         var input = @"
 <script>
@@ -53,7 +53,7 @@ alert('bye');
     }
 
     [TestMethod]
-    public void HtmlPreTag()
+    public void HTMLPreTag()
     {
         var input = @"
 <pre>code here</pre>
@@ -73,7 +73,7 @@ alert('bye');
     }
 
     [TestMethod]
-    public void HtmlStyleTag()
+    public void HTMLStyleTag()
     {
         var input = @"
 <style>body { color: red; }</style>
@@ -92,8 +92,30 @@ alert('bye');
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
     }
 
+    // TODO:
+    [Ignore]
     [TestMethod]
-    public void HtmlCommentSingleLine()
+    public void HTMLTextareaTag()
+    {
+        var input = @"
+<textarea>Type here</textarea>
+";
+        var expected = @"
+<p><textarea>Type here</textarea></p>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
+    public void HTMLCommentSingleLine()
     {
         var input = @"
 <!-- This is a comment -->
@@ -113,7 +135,7 @@ alert('bye');
     }
 
     [TestMethod]
-    public void HtmlCommentMultiLine()
+    public void HTMLCommentMultiLine()
     {
         var input = @"
 <!--
@@ -139,7 +161,7 @@ multi-line comment
     }
 
     [TestMethod]
-    public void HtmlProcessingInstruction()
+    public void HTMLProcessingInstruction()
     {
         var input = @"
 <?php echo 'hello'; ?>
@@ -159,7 +181,7 @@ multi-line comment
     }
 
     [TestMethod]
-    public void HtmlDeclarationDOCTYPE()
+    public void HTMLDeclarationDOCTYPE()
     {
         var input = @"
 <!DOCTYPE html>
@@ -179,7 +201,7 @@ multi-line comment
     }
 
     [TestMethod]
-    public void HtmlCDATASection()
+    public void HTMLCDATASection()
     {
         var input = @"
 <![CDATA[<greeting>Hello</greeting>]]>
@@ -199,7 +221,7 @@ multi-line comment
     }
 
     [TestMethod]
-    public void HtmlBlockLevelDivTag()
+    public void HTMLBlockLevelDivTag()
     {
         var input = @"
 <div>Content</div>
@@ -219,7 +241,7 @@ multi-line comment
     }
 
     [TestMethod]
-    public void HtmlDivWithBlankLineAfter()
+    public void HTMLDivWithBlankLineAfter()
     {
         var input = @"
 <div>Content</div>
@@ -242,7 +264,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlParagraphTag()
+    public void HTMLParagraphTag()
     {
         var input = @"
 <p>HTML paragraph</p>
@@ -262,7 +284,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlHeadingTags()
+    public void HTMLHeadingTags()
     {
         var input = @"
 <h1>Heading</h1>
@@ -282,7 +304,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlListTags()
+    public void HTMLListTags()
     {
         var input = @"
 <ul>
@@ -306,7 +328,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlTableTag()
+    public void HTMLTableTag()
     {
         var input = @"
 <table><tr><td>Cell</td></tr></table>
@@ -326,7 +348,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlBlockWithIndentationLessThan4Spaces()
+    public void HTMLBlockWithIndentationLessThan4Spaces()
     {
         var input = @"
    <div>Indented</div>
@@ -346,7 +368,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlBlockWith4SpaceIndentShouldBeCode()
+    public void HTMLBlockWith4SpaceIndentShouldBeCode()
     {
         var input = @"
     <div>Code</div>
@@ -367,7 +389,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlClosingTagAlone()
+    public void HTMLClosingTagAlone()
     {
         var input = @"
 </div>
@@ -387,7 +409,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlSelfClosingTag()
+    public void HTMLSelfClosingTag()
     {
         var input = @"
 <br />
@@ -407,7 +429,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlImgTag()
+    public void HTMLImgTag()
     {
         var input = @"
 <img src=""image.jpg"" alt=""Image"">
@@ -427,7 +449,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlHrTag()
+    public void HTMLHrTag()
     {
         var input = @"
 <hr />
@@ -447,7 +469,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void HtmlBlockFollowedByMarkdown()
+    public void HTMLBlockFollowedByMarkdown()
     {
         var input = @"
 <div>HTML</div>
@@ -470,7 +492,7 @@ Next paragraph
     }
 
     [TestMethod]
-    public void ParagraphBeforeHtmlBlockType7ShouldNotInterrupt()
+    public void ParagraphBeforeHTMLBlockType7ShouldNotInterrupt()
     {
         var input = @"
 Paragraph text
@@ -492,7 +514,7 @@ Paragraph text
     }
 
     [TestMethod]
-    public void HtmlCommentInParagraph()
+    public void HTMLCommentInParagraph()
     {
         var input = @"
 Text <!-- comment --> more text
@@ -512,7 +534,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void MultipleHtmlBlocks()
+    public void MultipleHTMLBlocks()
     {
         var input = @"
 <div>First</div>
@@ -535,7 +557,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlBlockWithAttributes()
+    public void HTMLBlockWithAttributes()
     {
         var input = @"
 <div class=""container"" id=""main"">Content</div>
@@ -555,7 +577,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlScriptTagWithAttributes()
+    public void HTMLScriptTagWithAttributes()
     {
         var input = @"
 <script src=""script.js"" async></script>
@@ -575,7 +597,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlFormTag()
+    public void HTMLFormTag()
     {
         var input = @"
 <form action=""/submit""> <input type=""text""> </form>
@@ -595,7 +617,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlBlockquoteTag()
+    public void HTMLBlockquoteTag()
     {
         var input = @"
 <blockquote>Quote</blockquote>
@@ -615,7 +637,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlAddressTag()
+    public void HTMLAddressTag()
     {
         var input = @"
 <address>123 Main St</address>
@@ -635,7 +657,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlArticleTag()
+    public void HTMLArticleTag()
     {
         var input = @"
 <article>Content</article>
@@ -655,7 +677,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlAsideTag()
+    public void HTMLAsideTag()
     {
         var input = @"
 <aside>Sidebar</aside>
@@ -675,7 +697,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlSectionTag()
+    public void HTMLSectionTag()
     {
         var input = @"
 <section>Section</section>
@@ -695,7 +717,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlNavTag()
+    public void HTMLNavTag()
     {
         var input = @"
 <nav>Menu</nav>
@@ -715,7 +737,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlFooterTag()
+    public void HTMLFooterTag()
     {
         var input = @"
 <footer>Copyright</footer>
@@ -735,7 +757,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlHeaderTag()
+    public void HTMLHeaderTag()
     {
         var input = @"
 <header>Header</header>
@@ -755,7 +777,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlMainTag()
+    public void HTMLMainTag()
     {
         var input = @"
 <main>Main</main>
@@ -775,7 +797,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlFigureTag()
+    public void HTMLFigureTag()
     {
         var input = @"
 <figure><img src=""img.jpg""></figure>
@@ -795,7 +817,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlFigcaptionTag()
+    public void HTMLFigcaptionTag()
     {
         var input = @"
 <figcaption>Caption</figcaption>
@@ -815,7 +837,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlDetailsAndSummaryTags()
+    public void HTMLDetailsAndSummaryTags()
     {
         var input = @"
 <details><summary>Click</summary>Content</details>
@@ -835,7 +857,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlDialogTag()
+    public void HTMLDialogTag()
     {
         var input = @"
 <dialog>Dialog content</dialog>
@@ -855,7 +877,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlFieldsetTag()
+    public void HTMLFieldsetTag()
     {
         var input = @"
 <fieldset>Field</fieldset>
@@ -875,7 +897,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlLegendTag()
+    public void HTMLLegendTag()
     {
         var input = @"
 <legend>Legend</legend>
@@ -895,7 +917,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlDlDtDdTags()
+    public void HTMLDlDtDdTags()
     {
         var input = @"
 <dl><dt>Term</dt><dd>Definition</dd></dl>
@@ -915,7 +937,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlLinkTagEmpty()
+    public void HTMLLinkTagEmpty()
     {
         var input = @"
 <link rel=""stylesheet"" href=""style.css"">
@@ -935,7 +957,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlBaseTag()
+    public void HTMLBaseTag()
     {
         var input = @"
 <base href=""https://example.com/"">
@@ -955,7 +977,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlBasefontTag()
+    public void HTMLBasefontTag()
     {
         var input = @"
 <basefont face=""Arial"">
@@ -975,7 +997,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlCenterTag()
+    public void HTMLCenterTag()
     {
         var input = @"
 <center>Centered</center>
@@ -995,7 +1017,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlColAndColgroupTags()
+    public void HTMLColAndColgroupTags()
     {
         var input = @"
 <colgroup><col span=""2""></colgroup>
@@ -1015,7 +1037,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlTbodyTheadTfootTrThTdTags()
+    public void HTMLTbodyTheadTfootTrThTdTags()
     {
         var input = @"
 <table><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>
@@ -1035,7 +1057,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlCaptionTag()
+    public void HTMLCaptionTag()
     {
         var input = @"
 <caption>Table caption</caption>
@@ -1055,7 +1077,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlSourceTag()
+    public void HTMLSourceTag()
     {
         var input = @"
 <source src=""video.mp4"" type=""video/mp4"">
@@ -1075,7 +1097,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlTrackTag()
+    public void HTMLTrackTag()
     {
         var input = @"
 <track src=""captions.vtt"" kind=""captions"">
@@ -1095,7 +1117,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlFramesetFrameNoframesTags()
+    public void HTMLFramesetFrameNoframesTags()
     {
         var input = @"
 <frameset><frame src=""frame.html""></frameset>
@@ -1115,7 +1137,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlNoframesTag()
+    public void HTMLNoframesTag()
     {
         var input = @"
 <noframes>No frames</noframes>
@@ -1135,7 +1157,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlIframeTag()
+    public void HTMLIframeTag()
     {
         var input = @"
 <iframe src=""page.html""></iframe>
@@ -1155,7 +1177,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlParamTag()
+    public void HTMLParamTag()
     {
         var input = @"
 <param name=""autoplay"" value=""true"">
@@ -1175,7 +1197,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlDirTag()
+    public void HTMLDirTag()
     {
         var input = @"
 <dir><li>Item</li></dir>
@@ -1195,7 +1217,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlMenuAndMenuitemTags()
+    public void HTMLMenuAndMenuitemTags()
     {
         var input = @"
 <menu><menuitem>Item</menuitem></menu>
@@ -1215,7 +1237,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlOptgroupAndOptionTags()
+    public void HTMLOptgroupAndOptionTags()
     {
         var input = @"
 <select><optgroup label=""Group""><option>Item</option></optgroup></select>
@@ -1235,7 +1257,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlTitleTagInBodyNotHead()
+    public void HTMLTitleTagInBodyNotHead()
     {
         var input = @"
 <title>Page Title</title>
@@ -1255,7 +1277,7 @@ Text <!-- comment --> more text
     }
 
     [TestMethod]
-    public void HtmlBlockWithLineBreaksInside()
+    public void HTMLBlockWithLineBreaksInside()
     {
         var input = @"
 <div>
@@ -1283,7 +1305,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlBlockInsideList()
+    public void HTMLBlockInsideList()
     {
         var input = @"
 - Item
@@ -1310,7 +1332,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlBlockInsideBlockquote()
+    public void HTMLBlockInsideBlockquote()
     {
         var input = @"
 > <div>HTML</div>
@@ -1332,7 +1354,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlCaseInsensitiveUppercase()
+    public void HTMLCaseInsensitiveUppercase()
     {
         var input = @"
 <DIV>Content</DIV>
@@ -1352,7 +1374,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlScriptTagWithMixedCase()
+    public void HTMLScriptTagWithMixedCase()
     {
         var input = @"
 <SCRIPT>alert('hi');</SCRIPT>
@@ -1372,7 +1394,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlBlockWithNoContent()
+    public void HTMLBlockWithNoContent()
     {
         var input = @"
 <div></div>
@@ -1392,7 +1414,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlCustomTagNonBlockLevel()
+    public void HTMLCustomTagNonBlockLevel()
     {
         var input = @"
 <custom-tag>Content</custom-tag>
@@ -1412,7 +1434,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlCommentEndingOnSameLine()
+    public void HTMLCommentEndingOnSameLine()
     {
         var input = @"
 <!-- comment -->
@@ -1432,7 +1454,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlCommentWithMultipleDashes()
+    public void HTMLCommentWithMultipleDashes()
     {
         var input = @"
 <!-- --- comment --- -->
@@ -1452,7 +1474,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlCDATAWithEmbeddedBrackets()
+    public void HTMLCDATAWithEmbeddedBrackets()
     {
         var input = @"
 <![CDATA[<test>data</test>]]>
@@ -1472,7 +1494,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlDOCTYPEWithPublicIdentifier()
+    public void HTMLDOCTYPEWithPublicIdentifier()
     {
         var input = @"
 <!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01//EN"" ""http://www.w3.org/TR/html4/strict.dtd"">
@@ -1492,7 +1514,7 @@ Line 3
     }
 
     [TestMethod]
-    public void HtmlBlockContinuesUntilBlankLineType6()
+    public void HTMLBlockContinuesUntilBlankLineType6()
     {
         var input = @"
 <div>Line 1
@@ -1517,6 +1539,4 @@ Line 3
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
     }
-
-
 }

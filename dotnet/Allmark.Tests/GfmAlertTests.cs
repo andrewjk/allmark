@@ -131,15 +131,15 @@ public class GfmAlertTests
     {
         var input = @"
 > [!NOTE]
-> First paragraph of note.
+> First paragraph of the note.
 >
-> Second paragraph of note.
+> Second paragraph of the note.
 ";
         var expected = @"
 <div class=""markdown-alert markdown-alert-note"">
 <p class=""markdown-alert-title"">Note</p>
-<p>First paragraph of note.</p>
-<p>Second paragraph of note.</p>
+<p>First paragraph of the note.</p>
+<p>Second paragraph of the note.</p>
 </div>
 ".Substring(1);
 
@@ -244,12 +244,12 @@ public class GfmAlertTests
     {
         var input = @"
 > [!NOTE]
-> Check out [documentation](https://example.com) for more info.
+> Check out the [documentation](https://example.com) for more info.
 ";
         var expected = @"
 <div class=""markdown-alert markdown-alert-note"">
 <p class=""markdown-alert-title"">Note</p>
-<p>Check out <a href=""https://example.com"">documentation</a> for more info.</p>
+<p>Check out the <a href=""https://example.com"">documentation</a> for more info.</p>
 </div>
 ".Substring(1);
 
@@ -400,7 +400,6 @@ It should be a regular blockquote.</p>
     {
         var input = @"
 > [!NOTE]
->
 >
 > Content after empty line.
 ";

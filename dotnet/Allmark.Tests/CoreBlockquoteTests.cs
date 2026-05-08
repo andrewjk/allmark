@@ -664,6 +664,28 @@ Back to outer</li>
     }
 
     [TestMethod]
+    public void BlockquoteWithHTMLBlock()
+    {
+        var input = @"
+> <div>HTML</div>
+";
+        var expected = @"
+<blockquote>
+<div>HTML</div>
+</blockquote>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
     public void BlockquoteWithHardLineBreaks()
     {
         var input = @"
@@ -789,28 +811,6 @@ Line 4</p>
 <p>Item 2</p>
 </li>
 </ul>
-</blockquote>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void BlockquoteWithHTMLBlock()
-    {
-        var input = @"
-> <div>HTML</div>
-";
-        var expected = @"
-<blockquote>
-<div>HTML</div>
 </blockquote>
 ".Substring(1);
 

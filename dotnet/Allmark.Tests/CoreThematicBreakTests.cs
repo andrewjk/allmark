@@ -4,7 +4,7 @@ using Allmark.Rulesets;
 namespace Allmark.Tests;
 
 [TestClass]
-public class ThematicBreakTests
+public class CoreThematicBreakTests
 {
     [TestMethod]
     public void SimpleThematicBreakWithDashes()
@@ -849,6 +849,25 @@ Heading
     }
 
     [TestMethod]
+    public void EmptyThematicBreakShouldNotMatch()
+    {
+        var input = @"
+
+";
+        var expected = @"
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
     public void TextThatLooksLikeThematicBreakButHasOtherContent()
     {
         var input = @"
@@ -951,7 +970,7 @@ code
     }
 
     [TestMethod]
-    public void ThematicBreakInFencedCodeBlock()
+    public void ThematicBreakInFencedCodeBlockShouldNotBeInterpreted()
     {
         var input = @"
 ```
@@ -1001,25 +1020,6 @@ code
 ";
         var expected = @"
 <p>---   text</p>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void EmptyThematicBreakShouldNotMatch()
-    {
-        var input = @"
-
-";
-        var expected = @"
 ".Substring(1);
 
         var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);

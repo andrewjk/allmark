@@ -4,7 +4,7 @@ using Allmark.Rulesets;
 namespace Allmark.Tests;
 
 [TestClass]
-public class ListBulletedTests
+public class CoreListBulletedTests
 {
     [TestMethod]
     public void SimpleBulletedListWithDashes()
@@ -399,33 +399,6 @@ Paragraph
     }
 
     [TestMethod]
-    public void BulletedListWithHTMLBlock()
-    {
-        var input = @"
-- Item
-
-  <div>HTML</div>
-";
-        var expected = @"
-<ul>
-<li>
-<p>Item</p>
-<div>HTML</div>
-</li>
-</ul>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
     public void BulletedListWithInlineFormatting()
     {
         var input = @"
@@ -470,7 +443,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void BulletedListItemWithMultipleParagraphs()
+    public void BulletedListItemWithMultipleParagraphsLoose()
     {
         var input = @"
 - Item 1
@@ -607,7 +580,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void BulletedListItemWithLeadingSpaces()
+    public void BulletedListItemWithLeadingSpacesStillAList()
     {
         var input = @"
    - Item

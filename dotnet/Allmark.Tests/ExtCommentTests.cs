@@ -11,7 +11,7 @@ public class ExtCommentTests
     {
         var input = @"
 This text was {>>commented<<} recently.
-  
+ 
 ";
         var expected = @"
 <p>This text was <span class=""markdown-comment"">commented</span> recently.</p>

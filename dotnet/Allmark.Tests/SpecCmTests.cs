@@ -7,7 +7,7 @@ namespace Allmark.Tests;
 public class SpecCmTests
 {
     [TestMethod]
-    public void Example1()
+    public void Example1Line355Foobazbim()
     {
         var input = @"
 	foo	baz		bim
@@ -28,7 +28,7 @@ public class SpecCmTests
     }
 
     [TestMethod]
-    public void Example2()
+    public void Example2Line362Foobazbim()
     {
         var input = @"
   	foo	baz		bim
@@ -49,7 +49,7 @@ public class SpecCmTests
     }
 
     [TestMethod]
-    public void Example3()
+    public void Example3Line369AanA()
     {
         var input = @"
     a	a
@@ -72,7 +72,7 @@ public class SpecCmTests
     }
 
     [TestMethod]
-    public void Example4()
+    public void Example4Line382Foonnbar()
     {
         var input = @"
   - foo
@@ -99,7 +99,7 @@ public class SpecCmTests
     }
 
     [TestMethod]
-    public void Example5()
+    public void Example5Line395Foonnbar()
     {
         var input = @"
 - foo
@@ -127,7 +127,7 @@ public class SpecCmTests
     }
 
     [TestMethod]
-    public void Example6()
+    public void Example6Line418Foo()
     {
         var input = @"
 >		foo
@@ -150,7 +150,7 @@ public class SpecCmTests
     }
 
     [TestMethod]
-    public void Example7()
+    public void Example7Line427Foo()
     {
         var input = @"
 -		foo
@@ -175,7 +175,7 @@ public class SpecCmTests
     }
 
     [TestMethod]
-    public void Example8()
+    public void Example8Line439Foonbar()
     {
         var input = @"
     foo
@@ -198,7 +198,7 @@ bar
     }
 
     [TestMethod]
-    public void Example9()
+    public void Example9Line448FoonBarnBaz()
     {
         var input = @"
  - foo
@@ -230,7 +230,7 @@ bar
     }
 
     [TestMethod]
-    public void Example10()
+    public void Example10Line466Foo()
     {
         var input = @"
 #	Foo
@@ -250,7 +250,7 @@ bar
     }
 
     [TestMethod]
-    public void Example11()
+    public void Example11Line472()
     {
         var input = @"
 *	*	*	
@@ -270,7 +270,7 @@ bar
     }
 
     [TestMethod]
-    public void Example12()
+    public void Example12Line489()
     {
         var input = @"
 \!\""\#\$\%\&\'\(\)\*\+\,\-\.\/\:\;\<\=\>\?\@\[\\\]\^\_\`\{\|\}\~
@@ -290,7 +290,7 @@ bar
     }
 
     [TestMethod]
-    public void Example13()
+    public void Example13Line499Aa3()
     {
         var input = @"
 \	\A\a\ \3\φ\«
@@ -310,7 +310,7 @@ bar
     }
 
     [TestMethod]
-    public void Example14()
+    public void Example14Line509NotEmphasizednbrNotATagnnotALinkfoonnotCoden1NotAListnNotAListnNotAHeadingnfooUrlNotAReferencenoumlNotACharacterEntity()
     {
         var input = @"
 \*not emphasized*
@@ -346,7 +346,7 @@ bar
     }
 
     [TestMethod]
-    public void Example15()
+    public void Example15Line534Emphasis()
     {
         var input = @"
 \\*emphasis*
@@ -366,7 +366,7 @@ bar
     }
 
     [TestMethod]
-    public void Example16()
+    public void Example16Line543Foonbar()
     {
         var input = @"
 foo\
@@ -388,7 +388,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example17()
+    public void Example17Line555()
     {
         var input = @"
 `` \[\` ``
@@ -408,7 +408,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example18()
+    public void Example18Line562()
     {
         var input = @"
     \[\]
@@ -429,7 +429,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example19()
+    public void Example19Line570Nn()
     {
         var input = @"
 ~~~
@@ -452,7 +452,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example20()
+    public void Example20Line580Httpsexamplecomfind()
     {
         var input = @"
 <https://example.com?find=\*>
@@ -472,7 +472,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example21()
+    public void Example21Line587AHrefbar()
     {
         var input = @"
 <a href=""/bar\/)"">
@@ -492,7 +492,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example22()
+    public void Example22Line597FoobarTitle()
     {
         var input = @"
 [foo](/bar\* ""ti\*tle"")
@@ -512,7 +512,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example23()
+    public void Example23Line604FoonnfooBarTitle()
     {
         var input = @"
 [foo]
@@ -534,7 +534,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example24()
+    public void Example24Line613Foobarnfoon()
     {
         var input = @"
 ``` foo\+bar
@@ -557,7 +557,7 @@ foo
     }
 
     [TestMethod]
-    public void Example25()
+    public void Example25Line649NbspAmpCopyAEligDcaronnfrac34HilbertSpaceDifferentialDnClockwiseContourIntegralNgE()
     {
         var input = @"
 &nbsp; &amp; &copy; &AElig; &Dcaron;
@@ -581,7 +581,7 @@ foo
     }
 
     [TestMethod]
-    public void Example26()
+    public void Example26Line6683512349920()
     {
         var input = @"
 &#35; &#1234; &#992; &#0;
@@ -601,7 +601,7 @@ foo
     }
 
     [TestMethod]
-    public void Example27()
+    public void Example27Line681X22XD06Xcab()
     {
         var input = @"
 &#X22; &#XD06; &#xcab;
@@ -621,7 +621,7 @@ foo
     }
 
     [TestMethod]
-    public void Example28()
+    public void Example28Line690NbspXXn87654321nabcdef0nThisIsNotDefinedHi()
     {
         var input = @"
 &nbsp &x; &#; &#x;
@@ -647,7 +647,7 @@ foo
     }
 
     [TestMethod]
-    public void Example29()
+    public void Example29Line707Copy()
     {
         var input = @"
 &copy
@@ -667,7 +667,7 @@ foo
     }
 
     [TestMethod]
-    public void Example30()
+    public void Example30Line717MadeUpEntity()
     {
         var input = @"
 &MadeUpEntity;
@@ -687,7 +687,7 @@ foo
     }
 
     [TestMethod]
-    public void Example31()
+    public void Example31Line728AHrefoumloumlhtml()
     {
         var input = @"
 <a href=""&ouml;&ouml;.html"">
@@ -707,7 +707,7 @@ foo
     }
 
     [TestMethod]
-    public void Example32()
+    public void Example32Line735FoofoumloumlFoumlouml()
     {
         var input = @"
 [foo](/f&ouml;&ouml; ""f&ouml;&ouml;"")
@@ -727,7 +727,7 @@ foo
     }
 
     [TestMethod]
-    public void Example33()
+    public void Example33Line742FoonnfooFoumloumlFoumlouml()
     {
         var input = @"
 [foo]
@@ -749,7 +749,7 @@ foo
     }
 
     [TestMethod]
-    public void Example34()
+    public void Example34Line751Foumloumlnfoon()
     {
         var input = @"
 ``` f&ouml;&ouml;
@@ -772,7 +772,7 @@ foo
     }
 
     [TestMethod]
-    public void Example35()
+    public void Example35Line764Foumlouml()
     {
         var input = @"
 `f&ouml;&ouml;`
@@ -792,7 +792,7 @@ foo
     }
 
     [TestMethod]
-    public void Example36()
+    public void Example36Line771Foumlfouml()
     {
         var input = @"
     f&ouml;f&ouml;
@@ -813,7 +813,7 @@ foo
     }
 
     [TestMethod]
-    public void Example37()
+    public void Example37Line78342foo42nfoo()
     {
         var input = @"
 &#42;foo&#42;
@@ -835,7 +835,7 @@ foo
     }
 
     [TestMethod]
-    public void Example38()
+    public void Example38Line79142FoonnFoo()
     {
         var input = @"
 &#42; foo
@@ -860,7 +860,7 @@ foo
     }
 
     [TestMethod]
-    public void Example39()
+    public void Example39Line802Foo1010bar()
     {
         var input = @"
 foo&#10;&#10;bar
@@ -882,7 +882,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example40()
+    public void Example40Line8109foo()
     {
         var input = @"
 &#9;foo
@@ -902,7 +902,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example41()
+    public void Example41Line817AurlQuottitquot()
     {
         var input = @"
 [a](url &quot;tit&quot;)
@@ -922,7 +922,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example42()
+    public void Example42Line840OnenTwo()
     {
         var input = @"
 - `one
@@ -946,7 +946,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example43()
+    public void Example43Line879NN()
     {
         var input = @"
 ***
@@ -970,7 +970,7 @@ ___
     }
 
     [TestMethod]
-    public void Example44()
+    public void Example44Line892()
     {
         var input = @"
 +++
@@ -990,7 +990,7 @@ ___
     }
 
     [TestMethod]
-    public void Example45()
+    public void Example45Line899()
     {
         var input = @"
 ===
@@ -1010,7 +1010,7 @@ ___
     }
 
     [TestMethod]
-    public void Example46()
+    public void Example46Line908Nn()
     {
         var input = @"
 --
@@ -1034,7 +1034,7 @@ __</p>
     }
 
     [TestMethod]
-    public void Example47()
+    public void Example47Line921NN()
     {
         var input = @"
  ***
@@ -1058,7 +1058,7 @@ __</p>
     }
 
     [TestMethod]
-    public void Example48()
+    public void Example48Line934()
     {
         var input = @"
     ***
@@ -1079,7 +1079,7 @@ __</p>
     }
 
     [TestMethod]
-    public void Example49()
+    public void Example49Line942Foon()
     {
         var input = @"
 Foo
@@ -1101,7 +1101,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example50()
+    public void Example50Line953()
     {
         var input = @"
 _____________________________________
@@ -1121,7 +1121,7 @@ _____________________________________
     }
 
     [TestMethod]
-    public void Example51()
+    public void Example51Line962()
     {
         var input = @"
  - - -
@@ -1141,7 +1141,7 @@ _____________________________________
     }
 
     [TestMethod]
-    public void Example52()
+    public void Example52Line969()
     {
         var input = @"
  **  * ** * ** * **
@@ -1161,7 +1161,7 @@ _____________________________________
     }
 
     [TestMethod]
-    public void Example53()
+    public void Example53Line976()
     {
         var input = @"
 -     -      -      -
@@ -1181,7 +1181,7 @@ _____________________________________
     }
 
     [TestMethod]
-    public void Example54()
+    public void Example54Line985()
     {
         var input = @"
 - - - -    
@@ -1201,7 +1201,7 @@ _____________________________________
     }
 
     [TestMethod]
-    public void Example55()
+    public void Example55Line994AnnaNnA()
     {
         var input = @"
 _ _ _ _ a
@@ -1227,7 +1227,7 @@ a------
     }
 
     [TestMethod]
-    public void Example56()
+    public void Example56Line1010()
     {
         var input = @"
  *-*
@@ -1247,7 +1247,7 @@ a------
     }
 
     [TestMethod]
-    public void Example57()
+    public void Example57Line1019FoonnBar()
     {
         var input = @"
 - foo
@@ -1275,7 +1275,7 @@ a------
     }
 
     [TestMethod]
-    public void Example58()
+    public void Example58Line1036Foonnbar()
     {
         var input = @"
 Foo
@@ -1299,7 +1299,7 @@ bar
     }
 
     [TestMethod]
-    public void Example59()
+    public void Example59Line1053FoonNbar()
     {
         var input = @"
 Foo
@@ -1322,7 +1322,7 @@ bar
     }
 
     [TestMethod]
-    public void Example60()
+    public void Example60Line1066FoonNBar()
     {
         var input = @"
 * Foo
@@ -1350,7 +1350,7 @@ bar
     }
 
     [TestMethod]
-    public void Example61()
+    public void Example61Line1083Foon()
     {
         var input = @"
 - Foo
@@ -1376,7 +1376,7 @@ bar
     }
 
     [TestMethod]
-    public void Example62()
+    public void Example62Line1112FoonFoonFoonFoonFoonFoo()
     {
         var input = @"
 # foo
@@ -1406,7 +1406,7 @@ bar
     }
 
     [TestMethod]
-    public void Example63()
+    public void Example63Line1131Foo()
     {
         var input = @"
 ####### foo
@@ -1426,7 +1426,7 @@ bar
     }
 
     [TestMethod]
-    public void Example64()
+    public void Example64Line11465Boltnnhashtag()
     {
         var input = @"
 #5 bolt
@@ -1449,7 +1449,7 @@ bar
     }
 
     [TestMethod]
-    public void Example65()
+    public void Example65Line1158Foo()
     {
         var input = @"
 \## foo
@@ -1469,7 +1469,7 @@ bar
     }
 
     [TestMethod]
-    public void Example66()
+    public void Example66Line1167FooBarBaz()
     {
         var input = @"
 # foo *bar* \*baz\*
@@ -1489,7 +1489,7 @@ bar
     }
 
     [TestMethod]
-    public void Example67()
+    public void Example67Line1176Foo()
     {
         var input = @"
 #                  foo                     
@@ -1509,7 +1509,7 @@ bar
     }
 
     [TestMethod]
-    public void Example68()
+    public void Example68Line1185FoonFoonFoo()
     {
         var input = @"
  ### foo
@@ -1533,7 +1533,7 @@ bar
     }
 
     [TestMethod]
-    public void Example69()
+    public void Example69Line1198Foo()
     {
         var input = @"
     # foo
@@ -1554,7 +1554,7 @@ bar
     }
 
     [TestMethod]
-    public void Example70()
+    public void Example70Line1206FoonBar()
     {
         var input = @"
 foo
@@ -1576,7 +1576,7 @@ foo
     }
 
     [TestMethod]
-    public void Example71()
+    public void Example71Line1217FooNBar()
     {
         var input = @"
 ## foo ##
@@ -1598,7 +1598,7 @@ foo
     }
 
     [TestMethod]
-    public void Example72()
+    public void Example72Line1228FooNFoo()
     {
         var input = @"
 # foo ##################################
@@ -1620,7 +1620,7 @@ foo
     }
 
     [TestMethod]
-    public void Example73()
+    public void Example73Line1239Foo()
     {
         var input = @"
 ### foo ###     
@@ -1640,7 +1640,7 @@ foo
     }
 
     [TestMethod]
-    public void Example74()
+    public void Example74Line1250FooB()
     {
         var input = @"
 ### foo ### b
@@ -1660,7 +1660,7 @@ foo
     }
 
     [TestMethod]
-    public void Example75()
+    public void Example75Line1259Foo()
     {
         var input = @"
 # foo#
@@ -1680,7 +1680,7 @@ foo
     }
 
     [TestMethod]
-    public void Example76()
+    public void Example76Line1269FooNFooNFoo()
     {
         var input = @"
 ### foo \###
@@ -1704,7 +1704,7 @@ foo
     }
 
     [TestMethod]
-    public void Example77()
+    public void Example77Line1283NFoon()
     {
         var input = @"
 ****
@@ -1728,7 +1728,7 @@ foo
     }
 
     [TestMethod]
-    public void Example78()
+    public void Example78Line1294FooBarnBaznBarFoo()
     {
         var input = @"
 Foo bar
@@ -1752,7 +1752,7 @@ Bar foo
     }
 
     [TestMethod]
-    public void Example79()
+    public void Example79Line1307Nn()
     {
         var input = @"
 ## 
@@ -1776,7 +1776,7 @@ Bar foo
     }
 
     [TestMethod]
-    public void Example80()
+    public void Example80Line1347FooBarnnnFooBarn()
     {
         var input = @"
 Foo *bar*
@@ -1801,7 +1801,7 @@ Foo *bar*
     }
 
     [TestMethod]
-    public void Example81()
+    public void Example81Line1361FooBarnbazn()
     {
         var input = @"
 Foo *bar
@@ -1824,7 +1824,7 @@ baz</em></h1>
     }
 
     [TestMethod]
-    public void Example82()
+    public void Example82Line1375FooBarnbazn()
     {
         var input = @"
   Foo *bar
@@ -1846,11 +1846,8 @@ baz</em></h1>
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
     }
 
-    // NOTE: We break from the spec here and require at least two underline
-    // chars to prevent things from jumping around when typing a list under
-    // a paragraph
     [TestMethod]
-    public void Example83()
+    public void Example83Line1387FoonNnFoon()
     {
         var input = @"
 Foo
@@ -1875,7 +1872,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example84()
+    public void Example84Line1402FoonNnFoonNnFoon()
     {
         var input = @"
    Foo
@@ -1904,7 +1901,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example85()
+    public void Example85Line1420FoonNnFoon()
     {
         var input = @"
     Foo
@@ -1933,7 +1930,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example86()
+    public void Example86Line1439Foon()
     {
         var input = @"
 Foo
@@ -1954,7 +1951,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example87()
+    public void Example87Line1449Foon()
     {
         var input = @"
 Foo
@@ -1976,7 +1973,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example88()
+    public void Example88Line1460FoonNnFoon()
     {
         var input = @"
 Foo
@@ -2003,7 +2000,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example89()
+    public void Example89Line1476FooN()
     {
         var input = @"
 Foo  
@@ -2024,7 +2021,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example90()
+    public void Example90Line1486Foon()
     {
         var input = @"
 Foo\
@@ -2045,7 +2042,7 @@ Foo\
     }
 
     [TestMethod]
-    public void Example91()
+    public void Example91Line1497FoonNnnaTitleaLotnNofDashes()
     {
         var input = @"
 `Foo
@@ -2074,7 +2071,7 @@ of dashes""/>
     }
 
     [TestMethod]
-    public void Example92()
+    public void Example92Line1516Foon()
     {
         var input = @"
 > Foo
@@ -2098,7 +2095,7 @@ of dashes""/>
     }
 
     [TestMethod]
-    public void Example93()
+    public void Example93Line1527Foonbarn()
     {
         var input = @"
 > foo
@@ -2124,7 +2121,7 @@ bar
     }
 
     [TestMethod]
-    public void Example94()
+    public void Example94Line1540Foon()
     {
         var input = @"
 - Foo
@@ -2148,7 +2145,7 @@ bar
     }
 
     [TestMethod]
-    public void Example95()
+    public void Example95Line1555FoonBarn()
     {
         var input = @"
 Foo
@@ -2171,7 +2168,7 @@ Bar</h2>
     }
 
     [TestMethod]
-    public void Example96()
+    public void Example96Line1568NFoonNBarnNBaz()
     {
         var input = @"
 ---
@@ -2199,7 +2196,7 @@ Baz
     }
 
     [TestMethod]
-    public void Example97()
+    public void Example97Line1585N()
     {
         var input = @"
 
@@ -2220,7 +2217,7 @@ Baz
     }
 
     [TestMethod]
-    public void Example98()
+    public void Example98Line1597N()
     {
         var input = @"
 ---
@@ -2242,7 +2239,7 @@ Baz
     }
 
     [TestMethod]
-    public void Example99()
+    public void Example99Line1606Foon()
     {
         var input = @"
 - foo
@@ -2266,7 +2263,7 @@ Baz
     }
 
     [TestMethod]
-    public void Example100()
+    public void Example100Line1617Foon()
     {
         var input = @"
     foo
@@ -2289,7 +2286,7 @@ Baz
     }
 
     [TestMethod]
-    public void Example101()
+    public void Example101Line1627Foon()
     {
         var input = @"
 > foo
@@ -2313,7 +2310,7 @@ Baz
     }
 
     [TestMethod]
-    public void Example102()
+    public void Example102Line1641Foon()
     {
         var input = @"
 \> foo
@@ -2334,7 +2331,7 @@ Baz
     }
 
     [TestMethod]
-    public void Example103()
+    public void Example103Line1672FoonnbarnNbaz()
     {
         var input = @"
 Foo
@@ -2360,7 +2357,7 @@ baz
     }
 
     [TestMethod]
-    public void Example104()
+    public void Example104Line1688FoonbarnnNnbaz()
     {
         var input = @"
 Foo
@@ -2388,7 +2385,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example105()
+    public void Example105Line1706FoonbarnNbaz()
     {
         var input = @"
 Foo
@@ -2414,7 +2411,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example106()
+    public void Example106Line1721FoonbarnNbaz()
     {
         var input = @"
 Foo
@@ -2440,7 +2437,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example107()
+    public void Example107Line1749ASimplenIndentedCodeBlock()
     {
         var input = @"
     a simple
@@ -2463,7 +2460,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example108()
+    public void Example108Line1763FoonnBar()
     {
         var input = @"
   - foo
@@ -2490,7 +2487,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example109()
+    public void Example109Line17771FoonnBar()
     {
         var input = @"
 1.  foo
@@ -2519,7 +2516,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example110()
+    public void Example110Line1797AnHinnOne()
     {
         var input = @"
     <a/>
@@ -2546,7 +2543,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example111()
+    public void Example111Line1813Chunk1nnChunk2nNNNChunk3()
     {
         var input = @"
     chunk1
@@ -2579,7 +2576,7 @@ chunk3
     }
 
     [TestMethod]
-    public void Example112()
+    public void Example112Line1836Chunk1nNChunk2()
     {
         var input = @"
     chunk1
@@ -2604,7 +2601,7 @@ chunk3
     }
 
     [TestMethod]
-    public void Example113()
+    public void Example113Line1851FoonBarn()
     {
         var input = @"
 Foo
@@ -2627,7 +2624,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example114()
+    public void Example114Line1865Foonbar()
     {
         var input = @"
     foo
@@ -2650,7 +2647,7 @@ bar
     }
 
     [TestMethod]
-    public void Example115()
+    public void Example115Line1878HeadingnFoonHeadingnNFoon()
     {
         var input = @"
 # Heading
@@ -2681,7 +2678,7 @@ Heading
     }
 
     [TestMethod]
-    public void Example116()
+    public void Example116Line1898FoonBar()
     {
         var input = @"
         foo
@@ -2704,7 +2701,7 @@ bar
     }
 
     [TestMethod]
-    public void Example117()
+    public void Example117Line1911NNFoonN()
     {
         var input = @"
 
@@ -2729,7 +2726,7 @@ bar
     }
 
     [TestMethod]
-    public void Example118()
+    public void Example118Line1925Foo()
     {
         var input = @"
     foo  
@@ -2750,7 +2747,7 @@ bar
     }
 
     [TestMethod]
-    public void Example119()
+    public void Example119Line1980NnN()
     {
         var input = @"
 ```
@@ -2775,7 +2772,7 @@ bar
     }
 
     [TestMethod]
-    public void Example120()
+    public void Example120Line1994NnN()
     {
         var input = @"
 ~~~
@@ -2800,7 +2797,7 @@ bar
     }
 
     [TestMethod]
-    public void Example121()
+    public void Example121Line2007Nfoon()
     {
         var input = @"
 ``
@@ -2822,7 +2819,7 @@ foo
     }
 
     [TestMethod]
-    public void Example122()
+    public void Example122Line2018Naaann()
     {
         var input = @"
 ```
@@ -2847,7 +2844,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example123()
+    public void Example123Line2030Naaann()
     {
         var input = @"
 ~~~
@@ -2872,7 +2869,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example124()
+    public void Example124Line2044Naaann()
     {
         var input = @"
 ````
@@ -2897,7 +2894,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example125()
+    public void Example125Line2056Naaann()
     {
         var input = @"
 ~~~~
@@ -2922,7 +2919,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example126()
+    public void Example126Line2071()
     {
         var input = @"
 ```
@@ -2942,7 +2939,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example127()
+    public void Example127Line2078Nnnaaa()
     {
         var input = @"
 `````
@@ -2968,7 +2965,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example128()
+    public void Example128Line2091NAaannbbb()
     {
         var input = @"
 > ```
@@ -2995,7 +2992,7 @@ bbb
     }
 
     [TestMethod]
-    public void Example129()
+    public void Example129Line2107NnN()
     {
         var input = @"
 ```
@@ -3020,7 +3017,7 @@ bbb
     }
 
     [TestMethod]
-    public void Example130()
+    public void Example130Line2121N()
     {
         var input = @"
 ```
@@ -3041,7 +3038,7 @@ bbb
     }
 
     [TestMethod]
-    public void Example131()
+    public void Example131Line2133NAaanaaan()
     {
         var input = @"
  ```
@@ -3066,7 +3063,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example132()
+    public void Example132Line2145NaaanAaanaaan()
     {
         var input = @"
   ```
@@ -3093,7 +3090,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example133()
+    public void Example133Line2159NAaanAaanAaan()
     {
         var input = @"
    ```
@@ -3120,7 +3117,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example134()
+    public void Example134Line2175NAaan()
     {
         var input = @"
     ```
@@ -3145,7 +3142,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example135()
+    public void Example135Line2190Naaan()
     {
         var input = @"
 ```
@@ -3168,7 +3165,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example136()
+    public void Example136Line2200Naaan()
     {
         var input = @"
    ```
@@ -3191,7 +3188,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example137()
+    public void Example137Line2212Naaan()
     {
         var input = @"
 ```
@@ -3215,7 +3212,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example138()
+    public void Example138Line2226Naaa()
     {
         var input = @"
 ``` ```
@@ -3237,7 +3234,7 @@ aaa</p>
     }
 
     [TestMethod]
-    public void Example139()
+    public void Example139Line2235Naaan()
     {
         var input = @"
 ~~~~~~
@@ -3261,7 +3258,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example140()
+    public void Example140Line2249Foonnbarnnbaz()
     {
         var input = @"
 foo
@@ -3288,7 +3285,7 @@ baz
     }
 
     [TestMethod]
-    public void Example141()
+    public void Example141Line2266FoonNnbarnnBaz()
     {
         var input = @"
 foo
@@ -3316,7 +3313,7 @@ bar
     }
 
     [TestMethod]
-    public void Example142()
+    public void Example142Line2288RubyndefFooxnReturn3nendn()
     {
         var input = @"
 ```ruby
@@ -3343,7 +3340,7 @@ end
     }
 
     [TestMethod]
-    public void Example143()
+    public void Example143Line2302RubyStartline3NdefFooxnReturn3nendn()
     {
         var input = @"
 ~~~~    ruby startline=3 $%@#$
@@ -3370,10 +3367,10 @@ end
     }
 
     [TestMethod]
-    public void Example144()
+    public void Example144Line2316N()
     {
         var input = @"
-```;
+````;
 ````
 ";
         var expected = @"
@@ -3391,7 +3388,7 @@ end
     }
 
     [TestMethod]
-    public void Example145()
+    public void Example145Line2326AaNfoo()
     {
         var input = @"
 ``` aa ```
@@ -3413,7 +3410,7 @@ foo</p>
     }
 
     [TestMethod]
-    public void Example146()
+    public void Example146Line2337AaNfoon()
     {
         var input = @"
 ~~~ aa ``` ~~~
@@ -3436,7 +3433,7 @@ foo
     }
 
     [TestMethod]
-    public void Example147()
+    public void Example147Line2349NAaan()
     {
         var input = @"
 ```
@@ -3459,7 +3456,7 @@ foo
     }
 
     [TestMethod]
-    public void Example148()
+    public void Example148Line2428TabletrtdnprenHellonnworldnprentdtrtable()
     {
         var input = @"
 <table><tr><td>
@@ -3490,7 +3487,7 @@ _world_.
     }
 
     [TestMethod]
-    public void Example149()
+    public void Example149Line2457TablenTrnTdnHinTdnTrntablennokay()
     {
         var input = @"
 <table>
@@ -3525,7 +3522,7 @@ okay.
     }
 
     [TestMethod]
-    public void Example150()
+    public void Example150Line2479DivnHellonFooa()
     {
         var input = @"
  <div>
@@ -3549,7 +3546,7 @@ okay.
     }
 
     [TestMethod]
-    public void Example151()
+    public void Example151Line2492Divnfoo()
     {
         var input = @"
 </div>
@@ -3571,7 +3568,7 @@ okay.
     }
 
     [TestMethod]
-    public void Example152()
+    public void Example152Line2503DIVCLASSfoonnMarkdownnnDIV()
     {
         var input = @"
 <DIV CLASS=""foo"">
@@ -3597,7 +3594,7 @@ okay.
     }
 
     [TestMethod]
-    public void Example153()
+    public void Example153Line2519DivIdfoonClassbarndiv()
     {
         var input = @"
 <div id=""foo""
@@ -3621,7 +3618,7 @@ okay.
     }
 
     [TestMethod]
-    public void Example154()
+    public void Example154Line2530DivIdfooClassbarnBazndiv()
     {
         var input = @"
 <div id=""foo"" class=""bar
@@ -3645,7 +3642,7 @@ okay.
     }
 
     [TestMethod]
-    public void Example155()
+    public void Example155Line2542Divnfoonnbar()
     {
         var input = @"
 <div>
@@ -3670,7 +3667,7 @@ okay.
     }
 
     [TestMethod]
-    public void Example156()
+    public void Example156Line2558DivIdfoonhi()
     {
         var input = @"
 <div id=""foo""
@@ -3692,7 +3689,7 @@ okay.
     }
 
     [TestMethod]
-    public void Example157()
+    public void Example157Line2567DivClassnfoo()
     {
         var input = @"
 <div class
@@ -3714,7 +3711,7 @@ foo
     }
 
     [TestMethod]
-    public void Example158()
+    public void Example158Line2579DivNfoo()
     {
         var input = @"
 <div *???-&&&-<---
@@ -3736,7 +3733,7 @@ foo
     }
 
     [TestMethod]
-    public void Example159()
+    public void Example159Line2591DivaHrefbarfooadiv()
     {
         var input = @"
 <div><a href=""bar"">*foo*</a></div>
@@ -3756,7 +3753,7 @@ foo
     }
 
     [TestMethod]
-    public void Example160()
+    public void Example160Line2598Tabletrtdnfoontdtrtable()
     {
         var input = @"
 <table><tr><td>
@@ -3780,7 +3777,7 @@ foo
     }
 
     [TestMethod]
-    public void Example161()
+    public void Example161Line2615DivdivnCnintX33n()
     {
         var input = @"
 <div></div>
@@ -3806,7 +3803,7 @@ int x = 33;
     }
 
     [TestMethod]
-    public void Example162()
+    public void Example162Line2632AHreffoonbarna()
     {
         var input = @"
 <a href=""foo"">
@@ -3830,7 +3827,7 @@ int x = 33;
     }
 
     [TestMethod]
-    public void Example163()
+    public void Example163Line2645WarningnbarnWarning()
     {
         var input = @"
 <Warning>
@@ -3854,7 +3851,7 @@ int x = 33;
     }
 
     [TestMethod]
-    public void Example164()
+    public void Example164Line2656IClassfoonbarni()
     {
         var input = @"
 <i class=""foo"">
@@ -3878,7 +3875,7 @@ int x = 33;
     }
 
     [TestMethod]
-    public void Example165()
+    public void Example165Line2667Insnbar()
     {
         var input = @"
 </ins>
@@ -3900,7 +3897,7 @@ int x = 33;
     }
 
     [TestMethod]
-    public void Example166()
+    public void Example166Line2682Delnfoondel()
     {
         var input = @"
 <del>
@@ -3924,7 +3921,7 @@ int x = 33;
     }
 
     [TestMethod]
-    public void Example167()
+    public void Example167Line2697Delnnfoonndel()
     {
         var input = @"
 <del>
@@ -3950,7 +3947,7 @@ int x = 33;
     }
 
     [TestMethod]
-    public void Example168()
+    public void Example168Line2715Delfoodel()
     {
         var input = @"
 <del>*foo*</del>
@@ -3970,7 +3967,7 @@ int x = 33;
     }
 
     [TestMethod]
-    public void Example169()
+    public void Example169Line2731PreLanguagehaskellcodenimportTextHTMLTagSoupnnmainIONmainPrintParseTagsTagsncodeprenokay()
     {
         var input = @"
 <pre language=""haskell""><code>
@@ -4002,7 +3999,7 @@ main = print $ parseTags tags
     }
 
     [TestMethod]
-    public void Example170()
+    public void Example170Line2752ScriptTypetextjavascriptnJavaScriptExamplenndocumentgetElementByIddemoinnerHTMLHelloJavaScriptnscriptnokay()
     {
         var input = @"
 <script type=""text/javascript"">
@@ -4032,7 +4029,7 @@ document.getElementById(""demo"").innerHTML = ""Hello JavaScript!"";
     }
 
     [TestMethod]
-    public void Example171()
+    public void Example171Line2771Textareannfoonnbarnntextarea()
     {
         var input = @"
 <textarea>
@@ -4064,7 +4061,7 @@ _bar_
     }
 
     [TestMethod]
-    public void Example172()
+    public void Example172Line2791StylenTypetextcssnh1ColorrednnpColorbluenstylenokay()
     {
         var input = @"
 <style
@@ -4096,7 +4093,7 @@ p {color:blue;}
     }
 
     [TestMethod]
-    public void Example173()
+    public void Example173Line2814StylenTypetextcssnnfoo()
     {
         var input = @"
 <style
@@ -4122,7 +4119,7 @@ foo
     }
 
     [TestMethod]
-    public void Example174()
+    public void Example174Line2827DivnFoonnbar()
     {
         var input = @"
 > <div>
@@ -4149,7 +4146,7 @@ foo
     }
 
     [TestMethod]
-    public void Example175()
+    public void Example175Line2841DivnFoo()
     {
         var input = @"
 - <div>
@@ -4175,7 +4172,7 @@ foo
     }
 
     [TestMethod]
-    public void Example176()
+    public void Example176Line2856Stylepcolorredstylenfoo()
     {
         var input = @"
 <style>p{color:red;}</style>
@@ -4197,7 +4194,7 @@ foo
     }
 
     [TestMethod]
-    public void Example177()
+    public void Example177Line2865FooBarnbaz()
     {
         var input = @"
 <!-- foo -->*bar*
@@ -4219,7 +4216,7 @@ foo
     }
 
     [TestMethod]
-    public void Example178()
+    public void Example178Line2877Scriptnfoonscript1Bar()
     {
         var input = @"
 <script>
@@ -4243,7 +4240,7 @@ foo
     }
 
     [TestMethod]
-    public void Example179()
+    public void Example179Line2890FoonnbarnBazNokay()
     {
         var input = @"
 <!-- Foo
@@ -4271,7 +4268,7 @@ bar
     }
 
     [TestMethod]
-    public void Example180()
+    public void Example180Line2908PhpnnEchoNnnokay()
     {
         var input = @"
 <?php
@@ -4301,7 +4298,7 @@ okay
     }
 
     [TestMethod]
-    public void Example181()
+    public void Example181Line2927DOCTYPEHtml()
     {
         var input = @"
 <!DOCTYPE html>
@@ -4321,7 +4318,7 @@ okay
     }
 
     [TestMethod]
-    public void Example182()
+    public void Example182Line2936CDATAnfunctionMatchwoabnnIfABA0ThenNReturn1nnElseNnReturn0nNnnokay()
     {
         var input = @"
 <![CDATA[
@@ -4365,7 +4362,7 @@ function matchwo(a,b)
     }
 
     [TestMethod]
-    public void Example183()
+    public void Example183Line2970FooNnFoo()
     {
         var input = @"
   <!-- foo -->
@@ -4389,7 +4386,7 @@ function matchwo(a,b)
     }
 
     [TestMethod]
-    public void Example184()
+    public void Example184Line2981DivnnDiv()
     {
         var input = @"
   <div>
@@ -4413,7 +4410,7 @@ function matchwo(a,b)
     }
 
     [TestMethod]
-    public void Example185()
+    public void Example185Line2995Foondivnbarndiv()
     {
         var input = @"
 Foo
@@ -4439,7 +4436,7 @@ bar
     }
 
     [TestMethod]
-    public void Example186()
+    public void Example186Line3012Divnbarndivnfoo()
     {
         var input = @"
 <div>
@@ -4465,7 +4462,7 @@ bar
     }
 
     [TestMethod]
-    public void Example187()
+    public void Example187Line3027FoonaHrefbarnbaz()
     {
         var input = @"
 Foo
@@ -4489,7 +4486,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example188()
+    public void Example188Line3068DivnnEmphasizedTextnndiv()
     {
         var input = @"
 <div>
@@ -4515,7 +4512,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example189()
+    public void Example189Line3081DivnEmphasizedTextndiv()
     {
         var input = @"
 <div>
@@ -4539,7 +4536,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example190()
+    public void Example190Line3103TablenntrnntdnHintdnntrnntable()
     {
         var input = @"
 <table>
@@ -4575,7 +4572,7 @@ Hi
     }
 
     [TestMethod]
-    public void Example191()
+    public void Example191Line3130TablennTrnnTdnHinTdnnTrnntable()
     {
         var input = @"
 <table>
@@ -4612,7 +4609,7 @@ Hi
     }
 
     [TestMethod]
-    public void Example192()
+    public void Example192Line3179FooUrlTitlennfoo()
     {
         var input = @"
 [foo]: /url ""title""
@@ -4634,7 +4631,7 @@ Hi
     }
 
     [TestMethod]
-    public void Example193()
+    public void Example193Line3188FooNUrlNTheTitleNnfoo()
     {
         var input = @"
    [foo]: 
@@ -4658,7 +4655,7 @@ Hi
     }
 
     [TestMethod]
-    public void Example194()
+    public void Example194Line3199FoobarmyurlTitleWithParensnnFoobar()
     {
         var input = @"
 [Foo*bar\]]:my_(url) 'title (with parens)'
@@ -4680,7 +4677,7 @@ Hi
     }
 
     [TestMethod]
-    public void Example195()
+    public void Example195Line3208FooBarnmyUrlntitlennFooBar()
     {
         var input = @"
 [Foo bar]:
@@ -4704,7 +4701,7 @@ Hi
     }
 
     [TestMethod]
-    public void Example196()
+    public void Example196Line3221FooUrlNtitlenline1nline2nnnfoo()
     {
         var input = @"
 [foo]: /url '
@@ -4734,7 +4731,7 @@ line2
     }
 
     [TestMethod]
-    public void Example197()
+    public void Example197Line3240FooUrlTitlennwithBlankLinennfoo()
     {
         var input = @"
 [foo]: /url 'title
@@ -4760,7 +4757,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example198()
+    public void Example198Line3255Foonurlnnfoo()
     {
         var input = @"
 [foo]:
@@ -4783,7 +4780,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example199()
+    public void Example199Line3267Foonnfoo()
     {
         var input = @"
 [foo]:
@@ -4806,7 +4803,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example200()
+    public void Example200Line3279FooNnfoo()
     {
         var input = @"
 [foo]: <>
@@ -4828,7 +4825,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example201()
+    public void Example201Line3290FooBarbaznnfoo()
     {
         var input = @"
 [foo]: <bar>(baz)
@@ -4851,7 +4848,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example202()
+    public void Example202Line3303FooUrlbarbazFoobarbaznnfoo()
     {
         var input = @"
 [foo]: /url\bar\*baz ""foo\""bar\baz""
@@ -4873,7 +4870,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example203()
+    public void Example203Line3314FoonnfooUrl()
     {
         var input = @"
 [foo]
@@ -4895,7 +4892,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example204()
+    public void Example204Line3326FoonnfooFirstnfooSecond()
     {
         var input = @"
 [foo]
@@ -4918,7 +4915,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example205()
+    public void Example205Line3339FOOUrlnnFoo()
     {
         var input = @"
 [FOO]: /url
@@ -4940,7 +4937,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example206()
+    public void Example206Line3348Nn()
     {
         var input = @"
 [ΑΓΩ]: /φου
@@ -4962,7 +4959,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example207()
+    public void Example207Line3363FooUrl()
     {
         var input = @"
 [foo]: /url
@@ -4981,7 +4978,7 @@ with blank line'
     }
 
     [TestMethod]
-    public void Example208()
+    public void Example208Line3371NfoonUrlnbar()
     {
         var input = @"
 [
@@ -5004,7 +5001,7 @@ bar
     }
 
     [TestMethod]
-    public void Example209()
+    public void Example209Line3384FooUrlTitleOk()
     {
         var input = @"
 [foo]: /url ""title"" ok
@@ -5024,7 +5021,7 @@ bar
     }
 
     [TestMethod]
-    public void Example210()
+    public void Example210Line3393FooUrlntitleOk()
     {
         var input = @"
 [foo]: /url
@@ -5045,7 +5042,7 @@ bar
     }
 
     [TestMethod]
-    public void Example211()
+    public void Example211Line3404FooUrlTitlennfoo()
     {
         var input = @"
     [foo]: /url ""title""
@@ -5069,7 +5066,7 @@ bar
     }
 
     [TestMethod]
-    public void Example212()
+    public void Example212Line3418NfooUrlnnnfoo()
     {
         var input = @"
 ```
@@ -5095,7 +5092,7 @@ bar
     }
 
     [TestMethod]
-    public void Example213()
+    public void Example213Line3433FoonbarBaznnbar()
     {
         var input = @"
 Foo
@@ -5120,7 +5117,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example214()
+    public void Example214Line3448FoonfooUrlnBar()
     {
         var input = @"
 # [Foo]
@@ -5145,7 +5142,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example215()
+    public void Example215Line3459FooUrlnbarnnfoo()
     {
         var input = @"
 [foo]: /url
@@ -5169,7 +5166,7 @@ bar
     }
 
     [TestMethod]
-    public void Example216()
+    public void Example216Line3469FooUrlnnfoo()
     {
         var input = @"
 [foo]: /url
@@ -5192,7 +5189,7 @@ bar
     }
 
     [TestMethod]
-    public void Example217()
+    public void Example217Line3482FooFooUrlFoonbarBarUrlnBarnbazBazUrlnnfoonbarnbaz()
     {
         var input = @"
 [foo]: /foo-url ""foo""
@@ -5221,7 +5218,7 @@ bar
     }
 
     [TestMethod]
-    public void Example218()
+    public void Example218Line3503FoonnFooUrl()
     {
         var input = @"
 [foo]
@@ -5245,7 +5242,7 @@ bar
     }
 
     [TestMethod]
-    public void Example219()
+    public void Example219Line3525Aaannbbb()
     {
         var input = @"
 aaa
@@ -5268,7 +5265,7 @@ bbb
     }
 
     [TestMethod]
-    public void Example220()
+    public void Example220Line3537Aaanbbbnncccnddd()
     {
         var input = @"
 aaa
@@ -5295,7 +5292,7 @@ ddd</p>
     }
 
     [TestMethod]
-    public void Example221()
+    public void Example221Line3553Aaannnbbb()
     {
         var input = @"
 aaa
@@ -5319,7 +5316,7 @@ bbb
     }
 
     [TestMethod]
-    public void Example222()
+    public void Example222Line3566AaanBbb()
     {
         var input = @"
   aaa
@@ -5341,7 +5338,7 @@ bbb</p>
     }
 
     [TestMethod]
-    public void Example223()
+    public void Example223Line3578AaanBbbnCcc()
     {
         var input = @"
 aaa
@@ -5365,7 +5362,7 @@ ccc</p>
     }
 
     [TestMethod]
-    public void Example224()
+    public void Example224Line3592Aaanbbb()
     {
         var input = @"
    aaa
@@ -5387,7 +5384,7 @@ bbb</p>
     }
 
     [TestMethod]
-    public void Example225()
+    public void Example225Line3601Aaanbbb()
     {
         var input = @"
     aaa
@@ -5410,7 +5407,7 @@ bbb
     }
 
     [TestMethod]
-    public void Example226()
+    public void Example226Line3615AaaNbbb()
     {
         var input = @"
 aaa     
@@ -5432,7 +5429,7 @@ bbb</p>
     }
 
     [TestMethod]
-    public void Example227()
+    public void Example227Line3632NnaaanNnAaann()
     {
         var input = @"
   
@@ -5460,7 +5457,7 @@ aaa
     }
 
     [TestMethod]
-    public void Example228()
+    public void Example228Line3700FoonBarnBaz()
     {
         var input = @"
 > # Foo
@@ -5486,7 +5483,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example229()
+    public void Example229Line3715FoonbarnBaz()
     {
         var input = @"
 ># Foo
@@ -5512,7 +5509,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example230()
+    public void Example230Line3730FoonBarnBaz()
     {
         var input = @"
    > # Foo
@@ -5538,7 +5535,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example231()
+    public void Example231Line3745FoonBarnBaz()
     {
         var input = @"
     > # Foo
@@ -5563,7 +5560,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example232()
+    public void Example232Line3760FoonBarnbaz()
     {
         var input = @"
 > # Foo
@@ -5589,7 +5586,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example233()
+    public void Example233Line3776BarnbaznFoo()
     {
         var input = @"
 > bar
@@ -5615,7 +5612,7 @@ foo</p>
     }
 
     [TestMethod]
-    public void Example234()
+    public void Example234Line3800Foon()
     {
         var input = @"
 > foo
@@ -5639,7 +5636,7 @@ foo</p>
     }
 
     [TestMethod]
-    public void Example235()
+    public void Example235Line3820FoonBar()
     {
         var input = @"
 > - foo
@@ -5667,7 +5664,7 @@ foo</p>
     }
 
     [TestMethod]
-    public void Example236()
+    public void Example236Line3838FoonBar()
     {
         var input = @"
 >     foo
@@ -5693,7 +5690,7 @@ foo</p>
     }
 
     [TestMethod]
-    public void Example237()
+    public void Example237Line3851Nfoon()
     {
         var input = @"
 > ```
@@ -5719,7 +5716,7 @@ foo
     }
 
     [TestMethod]
-    public void Example238()
+    public void Example238Line3867FoonBar()
     {
         var input = @"
 > foo
@@ -5743,7 +5740,7 @@ foo
     }
 
     [TestMethod]
-    public void Example239()
+    public void Example239Line3891()
     {
         var input = @"
 >
@@ -5764,7 +5761,7 @@ foo
     }
 
     [TestMethod]
-    public void Example240()
+    public void Example240Line3899NN()
     {
         var input = @"
 >
@@ -5787,7 +5784,7 @@ foo
     }
 
     [TestMethod]
-    public void Example241()
+    public void Example241Line3911NFoon()
     {
         var input = @"
 >
@@ -5811,7 +5808,7 @@ foo
     }
 
     [TestMethod]
-    public void Example242()
+    public void Example242Line3924FoonnBar()
     {
         var input = @"
 > foo
@@ -5838,7 +5835,7 @@ foo
     }
 
     [TestMethod]
-    public void Example243()
+    public void Example243Line3946FoonBar()
     {
         var input = @"
 > foo
@@ -5862,7 +5859,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example244()
+    public void Example244Line3959FoonnBar()
     {
         var input = @"
 > foo
@@ -5887,7 +5884,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example245()
+    public void Example245Line3973FoonBar()
     {
         var input = @"
 foo
@@ -5911,7 +5908,7 @@ foo
     }
 
     [TestMethod]
-    public void Example246()
+    public void Example246Line3987AaannBbb()
     {
         var input = @"
 > aaa
@@ -5939,7 +5936,7 @@ foo
     }
 
     [TestMethod]
-    public void Example247()
+    public void Example247Line4005Barnbaz()
     {
         var input = @"
 > bar
@@ -5963,7 +5960,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example248()
+    public void Example248Line4016Barnnbaz()
     {
         var input = @"
 > bar
@@ -5988,7 +5985,7 @@ baz
     }
 
     [TestMethod]
-    public void Example249()
+    public void Example249Line4028Barnnbaz()
     {
         var input = @"
 > bar
@@ -6013,7 +6010,7 @@ baz
     }
 
     [TestMethod]
-    public void Example250()
+    public void Example250Line4044Foonbar()
     {
         var input = @"
 > > > foo
@@ -6041,7 +6038,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example251()
+    public void Example251Line4059FoonBarnbaz()
     {
         var input = @"
 >>> foo
@@ -6071,7 +6068,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example252()
+    public void Example252Line4081CodennNotCode()
     {
         var input = @"
 >     code
@@ -6099,7 +6096,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example253()
+    public void Example253Line4135AParagraphnwithTwoLinesnnIndentedCodennABlockQuote()
     {
         var input = @"
 A paragraph
@@ -6130,7 +6127,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example254()
+    public void Example254Line41571AParagraphnWithTwoLinesnnIndentedCodennABlockQuote()
     {
         var input = @"
 1.  A paragraph
@@ -6165,7 +6162,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example255()
+    public void Example255Line4190OnennTwo()
     {
         var input = @"
 - one
@@ -6190,7 +6187,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example256()
+    public void Example256Line4202OnennTwo()
     {
         var input = @"
 - one
@@ -6217,7 +6214,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example257()
+    public void Example257Line4216OnennTwo()
     {
         var input = @"
  -    one
@@ -6243,7 +6240,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example258()
+    public void Example258Line4229OnennTwo()
     {
         var input = @"
  -    one
@@ -6270,7 +6267,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example259()
+    public void Example259Line42511OnennTwo()
     {
         var input = @"
    > > 1.  one
@@ -6301,7 +6298,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example260()
+    public void Example260Line4278OnennTwo()
     {
         var input = @"
 >>- one
@@ -6330,7 +6327,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example261()
+    public void Example261Line4297Onenn2two()
     {
         var input = @"
 -one
@@ -6353,7 +6350,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example262()
+    public void Example262Line4310FoonnnBar()
     {
         var input = @"
 - foo
@@ -6381,7 +6378,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example263()
+    public void Example263Line43271FoonnNBarnNnBaznnBam()
     {
         var input = @"
 1.  foo
@@ -6419,7 +6416,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example264()
+    public void Example264Line4355FoonnBarnnnBaz()
     {
         var input = @"
 - Foo
@@ -6453,7 +6450,7 @@ baz
     }
 
     [TestMethod]
-    public void Example265()
+    public void Example265Line4377123456789Ok()
     {
         var input = @"
 123456789. ok
@@ -6475,7 +6472,7 @@ baz
     }
 
     [TestMethod]
-    public void Example266()
+    public void Example266Line43861234567890NotOk()
     {
         var input = @"
 1234567890. not ok
@@ -6495,7 +6492,7 @@ baz
     }
 
     [TestMethod]
-    public void Example267()
+    public void Example267Line43950Ok()
     {
         var input = @"
 0. ok
@@ -6517,7 +6514,7 @@ baz
     }
 
     [TestMethod]
-    public void Example268()
+    public void Example268Line4404003Ok()
     {
         var input = @"
 003. ok
@@ -6539,7 +6536,7 @@ baz
     }
 
     [TestMethod]
-    public void Example269()
+    public void Example269Line44151NotOk()
     {
         var input = @"
 -1. not ok
@@ -6559,7 +6556,7 @@ baz
     }
 
     [TestMethod]
-    public void Example270()
+    public void Example270Line4438FoonnBar()
     {
         var input = @"
 - foo
@@ -6587,7 +6584,7 @@ baz
     }
 
     [TestMethod]
-    public void Example271()
+    public void Example271Line445510FoonnBar()
     {
         var input = @"
   10.  foo
@@ -6615,7 +6612,7 @@ baz
     }
 
     [TestMethod]
-    public void Example272()
+    public void Example272Line4474IndentedCodennparagraphnnMoreCode()
     {
         var input = @"
     indented code
@@ -6643,7 +6640,7 @@ paragraph
     }
 
     [TestMethod]
-    public void Example273()
+    public void Example273Line44891IndentedCodennParagraphnnMoreCode()
     {
         var input = @"
 1.     indented code
@@ -6675,7 +6672,7 @@ paragraph
     }
 
     [TestMethod]
-    public void Example274()
+    public void Example274Line45111IndentedCodennParagraphnnMoreCode()
     {
         var input = @"
 1.      indented code
@@ -6707,7 +6704,7 @@ paragraph
     }
 
     [TestMethod]
-    public void Example275()
+    public void Example275Line4538Foonnbar()
     {
         var input = @"
    foo
@@ -6730,7 +6727,7 @@ bar
     }
 
     [TestMethod]
-    public void Example276()
+    public void Example276Line4548FoonnBar()
     {
         var input = @"
 -    foo
@@ -6755,7 +6752,7 @@ bar
     }
 
     [TestMethod]
-    public void Example277()
+    public void Example277Line4565FoonnBar()
     {
         var input = @"
 -  foo
@@ -6782,7 +6779,7 @@ bar
     }
 
     [TestMethod]
-    public void Example278()
+    public void Example278Line4592NFoonNNBarnNNBaz()
     {
         var input = @"
 -
@@ -6819,7 +6816,7 @@ bar
     }
 
     [TestMethod]
-    public void Example279()
+    public void Example279Line4618NFoo()
     {
         var input = @"
 -   
@@ -6842,7 +6839,7 @@ bar
     }
 
     [TestMethod]
-    public void Example280()
+    public void Example280Line4632NnFoo()
     {
         var input = @"
 -
@@ -6867,7 +6864,7 @@ bar
     }
 
     [TestMethod]
-    public void Example281()
+    public void Example281Line4646FoonNBar()
     {
         var input = @"
 - foo
@@ -6893,7 +6890,7 @@ bar
     }
 
     [TestMethod]
-    public void Example282()
+    public void Example282Line4661FoonNBar()
     {
         var input = @"
 - foo
@@ -6919,7 +6916,7 @@ bar
     }
 
     [TestMethod]
-    public void Example283()
+    public void Example283Line46761Foon2n3Bar()
     {
         var input = @"
 1. foo
@@ -6945,7 +6942,7 @@ bar
     }
 
     [TestMethod]
-    public void Example284()
+    public void Example284Line4691()
     {
         var input = @"
 *
@@ -6967,7 +6964,7 @@ bar
     }
 
     [TestMethod]
-    public void Example285()
+    public void Example285Line4701Foonnnfoon1()
     {
         var input = @"
 foo
@@ -6994,7 +6991,7 @@ foo
     }
 
     [TestMethod]
-    public void Example286()
+    public void Example286Line47231AParagraphnWithTwoLinesnnIndentedCodennABlockQuote()
     {
         var input = @"
  1.  A paragraph
@@ -7029,7 +7026,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example287()
+    public void Example287Line47471AParagraphnWithTwoLinesnnIndentedCodennABlockQuote()
     {
         var input = @"
   1.  A paragraph
@@ -7064,7 +7061,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example288()
+    public void Example288Line47711AParagraphnWithTwoLinesnnIndentedCodennABlockQuote()
     {
         var input = @"
    1.  A paragraph
@@ -7099,7 +7096,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example289()
+    public void Example289Line47951AParagraphnWithTwoLinesnnIndentedCodennABlockQuote()
     {
         var input = @"
     1.  A paragraph
@@ -7130,7 +7127,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example290()
+    public void Example290Line48251AParagraphnwithTwoLinesnnIndentedCodennABlockQuote()
     {
         var input = @"
   1.  A paragraph
@@ -7165,7 +7162,7 @@ with two lines.</p>
     }
 
     [TestMethod]
-    public void Example291()
+    public void Example291Line48491AParagraphnWithTwoLines()
     {
         var input = @"
   1.  A paragraph
@@ -7189,7 +7186,7 @@ with two lines.</li>
     }
 
     [TestMethod]
-    public void Example292()
+    public void Example292Line48621BlockquotencontinuedHere()
     {
         var input = @"
 > 1. > Blockquote
@@ -7219,7 +7216,7 @@ continued here.</p>
     }
 
     [TestMethod]
-    public void Example293()
+    public void Example293Line48791BlockquotenContinuedHere()
     {
         var input = @"
 > 1. > Blockquote
@@ -7249,7 +7246,7 @@ continued here.</p>
     }
 
     [TestMethod]
-    public void Example294()
+    public void Example294Line4907FoonBarnBaznBoo()
     {
         var input = @"
 - foo
@@ -7286,7 +7283,7 @@ continued here.</p>
     }
 
     [TestMethod]
-    public void Example295()
+    public void Example295Line4933FoonBarnBaznBoo()
     {
         var input = @"
 - foo
@@ -7314,7 +7311,7 @@ continued here.</p>
     }
 
     [TestMethod]
-    public void Example296()
+    public void Example296Line495010FoonBar()
     {
         var input = @"
 10) foo
@@ -7341,7 +7338,7 @@ continued here.</p>
     }
 
     [TestMethod]
-    public void Example297()
+    public void Example297Line496610FoonBar()
     {
         var input = @"
 10) foo
@@ -7367,7 +7364,7 @@ continued here.</p>
     }
 
     [TestMethod]
-    public void Example298()
+    public void Example298Line4981Foo()
     {
         var input = @"
 - - foo
@@ -7393,7 +7390,7 @@ continued here.</p>
     }
 
     [TestMethod]
-    public void Example299()
+    public void Example299Line499412Foo()
     {
         var input = @"
 1. - 2. foo
@@ -7423,7 +7420,7 @@ continued here.</p>
     }
 
     [TestMethod]
-    public void Example300()
+    public void Example300Line5013FoonBarnNBaz()
     {
         var input = @"
 - # Foo
@@ -7453,7 +7450,7 @@ baz</li>
     }
 
     [TestMethod]
-    public void Example301()
+    public void Example301Line5249FoonBarnBaz()
     {
         var input = @"
 - foo
@@ -7481,7 +7478,7 @@ baz</li>
     }
 
     [TestMethod]
-    public void Example302()
+    public void Example302Line52641Foon2Barn3Baz()
     {
         var input = @"
 1. foo
@@ -7509,7 +7506,7 @@ baz</li>
     }
 
     [TestMethod]
-    public void Example303()
+    public void Example303Line5283FoonBarnBaz()
     {
         var input = @"
 Foo
@@ -7535,7 +7532,7 @@ Foo
     }
 
     [TestMethod]
-    public void Example304()
+    public void Example304Line5360TheNumberOfWindowsInMyHouseIsn14TheNumberOfDoorsIs6()
     {
         var input = @"
 The number of windows in my house is
@@ -7557,7 +7554,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example305()
+    public void Example305Line5370TheNumberOfWindowsInMyHouseIsn1TheNumberOfDoorsIs6()
     {
         var input = @"
 The number of windows in my house is
@@ -7581,7 +7578,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example306()
+    public void Example306Line5384FoonnBarnnnBaz()
     {
         var input = @"
 - foo
@@ -7616,7 +7613,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example307()
+    public void Example307Line5405FoonBarnBaznnnBim()
     {
         var input = @"
 - foo
@@ -7654,7 +7651,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example308()
+    public void Example308Line5435FoonBarnnNnBaznBim()
     {
         var input = @"
 - foo
@@ -7688,7 +7685,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example309()
+    public void Example309Line5456FoonnNotcodennFoonnNnCode()
     {
         var input = @"
 -   foo
@@ -7727,7 +7724,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example310()
+    public void Example310Line5487AnBnCnDnEnFnG()
     {
         var input = @"
 - a
@@ -7761,7 +7758,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example311()
+    public void Example311Line55081Ann2Bnn3C()
     {
         var input = @"
 1. a
@@ -7795,7 +7792,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example312()
+    public void Example312Line5532AnBnCnDnE()
     {
         var input = @"
 - a
@@ -7825,7 +7822,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example313()
+    public void Example313Line55521Ann2Bnn3C()
     {
         var input = @"
 1. a
@@ -7858,7 +7855,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example314()
+    public void Example314Line5575AnBnnC()
     {
         var input = @"
 - a
@@ -7891,7 +7888,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example315()
+    public void Example315Line5597AnnnC()
     {
         var input = @"
 * a
@@ -7922,7 +7919,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example316()
+    public void Example316Line5619AnBnnCnD()
     {
         var input = @"
 - a
@@ -7957,7 +7954,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example317()
+    public void Example317Line5641AnBnnRefUrlnD()
     {
         var input = @"
 - a
@@ -7991,7 +7988,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example318()
+    public void Example318Line5664AnNBnnnNC()
     {
         var input = @"
 - a
@@ -8026,7 +8023,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example319()
+    public void Example319Line5690AnBnnCnD()
     {
         var input = @"
 - a
@@ -8060,7 +8057,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example320()
+    public void Example320Line5714AnBnNC()
     {
         var input = @"
 * a
@@ -8090,7 +8087,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example321()
+    public void Example321Line5734AnBnNCnND()
     {
         var input = @"
 - a
@@ -8124,7 +8121,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example322()
+    public void Example322Line5757A()
     {
         var input = @"
 - a
@@ -8146,7 +8143,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example323()
+    public void Example323Line5766AnB()
     {
         var input = @"
 - a
@@ -8173,7 +8170,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example324()
+    public void Example324Line57831NFoonNnBar()
     {
         var input = @"
 1. ```
@@ -8203,7 +8200,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example325()
+    public void Example325Line5802FoonBarnnBaz()
     {
         var input = @"
 * foo
@@ -8234,7 +8231,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example326()
+    public void Example326Line5820AnBnCnnDnEnF()
     {
         var input = @"
 - a
@@ -8275,7 +8272,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example327()
+    public void Example327Line5854Hilo()
     {
         var input = @"
 `hi`lo`
@@ -8295,7 +8292,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example328()
+    public void Example328Line5886Foo()
     {
         var input = @"
 `foo`
@@ -8315,7 +8312,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example329()
+    public void Example329Line5897FooBar()
     {
         var input = @"
 `` foo ` bar ``
@@ -8335,7 +8332,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example330()
+    public void Example330Line5907()
     {
         var input = @"
 ` `` `
@@ -8355,7 +8352,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example331()
+    public void Example331Line5915()
     {
         var input = @"
 `  ``  `
@@ -8375,7 +8372,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example332()
+    public void Example332Line5924A()
     {
         var input = @"
 ` a`
@@ -8395,7 +8392,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example333()
+    public void Example333Line5933B()
     {
         var input = @"
 ` b `
@@ -8415,7 +8412,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example334()
+    public void Example334Line5941N()
     {
         var input = @"
 ` `
@@ -8437,7 +8434,7 @@ The number of windows in my house is
     }
 
     [TestMethod]
-    public void Example335()
+    public void Example335Line5952NfoonbarNbazn()
     {
         var input = @"
 ``
@@ -8461,7 +8458,7 @@ baz
     }
 
     [TestMethod]
-    public void Example336()
+    public void Example336Line5962NfooN()
     {
         var input = @"
 ``
@@ -8483,7 +8480,7 @@ foo
     }
 
     [TestMethod]
-    public void Example337()
+    public void Example337Line5973FooBarNbaz()
     {
         var input = @"
 `foo   bar 
@@ -8504,7 +8501,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example338()
+    public void Example338Line5990Foobar()
     {
         var input = @"
 `foo\`bar`
@@ -8524,7 +8521,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example339()
+    public void Example339Line6001Foobar()
     {
         var input = @"
 ``foo`bar``
@@ -8544,7 +8541,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example340()
+    public void Example340Line6007FooBar()
     {
         var input = @"
 ` foo `` bar `
@@ -8564,7 +8561,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example341()
+    public void Example341Line6019Foo()
     {
         var input = @"
 *foo`*`
@@ -8584,7 +8581,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example342()
+    public void Example342Line6028NotALinkfoo()
     {
         var input = @"
 [not a `link](/foo`)
@@ -8604,7 +8601,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example343()
+    public void Example343Line6038AHref()
     {
         var input = @"
 `<a href=""`"">`
@@ -8624,7 +8621,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example344()
+    public void Example344Line6047AHref()
     {
         var input = @"
 <a href=""`"">`
@@ -8644,7 +8641,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example345()
+    public void Example345Line6056Httpsfoobarbaz()
     {
         var input = @"
 `<https://foo.bar.`baz>`
@@ -8664,7 +8661,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example346()
+    public void Example346Line6065Httpsfoobarbaz()
     {
         var input = @"
 <https://foo.bar.`baz>`
@@ -8684,7 +8681,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example347()
+    public void Example347Line6075Foo()
     {
         var input = @"
 ```foo``
@@ -8704,7 +8701,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example348()
+    public void Example348Line6082Foo()
     {
         var input = @"
 `foo
@@ -8724,7 +8721,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example349()
+    public void Example349Line6091Foobar()
     {
         var input = @"
 `foo``bar``
@@ -8744,7 +8741,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example350()
+    public void Example350Line6308FooBar()
     {
         var input = @"
 *foo bar*
@@ -8764,7 +8761,7 @@ baz`
     }
 
     [TestMethod]
-    public void Example351()
+    public void Example351Line6318AFooBar()
     {
         var input = @"
 a * foo bar*
@@ -8784,7 +8781,7 @@ a * foo bar*
     }
 
     [TestMethod]
-    public void Example352()
+    public void Example352Line6329Afoo()
     {
         var input = @"
 a*""foo""*
@@ -8804,7 +8801,7 @@ a*""foo""*
     }
 
     [TestMethod]
-    public void Example353()
+    public void Example353Line6338A()
     {
         var input = @"
 * a *
@@ -8824,7 +8821,7 @@ a*""foo""*
     }
 
     [TestMethod]
-    public void Example354()
+    public void Example354Line6347Alphannbravonncharlie()
     {
         var input = @"
 *$*alpha.
@@ -8850,7 +8847,7 @@ a*""foo""*
     }
 
     [TestMethod]
-    public void Example355()
+    public void Example355Line6362Foobar()
     {
         var input = @"
 foo*bar*
@@ -8870,7 +8867,7 @@ foo*bar*
     }
 
     [TestMethod]
-    public void Example356()
+    public void Example356Line63695678()
     {
         var input = @"
 5*6*78
@@ -8890,7 +8887,7 @@ foo*bar*
     }
 
     [TestMethod]
-    public void Example357()
+    public void Example357Line6378FooBar()
     {
         var input = @"
 _foo bar_
@@ -8910,7 +8907,7 @@ _foo bar_
     }
 
     [TestMethod]
-    public void Example358()
+    public void Example358Line6388FooBar()
     {
         var input = @"
 _ foo bar_
@@ -8930,7 +8927,7 @@ _ foo bar_
     }
 
     [TestMethod]
-    public void Example359()
+    public void Example359Line6398Afoo()
     {
         var input = @"
 a_""foo""_
@@ -8950,7 +8947,7 @@ a_""foo""_
     }
 
     [TestMethod]
-    public void Example360()
+    public void Example360Line6407Foobar()
     {
         var input = @"
 foo_bar_
@@ -8970,7 +8967,7 @@ foo_bar_
     }
 
     [TestMethod]
-    public void Example361()
+    public void Example361Line64145678()
     {
         var input = @"
 5_6_78
@@ -8990,7 +8987,7 @@ foo_bar_
     }
 
     [TestMethod]
-    public void Example362()
+    public void Example362Line6421()
     {
         var input = @"
 пристаням_стремятся_
@@ -9010,7 +9007,7 @@ foo_bar_
     }
 
     [TestMethod]
-    public void Example363()
+    public void Example363Line6431Aabbcc()
     {
         var input = @"
 aa_""bb""_cc
@@ -9030,7 +9027,7 @@ aa_""bb""_cc
     }
 
     [TestMethod]
-    public void Example364()
+    public void Example364Line6442FooBar()
     {
         var input = @"
 foo-_(bar)_
@@ -9050,7 +9047,7 @@ foo-_(bar)_
     }
 
     [TestMethod]
-    public void Example365()
+    public void Example365Line6454Foo()
     {
         var input = @"
 _foo*
@@ -9070,7 +9067,7 @@ _foo*
     }
 
     [TestMethod]
-    public void Example366()
+    public void Example366Line6464FooBar()
     {
         var input = @"
 *foo bar *
@@ -9090,7 +9087,7 @@ _foo*
     }
 
     [TestMethod]
-    public void Example367()
+    public void Example367Line6473FooBarn()
     {
         var input = @"
 *foo bar
@@ -9112,7 +9109,7 @@ _foo*
     }
 
     [TestMethod]
-    public void Example368()
+    public void Example368Line6486Foo()
     {
         var input = @"
 *(*foo)
@@ -9132,7 +9129,7 @@ _foo*
     }
 
     [TestMethod]
-    public void Example369()
+    public void Example369Line6496Foo()
     {
         var input = @"
 *(*foo*)*
@@ -9152,7 +9149,7 @@ _foo*
     }
 
     [TestMethod]
-    public void Example370()
+    public void Example370Line6505Foobar()
     {
         var input = @"
 *foo*bar
@@ -9172,7 +9169,7 @@ _foo*
     }
 
     [TestMethod]
-    public void Example371()
+    public void Example371Line6518FooBar()
     {
         var input = @"
 _foo bar _
@@ -9192,7 +9189,7 @@ _foo bar _
     }
 
     [TestMethod]
-    public void Example372()
+    public void Example372Line6528Foo()
     {
         var input = @"
 _(_foo)
@@ -9212,7 +9209,7 @@ _(_foo)
     }
 
     [TestMethod]
-    public void Example373()
+    public void Example373Line6537Foo()
     {
         var input = @"
 _(_foo_)_
@@ -9232,7 +9229,7 @@ _(_foo_)_
     }
 
     [TestMethod]
-    public void Example374()
+    public void Example374Line6546Foobar()
     {
         var input = @"
 _foo_bar
@@ -9252,7 +9249,7 @@ _foo_bar
     }
 
     [TestMethod]
-    public void Example375()
+    public void Example375Line6553()
     {
         var input = @"
 _пристаням_стремятся
@@ -9272,7 +9269,7 @@ _пристаням_стремятся
     }
 
     [TestMethod]
-    public void Example376()
+    public void Example376Line6560Foobarbaz()
     {
         var input = @"
 _foo_bar_baz_
@@ -9292,7 +9289,7 @@ _foo_bar_baz_
     }
 
     [TestMethod]
-    public void Example377()
+    public void Example377Line6571Bar()
     {
         var input = @"
 _(bar)_.
@@ -9312,7 +9309,7 @@ _(bar)_.
     }
 
     [TestMethod]
-    public void Example378()
+    public void Example378Line6580FooBar()
     {
         var input = @"
 **foo bar**
@@ -9332,7 +9329,7 @@ _(bar)_.
     }
 
     [TestMethod]
-    public void Example379()
+    public void Example379Line6590FooBar()
     {
         var input = @"
 ** foo bar**
@@ -9352,7 +9349,7 @@ _(bar)_.
     }
 
     [TestMethod]
-    public void Example380()
+    public void Example380Line6601Afoo()
     {
         var input = @"
 a**""foo""**
@@ -9372,7 +9369,7 @@ a**""foo""**
     }
 
     [TestMethod]
-    public void Example381()
+    public void Example381Line6610Foobar()
     {
         var input = @"
 foo**bar**
@@ -9392,7 +9389,7 @@ foo**bar**
     }
 
     [TestMethod]
-    public void Example382()
+    public void Example382Line6619FooBar()
     {
         var input = @"
 __foo bar__
@@ -9412,7 +9409,7 @@ __foo bar__
     }
 
     [TestMethod]
-    public void Example383()
+    public void Example383Line6629FooBar()
     {
         var input = @"
 __ foo bar__
@@ -9432,7 +9429,7 @@ __ foo bar__
     }
 
     [TestMethod]
-    public void Example384()
+    public void Example384Line6637NfooBar()
     {
         var input = @"
 __
@@ -9454,7 +9451,7 @@ foo bar__</p>
     }
 
     [TestMethod]
-    public void Example385()
+    public void Example385Line6649Afoo()
     {
         var input = @"
 a__""foo""__
@@ -9474,7 +9471,7 @@ a__""foo""__
     }
 
     [TestMethod]
-    public void Example386()
+    public void Example386Line6658Foobar()
     {
         var input = @"
 foo__bar__
@@ -9494,7 +9491,7 @@ foo__bar__
     }
 
     [TestMethod]
-    public void Example387()
+    public void Example387Line66655678()
     {
         var input = @"
 5__6__78
@@ -9514,7 +9511,7 @@ foo__bar__
     }
 
     [TestMethod]
-    public void Example388()
+    public void Example388Line6672()
     {
         var input = @"
 пристаням__стремятся__
@@ -9534,7 +9531,7 @@ foo__bar__
     }
 
     [TestMethod]
-    public void Example389()
+    public void Example389Line6679FooBarBaz()
     {
         var input = @"
 __foo, __bar__, baz__
@@ -9554,7 +9551,7 @@ __foo, __bar__, baz__
     }
 
     [TestMethod]
-    public void Example390()
+    public void Example390Line6690FooBar()
     {
         var input = @"
 foo-__(bar)__
@@ -9574,7 +9571,7 @@ foo-__(bar)__
     }
 
     [TestMethod]
-    public void Example391()
+    public void Example391Line6703FooBar()
     {
         var input = @"
 **foo bar **
@@ -9594,7 +9591,7 @@ foo-__(bar)__
     }
 
     [TestMethod]
-    public void Example392()
+    public void Example392Line6716Foo()
     {
         var input = @"
 **(**foo)
@@ -9614,7 +9611,7 @@ foo-__(bar)__
     }
 
     [TestMethod]
-    public void Example393()
+    public void Example393Line6726Foo()
     {
         var input = @"
 *(**foo**)*
@@ -9634,7 +9631,7 @@ foo-__(bar)__
     }
 
     [TestMethod]
-    public void Example394()
+    public void Example394Line6733GomphocarpusGomphocarpusPhysocarpusSynnAsclepiasPhysocarpa()
     {
         var input = @"
 **Gomphocarpus (*Gomphocarpus physocarpus*, syn.
@@ -9656,7 +9653,7 @@ foo-__(bar)__
     }
 
     [TestMethod]
-    public void Example395()
+    public void Example395Line6742FooBarFoo()
     {
         var input = @"
 **foo ""*bar*"" foo**
@@ -9676,7 +9673,7 @@ foo-__(bar)__
     }
 
     [TestMethod]
-    public void Example396()
+    public void Example396Line6751Foobar()
     {
         var input = @"
 **foo**bar
@@ -9696,7 +9693,7 @@ foo-__(bar)__
     }
 
     [TestMethod]
-    public void Example397()
+    public void Example397Line6763FooBar()
     {
         var input = @"
 __foo bar __
@@ -9716,7 +9713,7 @@ __foo bar __
     }
 
     [TestMethod]
-    public void Example398()
+    public void Example398Line6773Foo()
     {
         var input = @"
 __(__foo)
@@ -9736,7 +9733,7 @@ __(__foo)
     }
 
     [TestMethod]
-    public void Example399()
+    public void Example399Line6783Foo()
     {
         var input = @"
 _(__foo__)_
@@ -9756,7 +9753,7 @@ _(__foo__)_
     }
 
     [TestMethod]
-    public void Example400()
+    public void Example400Line6792Foobar()
     {
         var input = @"
 __foo__bar
@@ -9776,7 +9773,7 @@ __foo__bar
     }
 
     [TestMethod]
-    public void Example401()
+    public void Example401Line6799()
     {
         var input = @"
 __пристаням__стремятся
@@ -9796,7 +9793,7 @@ __пристаням__стремятся
     }
 
     [TestMethod]
-    public void Example402()
+    public void Example402Line6806Foobarbaz()
     {
         var input = @"
 __foo__bar__baz__
@@ -9816,7 +9813,7 @@ __foo__bar__baz__
     }
 
     [TestMethod]
-    public void Example403()
+    public void Example403Line6817Bar()
     {
         var input = @"
 __(bar)__.
@@ -9836,7 +9833,7 @@ __(bar)__.
     }
 
     [TestMethod]
-    public void Example404()
+    public void Example404Line6829FooBarurl()
     {
         var input = @"
 *foo [bar](/url)*
@@ -9856,7 +9853,7 @@ __(bar)__.
     }
 
     [TestMethod]
-    public void Example405()
+    public void Example405Line6836Foonbar()
     {
         var input = @"
 *foo
@@ -9878,7 +9875,7 @@ bar</em></p>
     }
 
     [TestMethod]
-    public void Example406()
+    public void Example406Line6848FooBarBaz()
     {
         var input = @"
 _foo __bar__ baz_
@@ -9898,7 +9895,7 @@ _foo __bar__ baz_
     }
 
     [TestMethod]
-    public void Example407()
+    public void Example407Line6855FooBarBaz()
     {
         var input = @"
 _foo _bar_ baz_
@@ -9918,7 +9915,7 @@ _foo _bar_ baz_
     }
 
     [TestMethod]
-    public void Example408()
+    public void Example408Line6862FooBar()
     {
         var input = @"
 __foo_ bar_
@@ -9938,7 +9935,7 @@ __foo_ bar_
     }
 
     [TestMethod]
-    public void Example409()
+    public void Example409Line6869FooBar()
     {
         var input = @"
 *foo *bar**
@@ -9958,7 +9955,7 @@ __foo_ bar_
     }
 
     [TestMethod]
-    public void Example410()
+    public void Example410Line6876FooBarBaz()
     {
         var input = @"
 *foo **bar** baz*
@@ -9978,7 +9975,7 @@ __foo_ bar_
     }
 
     [TestMethod]
-    public void Example411()
+    public void Example411Line6882Foobarbaz()
     {
         var input = @"
 *foo**bar**baz*
@@ -9998,7 +9995,7 @@ __foo_ bar_
     }
 
     [TestMethod]
-    public void Example412()
+    public void Example412Line6906Foobar()
     {
         var input = @"
 *foo**bar*
@@ -10018,7 +10015,7 @@ __foo_ bar_
     }
 
     [TestMethod]
-    public void Example413()
+    public void Example413Line6919FooBar()
     {
         var input = @"
 ***foo** bar*
@@ -10038,7 +10035,7 @@ __foo_ bar_
     }
 
     [TestMethod]
-    public void Example414()
+    public void Example414Line6926FooBar()
     {
         var input = @"
 *foo **bar***
@@ -10058,7 +10055,7 @@ __foo_ bar_
     }
 
     [TestMethod]
-    public void Example415()
+    public void Example415Line6933Foobar()
     {
         var input = @"
 *foo**bar***
@@ -10078,7 +10075,7 @@ __foo_ bar_
     }
 
     [TestMethod]
-    public void Example416()
+    public void Example416Line6944Foobarbaz()
     {
         var input = @"
 foo***bar***baz
@@ -10098,7 +10095,7 @@ foo***bar***baz
     }
 
     [TestMethod]
-    public void Example417()
+    public void Example417Line6950Foobarbaz()
     {
         var input = @"
 foo******bar*********baz
@@ -10118,7 +10115,7 @@ foo******bar*********baz
     }
 
     [TestMethod]
-    public void Example418()
+    public void Example418Line6959FooBarBazBimBop()
     {
         var input = @"
 *foo **bar *baz* bim** bop*
@@ -10138,7 +10135,7 @@ foo******bar*********baz
     }
 
     [TestMethod]
-    public void Example419()
+    public void Example419Line6966FooBarurl()
     {
         var input = @"
 *foo [*bar*](/url)*
@@ -10158,7 +10155,7 @@ foo******bar*********baz
     }
 
     [TestMethod]
-    public void Example420()
+    public void Example420Line6975IsNotAnEmptyEmphasis()
     {
         var input = @"
 ** is not an empty emphasis
@@ -10178,7 +10175,7 @@ foo******bar*********baz
     }
 
     [TestMethod]
-    public void Example421()
+    public void Example421Line6982IsNotAnEmptyStrongEmphasis()
     {
         var input = @"
 **** is not an empty strong emphasis
@@ -10198,7 +10195,7 @@ foo******bar*********baz
     }
 
     [TestMethod]
-    public void Example422()
+    public void Example422Line6995FooBarurl()
     {
         var input = @"
 **foo [bar](/url)**
@@ -10218,7 +10215,7 @@ foo******bar*********baz
     }
 
     [TestMethod]
-    public void Example423()
+    public void Example423Line7002Foonbar()
     {
         var input = @"
 **foo
@@ -10240,7 +10237,7 @@ bar</strong></p>
     }
 
     [TestMethod]
-    public void Example424()
+    public void Example424Line7014FooBarBaz()
     {
         var input = @"
 __foo _bar_ baz__
@@ -10260,7 +10257,7 @@ __foo _bar_ baz__
     }
 
     [TestMethod]
-    public void Example425()
+    public void Example425Line7021FooBarBaz()
     {
         var input = @"
 __foo __bar__ baz__
@@ -10280,7 +10277,7 @@ __foo __bar__ baz__
     }
 
     [TestMethod]
-    public void Example426()
+    public void Example426Line7028FooBar()
     {
         var input = @"
 ____foo__ bar__
@@ -10300,7 +10297,7 @@ ____foo__ bar__
     }
 
     [TestMethod]
-    public void Example427()
+    public void Example427Line7035FooBar()
     {
         var input = @"
 **foo **bar****
@@ -10320,7 +10317,7 @@ ____foo__ bar__
     }
 
     [TestMethod]
-    public void Example428()
+    public void Example428Line7042FooBarBaz()
     {
         var input = @"
 **foo *bar* baz**
@@ -10340,7 +10337,7 @@ ____foo__ bar__
     }
 
     [TestMethod]
-    public void Example429()
+    public void Example429Line7049Foobarbaz()
     {
         var input = @"
 **foo*bar*baz**
@@ -10360,7 +10357,7 @@ ____foo__ bar__
     }
 
     [TestMethod]
-    public void Example430()
+    public void Example430Line7056FooBar()
     {
         var input = @"
 ***foo* bar**
@@ -10380,7 +10377,7 @@ ____foo__ bar__
     }
 
     [TestMethod]
-    public void Example431()
+    public void Example431Line7063FooBar()
     {
         var input = @"
 **foo *bar***
@@ -10400,7 +10397,7 @@ ____foo__ bar__
     }
 
     [TestMethod]
-    public void Example432()
+    public void Example432Line7072FooBarBaznbimBop()
     {
         var input = @"
 **foo *bar **baz**
@@ -10422,7 +10419,7 @@ bim</em> bop</strong></p>
     }
 
     [TestMethod]
-    public void Example433()
+    public void Example433Line7081FooBarurl()
     {
         var input = @"
 **foo [*bar*](/url)**
@@ -10442,7 +10439,7 @@ bim</em> bop</strong></p>
     }
 
     [TestMethod]
-    public void Example434()
+    public void Example434Line7090IsNotAnEmptyEmphasis()
     {
         var input = @"
 __ is not an empty emphasis
@@ -10462,7 +10459,7 @@ __ is not an empty emphasis
     }
 
     [TestMethod]
-    public void Example435()
+    public void Example435Line7097IsNotAnEmptyStrongEmphasis()
     {
         var input = @"
 ____ is not an empty strong emphasis
@@ -10482,7 +10479,7 @@ ____ is not an empty strong emphasis
     }
 
     [TestMethod]
-    public void Example436()
+    public void Example436Line7107Foo()
     {
         var input = @"
 foo ***
@@ -10502,7 +10499,7 @@ foo ***
     }
 
     [TestMethod]
-    public void Example437()
+    public void Example437Line7114Foo()
     {
         var input = @"
 foo *\**
@@ -10522,7 +10519,7 @@ foo *\**
     }
 
     [TestMethod]
-    public void Example438()
+    public void Example438Line7121Foo()
     {
         var input = @"
 foo *_*
@@ -10542,7 +10539,7 @@ foo *_*
     }
 
     [TestMethod]
-    public void Example439()
+    public void Example439Line7128Foo()
     {
         var input = @"
 foo *****
@@ -10562,7 +10559,7 @@ foo *****
     }
 
     [TestMethod]
-    public void Example440()
+    public void Example440Line7135Foo()
     {
         var input = @"
 foo **\***
@@ -10582,7 +10579,7 @@ foo **\***
     }
 
     [TestMethod]
-    public void Example441()
+    public void Example441Line7142Foo()
     {
         var input = @"
 foo **_**
@@ -10602,7 +10599,7 @@ foo **_**
     }
 
     [TestMethod]
-    public void Example442()
+    public void Example442Line7153Foo()
     {
         var input = @"
 **foo*
@@ -10622,7 +10619,7 @@ foo **_**
     }
 
     [TestMethod]
-    public void Example443()
+    public void Example443Line7160Foo()
     {
         var input = @"
 *foo**
@@ -10642,7 +10639,7 @@ foo **_**
     }
 
     [TestMethod]
-    public void Example444()
+    public void Example444Line7167Foo()
     {
         var input = @"
 ***foo**
@@ -10662,7 +10659,7 @@ foo **_**
     }
 
     [TestMethod]
-    public void Example445()
+    public void Example445Line7174Foo()
     {
         var input = @"
 ****foo*
@@ -10682,7 +10679,7 @@ foo **_**
     }
 
     [TestMethod]
-    public void Example446()
+    public void Example446Line7181Foo()
     {
         var input = @"
 **foo***
@@ -10702,7 +10699,7 @@ foo **_**
     }
 
     [TestMethod]
-    public void Example447()
+    public void Example447Line7188Foo()
     {
         var input = @"
 *foo****
@@ -10722,7 +10719,7 @@ foo **_**
     }
 
     [TestMethod]
-    public void Example448()
+    public void Example448Line7198Foo()
     {
         var input = @"
 foo ___
@@ -10742,7 +10739,7 @@ foo ___
     }
 
     [TestMethod]
-    public void Example449()
+    public void Example449Line7205Foo()
     {
         var input = @"
 foo _\__
@@ -10762,7 +10759,7 @@ foo _\__
     }
 
     [TestMethod]
-    public void Example450()
+    public void Example450Line7212Foo()
     {
         var input = @"
 foo _*_
@@ -10782,7 +10779,7 @@ foo _*_
     }
 
     [TestMethod]
-    public void Example451()
+    public void Example451Line7219Foo()
     {
         var input = @"
 foo _____
@@ -10802,7 +10799,7 @@ foo _____
     }
 
     [TestMethod]
-    public void Example452()
+    public void Example452Line7226Foo()
     {
         var input = @"
 foo __\___
@@ -10822,7 +10819,7 @@ foo __\___
     }
 
     [TestMethod]
-    public void Example453()
+    public void Example453Line7233Foo()
     {
         var input = @"
 foo __*__
@@ -10842,7 +10839,7 @@ foo __*__
     }
 
     [TestMethod]
-    public void Example454()
+    public void Example454Line7240Foo()
     {
         var input = @"
 __foo_
@@ -10862,7 +10859,7 @@ __foo_
     }
 
     [TestMethod]
-    public void Example455()
+    public void Example455Line7251Foo()
     {
         var input = @"
 _foo__
@@ -10882,7 +10879,7 @@ _foo__
     }
 
     [TestMethod]
-    public void Example456()
+    public void Example456Line7258Foo()
     {
         var input = @"
 ___foo__
@@ -10902,7 +10899,7 @@ ___foo__
     }
 
     [TestMethod]
-    public void Example457()
+    public void Example457Line7265Foo()
     {
         var input = @"
 ____foo_
@@ -10922,7 +10919,7 @@ ____foo_
     }
 
     [TestMethod]
-    public void Example458()
+    public void Example458Line7272Foo()
     {
         var input = @"
 __foo___
@@ -10942,7 +10939,7 @@ __foo___
     }
 
     [TestMethod]
-    public void Example459()
+    public void Example459Line7279Foo()
     {
         var input = @"
 _foo____
@@ -10962,7 +10959,7 @@ _foo____
     }
 
     [TestMethod]
-    public void Example460()
+    public void Example460Line7289Foo()
     {
         var input = @"
 **foo**
@@ -10982,7 +10979,7 @@ _foo____
     }
 
     [TestMethod]
-    public void Example461()
+    public void Example461Line7296Foo()
     {
         var input = @"
 *_foo_*
@@ -11002,7 +10999,7 @@ _foo____
     }
 
     [TestMethod]
-    public void Example462()
+    public void Example462Line7303Foo()
     {
         var input = @"
 __foo__
@@ -11022,7 +11019,7 @@ __foo__
     }
 
     [TestMethod]
-    public void Example463()
+    public void Example463Line7310Foo()
     {
         var input = @"
 _*foo*_
@@ -11042,7 +11039,7 @@ _*foo*_
     }
 
     [TestMethod]
-    public void Example464()
+    public void Example464Line7320Foo()
     {
         var input = @"
 ****foo****
@@ -11062,7 +11059,7 @@ _*foo*_
     }
 
     [TestMethod]
-    public void Example465()
+    public void Example465Line7327Foo()
     {
         var input = @"
 ____foo____
@@ -11082,7 +11079,7 @@ ____foo____
     }
 
     [TestMethod]
-    public void Example466()
+    public void Example466Line7338Foo()
     {
         var input = @"
 ******foo******
@@ -11102,7 +11099,7 @@ ____foo____
     }
 
     [TestMethod]
-    public void Example467()
+    public void Example467Line7347Foo()
     {
         var input = @"
 ***foo***
@@ -11122,7 +11119,7 @@ ____foo____
     }
 
     [TestMethod]
-    public void Example468()
+    public void Example468Line7354Foo()
     {
         var input = @"
 _____foo_____
@@ -11142,7 +11139,7 @@ _____foo_____
     }
 
     [TestMethod]
-    public void Example469()
+    public void Example469Line7363FooBarBaz()
     {
         var input = @"
 *foo _bar* baz_
@@ -11162,7 +11159,7 @@ _____foo_____
     }
 
     [TestMethod]
-    public void Example470()
+    public void Example470Line7370FooBarBazBimBam()
     {
         var input = @"
 *foo __bar *baz bim__ bam*
@@ -11182,7 +11179,7 @@ _____foo_____
     }
 
     [TestMethod]
-    public void Example471()
+    public void Example471Line7379FooBarBaz()
     {
         var input = @"
 **foo **bar baz**
@@ -11202,7 +11199,7 @@ _____foo_____
     }
 
     [TestMethod]
-    public void Example472()
+    public void Example472Line7386FooBarBaz()
     {
         var input = @"
 *foo *bar baz*
@@ -11222,7 +11219,7 @@ _____foo_____
     }
 
     [TestMethod]
-    public void Example473()
+    public void Example473Line7395Barurl()
     {
         var input = @"
 *[bar*](/url)
@@ -11242,7 +11239,7 @@ _____foo_____
     }
 
     [TestMethod]
-    public void Example474()
+    public void Example474Line7402FooBarurl()
     {
         var input = @"
 _foo [bar_](/url)
@@ -11262,7 +11259,7 @@ _foo [bar_](/url)
     }
 
     [TestMethod]
-    public void Example475()
+    public void Example475Line7409ImgSrcfooTitle()
     {
         var input = @"
 *<img src=""foo"" title=""*""/>
@@ -11282,7 +11279,7 @@ _foo [bar_](/url)
     }
 
     [TestMethod]
-    public void Example476()
+    public void Example476Line7416AHref()
     {
         var input = @"
 **<a href=""**"">
@@ -11302,7 +11299,7 @@ _foo [bar_](/url)
     }
 
     [TestMethod]
-    public void Example477()
+    public void Example477Line7423AHref()
     {
         var input = @"
 __<a href=""__"">
@@ -11322,7 +11319,7 @@ __<a href=""__"">
     }
 
     [TestMethod]
-    public void Example478()
+    public void Example478Line7430A()
     {
         var input = @"
 *a `*`*
@@ -11342,7 +11339,7 @@ __<a href=""__"">
     }
 
     [TestMethod]
-    public void Example479()
+    public void Example479Line7437A()
     {
         var input = @"
 _a `_`_
@@ -11362,7 +11359,7 @@ _a `_`_
     }
 
     [TestMethod]
-    public void Example480()
+    public void Example480Line7444Ahttpsfoobarq()
     {
         var input = @"
 **a<https://foo.bar/?q=**>
@@ -11382,7 +11379,7 @@ _a `_`_
     }
 
     [TestMethod]
-    public void Example481()
+    public void Example481Line7451Ahttpsfoobarq()
     {
         var input = @"
 __a<https://foo.bar/?q=__>
@@ -11402,7 +11399,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example482()
+    public void Example482Line7539LinkuriTitle()
     {
         var input = @"
 [link](/uri ""title"")
@@ -11422,7 +11419,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example483()
+    public void Example483Line7549Linkuri()
     {
         var input = @"
 [link](/uri)
@@ -11442,7 +11439,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example484()
+    public void Example484Line7555Targetmd()
     {
         var input = @"
 [](./target.md)
@@ -11462,7 +11459,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example485()
+    public void Example485Line7562Link()
     {
         var input = @"
 [link]()
@@ -11482,7 +11479,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example486()
+    public void Example486Line7569Link()
     {
         var input = @"
 [link](<>)
@@ -11502,7 +11499,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example487()
+    public void Example487Line7576()
     {
         var input = @"
 []()
@@ -11522,7 +11519,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example488()
+    public void Example488Line7585LinkmyUri()
     {
         var input = @"
 [link](/my uri)
@@ -11542,7 +11539,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example489()
+    public void Example489Line7591LinkmyUri()
     {
         var input = @"
 [link](</my uri>)
@@ -11562,7 +11559,7 @@ __a<https://foo.bar/?q=__>
     }
 
     [TestMethod]
-    public void Example490()
+    public void Example490Line7600Linkfoonbar()
     {
         var input = @"
 [link](foo
@@ -11584,7 +11581,7 @@ bar)</p>
     }
 
     [TestMethod]
-    public void Example491()
+    public void Example491Line7608Linkfoonbar()
     {
         var input = @"
 [link](<foo
@@ -11606,7 +11603,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example492()
+    public void Example492Line7619Abc()
     {
         var input = @"
 [a](<b)c>)
@@ -11626,7 +11623,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example493()
+    public void Example493Line7627Linkfoo()
     {
         var input = @"
 [link](<foo\>)
@@ -11646,7 +11643,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example494()
+    public void Example494Line7636Abcnabcnabc()
     {
         var input = @"
 [a](<b)c
@@ -11670,7 +11667,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example495()
+    public void Example495Line7648Linkfoo()
     {
         var input = @"
 [link](\(foo\))
@@ -11690,7 +11687,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example496()
+    public void Example496Line7657Linkfooandbar()
     {
         var input = @"
 [link](foo(and(bar)))
@@ -11710,7 +11707,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example497()
+    public void Example497Line7666Linkfooandbar()
     {
         var input = @"
 [link](foo(and(bar))
@@ -11730,7 +11727,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example498()
+    public void Example498Line7673Linkfooandbar()
     {
         var input = @"
 [link](foo\(and\(bar\))
@@ -11750,7 +11747,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example499()
+    public void Example499Line7680Linkfooandbar()
     {
         var input = @"
 [link](<foo(and(bar)>)
@@ -11770,7 +11767,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example500()
+    public void Example500Line7690Linkfoo()
     {
         var input = @"
 [link](foo\)\:)
@@ -11790,7 +11787,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example501()
+    public void Example501Line7699Linkfragmentnnlinkhttpsexamplecomfragmentnnlinkhttpsexamplecomfoo3frag()
     {
         var input = @"
 [link](#fragment)
@@ -11816,7 +11813,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example502()
+    public void Example502Line7715Linkfoobar()
     {
         var input = @"
 [link](foo\bar)
@@ -11836,7 +11833,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example503()
+    public void Example503Line7731Linkfoo20bauml()
     {
         var input = @"
 [link](foo%20b&auml;)
@@ -11856,7 +11853,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example504()
+    public void Example504Line7742Linktitle()
     {
         var input = @"
 [link](""title"")
@@ -11876,7 +11873,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example505()
+    public void Example505Line7751LinkurlTitlenlinkurlTitlenlinkurlTitle()
     {
         var input = @"
 [link](/url ""title"")
@@ -11900,7 +11897,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example506()
+    public void Example506Line7765LinkurlTitleQuot()
     {
         var input = @"
 [link](/url ""title \""&quot;"")
@@ -11920,7 +11917,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example507()
+    public void Example507Line7776LinkurlTitle()
     {
         var input = @"
 [link](/url ""title"")
@@ -11940,7 +11937,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example508()
+    public void Example508Line7785LinkurlTitleAndTitle()
     {
         var input = @"
 [link](/url ""title ""and"" title"")
@@ -11960,7 +11957,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example509()
+    public void Example509Line7794LinkurlTitleAndTitle()
     {
         var input = @"
 [link](/url 'title ""and"" title')
@@ -11980,7 +11977,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example510()
+    public void Example510Line7819LinkUrinTitle()
     {
         var input = @"
 [link](   /uri
@@ -12001,7 +11998,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example511()
+    public void Example511Line7830LinkUri()
     {
         var input = @"
 [link] (/uri)
@@ -12021,7 +12018,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example512()
+    public void Example512Line7840LinkFooBaruri()
     {
         var input = @"
 [link [foo [bar]]](/uri)
@@ -12041,7 +12038,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example513()
+    public void Example513Line7847LinkBaruri()
     {
         var input = @"
 [link] bar](/uri)
@@ -12061,7 +12058,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example514()
+    public void Example514Line7854LinkBaruri()
     {
         var input = @"
 [link [bar](/uri)
@@ -12081,7 +12078,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example515()
+    public void Example515Line7861LinkBaruri()
     {
         var input = @"
 [link \[bar](/uri)
@@ -12101,7 +12098,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example516()
+    public void Example516Line7870LinkFooBarUri()
     {
         var input = @"
 [link *foo **bar** `#`*](/uri)
@@ -12121,7 +12118,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example517()
+    public void Example517Line7877Moonmoonjpguri()
     {
         var input = @"
 [![moon](moon.jpg)](/uri)
@@ -12141,7 +12138,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example518()
+    public void Example518Line7886FooBaruriuri()
     {
         var input = @"
 [foo [bar](/uri)](/uri)
@@ -12161,7 +12158,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example519()
+    public void Example519Line7893FooBarBazuriuriuri()
     {
         var input = @"
 [foo *[bar [baz](/uri)](/uri)*](/uri)
@@ -12181,7 +12178,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example520()
+    public void Example520Line7900Foouri1uri2uri3()
     {
         var input = @"
 ![[[foo](uri1)](uri2)](uri3)
@@ -12201,7 +12198,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example521()
+    public void Example521Line7910Foouri()
     {
         var input = @"
 *[foo*](/uri)
@@ -12221,7 +12218,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example522()
+    public void Example522Line7917FooBarbaz()
     {
         var input = @"
 [foo *bar](baz*)
@@ -12240,8 +12237,10 @@ bar>)</p>
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
     }
 
-    //[TestMethod]
-    public void Example523()
+    // TODO:
+    [Ignore]
+    [TestMethod]
+    public void Example523Line7927FooBarBaz()
     {
         var input = @"
 *foo [bar* baz]
@@ -12261,7 +12260,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example524()
+    public void Example524Line7937FooBarAttrbaz()
     {
         var input = @"
 [foo <bar attr=""](baz)"">
@@ -12281,7 +12280,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example525()
+    public void Example525Line7944Foouri()
     {
         var input = @"
 [foo`](/uri)`
@@ -12301,7 +12300,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example526()
+    public void Example526Line7951Foohttpsexamplecomsearchuri()
     {
         var input = @"
 [foo<https://example.com/?search=](uri)>
@@ -12321,7 +12320,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example527()
+    public void Example527Line7989FoobarnnbarUrlTitle()
     {
         var input = @"
 [foo][bar]
@@ -12343,7 +12342,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example528()
+    public void Example528Line8004LinkFooBarrefnnrefUri()
     {
         var input = @"
 [link [foo [bar]]][ref]
@@ -12365,7 +12364,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example529()
+    public void Example529Line8013LinkBarrefnnrefUri()
     {
         var input = @"
 [link \[bar][ref]
@@ -12387,7 +12386,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example530()
+    public void Example530Line8024LinkFooBarRefnnrefUri()
     {
         var input = @"
 [link *foo **bar** `#`*][ref]
@@ -12409,7 +12408,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example531()
+    public void Example531Line8033MoonmoonjpgrefnnrefUri()
     {
         var input = @"
 [![moon](moon.jpg)][ref]
@@ -12431,7 +12430,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example532()
+    public void Example532Line8044FooBarurirefnnrefUri()
     {
         var input = @"
 [foo [bar](/uri)][ref]
@@ -12453,7 +12452,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example533()
+    public void Example533Line8053FooBarBazrefrefnnrefUri()
     {
         var input = @"
 [foo *bar [baz][ref]*][ref]
@@ -12475,7 +12474,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example534()
+    public void Example534Line8068FoorefnnrefUri()
     {
         var input = @"
 *[foo*][ref]
@@ -12497,7 +12496,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example535()
+    public void Example535Line8077FooBarrefnnrefUri()
     {
         var input = @"
 [foo *bar][ref]*
@@ -12519,7 +12518,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example536()
+    public void Example536Line8089FooBarAttrrefnnrefUri()
     {
         var input = @"
 [foo <bar attr=""][ref]"">
@@ -12541,7 +12540,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example537()
+    public void Example537Line8098FoorefnnrefUri()
     {
         var input = @"
 [foo`][ref]`
@@ -12563,7 +12562,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example538()
+    public void Example538Line8107FoohttpsexamplecomsearchrefnnrefUri()
     {
         var input = @"
 [foo<https://example.com/?search=][ref]>
@@ -12585,7 +12584,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example539()
+    public void Example539Line8118FooBaRnnbarUrlTitle()
     {
         var input = @"
 [foo][BaR]
@@ -12606,8 +12605,10 @@ bar>)</p>
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
     }
 
-    //[TestMethod]
-    public void Example540()
+    // TODO:
+    [Ignore]
+    [TestMethod]
+    public void Example540Line8129NnSSUrl()
     {
         var input = @"
 [ẞ]
@@ -12629,7 +12630,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example541()
+    public void Example541Line8141FoonBarUrlnnBazFooBar()
     {
         var input = @"
 [Foo
@@ -12652,7 +12653,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example542()
+    public void Example542Line8154FooBarnnbarUrlTitle()
     {
         var input = @"
 [foo] [bar]
@@ -12674,7 +12675,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example543()
+    public void Example543Line8163FoonbarnnbarUrlTitle()
     {
         var input = @"
 [foo]
@@ -12698,7 +12699,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example544()
+    public void Example544Line8204FooUrl1nnfooUrl2nnbarfoo()
     {
         var input = @"
 [foo]: /url1
@@ -12722,7 +12723,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example545()
+    public void Example545Line8219BarfoonnfooUrl()
     {
         var input = @"
 [bar][foo\!]
@@ -12744,7 +12745,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example546()
+    public void Example546Line8231FoorefnnrefUri()
     {
         var input = @"
 [foo][ref[]
@@ -12767,7 +12768,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example547()
+    public void Example547Line8241FoorefbarnnrefbarUri()
     {
         var input = @"
 [foo][ref[bar]]
@@ -12790,7 +12791,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example548()
+    public void Example548Line8251FoonnfooUrl()
     {
         var input = @"
 [[[foo]]]
@@ -12813,7 +12814,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example549()
+    public void Example549Line8261FoorefnnrefUri()
     {
         var input = @"
 [foo][ref\[]
@@ -12835,7 +12836,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example550()
+    public void Example550Line8272BarUrinnbar()
     {
         var input = @"
 [bar\\]: /uri
@@ -12857,7 +12858,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example551()
+    public void Example551Line8284NnUri()
     {
         var input = @"
 []
@@ -12880,7 +12881,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example552()
+    public void Example552Line8294NNnnUri()
     {
         var input = @"
 [
@@ -12907,7 +12908,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example553()
+    public void Example553Line8317FoonnfooUrlTitle()
     {
         var input = @"
 [foo][]
@@ -12929,7 +12930,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example554()
+    public void Example554Line8326FooBarnnfooBarUrlTitle()
     {
         var input = @"
 [*foo* bar][]
@@ -12951,7 +12952,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example555()
+    public void Example555Line8337FoonnfooUrlTitle()
     {
         var input = @"
 [Foo][]
@@ -12973,7 +12974,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example556()
+    public void Example556Line8350FooNnnfooUrlTitle()
     {
         var input = @"
 [foo] 
@@ -12997,7 +12998,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example557()
+    public void Example557Line8370FoonnfooUrlTitle()
     {
         var input = @"
 [foo]
@@ -13019,7 +13020,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example558()
+    public void Example558Line8379FooBarnnfooBarUrlTitle()
     {
         var input = @"
 [*foo* bar]
@@ -13041,7 +13042,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example559()
+    public void Example559Line8388FooBarnnfooBarUrlTitle()
     {
         var input = @"
 [[*foo* bar]]
@@ -13063,7 +13064,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example560()
+    public void Example560Line8397BarFoonnfooUrl()
     {
         var input = @"
 [[bar [foo]
@@ -13085,7 +13086,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example561()
+    public void Example561Line8408FoonnfooUrlTitle()
     {
         var input = @"
 [Foo]
@@ -13107,7 +13108,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example562()
+    public void Example562Line8419FooBarnnfooUrl()
     {
         var input = @"
 [foo] bar
@@ -13129,7 +13130,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example563()
+    public void Example563Line8431FoonnfooUrlTitle()
     {
         var input = @"
 \[foo]
@@ -13151,7 +13152,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example564()
+    public void Example564Line8443FooUrlnnfoo()
     {
         var input = @"
 [foo*]: /url
@@ -13173,7 +13174,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example565()
+    public void Example565Line8455FoobarnnfooUrl1nbarUrl2()
     {
         var input = @"
 [foo][bar]
@@ -13196,7 +13197,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example566()
+    public void Example566Line8464FoonnfooUrl1()
     {
         var input = @"
 [foo][]
@@ -13218,7 +13219,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example567()
+    public void Example567Line8474FoonnfooUrl1()
     {
         var input = @"
 [foo]()
@@ -13240,7 +13241,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example568()
+    public void Example568Line8482FoonotALinknnfooUrl1()
     {
         var input = @"
 [foo](not a link)
@@ -13262,7 +13263,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example569()
+    public void Example569Line8493FoobarbaznnbazUrl()
     {
         var input = @"
 [foo][bar][baz]
@@ -13284,7 +13285,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example570()
+    public void Example570Line8505FoobarbaznnbazUrl1nbarUrl2()
     {
         var input = @"
 [foo][bar][baz]
@@ -13307,7 +13308,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example571()
+    public void Example571Line8518FoobarbaznnbazUrl1nfooUrl2()
     {
         var input = @"
 [foo][bar][baz]
@@ -13330,7 +13331,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example572()
+    public void Example572Line8541FoourlTitle()
     {
         var input = @"
 ![foo](/url ""title"")
@@ -13350,7 +13351,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example573()
+    public void Example573Line8548FooBarnnfooBarTrainjpgTrainTracks()
     {
         var input = @"
 ![foo *bar*]
@@ -13372,7 +13373,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example574()
+    public void Example574Line8557FooBarurlurl2()
     {
         var input = @"
 ![foo ![bar](/url)](/url2)
@@ -13392,7 +13393,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example575()
+    public void Example575Line8564FooBarurlurl2()
     {
         var input = @"
 ![foo [bar](/url)](/url2)
@@ -13412,7 +13413,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example576()
+    public void Example576Line8578FooBarnnfooBarTrainjpgTrainTracks()
     {
         var input = @"
 ![foo *bar*][]
@@ -13434,7 +13435,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example577()
+    public void Example577Line8587FooBarfoobarnnFOOBARTrainjpgTrainTracks()
     {
         var input = @"
 ![foo *bar*][foobar]
@@ -13456,7 +13457,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example578()
+    public void Example578Line8596Footrainjpg()
     {
         var input = @"
 ![foo](train.jpg)
@@ -13476,7 +13477,7 @@ bar>)</p>
     }
 
     [TestMethod]
-    public void Example579()
+    public void Example579Line8603MyFooBarpathtotrainjpgTitle()
     {
         var input = @"
 My ![foo bar](/path/to/train.jpg  ""title""   )
@@ -13496,7 +13497,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example580()
+    public void Example580Line8610Foourl()
     {
         var input = @"
 ![foo](<url>)
@@ -13516,7 +13517,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example581()
+    public void Example581Line8617Url()
     {
         var input = @"
 ![](/url)
@@ -13536,7 +13537,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example582()
+    public void Example582Line8626FoobarnnbarUrl()
     {
         var input = @"
 ![foo][bar]
@@ -13558,7 +13559,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example583()
+    public void Example583Line8635FoobarnnBARUrl()
     {
         var input = @"
 ![foo][bar]
@@ -13580,7 +13581,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example584()
+    public void Example584Line8646FoonnfooUrlTitle()
     {
         var input = @"
 ![foo][]
@@ -13602,7 +13603,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example585()
+    public void Example585Line8655FooBarnnfooBarUrlTitle()
     {
         var input = @"
 ![*foo* bar][]
@@ -13624,7 +13625,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example586()
+    public void Example586Line8666FoonnfooUrlTitle()
     {
         var input = @"
 ![Foo][]
@@ -13646,7 +13647,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example587()
+    public void Example587Line8678FooNnnfooUrlTitle()
     {
         var input = @"
 ![foo] 
@@ -13670,7 +13671,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example588()
+    public void Example588Line8691FoonnfooUrlTitle()
     {
         var input = @"
 ![foo]
@@ -13692,7 +13693,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example589()
+    public void Example589Line8700FooBarnnfooBarUrlTitle()
     {
         var input = @"
 ![*foo* bar]
@@ -13714,7 +13715,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example590()
+    public void Example590Line8711FoonnfooUrlTitle()
     {
         var input = @"
 ![[foo]]
@@ -13737,7 +13738,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example591()
+    public void Example591Line8723FoonnfooUrlTitle()
     {
         var input = @"
 ![Foo]
@@ -13759,7 +13760,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example592()
+    public void Example592Line8735FoonnfooUrlTitle()
     {
         var input = @"
 !\[foo]
@@ -13781,7 +13782,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example593()
+    public void Example593Line8747FoonnfooUrlTitle()
     {
         var input = @"
 \![foo]
@@ -13803,7 +13804,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example594()
+    public void Example594Line8780Httpfoobarbaz()
     {
         var input = @"
 <http://foo.bar.baz>
@@ -13823,7 +13824,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example595()
+    public void Example595Line8787Httpsfoobarbaztestqhelloid22boolean()
     {
         var input = @"
 <https://foo.bar.baz/test?q=hello&id=22&boolean>
@@ -13843,7 +13844,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example596()
+    public void Example596Line8794Ircfoobar2233baz()
     {
         var input = @"
 <irc://foo.bar:2233/baz>
@@ -13863,7 +13864,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example597()
+    public void Example597Line8803MAILTOFOOBARBAZ()
     {
         var input = @"
 <MAILTO:FOO@BAR.BAZ>
@@ -13883,7 +13884,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example598()
+    public void Example598Line8815Abcd()
     {
         var input = @"
 <a+b+c:d>
@@ -13903,7 +13904,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example599()
+    public void Example599Line8822MadeUpSchemefoobar()
     {
         var input = @"
 <made-up-scheme://foo,bar>
@@ -13923,7 +13924,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example600()
+    public void Example600Line8829Https()
     {
         var input = @"
 <https://../>
@@ -13943,7 +13944,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example601()
+    public void Example601Line8836Localhost5001foo()
     {
         var input = @"
 <localhost:5001/foo>
@@ -13963,7 +13964,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example602()
+    public void Example602Line8845HttpsfoobarbazBim()
     {
         var input = @"
 <https://foo.bar/baz bim>
@@ -13983,7 +13984,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example603()
+    public void Example603Line8854Httpsexamplecom()
     {
         var input = @"
 <https://example.com/\[\>
@@ -14003,7 +14004,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example604()
+    public void Example604Line8876Foobarexamplecom()
     {
         var input = @"
 <foo@bar.example.com>
@@ -14023,7 +14024,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example605()
+    public void Example605Line8883FoospecialBarbazBar0com()
     {
         var input = @"
 <foo+special@Bar.baz-bar0.com>
@@ -14043,7 +14044,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example606()
+    public void Example606Line8892Foobarexamplecom()
     {
         var input = @"
 <foo\+@bar.example.com>
@@ -14063,7 +14064,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example607()
+    public void Example607Line8901()
     {
         var input = @"
 <>
@@ -14083,7 +14084,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example608()
+    public void Example608Line8908Httpsfoobar()
     {
         var input = @"
 < https://foo.bar >
@@ -14103,7 +14104,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example609()
+    public void Example609Line8915Mabc()
     {
         var input = @"
 <m:abc>
@@ -14123,7 +14124,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example610()
+    public void Example610Line8922Foobarbaz()
     {
         var input = @"
 <foo.bar.baz>
@@ -14143,7 +14144,7 @@ My ![foo bar](/path/to/train.jpg  ""title""   )
     }
 
     [TestMethod]
-    public void Example611()
+    public void Example611Line8929Httpsexamplecom()
     {
         var input = @"
 https://example.com
@@ -14163,7 +14164,7 @@ https://example.com
     }
 
     [TestMethod]
-    public void Example612()
+    public void Example612Line8936Foobarexamplecom()
     {
         var input = @"
 foo@bar.example.com
@@ -14183,7 +14184,7 @@ foo@bar.example.com
     }
 
     [TestMethod]
-    public void Example613()
+    public void Example613Line9016Ababc2c()
     {
         var input = @"
 <a><bab><c2c>
@@ -14203,7 +14204,7 @@ foo@bar.example.com
     }
 
     [TestMethod]
-    public void Example614()
+    public void Example614Line9025Ab2()
     {
         var input = @"
 <a/><b2/>
@@ -14223,7 +14224,7 @@ foo@bar.example.com
     }
 
     [TestMethod]
-    public void Example615()
+    public void Example615Line9034AB2ndatafoo()
     {
         var input = @"
 <a  /><b2
@@ -14245,7 +14246,7 @@ data=""foo"" ></p>
     }
 
     [TestMethod]
-    public void Example616()
+    public void Example616Line9045AFoobarBamBazEmemnbooleanZoop33zoop33()
     {
         var input = @"
 <a foo=""bar"" bam = 'baz <em>""</em>'
@@ -14267,7 +14268,7 @@ _boolean zoop:33=zoop:33 /></p>
     }
 
     [TestMethod]
-    public void Example617()
+    public void Example617Line9056FooResponsiveImageSrcfoojpg()
     {
         var input = @"
 Foo <responsive-image src=""foo.jpg"" />
@@ -14287,7 +14288,7 @@ Foo <responsive-image src=""foo.jpg"" />
     }
 
     [TestMethod]
-    public void Example618()
+    public void Example618Line906533()
     {
         var input = @"
 <33> <__>
@@ -14307,7 +14308,7 @@ Foo <responsive-image src=""foo.jpg"" />
     }
 
     [TestMethod]
-    public void Example619()
+    public void Example619Line9074AHrefhi()
     {
         var input = @"
 <a h*#ref=""hi"">
@@ -14327,7 +14328,7 @@ Foo <responsive-image src=""foo.jpg"" />
     }
 
     [TestMethod]
-    public void Example620()
+    public void Example620Line9083AHrefhiAHrefhi()
     {
         var input = @"
 <a href=""hi'> <a href=hi'>
@@ -14347,7 +14348,7 @@ Foo <responsive-image src=""foo.jpg"" />
     }
 
     [TestMethod]
-    public void Example621()
+    public void Example621Line9092AnfoobarNfooBarbaznbimbop()
     {
         var input = @"
 < a><
@@ -14373,7 +14374,7 @@ bim!bop /&gt;</p>
     }
 
     [TestMethod]
-    public void Example622()
+    public void Example622Line9107AHrefbartitletitle()
     {
         var input = @"
 <a href='bar'title=title>
@@ -14393,7 +14394,7 @@ bim!bop /&gt;</p>
     }
 
     [TestMethod]
-    public void Example623()
+    public void Example623Line9116Afoo()
     {
         var input = @"
 </a></foo >
@@ -14413,7 +14414,7 @@ bim!bop /&gt;</p>
     }
 
     [TestMethod]
-    public void Example624()
+    public void Example624Line9125AHreffoo()
     {
         var input = @"
 </a href=""foo"">
@@ -14433,7 +14434,7 @@ bim!bop /&gt;</p>
     }
 
     [TestMethod]
-    public void Example625()
+    public void Example625Line9134FooThisIsANcommentWithHyphens()
     {
         var input = @"
 foo <!-- this is a --
@@ -14455,7 +14456,7 @@ comment - with hyphens --></p>
     }
 
     [TestMethod]
-    public void Example626()
+    public void Example626Line9142FooFooNnfooFoo()
     {
         var input = @"
 foo <!--> foo -->
@@ -14478,7 +14479,7 @@ foo <!---> foo -->
     }
 
     [TestMethod]
-    public void Example627()
+    public void Example627Line9154FooPhpEchoA()
     {
         var input = @"
 foo <?php echo $a; ?>
@@ -14498,7 +14499,7 @@ foo <?php echo $a; ?>
     }
 
     [TestMethod]
-    public void Example628()
+    public void Example628Line9163FooELEMENTBrEMPTY()
     {
         var input = @"
 foo <!ELEMENT br EMPTY>
@@ -14518,7 +14519,7 @@ foo <!ELEMENT br EMPTY>
     }
 
     [TestMethod]
-    public void Example629()
+    public void Example629Line9172FooCDATA()
     {
         var input = @"
 foo <![CDATA[>&<]]>
@@ -14538,7 +14539,7 @@ foo <![CDATA[>&<]]>
     }
 
     [TestMethod]
-    public void Example630()
+    public void Example630Line9182FooAHrefouml()
     {
         var input = @"
 foo <a href=""&ouml;"">
@@ -14558,7 +14559,7 @@ foo <a href=""&ouml;"">
     }
 
     [TestMethod]
-    public void Example631()
+    public void Example631Line9191FooAHref()
     {
         var input = @"
 foo <a href=""\*"">
@@ -14578,7 +14579,7 @@ foo <a href=""\*"">
     }
 
     [TestMethod]
-    public void Example632()
+    public void Example632Line9198AHref()
     {
         var input = @"
 <a href=""\"""">
@@ -14598,7 +14599,7 @@ foo <a href=""\*"">
     }
 
     [TestMethod]
-    public void Example633()
+    public void Example633Line9212FooNbaz()
     {
         var input = @"
 foo  
@@ -14620,7 +14621,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example634()
+    public void Example634Line9224Foonbaz()
     {
         var input = @"
 foo\
@@ -14642,7 +14643,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example635()
+    public void Example635Line9235FooNbaz()
     {
         var input = @"
 foo       
@@ -14664,7 +14665,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example636()
+    public void Example636Line9246FooNBar()
     {
         var input = @"
 foo  
@@ -14686,7 +14687,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example637()
+    public void Example637Line9255FoonBar()
     {
         var input = @"
 foo\
@@ -14708,7 +14709,7 @@ bar</p>
     }
 
     [TestMethod]
-    public void Example638()
+    public void Example638Line9267FooNbar()
     {
         var input = @"
 *foo  
@@ -14730,7 +14731,7 @@ bar</em></p>
     }
 
     [TestMethod]
-    public void Example639()
+    public void Example639Line9276Foonbar()
     {
         var input = @"
 *foo\
@@ -14752,7 +14753,7 @@ bar</em></p>
     }
 
     [TestMethod]
-    public void Example640()
+    public void Example640Line9287CodeNspan()
     {
         var input = @"
 `code  
@@ -14773,7 +14774,7 @@ span`
     }
 
     [TestMethod]
-    public void Example641()
+    public void Example641Line9295Codenspan()
     {
         var input = @"
 `code\
@@ -14794,7 +14795,7 @@ span`
     }
 
     [TestMethod]
-    public void Example642()
+    public void Example642Line9305AHreffooNbar()
     {
         var input = @"
 <a href=""foo  
@@ -14816,7 +14817,7 @@ bar""></p>
     }
 
     [TestMethod]
-    public void Example643()
+    public void Example643Line9314AHreffoonbar()
     {
         var input = @"
 <a href=""foo\
@@ -14838,7 +14839,7 @@ bar""></p>
     }
 
     [TestMethod]
-    public void Example644()
+    public void Example644Line9327Foo()
     {
         var input = @"
 foo\
@@ -14858,7 +14859,7 @@ foo\
     }
 
     [TestMethod]
-    public void Example645()
+    public void Example645Line9334Foo()
     {
         var input = @"
 foo  
@@ -14878,7 +14879,7 @@ foo
     }
 
     [TestMethod]
-    public void Example646()
+    public void Example646Line9341Foo()
     {
         var input = @"
 ### foo\
@@ -14898,7 +14899,7 @@ foo
     }
 
     [TestMethod]
-    public void Example647()
+    public void Example647Line9348Foo()
     {
         var input = @"
 ### foo  
@@ -14918,7 +14919,7 @@ foo
     }
 
     [TestMethod]
-    public void Example648()
+    public void Example648Line9363Foonbaz()
     {
         var input = @"
 foo
@@ -14940,7 +14941,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example649()
+    public void Example649Line9375FooNBaz()
     {
         var input = @"
 foo 
@@ -14962,7 +14963,7 @@ baz</p>
     }
 
     [TestMethod]
-    public void Example650()
+    public void Example650Line9395HelloThere()
     {
         var input = @"
 hello $.;'there
@@ -14982,7 +14983,7 @@ hello $.;'there
     }
 
     [TestMethod]
-    public void Example651()
+    public void Example651Line9402Foo()
     {
         var input = @"
 Foo χρῆν
@@ -15002,7 +15003,7 @@ Foo χρῆν
     }
 
     [TestMethod]
-    public void Example652()
+    public void Example652Line9411MultipleSpaces()
     {
         var input = @"
 Multiple     spaces
@@ -15019,10 +15020,5 @@ Multiple     spaces
 
         var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    private string Message(string expected, string html)
-    {
-        return $"expected vs actual =>\n=\n{expected.Trim()}\n=\n{html.Trim()}\n";
     }
 }

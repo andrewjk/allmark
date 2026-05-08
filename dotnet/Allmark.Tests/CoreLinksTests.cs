@@ -4,7 +4,7 @@ using Allmark.Rulesets;
 namespace Allmark.Tests;
 
 [TestClass]
-public class LinksTests
+public class CoreLinksTests
 {
     [TestMethod]
     public void BasicInlineLink()
@@ -378,6 +378,26 @@ Visit [Google](https://google.com) for search.
     }
 
     [TestMethod]
+    public void LinkWithSpecialCharactersInURL()
+    {
+        var input = @"
+[Link](https://example.com/path?query=value&other=123#anchor)
+";
+        var expected = @"
+<p><a href=""https://example.com/path?query=value&amp;other=123#anchor"">Link</a></p>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
     public void LinkWithParenthesesInURL()
     {
         var input = @"
@@ -421,7 +441,7 @@ Visit [Google](https://google.com) for search.
     public void LinkWithEscapedBracketsInText()
     {
         var input = @"
-[\[link\]](https://example.com)
+[[link]](https://example.com)
 ";
         var expected = @"
 <p><a href=""https://example.com"">[link]</a></p>
@@ -485,26 +505,6 @@ Visit [Google](https://google.com) for search.
 ";
         var expected = @"
 <p><a href=""/path/to/page"">Link</a></p>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void LinkWithSpecialCharactersInURL()
-    {
-        var input = @"
-[Link](https://example.com/path?query=value&other=123#anchor)
-";
-        var expected = @"
-<p><a href=""https://example.com/path?query=value&amp;other=123#anchor"">Link</a></p>
 ".Substring(1);
 
         var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);

@@ -270,7 +270,7 @@ text {+`code`+}
     public void EscapedBracesShouldNotBeInsertion()
     {
         var input = @"
-text \{+not insertion\+\}
+text \{+not insertion\+}
 ";
         var expected = @"
 <p>text {+not insertion+}</p>

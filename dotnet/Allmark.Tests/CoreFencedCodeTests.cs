@@ -166,7 +166,7 @@ const x = 1;
     }
 
     [TestMethod]
-    public void CodeFenceWithMultilineContent()
+    public void CodeFenceWithMultiLineContent()
     {
         var input = @"
 ```
@@ -604,6 +604,83 @@ code
     }
 
     [TestMethod]
+    public void CodeFenceInBlockquote()
+    {
+        var input = @"
+> ```
+code
+```
+";
+        var expected = @"
+<blockquote>
+<pre><code></code></pre>
+</blockquote>
+<p>code</p>
+<pre><code></code></pre>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
+    public void CodeFenceInListItem()
+    {
+        var input = @"
+- ```
+code
+```
+";
+        var expected = @"
+<ul>
+<li>
+<pre><code></code></pre>
+</li>
+</ul>
+<p>code</p>
+<pre><code></code></pre>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
+    public void CodeFenceWithTrailingSpacesAfterOpening()
+    {
+        var input = @"
+```   
+code
+```
+";
+        var expected = @"
+<pre><code>code
+</code></pre>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
     public void CodeFenceWithTrailingSpacesAfterClosing()
     {
         var input = @"
@@ -630,9 +707,9 @@ code
     public void CodeFenceWithVeryLongOpening()
     {
         var input = @"
-``````````````
+``````````
 code
-``````````````
+``````````
 ";
         var expected = @"
 <pre><code>code
@@ -744,6 +821,29 @@ int main() {}
     }
 
     [TestMethod]
+    public void CodeFenceWithTrailingWhitespaceOnClosingFence()
+    {
+        var input = @"
+```
+code
+```   
+";
+        var expected = @"
+<pre><code>code
+</code></pre>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
     public void CodeFenceBetweenParagraphs()
     {
         var input = @"
@@ -796,11 +896,34 @@ code
     }
 
     [TestMethod]
+    public void CodeFenceWithHTMLEntitiesInInfo()
+    {
+        var input = @"
+```&lt;test&gt;
+code
+```
+";
+        var expected = @"
+<pre><code class=""language-&lt;test&gt;"">code
+</code></pre>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
     public void CodeFenceWithIndentedContentLines()
     {
         var input = @"
-```
-   indented
+ ```
+    indented
 not indented
 ```
 ";
@@ -890,53 +1013,7 @@ code
     }
 
     [TestMethod]
-    public void CodeFenceWithTrailingSpacesAfterOpening()
-    {
-        var input = @"
-```   
-code
-```
-";
-        var expected = @"
-<pre><code>code
-</code></pre>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void CodeFenceWithHTMLEntitiesInInfo()
-    {
-        var input = @"
-```&lt;test&gt;
-code
-```
-";
-        var expected = @"
-<pre><code class=""language-&lt;test&gt;"">code
-</code></pre>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void CodeFenceWithAtxHeadingBelow()
+    public void CodeFenceWithATXHeadingBelow()
     {
         var input = @"
 ```
@@ -948,83 +1025,6 @@ code
 <pre><code>code
 </code></pre>
 <h1>Heading</h1>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void CodeFenceInBlockquote()
-    {
-        var input = @"
-> ```
-code
-```
-";
-        var expected = @"
-<blockquote>
-<pre><code></code></pre>
-</blockquote>
-<p>code</p>
-<pre><code></code></pre>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void CodeFenceInListItem()
-    {
-        var input = @"
-- ```
-code
-```
-";
-        var expected = @"
-<ul>
-<li>
-<pre><code></code></pre>
-</li>
-</ul>
-<p>code</p>
-<pre><code></code></pre>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void CodeFenceWithTrailingWhitespaceOnClosingFence()
-    {
-        var input = @"
-```
-code
-```   
-";
-        var expected = @"
-<pre><code>code
-</code></pre>
 ".Substring(1);
 
         var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);

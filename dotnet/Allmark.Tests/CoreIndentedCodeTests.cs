@@ -4,7 +4,7 @@ using Allmark.Rulesets;
 namespace Allmark.Tests;
 
 [TestClass]
-public class IndentedCodeTests
+public class CoreIndentedCodeTests
 {
     [TestMethod]
     public void Simple4SpaceIndentedCode()
@@ -49,7 +49,7 @@ public class IndentedCodeTests
     }
 
     [TestMethod]
-    public void MultilineIndentedCode()
+    public void MultiLineIndentedCode()
     {
         var input = @"
     line 1
@@ -94,7 +94,7 @@ line 3
     }
 
     [TestMethod]
-    public void FiveSpaceIndentedCode()
+    public void _5SpaceIndentedCode()
     {
         var input = @"
      code here
@@ -115,7 +115,7 @@ line 3
     }
 
     [TestMethod]
-    public void EightSpaceIndentedCode()
+    public void _8SpaceIndentedCode()
     {
         var input = @"
         code here
@@ -123,6 +123,26 @@ line 3
         var expected = @"
 <pre><code>    code here
 </code></pre>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
+    public void EmptyIndentedCodeBlock()
+    {
+        var input = @"
+    
+    
+";
+        var expected = @"
 ".Substring(1);
 
         var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
@@ -237,6 +257,29 @@ code here</p>
         var expected = @"
 <pre><code>line 1
     line 2
+</code></pre>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    // TODO:
+    [Ignore]
+    [TestMethod]
+    public void TabAfter4Spaces8SpacesTotal()
+    {
+        var input = @"
+    	code here
+";
+        var expected = @"
+<pre><code>	code here
 </code></pre>
 ".Substring(1);
 
@@ -654,7 +697,7 @@ code 2
     }
 
     [TestMethod]
-    public void IndentedCodeWithAtxHeadingAbove()
+    public void IndentedCodeWithATXHeadingAbove()
     {
         var input = @"
 # Heading
@@ -678,7 +721,7 @@ code 2
     }
 
     [TestMethod]
-    public void IndentedCodeWithAtxHeadingBelow()
+    public void IndentedCodeWithATXHeadingBelow()
     {
         var input = @"
     code here
@@ -869,6 +912,27 @@ Paragraph
     }
 
     [TestMethod]
+    public void IndentedCodeBlockWithOnlyWhitespace()
+    {
+        var input = @"
+    
+    
+    
+";
+        var expected = @"
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
     public void IndentedCodeBlockWithVaryingIndentation()
     {
         var input = @"
@@ -914,6 +978,29 @@ Paragraph
         Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
     }
 
+    // TODO:
+    [Ignore]
+    [TestMethod]
+    public void DoubleTabIndented()
+    {
+        var input = @"
+		code here
+";
+        var expected = @"
+<pre><code>	code here
+</code></pre>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
     [TestMethod]
     public void MixedTabAndSpaceIndentation()
     {
@@ -936,7 +1023,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void ThreeSpacesShouldBeParagraph()
+    public void _3SpacesShouldBeParagraph()
     {
         var input = @"
    code here
@@ -956,7 +1043,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void SixSpacesIndentedCode()
+    public void _6SpacesIndentedCode()
     {
         var input = @"
       code here
@@ -977,7 +1064,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void TwelveSpacesIndentedCode()
+    public void _12SpacesIndentedCode()
     {
         var input = @"
             code here
@@ -1090,47 +1177,6 @@ Paragraph
         var expected = @"
 <pre><code>**bold**
 </code></pre>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void EmptyIndentedCodeBlock()
-    {
-        var input = @"
-    
-    
-";
-        var expected = @"
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void IndentedCodeBlockWithOnlyWhitespace()
-    {
-        var input = @"
-    
-    
-    
-";
-        var expected = @"
 ".Substring(1);
 
         var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);

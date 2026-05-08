@@ -4,7 +4,7 @@ using Allmark.Rulesets;
 namespace Allmark.Tests;
 
 [TestClass]
-public class ListOrderedTests
+public class CoreListOrderedTests
 {
     [TestMethod]
     public void SimpleOrderedListWithPeriodDelimiter()
@@ -161,7 +161,7 @@ public class ListOrderedTests
     }
 
     [TestMethod]
-    public void OrderedListWithTooLargeNumber()
+    public void OrderedListWithTooLargeNumber10Digits()
     {
         var input = @"
 1234567890. Item
@@ -334,7 +334,7 @@ public class ListOrderedTests
     }
 
     [TestMethod]
-    public void NestedOrderedList()
+    public void NestedOrderedLists()
     {
         var input = @"
 1. Item 1
@@ -363,7 +363,7 @@ public class ListOrderedTests
     }
 
     [TestMethod]
-    public void DeepNestedOrderedList()
+    public void DeepNestedOrderedLists()
     {
         var input = @"
 1. Level 1
@@ -625,7 +625,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void OrderedListItemWithMultipleParagraphs()
+    public void OrderedListItemWithMultipleParagraphsLoose()
     {
         var input = @"
 1. Item 1
@@ -762,7 +762,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void OrderedListItemWithLeadingSpaces()
+    public void OrderedListItemWithLeadingSpacesStillAList()
     {
         var input = @"
    1. Item
@@ -859,7 +859,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void OrderedListFollowedByBulletedList()
+    public void OrderedListFollowedImmediatelyByBulletedList()
     {
         var input = @"
 1. Item 1
@@ -876,6 +876,38 @@ Paragraph
 <li>Bullet 1</li>
 <li>Bullet 2</li>
 </ul>
+".Substring(1);
+
+        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlSpaced);
+
+        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlTrimmed);
+
+        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
+    }
+
+    [TestMethod]
+    public void OrderedListWithThematicBreakInItem()
+    {
+        var input = @"
+1. Item 1
+
+   ---
+
+2. Item 2
+";
+        var expected = @"
+<ol>
+<li>
+<p>Item 1</p>
+<hr />
+</li>
+<li>
+<p>Item 2</p>
+</li>
+</ol>
 ".Substring(1);
 
         var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
@@ -1014,38 +1046,6 @@ Paragraph
         var expected = @"
 <ol>
 <li></li>
-</ol>
-".Substring(1);
-
-        var htmlSpaced = Transformer.Execute(input, Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlSpaced);
-
-        var htmlTrimmed = Transformer.Execute(input[1..^1], Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlTrimmed);
-
-        var htmlCrLf = Transformer.Execute(input.Replace("\n", "\r\n"), Core.RuleSet, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected, htmlCrLf.Replace("\r\n", "\n"));
-    }
-
-    [TestMethod]
-    public void OrderedListWithThematicBreakInItem()
-    {
-        var input = @"
-1. Item 1
-
-   ---
-
-2. Item 2
-";
-        var expected = @"
-<ol>
-<li>
-<p>Item 1</p>
-<hr />
-</li>
-<li>
-<p>Item 2</p>
-</li>
 </ol>
 ".Substring(1);
 

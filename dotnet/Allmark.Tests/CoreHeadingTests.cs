@@ -4,10 +4,10 @@ using Allmark.Rulesets;
 namespace Allmark.Tests;
 
 [TestClass]
-public class HeadingTests
+public class CoreHeadingTests
 {
     [TestMethod]
-    public void AtxHeadingLevel1()
+    public void ATXHeadingLevel1()
     {
         var input = @"
 # Heading 1
@@ -27,7 +27,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingLevel2()
+    public void ATXHeadingLevel2()
     {
         var input = @"
 ## Heading 2
@@ -47,7 +47,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingLevel3()
+    public void ATXHeadingLevel3()
     {
         var input = @"
 ### Heading 3
@@ -67,7 +67,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingLevel4()
+    public void ATXHeadingLevel4()
     {
         var input = @"
 #### Heading 4
@@ -87,7 +87,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingLevel5()
+    public void ATXHeadingLevel5()
     {
         var input = @"
 ##### Heading 5
@@ -107,7 +107,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingLevel6()
+    public void ATXHeadingLevel6()
     {
         var input = @"
 ###### Heading 6
@@ -127,7 +127,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingWithClosingSequence()
+    public void ATXHeadingWithClosingSequence()
     {
         var input = @"
 # Heading 1 #
@@ -147,7 +147,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingWithMultipleClosingHashes()
+    public void ATXHeadingWithMultipleClosingHashes()
     {
         var input = @"
 ## Heading 2 ###
@@ -167,7 +167,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingWithClosingHashesAndSpaces()
+    public void ATXHeadingWithClosingHashesAndSpaces()
     {
         var input = @"
 # Heading 1 #  
@@ -187,7 +187,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingWithInlineEmphasis()
+    public void ATXHeadingWithInlineEmphasis()
     {
         var input = @"
 # *Heading* with **emphasis**
@@ -207,7 +207,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingWithInlineCode()
+    public void ATXHeadingWithInlineCode()
     {
         var input = @"
 # Heading with `code`
@@ -227,7 +227,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void AtxHeadingWithLink()
+    public void ATXHeadingWithLink()
     {
         var input = @"
 # Heading with [link](https://example.com)
@@ -247,7 +247,7 @@ public class HeadingTests
     }
 
     [TestMethod]
-    public void SetextHeadingLevel1WithEquals()
+    public void SetextHeadingLevel1With()
     {
         var input = @"
 Heading 1
@@ -268,7 +268,7 @@ Heading 1
     }
 
     [TestMethod]
-    public void SetextHeadingLevel2WithDashes()
+    public void SetextHeadingLevel2With()
     {
         var input = @"
 Heading 2
@@ -333,7 +333,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void AtxHeadingWith3SpaceIndent()
+    public void ATXHeadingWith3SpaceIndent()
     {
         var input = @"
    # Heading 1
@@ -353,7 +353,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void AtxHeadingWith4SpaceIndentShouldBeCode()
+    public void ATXHeadingWith4SpaceIndentShouldBeCode()
     {
         var input = @"
     # Heading 1
@@ -374,7 +374,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void AtxHeadingWithoutSpaceAfterHashIsParagraph()
+    public void ATXHeadingWithoutSpaceAfterIsParagraph()
     {
         var input = @"
 #Not a heading
@@ -394,7 +394,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void AtxHeadingWith7HashCharactersIsParagraph()
+    public void ATXHeadingWith7CharactersIsParagraph()
     {
         var input = @"
 ####### Not a heading
@@ -414,7 +414,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void AtxHeadingWithEmptyContent()
+    public void ATXHeadingWithEmptyContent()
     {
         var input = @"
 # 
@@ -434,7 +434,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void AtxHeadingWithOnlyHashAndClosingHash()
+    public void ATXHeadingWithOnlyAndClosing()
     {
         var input = @"
 ## #
@@ -478,7 +478,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void AtxHeadingEscapesClosingHashWithBackslash()
+    public void ATXHeadingEscapesClosingWithBackslash()
     {
         var input = @"
 # Heading with \# escaped
@@ -498,7 +498,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void AtxHeadingAtEndOfDocument()
+    public void ATXHeadingAtEndOfDocument()
     {
         var input = @"
 # Last heading
@@ -518,7 +518,7 @@ line 2</h1>
     }
 
     [TestMethod]
-    public void MultipleAtxHeadings()
+    public void MultipleATXHeadings()
     {
         var input = @"
 # Heading 1
@@ -567,7 +567,7 @@ Heading 2
     }
 
     [TestMethod]
-    public void AtxHeadingPrecededByParagraphWithoutBlankLine()
+    public void ATXHeadingPrecededByParagraphWithoutBlankLine()
     {
         var input = @"
 Paragraph
@@ -589,7 +589,7 @@ Paragraph
     }
 
     [TestMethod]
-    public void AtxHeadingWithMixedInlineElements()
+    public void ATXHeadingWithMixedInlineElements()
     {
         var input = @"
 # **Bold** text, *italic* text, `code`, and [link](https://example.com)

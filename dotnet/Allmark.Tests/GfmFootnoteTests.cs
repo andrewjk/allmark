@@ -555,6 +555,7 @@ Text[^1] [foo]
 [^1]: /footnote
 
 [foo]: /url
+
 ";
         var expected = @"
 <p><a href=""/url"">^1</a></p>

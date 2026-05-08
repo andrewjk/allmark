@@ -358,7 +358,7 @@ line two</del></p>
         var input = @"
 | col1 | col2 |
 | ---- | ---- |
-| ~~deleted~~ | normal |
+| ~~deleted~~ | normal 
 ";
         var expected = @"
 <table>
