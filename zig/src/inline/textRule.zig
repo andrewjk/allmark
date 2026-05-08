@@ -44,10 +44,11 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
         }
         const slice = state.src[start..state.i];
         const old_content = lastNode.content;
+        const was_allocated = lastNode.content_allocated;
         const new_content = state.allocator.alloc(u8, old_content.len + slice.len) catch return false;
         @memcpy(new_content[0..old_content.len], old_content);
         @memcpy(new_content[old_content.len..], slice);
-        if (lastNode.content_allocated) {
+        if (was_allocated) {
             state.allocator.free(old_content);
         }
         lastNode.*.content = new_content;
@@ -55,10 +56,11 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
     } else {
         state.i += 1;
         const old_content = lastNode.content;
+        const was_allocated = lastNode.content_allocated;
         const new_content = state.allocator.alloc(u8, old_content.len + 1) catch return false;
         @memcpy(new_content[0..old_content.len], old_content);
         new_content[old_content.len] = char;
-        if (lastNode.content_allocated) {
+        if (was_allocated) {
             state.allocator.free(old_content);
         }
         lastNode.*.content = new_content;

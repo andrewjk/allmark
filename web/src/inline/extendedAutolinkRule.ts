@@ -1,10 +1,10 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import { PAREN_CLOSE_CODE, PAREN_OPEN_CODE } from "../utils/charCodes";
+import { AT_SIGN_CODE, PAREN_CLOSE_CODE, PAREN_OPEN_CODE } from "../utils/charCodes";
 import decodeEntities from "../utils/decodeEntities";
 import escapeHtml from "../utils/escapeHtml";
-import { isAlphaNumeric } from "../utils/isAlphaNumeric";
+import isSpace from "../utils/isSpace";
 import newInline from "../utils/newInline";
 import newText from "../utils/newText";
 
@@ -96,10 +96,17 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			}
 		}
 
-		if (isAlphaNumeric(charCode)) {
-			// TODO: I think we should actually check this when we come across an @,
-			// rather than any alphanumeric
-			let tail = state.src.substring(state.i);
+		if (charCode === AT_SIGN_CODE) {
+			let start = 0;
+			for (let i = state.i - 1; i >= 0; i--) {
+				let previousChar = state.src.charCodeAt(i);
+				if (isSpace(previousChar)) {
+					start = i + 1;
+					break;
+				}
+			}
+
+			let tail = state.src.substring(start);
 
 			let emailMatch = tail.match(EXT_EMAIL_REGEX);
 			if (emailMatch !== null) {
@@ -110,22 +117,22 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				// of the email address, in which case it will not be considered
 				// part of the address"
 				if (/[-_]$/.test(url) || url.indexOf("+", url.indexOf("@")) !== -1) {
-					let content = escapeHtml(emailMatch[0]);
-					let text = newText(state.parentIndex + state.i, state.line, content, state.indent);
-					text.length = emailMatch[0].length;
-					parent.children!.push(text);
-					state.i += emailMatch[0].length;
-
-					return true;
+					return false;
 				}
 
 				url = url.replaceAll(/\.$/g, "");
+
+				let lastNode = parent.children!.at(-1)!;
+				lastNode.content = lastNode.content.substring(
+					0,
+					lastNode.content.length - (state.i - start),
+				);
 
 				let link = newLink(url, state);
 				link.info = `mailto:${link.info}`;
 				parent.children!.push(link);
 
-				state.i += url.length;
+				state.i = start + url.length;
 
 				return true;
 			}

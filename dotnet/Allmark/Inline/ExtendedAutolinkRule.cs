@@ -96,37 +96,51 @@ public static class ExtendedAutolinkRule
                 }
             }
 
-            if (Utils.IsAlphaNumeric(Utils.GetChar(state.Src, state.I)))
+            if (ch == '@')
             {
-                // TODO: I think we should actually check this when we come across an @,
-                // rather than any alphanumeric
-                var tail = state.Src.Substring(state.I);
+                // Find start of potential email (first space before @ or beginning of string)
+                var start = 0;
+                for (var i = state.I - 1; i >= 0; i--)
+                {
+                    var previousChar = Utils.GetChar(state.Src, i);
+                    if (Utils.IsSpace(previousChar))
+                    {
+                        start = i + 1;
+                        break;
+                    }
+                }
+
+                var tail = state.Src.Substring(start);
 
                 var emailMatch = ExtEmailRegex.Match(tail);
                 if (emailMatch.Success)
                 {
                     var url = emailMatch.Groups[1].Value;
 
+                    var atIdx = url.IndexOf('@');
+                    var plusIdx = url.IndexOf('+', atIdx);
+                    var hasPlusAfterAt = atIdx != -1 && plusIdx != -1 && plusIdx > atIdx;
+
                     // "+ can occur before the @, but not after" "., -, and _ can
                     // occur on both sides of the @, but only . may occur at the end
                     // of the email address, in which case it will not be considered
                     // part of the address"
-                    if (Regex.IsMatch(url, @"[-_]$") || url.IndexOf("+", url.IndexOf("@")) != -1)
+                    if (Regex.IsMatch(url, @"[-_]$") || hasPlusAfterAt)
                     {
-                        var content = Utils.EscapeHtml(emailMatch.Groups[0].Value);
-                        var text = Utils.NewText(state.ParentIndex + state.I, state.Line, content, state.Indent);
-                        parent.Children!.Add(text);
-                        state.I += emailMatch.Groups[0].Length;
-
-                        return true;
+                        return false;
                     }
 
                     url = Regex.Replace(url, @"\.$", "");
 
+                    // Update the last node's content to remove characters already added
+                    var lastNode = parent.Children!.Last();
+                    lastNode.Content = lastNode.Content.Substring(0, lastNode.Content.Length - (state.I - start));
+
                     var link = NewLink(url, state);
                     link.Info = $"mailto:{link.Info}";
                     parent.Children!.Add(link);
-                    state.I += url.Length;
+
+                    state.I = start + url.Length;
 
                     return true;
                 }

@@ -46,6 +46,9 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                 if (hasSpace) {
                     const text = newText(state.allocator, state.parentIndex + state.i, state.line, "", state.indent) catch return false;
+                    if (text.*.content_allocated) {
+                        state.allocator.free(text.*.content);
+                    }
                     text.*.content = escapeHtml(state.allocator, tail[0..urlMatch.?.end]) catch return false;
                     text.*.content_allocated = true;
                     text.*.length = urlMatch.?.end;
@@ -120,6 +123,9 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
                 if (hasSpace) {
                     const text = newText(state.allocator, state.parentIndex + state.i, state.line, "", state.indent) catch return false;
+                    if (text.*.content_allocated) {
+                        state.allocator.free(text.*.content);
+                    }
                     text.*.content = escapeHtml(state.allocator, tail[0..urlMatch.?.end]) catch return false;
                     text.*.content_allocated = true;
                     text.*.length = urlMatch.?.end;
@@ -183,6 +189,9 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const hasPlusAfterAt = at_idx != null and plus_idx != null and plus_idx.? > at_idx.?;
                 if (url.len > 0 and (url[url.len - 1] == '-' or url[url.len - 1] == '_' or hasPlusAfterAt)) {
                     const text = newText(state.allocator, state.parentIndex + state.i, state.line, "", state.indent) catch return false;
+                    if (text.*.content_allocated) {
+                        state.allocator.free(text.*.content);
+                    }
                     text.*.content = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
                     text.*.content_allocated = true;
                     text.*.length = emailMatch.?.end;
@@ -254,6 +263,9 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const hasPlusAfterAt = at_idx != null and plus_idx != null and plus_idx.? > at_idx.?;
                 if (url.len > 0 and (url[url.len - 1] == '-' or url[url.len - 1] == '_' or hasPlusAfterAt)) {
                     const text = newText(state.allocator, state.parentIndex + state.i, state.line, "", state.indent) catch return false;
+                    if (text.*.content_allocated) {
+                        state.allocator.free(text.*.content);
+                    }
                     text.*.content = escapeHtml(state.allocator, tail[0..emailMatch.?.end]) catch return false;
                     text.*.content_allocated = true;
                     text.*.length = emailMatch.?.end;
