@@ -22,6 +22,7 @@ import listBulletedRenderer from "../render/listBulletedRenderer";
 import listOrderedRenderer from "../render/listOrderedRenderer";
 import listTaskItemRenderer from "../render/listTaskItemRenderer";
 import paragraphRenderer from "../render/paragraphRenderer";
+import streamMarkRenderer from "../render/streamMarkRenderer";
 import strikethroughRenderer from "../render/strikethroughRenderer";
 import strongRenderer from "../render/strongRenderer";
 import subscriptRenderer from "../render/subscriptRenderer";
@@ -56,6 +57,7 @@ const renderers: Renderer[] = [
 	listOrderedRenderer,
 	listTaskItemRenderer,
 	paragraphRenderer,
+	streamMarkRenderer,
 	strikethroughRenderer,
 	strongRenderer,
 	subscriptRenderer,

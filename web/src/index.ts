@@ -1,6 +1,7 @@
 export { default as parse } from "./parse";
 export { default as render } from "./render";
 export { default as transform } from "./transform";
+export { createStream, streamChunk } from "./stream";
 export { default as core } from "./rulesets/core";
 export { default as gfm } from "./rulesets/gfm";
 export { default as extended } from "./rulesets/extended";
@@ -8,3 +9,4 @@ export { default as htmlRenderers } from "./rulesets/htmlRenderers";
 export { default as consoleRenderers } from "./rulesets/consoleRenderers";
 export type { default as RuleSet } from "./types/RuleSet";
 export type { default as MarkdownNode } from "./types/MarkdownNode";
+export type { default as StreamState } from "./types/StreamState";
