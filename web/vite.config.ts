@@ -28,4 +28,9 @@ export default defineConfig({
 	pack: {
 		entry: ["src/index.ts", "src/bin/index.ts"],
 	},
+	test: {
+		coverage: {
+			provider: "v8",
+		},
+	},
 }) satisfies UserConfig as UserConfig;
