@@ -47,12 +47,7 @@ func testHtmlBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 
 func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	if let match = tail.firstMatch(of: htmlRegex1) {
-		var currentParent = parent
-
-		if currentParent.type == "paragraph" {
-			closeNode(state: &state, node: state.openNodes.popLast()!)
-			currentParent = state.openNodes.last!
-		}
+		let currentParent = parent
 
 		let tagName = String(match.output.1).lowercased()
 		let closingTag = "</\(tagName)>"
@@ -83,12 +78,6 @@ func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode, tai
 		)
 		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: end)
 
-		if state.hasBlankLine && !currentParent.children.isEmpty {
-			let lastChild = currentParent.children[currentParent.children.count - 1]
-			lastChild.blankAfter = true
-			state.hasBlankLine = false
-		}
-
 		currentParent.children.append(html)
 		state.openNodes.append(html)
 		state.i = end
@@ -101,12 +90,7 @@ func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode, tai
 
 func testHtmlCondition2(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	if let match = tail.firstMatch(of: htmlRegex2) {
-		var currentParent = parent
-
-		if currentParent.type == "paragraph" {
-			closeNode(state: &state, node: state.openNodes.popLast()!)
-			currentParent = state.openNodes.last!
-		}
+		let currentParent = parent
 
 		let start = state.i
 		state.i += tail.distance(from: tail.startIndex, to: match.range.upperBound)
@@ -121,12 +105,6 @@ func testHtmlCondition2(state: inout BlockParserState, parent: MarkdownNode, tai
 		)
 		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: endOfLine)
 
-		if state.hasBlankLine && !currentParent.children.isEmpty {
-			let lastChild = currentParent.children[currentParent.children.count - 1]
-			lastChild.blankAfter = true
-			state.hasBlankLine = false
-		}
-
 		currentParent.children.append(html)
 		state.openNodes.append(html)
 		state.i = endOfLine
@@ -139,12 +117,7 @@ func testHtmlCondition2(state: inout BlockParserState, parent: MarkdownNode, tai
 
 func testHtmlCondition3(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	if let match = tail.firstMatch(of: htmlRegex3) {
-		var currentParent = parent
-
-		if currentParent.type == "paragraph" {
-			closeNode(state: &state, node: state.openNodes.popLast()!)
-			currentParent = state.openNodes.last!
-		}
+		let currentParent = parent
 
 		let start = state.i
 		state.i += tail.distance(from: tail.startIndex, to: match.range.upperBound)
@@ -159,12 +132,6 @@ func testHtmlCondition3(state: inout BlockParserState, parent: MarkdownNode, tai
 		)
 		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: endOfLine)
 
-		if state.hasBlankLine && !currentParent.children.isEmpty {
-			let lastChild = currentParent.children[currentParent.children.count - 1]
-			lastChild.blankAfter = true
-			state.hasBlankLine = false
-		}
-
 		currentParent.children.append(html)
 		state.openNodes.append(html)
 		state.i = endOfLine
@@ -177,12 +144,7 @@ func testHtmlCondition3(state: inout BlockParserState, parent: MarkdownNode, tai
 
 func testHtmlCondition4(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	if let match = tail.firstMatch(of: htmlRegex4) {
-		var currentParent = parent
-
-		if currentParent.type == "paragraph" {
-			closeNode(state: &state, node: state.openNodes.popLast()!)
-			currentParent = state.openNodes.last!
-		}
+		let currentParent = parent
 
 		let start = state.i
 		state.i += tail.distance(from: tail.startIndex, to: match.range.upperBound)
@@ -197,12 +159,6 @@ func testHtmlCondition4(state: inout BlockParserState, parent: MarkdownNode, tai
 		)
 		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: endOfLine)
 
-		if state.hasBlankLine && !currentParent.children.isEmpty {
-			let lastChild = currentParent.children[currentParent.children.count - 1]
-			lastChild.blankAfter = true
-			state.hasBlankLine = false
-		}
-
 		currentParent.children.append(html)
 		state.openNodes.append(html)
 		state.i = endOfLine
@@ -215,12 +171,7 @@ func testHtmlCondition4(state: inout BlockParserState, parent: MarkdownNode, tai
 
 func testHtmlCondition5(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	if let match = tail.firstMatch(of: htmlRegex5) {
-		var currentParent = parent
-
-		if currentParent.type == "paragraph" {
-			closeNode(state: &state, node: state.openNodes.popLast()!)
-			currentParent = state.openNodes.last!
-		}
+		let currentParent = parent
 
 		let start = state.i
 		state.i += tail.distance(from: tail.startIndex, to: match.range.upperBound)
@@ -234,12 +185,6 @@ func testHtmlCondition5(state: inout BlockParserState, parent: MarkdownNode, tai
 			indent: 5
 		)
 		html.content = String(repeating: " ", count: state.indent) + charToString(state.src, from: start, to: endOfLine)
-
-		if state.hasBlankLine && !currentParent.children.isEmpty {
-			let lastChild = currentParent.children[currentParent.children.count - 1]
-			lastChild.blankAfter = true
-			state.hasBlankLine = false
-		}
 
 		currentParent.children.append(html)
 		state.openNodes.append(html)
@@ -292,9 +237,6 @@ func testHtmlCondition7(state: inout BlockParserState, parent: MarkdownNode, tai
 	if let match = tail.firstMatch(of: htmlRegex7) {
 		let end = state.i + tail.distance(from: tail.startIndex, to: match.range.upperBound)
 
-		if end < state.src.count && !isNewLine(char: state.src[end - 1]) {
-			return false
-		}
 		for i in state.i ..< end - 1 {
 			if isNewLine(char: state.src[i]) {
 				return false

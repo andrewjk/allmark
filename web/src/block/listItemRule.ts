@@ -45,19 +45,9 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 			) {
 				return false;
 			}
-			// Break only when content is inside this nesting level, otherwise
-			// continue walking up to check ancestor lists
-			if (state.indent >= itemNode!.subindent) {
-				break;
-			}
 		} else if (openNode.type === "list_bulleted") {
 			if (state.indent <= 3 && state.indent < itemNode!.subindent && char === node.delimiter) {
 				return false;
-			}
-			// Break only when content is inside this nesting level, otherwise
-			// continue walking up to check ancestor lists
-			if (state.indent >= itemNode!.subindent) {
-				break;
 			}
 		}
 	}

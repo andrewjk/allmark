@@ -2,7 +2,6 @@ import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import { ANGLE_RIGHT_CODE } from "../utils/charCodes";
-import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
@@ -38,8 +37,6 @@ function hasMarkup(state: BlockParserState) {
 }
 
 function testStart(state: BlockParserState, parent: MarkdownNode) {
-	let closedNode: MarkdownNode | undefined;
-
 	if (parent.acceptsContent) {
 		return false;
 	}
@@ -47,25 +44,13 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	if (hasMarkup(state)) {
 		const match = state.src.slice(state.i + 1).match(ALERT_REGEX);
 		if (match !== null) {
-			if (parent.type === "paragraph") {
-				closedNode = state.openNodes.pop();
-				parent = state.openNodes.at(-1)!;
-			}
-
-			if (closedNode !== undefined) {
-				closeNode(state, closedNode);
-			}
-
 			let quoteIndent = state.indent + 1;
 
 			let quote = newBlock("alert", state.i, state.line, match[1].toLowerCase(), quoteIndent);
 
 			parent.children!.push(quote);
 			state.openNodes.push(quote);
-
 			state.i = getEndOfLine(state);
-
-			//parseBlock(state, quote);
 
 			return true;
 		}
@@ -74,7 +59,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	return false;
 }
 
-function testContinue(state: BlockParserState, node: MarkdownNode) {
+function testContinue(state: BlockParserState, _node: MarkdownNode) {
 	if (hasMarkup(state)) {
 		movePastMarker(1, state);
 		return true;
@@ -82,14 +67,6 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 
 	if (state.hasBlankLine) {
 		return false;
-	}
-
-	let openNode = state.openNodes.at(-1)!;
-	if (openNode.type === "paragraph") {
-		// We won't know until we try more things
-		state.maybeContinue = true;
-		node.maybeContinuing = true;
-		return true;
 	}
 
 	return false;

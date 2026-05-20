@@ -2,7 +2,6 @@ import parseBlock from "../parse/parseBlock";
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import closeNode from "../utils/closeNode";
 import isNewLine from "../utils/isNewLine";
 import newBlock from "../utils/newBlock";
 
@@ -37,33 +36,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	}
 
 	if (state.indent >= 4 && !isNewLine(state.src.charCodeAt(state.i))) {
-		let closedNode: MarkdownNode | undefined;
-
-		// TODO: rule.canContain?? e.g. list_ordered.canContain = ["list_item"] etc
-		if (parent.type === "list_ordered" || parent.type === "list_bulleted") {
-			closedNode = state.openNodes.pop();
-			parent = state.openNodes.at(-1)!;
-		}
-
-		if (state.maybeContinue) {
-			state.maybeContinue = false;
-			let i = state.openNodes.length;
-			while (i-- > 1) {
-				let node = state.openNodes[i];
-				if (node.maybeContinuing) {
-					node.maybeContinuing = false;
-					closedNode = node;
-					state.openNodes.length = i;
-					break;
-				}
-			}
-			parent = state.openNodes.at(-1)!;
-		}
-
-		if (closedNode !== undefined) {
-			closeNode(state, closedNode);
-		}
-
 		let codeIndent = state.indent - 4;
 
 		let code = newBlock("code_block", state.i - state.indent, state.line, "    ", codeIndent);

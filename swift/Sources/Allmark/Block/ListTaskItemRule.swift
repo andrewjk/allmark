@@ -5,7 +5,7 @@ import Foundation
 let listTaskItemRule = BlockRule(
 	name: "list_task_item",
 	testStart: testListTaskItemStart,
-	testContinue: testListTaskItemContinue,
+	testContinue: { _, _ in false },
 	closeNode: { _, _ in }
 )
 
@@ -51,6 +51,3 @@ func testListTaskItemStart(state: inout BlockParserState, parent: MarkdownNode) 
 	return false
 }
 
-func testListTaskItemContinue(state _: inout BlockParserState, node _: MarkdownNode) -> Bool {
-	return false
-}

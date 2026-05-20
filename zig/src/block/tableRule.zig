@@ -2,7 +2,6 @@ const std = @import("std");
 const BlockParserState = @import("../types/BlockParserState.zig").BlockParserState;
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
-const closeNode = @import("../utils/closeNode.zig").closeNode;
 const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
@@ -147,26 +146,6 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
             if (cells.items.len != headerCellCount) {
                 return false;
-            }
-
-            var closedNode: ?*MarkdownNode = null;
-
-            if (state.maybeContinue) {
-                state.maybeContinue = false;
-                var idx: usize = state.openNodes.items.len;
-                while (idx > 1) : (idx -= 1) {
-                    const node = state.openNodes.items[idx - 1];
-                    if (node.maybeContinuing) {
-                        node.maybeContinuing = false;
-                        closedNode = node;
-                        state.openNodes.shrinkRetainingCapacity(idx - 1);
-                        break;
-                    }
-                }
-            }
-
-            if (closedNode != null) {
-                closeNode(state, closedNode.?);
             }
 
             var headerLength = parent.content.len;

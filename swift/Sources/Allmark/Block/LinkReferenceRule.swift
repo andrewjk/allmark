@@ -7,7 +7,7 @@ import Foundation
 let linkReferenceRule = BlockRule(
 	name: "link_ref",
 	testStart: testLinkReferenceStart,
-	testContinue: testLinkReferenceContinue,
+	testContinue: { _, _ in false },
 	closeNode: { _, _ in }
 )
 
@@ -106,6 +106,3 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 	return false
 }
 
-func testLinkReferenceContinue(state _: inout BlockParserState, node _: MarkdownNode) -> Bool {
-	return false
-}

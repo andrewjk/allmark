@@ -10,7 +10,7 @@ public static class ThematicBreakRule
         {
             Name = "thematic_break",
             TestStart = TestStart,
-            TestContinue = TestContinue,
+            TestContinue = (_, _) => false,
         };
     }
 
@@ -80,15 +80,6 @@ public static class ThematicBreakRule
                     parent = state.OpenNodes.Peek();
                 }
 
-                // HACK: Special case for a thematic break in a list
-                // Maybe do this with interrupts?
-                if (parent.Type == "list_item" && !state.HasBlankLine && ch.ToString() == parent.Delimiter)
-                {
-                    state.OpenNodes.Pop();
-                    state.OpenNodes.Pop();
-                    parent = state.OpenNodes.Peek();
-                }
-
                 if (parent.Type == "list_bulleted" || parent.Type == "list_ordered")
                 {
                     state.OpenNodes.Pop();
@@ -109,11 +100,6 @@ public static class ThematicBreakRule
             }
         }
 
-        return false;
-    }
-
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
-    {
         return false;
     }
 }

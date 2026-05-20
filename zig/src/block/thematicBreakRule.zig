@@ -56,16 +56,6 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 effective_parent = state.openNodes.items[state.openNodes.items.len - 1];
             }
 
-            if (effective_parent.delimiter.len > 0) {
-                if (std.mem.eql(u8, effective_parent.type, "list_item") and !state.hasBlankLine and char == effective_parent.delimiter[0]) {
-                    if (state.openNodes.items.len >= 2) {
-                        _ = state.openNodes.pop();
-                        closed_node = state.openNodes.pop();
-                        effective_parent = state.openNodes.items[state.openNodes.items.len - 1];
-                    }
-                }
-            }
-
             if (std.mem.eql(u8, effective_parent.type, "list_bulleted") or std.mem.eql(u8, effective_parent.type, "list_ordered")) {
                 if (state.openNodes.items.len >= 1) {
                     closed_node = state.openNodes.pop();

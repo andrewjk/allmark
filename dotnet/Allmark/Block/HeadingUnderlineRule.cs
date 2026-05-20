@@ -11,7 +11,7 @@ public static class HeadingUnderlineRule
         {
             Name = "heading_underline",
             TestStart = TestStart,
-            TestContinue = TestContinue,
+            TestContinue = (_, _) => false,
         };
     }
 
@@ -81,11 +81,6 @@ public static class HeadingUnderlineRule
             }
         }
 
-        return false;
-    }
-
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
-    {
         return false;
     }
 }

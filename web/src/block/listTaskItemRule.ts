@@ -9,7 +9,7 @@ import newInline from "../utils/newInline";
 const rule: BlockRule = {
 	name: "list_task_item",
 	testStart,
-	testContinue,
+	testContinue: () => false,
 };
 export default rule;
 
@@ -56,9 +56,5 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		}
 	}
 
-	return false;
-}
-
-function testContinue(_state: BlockParserState, _node: MarkdownNode) {
 	return false;
 }

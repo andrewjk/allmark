@@ -15,7 +15,13 @@ public static class TableRule
         {
             Name = "table",
             TestStart = TestStart,
-            TestContinue = TestContinue,
+            TestContinue = (_, _) =>
+            {
+                // Just close the table every time, and check whether the last node was a
+                // table in TestStart. That way we can interrupt tables with e.g.
+                // blockquotes, even if the blockquote contains a pipe
+                return false;
+            },
         };
     }
 
@@ -134,35 +140,6 @@ public static class TableRule
                     return false;
                 }
 
-                MarkdownNode? closedNode = null;
-
-                if (state.MaybeContinue)
-                {
-                    state.MaybeContinue = false;
-                    for (var i = 0; i < state.OpenNodes.Count - 1; i++)
-                    {
-                        var node = state.OpenNodes.ElementAt(i);
-                        if (node.MaybeContinuing)
-                        {
-                            node.MaybeContinuing = false;
-                            closedNode = node;
-                            // Pop until we reach this node
-                            var newLength = state.OpenNodes.Count - i - 1;
-                            while (state.OpenNodes.Count > newLength)
-                            {
-                                state.OpenNodes.Pop();
-                            }
-                            break;
-                        }
-                    }
-                    parent = state.OpenNodes.Peek();
-                }
-
-                if (closedNode != null)
-                {
-                    Utils.CloseNode(state, closedNode);
-                }
-
                 var headerIndex = parent.Index;
                 var headerLength = parent.Content?.Length ?? 0;
                 if ((parent.Content?.EndsWith("\n") ?? false))
@@ -191,14 +168,6 @@ public static class TableRule
             }
         }
 
-        return false;
-    }
-
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
-    {
-        // Just close the table every time, and check whether the last node was a
-        // table in testStart. That way we can interrupt tables with e.g.
-        // blockquotes, even if the blockquote contains a pipe
         return false;
     }
 

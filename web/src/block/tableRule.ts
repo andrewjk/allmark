@@ -2,7 +2,6 @@ import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import { COLON_CODE, DASH_CODE, PIPE_CODE } from "../utils/charCodes";
-import closeNode from "../utils/closeNode";
 import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
 import isNewLine from "../utils/isNewLine";
@@ -12,7 +11,10 @@ import newBlock from "../utils/newBlock";
 const rule: BlockRule = {
 	name: "table",
 	testStart,
-	testContinue,
+	// Just close the table every time, and check whether the last node was a
+	// table in testStart. That way we can interrupt tables with e.g.
+	// blockquotes, even if the blockquote contains a pipe
+	testContinue: () => false,
 };
 export default rule;
 
@@ -105,27 +107,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 				return false;
 			}
 
-			let closedNode: MarkdownNode | undefined;
-
-			if (state.maybeContinue) {
-				state.maybeContinue = false;
-				let i = state.openNodes.length;
-				while (i-- > 1) {
-					let node = state.openNodes[i];
-					if (node.maybeContinuing) {
-						node.maybeContinuing = false;
-						closedNode = node;
-						state.openNodes.length = i;
-						break;
-					}
-				}
-				parent = state.openNodes.at(-1)!;
-			}
-
-			if (closedNode !== undefined) {
-				closeNode(state, closedNode);
-			}
-
 			let headerIndex = parent.index;
 			let headerLength = parent.content.length;
 			if (parent.content.endsWith("\n")) {
@@ -152,13 +133,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		}
 	}
 
-	return false;
-}
-
-function testContinue(_state: BlockParserState, _node: MarkdownNode) {
-	// Just close the table every time, and check whether the last node was a
-	// table in testStart. That way we can interrupt tables with e.g.
-	// blockquotes, even if the blockquote contains a pipe
 	return false;
 }
 

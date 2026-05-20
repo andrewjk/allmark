@@ -1,6 +1,5 @@
 namespace Allmark;
 
-using System.Text.RegularExpressions;
 using Allmark.Types;
 
 public static partial class Utils
@@ -9,10 +8,6 @@ public static partial class Utils
     {
         // Consume spaces
         var spaces = ConsumeSpaces(state.Src, start);
-        if (BlankLineRegex.IsMatch(spaces))
-        {
-            return null;
-        }
         start += spaces.Length;
 
         // Get the url
@@ -134,18 +129,6 @@ public static partial class Utils
         // "The title may extend over multiple lines"
         if (!string.IsNullOrEmpty(title))
         {
-            // "The title must be separated from the link destination by whitespace"
-            if (spaces.Length == 0)
-            {
-                return null;
-            }
-
-            // "[The title] may not contain a blank line"
-            if (BlankLineRegex.IsMatch(title))
-            {
-                return null;
-            }
-
             // "Both title and destination can contain backslash escapes and literal backslashes"
             title = DecodeEntities(title);
             title = EscapeBackslashes(title);

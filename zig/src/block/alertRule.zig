@@ -2,7 +2,6 @@ const std = @import("std");
 const BlockParserState = @import("../types/BlockParserState.zig").BlockParserState;
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
-const closeNode = @import("../utils/closeNode.zig").closeNode;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
@@ -50,23 +49,8 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
     if (found_alert == null) return false;
 
-    var effective_parent = parent;
-    var closed_node: ?*MarkdownNode = null;
-
-    if (std.mem.eql(u8, parent.type, "paragraph")) {
-        const idx = state.openNodes.items.len;
-        if (idx > 0) {
-            effective_parent = state.openNodes.items[idx - 1];
-            closed_node = state.openNodes.pop();
-        }
-    }
-
-    if (closed_node) |cn| {
-        closeNode(state, cn);
-    }
-
     const quote = newBlock(state.allocator, "alert", state.i, state.line, found_alert.?, state.indent + 1) catch unreachable;
-    appendChild(state.allocator, effective_parent, quote) catch unreachable;
+    appendChild(state.allocator, parent, quote) catch unreachable;
     state.openNodes.append(state.allocator, quote) catch unreachable;
 
     state.i = getEndOfLine(state);
@@ -78,7 +62,8 @@ fn isSpace(char: u8) bool {
     return char == ' ' or char == '\t';
 }
 
-pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {
+pub fn testContinue(state: *BlockParserState, _node: *MarkdownNode) bool {
+    _ = _node;
     if (state.i >= state.src.len) return false;
     const char = state.src[state.i];
 
@@ -88,16 +73,6 @@ pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {
     }
 
     if (state.hasBlankLine) return false;
-
-    const idx = state.openNodes.items.len;
-    if (idx > 0) {
-        const open_node = state.openNodes.items[idx - 1];
-        if (std.mem.eql(u8, open_node.type, "paragraph")) {
-            state.maybeContinue = true;
-            node.maybeContinuing = true;
-            return true;
-        }
-    }
 
     return false;
 }

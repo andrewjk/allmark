@@ -10,7 +10,7 @@ public static class ContentRule
         {
             Name = "content",
             TestStart = TestStart,
-            TestContinue = TestContinue,
+            TestContinue = (_, _) => false,
         };
     }
 
@@ -37,10 +37,5 @@ public static class ContentRule
         }
         state.I = endOfLine;
         return true;
-    }
-
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
-    {
-        return false;
     }
 }

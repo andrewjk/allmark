@@ -15,10 +15,6 @@ const LINK_REGEX = "^<(\\s*[a-zA-Z][a-zA-Z0-9+.-]{1,31}:[^<>]*)>";
 const EMAIL_REGEX = "^<(\\s*[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\\s*)>";
 
 pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
-    if (std.mem.eql(u8, parent.type, "html_block")) {
-        return false;
-    }
-
     if (state.i >= state.src.len) return false;
 
     const char = state.src[state.i];

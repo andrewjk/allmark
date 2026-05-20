@@ -30,42 +30,6 @@ public static class CodeBlockRule
 
         if (state.Indent >= 4 && state.I < state.Src.Length && !Utils.IsNewLine(state.Src[state.I]))
         {
-            MarkdownNode? closedNode = null;
-
-            // TODO: rule.canContain?? e.g. list_ordered.canContain = ["list_item"] etc
-            if (parent.Type == "list_ordered" || parent.Type == "list_bulleted")
-            {
-                closedNode = state.OpenNodes.Pop();
-                parent = state.OpenNodes.Peek();
-            }
-
-            if (state.MaybeContinue)
-            {
-                state.MaybeContinue = false;
-                for (var i = 0; i < state.OpenNodes.Count - 1; i++)
-                {
-                    var node = state.OpenNodes.ElementAt(i);
-                    if (node.MaybeContinuing)
-                    {
-                        node.MaybeContinuing = false;
-                        closedNode = node;
-                        // Pop until we reach this node
-                        var newLength = state.OpenNodes.Count - i - 1;
-                        while (state.OpenNodes.Count > newLength)
-                        {
-                            state.OpenNodes.Pop();
-                        }
-                        break;
-                    }
-                }
-                parent = state.OpenNodes.Peek();
-            }
-
-            if (closedNode != null)
-            {
-                Utils.CloseNode(state, closedNode);
-            }
-
             var codeIndent = state.Indent - 4;
 
             var code = Utils.NewBlock("code_block", state.I - state.Indent, state.Line, "    ", codeIndent);

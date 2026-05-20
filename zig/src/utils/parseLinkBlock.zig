@@ -43,17 +43,9 @@ pub fn parseLinkBlock(state: *BlockParserState, start: usize) !?LinkReference {
                 break;
             }
         }
-
-        if (url.len == 0) {
-            return null;
-        }
     }
 
     if (url.len > 0) {
-        if (std.mem.indexOfAny(u8, url, "\r\n")) |_| {
-            return null;
-        }
-
         const decoded = try decodeEntities(state.allocator, url);
         defer state.allocator.free(decoded);
         const escaped = try escapeBackslashes(state.allocator, decoded);

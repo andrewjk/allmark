@@ -10,7 +10,7 @@ public static class HeadingRule
         {
             Name = "heading",
             TestStart = TestStart,
-            TestContinue = TestContinue,
+            TestContinue = (_, _) => false,
         };
     }
 
@@ -106,11 +106,6 @@ public static class HeadingRule
             }
         }
 
-        return false;
-    }
-
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
-    {
         return false;
     }
 }

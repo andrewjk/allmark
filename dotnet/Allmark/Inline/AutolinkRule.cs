@@ -22,12 +22,6 @@ public static class AutolinkRule
 
     private static bool TestAutolink(InlineParserState state, MarkdownNode parent)
     {
-        // Don't try to extract HTML for HTML blocks
-        if (parent.Type == "html_block")
-        {
-            return false;
-        }
-
         var ch = Utils.GetChar(state.Src, state.I);
         if (!state.IsEscaped && ch == '<')
         {

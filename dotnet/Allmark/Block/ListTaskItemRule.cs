@@ -10,7 +10,7 @@ public static class ListTaskItemRule
         {
             Name = "list_task_item",
             TestStart = TestStart,
-            TestContinue = TestContinue,
+            TestContinue = (_, _) => false,
         };
     }
 
@@ -35,11 +35,6 @@ public static class ListTaskItemRule
             }
         }
 
-        return false;
-    }
-
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
-    {
         return false;
     }
 }

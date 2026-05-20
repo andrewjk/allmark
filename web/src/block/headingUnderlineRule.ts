@@ -8,7 +8,7 @@ import isSpace from "../utils/isSpace";
 const rule: BlockRule = {
 	name: "heading_underline",
 	testStart,
-	testContinue,
+	testContinue: () => false,
 };
 export default rule;
 
@@ -87,9 +87,5 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		}
 	}
 
-	return false;
-}
-
-function testContinue(_state: BlockParserState, _node: MarkdownNode) {
 	return false;
 }

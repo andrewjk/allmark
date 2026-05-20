@@ -4,7 +4,6 @@ const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
-const closeNode = @import("../utils/closeNode.zig").closeNode;
 const parseBlock = @import("../parse/parseBlock.zig").parseBlock;
 
 fn appendToSlice(allocator: std.mem.Allocator, slice: []*MarkdownNode, item: *MarkdownNode) ![]*MarkdownNode {
@@ -26,37 +25,6 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
     const char = state.src[state.i];
     if (state.indent >= 4 and !isNewLine(char)) {
-        var closed_node: ?*MarkdownNode = null;
-        var effective_parent = parent;
-
-        const is_list = std.mem.eql(u8, effective_parent.type, "list_ordered") or std.mem.eql(u8, effective_parent.type, "list_bulleted");
-        if (is_list) {
-            const idx = state.openNodes.items.len;
-            if (idx > 0) {
-                closed_node = state.openNodes.pop();
-                effective_parent = state.openNodes.items[state.openNodes.items.len - 1];
-            }
-        }
-
-        if (state.maybeContinue) {
-            state.maybeContinue = false;
-            var i: usize = state.openNodes.items.len;
-            while (i > 1) : (i -= 1) {
-                const iter_node = state.openNodes.items[i - 1];
-                if (iter_node.maybeContinuing) {
-                    iter_node.maybeContinuing = false;
-                    closed_node = iter_node;
-                    state.openNodes.shrinkRetainingCapacity(i - 1);
-                    break;
-                }
-            }
-            effective_parent = state.openNodes.items[state.openNodes.items.len - 1];
-        }
-
-        if (closed_node) |cn| {
-            closeNode(state, cn);
-        }
-
         const code_indent = state.indent - 4;
         const code = newBlock(state.allocator, "code_block", state.lineStart, state.line, "    ", code_indent) catch unreachable;
         code.acceptsContent = true;
@@ -73,7 +41,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         }
 
         if (state.hasBlankLine) {
-            if (effective_parent.children) |children| {
+            if (parent.children) |children| {
                 if (children.len > 0) {
                     const last_child = children[children.len - 1];
                     last_child.blankAfter = true;
@@ -82,10 +50,10 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             }
         }
 
-        if (effective_parent.children == null) {
-            effective_parent.children = state.allocator.alloc(*MarkdownNode, 0) catch unreachable;
+        if (parent.children == null) {
+            parent.children = state.allocator.alloc(*MarkdownNode, 0) catch unreachable;
         }
-        effective_parent.children = appendToSlice(state.allocator, effective_parent.children.?, code) catch unreachable;
+        parent.children = appendToSlice(state.allocator, parent.children.?, code) catch unreachable;
         state.openNodes.append(state.allocator, code) catch unreachable;
 
         state.indent = 0;

@@ -50,20 +50,9 @@ export default function parseLinkBlock(
 				break;
 			}
 		}
-
-		// "The link destination may not be omitted"
-		// "However, an empty link destination may be specified using angle brackets" (see above)
-		if (url === undefined) {
-			return;
-		}
 	}
 
 	if (url !== undefined) {
-		// "The destination cannot contain line breaks, even if enclosed in pointy brackets"
-		if (/[\r\n]/.test(url)) {
-			return;
-		}
-
 		// "Both title and destination can contain backslash escapes and literal backslashes"
 		url = decodeEntities(url);
 		url = escapeBackslashes(url);

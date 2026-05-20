@@ -93,16 +93,6 @@ fn testHtmlCondition1(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         }
         const tag_name = tag_match[tag_name_start..tag_name_end];
 
-        var effective_parent = parent;
-        if (std.mem.eql(u8, parent.type, "paragraph")) {
-            const idx = state.openNodes.items.len;
-            if (idx > 0) {
-                effective_parent = state.openNodes.items[idx - 2];
-                const closed_node = state.openNodes.pop();
-                if (closed_node) |cn| closeNode(state, cn);
-            }
-        }
-
         const closing_tag = std.fmt.allocPrint(state.allocator, "</{s}>", .{tag_name}) catch unreachable;
         defer state.allocator.free(closing_tag);
 
@@ -120,7 +110,7 @@ fn testHtmlCondition1(state: *BlockParserState, parent: *MarkdownNode, tail: []c
             }
         }
 
-        createHtmlBlock(state, effective_parent, start, end, 1);
+        createHtmlBlock(state, parent, start, end, 1);
 
         return true;
     }
@@ -152,16 +142,6 @@ fn testHtmlCondition2(state: *BlockParserState, parent: *MarkdownNode, tail: []c
     if (match != null and match.?.start == 0) {
         const start = state.i;
 
-        var effective_parent = parent;
-        if (std.mem.eql(u8, parent.type, "paragraph")) {
-            const idx = state.openNodes.items.len;
-            if (idx > 0) {
-                effective_parent = state.openNodes.items[idx - 2];
-                const closed_node = state.openNodes.pop();
-                if (closed_node) |cn| closeNode(state, cn);
-            }
-        }
-
         state.i += match.?.end;
         const end_of_line = getEndOfLine(state);
         const html = newBlock(state.allocator, "html_block", start, state.line, "", 2) catch unreachable;
@@ -169,13 +149,7 @@ fn testHtmlCondition2(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         html.content_allocated = true;
         html.length = end_of_line - start;
 
-        if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
-            const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];
-            last_child.blankAfter = true;
-            state.hasBlankLine = false;
-        }
-
-        appendChild(state.allocator, effective_parent, html) catch unreachable;
+        appendChild(state.allocator, parent, html) catch unreachable;
         state.openNodes.append(state.allocator, html) catch unreachable;
         state.i = end_of_line;
         return true;
@@ -191,16 +165,6 @@ fn testHtmlCondition3(state: *BlockParserState, parent: *MarkdownNode, tail: []c
     if (match != null and match.?.start == 0) {
         const start = state.i;
 
-        var effective_parent = parent;
-        if (std.mem.eql(u8, parent.type, "paragraph")) {
-            const idx = state.openNodes.items.len;
-            if (idx > 0) {
-                effective_parent = state.openNodes.items[idx - 2];
-                const closed_node = state.openNodes.pop();
-                if (closed_node) |cn| closeNode(state, cn);
-            }
-        }
-
         state.i += match.?.end;
         const end_of_line = getEndOfLine(state);
         const html = newBlock(state.allocator, "html_block", start, state.line, "", 3) catch unreachable;
@@ -208,13 +172,7 @@ fn testHtmlCondition3(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         html.content_allocated = true;
         html.length = end_of_line - start;
 
-        if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
-            const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];
-            last_child.blankAfter = true;
-            state.hasBlankLine = false;
-        }
-
-        appendChild(state.allocator, effective_parent, html) catch unreachable;
+        appendChild(state.allocator, parent, html) catch unreachable;
         state.openNodes.append(state.allocator, html) catch unreachable;
         state.i = end_of_line;
         return true;
@@ -230,16 +188,6 @@ fn testHtmlCondition4(state: *BlockParserState, parent: *MarkdownNode, tail: []c
     if (match != null and match.?.start == 0) {
         const start = state.i;
 
-        var effective_parent = parent;
-        if (std.mem.eql(u8, parent.type, "paragraph")) {
-            const idx = state.openNodes.items.len;
-            if (idx > 0) {
-                effective_parent = state.openNodes.items[idx - 2];
-                const closed_node = state.openNodes.pop();
-                if (closed_node) |cn| closeNode(state, cn);
-            }
-        }
-
         state.i += match.?.end;
         const end_of_line = getEndOfLine(state);
         const html = newBlock(state.allocator, "html_block", start, state.line, "", 4) catch unreachable;
@@ -247,13 +195,7 @@ fn testHtmlCondition4(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         html.content_allocated = true;
         html.length = end_of_line - start;
 
-        if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
-            const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];
-            last_child.blankAfter = true;
-            state.hasBlankLine = false;
-        }
-
-        appendChild(state.allocator, effective_parent, html) catch unreachable;
+        appendChild(state.allocator, parent, html) catch unreachable;
         state.openNodes.append(state.allocator, html) catch unreachable;
         state.i = end_of_line;
         return true;
@@ -269,16 +211,6 @@ fn testHtmlCondition5(state: *BlockParserState, parent: *MarkdownNode, tail: []c
     if (match != null and match.?.start == 0) {
         const start = state.i;
 
-        var effective_parent = parent;
-        if (std.mem.eql(u8, parent.type, "paragraph")) {
-            const idx = state.openNodes.items.len;
-            if (idx > 0) {
-                effective_parent = state.openNodes.items[idx - 2];
-                const closed_node = state.openNodes.pop();
-                if (closed_node) |cn| closeNode(state, cn);
-            }
-        }
-
         state.i += match.?.end;
         const end_of_line = getEndOfLine(state);
         const html = newBlock(state.allocator, "html_block", start, state.line, "", 5) catch unreachable;
@@ -286,13 +218,7 @@ fn testHtmlCondition5(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         html.content_allocated = true;
         html.length = end_of_line - start;
 
-        if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
-            const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];
-            last_child.blankAfter = true;
-            state.hasBlankLine = false;
-        }
-
-        appendChild(state.allocator, effective_parent, html) catch unreachable;
+        appendChild(state.allocator, parent, html) catch unreachable;
         state.openNodes.append(state.allocator, html) catch unreachable;
         state.i = end_of_line;
         return true;
@@ -472,12 +398,6 @@ fn createHtmlBlock(state: *BlockParserState, parent: *MarkdownNode, start: usize
         html.content = state.allocator.dupe(u8, base_content) catch unreachable;
     }
     html.content_allocated = true;
-
-    if (state.hasBlankLine and parent.children != null and parent.children.?.len > 0) {
-        const last_child = parent.children.?[parent.children.?.len - 1];
-        last_child.blankAfter = true;
-        state.hasBlankLine = false;
-    }
 
     appendChild(state.allocator, parent, html) catch unreachable;
     state.openNodes.append(state.allocator, html) catch unreachable;

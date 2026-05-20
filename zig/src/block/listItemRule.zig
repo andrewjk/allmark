@@ -39,19 +39,9 @@ pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {
             if (state.indent <= 3 and state.indent < itemNode.?.subindent and end > state.i and delimiter == node.delimiter[0]) {
                 return false;
             }
-            // Break only when content is inside this nesting level, otherwise
-            // continue walking up to check ancestor lists
-            if (state.indent >= itemNode.?.subindent) {
-                break;
-            }
         } else if (std.mem.eql(u8, openNode.type, "list_bulleted")) {
             if (state.indent <= 3 and state.indent < itemNode.?.subindent and char == node.delimiter[0]) {
                 return false;
-            }
-            // Break only when content is inside this nesting level, otherwise
-            // continue walking up to check ancestor lists
-            if (state.indent >= itemNode.?.subindent) {
-                break;
             }
         }
     }

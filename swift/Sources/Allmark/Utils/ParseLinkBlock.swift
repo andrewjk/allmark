@@ -42,9 +42,6 @@ func parseLinkBlock(
 	}
 
 	if !url.isEmpty {
-		if url.contains("\n") || url.contains("\r\n") {
-			return nil
-		}
 		url = decodeEntities(text: url)
 		url = escapeBackslashes(text: url)
 		// HACK:

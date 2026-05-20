@@ -6,7 +6,7 @@ import getEndOfLine from "../utils/getEndOfLine";
 const rule: BlockRule = {
 	name: "content",
 	testStart,
-	testContinue,
+	testContinue: () => false,
 };
 export default rule;
 
@@ -26,8 +26,4 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	}
 	state.i = endOfLine;
 	return true;
-}
-
-function testContinue(_state: BlockParserState, _node: MarkdownNode) {
-	return false;
 }

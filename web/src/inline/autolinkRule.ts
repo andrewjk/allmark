@@ -21,11 +21,6 @@ const EMAIL_REGEX =
 	/^<(\s*[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)*\s*)>/i;
 
 function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
-	// Don't try to extract HTML for HTML blocks
-	if (parent.type === "html_block") {
-		return false;
-	}
-
 	if (!state.isEscaped && state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE) {
 		let tail = state.src.substring(state.i);
 

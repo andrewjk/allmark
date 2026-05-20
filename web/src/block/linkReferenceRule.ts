@@ -12,7 +12,7 @@ import parseLinkBlock from "../utils/parseLinkBlock";
 const rule: BlockRule = {
 	name: "link_ref",
 	testStart,
-	testContinue,
+	testContinue: () => false,
 };
 export default rule;
 
@@ -113,9 +113,5 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return true;
 	}
 
-	return false;
-}
-
-function testContinue(_state: BlockParserState, _node: MarkdownNode) {
 	return false;
 }

@@ -6,7 +6,6 @@ using Allmark.Types;
 public static partial class Utils
 {
     private static readonly Regex BlankLineRegex = new(@"\r?\n[ \t]*\r?\n");
-    private static readonly Regex LineBreakRegex = new(@"[\r\n]");
 
     public static LinkReference? ParseLinkBlock(BlockParserState state, int start, string end)
     {
@@ -48,12 +47,6 @@ public static partial class Utils
 
         if (!string.IsNullOrEmpty(url))
         {
-            // "The destination cannot contain line breaks, even if enclosed in pointy brackets"
-            if (LineBreakRegex.IsMatch(url))
-            {
-                return null;
-            }
-
             // "Both title and destination can contain backslash escapes and literal backslashes"
             url = DecodeEntities(url);
             url = EscapeBackslashes(url);

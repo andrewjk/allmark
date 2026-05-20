@@ -6,7 +6,7 @@ import Foundation
 let thematicBreakRule = BlockRule(
 	name: "thematic_break",
 	testStart: testThematicBreakStart,
-	testContinue: testThematicBreakContinue,
+	testContinue: { _, _ in false },
 	closeNode: { _, _ in }
 )
 
@@ -67,12 +67,6 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 				currentParent = state.openNodes.last!
 			}
 
-			// HACK: Special case for a thematic break in a list
-			if currentParent.type == "list_item" && !state.hasBlankLine && String(char) == currentParent.delimiter {
-				state.openNodes.removeLast()
-				state.openNodes.removeLast()
-				currentParent = state.openNodes.last!
-			}
 			if currentParent.type == "list_bulleted" || currentParent.type == "list_ordered" {
 				state.openNodes.removeLast()
 				currentParent = state.openNodes.last!
@@ -101,6 +95,3 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 	return false
 }
 
-func testThematicBreakContinue(state _: inout BlockParserState, node _: MarkdownNode) -> Bool {
-	return false
-}

@@ -1,19 +1,17 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
-import type MarkdownNode from "../types/MarkdownNode";
 import { SPACE_CODE, TAB_CODE } from "../utils/charCodes";
 import isSpace from "../utils/isSpace";
 
 const rule: BlockRule = {
 	name: "indent",
 	testStart,
-	testContinue,
+	testContinue: () => false,
 };
 export default rule;
 
 // TODO: Should this be built in and not a rule??
 function testStart(state: BlockParserState) {
-	//let char = state.src[state.i];
 	if (isSpace(state.src.charCodeAt(state.i))) {
 		for (; state.i < state.src.length; state.i++) {
 			let charCode = state.src.charCodeAt(state.i);
@@ -30,9 +28,5 @@ function testStart(state: BlockParserState) {
 		}
 	}
 
-	return false;
-}
-
-function testContinue(_state: BlockParserState, _node: MarkdownNode) {
 	return false;
 }

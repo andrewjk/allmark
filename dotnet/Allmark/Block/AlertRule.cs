@@ -29,8 +29,6 @@ public static class AlertRule
 
     private static bool TestStart(BlockParserState state, MarkdownNode parent)
     {
-        MarkdownNode? closedNode = null;
-
         if (parent.AcceptsContent)
         {
             return false;
@@ -42,17 +40,6 @@ public static class AlertRule
             var match = AlertRegex.Match(state.Src[(state.I + 1)..]);
             if (match.Success)
             {
-                if (parent.Type == "paragraph")
-                {
-                    closedNode = state.OpenNodes.Pop();
-                    parent = state.OpenNodes.Peek();
-                }
-
-                if (closedNode != null)
-                {
-                    Utils.CloseNode(state, closedNode);
-                }
-
                 int quoteIndent = state.Indent + 1;
 
                 var quote = Utils.NewBlock("alert", state.I, state.Line, match.Groups[1].Value.ToLowerInvariant(), quoteIndent);
@@ -69,7 +56,7 @@ public static class AlertRule
         return false;
     }
 
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
+    private static bool TestContinue(BlockParserState state, MarkdownNode _)
     {
         char c = Utils.GetChar(state.Src, state.I);
         if (HasMarkup(c, state))
@@ -81,14 +68,6 @@ public static class AlertRule
         if (state.HasBlankLine)
         {
             return false;
-        }
-
-        var openNode = state.OpenNodes.Peek();
-        if (openNode.Type == "paragraph")
-        {
-            state.MaybeContinue = true;
-            node.MaybeContinuing = true;
-            return true;
         }
 
         return false;

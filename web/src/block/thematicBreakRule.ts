@@ -10,7 +10,7 @@ import newBlock from "../utils/newBlock";
 const rule: BlockRule = {
 	name: "thematic_break",
 	testStart,
-	testContinue,
+	testContinue: () => false,
 };
 export default rule;
 
@@ -69,15 +69,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			// HACK: Special case for a thematic break in a list
 			// Maybe do this with interrupts?
-			if (
-				parent.type === "list_item" &&
-				!state.hasBlankLine &&
-				charCode === parent.delimiter.charCodeAt(0)
-			) {
-				closedNode = state.openNodes.pop();
-				closedNode = state.openNodes.pop();
-				parent = state.openNodes.at(-1)!;
-			}
 			if (parent.type === "list_bulleted" || parent.type === "list_ordered") {
 				closedNode = state.openNodes.pop();
 				parent = state.openNodes.at(-1)!;
@@ -96,9 +87,5 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		}
 	}
 
-	return false;
-}
-
-function testContinue(_state: BlockParserState, _node: MarkdownNode) {
 	return false;
 }

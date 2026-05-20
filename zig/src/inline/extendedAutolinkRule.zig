@@ -23,10 +23,6 @@ const TRAILING_PUNCTUATION = "[?!.,:*_~]$";
 const TRAILING_ENTITY = "&[a-zA-Z0-9]+;$";
 
 pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
-    if (std.mem.eql(u8, parent.type, "html_block")) {
-        return false;
-    }
-
     if (state.i >= state.src.len) return false;
 
     const char = state.src[state.i];

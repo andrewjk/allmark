@@ -15,9 +15,6 @@ import escapeHtml from "./escapeHtml";
 import isEscaped from "./isEscaped";
 import isSpace from "./isSpace";
 
-// TODO: Get this from utils??
-const BLANK_LINE_REGEX = /\r?\n[ \t]*\r?\n/;
-
 export default function parseLinkInline(
 	state: InlineParserState,
 	start: number,
@@ -25,9 +22,6 @@ export default function parseLinkInline(
 ): LinkReference | undefined {
 	// Consume spaces
 	let spaces = consumeSpaces(state.src, start);
-	if (BLANK_LINE_REGEX.test(spaces)) {
-		return;
-	}
 	start += spaces.length;
 
 	// Get the url
@@ -132,16 +126,6 @@ export default function parseLinkInline(
 	// "The title may be omitted"
 	// "The title may extend over multiple lines"
 	if (title) {
-		// "The title must be separated from the link destination by whitespace"
-		if (!spaces.length) {
-			return;
-		}
-
-		// "[The title] may not contain a blank line"
-		if (BLANK_LINE_REGEX.test(title)) {
-			return;
-		}
-
 		// "Both title and destination can contain backslash escapes and literal backslashes"
 		title = decodeEntities(title);
 		title = escapeBackslashes(title);

@@ -56,24 +56,12 @@ public static class ListItemRule
                 {
                     return false;
                 }
-                // Break only when content is inside this nesting level, otherwise
-                // continue walking up to check ancestor lists
-                if (state.Indent >= itemNode!.Subindent)
-                {
-                    break;
-                }
             }
             else if (openNode.Type == "list_bulleted")
             {
                 if (state.Indent <= 3 && state.Indent < itemNode!.Subindent && ch.ToString() == node.Delimiter)
                 {
                     return false;
-                }
-                // Break only when content is inside this nesting level, otherwise
-                // continue walking up to check ancestor lists
-                if (state.Indent >= itemNode!.Subindent)
-                {
-                    break;
                 }
             }
         }

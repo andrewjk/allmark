@@ -8,9 +8,6 @@ const escapeHtml = @import("escapeHtml.zig").escapeHtml;
 const encodeUri = @import("encodeUri.zig").encodeUri;
 const isEscaped = @import("isEscaped.zig").isEscaped;
 const isSpace = @import("isSpace.zig").isSpace;
-const mvzr = @import("mvzr");
-
-const BLANK_LINE_REGEX = "\\r?\\n[ \\t]*\\r?\\n";
 
 pub fn parseLinkInline(allocator: std.mem.Allocator, state: *InlineParserState, start: usize, end_str: []const u8) !?LinkReference {
     _ = end_str;
@@ -19,11 +16,6 @@ pub fn parseLinkInline(allocator: std.mem.Allocator, state: *InlineParserState, 
 
     const spaces = try consumeSpaces(allocator, state.src, i);
     defer allocator.free(spaces);
-
-    const regex = mvzr.compile(BLANK_LINE_REGEX) orelse return null;
-    if (regex.match(spaces) != null) {
-        return null;
-    }
     i += spaces.len;
 
     var url: []const u8 = "";
@@ -117,16 +109,6 @@ pub fn parseLinkInline(allocator: std.mem.Allocator, state: *InlineParserState, 
     }
 
     if (title.len > 0) {
-        if (spaces2.len == 0) {
-            if (url_arena) |arena| arena.deinit();
-            return null;
-        }
-
-        if (std.mem.indexOf(u8, title, "\n\n")) |_| {
-            if (url_arena) |arena| arena.deinit();
-            return null;
-        }
-
         title_arena = std.heap.ArenaAllocator.init(allocator);
         var decoded = try decodeEntities(title_arena.?.allocator(), title);
         decoded = try escapeBackslashes(title_arena.?.allocator(), decoded);

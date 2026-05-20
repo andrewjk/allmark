@@ -18,13 +18,6 @@ const pattern = "^(" ++ OPEN_TAG ++ "|" ++ CLOSE_TAG ++ "|" ++ COMMENT ++ "|" ++
 const ProperlySizedRegex = mvzr.SizedRegex(119, 11);
 
 pub fn testHtmlSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
-    //const resources = mvzr.resourcesNeeded(pattern);
-    //std.debug.print("RESOURCES: {any}\n", .{resources});
-
-    if (std.mem.eql(u8, parent.type, "html_block")) {
-        return false;
-    }
-
     if (state.i >= state.src.len) return false;
 
     const char = state.src[state.i];

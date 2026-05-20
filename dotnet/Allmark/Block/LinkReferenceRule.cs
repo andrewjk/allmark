@@ -11,7 +11,7 @@ public static class LinkReferenceRule
         {
             Name = "link_ref",
             TestStart = TestStart,
-            TestContinue = TestContinue,
+            TestContinue = (_, _) => false,
         };
     }
 
@@ -107,11 +107,6 @@ public static class LinkReferenceRule
             return true;
         }
 
-        return false;
-    }
-
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
-    {
         return false;
     }
 }

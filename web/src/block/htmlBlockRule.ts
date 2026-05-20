@@ -84,11 +84,6 @@ const HTML_REGEX_1 = /^<(script|pre|style|textarea)(\s|$|>)/i;
 function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match1 = tail.match(HTML_REGEX_1);
 	if (match1?.index === 0) {
-		if (parent.type === "paragraph") {
-			closeNode(state, state.openNodes.pop()!);
-			parent = state.openNodes.at(-1)!;
-		}
-
 		let closingTag = `</${match1[1]}>`.toLocaleLowerCase();
 		let start = state.i;
 		let end = state.i + 1 + match1[0].length + 1;
@@ -109,11 +104,6 @@ function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail:
 		let html = newBlock("html_block", start, state.line, "", 1);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, end);
 
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
-			state.hasBlankLine = false;
-		}
-
 		parent.children!.push(html);
 		state.openNodes.push(html);
 		state.i = end;
@@ -132,22 +122,12 @@ const HTML_REGEX_2 = /<!--.+?-->/s;
 function testHtmlCondition2(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match = tail.match(HTML_REGEX_2);
 	if (match !== null) {
-		if (parent.type === "paragraph") {
-			closeNode(state, state.openNodes.pop()!);
-			parent = state.openNodes.at(-1)!;
-		}
-
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
 		let html = newBlock("html_block", start, state.line, "", 2);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
-
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
-			state.hasBlankLine = false;
-		}
 
 		parent.children!.push(html);
 		state.openNodes.push(html);
@@ -167,22 +147,12 @@ const HTML_REGEX_3 = /<\?.+?\?>/s;
 function testHtmlCondition3(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match = tail.match(HTML_REGEX_3);
 	if (match !== null) {
-		if (parent.type === "paragraph") {
-			closeNode(state, state.openNodes.pop()!);
-			parent = state.openNodes.at(-1)!;
-		}
-
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
 		let html = newBlock("html_block", start, state.line, "", 3);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
-
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
-			state.hasBlankLine = false;
-		}
 
 		parent.children!.push(html);
 		state.openNodes.push(html);
@@ -203,22 +173,12 @@ const HTML_REGEX_4 = /<![A-Z].+>/s;
 function testHtmlCondition4(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match = tail.match(HTML_REGEX_4);
 	if (match !== null) {
-		if (parent.type === "paragraph") {
-			closeNode(state, state.openNodes.pop()!);
-			parent = state.openNodes.at(-1)!;
-		}
-
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
 		let html = newBlock("html_block", start, state.line, "", 4);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
-
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
-			state.hasBlankLine = false;
-		}
 
 		parent.children!.push(html);
 		state.openNodes.push(html);
@@ -238,22 +198,12 @@ const HTML_REGEX_5 = /<!\[CDATA\[.+\]\]>/s;
 function testHtmlCondition5(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match = tail.match(HTML_REGEX_5);
 	if (match !== null) {
-		if (parent.type === "paragraph") {
-			closeNode(state, state.openNodes.pop()!);
-			parent = state.openNodes.at(-1)!;
-		}
-
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
 		let html = newBlock("html_block", start, state.line, "", 5);
 		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
 		html.length = endOfLine - start;
-
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
-			state.hasBlankLine = false;
-		}
 
 		parent.children!.push(html);
 		state.openNodes.push(html);
@@ -321,9 +271,6 @@ function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail:
 		// line (and it must be complete)"
 		// HACK: Maybe we could improve the regex?
 		let end = state.i + match[0].length;
-		if (end < state.src.length && !isNewLine(state.src.charCodeAt(end - 1))) {
-			return false;
-		}
 		for (let i = state.i; i < end - 1; i++) {
 			if (isNewLine(state.src.charCodeAt(i))) {
 				return false;

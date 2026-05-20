@@ -25,11 +25,6 @@ const HTML_TAG_REGEX = new RegExp(
 );
 
 function testHtmlSpan(state: InlineParserState, parent: MarkdownNode): boolean {
-	// Don't try to extract HTML for HTML blocks
-	if (parent.type === "html_block") {
-		return false;
-	}
-
 	if (!state.isEscaped && state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE) {
 		let tail = state.src.substring(state.i);
 		let match = tail.match(HTML_TAG_REGEX);

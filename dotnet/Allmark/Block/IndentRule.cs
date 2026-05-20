@@ -10,7 +10,7 @@ public static class IndentRule
         {
             Name = "indent",
             TestStart = TestStart,
-            TestContinue = TestContinue,
+            TestContinue = (_, _) => false,
         };
     }
 
@@ -40,11 +40,6 @@ public static class IndentRule
             }
         }
 
-        return false;
-    }
-
-    private static bool TestContinue(BlockParserState state, MarkdownNode node)
-    {
         return false;
     }
 }

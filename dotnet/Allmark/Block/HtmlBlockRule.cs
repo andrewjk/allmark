@@ -97,13 +97,6 @@ public static class HtmlBlockRule
         var match1 = HtmlRegex1.Match(tail);
         if (match1.Success && match1.Index == 0)
         {
-            if (parent.Type == "paragraph")
-            {
-                var closedNode = state.OpenNodes.Pop();
-                Utils.CloseNode(state, closedNode);
-                parent = state.OpenNodes.Peek();
-            }
-
             var closingTag = $"</{match1.Groups[1].Value}>".ToLower();
             var start = state.I;
             var end = state.I + 1 + match1.Value.Length + 1;
@@ -124,12 +117,6 @@ public static class HtmlBlockRule
 
             var html = Utils.NewBlock("html_block", start, state.Line, "", 1);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, end - start);
-
-            if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
-            {
-                parent.Children[parent.Children.Count - 1].BlankAfter = true;
-                state.HasBlankLine = false;
-            }
 
             parent.Children!.Add(html);
             state.OpenNodes.Push(html);
@@ -152,24 +139,11 @@ public static class HtmlBlockRule
         var match = HtmlRegex2.Match(tail);
         if (match.Success && match.Index == 0)
         {
-            if (parent.Type == "paragraph")
-            {
-                var closedNode = state.OpenNodes.Pop();
-                Utils.CloseNode(state, closedNode);
-                parent = state.OpenNodes.Peek();
-            }
-
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
             var html = Utils.NewBlock("html_block", start, state.Line, "", 2);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
-
-            if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
-            {
-                parent.Children[parent.Children.Count - 1].BlankAfter = true;
-                state.HasBlankLine = false;
-            }
 
             parent.Children!.Add(html);
             state.OpenNodes.Push(html);
@@ -192,24 +166,11 @@ public static class HtmlBlockRule
         var match = HtmlRegex3.Match(tail);
         if (match.Success && match.Index == 0)
         {
-            if (parent.Type == "paragraph")
-            {
-                var closedNode = state.OpenNodes.Pop();
-                Utils.CloseNode(state, closedNode);
-                parent = state.OpenNodes.Peek();
-            }
-
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
             var html = Utils.NewBlock("html_block", start, state.Line, "", 3);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
-
-            if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
-            {
-                parent.Children[parent.Children.Count - 1].BlankAfter = true;
-                state.HasBlankLine = false;
-            }
 
             parent.Children!.Add(html);
             state.OpenNodes.Push(html);
@@ -233,24 +194,11 @@ public static class HtmlBlockRule
         var match = HtmlRegex4.Match(tail);
         if (match.Success && match.Index == 0)
         {
-            if (parent.Type == "paragraph")
-            {
-                var closedNode = state.OpenNodes.Pop();
-                Utils.CloseNode(state, closedNode);
-                parent = state.OpenNodes.Peek();
-            }
-
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
             var html = Utils.NewBlock("html_block", start, state.Line, "", 4);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
-
-            if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
-            {
-                parent.Children[parent.Children.Count - 1].BlankAfter = true;
-                state.HasBlankLine = false;
-            }
 
             parent.Children!.Add(html);
             state.OpenNodes.Push(html);
@@ -273,24 +221,11 @@ public static class HtmlBlockRule
         var match = HtmlRegex5.Match(tail);
         if (match.Success && match.Index == 0)
         {
-            if (parent.Type == "paragraph")
-            {
-                var closedNode = state.OpenNodes.Pop();
-                Utils.CloseNode(state, closedNode);
-                parent = state.OpenNodes.Peek();
-            }
-
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
             var html = Utils.NewBlock("html_block", start, state.Line, "", 5);
             html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
-
-            if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
-            {
-                parent.Children[parent.Children.Count - 1].BlankAfter = true;
-                state.HasBlankLine = false;
-            }
 
             parent.Children!.Add(html);
             state.OpenNodes.Push(html);
@@ -361,15 +296,7 @@ public static class HtmlBlockRule
         var match = HtmlRegex7.Match(tail);
         if (match.Success && match.Index == 0)
         {
-            // "To start an HTML block with a tag that is not in to list of
-            // block-level tags in (6), you must put to tag by itself on the first
-            // line (and it must be complete)"
-            // HACK: Maybe we could improve to regex?
             var matchEnd = state.I + match.Value.Length;
-            if (matchEnd < state.Src.Length && !Utils.IsNewLine(state.Src[matchEnd - 1]))
-            {
-                return false;
-            }
             for (var i = state.I; i < matchEnd - 1; i++)
             {
                 if (Utils.IsNewLine(state.Src[i]))

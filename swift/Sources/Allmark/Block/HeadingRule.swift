@@ -7,7 +7,7 @@ import Foundation
 let headingRule = BlockRule(
 	name: "heading",
 	testStart: testHeadingStart,
-	testContinue: testHeadingContinue,
+	testContinue: { _, _ in false },
 	closeNode: { _, _ in }
 )
 
@@ -117,6 +117,3 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bo
 	return false
 }
 
-func testHeadingContinue(state _: inout BlockParserState, node _: MarkdownNode) -> Bool {
-	return false
-}

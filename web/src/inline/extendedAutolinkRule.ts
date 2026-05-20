@@ -30,11 +30,6 @@ const W_CHAR_CODE = 119;
 const X_CHAR_CODE = 120;
 
 function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
-	// Don't try to extract HTML for HTML blocks
-	if (parent.type === "html_block") {
-		return false;
-	}
-
 	if (!state.isEscaped) {
 		let charCode = state.src.charCodeAt(state.i);
 		if (charCode === W_CHAR_CODE) {
