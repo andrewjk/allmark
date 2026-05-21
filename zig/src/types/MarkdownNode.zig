@@ -18,6 +18,7 @@ pub const MarkdownNode = struct {
     indent: i32,
     subindent: i32,
 
+    loose: bool = false,
     blankAfter: bool,
     acceptsContent: bool,
     maybeContinuing: bool,

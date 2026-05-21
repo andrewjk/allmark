@@ -46,6 +46,11 @@ public record MarkdownNode
     public required bool BlankAfter { get; set; }
 
     /// <summary>
+    /// Whether this list node is loose (separated by blank lines).
+    /// </summary>
+    public bool Loose { get; set; } = false;
+
+    /// <summary>
     /// Whether this node contains plain text content, rather than parsed Markdown.
     /// </summary>
     public required bool AcceptsContent { get; set; }

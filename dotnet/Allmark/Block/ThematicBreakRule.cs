@@ -82,7 +82,7 @@ public static class ThematicBreakRule
 
                 if (parent.Type == "list_bulleted" || parent.Type == "list_ordered")
                 {
-                    state.OpenNodes.Pop();
+                    closedNode = state.OpenNodes.Pop();
                     parent = state.OpenNodes.Peek();
                 }
 

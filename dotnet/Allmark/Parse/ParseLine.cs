@@ -36,11 +36,11 @@ public static class ParseLine
             }
             else
             {
-                Utils.CloseNode(state, node);
                 var newLength = state.OpenNodes.Count - i - 1;
                 while (state.OpenNodes.Count > newLength)
                 {
-                    state.OpenNodes.Pop();
+                    var openNode = state.OpenNodes.Pop();
+                    Utils.CloseNode(state, openNode);
                 }
                 break;
             }

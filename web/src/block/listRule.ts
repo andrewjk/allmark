@@ -227,3 +227,40 @@ export function testListContinue(
 function isList(nodeType: string) {
 	return nodeType.startsWith("list_") && nodeType !== "list_item";
 }
+
+export function isLooseList(node: MarkdownNode): boolean {
+	let loose = false;
+
+	// "A list is loose if any of its constituent list items are separated by
+	// blank lines, or if any of its constituent list items directly contain two
+	// block-level elements with a blank line between them. Otherwise a list is
+	// tight."
+	for (let i = 0; i < node.children!.length - 1; i++) {
+		let child = node.children![i]!;
+
+		// A list item has a blank line after if its last child has a blank line after
+		let grandchild = child.children?.at(-1);
+		if (grandchild?.blankAfter) {
+			child.blankAfter = true;
+		}
+
+		if (child.blankAfter) {
+			loose = true;
+			break;
+		}
+	}
+
+	for (let i = 0; i < node.children!.length; i++) {
+		let child = node.children![i]!;
+		for (let j = 0; j < child.children!.length - 1; j++) {
+			let first = child.children![j];
+			let second = child.children![j + 1];
+			if (first.block && first.blankAfter && second.block) {
+				loose = true;
+				break;
+			}
+		}
+	}
+
+	return loose;
+}

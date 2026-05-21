@@ -7,6 +7,7 @@ const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const testListStart = @import("./listRule.zig").testListStart;
 const testListContinue = @import("./listRule.zig").testListContinue;
+const isLooseList = @import("./listRule.zig").isLooseList;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
 const ListInfo = @import("./listRule.zig").ListInfo;
 
@@ -62,8 +63,14 @@ pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {
     return testListContinue(state, node, info);
 }
 
+fn closeNode(state: *BlockParserState, node: *MarkdownNode) void {
+    _ = state;
+    node.loose = isLooseList(node);
+}
+
 pub const listOrderedRule = BlockRule{
     .name = "list_ordered",
     .testStart = testStart,
     .testContinue = testContinue,
+    .closeNode = closeNode,
 };

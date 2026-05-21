@@ -20,50 +20,13 @@ public static class ListRenderer
         state.Output.Append($"<{(ordered ? $"ol{startAttr}" : "ul")}>");
         RenderUtils.InnerNewLine(node, state);
 
-        // "A list is loose if any of its constituent list items are separated by
-        // blank lines, or if any of its constituent list items directly contain two
-        // block-level elements with a blank line between them. Otherwise a list is
-        // tight."
-        bool loose = false;
-        for (int i = 0; i < node.Children!.Count - 1; i++)
-        {
-            var child = node.Children[i];
-
-            // A list item has a blank line after if its last child has a blank line after
-            var grandchild = child.Children!.Count > 0 ? child.Children[child.Children.Count - 1] : null;
-            if (grandchild?.BlankAfter == true)
-            {
-                child.BlankAfter = true;
-            }
-
-            if (child.BlankAfter)
-            {
-                loose = true;
-                break;
-            }
-        }
-        for (int i = 0; i < node.Children!.Count; i++)
-        {
-            var child = node.Children[i];
-            for (int j = 0; j < child.Children!.Count - 1; j++)
-            {
-                var firstChild = child.Children[j];
-                var secondChild = child.Children[j + 1];
-                if (firstChild.Block && firstChild.BlankAfter && secondChild.Block)
-                {
-                    loose = true;
-                    break;
-                }
-            }
-        }
-
         foreach (var item in node.Children!)
         {
             state.Output.Append("<li>");
             for (int i = 0; i < item.Children!.Count; i++)
             {
                 var child = item.Children[i];
-                if (!loose && child.Type == "paragraph")
+                if (!node.Loose && child.Type == "paragraph")
                 {
                     // Skip paragraphs under list items to make the list tight
                     RenderChildren.Execute(child, state, decode);

@@ -50,4 +50,3 @@ func testListTaskItemStart(state: inout BlockParserState, parent: MarkdownNode) 
 
 	return false
 }
-

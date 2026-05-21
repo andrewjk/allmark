@@ -62,7 +62,7 @@ func testAlertStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 	return false
 }
 
-func testAlertContinue(state: inout BlockParserState, _node: MarkdownNode) -> Bool {
+func testAlertContinue(state: inout BlockParserState, _node _: MarkdownNode) -> Bool {
 	let src = state.src
 	if state.i >= src.count {
 		return false

@@ -28,7 +28,12 @@ export function parseLine(state: BlockParserState): void {
 			// TODO: Is there a rule that shouldn't do this?
 			parseIndent(state);
 		} else {
-			closeNode(state, node);
+			// Call the close function of each open child after (and including) this one
+			let j = state.openNodes.length;
+			while (j-- > i) {
+				let openNode = state.openNodes[j];
+				closeNode(state, openNode);
+			}
 			state.openNodes.length = i;
 			break;
 		}

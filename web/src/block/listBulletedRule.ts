@@ -9,12 +9,13 @@ import {
 	PLUS_CODE,
 } from "../utils/charCodes";
 import isSpace from "../utils/isSpace";
-import { testListContinue, testListStart } from "./listRule";
+import { isLooseList, testListContinue, testListStart } from "./listRule";
 
 const rule: BlockRule = {
 	name: "list_bulleted",
 	testStart,
 	testContinue,
+	closeNode,
 };
 export default rule;
 
@@ -73,4 +74,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 function testContinue(state: BlockParserState, node: MarkdownNode) {
 	let info = getMarkup(state);
 	return testListContinue(state, node, info);
+}
+
+function closeNode(_state: BlockParserState, node: MarkdownNode) {
+	node.loose = isLooseList(node);
 }

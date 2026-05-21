@@ -105,4 +105,3 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 
 	return false
 }
-

@@ -116,4 +116,3 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bo
 
 	return false
 }
-

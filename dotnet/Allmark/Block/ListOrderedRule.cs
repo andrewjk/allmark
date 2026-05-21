@@ -11,6 +11,7 @@ public static class ListOrderedRule
             Name = "list_ordered",
             TestStart = TestStart,
             TestContinue = TestContinue,
+            CloseNode = CloseNode,
         };
     }
 
@@ -62,5 +63,10 @@ public static class ListOrderedRule
     {
         var info = GetMarkup(state);
         return ListRule.TestListContinue(state, node, info);
+    }
+
+    private static void CloseNode(BlockParserState state, MarkdownNode node)
+    {
+        node.Loose = ListRule.IsLooseList(node);
     }
 }

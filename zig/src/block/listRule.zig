@@ -237,6 +237,52 @@ pub fn testContinue(info: ?ListInfo, state: *BlockParserState, node: *MarkdownNo
     return false;
 }
 
+pub fn isLooseList(node: *MarkdownNode) bool {
+    var loose = false;
+
+    if (node.children) |children| {
+        if (children.len > 1) {
+            var i: usize = 0;
+            while (i < children.len - 1) : (i += 1) {
+                const child = children[i];
+
+                if (child.children) |cc| {
+                    if (cc.len > 0) {
+                        const grandchild = cc[cc.len - 1];
+                        if (grandchild.blankAfter) {
+                            child.blankAfter = true;
+                        }
+                    }
+                }
+
+                if (child.blankAfter) {
+                    loose = true;
+                    break;
+                }
+            }
+        }
+
+        for (children) |child| {
+            if (child.children) |cc| {
+                if (cc.len > 1) {
+                    var j: usize = 0;
+                    while (j < cc.len - 1) : (j += 1) {
+                        const first = cc[j];
+                        const second = cc[j + 1];
+                        if (first.block and first.blankAfter and second.block) {
+                            loose = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (loose) break;
+        }
+    }
+
+    return loose;
+}
+
 pub const ListInfo = struct {
     delimiter: u8,
     markup: []const u8,

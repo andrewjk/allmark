@@ -79,4 +79,3 @@ func testHeadingUnderlineStart(state: inout BlockParserState, parent: MarkdownNo
 
 	return false
 }
-

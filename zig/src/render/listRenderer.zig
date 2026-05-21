@@ -31,70 +31,9 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
     state.output.appendSlice(state.allocator, open_tag) catch unreachable;
     renderUtils.innerNewLine(node, state);
 
-    var loose = false;
+    const loose = node.loose;
 
     if (node.children) |children| {
-        if (children.len > 1) {
-            var i: usize = 0;
-            while (i < children.len - 1) : (i += 1) {
-                const child = children[i];
-                var grandchild: ?*MarkdownNode = null;
-                if (child.children) |c| {
-                    if (c.len > 0) {
-                        grandchild = c[c.len - 1];
-                    }
-                }
-
-                if (grandchild) |gc| {
-                    if (gc.blankAfter) {
-                        child.blankAfter = true;
-                    }
-                }
-
-                if (child.blankAfter) {
-                    loose = true;
-                    break;
-                }
-            }
-
-            i = 0;
-            while (i < children.len) : (i += 1) {
-                const child = children[i];
-                if (child.children) |cc| {
-                    if (cc.len > 1) {
-                        var j: usize = 0;
-                        while (j < cc.len - 1) : (j += 1) {
-                            const first_child = cc[j];
-                            const second_child = cc[j + 1];
-
-                            if (first_child.block and first_child.blankAfter and second_child.block) {
-                                loose = true;
-                                break;
-                            }
-                        }
-                    }
-                }
-                if (loose) break;
-            }
-        } else if (children.len == 1) {
-            // Check single item list for loose condition
-            const child = children[0];
-            if (child.children) |cc| {
-                if (cc.len > 1) {
-                    var j: usize = 0;
-                    while (j < cc.len - 1) : (j += 1) {
-                        const first_child = cc[j];
-                        const second_child = cc[j + 1];
-
-                        if (first_child.block and first_child.blankAfter and second_child.block) {
-                            loose = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
         for (children) |item| {
             state.output.appendSlice(state.allocator, "<li>") catch unreachable;
 

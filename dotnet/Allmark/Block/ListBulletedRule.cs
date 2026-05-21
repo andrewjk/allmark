@@ -11,6 +11,7 @@ public static class ListBulletedRule
             Name = "list_bulleted",
             TestStart = TestStart,
             TestContinue = TestContinue,
+            CloseNode = CloseNode,
         };
     }
 
@@ -53,5 +54,10 @@ public static class ListBulletedRule
     {
         var info = GetMarkup(state);
         return ListRule.TestListContinue(state, node, info);
+    }
+
+    private static void CloseNode(BlockParserState state, MarkdownNode node)
+    {
+        node.Loose = ListRule.IsLooseList(node);
     }
 }

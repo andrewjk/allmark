@@ -19,7 +19,7 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
     state.listDepth += 1;
 
     const ordered = std.mem.eql(u8, node.type, "list_ordered");
-    const loose = isLooseList(node);
+    const loose = node.loose;
 
     var counter: usize = 0;
     if (ordered and node.markup.len > 0) {
@@ -98,21 +98,6 @@ pub fn render(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?
     if (!loose) {
         state.output.append(state.allocator, '\n') catch unreachable;
     }
-}
-
-fn isLooseList(node: *const MarkdownNode) bool {
-    if (node.children) |children| {
-        if (children.len > 1) {
-            for (0..children.len - 1) |i| {
-                const child = children[i];
-                // Check if the list item itself has blankAfter set
-                if (child.blankAfter) {
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
 }
 
 fn consoleListTaskItemRenderer(node: *const MarkdownNode, state: *ConsoleRendererState, decode: ?bool) void {

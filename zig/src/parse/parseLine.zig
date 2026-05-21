@@ -20,7 +20,12 @@ pub fn parseLine(state: *BlockParserState) void {
         if (rule.?.testContinue(state, node)) {
             parseIndent(state);
         } else {
-            closeNode(state, node);
+            var j = state.openNodes.items.len;
+            while (j > i) {
+                j -= 1;
+                const open_node = state.openNodes.items[j];
+                closeNode(state, open_node);
+            }
             state.openNodes.shrinkRetainingCapacity(i);
             break;
         }

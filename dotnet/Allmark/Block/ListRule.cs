@@ -238,6 +238,49 @@ public static class ListRule
         return false;
     }
 
+    public static bool IsLooseList(MarkdownNode node)
+    {
+        bool loose = false;
+
+        for (int i = 0; i < node.Children!.Count - 1; i++)
+        {
+            var child = node.Children![i];
+
+            // A list item has a blank line after if its last child has a blank line after
+            if (child.Children is { Count: > 0 })
+            {
+                var grandchild = child.Children[^1];
+                if (grandchild.BlankAfter)
+                {
+                    child.BlankAfter = true;
+                }
+            }
+
+            if (child.BlankAfter)
+            {
+                loose = true;
+                break;
+            }
+        }
+
+        for (int i = 0; i < node.Children!.Count; i++)
+        {
+            var child = node.Children![i];
+            for (int j = 0; j < child.Children!.Count - 1; j++)
+            {
+                var first = child.Children![j];
+                var second = child.Children![j + 1];
+                if (first.Block && first.BlankAfter && second.Block)
+                {
+                    loose = true;
+                    break;
+                }
+            }
+        }
+
+        return loose;
+    }
+
     // HACK: Not great
     private static bool IsList(string nodeType)
     {

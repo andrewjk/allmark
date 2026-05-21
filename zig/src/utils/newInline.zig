@@ -22,6 +22,7 @@ pub fn newInline(
         .content = "",
         .indent = indent,
         .subindent = 0,
+        .loose = false,
         .acceptsContent = false,
         .maybeContinuing = false,
         .blankAfter = false,

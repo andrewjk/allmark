@@ -68,7 +68,7 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 			}
 
 			if currentParent.type == "list_bulleted" || currentParent.type == "list_ordered" {
-				state.openNodes.removeLast()
+				closedNode = state.openNodes.removeLast()
 				currentParent = state.openNodes.last!
 			}
 
@@ -94,4 +94,3 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 
 	return false
 }
-

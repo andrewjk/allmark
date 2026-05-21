@@ -21,6 +21,7 @@ public static partial class Utils
             AcceptsContent = false,
             MaybeContinuing = false,
             BlankAfter = false,
+            Loose = false,
             Children = []
         };
     }

@@ -17,6 +17,7 @@ export default function newText(
 		content,
 		indent,
 		subindent: 0,
+		loose: false,
 		acceptsContent: false,
 		maybeContinuing: false,
 		blankAfter: false,
