@@ -7,7 +7,7 @@ const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
-const parseLinkBlock = @import("../utils/parseLinkBlock.zig").parseLinkBlock;
+const parseLinkReference = @import("../utils/parseLinkReference.zig").parseLinkReference;
 const isSpaceFn = @import("../utils/isSpace.zig").isSpace;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
@@ -59,7 +59,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             return false;
         }
 
-        const linkInfo = parseLinkBlock(state, i + 1) catch return false;
+        const linkInfo = parseLinkReference(state, i + 1) catch return false;
         if (linkInfo == null) {
             return false;
         }

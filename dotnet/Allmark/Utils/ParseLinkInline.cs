@@ -4,7 +4,7 @@ using Allmark.Types;
 
 public static partial class Utils
 {
-    public static LinkReference? ParseLinkInline(InlineParserState state, int start, string end)
+    public static LinkReference? ParseLinkInline(InlineParserState state, int start)
     {
         // Consume spaces
         var spaces = ConsumeSpaces(state.Src, start);

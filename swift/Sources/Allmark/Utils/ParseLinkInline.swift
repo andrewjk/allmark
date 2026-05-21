@@ -2,8 +2,7 @@ import Foundation
 
 func parseLinkInline(
 	state: inout InlineParserState,
-	start: Int,
-	_end _: String
+	start: Int
 ) -> LinkReference? {
 	var currentStart = start
 	let src = state.src

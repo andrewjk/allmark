@@ -18,7 +18,6 @@ import isSpace from "./isSpace";
 export default function parseLinkInline(
 	state: InlineParserState,
 	start: number,
-	_end: string,
 ): LinkReference | undefined {
 	// Consume spaces
 	let spaces = consumeSpaces(state.src, start);
@@ -59,15 +58,9 @@ export default function parseLinkInline(
 				break;
 			}
 		}
-
-		// "The link destination may not be omitted"
-		// "However, an empty link destination may be specified using angle brackets" (see above)
-		//if (!url) {
-		//	return;
-		//}
 	}
 
-	if (url !== undefined) {
+	if (url !== "") {
 		// "The destination cannot contain line breaks, even if enclosed in pointy brackets"
 		if (/[\r\n]/.test(url)) {
 			return;
@@ -78,9 +71,6 @@ export default function parseLinkInline(
 		url = escapeBackslashes(url);
 		url = encodeURI(decodeURI(url));
 	}
-
-	// We may need to backtrack to here if there is an invalid title
-	//let urlEnd = start;
 
 	// Consume spaces
 	spaces = consumeSpaces(state.src, start);
@@ -125,7 +115,7 @@ export default function parseLinkInline(
 
 	// "The title may be omitted"
 	// "The title may extend over multiple lines"
-	if (title) {
+	if (title !== "") {
 		// "Both title and destination can contain backslash escapes and literal backslashes"
 		title = decodeEntities(title);
 		title = escapeBackslashes(title);

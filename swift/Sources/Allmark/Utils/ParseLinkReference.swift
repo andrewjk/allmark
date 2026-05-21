@@ -1,9 +1,8 @@
 import Foundation
 
-func parseLinkBlock(
+func parseLinkReference(
 	state: inout BlockParserState,
-	start: Int,
-	_end _: String
+	start: Int
 ) -> LinkReference? {
 	let blankLineRegex = try! NSRegularExpression(pattern: "\\r?\\n[ \\t]*\\r?\\n", options: [])
 

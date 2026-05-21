@@ -7,7 +7,7 @@ public static partial class Utils
 {
     private static readonly Regex BlankLineRegex = new(@"\r?\n[ \t]*\r?\n");
 
-    public static LinkReference? ParseLinkBlock(BlockParserState state, int start, string end)
+    public static LinkReference? ParseLinkReference(BlockParserState state, int start)
     {
         // Consume spaces
         var spaces = ConsumeSpaces(state.Src, start);

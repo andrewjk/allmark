@@ -13,7 +13,7 @@ const mvzr = @import("mvzr");
 
 const BLANK_LINE_REGEX = "\\r?\\n[ \\t]*\\r?\\n";
 
-pub fn parseLinkBlock(state: *BlockParserState, start: usize) !?LinkReference {
+pub fn parseLinkReference(state: *BlockParserState, start: usize) !?LinkReference {
     const spaces = try consumeSpaces(state.allocator, state.src, start);
     defer state.allocator.free(spaces);
 

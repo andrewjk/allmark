@@ -129,10 +129,7 @@ function testLinkClose(state: InlineParserState, parent: MarkdownNode) {
 				let link: LinkReference | undefined;
 				if (hasInfo) {
 					start++;
-					link = parseLinkInline(state, start, ")");
-					if (link !== undefined) {
-						//state.i = ??
-					}
+					link = parseLinkInline(state, start);
 				} else if (hasRef) {
 					start++;
 					for (let i = start; i < state.src.length; i++) {

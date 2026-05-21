@@ -68,7 +68,7 @@ public static class LinkReferenceRule
 
             start++;
 
-            var linkInfo = Utils.ParseLinkBlock(state, start, "\n");
+            var linkInfo = Utils.ParseLinkReference(state, start);
             if (linkInfo == null)
             {
                 return false;

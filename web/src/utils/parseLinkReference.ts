@@ -16,13 +16,11 @@ import isEscaped from "./isEscaped";
 import isNewLine from "./isNewLine";
 import isSpace from "./isSpace";
 
-// TODO: Get this from utils??
 const BLANK_LINE_REGEX = /\r?\n[ \t]*\r?\n/;
 
-export default function parseLinkBlock(
+export default function parseLinkReference(
 	state: BlockParserState,
 	start: number,
-	_end: string,
 ): LinkReference | undefined {
 	// Consume spaces
 	let spaces = consumeSpaces(state.src, start);
@@ -52,7 +50,7 @@ export default function parseLinkBlock(
 		}
 	}
 
-	if (url !== undefined) {
+	if (url !== "") {
 		// "Both title and destination can contain backslash escapes and literal backslashes"
 		url = decodeEntities(url);
 		url = escapeBackslashes(url);
@@ -100,7 +98,7 @@ export default function parseLinkBlock(
 
 	// "The title may be omitted"
 	// "The title may extend over multiple lines"
-	if (title) {
+	if (title !== "") {
 		// "The title must be separated from the link destination by whitespace"
 		if (!spaces.length) {
 			return;

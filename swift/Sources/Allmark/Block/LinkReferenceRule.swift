@@ -62,7 +62,7 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 
 		start += 1
 
-		guard let linkInfo = parseLinkBlock(state: &state, start: start, _end: "\n") else {
+		guard let linkInfo = parseLinkReference(state: &state, start: start) else {
 			return false
 		}
 

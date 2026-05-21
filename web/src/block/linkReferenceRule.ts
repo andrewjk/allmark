@@ -7,7 +7,7 @@ import isEscaped from "../utils/isEscaped";
 import isNewLine from "../utils/isNewLine";
 import newBlock from "../utils/newBlock";
 import normalizeLabel from "../utils/normalizeLabel";
-import parseLinkBlock from "../utils/parseLinkBlock";
+import parseLinkReference from "../utils/parseLinkReference";
 
 const rule: BlockRule = {
 	name: "link_ref",
@@ -78,7 +78,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		linkStart++;
 
-		let linkInfo = parseLinkBlock(state, linkStart, "\n");
+		let linkInfo = parseLinkReference(state, linkStart);
 		if (linkInfo === undefined) {
 			return false;
 		}

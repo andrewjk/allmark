@@ -147,7 +147,7 @@ public static class LinkRule
                     if (hasInfo)
                     {
                         start++;
-                        link = Utils.ParseLinkInline(state, start, ")");
+                        link = Utils.ParseLinkInline(state, start);
                     }
                     else if (hasRef)
                     {
