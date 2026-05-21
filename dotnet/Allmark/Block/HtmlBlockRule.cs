@@ -15,13 +15,18 @@ public static class HtmlBlockRule
         };
     }
 
-    // TODO: de-duplicate a lot of this code
-    // TODO: Should we split it up into seven different node types?
+    private static readonly Regex HtmlRegex1 = new(@"^<(script|pre|style|textarea)(\s|$|>)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex2 = new(@"<!--.+?-->", RegexOptions.Singleline | RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex3 = new(@"<\?.+?\?>", RegexOptions.Singleline | RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex4 = new(@"<![A-Z].+>", RegexOptions.Singleline | RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex5 = new(@"<!\[CDATA\[.+\]\]>", RegexOptions.Singleline | RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex6 = new(@"^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s+|$|>|\/>)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex7 = new Regex(@$"^(?:{HtmlPatterns.OpenTag}|{HtmlPatterns.CloseTag})(?:\r?\n|\s|$)", RegexOptions.Compiled);
 
     /// <summary>
     /// "An HTML block is a group of lines that is treated as raw HTML (and will not
     /// be escaped in HTML output).
-    /// 
+    ///
     /// There are seven kinds of HTML block, which can be defined by their start and
     /// end conditions. The block begins with a line that meets a start condition
     /// (after up to three spaces optional indentation). It ends with the first
@@ -30,7 +35,7 @@ public static class HtmlBlockRule
     /// block, if no line is encountered that meets the end condition. If the first
     /// line meets both a start condition and an end condition, the block will
     /// contain just that line.
-    /// 
+    ///
     /// HTML blocks continue until they are closed by their appropriate end
     /// condition, or the last line of the document or other container block. This
     /// means any HTML within an HTML block that might otherwise be recognised as a
@@ -49,31 +54,13 @@ public static class HtmlBlockRule
         {
             var tail = state.Src.Substring(state.I);
 
-            if (TestHtmlCondition1(state, parent, tail))
-            {
-                return true;
-            }
-            if (TestHtmlCondition2(state, parent, tail))
-            {
-                return true;
-            }
-            if (TestHtmlCondition3(state, parent, tail))
-            {
-                return true;
-            }
-            if (TestHtmlCondition4(state, parent, tail))
-            {
-                return true;
-            }
-            if (TestHtmlCondition5(state, parent, tail))
-            {
-                return true;
-            }
-            if (TestHtmlCondition6(state, parent, tail))
-            {
-                return true;
-            }
-            if (TestHtmlCondition7(state, parent, tail))
+            if (TestHtmlCondition1(state, parent, tail)
+                || TestHtmlCondition2to5(state, parent, tail, HtmlRegex2)
+                || TestHtmlCondition2to5(state, parent, tail, HtmlRegex3)
+                || TestHtmlCondition2to5(state, parent, tail, HtmlRegex4)
+                || TestHtmlCondition2to5(state, parent, tail, HtmlRegex5)
+                || TestHtmlCondition6(state, parent, tail)
+                || TestHtmlCondition7(state, parent, tail))
             {
                 return true;
             }
@@ -82,13 +69,27 @@ public static class HtmlBlockRule
         return false;
     }
 
-    private static readonly Regex HtmlRegex1 = new(@"^<(script|pre|style|textarea)(\s|$|>)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
+    private static void AddHtmlBlock(BlockParserState state, MarkdownNode parent, int start, int end, int type)
+    {
+        var html = Utils.NewBlock("html_block", start, state.Line, "", type);
+        html.Content = new string(' ', state.Indent) + state.Src.Substring(start, end - start);
+        html.AcceptsContent = (type == 6 || type == 7);
+        if (html.AcceptsContent && state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
+        {
+            parent.Children[parent.Children.Count - 1].BlankAfter = true;
+            state.HasBlankLine = false;
+        }
+
+        parent.Children!.Add(html);
+        state.OpenNodes.Push(html);
+        state.I = end;
+    }
 
     /// <summary>
     /// Start condition: line begins with string &lt;script, &lt;pre, or &lt;style
     /// (case-insensitive), followed by whitespace, string &gt;, or end of
     /// line.
-    /// 
+    ///
     /// End condition: line contains an end tag &lt;/script&gt;, &lt;/pre&gt;, or &lt;/style&gt;
     /// (case-insensitive; it need not match to start tag).
     /// </summary>
@@ -115,128 +116,26 @@ public static class HtmlBlockRule
                 }
             }
 
-            var html = Utils.NewBlock("html_block", start, state.Line, "", 1);
-            html.Content = new string(' ', state.Indent) + state.Src.Substring(start, end - start);
-
-            parent.Children!.Add(html);
-            state.OpenNodes.Push(html);
-            state.I = end;
+            AddHtmlBlock(state, parent, start, end, 1);
 
             return true;
         }
         return false;
     }
 
-    private static readonly Regex HtmlRegex2 = new(@"<!--.+?-->", RegexOptions.Singleline | RegexOptions.Compiled);
-
-    /// <summary>
-    /// Start condition: line begins with string &lt;!--.
-    /// 
-    /// End condition: line contains to string --&gt;.
-    /// </summary>
-    private static bool TestHtmlCondition2(BlockParserState state, MarkdownNode parent, string tail)
+    private static bool TestHtmlCondition2to5(BlockParserState state, MarkdownNode parent, string tail, Regex regex)
     {
-        var match = HtmlRegex2.Match(tail);
+        var match = regex.Match(tail);
         if (match.Success && match.Index == 0)
         {
             var start = state.I;
             state.I += match.Value.Length;
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewBlock("html_block", start, state.Line, "", 2);
-            html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
-
-            parent.Children!.Add(html);
-            state.OpenNodes.Push(html);
-            state.I = endOfLine;
-
+            AddHtmlBlock(state, parent, start, endOfLine, 2);
             return true;
         }
         return false;
     }
-
-    private static readonly Regex HtmlRegex3 = new(@"<\?.+?\?>", RegexOptions.Singleline | RegexOptions.Compiled);
-
-    /// <summary>
-    /// Start condition: line begins with string &lt;?.
-    /// 
-    /// End condition: line contains to string ?&gt;.
-    /// </summary>
-    private static bool TestHtmlCondition3(BlockParserState state, MarkdownNode parent, string tail)
-    {
-        var match = HtmlRegex3.Match(tail);
-        if (match.Success && match.Index == 0)
-        {
-            var start = state.I;
-            state.I += match.Value.Length;
-            var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewBlock("html_block", start, state.Line, "", 3);
-            html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
-
-            parent.Children!.Add(html);
-            state.OpenNodes.Push(html);
-            state.I = endOfLine;
-
-            return true;
-        }
-        return false;
-    }
-
-    private static readonly Regex HtmlRegex4 = new(@"<![A-Z].+>", RegexOptions.Singleline | RegexOptions.Compiled);
-
-    /// <summary>
-    /// Start condition: line begins with string &lt;! followed by an uppercase
-    /// ASCII letter.
-    /// 
-    /// End condition: line contains to character &gt;.
-    /// </summary>
-    private static bool TestHtmlCondition4(BlockParserState state, MarkdownNode parent, string tail)
-    {
-        var match = HtmlRegex4.Match(tail);
-        if (match.Success && match.Index == 0)
-        {
-            var start = state.I;
-            state.I += match.Value.Length;
-            var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewBlock("html_block", start, state.Line, "", 4);
-            html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
-
-            parent.Children!.Add(html);
-            state.OpenNodes.Push(html);
-            state.I = endOfLine;
-
-            return true;
-        }
-        return false;
-    }
-
-    private static readonly Regex HtmlRegex5 = new(@"<!\[CDATA\[.+\]\]>", RegexOptions.Singleline | RegexOptions.Compiled);
-
-    /// <summary>
-    /// Start condition: line begins with string &lt;![CDATA[.
-    /// 
-    /// End condition: line contains to string ]]&gt;.
-    /// </summary>
-    private static bool TestHtmlCondition5(BlockParserState state, MarkdownNode parent, string tail)
-    {
-        var match = HtmlRegex5.Match(tail);
-        if (match.Success && match.Index == 0)
-        {
-            var start = state.I;
-            state.I += match.Value.Length;
-            var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewBlock("html_block", start, state.Line, "", 5);
-            html.Content = new string(' ', state.Indent) + state.Src.Substring(start, endOfLine - start);
-
-            parent.Children!.Add(html);
-            state.OpenNodes.Push(html);
-            state.I = endOfLine;
-
-            return true;
-        }
-        return false;
-    }
-
-    private static readonly Regex HtmlRegex6 = new(@"^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s+|$|>|\/>)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     /// <summary>
     /// Start condition: line begins with string &lt; or &lt;/ followed by one of to
@@ -247,7 +146,7 @@ public static class HtmlBlockRule
     /// menu, menuitem, nav, noframes, ol, optgroup, option, p, param, section,
     /// source, summary, table, tbody, td, tfoot, th, thad, title, tr, track, ul,
     /// followed by whitespace, end of line, string &gt;, or string /&gt;.
-    /// 
+    ///
     /// End condition: line is followed by a blank line.
     /// </summary>
     private static bool TestHtmlCondition6(BlockParserState state, MarkdownNode parent, string tail)
@@ -263,32 +162,18 @@ public static class HtmlBlockRule
             }
 
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewBlock("html_block", state.I, state.Line, "", 6);
-            html.Content = new string(' ', state.Indent) + state.Src.Substring(state.I, endOfLine - state.I);
-            html.AcceptsContent = true;
-
-            if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
-            {
-                parent.Children[parent.Children.Count - 1].BlankAfter = true;
-                state.HasBlankLine = false;
-            }
-
-            parent.Children!.Add(html);
-            state.OpenNodes.Push(html);
-            state.I = endOfLine;
+            AddHtmlBlock(state, parent, state.I, endOfLine, 6);
 
             return true;
         }
         return false;
     }
 
-    private static readonly Regex HtmlRegex7 = new Regex(@$"^(?:{HtmlPatterns.OpenTag}|{HtmlPatterns.CloseTag})(?:\r?\n|\s|$)", RegexOptions.Compiled);
-
     /// <summary>
     /// Start condition: line begins with a complete open tag (with any tag name
     /// other than script, style, or pre) or a complete closing tag, followed only by
     /// whitespace or end of line.
-    /// 
+    ///
     /// End condition: line is followed by a blank line.
     /// </summary>
     private static bool TestHtmlCondition7(BlockParserState state, MarkdownNode parent, string tail)
@@ -307,7 +192,7 @@ public static class HtmlBlockRule
 
             // "All types of HTML blocks except type 7 may interrupt a paragraph.
             // Blocks of type 7 may not interrupt a paragraph"
-            var lastNode = parent; // parent.Children!.At(-1);
+            var lastNode = parent;
             if (lastNode != null && lastNode.Type == "paragraph" && !lastNode.BlankAfter)
             {
                 var end = state.I + match.Value.Length;
@@ -318,19 +203,7 @@ public static class HtmlBlockRule
             }
 
             var endOfLine = Utils.GetEndOfLine(state);
-            var html = Utils.NewBlock("html_block", state.I, state.Line, "", 7);
-            html.Content = new string(' ', state.Indent) + state.Src.Substring(state.I, endOfLine - state.I);
-            html.AcceptsContent = true;
-
-            if (state.HasBlankLine && parent.Children != null && parent.Children.Count > 0)
-            {
-                parent.Children[parent.Children.Count - 1].BlankAfter = true;
-                state.HasBlankLine = false;
-            }
-
-            parent.Children!.Add(html);
-            state.OpenNodes.Push(html);
-            state.I = endOfLine;
+            AddHtmlBlock(state, parent, state.I, endOfLine, 7);
             return true;
         }
         return false;

@@ -8,9 +8,6 @@ import { CLOSE_TAG, OPEN_TAG } from "../utils/htmlPatterns";
 import isNewLine from "../utils/isNewLine";
 import newBlock from "../utils/newBlock";
 
-// TODO: de-duplicate a lot of this code
-// TODO: Should we split it up into seven different node types??
-
 const rule: BlockRule = {
 	name: "html_block",
 	testStart,
@@ -45,33 +42,21 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	if (!state.isEscaped && state.indent <= 3 && state.src.charCodeAt(state.i) === ANGLE_LEFT_CODE) {
 		let tail = state.src.substring(state.i);
 
-		if (testHtmlCondition1(state, parent, tail)) {
-			return true;
-		}
-		if (testHtmlCondition2(state, parent, tail)) {
-			return true;
-		}
-		if (testHtmlCondition3(state, parent, tail)) {
-			return true;
-		}
-		if (testHtmlCondition4(state, parent, tail)) {
-			return true;
-		}
-		if (testHtmlCondition5(state, parent, tail)) {
-			return true;
-		}
-		if (testHtmlCondition6(state, parent, tail)) {
-			return true;
-		}
-		if (testHtmlCondition7(state, parent, tail)) {
+		if (
+			testHtmlCondition1(state, parent, tail) ||
+			testHtmlCondition2to5(state, parent, tail, HTML_REGEX_2) ||
+			testHtmlCondition2to5(state, parent, tail, HTML_REGEX_3) ||
+			testHtmlCondition2to5(state, parent, tail, HTML_REGEX_4) ||
+			testHtmlCondition2to5(state, parent, tail, HTML_REGEX_5) ||
+			testHtmlCondition6(state, parent, tail) ||
+			testHtmlCondition7(state, parent, tail)
+		) {
 			return true;
 		}
 	}
 
 	return false;
 }
-
-const HTML_REGEX_1 = /^<(script|pre|style|textarea)(\s|$|>)/i;
 
 /**
  * Start condition: line begins with the string <script, <pre, or <style
@@ -81,6 +66,61 @@ const HTML_REGEX_1 = /^<(script|pre|style|textarea)(\s|$|>)/i;
  * End condition: line contains an end tag </script>, </pre>, or </style>
  * (case-insensitive; it need not match the start tag).
  */
+const HTML_REGEX_1 = /^<(script|pre|style|textarea)(\s|$|>)/i;
+
+/**
+ * Start condition: line begins with the string <!--.
+ *
+ * End condition: line contains the string -->.
+ */
+const HTML_REGEX_2 = /<!--.+?-->/s;
+
+/**
+ * Start condition: line begins with the string <?.
+ *
+ * End condition: line contains the string ?>.
+ */
+const HTML_REGEX_3 = /<\?.+?\?>/s;
+
+/**
+ * Start condition: line begins with the string <! followed by an uppercase
+ * ASCII letter.
+ *
+ * End condition: line contains the character >.
+ */
+const HTML_REGEX_4 = /<![A-Z].+>/s;
+
+/**
+ * Start condition: line begins with the string <![CDATA[.
+ *
+ * End condition: line contains the string ]]>.
+ */
+const HTML_REGEX_5 = /<!\[CDATA\[.+\]\]>/s;
+
+/**
+ * Start condition: line begins the string < or </ followed by one of the
+ * strings (case-insensitive) address, article, aside, base, basefont,
+ * blockquote, body, caption, center, col, colgroup, dd, details, dialog, dir,
+ * div, dl, dt, fieldset, figcaption, figure, footer, form, frame, frameset, h1,
+ * h2, h3, h4, h5, h6, head, header, hr, html, iframe, legend, li, link, main,
+ * menu, menuitem, nav, noframes, ol, optgroup, option, p, param, section,
+ * source, summary, table, tbody, td, tfoot, th, thead, title, tr, track, ul,
+ * followed by whitespace, the end of the line, the string >, or the string />.
+ *
+ * End condition: line is followed by a blank line.
+ */
+const HTML_REGEX_6 =
+	/^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s+|$|>|\/>)/i;
+
+/**
+ * Start condition: line begins with a complete open tag (with any tag name
+ * other than script, style, or pre) or a complete closing tag, followed only by
+ * whitespace or the end of the line.
+ *
+ * End condition: line is followed by a blank line.
+ */
+const HTML_REGEX_7 = new RegExp(`^(?:${OPEN_TAG}|${CLOSE_TAG})(?:\\r?\\n|\\s|$)`);
+
 function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match1 = tail.match(HTML_REGEX_1);
 	if (match1?.index === 0) {
@@ -100,134 +140,27 @@ function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail:
 				}
 			}
 		}
-
-		let html = newBlock("html_block", start, state.line, "", 1);
-		html.content = " ".repeat(state.indent) + state.src.substring(start, end);
-
-		parent.children!.push(html);
-		state.openNodes.push(html);
-		state.i = end;
-
+		addHtmlBlock(state, parent, start, end, 1);
 		return true;
 	}
 }
 
-const HTML_REGEX_2 = /<!--.+?-->/s;
-
-/**
- * Start condition: line begins with the string <!--.
- *
- * End condition: line contains the string -->.
- */
-function testHtmlCondition2(state: BlockParserState, parent: MarkdownNode, tail: string) {
-	let match = tail.match(HTML_REGEX_2);
+function testHtmlCondition2to5(
+	state: BlockParserState,
+	parent: MarkdownNode,
+	tail: string,
+	regex: RegExp,
+) {
+	let match = tail.match(regex);
 	if (match !== null) {
 		let start = state.i;
 		state.i += match[0].length;
 		let endOfLine = getEndOfLine(state);
-		let html = newBlock("html_block", start, state.line, "", 2);
-		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
-		html.length = endOfLine - start;
-
-		parent.children!.push(html);
-		state.openNodes.push(html);
-		state.i = endOfLine;
-
+		addHtmlBlock(state, parent, start, endOfLine, 2);
 		return true;
 	}
 }
 
-const HTML_REGEX_3 = /<\?.+?\?>/s;
-
-/**
- * Start condition: line begins with the string <?.
- *
- * End condition: line contains the string ?>.
- */
-function testHtmlCondition3(state: BlockParserState, parent: MarkdownNode, tail: string) {
-	let match = tail.match(HTML_REGEX_3);
-	if (match !== null) {
-		let start = state.i;
-		state.i += match[0].length;
-		let endOfLine = getEndOfLine(state);
-		let html = newBlock("html_block", start, state.line, "", 3);
-		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
-		html.length = endOfLine - start;
-
-		parent.children!.push(html);
-		state.openNodes.push(html);
-		state.i = endOfLine;
-
-		return true;
-	}
-}
-
-const HTML_REGEX_4 = /<![A-Z].+>/s;
-
-/**
- * Start condition: line begins with the string <! followed by an uppercase
- * ASCII letter.
- *
- * End condition: line contains the character >.
- */
-function testHtmlCondition4(state: BlockParserState, parent: MarkdownNode, tail: string) {
-	let match = tail.match(HTML_REGEX_4);
-	if (match !== null) {
-		let start = state.i;
-		state.i += match[0].length;
-		let endOfLine = getEndOfLine(state);
-		let html = newBlock("html_block", start, state.line, "", 4);
-		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
-		html.length = endOfLine - start;
-
-		parent.children!.push(html);
-		state.openNodes.push(html);
-		state.i = endOfLine;
-
-		return true;
-	}
-}
-
-const HTML_REGEX_5 = /<!\[CDATA\[.+\]\]>/s;
-
-/**
- * Start condition: line begins with the string <![CDATA[.
- *
- * End condition: line contains the string ]]>.
- */
-function testHtmlCondition5(state: BlockParserState, parent: MarkdownNode, tail: string) {
-	let match = tail.match(HTML_REGEX_5);
-	if (match !== null) {
-		let start = state.i;
-		state.i += match[0].length;
-		let endOfLine = getEndOfLine(state);
-		let html = newBlock("html_block", start, state.line, "", 5);
-		html.content = " ".repeat(state.indent) + state.src.substring(start, endOfLine);
-		html.length = endOfLine - start;
-
-		parent.children!.push(html);
-		state.openNodes.push(html);
-		state.i = endOfLine;
-
-		return true;
-	}
-}
-
-const HTML_REGEX_6 =
-	/^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s+|$|>|\/>)/i;
-
-/**
- * Start condition: line begins the string < or </ followed by one of the
- * strings (case-insensitive) address, article, aside, base, basefont,
- * blockquote, body, caption, center, col, colgroup, dd, details, dialog, dir,
- * div, dl, dt, fieldset, figcaption, figure, footer, form, frame, frameset, h1,
- * h2, h3, h4, h5, h6, head, header, hr, html, iframe, legend, li, link, main,
- * menu, menuitem, nav, noframes, ol, optgroup, option, p, param, section,
- * source, summary, table, tbody, td, tfoot, th, thead, title, tr, track, ul,
- * followed by whitespace, the end of the line, the string >, or the string />.
- *
- * End condition: line is followed by a blank line.
- */
 function testHtmlCondition6(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match = tail.match(HTML_REGEX_6);
 	if (match !== null) {
@@ -235,34 +168,12 @@ function testHtmlCondition6(state: BlockParserState, parent: MarkdownNode, tail:
 			closeNode(state, state.openNodes.pop()!);
 			parent = state.openNodes.at(-1)!;
 		}
-
 		let endOfLine = getEndOfLine(state);
-		let html = newBlock("html_block", state.i, state.line, "", 6);
-		html.content = " ".repeat(state.indent) + state.src.substring(state.i, endOfLine);
-		html.acceptsContent = true;
-
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
-			state.hasBlankLine = false;
-		}
-
-		parent.children!.push(html);
-		state.openNodes.push(html);
-		state.i = endOfLine;
-
+		addHtmlBlock(state, parent, state.i, endOfLine, 6);
 		return true;
 	}
 }
 
-const HTML_REGEX_7 = new RegExp(`^(?:${OPEN_TAG}|${CLOSE_TAG})(?:\\r?\\n|\\s|$)`);
-
-/**
- * Start condition: line begins with a complete open tag (with any tag name
- * other than script, style, or pre) or a complete closing tag, followed only by
- * whitespace or the end of the line.
- *
- * End condition: line is followed by a blank line.
- */
 function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match = tail.match(HTML_REGEX_7);
 	if (match !== null) {
@@ -289,20 +200,33 @@ function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail:
 		}
 
 		let endOfLine = getEndOfLine(state);
-		let html = newBlock("html_block", state.i, state.line, "", 7);
-		html.content = " ".repeat(state.indent) + state.src.substring(state.i, endOfLine);
-		html.acceptsContent = true;
-
-		if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
-			parent.children.at(-1)!.blankAfter = true;
-			state.hasBlankLine = false;
-		}
-
-		parent.children!.push(html);
-		state.openNodes.push(html);
-		state.i = endOfLine;
+		addHtmlBlock(state, parent, state.i, endOfLine, 7);
 		return true;
 	}
+}
+
+function addHtmlBlock(
+	state: BlockParserState,
+	parent: MarkdownNode,
+	start: number,
+	end: number,
+	type: number,
+) {
+	let html = newBlock("html_block", start, state.line, "", type);
+	html.content = " ".repeat(state.indent) + state.src.substring(start, end);
+	html.acceptsContent = type === 6 || type === 7;
+	if (
+		html.acceptsContent &&
+		state.hasBlankLine &&
+		parent.children !== undefined &&
+		parent.children.length > 0
+	) {
+		parent.children.at(-1)!.blankAfter = true;
+		state.hasBlankLine = false;
+	}
+	parent.children!.push(html);
+	state.openNodes.push(html);
+	state.i = end;
 }
 
 function testContinue(state: BlockParserState, node: MarkdownNode) {

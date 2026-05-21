@@ -9,16 +9,19 @@ const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const mvzr = @import("mvzr");
+const htmlPatterns = @import("../utils/htmlPatterns.zig");
 
-// HTML block condition regexes (case-insensitive where noted)
 // Note: mvzr regex patterns don't support non-capturing groups (?:)
-// Or `$`??
-// Or case-insensitive matches
+// Note: Or case-insensitive matches
 const HTML_REGEX_1 = "^<(script|SCRIPT|pre|PRE|style|STYLE|textarea|TEXTAREA)(\\s|\\n|>)";
 const HTML_REGEX_2 = "^<!--.+?-->";
 const HTML_REGEX_3 = "^<\\?.+?\\?>";
 const HTML_REGEX_4 = "^<![A-Z].+>";
 const HTML_REGEX_5 = "^<!\\[CDATA\\[.+\\]\\]>";
+const HTML_REGEX_6 = "^<\\/?([a-zA-Z][a-zA-Z0-9-]*)(\\s+|>|\\/>)";
+// NOTE: removed non-capturing groups `(?:)`
+// NOTE: removed `$` anchor as mvzr doesn't support it correctly
+const HTML_REGEX_7 = "^(" ++ htmlPatterns.OPEN_TAG ++ "|" ++ htmlPatterns.CLOSE_TAG ++ ")[ \\t]*";
 
 const HtmlTags = struct {
     const script = "script";
@@ -27,43 +30,67 @@ const HtmlTags = struct {
     const textarea = "textarea";
 };
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
-    if (parent.acceptsContent) return false;
+const BLOCK_LEVEL_TAGS = [_][]const u8{
+    "address", "article", "aside",  "base",      "basefont",  "blockquote", "body",      "caption", "center", "col",     "colgroup", "dd",       "details",
+    "dialog",   "dir",     "div",    "dl",        "dt",        "fieldset",   "figcaption","figure",  "footer", "form",    "frame",    "frameset", "h1",
+    "h2",       "h3",      "h4",     "h5",        "h6",        "head",       "header",    "hr",       "html",    "iframe",  "legend",   "li",       "link",
+    "main",     "menu",    "menuitem","nav",      "noframes",  "ol",         "optgroup",  "option",   "p",       "param",   "section",  "source",   "summary",
+    "table",    "tbody",   "td",     "tfoot",     "th",        "thead",      "title",     "tr",       "track",   "ul",
+};
 
-    if (state.i >= state.src.len) return false;
-    const char = state.src[state.i];
+fn isBlockLevelTag(tag_name: []const u8) bool {
+    for (BLOCK_LEVEL_TAGS) |tag| {
+        if (std.ascii.eqlIgnoreCase(tag_name, tag)) {
+            return true;
+        }
+    }
+    return false;
+}
 
-    if (!state.isEscaped and state.indent <= 3 and char == '<') {
-        const tail = state.src[state.i..];
+fn addHtmlBlock(state: *BlockParserState, parent: *MarkdownNode, start: usize, end: usize, html_type: i32) void {
+    const html = newBlock(state.allocator, "html_block", start, state.line, "", html_type) catch unreachable;
 
-        if (testHtmlCondition1(state, parent, tail)) {
-            //std.debug.print("MATCHED 1\n", .{});
-            return true;
+    const base_content = state.src[start..end];
+    if (state.indent > 0) {
+        const indent_len: usize = @intCast(state.indent);
+        var content = state.allocator.alloc(u8, indent_len + base_content.len) catch unreachable;
+        var i: usize = 0;
+        while (i < indent_len) : (i += 1) {
+            content[i] = ' ';
         }
-        if (testHtmlCondition2(state, parent, tail)) {
-            //std.debug.print("MATCHED 2\n", .{});
-            return true;
+        @memcpy(content[indent_len..], base_content);
+        html.content = content;
+    } else {
+        html.content = state.allocator.dupe(u8, base_content) catch unreachable;
+    }
+    html.content_allocated = true;
+    html.length = end - start;
+
+    if (html_type == 6 or html_type == 7) {
+        html.acceptsContent = true;
+
+        if (state.hasBlankLine and parent.children != null and parent.children.?.len > 0) {
+            const last_child = parent.children.?[parent.children.?.len - 1];
+            last_child.blankAfter = true;
+            state.hasBlankLine = false;
         }
-        if (testHtmlCondition3(state, parent, tail)) {
-            //std.debug.print("MATCHED 3\n", .{});
-            return true;
-        }
-        if (testHtmlCondition4(state, parent, tail)) {
-            //std.debug.print("MATCHED 4\n", .{});
-            return true;
-        }
-        if (testHtmlCondition5(state, parent, tail)) {
-            //std.debug.print("MATCHED 5\n", .{});
-            return true;
-        }
-        if (testHtmlCondition6(state, parent, tail)) {
-            //std.debug.print("MATCHED 6\n", .{});
-            return true;
-        }
-        if (testHtmlCondition7(state, parent, tail)) {
-            //std.debug.print("MATCHED 7\n", .{});
-            return true;
-        }
+    }
+
+    appendChild(state.allocator, parent, html) catch unreachable;
+    state.openNodes.append(state.allocator, html) catch unreachable;
+    state.i = end;
+}
+
+fn testHtmlCondition2to5(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8, pattern: []const u8, html_type: i32) bool {
+    const regex = mvzr.compile(pattern) orelse return false;
+    const match = regex.match(tail);
+
+    if (match != null and match.?.start == 0) {
+        const start = state.i;
+        state.i += match.?.end;
+        const end_of_line = getEndOfLine(state);
+        addHtmlBlock(state, parent, start, end_of_line, html_type);
+        return true;
     }
 
     return false;
@@ -76,7 +103,6 @@ fn testHtmlCondition1(state: *BlockParserState, parent: *MarkdownNode, tail: []c
     if (match != null and match.?.start == 0) {
         const start = state.i;
 
-        // Extract the tag name
         const tag_match = match.?.slice;
         var tag_name_start: usize = 1;
         if (tag_match.len > 0 and tag_match[0] == '<') {
@@ -110,137 +136,11 @@ fn testHtmlCondition1(state: *BlockParserState, parent: *MarkdownNode, tail: []c
             }
         }
 
-        createHtmlBlock(state, parent, start, end, 1);
+        addHtmlBlock(state, parent, start, end, 1);
 
         return true;
     }
 
-    return false;
-}
-
-fn createHtmlContent(state: *BlockParserState, start: usize, end: usize) []const u8 {
-    const base_content = state.src[start..end];
-    if (state.indent > 0) {
-        // Add indentation to the content
-        const indent_len: usize = @intCast(state.indent);
-        var content = state.allocator.alloc(u8, indent_len + base_content.len) catch unreachable;
-        var i: usize = 0;
-        while (i < indent_len) : (i += 1) {
-            content[i] = ' ';
-        }
-        @memcpy(content[indent_len..], base_content);
-        return content;
-    } else {
-        return state.allocator.dupe(u8, base_content) catch unreachable;
-    }
-}
-
-fn testHtmlCondition2(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
-    const regex = mvzr.compile(HTML_REGEX_2) orelse return false;
-    const match = regex.match(tail);
-
-    if (match != null and match.?.start == 0) {
-        const start = state.i;
-
-        state.i += match.?.end;
-        const end_of_line = getEndOfLine(state);
-        const html = newBlock(state.allocator, "html_block", start, state.line, "", 2) catch unreachable;
-        html.content = createHtmlContent(state, start, end_of_line);
-        html.content_allocated = true;
-        html.length = end_of_line - start;
-
-        appendChild(state.allocator, parent, html) catch unreachable;
-        state.openNodes.append(state.allocator, html) catch unreachable;
-        state.i = end_of_line;
-        return true;
-    }
-
-    return false;
-}
-
-fn testHtmlCondition3(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
-    const regex = mvzr.compile(HTML_REGEX_3) orelse return false;
-    const match = regex.match(tail);
-
-    if (match != null and match.?.start == 0) {
-        const start = state.i;
-
-        state.i += match.?.end;
-        const end_of_line = getEndOfLine(state);
-        const html = newBlock(state.allocator, "html_block", start, state.line, "", 3) catch unreachable;
-        html.content = createHtmlContent(state, start, end_of_line);
-        html.content_allocated = true;
-        html.length = end_of_line - start;
-
-        appendChild(state.allocator, parent, html) catch unreachable;
-        state.openNodes.append(state.allocator, html) catch unreachable;
-        state.i = end_of_line;
-        return true;
-    }
-
-    return false;
-}
-
-fn testHtmlCondition4(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
-    const regex = mvzr.compile(HTML_REGEX_4) orelse return false;
-    const match = regex.match(tail);
-
-    if (match != null and match.?.start == 0) {
-        const start = state.i;
-
-        state.i += match.?.end;
-        const end_of_line = getEndOfLine(state);
-        const html = newBlock(state.allocator, "html_block", start, state.line, "", 4) catch unreachable;
-        html.content = createHtmlContent(state, start, end_of_line);
-        html.content_allocated = true;
-        html.length = end_of_line - start;
-
-        appendChild(state.allocator, parent, html) catch unreachable;
-        state.openNodes.append(state.allocator, html) catch unreachable;
-        state.i = end_of_line;
-        return true;
-    }
-
-    return false;
-}
-
-fn testHtmlCondition5(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
-    const regex = mvzr.compile(HTML_REGEX_5) orelse return false;
-    const match = regex.match(tail);
-
-    if (match != null and match.?.start == 0) {
-        const start = state.i;
-
-        state.i += match.?.end;
-        const end_of_line = getEndOfLine(state);
-        const html = newBlock(state.allocator, "html_block", start, state.line, "", 5) catch unreachable;
-        html.content = createHtmlContent(state, start, end_of_line);
-        html.content_allocated = true;
-        html.length = end_of_line - start;
-
-        appendChild(state.allocator, parent, html) catch unreachable;
-        state.openNodes.append(state.allocator, html) catch unreachable;
-        state.i = end_of_line;
-        return true;
-    }
-
-    return false;
-}
-
-// Simplified regex that matches any tag
-const HTML_REGEX_6 = "^<\\/?([a-zA-Z][a-zA-Z0-9-]*)(\\s+|>|\\/>)";
-
-// List of block-level tags (from CommonMark spec)
-const BLOCK_LEVEL_TAGS = [_][]const u8{
-    "address", "article", "aside", "base", "basefont", "blockquote", "body", "caption", "center", "col", "colgroup", "dd", "details", "dialog", "dir", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "frame", "frameset", "h1", "h2", "h3", "h4", "h5", "h6", "head", "header", "hr", "html", "iframe", "legend", "li", "link", "main", "menu", "menuitem", "nav", "noframes", "ol", "optgroup", "option", "p", "param", "section", "source", "summary", "table", "tbody", "td", "tfoot", "th", "thead", "title", "tr", "track", "ul",
-};
-
-fn isBlockLevelTag(tag_name: []const u8) bool {
-    for (BLOCK_LEVEL_TAGS) |tag| {
-        if (std.ascii.eqlIgnoreCase(tag_name, tag)) {
-            return true;
-        }
-    }
     return false;
 }
 
@@ -251,7 +151,6 @@ fn testHtmlCondition6(state: *BlockParserState, parent: *MarkdownNode, tail: []c
     if (match != null and match.?.start == 0) {
         const start = state.i;
 
-        // Extract the tag name
         const tag_match = match.?.slice;
         var tag_name_start: usize = 1;
         if (tag_match.len > 0 and tag_match[0] == '<') {
@@ -268,7 +167,6 @@ fn testHtmlCondition6(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         }
         const tag_name = tag_match[tag_name_start..tag_name_end];
 
-        // Check if it's a block-level tag
         if (!isBlockLevelTag(tag_name)) {
             return false;
         }
@@ -284,30 +182,13 @@ fn testHtmlCondition6(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         }
 
         const end_of_line = getEndOfLine(state);
-        const html = newBlock(state.allocator, "html_block", start, state.line, "", 6) catch unreachable;
-        html.content = createHtmlContent(state, start, end_of_line);
-        html.content_allocated = true;
-        html.acceptsContent = true;
+        addHtmlBlock(state, effective_parent, start, end_of_line, 6);
 
-        if (state.hasBlankLine and effective_parent.children != null and effective_parent.children.?.len > 0) {
-            const last_child = effective_parent.children.?[effective_parent.children.?.len - 1];
-            last_child.blankAfter = true;
-            state.hasBlankLine = false;
-        }
-
-        appendChild(state.allocator, effective_parent, html) catch unreachable;
-        state.openNodes.append(state.allocator, html) catch unreachable;
-        state.i = end_of_line;
         return true;
     }
 
     return false;
 }
-
-// NOTE: removed non-capturing groups `(?:)`
-// NOTE: removed `$` anchor as mvzr doesn't support it correctly
-const htmlPatterns = @import("../utils/htmlPatterns.zig");
-const HTML_REGEX_7 = "^(" ++ htmlPatterns.OPEN_TAG ++ "|" ++ htmlPatterns.CLOSE_TAG ++ ")[ \\t]*";
 
 fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
     const regex = mvzr.compile(HTML_REGEX_7) orelse return false;
@@ -316,9 +197,6 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
     if (match != null and match.?.start == 0) {
         const start = state.i;
 
-        // "To start an HTML block with a tag that is not in the list of
-        // block-level tags in (6), you must put the tag by itself on the first
-        // line (and it must be complete)"
         const match_end = match.?.end;
         const end = state.i + match_end;
         if (end < state.src.len) {
@@ -337,8 +215,6 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
             }
         }
 
-        // "All types of HTML blocks except type 7 may interrupt a paragraph.
-        // Blocks of type 7 may not interrupt a paragraph"
         if (std.mem.eql(u8, parent.type, "paragraph") and !parent.blankAfter) {
             var p_end = state.i + match_end;
             if (p_end < state.src.len and state.src[p_end] == '\n') {
@@ -360,48 +236,36 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         }
 
         const end_of_line = getEndOfLine(state);
-        const html = newBlock(state.allocator, "html_block", start, state.line, "", 7) catch unreachable;
-        html.content = createHtmlContent(state, start, end_of_line);
-        html.content_allocated = true;
-        html.acceptsContent = true;
+        addHtmlBlock(state, parent, start, end_of_line, 7);
 
-        if (state.hasBlankLine and parent.children != null and parent.children.?.len > 0) {
-            const last_child = parent.children.?[parent.children.?.len - 1];
-            last_child.blankAfter = true;
-            state.hasBlankLine = false;
-        }
-
-        appendChild(state.allocator, parent, html) catch unreachable;
-        state.openNodes.append(state.allocator, html) catch unreachable;
-        state.i = end_of_line;
         return true;
     }
 
     return false;
 }
 
-fn createHtmlBlock(state: *BlockParserState, parent: *MarkdownNode, start: usize, end: usize, html_type: i32) void {
-    const html = newBlock(state.allocator, "html_block", start, state.line, "", html_type) catch unreachable;
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+    if (parent.acceptsContent) return false;
 
-    const base_content = state.src[start..end];
-    if (state.indent > 0) {
-        // Add indentation to the content
-        const indent_len: usize = @intCast(state.indent);
-        var content = state.allocator.alloc(u8, indent_len + base_content.len) catch unreachable;
-        var i: usize = 0;
-        while (i < indent_len) : (i += 1) {
-            content[i] = ' ';
+    if (state.i >= state.src.len) return false;
+    const char = state.src[state.i];
+
+    if (!state.isEscaped and state.indent <= 3 and char == '<') {
+        const tail = state.src[state.i..];
+
+        if (testHtmlCondition1(state, parent, tail)) return true;
+        if (testHtmlCondition2to5(state, parent, tail, HTML_REGEX_2, 2) or
+            testHtmlCondition2to5(state, parent, tail, HTML_REGEX_3, 3) or
+            testHtmlCondition2to5(state, parent, tail, HTML_REGEX_4, 4) or
+            testHtmlCondition2to5(state, parent, tail, HTML_REGEX_5, 5))
+        {
+            return true;
         }
-        @memcpy(content[indent_len..], base_content);
-        html.content = content;
-    } else {
-        html.content = state.allocator.dupe(u8, base_content) catch unreachable;
+        if (testHtmlCondition6(state, parent, tail)) return true;
+        if (testHtmlCondition7(state, parent, tail)) return true;
     }
-    html.content_allocated = true;
 
-    appendChild(state.allocator, parent, html) catch unreachable;
-    state.openNodes.append(state.allocator, html) catch unreachable;
-    state.i = end;
+    return false;
 }
 
 pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {
