@@ -50,7 +50,7 @@ test "basic parse" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const html = try render(gpa, doc, null, false);
+    const html = try render(gpa, doc, null, false, null);
     defer gpa.free(html);
 
     try std.testing.expectEqualStrings(expected, html);

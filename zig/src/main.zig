@@ -158,7 +158,7 @@ pub fn main(init: std.process.Init) !void {
     defer document.deinit(allocator);
 
     const useConsole = std.mem.eql(u8, parsed_args.format, "console");
-    const output = try allmark.render(allocator, document, null, useConsole);
+    const output = try allmark.render(allocator, document, null, useConsole, null);
     defer allocator.free(output);
 
     if (parsed_args.output) |output_path| {

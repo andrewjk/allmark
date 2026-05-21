@@ -8,5 +8,5 @@ const MarkdownNode = @import("types/MarkdownNode.zig").MarkdownNode;
 pub fn transform(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet, renderers: RendererSet) ![]const u8 {
     const doc = try parse(allocator, src, rules);
     defer doc.deinit(allocator);
-    return render(allocator, doc, &renderers, false);
+    return render(allocator, doc, &renderers, false, null);
 }

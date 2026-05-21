@@ -9,4 +9,5 @@ export default interface RendererState {
 	footnoteRefs: Record<string, MarkdownNode>;
 
 	listDepth: number;
+	lineWidth?: number;
 }

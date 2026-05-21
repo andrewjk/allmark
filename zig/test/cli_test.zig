@@ -231,7 +231,7 @@ test "CLI integration - parse markdown with core ruleset" {
     const doc = try allmark.parse.execute(allocator, markdown, ruleset);
     defer doc.deinit(allocator);
 
-    const html = try allmark.render(allocator, doc, null, false);
+    const html = try allmark.render(allocator, doc, null, false, null);
     defer allocator.free(html);
 
     try std.testing.expect(html.len > 0);
@@ -251,7 +251,7 @@ test "CLI integration - parse markdown with gfm ruleset" {
     const doc = try allmark.parse.execute(allocator, markdown, ruleset);
     defer doc.deinit(allocator);
 
-    const html = try allmark.render(allocator, doc, null, false);
+    const html = try allmark.render(allocator, doc, null, false, null);
     defer allocator.free(html);
 
     try std.testing.expect(html.len > 0);
@@ -271,7 +271,7 @@ test "CLI integration - parse markdown with extended ruleset" {
     const doc = try allmark.parse.execute(allocator, markdown, ruleset);
     defer doc.deinit(allocator);
 
-    const html = try allmark.render(allocator, doc, null, false);
+    const html = try allmark.render(allocator, doc, null, false, null);
     defer allocator.free(html);
 
     try std.testing.expect(html.len > 0);
@@ -291,7 +291,7 @@ test "CLI integration - write output to file" {
     const doc = try allmark.parse.execute(allocator, markdown, ruleset);
     defer doc.deinit(allocator);
 
-    const html = try allmark.render(allocator, doc, null, false);
+    const html = try allmark.render(allocator, doc, null, false, null);
     defer allocator.free(html);
 
     try std.testing.expect(html.len > 0);

@@ -68,14 +68,14 @@ public static class ConsoleTableRenderer
             }
         }
 
-        string MakeLine(string left, string mid, string right, string sep)
+        string MakeLine(string left, string mid, string right, string sep, int[] widths)
         {
             var line = new StringBuilder();
             line.Append(left);
-            for (int i = 0; i < columnWidths.Count; i++)
+            for (int i = 0; i < widths.Length; i++)
             {
-                line.Append(new string('─', columnWidths[i]));
-                if (i < columnWidths.Count - 1)
+                line.Append(new string('─', widths[i]));
+                if (i < widths.Length - 1)
                 {
                     line.Append(i == 0 ? mid : sep);
                 }
@@ -84,52 +84,185 @@ public static class ConsoleTableRenderer
             return $"{style}{line}{Ansi.Reset}\n";
         }
 
-        string PadText(string text, int width, string align)
+
+
+        string[] alignmentsArray = alignments.ToArray();
+
+        string[][] cellTextsArray = cellTexts.Select(r => r.ToArray()).ToArray();
+        int[] targetWidths = columnWidths.ToArray();
+        string[][][]? wrappedCells = null;
+
+        int totalWidth = targetWidths.Sum() + maxColumns + 1;
+        if (state.LineWidth.HasValue && totalWidth > state.LineWidth.Value)
         {
-            if (align == "right")
+            targetWidths = FitColumns(targetWidths, state.LineWidth.Value, maxColumns, cellTextsArray);
+            wrappedCells = WrapAllCells(cellTextsArray, targetWidths);
+            targetWidths = Enumerable.Repeat(2, maxColumns).ToArray();
+            for (int r = 0; r < cellTextsArray.Length; r++)
             {
-                return new string(' ', width - text.Length) + text + " ";
+                for (int c = 0; c < maxColumns; c++)
+                {
+                    var lines = wrappedCells[r][c];
+                    foreach (var line in lines)
+                    {
+                        targetWidths[c] = Math.Max(targetWidths[c], line.Length + 2);
+                    }
+                }
             }
-            if (align == "center")
-            {
-                var leftPad = (width - text.Length) / 2;
-                var rightPad = width - text.Length - leftPad + 1;
-                return new string(' ', leftPad) + text + new string(' ', rightPad);
-            }
-            return text + new string(' ', width - text.Length) + " ";
         }
 
-        state.Output.Append(MakeLine("┌", "┬", "┐", "┬"));
+        state.Output.Append(MakeLine("┌", "┬", "┐", "┬", targetWidths));
 
         if (headerCells.Count > 0)
         {
-            state.Output.Append($"{style}│{Ansi.Reset}");
-            for (int i = 0; i < headerCells.Count; i++)
-            {
-                var text = cellTexts.Count > 0 && i < cellTexts[0].Count ? cellTexts[0][i] : "";
-                var align = alignments[i];
-                state.Output.Append($" {PadText(text, columnWidths[i] - 2, align)}{style}│{Ansi.Reset}");
-            }
-            state.Output.Append('\n');
+            RenderRow(state, style, cellTextsArray, alignmentsArray, targetWidths, 0, null, wrappedCells);
         }
 
-        state.Output.Append(MakeLine("├", "┼", "┤", "┼"));
+        state.Output.Append(MakeLine("├", "┼", "┤", "┼", targetWidths));
 
         for (int r = 0; r < dataRows.Count; r++)
         {
-            state.Output.Append($"{style}│{Ansi.Reset}");
             var row = dataRows[r];
             var rowCells = row.Children ?? new List<MarkdownNode>();
-            for (int c = 0; c < columnWidths.Count; c++)
+            var rowAlignments = Enumerable.Range(0, maxColumns)
+                .Select(c => c < rowCells.Count ? (rowCells[c].Info ?? "") : "")
+                .ToArray();
+            RenderRow(state, style, cellTextsArray, rowAlignments, targetWidths, r + 1, rowCells, wrappedCells);
+        }
+
+        state.Output.Append(MakeLine("└", "┴", "┘", "┴", targetWidths));
+    }
+
+    private static void RenderRow(RendererState state, string style, string[][] cellTexts, string[] alignments, int[] targetWidths, int rowIdx, List<MarkdownNode>? rowCells, string[][][]? wrappedCells)
+    {
+        int maxColumns = targetWidths.Length;
+        int maxLines = 1;
+        string[][] rowLines = new string[maxColumns][];
+
+        for (int c = 0; c < maxColumns; c++)
+        {
+            if (wrappedCells != null)
             {
-                var text = (r + 1) < cellTexts.Count && c < cellTexts[r + 1].Count ? cellTexts[r + 1][c] : "";
-                var align = c < rowCells.Count ? (rowCells[c].Info ?? "") : "";
-                state.Output.Append($" {PadText(text, columnWidths[c] - 2, align)}{style}│{Ansi.Reset}");
+                rowLines[c] = wrappedCells[rowIdx][c];
+            }
+            else
+            {
+                string text = rowIdx < cellTexts.Length && c < cellTexts[rowIdx].Length ? cellTexts[rowIdx][c] : "";
+                rowLines[c] = [text];
+            }
+            maxLines = Math.Max(maxLines, rowLines[c].Length);
+        }
+
+        string align = "";
+        if (rowCells != null && rowCells.Count > 0)
+        {
+            align = rowCells[0].Info ?? "";
+        }
+        else if (rowIdx == 0 && alignments.Length > 0)
+        {
+            align = alignments[0];
+        }
+
+        for (int lineIdx = 0; lineIdx < maxLines; lineIdx++)
+        {
+            state.Output.Append($"{style}│{Ansi.Reset}");
+            for (int c = 0; c < maxColumns; c++)
+            {
+                string lineText = lineIdx < rowLines[c].Length ? rowLines[c][lineIdx] : "";
+                string colAlign = c < alignments.Length ? alignments[c] : "";
+                state.Output.Append($" {PadText(lineText, targetWidths[c] - 2, colAlign)}{style}│{Ansi.Reset}");
             }
             state.Output.Append('\n');
         }
+    }
 
-        state.Output.Append(MakeLine("└", "┴", "┘", "┴"));
+    private static int[] FitColumns(int[] columnWidths, int lineWidth, int numColumns, string[][] cellTexts)
+    {
+        int available = lineWidth - 1 - numColumns;
+        int[] targetWidths = (int[])columnWidths.Clone();
+
+        int[] minWidths = columnWidths.Select((_, colIdx) =>
+        {
+            int maxWordLen = 1;
+            foreach (var row in cellTexts)
+            {
+                string text = colIdx < row.Length ? row[colIdx] : "";
+                foreach (var word in text.Split(' '))
+                {
+                    maxWordLen = Math.Max(maxWordLen, word.Length);
+                }
+            }
+            return maxWordLen + 2;
+        }).ToArray();
+
+        while (targetWidths.Sum() > available)
+        {
+            int maxIdx = 0;
+            for (int i = 1; i < targetWidths.Length; i++)
+            {
+                if (targetWidths[i] > targetWidths[maxIdx]) maxIdx = i;
+            }
+            if (targetWidths[maxIdx] <= minWidths[maxIdx]) break;
+            targetWidths[maxIdx]--;
+        }
+
+        return targetWidths;
+    }
+
+    private static string[][][] WrapAllCells(string[][] cellTexts, int[] targetWidths)
+    {
+        var result = new string[cellTexts.Length][][];
+        for (int r = 0; r < cellTexts.Length; r++)
+        {
+            result[r] = new string[targetWidths.Length][];
+            for (int c = 0; c < targetWidths.Length; c++)
+            {
+                string text = (r < cellTexts.Length && c < cellTexts[r].Length) ? cellTexts[r][c] : "";
+                result[r][c] = WrapText(text, targetWidths[c] - 2);
+            }
+        }
+        return result;
+    }
+
+    private static string[] WrapText(string text, int maxWidth)
+    {
+        if (text.Length <= maxWidth) return [text];
+        var words = text.Split(' ');
+        var lines = new List<string>();
+        string currentLine = "";
+        foreach (var word in words)
+        {
+            if (currentLine.Length == 0)
+            {
+                currentLine = word;
+            }
+            else if (currentLine.Length + 1 + word.Length <= maxWidth)
+            {
+                currentLine += " " + word;
+            }
+            else
+            {
+                lines.Add(currentLine);
+                currentLine = word;
+            }
+        }
+        if (currentLine.Length > 0) lines.Add(currentLine);
+        return lines.ToArray();
+    }
+
+    private static string PadText(string text, int width, string align)
+    {
+        if (align == "right")
+        {
+            return new string(' ', width - text.Length) + text + " ";
+        }
+        if (align == "center")
+        {
+            var leftPad = (width - text.Length) / 2;
+            var rightPad = width - text.Length - leftPad + 1;
+            return new string(' ', leftPad) + text + new string(' ', rightPad);
+        }
+        return text + new string(' ', width - text.Length) + " ";
     }
 
     private static string GetTextFromNode(MarkdownNode node)

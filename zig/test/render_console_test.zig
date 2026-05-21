@@ -17,7 +17,7 @@ test "renders paragraph to console" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -34,7 +34,7 @@ test "renders paragraph then paragraph to console" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -51,7 +51,7 @@ test "renders heading to console with color" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -68,7 +68,7 @@ test "renders heading then heading to console" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -88,7 +88,7 @@ test "renders paragraph x 3 to console" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -108,7 +108,7 @@ test "renders heading then paragraph" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -128,7 +128,7 @@ test "renders paragraph then heading" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -148,7 +148,7 @@ test "renders heading then list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -168,7 +168,7 @@ test "renders list then heading" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -188,7 +188,7 @@ test "renders paragraph then list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -208,7 +208,7 @@ test "renders list then paragraph" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -228,7 +228,7 @@ test "renders heading then code block" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -248,7 +248,7 @@ test "renders code block then heading" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -268,7 +268,7 @@ test "renders heading then block quote" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -288,7 +288,7 @@ test "renders block quote then heading" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -308,7 +308,7 @@ test "renders heading then thematic break" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -328,7 +328,7 @@ test "renders thematic break then heading" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -348,7 +348,7 @@ test "renders multiple block types" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -368,7 +368,7 @@ test "renders alert then paragraph" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -388,7 +388,7 @@ test "renders paragraph then alert" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -408,7 +408,7 @@ test "renders bulleted list with Unicode bullets" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -425,7 +425,7 @@ test "renders ordered list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -442,7 +442,7 @@ test "renders tight bulleted list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -462,7 +462,7 @@ test "renders loose bulleted list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -482,7 +482,7 @@ test "renders tight ordered list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -502,7 +502,7 @@ test "renders loose ordered list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -522,7 +522,7 @@ test "renders ordered list with nested bulleted list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -542,7 +542,7 @@ test "renders bulleted list with nested ordered list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -562,7 +562,7 @@ test "renders code fence with box drawing" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -579,7 +579,7 @@ test "renders inline code" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -596,7 +596,7 @@ test "renders block quote with vertical line" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -616,7 +616,7 @@ test "renders thematic break" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -633,7 +633,7 @@ test "renders task list" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -650,7 +650,7 @@ test "renders table with Unicode borders" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -667,7 +667,7 @@ test "renders table then paragraph" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -687,7 +687,7 @@ test "renders paragraph then table" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -714,7 +714,7 @@ test "renders table with padding" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -742,7 +742,7 @@ test "renders table with correctly aligned padding" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -770,7 +770,7 @@ test "renders table with center aligned padding" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -798,7 +798,148 @@ test "renders table with center aligned padding 2" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
+    defer gpa.free(output);
+
+    const stripped = try stripAnsiCodes(gpa, output);
+    defer gpa.free(stripped);
+
+    try std.testing.expectEqualStrings(expected_with_newline, stripped);
+}
+
+test "wraps table cells at word boundaries to fit line width" {
+    const input = "| Name | Description |\n|------|-------------|\n| foo | This is a long text |";
+    const expected =
+        \\┌──────┬────────────────┐
+        \\│ Name │ Description    │
+        \\├──────┼────────────────┤
+        \\│ foo  │ This is a long │
+        \\│      │ text           │
+        \\└──────┴────────────────┘
+    ;
+    const expected_with_newline = expected ++ "\n";
+
+    const gpa = std.testing.allocator;
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    const output = try render(gpa, doc, null, true, 25);
+    defer gpa.free(output);
+
+    const stripped = try stripAnsiCodes(gpa, output);
+    defer gpa.free(stripped);
+
+    try std.testing.expectEqualStrings(expected_with_newline, stripped);
+}
+
+test "wraps table cells across multiple lines" {
+    const input = "| ID | Status  | Description |\n|----|---------|-------------|\n| 1  | active  | This is a very long description that needs to be wrapped |\n| 2  | pending | Short |";
+    const expected =
+        \\┌────┬─────────┬─────────────────────┐
+        \\│ ID │ Status  │ Description         │
+        \\├────┼─────────┼─────────────────────┤
+        \\│ 1  │ active  │ This is a very long │
+        \\│    │         │ description that    │
+        \\│    │         │ needs to be wrapped │
+        \\│ 2  │ pending │ Short               │
+        \\└────┴─────────┴─────────────────────┘
+    ;
+    const expected_with_newline = expected ++ "\n";
+
+    const gpa = std.testing.allocator;
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    const output = try render(gpa, doc, null, true, 40);
+    defer gpa.free(output);
+
+    const stripped = try stripAnsiCodes(gpa, output);
+    defer gpa.free(stripped);
+
+    try std.testing.expectEqualStrings(expected_with_newline, stripped);
+}
+
+test "does not wrap table when it fits within line width" {
+    const input = "| A | B |\n|---|---|\n| 1 | 2 |";
+    const expected =
+        \\┌───┬───┐
+        \\│ A │ B │
+        \\├───┼───┤
+        \\│ 1 │ 2 │
+        \\└───┴───┘
+    ;
+    const expected_with_newline = expected ++ "\n";
+
+    const gpa = std.testing.allocator;
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    const output = try render(gpa, doc, null, true, 80);
+    defer gpa.free(output);
+
+    const stripped = try stripAnsiCodes(gpa, output);
+    defer gpa.free(stripped);
+
+    try std.testing.expectEqualStrings(expected_with_newline, stripped);
+}
+
+test "wraps multiple columns to fit line width" {
+    const input = "| Column A | Column B |\n|----------|----------|\n| first long text here | second long text here |";
+    const expected =
+        \\┌────────────┬─────────────┐
+        \\│ Column A   │ Column B    │
+        \\├────────────┼─────────────┤
+        \\│ first long │ second long │
+        \\│ text here  │ text here   │
+        \\└────────────┴─────────────┘
+    ;
+    const expected_with_newline = expected ++ "\n";
+
+    const gpa = std.testing.allocator;
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    const output = try render(gpa, doc, null, true, 30);
+    defer gpa.free(output);
+
+    const stripped = try stripAnsiCodes(gpa, output);
+    defer gpa.free(stripped);
+
+    try std.testing.expectEqualStrings(expected_with_newline, stripped);
+}
+
+test "wraps aligned columns to fit line width" {
+    const input = "| Column A | Column B |\n|----------|---------:|\n| first long text here | second long text here |";
+    const expected =
+        \\┌────────────┬─────────────┐
+        \\│ Column A   │    Column B │
+        \\├────────────┼─────────────┤
+        \\│ first long │ second long │
+        \\│ text here  │   text here │
+        \\└────────────┴─────────────┘
+    ;
+    const expected_with_newline = expected ++ "\n";
+
+    const gpa = std.testing.allocator;
+    const rules = try gfm.init(gpa);
+    defer gfm.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    const output = try render(gpa, doc, null, true, 30);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -818,7 +959,7 @@ test "renders strong text" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -835,7 +976,7 @@ test "renders emphasis text" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -852,7 +993,7 @@ test "renders link" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -869,7 +1010,7 @@ test "renders image" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -886,7 +1027,7 @@ test "renders strikethrough" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -903,7 +1044,7 @@ test "renders alert with emoji" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -920,7 +1061,7 @@ test "renders nested list with different bullets" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -937,7 +1078,7 @@ test "renders hard break" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -954,7 +1095,7 @@ test "renders heading with underline Setext style" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -971,7 +1112,7 @@ test "renders HTML block" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -988,7 +1129,7 @@ test "renders HTML span inline" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -1005,7 +1146,7 @@ test "renders comment" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -1022,7 +1163,7 @@ test "renders deletion (strikethrough alternative)" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -1039,7 +1180,7 @@ test "renders footnote" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -1056,7 +1197,7 @@ test "renders highlight" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -1073,7 +1214,7 @@ test "renders insertion" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     try std.testing.expectEqualStrings(expected, output);
@@ -1123,7 +1264,7 @@ test "basic parse and render" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -1163,7 +1304,7 @@ test "renders nested and spaced lists" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true);
+    const output = try render(gpa, doc, null, true, null);
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);

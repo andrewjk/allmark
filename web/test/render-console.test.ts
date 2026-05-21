@@ -332,6 +332,90 @@ test("renders table with center aligned padding 2", () => {
 	);
 });
 
+test("wraps table cells at word boundaries to fit line width", () => {
+	const input = "| Name | Description |\n|------|-------------|\n| foo | This is a long text |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers, { lineWidth: 25 }));
+	expect(output).toBe(
+		`
+┌──────┬────────────────┐
+│ Name │ Description    │
+├──────┼────────────────┤
+│ foo  │ This is a long │
+│      │ text           │
+└──────┴────────────────┘
+`.trimStart(),
+	);
+});
+
+test("wraps table cells across multiple lines", () => {
+	const input =
+		"| ID | Status  | Description |\n|----|---------|-------------|\n| 1  | active  | This is a very long description that needs to be wrapped |\n| 2  | pending | Short |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers, { lineWidth: 40 }));
+	expect(output).toBe(
+		`
+┌────┬─────────┬─────────────────────┐
+│ ID │ Status  │ Description         │
+├────┼─────────┼─────────────────────┤
+│ 1  │ active  │ This is a very long │
+│    │         │ description that    │
+│    │         │ needs to be wrapped │
+│ 2  │ pending │ Short               │
+└────┴─────────┴─────────────────────┘
+`.trimStart(),
+	);
+});
+
+test("does not wrap table when it fits within line width", () => {
+	const input = "| A | B |\n|---|---|\n| 1 | 2 |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers, { lineWidth: 80 }));
+	expect(output).toBe(
+		`
+┌───┬───┐
+│ A │ B │
+├───┼───┤
+│ 1 │ 2 │
+└───┴───┘
+`.trimStart(),
+	);
+});
+
+test("wraps multiple columns to fit line width", () => {
+	const input =
+		"| Column A | Column B |\n|----------|----------|\n| first long text here | second long text here |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers, { lineWidth: 30 }));
+	expect(output).toBe(
+		`
+┌────────────┬─────────────┐
+│ Column A   │ Column B    │
+├────────────┼─────────────┤
+│ first long │ second long │
+│ text here  │ text here   │
+└────────────┴─────────────┘
+`.trimStart(),
+	);
+});
+
+test("wraps aligned columns to fit line width", () => {
+	const input =
+		"| Column A | Column B |\n|----------|---------:|\n| first long text here | second long text here |";
+	const doc = parse(input, gfm);
+	const output = stripVTControlCharacters(render(doc, consoleRenderers, { lineWidth: 30 }));
+	expect(output).toBe(
+		`
+┌────────────┬─────────────┐
+│ Column A   │    Column B │
+├────────────┼─────────────┤
+│ first long │ second long │
+│ text here  │   text here │
+└────────────┴─────────────┘
+`.trimStart(),
+	);
+});
+
 test("renders strong text", () => {
 	const input = "**bold**";
 	const doc = parse(input, core);

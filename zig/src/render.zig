@@ -8,7 +8,7 @@ const consoleRenderers = @import("rulesets/consoleRenderers.zig");
 const renderChildren = @import("render/renderChildren.zig").renderChildren;
 const renderChildrenConsole = @import("render-console/console.zig").renderChildrenConsole;
 
-pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers: ?*const RendererSet, useConsole: bool) ![]const u8 {
+pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers: ?*const RendererSet, useConsole: bool, lineWidth: ?usize) ![]const u8 {
     var createdRenderers = false;
     var localRenderers: RendererSet = undefined;
     var renderersToUse: *const RendererSet = undefined;
@@ -49,6 +49,7 @@ pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers:
         .footnotes = std.ArrayList(*const MarkdownNode).initCapacity(allocator, 8) catch unreachable,
         .footnoteRefs = std.StringHashMap(*const MarkdownNode).init(allocator),
         .listDepth = 0,
+        .line_width = lineWidth,
     };
     defer state.output.deinit(allocator);
     defer state.footnotes.deinit(allocator);

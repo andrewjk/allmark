@@ -87,8 +87,40 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
         }
     }
 
+    var targetWidths = columnWidths;
+    var fitWidthsOwned: ?[]usize = null;
+    var twOwned: ?[]usize = null;
+    defer {
+        if (fitWidthsOwned) |fw| state.allocator.free(fw);
+        if (twOwned) |tw| state.allocator.free(tw);
+    }
+
+    if (state.line_width) |lineWidth| {
+        const totalWidth: usize = 1 + sum(columnWidths) + maxColumns;
+        if (totalWidth > lineWidth) {
+            const fitWidths = fitColumns(state.allocator, columnWidths, lineWidth, maxColumns, cellTexts.items);
+            fitWidthsOwned = fitWidths;
+
+            var tw = state.allocator.alloc(usize, maxColumns) catch unreachable;
+            twOwned = tw;
+            @memset(tw, 2);
+
+            for (0..cellTexts.items.len) |r| {
+                for (0..maxColumns) |c| {
+                    const text = if (c < cellTexts.items[r].len) cellTexts.items[r][c] else "";
+                    const lines = wrapText(state.allocator, text, fitWidths[c] - 2);
+                    defer freeWrappedLines(state.allocator, lines);
+                    for (lines) |line| {
+                        tw[c] = @max(tw[c], line.len + 2);
+                    }
+                }
+            }
+            targetWidths = tw;
+        }
+    }
+
     const makeLine = struct {
-        fn func(left: []const u8, mid: []const u8, right: []const u8, sep: []const u8, s: *RendererState, widths: []const usize) !void {
+        fn func(left: []const u8, mid: []const u8, right: []const u8, s: *RendererState, widths: []const usize) !void {
             s.output.appendSlice(s.allocator, ansiDim) catch unreachable;
             s.output.appendSlice(s.allocator, left) catch unreachable;
             for (0..widths.len) |i| {
@@ -100,7 +132,7 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
                 const dashStr = dashes.items;
                 s.output.appendSlice(s.allocator, dashStr) catch unreachable;
                 if (i < widths.len - 1) {
-                    s.output.appendSlice(s.allocator, if (i == 0) mid else sep) catch unreachable;
+                    s.output.appendSlice(s.allocator, mid) catch unreachable;
                 }
             }
             s.output.appendSlice(s.allocator, right) catch unreachable;
@@ -109,46 +141,173 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
         }
     }.func;
 
-    try makeLine("┌", "┬", "┐", "┼", state, columnWidths);
+    try makeLine("┌", "┬", "┐", state, targetWidths);
 
     if (headerCells.len > 0) {
-        state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
-        state.output.appendSlice(state.allocator, "│") catch unreachable;
-        state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
-
-        for (0..headerCells.len) |i| {
-            const text = cellTexts.items[0][i];
-            const alignment = headerCells[i].info orelse "";
-            renderPaddedCell(state, text, columnWidths[i], alignment) catch unreachable;
-        }
-        state.output.append(state.allocator, '\n') catch unreachable;
+        renderRow(state, cellTexts.items, 0, targetWidths, maxColumns, columnAlignments);
     }
 
-    try makeLine("├", "┼", "┤", "┼", state, columnWidths);
+    try makeLine("├", "┼", "┤", state, targetWidths);
 
     {
         var r: usize = 0;
         while (r < dataRows.len) : (r += 1) {
-            state.output.appendSlice(state.allocator, ansiDim) catch unreachable;
-            state.output.appendSlice(state.allocator, "│") catch unreachable;
-            state.output.appendSlice(state.allocator, ansiReset) catch unreachable;
-
-            const rowTexts = cellTexts.items[r + 1];
-            for (0..columnWidths.len) |c| {
-                const text = if (c < rowTexts.len) rowTexts[c] else "";
-                const alignment = columnAlignments[c];
-                renderPaddedCell(state, text, columnWidths[c], alignment) catch unreachable;
-            }
-            state.output.append(state.allocator, '\n') catch unreachable;
+            renderRow(state, cellTexts.items, r + 1, targetWidths, maxColumns, columnAlignments);
         }
     }
 
-    try makeLine("└", "┴", "┘", "┴", state, columnWidths);
+    try makeLine("└", "┴", "┘", state, targetWidths);
+}
+
+fn renderRow(
+    state: *RendererState,
+    cellTexts: []const []const []const u8,
+    rowIdx: usize,
+    targetWidths: []const usize,
+    maxColumns: usize,
+    columnAlignments: []const []const u8,
+) void {
+    const allocator = state.allocator;
+
+    var cellLines = allocator.alloc([]const []const u8, maxColumns) catch unreachable;
+    defer allocator.free(cellLines);
+
+    var maxLines: usize = 1;
+
+    for (0..maxColumns) |c| {
+        const text = if (rowIdx < cellTexts.len and c < cellTexts[rowIdx].len) cellTexts[rowIdx][c] else "";
+        const lines = wrapText(allocator, text, targetWidths[c] - 2);
+        cellLines[c] = lines;
+        maxLines = @max(maxLines, lines.len);
+    }
+    defer {
+        for (cellLines) |lines| {
+            freeWrappedLines(allocator, lines);
+        }
+    }
+
+    var line: usize = 0;
+    while (line < maxLines) : (line += 1) {
+        state.output.appendSlice(allocator, ansiDim) catch unreachable;
+        state.output.appendSlice(allocator, "│") catch unreachable;
+        state.output.appendSlice(allocator, ansiReset) catch unreachable;
+
+        for (0..maxColumns) |c| {
+            const text = if (line < cellLines[c].len) cellLines[c][line] else "";
+            const alignment = columnAlignments[c];
+            renderPaddedCell(state, text, targetWidths[c], alignment) catch unreachable;
+        }
+        state.output.append(allocator, '\n') catch unreachable;
+    }
+}
+
+fn fitColumns(
+    allocator: std.mem.Allocator,
+    columnWidths: []const usize,
+    lineWidth: usize,
+    numColumns: usize,
+    cellTexts: []const []const []const u8,
+) []usize {
+    const available = lineWidth - 1 - numColumns;
+    var targetWidths = allocator.dupe(usize, columnWidths) catch unreachable;
+
+    const minWidths = allocator.alloc(usize, columnWidths.len) catch unreachable;
+    defer allocator.free(minWidths);
+
+    for (0..columnWidths.len) |colIdx| {
+        var maxWordLen: usize = 1;
+        for (cellTexts) |row| {
+            const text = if (colIdx < row.len) row[colIdx] else "";
+            var start: usize = 0;
+            for (text, 0..) |ch, i| {
+                if (ch == ' ') {
+                    const wordLen = i - start;
+                    maxWordLen = @max(maxWordLen, wordLen);
+                    start = i + 1;
+                }
+            }
+            const wordLen = text.len - start;
+            maxWordLen = @max(maxWordLen, wordLen);
+        }
+        minWidths[colIdx] = maxWordLen + 2;
+    }
+
+    while (sum(targetWidths) > available) {
+        var maxIdx: usize = 0;
+        for (1..targetWidths.len) |i| {
+            if (targetWidths[i] > targetWidths[maxIdx]) maxIdx = i;
+        }
+        if (targetWidths[maxIdx] <= minWidths[maxIdx]) break;
+        targetWidths[maxIdx] -= 1;
+    }
+
+    return targetWidths;
+}
+
+fn wrapText(allocator: std.mem.Allocator, text: []const u8, maxWidth: usize) []const []const u8 {
+    if (text.len <= maxWidth) {
+        var result = allocator.alloc([]const u8, 1) catch unreachable;
+        result[0] = text;
+        return result;
+    }
+    var words = std.ArrayList([]const u8).initCapacity(allocator, 8) catch unreachable;
+    defer words.deinit(allocator);
+
+    var start: usize = 0;
+    for (text, 0..) |ch, i| {
+        if (ch == ' ') {
+            if (start < i) words.append(allocator, text[start..i]) catch unreachable;
+            start = i + 1;
+        }
+    }
+    if (start < text.len) words.append(allocator, text[start..]) catch unreachable;
+
+    var lines = allocator.alloc([]const u8, words.items.len) catch unreachable;
+    var lineCount: usize = 0;
+
+    var currentLine = std.ArrayList(u8).initCapacity(allocator, maxWidth) catch unreachable;
+
+    for (words.items) |word| {
+        if (currentLine.items.len == 0) {
+            currentLine.appendSlice(allocator, word) catch unreachable;
+        } else if (currentLine.items.len + 1 + word.len <= maxWidth) {
+            currentLine.append(allocator, ' ') catch unreachable;
+            currentLine.appendSlice(allocator, word) catch unreachable;
+        } else {
+            lines[lineCount] = currentLine.toOwnedSlice(allocator) catch unreachable;
+            lineCount += 1;
+            currentLine = std.ArrayList(u8).initCapacity(allocator, maxWidth) catch unreachable;
+            currentLine.appendSlice(allocator, word) catch unreachable;
+        }
+    }
+    if (currentLine.items.len > 0) {
+        lines[lineCount] = currentLine.toOwnedSlice(allocator) catch unreachable;
+        lineCount += 1;
+    } else {
+        currentLine.deinit(allocator);
+    }
+
+    return allocator.realloc(lines, lineCount) catch unreachable;
+}
+
+fn freeWrappedLines(allocator: std.mem.Allocator, lines: []const []const u8) void {
+    if (lines.len > 1) {
+        for (lines) |line| {
+            allocator.free(line);
+        }
+    }
+    allocator.free(lines);
+}
+
+fn sum(widths: []const usize) usize {
+    var total: usize = 0;
+    for (widths) |w| total += w;
+    return total;
 }
 
 fn getTextFromNode(node: *const MarkdownNode, allocator: std.mem.Allocator) []const u8 {
     if (std.mem.eql(u8, node.type, "text")) {
-        return node.content;
+        return allocator.dupe(u8, node.content) catch unreachable;
     }
     if (node.children) |children| {
         var buffer = std.ArrayList(u8).initCapacity(allocator, 64) catch unreachable;
@@ -195,7 +354,6 @@ fn renderPaddedCell(state: *RendererState, text: []const u8, width: usize, align
             state.output.append(state.allocator, ' ') catch unreachable;
         }
     } else {
-        // Default: left align
         state.output.appendSlice(state.allocator, text) catch unreachable;
         const padding = innerWidth - text.len;
         for (0..padding) |_| {

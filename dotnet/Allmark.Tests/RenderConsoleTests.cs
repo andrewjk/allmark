@@ -483,6 +483,92 @@ public class RenderConsoleTests
     }
 
     [TestMethod]
+    public void WrapsTableCellsAtWordBoundariesToFitLineWidth()
+    {
+        var input = "| Name | Description |\n|------|-------------|\n| foo | This is a long text |";
+        var expected = """
+        ┌──────┬────────────────┐
+        │ Name │ Description    │
+        ├──────┼────────────────┤
+        │ foo  │ This is a long │
+        │      │ text           │
+        └──────┴────────────────┘
+        """;
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 25));
+        Assert.AreEqual(expected.Trim(), output.Trim());
+    }
+
+    [TestMethod]
+    public void WrapsTableCellsAcrossMultipleLines()
+    {
+        var input = "| ID | Status  | Description |\n|----|---------|-------------|\n| 1  | active  | This is a very long description that needs to be wrapped |\n| 2  | pending | Short |";
+        var expected = """
+        ┌────┬─────────┬─────────────────────┐
+        │ ID │ Status  │ Description         │
+        ├────┼─────────┼─────────────────────┤
+        │ 1  │ active  │ This is a very long │
+        │    │         │ description that    │
+        │    │         │ needs to be wrapped │
+        │ 2  │ pending │ Short               │
+        └────┴─────────┴─────────────────────┘
+        """;
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 40));
+        Assert.AreEqual(expected.Trim(), output.Trim());
+    }
+
+    [TestMethod]
+    public void DoesNotWrapTableWhenItFitsWithinLineWidth()
+    {
+        var input = "| A | B |\n|---|---|\n| 1 | 2 |";
+        var expected = """
+        ┌───┬───┐
+        │ A │ B │
+        ├───┼───┤
+        │ 1 │ 2 │
+        └───┴───┘
+        """;
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 80));
+        Assert.AreEqual(expected.Trim(), output.Trim());
+    }
+
+    [TestMethod]
+    public void WrapsMultipleColumnsToFitLineWidth()
+    {
+        var input = "| Column A | Column B |\n|----------|----------|\n| first long text here | second long text here |";
+        var expected = """
+        ┌────────────┬─────────────┐
+        │ Column A   │ Column B    │
+        ├────────────┼─────────────┤
+        │ first long │ second long │
+        │ text here  │ text here   │
+        └────────────┴─────────────┘
+        """;
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 30));
+        Assert.AreEqual(expected.Trim(), output.Trim());
+    }
+
+    [TestMethod]
+    public void WrapsAlignedColumnsToFitLineWidth()
+    {
+        var input = "| Column A | Column B |\n|----------|---------:|\n| first long text here | second long text here |";
+        var expected = """
+        ┌────────────┬─────────────┐
+        │ Column A   │    Column B │
+        ├────────────┼─────────────┤
+        │ first long │ second long │
+        │ text here  │   text here │
+        └────────────┴─────────────┘
+        """;
+        var doc = Parser.Execute(input, Gfm.RuleSet);
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 30));
+        Assert.AreEqual(expected.Trim(), output.Trim());
+    }
+
+    [TestMethod]
     public void RendersAlertWithEmoji()
     {
         var input = "> [!NOTE]\n> Note content";

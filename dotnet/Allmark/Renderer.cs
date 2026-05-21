@@ -7,7 +7,7 @@ using Allmark.Types;
 
 public static class Renderer
 {
-    public static string Execute(MarkdownNode doc, OutputRenderer[] renderers)
+    public static string Execute(MarkdownNode doc, OutputRenderer[] renderers, int? lineWidth = null)
     {
         var state = new RendererState
         {
@@ -15,7 +15,8 @@ public static class Renderer
             Output = new StringBuilder(),
             Footnotes = new List<MarkdownNode>(),
             FootnoteRefs = new Dictionary<string, MarkdownNode>(),
-            ListDepth = 0
+            ListDepth = 0,
+            LineWidth = lineWidth
         };
 
         RenderChildren.Execute(doc, state);

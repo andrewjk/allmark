@@ -9,6 +9,7 @@ pub const RendererState = struct {
     footnoteRefs: std.StringHashMap(*const MarkdownNode),
 
     listDepth: usize = 0,
+    line_width: ?usize = null,
 };
 
 const Renderer = @import("Renderer.zig").Renderer;

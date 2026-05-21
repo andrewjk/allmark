@@ -4,7 +4,11 @@ import type MarkdownNode from "./types/MarkdownNode";
 import type Renderer from "./types/Renderer";
 import type RendererState from "./types/RendererState";
 
-export default function render(doc: MarkdownNode, renderers?: Renderer[]): string {
+export default function render(
+	doc: MarkdownNode,
+	renderers?: Renderer[],
+	options?: { lineWidth?: number },
+): string {
 	renderers ??= htmlRenderers;
 
 	let state: RendererState = {
@@ -13,6 +17,7 @@ export default function render(doc: MarkdownNode, renderers?: Renderer[]): strin
 		footnotes: [],
 		footnoteRefs: {},
 		listDepth: 0,
+		lineWidth: options?.lineWidth,
 	};
 
 	renderChildren(doc, state);

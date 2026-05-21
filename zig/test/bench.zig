@@ -15,7 +15,7 @@ fn benchMarkdownToHtmlWithGfm(allocator: std.mem.Allocator) void {
     defer doc.deinit(allocator);
 
     // Render to HTML
-    const html = allmark.render(allocator, doc, null, false) catch @panic("Failed to render HTML");
+    const html = allmark.render(allocator, doc, null, false, null) catch @panic("Failed to render HTML");
     defer allocator.free(html);
 
     // Consume the result to prevent optimization
