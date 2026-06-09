@@ -21,17 +21,17 @@ test "HTML script tag - single line" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -61,17 +61,17 @@ test "HTML script tag - multi-line" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -95,17 +95,17 @@ test "HTML pre tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -129,17 +129,17 @@ test "HTML style tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -165,17 +165,17 @@ test "HTML comment - single line" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -205,17 +205,17 @@ test "HTML comment - multi-line" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -239,17 +239,17 @@ test "HTML processing instruction" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -273,17 +273,17 @@ test "HTML declaration - DOCTYPE" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -307,17 +307,17 @@ test "HTML CDATA section" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -341,17 +341,17 @@ test "HTML block-level div tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -378,17 +378,17 @@ test "HTML div with blank line after" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -412,17 +412,17 @@ test "HTML paragraph tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -446,17 +446,17 @@ test "HTML heading tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -484,17 +484,17 @@ test "HTML list tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -518,17 +518,17 @@ test "HTML table tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -552,17 +552,17 @@ test "HTML block with indentation (less than 4 spaces)" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -587,17 +587,17 @@ test "HTML block with 4 space indent should be code" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -621,17 +621,17 @@ test "HTML closing tag alone" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -655,17 +655,17 @@ test "HTML self-closing tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -689,17 +689,17 @@ test "HTML img tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -723,17 +723,17 @@ test "HTML hr tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -760,17 +760,17 @@ test "HTML block followed by Markdown" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -796,17 +796,17 @@ test "Paragraph before HTML block type 7 should not interrupt" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -830,17 +830,17 @@ test "HTML comment in paragraph" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -867,17 +867,17 @@ test "Multiple HTML blocks" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -901,17 +901,17 @@ test "HTML block with attributes" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -935,17 +935,17 @@ test "HTML script tag with attributes" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -969,17 +969,17 @@ test "HTML form tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1003,17 +1003,17 @@ test "HTML blockquote tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1037,17 +1037,17 @@ test "HTML address tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1071,17 +1071,17 @@ test "HTML article tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1105,17 +1105,17 @@ test "HTML aside tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1139,17 +1139,17 @@ test "HTML section tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1173,17 +1173,17 @@ test "HTML nav tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1207,17 +1207,17 @@ test "HTML footer tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1241,17 +1241,17 @@ test "HTML header tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1275,17 +1275,17 @@ test "HTML main tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1309,17 +1309,17 @@ test "HTML figure tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1343,17 +1343,17 @@ test "HTML figcaption tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1377,17 +1377,17 @@ test "HTML details and summary tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1411,17 +1411,17 @@ test "HTML dialog tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1445,17 +1445,17 @@ test "HTML fieldset tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1479,17 +1479,17 @@ test "HTML legend tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1513,17 +1513,17 @@ test "HTML dl, dt, dd tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1547,17 +1547,17 @@ test "HTML link tag (empty)" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1581,17 +1581,17 @@ test "HTML base tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1615,17 +1615,17 @@ test "HTML basefont tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1649,17 +1649,17 @@ test "HTML center tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1683,17 +1683,17 @@ test "HTML col and colgroup tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1717,17 +1717,17 @@ test "HTML tbody, thead, tfoot, tr, th, td tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1751,17 +1751,17 @@ test "HTML caption tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1785,17 +1785,17 @@ test "HTML source tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1819,17 +1819,17 @@ test "HTML track tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1853,17 +1853,17 @@ test "HTML frameset, frame, noframes tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1887,17 +1887,17 @@ test "HTML noframes tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1921,17 +1921,17 @@ test "HTML iframe tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1955,17 +1955,17 @@ test "HTML param tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -1989,17 +1989,17 @@ test "HTML dir tag" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2023,17 +2023,17 @@ test "HTML menu and menuitem tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2057,17 +2057,17 @@ test "HTML optgroup and option tags" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2091,17 +2091,17 @@ test "HTML title tag in body (not head)" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2133,17 +2133,17 @@ test "HTML block with line breaks inside" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2174,17 +2174,17 @@ test "HTML block inside list" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2211,17 +2211,17 @@ test "HTML block inside blockquote" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2245,17 +2245,17 @@ test "HTML case insensitive - uppercase" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2279,17 +2279,17 @@ test "HTML script tag with mixed case" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2313,17 +2313,17 @@ test "HTML block with no content" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2347,17 +2347,17 @@ test "HTML custom tag (non-block-level)" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2381,17 +2381,17 @@ test "HTML comment ending on same line" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2415,17 +2415,17 @@ test "HTML comment with multiple dashes" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2449,17 +2449,17 @@ test "HTML CDATA with embedded brackets" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2483,17 +2483,17 @@ test "HTML DOCTYPE with public identifier" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -2524,17 +2524,17 @@ test "HTML block continues until blank line (type 6)" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);

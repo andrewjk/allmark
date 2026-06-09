@@ -3,11 +3,12 @@ import htmlRenderers from "./rulesets/htmlRenderers";
 import type MarkdownNode from "./types/MarkdownNode";
 import type Renderer from "./types/Renderer";
 import type RendererState from "./types/RendererState";
+import type RenderOptions from "./types/RenderOptions";
 
 export default function render(
 	doc: MarkdownNode,
 	renderers?: Renderer[],
-	options?: { lineWidth?: number },
+	options?: RenderOptions,
 ): string {
 	renderers ??= htmlRenderers;
 

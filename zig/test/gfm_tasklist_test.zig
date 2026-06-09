@@ -25,17 +25,17 @@ test "spec tasklist" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -63,17 +63,17 @@ test "tasklist with asterisk marker" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -101,17 +101,17 @@ test "tasklist with plus marker" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -139,17 +139,17 @@ test "tasklist in ordered list" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -179,17 +179,17 @@ test "tasklist with inline formatting" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -217,17 +217,17 @@ test "tasklist with code" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -255,17 +255,17 @@ test "tasklist with links" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -300,17 +300,17 @@ test "nested tasklist" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -342,17 +342,17 @@ test "mixed tasks and regular items" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -380,17 +380,17 @@ test "tasklist with single character" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -418,17 +418,17 @@ test "tasklist with empty brackets" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -456,17 +456,17 @@ test "tasklist with uppercase X" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -496,17 +496,17 @@ test "tasklist in blockquote" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -541,17 +541,17 @@ test "tasklist with multiple paragraphs" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -586,17 +586,17 @@ test "tasklist with sublist" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -624,17 +624,17 @@ test "tasklist with html entities" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
@@ -664,17 +664,17 @@ test "tasklist with various whitespace" {
     const renderers = try htmlRenderers.init(gpa);
     defer htmlRenderers.deinit(&renderers, gpa);
 
-    const htmlSpaced = try transform(gpa, input, rules, renderers);
+    const htmlSpaced = try transform(gpa, input, rules, renderers, null);
     defer gpa.free(htmlSpaced);
     try std.testing.expectEqualStrings(expected, htmlSpaced);
 
-    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers);
+    const htmlTrimmed = try transform(gpa, input[1 .. input.len - 1], rules, renderers, null);
     defer gpa.free(htmlTrimmed);
     try std.testing.expectEqualStrings(expected, htmlTrimmed);
 
     const inputCrLf = std.mem.replaceOwned(u8, gpa, input, "\n", "\r\n") catch unreachable;
     defer gpa.free(inputCrLf);
-    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers);
+    const htmlCrLf = try transform(gpa, inputCrLf, rules, renderers, null);
     defer gpa.free(htmlCrLf);
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\r\n", "\n") catch unreachable;
     defer gpa.free(htmlCrLf2);

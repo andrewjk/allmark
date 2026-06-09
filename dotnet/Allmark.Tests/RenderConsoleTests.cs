@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Allmark.Rulesets;
+using Allmark.Types;
 
 namespace Allmark.Tests;
 
@@ -495,7 +496,7 @@ public class RenderConsoleTests
         └──────┴────────────────┘
         """;
         var doc = Parser.Execute(input, Gfm.RuleSet);
-        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 25));
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, new RenderOptions { LineWidth = 25 }));
         Assert.AreEqual(expected.Trim(), output.Trim());
     }
 
@@ -514,7 +515,7 @@ public class RenderConsoleTests
         └────┴─────────┴─────────────────────┘
         """;
         var doc = Parser.Execute(input, Gfm.RuleSet);
-        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 40));
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, new RenderOptions { LineWidth = 40 }));
         Assert.AreEqual(expected.Trim(), output.Trim());
     }
 
@@ -530,7 +531,7 @@ public class RenderConsoleTests
         └───┴───┘
         """;
         var doc = Parser.Execute(input, Gfm.RuleSet);
-        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 80));
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, new RenderOptions { LineWidth = 80 }));
         Assert.AreEqual(expected.Trim(), output.Trim());
     }
 
@@ -547,7 +548,7 @@ public class RenderConsoleTests
         └────────────┴─────────────┘
         """;
         var doc = Parser.Execute(input, Gfm.RuleSet);
-        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 30));
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, new RenderOptions { LineWidth = 30 }));
         Assert.AreEqual(expected.Trim(), output.Trim());
     }
 
@@ -564,7 +565,7 @@ public class RenderConsoleTests
         └────────────┴─────────────┘
         """;
         var doc = Parser.Execute(input, Gfm.RuleSet);
-        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, lineWidth: 30));
+        var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers, new RenderOptions { LineWidth = 30 }));
         Assert.AreEqual(expected.Trim(), output.Trim());
     }
 

@@ -2,13 +2,14 @@ const std = @import("std");
 const MarkdownNode = @import("types/MarkdownNode.zig").MarkdownNode;
 const RendererSet = @import("types/RendererSet.zig").RendererSet;
 const RendererState = @import("types/RendererState.zig").RendererState;
+const RenderOptions = @import("types/RenderOptions.zig").RenderOptions;
 const Renderer = @import("types/Renderer.zig").Renderer;
 const htmlRenderers = @import("rulesets/htmlRenderers.zig");
 const consoleRenderers = @import("rulesets/consoleRenderers.zig");
 const renderChildren = @import("render/renderChildren.zig").renderChildren;
 const renderChildrenConsole = @import("render-console/console.zig").renderChildrenConsole;
 
-pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers: ?*const RendererSet, useConsole: bool, lineWidth: ?usize) ![]const u8 {
+pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers: ?*const RendererSet, useConsole: bool, options: ?RenderOptions) ![]const u8 {
     var createdRenderers = false;
     var localRenderers: RendererSet = undefined;
     var renderersToUse: *const RendererSet = undefined;
@@ -49,7 +50,7 @@ pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers:
         .footnotes = std.ArrayList(*const MarkdownNode).initCapacity(allocator, 8) catch unreachable,
         .footnoteRefs = std.StringHashMap(*const MarkdownNode).init(allocator),
         .listDepth = 0,
-        .line_width = lineWidth,
+        .line_width = if (options) |opts| opts.line_width else null,
     };
     defer state.output.deinit(allocator);
     defer state.footnotes.deinit(allocator);

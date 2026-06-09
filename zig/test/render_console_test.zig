@@ -826,7 +826,7 @@ test "wraps table cells at word boundaries to fit line width" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true, 25);
+    const output = try render(gpa, doc, null, true, .{ .line_width = 25 });
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -856,7 +856,7 @@ test "wraps table cells across multiple lines" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true, 40);
+    const output = try render(gpa, doc, null, true, .{ .line_width = 40 });
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -883,7 +883,7 @@ test "does not wrap table when it fits within line width" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true, 80);
+    const output = try render(gpa, doc, null, true, .{ .line_width = 80 });
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -911,7 +911,7 @@ test "wraps multiple columns to fit line width" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true, 30);
+    const output = try render(gpa, doc, null, true, .{ .line_width = 30 });
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
@@ -939,7 +939,7 @@ test "wraps aligned columns to fit line width" {
     const doc = try parse.execute(gpa, input, rules);
     defer doc.deinit(gpa);
 
-    const output = try render(gpa, doc, null, true, 30);
+    const output = try render(gpa, doc, null, true, .{ .line_width = 30 });
     defer gpa.free(output);
 
     const stripped = try stripAnsiCodes(gpa, output);
