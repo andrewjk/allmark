@@ -350,7 +350,7 @@ public class RenderConsoleTests
     public void RendersTableThenParagraph()
     {
         var input = "| A |\n|---|\n| 1 |\n\nParagraph";
-        var expected = "┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\nParagraph\n";
+        var expected = "┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\n\nParagraph\n";
         var doc = Parser.Execute(input, Gfm.RuleSet);
         var output = StripAnsiCodes(Renderer.Execute(doc, ConsoleRenderers.Renderers));
         Assert.AreEqual(expected, output);

@@ -102,6 +102,7 @@ function render(node: MarkdownNode, state: RendererState): void {
 	}
 
 	state.output += makeLine("└", "┴", "┘");
+	state.output += "\n";
 }
 
 function renderRow(

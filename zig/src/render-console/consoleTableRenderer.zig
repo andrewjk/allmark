@@ -157,6 +157,7 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
     }
 
     try makeLine("└", "┴", "┘", state, targetWidths);
+    state.output.append(state.allocator, '\n') catch unreachable;
 }
 
 fn renderRow(

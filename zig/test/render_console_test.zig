@@ -658,7 +658,7 @@ test "renders table with Unicode borders" {
 
 test "renders table then paragraph" {
     const input = "| A |\n|---|\n| 1 |\n\nParagraph";
-    const expected = "┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\nParagraph\n";
+    const expected = "┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\n\nParagraph\n";
 
     const gpa = std.testing.allocator;
     const rules = try gfm.init(gpa);

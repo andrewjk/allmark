@@ -84,8 +84,6 @@ public static class ConsoleTableRenderer
             return $"{style}{line}{Ansi.Reset}\n";
         }
 
-
-
         string[] alignmentsArray = alignments.ToArray();
 
         string[][] cellTextsArray = cellTexts.Select(r => r.ToArray()).ToArray();
@@ -131,6 +129,7 @@ public static class ConsoleTableRenderer
         }
 
         state.Output.Append(MakeLine("└", "┴", "┘", "┴", targetWidths));
+        state.Output.AppendLine();
     }
 
     private static void RenderRow(RendererState state, string style, string[][] cellTexts, string[] alignments, int[] targetWidths, int rowIdx, List<MarkdownNode>? rowCells, string[][][]? wrappedCells)

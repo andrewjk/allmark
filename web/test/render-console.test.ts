@@ -259,7 +259,7 @@ test("renders table then paragraph", () => {
 	const input = "| A |\n|---|\n| 1 |\n\nParagraph";
 	const doc = parse(input, gfm);
 	const output = stripVTControlCharacters(render(doc, consoleRenderers));
-	expect(output).toBe("┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\nParagraph\n");
+	expect(output).toBe("┌───┐\n│ A │\n├───┤\n│ 1 │\n└───┘\n\nParagraph\n");
 });
 
 test("renders paragraph then table", () => {
