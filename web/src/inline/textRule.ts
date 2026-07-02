@@ -3,6 +3,7 @@ import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
 import isNewLine from "../utils/isNewLine";
+import isSpace from "../utils/isSpace";
 import newText from "../utils/newText";
 
 const rule: InlineRule = {
@@ -33,6 +34,17 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 	} else if (isNewLine(charCode)) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
 		lastNode.content = lastNode.content.trimEnd();
+		if (isSpace(state.src.charCodeAt(state.i + 1))) {
+			lastNode.content += char;
+			lastNode.length = lastNode.content.length;
+			state.i += 2;
+			while (isSpace(state.src.charCodeAt(state.i))) {
+				state.i++;
+			}
+			lastNode = newText(state.parentIndex + state.i, state.line, "", 0);
+			parent.children!.push(lastNode);
+			char = state.src[state.i];
+		}
 	}
 
 	if (isAlphaNumeric(charCode)) {

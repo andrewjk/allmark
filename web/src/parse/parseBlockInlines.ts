@@ -4,6 +4,7 @@ import type InlineRule from "../types/InlineRule";
 import type LinkReference from "../types/LinkReference";
 import type MarkdownNode from "../types/MarkdownNode";
 import newText from "../utils/newText";
+import skipSpaces from "../utils/skipSpaces";
 import parseInline from "./parseInline";
 
 export default function parseBlockInlines(
@@ -55,8 +56,9 @@ export default function parseBlockInlines(
 	let state: InlineParserState = {
 		rules,
 		// "Final spaces are stripped before inline parsing"
-		src: parent.content.trim(),
-		i: 0,
+		src: parent.content.trimEnd(),
+		// Skip the start spaces, but keep them in src so it can be properly mapped
+		i: skipSpaces(parent.content, 0),
 		line: parent.line,
 		lineStart: 0,
 		indent: 0,

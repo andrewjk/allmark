@@ -7,6 +7,8 @@ import {
 	NEW_LINE_CODE,
 	SPACE_CODE,
 } from "../utils/charCodes";
+import consumeSpaces from "../utils/consumeSpaces";
+import isSpace from "../utils/isSpace";
 import newInline from "../utils/newInline";
 
 const rule: InlineRule = {
@@ -35,7 +37,7 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 			let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "\\", 0);
 			hb.length = 2;
 			parent.children!.push(hb);
-			state.i = end;
+			handleHardBreakEnd(state, end);
 			return true;
 		}
 	}
@@ -60,10 +62,22 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 			let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "  ", 0);
 			hb.length = spaces;
 			parent.children!.push(hb);
-			state.i = end + 1;
+			handleHardBreakEnd(state, end + 1);
 			return true;
 		}
 	}
 
 	return false;
+}
+
+function handleHardBreakEnd(state: InlineParserState, end: number) {
+	state.i = end;
+	state.line++;
+	state.lineStart = state.i;
+
+	// "Spaces at the end of the line and beginning of the next line are removed"
+	if (isSpace(state.src.charCodeAt(state.i))) {
+		let space = consumeSpaces(state.src, state.i);
+		state.i += space.length;
+	}
 }

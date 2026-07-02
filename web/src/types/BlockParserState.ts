@@ -12,6 +12,7 @@ export default interface BlockParserState {
 	line: number;
 	lineStart: number;
 	indent: number;
+	spaces: string;
 	openNodes: MarkdownNode[];
 	isEscaped: boolean;
 	maybeContinue: boolean;

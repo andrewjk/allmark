@@ -572,6 +572,48 @@ describe("source mapping - inline rules", () => {
 		expect(text.index).toBe(8);
 		expect(text.length).toBe(17);
 	});
+
+	test("paragraph with spaces after newline", () => {
+		const input = "Test\n  text with `spaces`";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		expect(paragraph.children!.length).toBe(3);
+		const text = paragraph.children![0];
+		expect(text.type).toBe("text");
+		expect(text.index).toBe(0);
+		expect(text.length).toBe(5);
+		const text2 = paragraph.children![1];
+		expect(text2.type).toBe("text");
+		expect(text2.index).toBe(7);
+		expect(text2.length).toBe(10);
+		const code = paragraph.children![2];
+		expect(code.type).toBe("code_span");
+		expect(code.index).toBe(17);
+		expect(code.length).toBe(8);
+	});
+
+	test("paragraph with spaces after hard break", () => {
+		const input = "Test  \n  text with `spaces`";
+		const doc = parse(input, extended);
+		const paragraph = doc.children![0];
+		expect(paragraph.children!.length).toBe(4);
+		const text = paragraph.children![0];
+		expect(text.type).toBe("text");
+		expect(text.index).toBe(0);
+		expect(text.length).toBe(4);
+		const br = paragraph.children![1];
+		expect(br.type).toBe("hard_break");
+		expect(br.index).toBe(4);
+		expect(br.length).toBe(2);
+		const text2 = paragraph.children![2];
+		expect(text2.type).toBe("text");
+		expect(text2.index).toBe(9);
+		expect(text2.length).toBe(10);
+		const code = paragraph.children![3];
+		expect(code.type).toBe("code_span");
+		expect(code.index).toBe(19);
+		expect(code.length).toBe(8);
+	});
 });
 
 describe("source mapping - block and inline rules", () => {

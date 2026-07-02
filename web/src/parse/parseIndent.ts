@@ -4,11 +4,12 @@ import isSpace from "../utils/isSpace";
 
 export default function parseIndent(state: BlockParserState): void {
 	if (isSpace(state.src.charCodeAt(state.i))) {
+		let start = state.i;
 		for (; state.i < state.src.length; state.i++) {
 			let charCode = state.src.charCodeAt(state.i);
 			if (charCode === SPACE_CODE) {
 				// TODO: All the other spaces
-				state.indent += 1;
+				state.indent++;
 			} else if (charCode === TAB_CODE) {
 				// Set spaces to the next tabstop of 4 characters (e.g. for '  \t', set
 				// the spaces to 4)
@@ -22,5 +23,6 @@ export default function parseIndent(state: BlockParserState): void {
 				break;
 			}
 		}
+		state.spaces = state.src.substring(start, state.i);
 	}
 }

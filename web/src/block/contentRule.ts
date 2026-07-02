@@ -15,15 +15,15 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	let content = state.src.substring(state.i, endOfLine);
 	if (parent.acceptsContent) {
 		if (state.hasBlankLine) {
-			//parent.content += "\n";
+			state.hasBlankLine = false;
 		} else {
 			parent.content += " ".repeat(state.indent);
 		}
-		parent.content += content;
-		state.hasBlankLine = false;
 	} else {
-		parent.content += content;
+		parent.content += state.spaces;
+		state.spaces = "";
 	}
+	parent.content += content;
 	state.i = endOfLine;
 	return true;
 }

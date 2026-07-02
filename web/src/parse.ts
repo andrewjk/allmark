@@ -40,6 +40,7 @@ export default function parse(src: string, rules: RuleSet): MarkdownNode {
 		line: 0,
 		lineStart: 0,
 		indent: 0,
+		spaces: "",
 		isEscaped: false,
 		maybeContinue: false,
 		hasBlankLine: false,

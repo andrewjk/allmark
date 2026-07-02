@@ -7,7 +7,8 @@ export default function parseInline(state: InlineParserState, parent: MarkdownNo
 	while (state.i < state.src.length) {
 		let charCode = state.src.charCodeAt(state.i);
 		if (charCode === NEW_LINE_CODE) {
-			state.line += 1;
+			state.indent = 0;
+			state.line++;
 			state.lineStart = state.i;
 		}
 
