@@ -9,6 +9,7 @@ pub const BlockParserState = struct {
     line: i32,
     lineStart: usize,
     indent: i32,
+    spaces: []const u8,
     isEscaped: bool,
     openNodes: std.ArrayList(*MarkdownNode),
     maybeContinue: bool,

@@ -687,4 +687,50 @@ public class SourceMappingTests
         Assert.AreEqual(57, deletion.Index);
         Assert.AreEqual(8, deletion.Length);
     }
+
+    [TestMethod]
+    public void ParagraphWithSpacesAfterNewline()
+    {
+        var input = "Test\n  text with `spaces`";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var paragraph = doc.Children![0];
+        Assert.AreEqual(3, paragraph.Children!.Count);
+        var text = paragraph.Children[0];
+        Assert.AreEqual("text", text.Type);
+        Assert.AreEqual(0, text.Index);
+        Assert.AreEqual(5, text.Length);
+        var text2 = paragraph.Children[1];
+        Assert.AreEqual("text", text2.Type);
+        Assert.AreEqual(7, text2.Index);
+        Assert.AreEqual(10, text2.Length);
+        var code = paragraph.Children[2];
+        Assert.AreEqual("code_span", code.Type);
+        Assert.AreEqual(17, code.Index);
+        Assert.AreEqual(8, code.Length);
+    }
+
+    [TestMethod]
+    public void ParagraphWithSpacesAfterHardBreak()
+    {
+        var input = "Test  \n  text with `spaces`";
+        var doc = Parser.Execute(input, Extended.RuleSet);
+        var paragraph = doc.Children![0];
+        Assert.AreEqual(4, paragraph.Children!.Count);
+        var text = paragraph.Children[0];
+        Assert.AreEqual("text", text.Type);
+        Assert.AreEqual(0, text.Index);
+        Assert.AreEqual(4, text.Length);
+        var br = paragraph.Children[1];
+        Assert.AreEqual("hard_break", br.Type);
+        Assert.AreEqual(4, br.Index);
+        Assert.AreEqual(2, br.Length);
+        var text2 = paragraph.Children[2];
+        Assert.AreEqual("text", text2.Type);
+        Assert.AreEqual(9, text2.Index);
+        Assert.AreEqual(10, text2.Length);
+        var code = paragraph.Children[3];
+        Assert.AreEqual("code_span", code.Type);
+        Assert.AreEqual(19, code.Index);
+        Assert.AreEqual(8, code.Length);
+    }
 }

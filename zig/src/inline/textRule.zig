@@ -11,7 +11,7 @@ const appendChild = @import("../utils/appendChild.zig").appendChild;
 pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
 
-    const char = state.src[state.i];
+    var char = state.src[state.i];
 
     var lastNode: *MarkdownNode = undefined;
     if (parent.children == null or parent.children.?.len == 0) {
@@ -32,6 +32,30 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
                 state.allocator.free(lastNode.content);
                 lastNode.*.content = trimmed;
                 lastNode.*.content_allocated = true;
+            }
+            if (state.i + 1 < state.src.len and isSpace(state.src[state.i + 1])) {
+                const old_content = lastNode.content;
+                const was_allocated = lastNode.content_allocated;
+                const new_content = state.allocator.alloc(u8, old_content.len + 1) catch return false;
+                @memcpy(new_content[0..old_content.len], old_content);
+                new_content[old_content.len] = char;
+                if (was_allocated) {
+                    state.allocator.free(old_content);
+                }
+                lastNode.*.content = new_content;
+                lastNode.*.content_allocated = true;
+                lastNode.*.length = lastNode.content.len;
+                state.i += 2;
+                while (state.i < state.src.len and isSpace(state.src[state.i])) {
+                    state.i += 1;
+                }
+                lastNode = newText(state.allocator, state.parentIndex + state.i, state.line, "", 0) catch return false;
+                appendChild(state.allocator, parent, lastNode) catch return false;
+                if (state.i < state.src.len) {
+                    char = state.src[state.i];
+                } else {
+                    return true;
+                }
             }
         }
     }

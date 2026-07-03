@@ -8,6 +8,7 @@ public static class ParseIndent
     {
         if (state.I < state.Src.Length && Utils.IsSpace(state.Src[state.I]))
         {
+            var start = state.I;
             for (; state.I < state.Src.Length; state.I++)
             {
                 char c = Utils.GetChar(state.Src, state.I);
@@ -33,6 +34,7 @@ public static class ParseIndent
                     break;
                 }
             }
+            state.Spaces = state.Src.Substring(start, state.I - start);
         }
     }
 }

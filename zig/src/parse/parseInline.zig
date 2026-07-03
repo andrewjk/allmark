@@ -8,6 +8,7 @@ pub fn parseInline(allocator: std.mem.Allocator, state: *InlineParserState, pare
     while (state.i < state.src.len) {
         const char = state.src[state.i];
         if (char == '\n') {
+            state.indent = 0;
             state.line += 1;
             state.lineStart = state.i;
         }

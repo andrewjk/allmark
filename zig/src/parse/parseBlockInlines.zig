@@ -83,12 +83,11 @@ pub fn parseBlockInlines(
     }
 
     var trimmed_content = parent.content;
-    while (trimmed_content.len > 0 and std.ascii.isWhitespace(trimmed_content[0])) {
-        trimmed_content = trimmed_content[1..trimmed_content.len];
-    }
     while (trimmed_content.len > 0 and std.ascii.isWhitespace(trimmed_content[trimmed_content.len - 1])) {
         trimmed_content = trimmed_content[0 .. trimmed_content.len - 1];
     }
+
+    const skip_count = @import("../utils/skipSpaces.zig").skipSpaces(trimmed_content, 0);
 
     var rulesMap = std.StringHashMap(*const InlineRule).init(allocator);
     for (rules) |rule| {
@@ -106,7 +105,7 @@ pub fn parseBlockInlines(
         .allocator = allocator,
         .rules = rules,
         .src = trimmed_content,
-        .i = 0,
+        .i = skip_count,
         .line = parent.line,
         .lineStart = 0,
         .indent = 0,

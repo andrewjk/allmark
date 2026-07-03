@@ -4,6 +4,8 @@ const InlineRule = @import("../types/InlineRule.zig").InlineRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
+const consumeSpaces = @import("../utils/consumeSpaces.zig").consumeSpaces;
+const isSpace = @import("../utils/isSpace.zig").isSpace;
 
 pub fn testHardBreak(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i < state.src.len) {
@@ -23,7 +25,7 @@ pub fn testHardBreak(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const hb = newInline(state.allocator, "hard_break", state.parentIndex + state.i, state.line, "\\", 0) catch unreachable;
                 hb.*.length = 2;
                 appendChild(state.allocator, parent, hb) catch unreachable;
-                state.i = end;
+                handleHardBreakEnd(state, end);
                 return true;
             }
         } else if (state.src[state.i] == ' ') {
@@ -48,13 +50,26 @@ pub fn testHardBreak(state: *InlineParserState, parent: *MarkdownNode) bool {
                 const hb = newInline(state.allocator, "hard_break", state.parentIndex + state.i, state.line, "  ", 0) catch unreachable;
                 hb.*.length = spaces;
                 appendChild(state.allocator, parent, hb) catch unreachable;
-                state.i = end + 1;
+                handleHardBreakEnd(state, end + 1);
                 return true;
             }
         }
     }
 
     return false;
+}
+
+fn handleHardBreakEnd(state: *InlineParserState, end: usize) void {
+    state.i = end;
+    state.line += 1;
+    state.lineStart = state.i;
+
+    // "Spaces at the end of the line and beginning of the next line are removed"
+    if (state.i < state.src.len and isSpace(state.src[state.i])) {
+        const space = consumeSpaces(state.allocator, state.src, state.i) catch unreachable;
+        state.i += space.len;
+        state.allocator.free(space);
+    }
 }
 
 pub const hardBreakRule = InlineRule{

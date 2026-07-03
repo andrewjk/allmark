@@ -12,7 +12,9 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
     if (parent.acceptsContent) {
         new_content.appendSlice(state.allocator, parent.content) catch unreachable;
-        if (!state.hasBlankLine) {
+        if (state.hasBlankLine) {
+            state.hasBlankLine = false;
+        } else {
             const spaces = state.indent;
             var i: usize = 0;
             while (i < spaces) : (i += 1) {
@@ -20,27 +22,19 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             }
         }
         new_content.appendSlice(state.allocator, content) catch unreachable;
-
-        if (parent.content_allocated) {
-            state.allocator.free(parent.content);
-        }
-        parent.content = new_content.toOwnedSlice(state.allocator) catch unreachable;
-        new_content.deinit(state.allocator);
-        parent.content_allocated = true;
-
-        state.hasBlankLine = false;
     } else {
-        new_content.deinit(state.allocator);
-        var new_content2 = std.ArrayList(u8).initCapacity(state.allocator, parent.content.len + content.len + 1) catch unreachable;
-        new_content2.appendSlice(state.allocator, parent.content) catch unreachable;
-        new_content2.appendSlice(state.allocator, content) catch unreachable;
-        if (parent.content_allocated) {
-            state.allocator.free(parent.content);
-        }
-        parent.content = new_content2.toOwnedSlice(state.allocator) catch unreachable;
-        new_content2.deinit(state.allocator);
-        parent.content_allocated = true;
+        new_content.appendSlice(state.allocator, parent.content) catch unreachable;
+        new_content.appendSlice(state.allocator, state.spaces) catch unreachable;
+        state.spaces = "";
+        new_content.appendSlice(state.allocator, content) catch unreachable;
     }
+
+    if (parent.content_allocated) {
+        state.allocator.free(parent.content);
+    }
+    parent.content = new_content.toOwnedSlice(state.allocator) catch unreachable;
+    new_content.deinit(state.allocator);
+    parent.content_allocated = true;
 
     state.i = end_of_line;
 

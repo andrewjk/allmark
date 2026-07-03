@@ -4,6 +4,7 @@ const isSpace = @import("../utils/isSpace.zig").isSpace;
 
 pub fn parseIndent(state: *BlockParserState) void {
     if (state.i < state.src.len and isSpace(state.src[state.i])) {
+        const start = state.i;
         while (state.i < state.src.len) {
             const char = state.src[state.i];
             if (char == ' ') {
@@ -20,5 +21,6 @@ pub fn parseIndent(state: *BlockParserState) void {
             }
             state.i += 1;
         }
+        state.spaces = state.src[start..state.i];
     }
 }

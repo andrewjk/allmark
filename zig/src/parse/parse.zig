@@ -49,6 +49,7 @@ pub fn parse(allocator: std.mem.Allocator, src: []const u8, rules: RuleSet) !*Ma
         .line = 1,
         .lineStart = 0,
         .indent = 0,
+        .spaces = "",
         .isEscaped = false,
         .maybeContinue = false,
         .hasBlankLine = false,

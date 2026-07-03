@@ -22,19 +22,19 @@ public static class ContentRule
         {
             if (state.HasBlankLine)
             {
-                //parent.content += "\n";
+                state.HasBlankLine = false;
             }
             else
             {
                 parent.Content += new string(' ', state.Indent);
             }
-            parent.Content += content;
-            state.HasBlankLine = false;
         }
         else
         {
-            parent.Content += content;
+            parent.Content += state.Spaces;
+            state.Spaces = "";
         }
+        parent.Content += content;
         state.I = endOfLine;
         return true;
     }

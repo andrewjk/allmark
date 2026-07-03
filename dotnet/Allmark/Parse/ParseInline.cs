@@ -11,6 +11,7 @@ public static class ParseInline
             char c = Utils.GetChar(state.Src, state.I);
             if (c == '\n')
             {
+                state.Indent = 0;
                 state.Line += 1;
                 state.LineStart = state.I;
             }

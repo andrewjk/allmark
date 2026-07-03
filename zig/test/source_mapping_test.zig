@@ -985,3 +985,61 @@ test "source mapping - various formattings" {
     try std.testing.expectEqual(@as(usize, 57), insertion.index);
     try std.testing.expectEqual(@as(usize, 8), insertion.length);
 }
+
+test "source mapping - paragraph with spaces after newline" {
+    const input = "Test\n  text with `spaces`";
+    const gpa = std.testing.allocator;
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    try std.testing.expect(doc.children.?.len == 1);
+    const paragraph = doc.children.?[0];
+    try std.testing.expect(paragraph.children != null);
+    try std.testing.expectEqual(@as(usize, 3), paragraph.children.?.len);
+    const text = paragraph.children.?[0];
+    try std.testing.expectEqualStrings("text", text.type);
+    try std.testing.expectEqual(@as(usize, 0), text.index);
+    try std.testing.expectEqual(@as(usize, 5), text.length);
+    const text2 = paragraph.children.?[1];
+    try std.testing.expectEqualStrings("text", text2.type);
+    try std.testing.expectEqual(@as(usize, 7), text2.index);
+    try std.testing.expectEqual(@as(usize, 10), text2.length);
+    const code = paragraph.children.?[2];
+    try std.testing.expectEqualStrings("code_span", code.type);
+    try std.testing.expectEqual(@as(usize, 17), code.index);
+    try std.testing.expectEqual(@as(usize, 8), code.length);
+}
+
+test "source mapping - paragraph with spaces after hard break" {
+    const input = "Test  \n  text with `spaces`";
+    const gpa = std.testing.allocator;
+    const rules = try extended.init(gpa);
+    defer extended.deinit(&rules, gpa);
+
+    const doc = try parse.execute(gpa, input, rules);
+    defer doc.deinit(gpa);
+
+    try std.testing.expect(doc.children.?.len == 1);
+    const paragraph = doc.children.?[0];
+    try std.testing.expect(paragraph.children != null);
+    try std.testing.expectEqual(@as(usize, 4), paragraph.children.?.len);
+    const text = paragraph.children.?[0];
+    try std.testing.expectEqualStrings("text", text.type);
+    try std.testing.expectEqual(@as(usize, 0), text.index);
+    try std.testing.expectEqual(@as(usize, 4), text.length);
+    const br = paragraph.children.?[1];
+    try std.testing.expectEqualStrings("hard_break", br.type);
+    try std.testing.expectEqual(@as(usize, 4), br.index);
+    try std.testing.expectEqual(@as(usize, 2), br.length);
+    const text2 = paragraph.children.?[2];
+    try std.testing.expectEqualStrings("text", text2.type);
+    try std.testing.expectEqual(@as(usize, 9), text2.index);
+    try std.testing.expectEqual(@as(usize, 10), text2.length);
+    const code = paragraph.children.?[3];
+    try std.testing.expectEqualStrings("code_span", code.type);
+    try std.testing.expectEqual(@as(usize, 19), code.index);
+    try std.testing.expectEqual(@as(usize, 8), code.length);
+}

@@ -31,7 +31,7 @@ public static class HardBreakRule
                     var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);
                     hb.Length = 2;
                     parent.Children!.Add(hb);
-                    state.I = end;
+                    HandleHardBreakEnd(state, end);
                     return true;
                 }
             }
@@ -62,15 +62,29 @@ public static class HardBreakRule
                 }
                 if (spaces >= 2)
                 {
-                    var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);
+                    var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "  ", 0);
                     hb.Length = spaces;
                     parent.Children!.Add(hb);
-                    state.I = end + 1;
+                    HandleHardBreakEnd(state, end + 1);
                     return true;
                 }
             }
         }
 
         return false;
+    }
+
+    private static void HandleHardBreakEnd(InlineParserState state, int end)
+    {
+        state.I = end;
+        state.Line++;
+        state.LineStart = state.I;
+
+        // "Spaces at the end of the line and beginning of the next line are removed"
+        if (state.I < state.Src.Length && Utils.IsSpace(state.Src[state.I]))
+        {
+            var space = Utils.ConsumeSpaces(state.Src, state.I);
+            state.I += space.Length;
+        }
     }
 }

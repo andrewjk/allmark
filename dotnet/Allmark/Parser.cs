@@ -48,6 +48,7 @@ public static class Parser
             Line = 0,
             LineStart = 0,
             Indent = 0,
+            Spaces = "",
             IsEscaped = false,
             MaybeContinue = false,
             HasBlankLine = false,
