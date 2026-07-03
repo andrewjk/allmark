@@ -1,7 +1,7 @@
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@latest
-  vite-plus: ^0.1.24
-  vitest: npm:@voidzero-dev/vite-plus-test@^0.1.24
+  vite-plus: ^0.2.2
+  vitest: ^4.1.9
 onlyBuiltDependencies:
   - cmark-gfm
   - esbuild

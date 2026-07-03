@@ -26,11 +26,11 @@
 		"cli": "node dist/bin/index.mjs"
 	},
 	"devDependencies": {
-		"@types/node": "^25.9.2",
-		"@vitest/coverage-v8": "^4.1.8",
+		"@types/node": "^26.1.0",
+		"@vitest/coverage-v8": "^4.1.9",
 		"cmark-gfm": "^0.9.0",
 		"tinybench": "^6.0.2",
-		"tsx": "^4.22.4",
+		"tsx": "^4.22.5",
 		"typescript": "^6.0.3",
 		"vite-plus": "catalog:",
 		"vitest": "catalog:"
