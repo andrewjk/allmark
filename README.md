@@ -27,7 +27,7 @@ npm install allmark
 And then call `transform` with the ruleset and renderers you want to use:
 
 ```javascript
-import { extended, htmlRenderers, transform } from "../src/rulesets/htmlRenderers";
+import { transform, extended, htmlRenderers } from "allmark";
 
 const input = `
 # Allmark
@@ -62,9 +62,9 @@ let input = """
 let html = _transform(src: input, rules: extendedRuleSet, renderers: htmlRenderers)
 ```
 
-### C#
+### .NET/C#
 
-TODO: NuGet instructions
+Install Allmark from NuGet: https://www.nuget.org/packages/Allmark/
 
 And then call `Transformer.Execute` with the ruleset and renderers you want to use:
 
