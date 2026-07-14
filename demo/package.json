@@ -1,0 +1,25 @@
+{
+  "name": "demo",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "tb --dev",
+    "build": "tsgo --noEmit && tb --build",
+    "check": "tsgo --noEmit && pnpm dlx oxlint --type-aware"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@torpor/adapter-node": "^0.1.2",
+    "@torpor/build": "^0.4.14",
+    "@torpor/unplugin": "^0.2.1",
+    "@torpor/view": "^0.4.18"
+  },
+  "devDependencies": {
+    "@typescript/native-preview": "7.0.0-dev.20260707.2",
+    "oxlint-tsgolint": "^0.24.0",
+    "typescript": "^7.0.2"
+  }
+}

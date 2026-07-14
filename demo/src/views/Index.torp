@@ -1,0 +1,14 @@
+import Editor from "./Editor.torp";
+
+/**
+ * The home component
+ */
+export default function Index() {
+	@render {
+		<h1>Allmark</h1>
+		<p>Type markdown on the left and see the rendered HTML on the right.</p>
+		<div class="card">
+			<Editor />
+		</div>
+	}
+}

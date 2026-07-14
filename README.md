@@ -201,3 +201,14 @@ Options:
 - `-r, --ruleset`: Ruleset to use (core, gfm, extended; default: extended)
 - `-f, --format`: Output format (html, console; default: console)
 - `-h, --help`: Show help message
+
+## Demo
+
+There's a barebones demo app included in this repository. To run it:
+
+```bash
+git clone https://github.com/andrewjk/allmark
+cd allmark/demo
+pnpm install
+pnpm dev
+```
