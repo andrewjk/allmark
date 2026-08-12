@@ -43,7 +43,7 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 			}
 			lastNode = newText(state.parentIndex + state.i, state.line, "", 0);
 			parent.children!.push(lastNode);
-			char = state.src[state.i];
+			return true;
 		}
 	}
 

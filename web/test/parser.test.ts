@@ -10,6 +10,7 @@ test("basic parse", () => {
 # Test ☺️
 
 Here is some text
+ *with* bold stuff
 
 * Tight item 1
 * Tight item 2
@@ -24,7 +25,8 @@ Here is some more text
 `;
 	const expected = `
 <h1>Test ☺️</h1>
-<p>Here is some text</p>
+<p>Here is some text
+<em>with</em> bold stuff</p>
 <ul>
 <li>Tight item 1</li>
 <li>Tight item 2</li>

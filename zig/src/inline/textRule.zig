@@ -11,7 +11,7 @@ const appendChild = @import("../utils/appendChild.zig").appendChild;
 pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
 
-    var char = state.src[state.i];
+    const char = state.src[state.i];
 
     var lastNode: *MarkdownNode = undefined;
     if (parent.children == null or parent.children.?.len == 0) {
@@ -51,11 +51,7 @@ pub fn testText(state: *InlineParserState, parent: *MarkdownNode) bool {
                 }
                 lastNode = newText(state.allocator, state.parentIndex + state.i, state.line, "", 0) catch return false;
                 appendChild(state.allocator, parent, lastNode) catch return false;
-                if (state.i < state.src.len) {
-                    char = state.src[state.i];
-                } else {
-                    return true;
-                }
+                return true;
             }
         }
     }

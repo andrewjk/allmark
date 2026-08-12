@@ -38,10 +38,7 @@ public static class TextRule
                 }
                 lastNode = Utils.NewText(state.ParentIndex + state.I, state.Line, "", 0);
                 parent.Children!.Add(lastNode);
-                if (state.I < state.Src.Length)
-                {
-                    ch = Utils.GetChar(state.Src, state.I);
-                }
+                return true;
             }
         }
 
