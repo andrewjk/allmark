@@ -16,7 +16,19 @@ public static class TextRenderer
     public static void Render(MarkdownNode node, RendererState state, bool? decode = true)
     {
         var content = node.Content;
-        if (decode == true)
+        var scanDecode = decode == true;
+
+        // Fast path: if none of the special characters are present, output as-is
+        var needsProcessing = scanDecode
+            ? content.AsSpan().IndexOfAny("&<>\"\\") >= 0
+            : content.AsSpan().IndexOfAny("&<>\"") >= 0;
+        if (!needsProcessing)
+        {
+            state.Output.Append(content);
+            return;
+        }
+
+        if (scanDecode)
         {
             content = Utils.DecodeEntities(content);
             content = Utils.EscapePunctuation(content);

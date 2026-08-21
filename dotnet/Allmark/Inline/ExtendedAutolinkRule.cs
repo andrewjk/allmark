@@ -27,9 +27,9 @@ public static class ExtendedAutolinkRule
         var ch = Utils.GetChar(state.Src, state.I);
         if (!state.IsEscaped)
         {
-            if (ch == 'w')
+            if (ch == 'w' && state.Src.AsSpan(state.I).StartsWith("www.", StringComparison.OrdinalIgnoreCase))
             {
-                var tail = state.Src.Substring(state.I);
+                var tail = TailToEndOfLine(state.Src, state.I);
 
                 var urlMatch = UrlRegex.Match(tail);
                 if (urlMatch.Success)
@@ -60,9 +60,12 @@ public static class ExtendedAutolinkRule
                 }
             }
 
-            if (ch == 'h' || ch == 'f')
+            if ((ch == 'h' || ch == 'f')
+                && (state.Src.AsSpan(state.I).StartsWith("http://", StringComparison.OrdinalIgnoreCase)
+                    || state.Src.AsSpan(state.I).StartsWith("https://", StringComparison.OrdinalIgnoreCase)
+                    || state.Src.AsSpan(state.I).StartsWith("ftp://", StringComparison.OrdinalIgnoreCase)))
             {
-                var tail = state.Src.Substring(state.I);
+                var tail = TailToEndOfLine(state.Src, state.I);
 
                 var urlMatch = ExtUrlRegex.Match(tail);
                 if (urlMatch.Success)
@@ -104,7 +107,7 @@ public static class ExtendedAutolinkRule
                     }
                 }
 
-                var tail = state.Src.Substring(start);
+                var tail = TailToEndOfLine(state.Src, start);
 
                 var emailMatch = ExtEmailRegex.Match(tail);
                 if (emailMatch.Success)
@@ -140,9 +143,11 @@ public static class ExtendedAutolinkRule
                 }
             }
 
-            if (ch == 'm' || ch == 'x')
+            if ((ch == 'm' || ch == 'x')
+                && (state.Src.AsSpan(state.I).StartsWith("mailto:", StringComparison.OrdinalIgnoreCase)
+                    || state.Src.AsSpan(state.I).StartsWith("xmpp:", StringComparison.OrdinalIgnoreCase)))
             {
-                var tail = state.Src.Substring(state.I);
+                var tail = TailToEndOfLine(state.Src, state.I);
 
                 var emailMatch = ExtXmppRegex.Match(tail);
                 if (emailMatch.Success)
@@ -175,6 +180,21 @@ public static class ExtendedAutolinkRule
         }
 
         return false;
+    }
+
+    private static string TailToEndOfLine(string src, int start)
+    {
+        var end = src.Length;
+        for (var i = start; i < src.Length; i++)
+        {
+            var c = src[i];
+            if (c == '\n' || c == '\r')
+            {
+                end = i;
+                break;
+            }
+        }
+        return src.Substring(start, end - start);
     }
 
     private static string ExtendedValidation(string url)

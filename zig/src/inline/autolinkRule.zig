@@ -14,6 +14,9 @@ const mvzr = @import("mvzr");
 const LINK_REGEX = "^<(\\s*[a-zA-Z][a-zA-Z0-9+.-]{1,31}:[^<>]*)>";
 const EMAIL_REGEX = "^<(\\s*[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(\\.[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\\s*)>";
 
+const link_regex = mvzr.compile(LINK_REGEX) orelse unreachable;
+const email_regex = mvzr.compile(EMAIL_REGEX) orelse unreachable;
+
 pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i >= state.src.len) return false;
 
@@ -21,8 +24,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (!state.isEscaped and char == '<') {
         const tail = state.src[state.i..];
 
-        const linkRegex = mvzr.compile(LINK_REGEX) orelse return false;
-        const linkMatch = linkRegex.match(tail);
+        const linkMatch = link_regex.match(tail);
 
         if (linkMatch != null and linkMatch.?.start == 0) {
             const rawUrl = tail[linkMatch.?.start + 1 .. linkMatch.?.end - 1];
@@ -93,8 +95,7 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             return true;
         }
 
-        const emailRegex = mvzr.compile(EMAIL_REGEX) orelse return false;
-        const emailMatch = emailRegex.match(tail);
+        const emailMatch = email_regex.match(tail);
 
         if (emailMatch != null and emailMatch.?.start == 0) {
             const rawUrl = tail[emailMatch.?.start + 1 .. emailMatch.?.end - 1];

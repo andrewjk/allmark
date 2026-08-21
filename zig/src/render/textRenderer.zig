@@ -8,8 +8,26 @@ const escapePunctuation = @import("../utils/escapePunctuation.zig").escapePunctu
 
 pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) void {
     const content: []const u8 = node.content;
+    const scan_decode = decode orelse false;
 
-    if (decode orelse false) {
+    // Fast path: if none of the special characters are present, output as-is
+    const needs = blk: {
+        for (content) |c| {
+            switch (c) {
+                '&', '<', '>', '"' => break :blk true,
+                '\\' => if (scan_decode) break :blk true,
+                else => {},
+            }
+        }
+        break :blk false;
+    };
+
+    if (!needs) {
+        state.output.appendSlice(state.allocator, content) catch unreachable;
+        return;
+    }
+
+    if (scan_decode) {
         const decoded = decodeEntities(state.allocator, content) catch unreachable;
         defer state.allocator.free(decoded);
         const escaped = escapePunctuation(state.allocator, decoded) catch unreachable;

@@ -19,6 +19,11 @@ const EXT_URL_REGEX = "^((https*|ftp):\\/\\/([a-zA-Z0-9_-]\\.*)+([a-zA-Z0-9-]\\.
 const EXT_EMAIL_REGEX = "^([a-zA-Z0-9._\\-+]+@([a-zA-Z0-9._\\-+]+\\.*)+)";
 const EXT_XMPP_REGEX = "^((mailto|xmpp):[a-zA-Z0-9._\\-+]+@([a-zA-Z0-9._\\-+]+\\.*)+)(\\/[a-zA-Z0-9@.]+){0,1}";
 
+const url_regex = mvzr.compile(URL_REGEX) orelse unreachable;
+const ext_url_regex = mvzr.compile(EXT_URL_REGEX) orelse unreachable;
+const ext_email_regex = mvzr.compile(EXT_EMAIL_REGEX) orelse unreachable;
+const ext_xmpp_regex = mvzr.compile(EXT_XMPP_REGEX) orelse unreachable;
+
 const TRAILING_PUNCTUATION = "[?!.,:*_~]$";
 const TRAILING_ENTITY = "&[a-zA-Z0-9]+;$";
 
@@ -27,11 +32,10 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
 
     const char = state.src[state.i];
     if (!state.isEscaped) {
-        if (char == 'w') {
+        if (char == 'w' and std.ascii.startsWithIgnoreCase(state.src[state.i..], "www.")) {
             const tail = state.src[state.i..];
 
-            const urlRegex = mvzr.compile(URL_REGEX) orelse return false;
-            const urlMatch = urlRegex.match(tail) orelse null;
+            const urlMatch = url_regex.match(tail) orelse null;
 
             if (urlMatch != null and urlMatch.?.start == 0) {
                 var url = tail[0..urlMatch.?.end];
@@ -104,11 +108,14 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             }
         }
 
-        if (char == 'h' or char == 'f') {
+        if ((char == 'h' or char == 'f') and
+                (std.ascii.startsWithIgnoreCase(state.src[state.i..], "http://") or
+                    std.ascii.startsWithIgnoreCase(state.src[state.i..], "https://") or
+                    std.ascii.startsWithIgnoreCase(state.src[state.i..], "ftp://")))
+        {
             const tail = state.src[state.i..];
 
-            const urlRegex = mvzr.compile(EXT_URL_REGEX) orelse return false;
-            const urlMatch = urlRegex.match(tail) orelse null;
+            const urlMatch = ext_url_regex.match(tail) orelse null;
 
             if (urlMatch != null and urlMatch.?.start == 0) {
                 var url = tail[0..urlMatch.?.end];
@@ -171,11 +178,11 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             }
         }
 
-        if (isAlphaNumeric(state.src[state.i])) {
+        const at_precheck = std.mem.indexOfScalarPos(u8, state.src, state.i + 1, '@');
+        if (isAlphaNumeric(state.src[state.i]) and at_precheck != null and at_precheck.? - state.i < 64) {
             const tail = state.src[state.i..];
 
-            const emailRegex = mvzr.compile(EXT_EMAIL_REGEX) orelse return false;
-            const emailMatch = emailRegex.match(tail) orelse null;
+            const emailMatch = ext_email_regex.match(tail) orelse null;
 
             if (emailMatch != null and emailMatch.?.start == 0) {
                 var url = tail[0..emailMatch.?.end];
@@ -245,11 +252,13 @@ pub fn testAutolink(state: *InlineParserState, parent: *MarkdownNode) bool {
             }
         }
 
-        if (char == 'm' or char == 'x') {
+        if ((char == 'm' or char == 'x') and
+                (std.ascii.startsWithIgnoreCase(state.src[state.i..], "mailto:") or
+                    std.ascii.startsWithIgnoreCase(state.src[state.i..], "xmpp:")))
+        {
             const tail = state.src[state.i..];
 
-            const emailRegex = mvzr.compile(EXT_XMPP_REGEX) orelse return false;
-            const emailMatch = emailRegex.match(tail) orelse null;
+            const emailMatch = ext_xmpp_regex.match(tail) orelse null;
 
             if (emailMatch != null and emailMatch.?.start == 0) {
                 var url = tail[0..emailMatch.?.end];

@@ -3,9 +3,10 @@ let ENTITY_REGEX = /(?<!\\)&([a-z0-9]+|#[0-9]{1,4}|#x[a-f0-9]{1,6});/gi;
 //let ENTITY_NUMBER_REGEX = /(?<!\\)&#([0-9]{1,4});/g;
 
 export default function decodeEntities(text: string): string {
-	//return text
-	//	.replaceAll(ENTITY_NAME_REGEX, (m, g) => ENTITIES[g] || m)
-	//	.replaceAll(ENTITY_NUMBER_REGEX, (m, g) => String.fromCharCode(parseInt(g)) ?? "\u{0}");
+	// Fast path: no ampersands means no entities
+	if (!text.includes("&")) {
+		return text;
+	}
 	return text.replaceAll(ENTITY_REGEX, (m, g) => {
 		if (g[0] === "#") {
 			const num = g[1] === "x" || g[1] === "X" ? parseInt(g.slice(2), 16) : parseInt(g.slice(1));

@@ -8,6 +8,11 @@ public static partial class Utils
 
     public static string DecodeEntities(string text)
     {
+        // Fast path: no ampersands means no entities
+        if (text.IndexOf('&') < 0)
+        {
+            return text;
+        }
         return EntityRegex.Replace(text, match =>
         {
             var g = match.Groups[1].Value;

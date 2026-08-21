@@ -12,11 +12,21 @@ const renderer: Renderer = {
 export default renderer;
 
 function render(node: MarkdownNode, state: RendererState, decode?: boolean): void {
-	let content = node.content;
-	if (decode === true) {
-		content = decodeEntities(content);
-		content = escapePunctuation(content);
+	const content = node.content;
+	const scanDecode = decode === true;
+
+	// Fast path: if none of the special characters are present, output as-is
+	const needsProcessing = scanDecode ? /[&<>"\\]/.test(content) : /[&<>"]/.test(content);
+	if (!needsProcessing) {
+		state.output += content;
+		return;
 	}
-	content = escapeHtml(content);
-	state.output += content;
+
+	let result = content;
+	if (scanDecode) {
+		result = decodeEntities(result);
+		result = escapePunctuation(result);
+	}
+	result = escapeHtml(result);
+	state.output += result;
 }

@@ -23,6 +23,10 @@ const HTML_REGEX_6 = "^<\\/?([a-zA-Z][a-zA-Z0-9-]*)(\\s+|>|\\/>)";
 // NOTE: removed `$` anchor as mvzr doesn't support it correctly
 const HTML_REGEX_7 = "^(" ++ htmlPatterns.OPEN_TAG ++ "|" ++ htmlPatterns.CLOSE_TAG ++ ")[ \\t]*";
 
+const html_regex_1 = mvzr.compile(HTML_REGEX_1) orelse unreachable;
+const html_regex_6 = mvzr.compile(HTML_REGEX_6) orelse unreachable;
+const html_regex_7 = mvzr.compile(HTML_REGEX_7) orelse unreachable;
+
 const HtmlTags = struct {
     const script = "script";
     const pre = "pre";
@@ -97,8 +101,7 @@ fn testHtmlCondition2to5(state: *BlockParserState, parent: *MarkdownNode, tail: 
 }
 
 fn testHtmlCondition1(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
-    const regex = mvzr.compile(HTML_REGEX_1) orelse return false;
-    const match = regex.match(tail);
+    const match = html_regex_1.match(tail);
 
     if (match != null and match.?.start == 0) {
         const start = state.i;
@@ -145,8 +148,7 @@ fn testHtmlCondition1(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 }
 
 fn testHtmlCondition6(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
-    const regex = mvzr.compile(HTML_REGEX_6) orelse return false;
-    const match = regex.match(tail);
+    const match = html_regex_6.match(tail);
 
     if (match != null and match.?.start == 0) {
         const start = state.i;
@@ -191,8 +193,7 @@ fn testHtmlCondition6(state: *BlockParserState, parent: *MarkdownNode, tail: []c
 }
 
 fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []const u8) bool {
-    const regex = mvzr.compile(HTML_REGEX_7) orelse return false;
-    const match = regex.match(tail);
+    const match = html_regex_7.match(tail);
 
     if (match != null and match.?.start == 0) {
         const start = state.i;

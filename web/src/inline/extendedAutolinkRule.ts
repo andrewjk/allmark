@@ -29,11 +29,37 @@ const M_CHAR_CODE = 109;
 const W_CHAR_CODE = 119;
 const X_CHAR_CODE = 120;
 
+function startsWithCI(src: string, start: number, prefix: string): boolean {
+	if (start + prefix.length > src.length) {
+		return false;
+	}
+	for (let i = 0; i < prefix.length; i++) {
+		let code = src.charCodeAt(start + i);
+		let lower = prefix.charCodeAt(i);
+		if (code !== lower && code !== lower - 32) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function tailToEndOfLine(src: string, start: number): string {
+	let end = src.length;
+	for (let i = start; i < src.length; i++) {
+		let code = src.charCodeAt(i);
+		if (code === 10 || code === 13) {
+			end = i;
+			break;
+		}
+	}
+	return src.substring(start, end);
+}
+
 function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 	if (!state.isEscaped) {
 		let charCode = state.src.charCodeAt(state.i);
-		if (charCode === W_CHAR_CODE) {
-			let tail = state.src.substring(state.i);
+		if (charCode === W_CHAR_CODE && startsWithCI(state.src, state.i, "www.")) {
+			let tail = tailToEndOfLine(state.src, state.i);
 
 			let urlMatch = tail.match(URL_REGEX);
 			if (urlMatch !== null) {
@@ -62,8 +88,13 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			}
 		}
 
-		if (charCode === H_CHAR_CODE || charCode === F_CHAR_CODE) {
-			let tail = state.src.substring(state.i);
+		if (
+			(charCode === H_CHAR_CODE || charCode === F_CHAR_CODE) &&
+			(startsWithCI(state.src, state.i, "http://") ||
+				startsWithCI(state.src, state.i, "https://") ||
+				startsWithCI(state.src, state.i, "ftp://"))
+		) {
+			let tail = tailToEndOfLine(state.src, state.i);
 
 			let urlMatch = tail.match(EXT_URL_REGEX);
 			if (urlMatch !== null) {
@@ -101,7 +132,7 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 				}
 			}
 
-			let tail = state.src.substring(start);
+			let tail = tailToEndOfLine(state.src, start);
 
 			let emailMatch = tail.match(EXT_EMAIL_REGEX);
 			if (emailMatch !== null) {
@@ -133,8 +164,11 @@ function testAutolink(state: InlineParserState, parent: MarkdownNode): boolean {
 			}
 		}
 
-		if (charCode === M_CHAR_CODE || charCode === X_CHAR_CODE) {
-			let tail = state.src.substring(state.i);
+		if (
+			(charCode === M_CHAR_CODE || charCode === X_CHAR_CODE) &&
+			(startsWithCI(state.src, state.i, "mailto:") || startsWithCI(state.src, state.i, "xmpp:"))
+		) {
+			let tail = tailToEndOfLine(state.src, state.i);
 
 			let emailMatch = tail.match(EXT_XMPP_REGEX);
 			if (emailMatch !== null) {
