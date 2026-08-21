@@ -11,7 +11,7 @@ let headingRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -67,7 +67,6 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bo
 				currentParent.children.append(heading)
 
 				movePastMarker(markerLength: level, state: &state)
-				let endOfLine = getEndOfLine(state: &state)
 				var end = endOfLine - 1
 
 				while end >= state.i {
@@ -102,12 +101,8 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode) -> Bo
 					heading.info = charToString(src, from: end, to: endOfLine)
 				}
 
-				state.i = endOfLine
-
-				let headingRange = charToString(src, from: heading.index, to: state.i)
-				heading.length = headingRange.count
-				let contentRange = charToString(src, from: content.index, to: state.i)
-				content.length = contentRange.count
+				heading.length = endOfLine - heading.index
+				content.length = endOfLine - content.index
 
 				return true
 			}

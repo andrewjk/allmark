@@ -49,7 +49,7 @@ func parseLinkInline(
 	}
 
 	if !url.isEmpty {
-		if url.contains("\n") || url.contains("\r\n") {
+		if url.contains("\n") || url.contains("\r\n") || url.contains("\r") {
 			return nil
 		}
 		url = decodeEntities(text: url)

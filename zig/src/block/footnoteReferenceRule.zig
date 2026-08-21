@@ -2,7 +2,6 @@ const std = @import("std");
 const BlockParserState = @import("../types/BlockParserState.zig").BlockParserState;
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
-const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
@@ -11,7 +10,7 @@ const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
 const parseBlock = @import("../parse/parseBlock.zig").parseBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
     if (parent.acceptsContent) {
         return false;
     }
@@ -102,7 +101,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         state.openNodes.append(state.allocator, ref) catch unreachable;
 
         state.hasBlankLine = false;
-        parseBlock(state, ref);
+        parseBlock(state, ref, end_of_line);
 
         ref.length = state.i - ref.index;
 
@@ -113,7 +112,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         const lastChild = parent.children.?[parent.children.?.len - 1];
         if (std.mem.eql(u8, lastChild.type, "footnote_ref")) {
             state.indent = 0;
-            parseBlock(state, lastChild);
+            parseBlock(state, lastChild, end_of_line);
             return true;
         }
     }
@@ -148,6 +147,7 @@ pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {
         }
 
         if (openNode.content.len >= 3 and std.mem.eql(u8, openNode.content[openNode.content.len - 3 ..], "  \n") or
+            openNode.content.len >= 3 and std.mem.eql(u8, openNode.content[openNode.content.len - 3 ..], "  \r") or
             openNode.content.len >= 4 and std.mem.eql(u8, openNode.content[openNode.content.len - 4 ..], "  \r\n"))
         {
             state.maybeContinue = true;

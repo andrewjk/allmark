@@ -27,7 +27,7 @@ public static class AlertRule
         return state.Indent <= 3 && c == '>';
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -46,8 +46,6 @@ public static class AlertRule
 
                 parent.Children!.Add(quote);
                 state.OpenNodes.Push(quote);
-
-                state.I = Utils.GetEndOfLine(state);
 
                 return true;
             }

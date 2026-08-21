@@ -8,6 +8,7 @@ import {
 	SPACE_CODE,
 } from "../utils/charCodes";
 import consumeSpaces from "../utils/consumeSpaces";
+import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import newInline from "../utils/newInline";
 
@@ -29,11 +30,7 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 	if (charCode === BACKSLASH_CODE) {
 		let end = state.i + 2;
 		let nextCharCode = state.src.charCodeAt(state.i + 1);
-		if (nextCharCode === CARRIAGE_RETURN_CODE) {
-			nextCharCode = state.src.charCodeAt(state.i + 2);
-			end++;
-		}
-		if (nextCharCode === NEW_LINE_CODE) {
+		if (isNewLine(nextCharCode)) {
 			let hb = newInline("hard_break", state.parentIndex + state.i, state.line, "\\", 0);
 			hb.length = 2;
 			parent.children!.push(hb);
@@ -51,7 +48,11 @@ function testHardBreak(state: InlineParserState, parent: MarkdownNode): boolean 
 				end = i;
 				break;
 			} else if (nextCharCode === CARRIAGE_RETURN_CODE) {
-				// Keep going...
+				end = i;
+				if (state.src.charCodeAt(i + 1) === NEW_LINE_CODE) {
+					end++;
+				}
+				break;
 			} else if (nextCharCode === SPACE_CODE) {
 				spaces++;
 			} else {

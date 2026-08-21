@@ -21,7 +21,7 @@ public static class HtmlBlockRule
     private static readonly Regex HtmlRegex4 = new(@"<![A-Z].+>", RegexOptions.Singleline | RegexOptions.Compiled);
     private static readonly Regex HtmlRegex5 = new(@"<!\[CDATA\[.+\]\]>", RegexOptions.Singleline | RegexOptions.Compiled);
     private static readonly Regex HtmlRegex6 = new(@"^<\/*(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s+|$|>|\/>)", RegexOptions.IgnoreCase | RegexOptions.Compiled);
-    private static readonly Regex HtmlRegex7 = new Regex(@$"^(?:{HtmlPatterns.OpenTag}|{HtmlPatterns.CloseTag})(?:\r?\n|\s|$)", RegexOptions.Compiled);
+    private static readonly Regex HtmlRegex7 = new Regex(@$"^(?:{HtmlPatterns.OpenTag}|{HtmlPatterns.CloseTag})(?:\r?\n|\r|\s|$)", RegexOptions.Compiled);
 
     /// <summary>
     /// "An HTML block is a group of lines that is treated as raw HTML (and will not
@@ -42,7 +42,7 @@ public static class HtmlBlockRule
     /// start condition will be ignored by the parser and passed through as-is,
     /// without changing the parser's state."
     /// </summary>
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -181,8 +181,8 @@ public static class HtmlBlockRule
         var match = HtmlRegex7.Match(tail);
         if (match.Success && match.Index == 0)
         {
-            var matchEnd = state.I + match.Value.Length;
-            for (var i = state.I; i < matchEnd - 1; i++)
+            var matchEnd = state.I + match.Value.Length - (match.Value.EndsWith("\r\n") ? 2 : 1);
+            for (var i = state.I; i < matchEnd; i++)
             {
                 if (Utils.IsNewLine(state.Src[i]))
                 {

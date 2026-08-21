@@ -53,7 +53,7 @@ func getOrderedListMarkup(state: BlockParserState) -> ListInfo? {
 	return nil
 }
 
-func testListOrderedStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testListOrderedStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -62,7 +62,7 @@ func testListOrderedStart(state: inout BlockParserState, parent: MarkdownNode) -
 		return false
 	}
 
-	return testListStart(state: &state, parent: parent, info: info)
+	return testListStart(state: &state, parent: parent, endOfLine: endOfLine, info: info)
 }
 
 func testListOrderedContinue(state: inout BlockParserState, node: MarkdownNode) -> Bool {

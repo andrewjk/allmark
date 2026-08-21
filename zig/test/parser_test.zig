@@ -60,11 +60,11 @@ test "basic parse" {
     try std.testing.expect(doc.children != null);
     try std.testing.expectEqualStrings("heading", doc.children.?[0].type);
     try std.testing.expectEqual(@as(usize, 0), doc.children.?[0].index);
-    try std.testing.expectEqual(@as(usize, 14), doc.children.?[0].length);
+    try std.testing.expectEqual(@as(usize, 13), doc.children.?[0].length);
 
     const start = doc.children.?[0].index;
     const end = start + doc.children.?[0].length;
-    try std.testing.expectEqualStrings("# Test ☺️\n", input[start..end]);
+    try std.testing.expectEqualStrings("# Test ☺️", input[start..end]);
 
     const input2 = try std.mem.replaceOwned(u8, gpa, input, "\r\n", "\r");
     defer gpa.free(input2);
@@ -77,14 +77,19 @@ test "basic parse" {
     const html2 = try render(gpa, doc2, null, false, null);
     defer gpa.free(html2);
 
-    try std.testing.expectEqualStrings(expected, html2);
+    const normalized_html2a = try std.mem.replaceOwned(u8, gpa, html2, "\r\n", "\n");
+    defer gpa.free(normalized_html2a);
+    const normalized_html2b = try std.mem.replaceOwned(u8, gpa, normalized_html2a, "\r", "\n");
+    defer gpa.free(normalized_html2b);
+
+    try std.testing.expectEqualStrings(expected, normalized_html2b);
 
     try std.testing.expect(doc2.children != null);
     try std.testing.expectEqualStrings("heading", doc2.children.?[0].type);
     try std.testing.expectEqual(@as(usize, 0), doc2.children.?[0].index);
-    try std.testing.expectEqual(@as(usize, 14), doc2.children.?[0].length);
+    try std.testing.expectEqual(@as(usize, 13), doc2.children.?[0].length);
 
     const start2 = doc2.children.?[0].index;
     const end2 = start2 + doc2.children.?[0].length;
-    try std.testing.expectEqualStrings("# Test ☺️\r", input2b[start2..end2]);
+    try std.testing.expectEqualStrings("# Test ☺️", input2b[start2..end2]);
 }

@@ -29,7 +29,13 @@ export default function render(node: MarkdownNode, state: RendererState, ordered
 					innerNewLine(item, state);
 				}
 				renderNode(child, state);
-				if (i === item.children!.length - 1 && child.block && !state.output.endsWith("\n")) {
+				if (i === item.children!.length - 1 && child.block) {
+					if (state.output.endsWith("\n")) {
+						state.output = state.output.slice(0, -1);
+					}
+					if (state.output.endsWith("\r")) {
+						state.output = state.output.slice(0, -1);
+					}
 					state.output += "\n";
 				}
 			}

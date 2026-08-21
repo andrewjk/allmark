@@ -4,7 +4,7 @@ func parseLinkReference(
 	state: inout BlockParserState,
 	start: Int
 ) -> LinkReference? {
-	let blankLineRegex = try! NSRegularExpression(pattern: "\\r?\\n[ \\t]*\\r?\\n", options: [])
+	let blankLineRegex = try! NSRegularExpression(pattern: "(\\r?\\n|\\r)[ \\t]*\\1", options: [])
 
 	var currentStart = start
 
@@ -115,7 +115,7 @@ func parseLinkReference(
 				} else if isSpace(char: src[currentStart]) {
 					currentStart += 1
 				} else {
-					if spaces.contains("\n") || spaces.contains("\r\n") {
+					if spaces.contains("\r\n") || spaces.contains("\n") || spaces.contains("\r") {
 						title = ""
 						currentStart = urlEnd
 						break

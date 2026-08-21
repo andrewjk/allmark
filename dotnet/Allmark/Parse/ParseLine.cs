@@ -47,6 +47,37 @@ public static class ParseLine
         }
 
         var parent = state.OpenNodes.Peek();
-        ParseBlock.Execute(state, parent);
+
+        // Get the end of the line
+        var endOfLine = state.I;
+        var nextIndex = state.Src.Length;
+        for (; endOfLine < state.Src.Length; endOfLine++)
+        {
+            var code = state.Src[endOfLine];
+            if (code == '\n')
+            {
+                nextIndex = endOfLine + 1;
+                break;
+            }
+            else if (code == '\r')
+            {
+                nextIndex = endOfLine + 1;
+                if (Utils.GetChar(state.Src, endOfLine + 1) == '\n')
+                {
+                    nextIndex++;
+                }
+                break;
+            }
+        }
+
+        ParseBlock.Execute(state, parent, endOfLine);
+
+        // NOTE: a rule can move state.I past the next line
+        // (e.g. for a HTML block or link reference containing a newline)
+        if (state.I < nextIndex)
+        {
+            state.I = nextIndex;
+            state.LineStart = nextIndex;
+        }
     }
 }

@@ -68,7 +68,7 @@ pub fn render(allocator: std.mem.Allocator, doc: *const MarkdownNode, renderers:
     }
 
     // Ensure exactly one trailing newline (matching web implementation behavior)
-    while (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\n') {
+    while (state.output.items.len > 0 and (state.output.items[state.output.items.len - 1] == '\n' or state.output.items[state.output.items.len - 1] == '\r')) {
         _ = state.output.pop();
     }
     if (state.output.items.len > 0) {

@@ -34,9 +34,11 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
 
         try renderChildrenFn(fn_node, state, true);
 
-        if (state.output.items.len >= 1 and state.output.items[state.output.items.len - 1] == '\n') {
-            const new_len = state.output.items.len - 1;
-            state.output.shrinkRetainingCapacity(new_len);
+        if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\n') {
+            state.output.shrinkRetainingCapacity(state.output.items.len - 1);
+        }
+        if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\r') {
+            state.output.shrinkRetainingCapacity(state.output.items.len - 1);
         }
 
         state.output.appendSlice(state.allocator, "\n") catch unreachable;

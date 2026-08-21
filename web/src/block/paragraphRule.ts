@@ -1,7 +1,7 @@
 import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
-import getEndOfLine from "../utils/getEndOfLine";
+import getLineEnding from "../utils/getLineEnding";
 import newBlock from "../utils/newBlock";
 
 const rule: BlockRule = {
@@ -19,7 +19,7 @@ export default rule;
  * whitespace."
  */
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, endOfLine: number) {
 	if (parent.acceptsContent) {
 		return false;
 	}
@@ -28,17 +28,14 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		return false;
 	}
 
-	let endOfLine = getEndOfLine(state);
-	let content = state.src.substring(state.i, endOfLine);
+	let content = state.src.substring(state.i, endOfLine) + getLineEnding(state, endOfLine);
 
 	if (!/[^\s]/.test(content)) {
-		state.i += content.length;
 		return true;
 	}
 
 	let paragraph = newBlock("paragraph", state.i, state.line, "", 0);
 	paragraph.content = content;
-	state.i = endOfLine;
 
 	if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
 		parent.children.at(-1)!.blankAfter = true;

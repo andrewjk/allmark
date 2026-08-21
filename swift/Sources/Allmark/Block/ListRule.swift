@@ -8,7 +8,7 @@ struct ListInfo {
 	var type: String
 }
 
-func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: ListInfo?) -> Bool {
+func testListStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int, info: ListInfo?) -> Bool {
 	guard let info = info else {
 		return false
 	}
@@ -156,7 +156,7 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, info: Li
 	movePastMarker(markerLength: info.markup.count, state: &state)
 
 	state.hasBlankLine = false
-	parseBlock(state: &state, parent: item)
+	parseBlock(state: &state, parent: item, endOfLine: endOfLine)
 
 	return true
 }

@@ -24,28 +24,25 @@ pub fn getMarkup(state: *BlockParserState) ?ListInfo {
     var next_char: u8 = 0;
     if (state.i + 1 < state.src.len) {
         next_char = state.src[state.i + 1];
-        if (next_char == '\r' and state.i + 2 < state.src.len) {
-            next_char = state.src[state.i + 2];
-        }
     }
 
     return ListInfo{
         .delimiter = char,
         .markup = state.src[state.i .. state.i + 1],
-        .is_blank = (state.i + 1 >= state.src.len) or next_char == '\n',
+        .is_blank = (state.i + 1 >= state.src.len) or next_char == '\n' or next_char == '\r',
         .type = "list_bulleted",
     };
 }
 
-pub fn testListStart(state: *BlockParserState, parent: *MarkdownNode, info: ?ListInfo) bool {
+pub fn testListStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize, info: ?ListInfo) bool {
     if (info == null) {
         return false;
     }
 
-    return testStartWithInfo(state, parent, info.?);
+    return testStartWithInfo(state, parent, end_of_line, info.?);
 }
 
-fn testStartWithInfo(state: *BlockParserState, parent: *MarkdownNode, info: ListInfo) bool {
+fn testStartWithInfo(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize, info: ListInfo) bool {
     var effective_parent = parent;
     var closed_node: ?*MarkdownNode = null;
 
@@ -118,8 +115,8 @@ fn testStartWithInfo(state: *BlockParserState, parent: *MarkdownNode, info: List
     var blank: bool = true;
     var j: usize = state.i + info.markup.len;
     while (j < state.src.len) : (j += 1) {
-        if (state.src[j] == '\n') break;
-        if (state.src[j] == '\r') {} else if (isSpace(state.src[j])) {
+        if (state.src[j] == '\n' or state.src[j] == '\r') break;
+        if (isSpace(state.src[j])) {
             spaces += 1;
         } else {
             blank = false;
@@ -178,7 +175,7 @@ fn testStartWithInfo(state: *BlockParserState, parent: *MarkdownNode, info: List
 
     movePastMarker(info.markup.len, state);
     state.hasBlankLine = false;
-    parseBlock(state, item);
+    parseBlock(state, item, end_of_line);
 
     return true;
 }
@@ -212,7 +209,7 @@ pub fn testContinue(info: ?ListInfo, state: *BlockParserState, node: *MarkdownNo
         }
     }
 
-    if (char == '\n') {
+    if (isNewLine(char)) {
         return true;
     }
 

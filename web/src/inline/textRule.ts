@@ -1,6 +1,7 @@
 import type InlineParserState from "../types/InlineParserState";
 import type InlineRule from "../types/InlineRule";
 import type MarkdownNode from "../types/MarkdownNode";
+import { CARRIAGE_RETURN_CODE, NEW_LINE_CODE } from "../utils/charCodes";
 import { isAlphaNumeric } from "../utils/isAlphaNumeric";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
@@ -34,7 +35,15 @@ function testText(state: InlineParserState, parent: MarkdownNode): boolean {
 	} else if (isNewLine(charCode)) {
 		// "Spaces at the end of the line and beginning of the next line are removed"
 		lastNode.content = lastNode.content.trimEnd();
-		if (isSpace(state.src.charCodeAt(state.i + 1))) {
+		let nextCharCode = state.src.charCodeAt(state.i + 1);
+		if (charCode === CARRIAGE_RETURN_CODE && nextCharCode === NEW_LINE_CODE) {
+			lastNode.content += char;
+			char = "\n";
+			charCode = NEW_LINE_CODE;
+			state.i++;
+			nextCharCode = state.src.charCodeAt(state.i + 1);
+		}
+		if (isSpace(nextCharCode)) {
 			lastNode.content += char;
 			lastNode.length = lastNode.content.length;
 			state.i += 2;

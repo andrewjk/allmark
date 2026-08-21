@@ -34,6 +34,10 @@ public static class ConsoleFootnoteListRenderer
             {
                 state.Output.Length -= 1;
             }
+            if (output.EndsWith("\r"))
+            {
+                state.Output.Length -= 1;
+            }
             state.Output.Append("\n");
         }
     }

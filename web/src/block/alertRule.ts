@@ -2,7 +2,6 @@ import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import { ANGLE_RIGHT_CODE } from "../utils/charCodes";
-import getEndOfLine from "../utils/getEndOfLine";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
 
@@ -50,7 +49,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			parent.children!.push(quote);
 			state.openNodes.push(quote);
-			state.i = getEndOfLine(state);
 
 			return true;
 		}

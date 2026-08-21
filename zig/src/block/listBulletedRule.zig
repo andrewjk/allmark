@@ -11,7 +11,7 @@ const testListContinue = @import("./listRule.zig").testListContinue;
 const isLooseList = @import("./listRule.zig").isLooseList;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
     if (parent.acceptsContent) {
         return false;
     }
@@ -19,7 +19,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     const info = getMarkup(state);
     if (info == null) return false;
 
-    return testListStart(state, parent, info);
+    return testListStart(state, parent, end_of_line, info);
 }
 
 pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {

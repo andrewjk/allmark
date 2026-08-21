@@ -21,12 +21,7 @@ public static class HardBreakRule
             {
                 var end = state.I + 2;
                 var nextChar = Utils.GetChar(state.Src, state.I + 1);
-                if (nextChar == '\r')
-                {
-                    nextChar = Utils.GetChar(state.Src, state.I + 2);
-                    end++;
-                }
-                if (nextChar == '\n')
+                if (Utils.IsNewLine(nextChar))
                 {
                     var hb = Utils.NewInline("hard_break", state.ParentIndex + state.I, state.Line, "\\", 0);
                     hb.Length = 2;
@@ -48,7 +43,12 @@ public static class HardBreakRule
                     }
                     else if (state.Src[i] == '\r')
                     {
-                        // Keep going...
+                        end = i;
+                        if (Utils.GetChar(state.Src, i + 1) == '\n')
+                        {
+                            end++;
+                        }
+                        break;
                     }
                     else if (state.Src[i] == ' ')
                     {

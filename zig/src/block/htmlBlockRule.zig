@@ -198,15 +198,14 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
         const start = state.i;
 
         const match_end = match.?.end;
-        const end = state.i + match_end;
-        if (end < state.src.len) {
-            var next_char = state.src[end];
-            if (next_char == '\r' and end + 1 < state.src.len) {
-                next_char = state.src[end + 1];
-            }
-            if (next_char != '\n') {
-                return false;
-            }
+        var end = state.i + match_end;
+        if (end < state.src.len and !isNewLine(state.src[end])) {
+            return false;
+        }
+        if (end >= 2 and state.src[end - 2] == '\r' and state.src[end - 1] == '\n') {
+            end -= 2;
+        } else {
+            end -= 1;
         }
         var i: usize = state.i;
         while (i < end) : (i += 1) {
@@ -221,6 +220,8 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
                 p_end += 1;
             } else if (p_end + 1 < state.src.len and state.src[p_end] == '\r' and state.src[p_end + 1] == '\n') {
                 p_end += 2;
+            } else if (p_end < state.src.len and state.src[p_end] == '\r') {
+                p_end += 1;
             }
             const old_content = parent.content;
             const new_content = state.allocator.alloc(u8, old_content.len + (p_end - state.i)) catch unreachable;
@@ -244,7 +245,8 @@ fn testHtmlCondition7(state: *BlockParserState, parent: *MarkdownNode, tail: []c
     return false;
 }
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
+    _ = end_of_line;
     if (parent.acceptsContent) return false;
 
     if (state.i >= state.src.len) return false;

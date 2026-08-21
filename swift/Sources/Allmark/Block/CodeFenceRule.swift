@@ -10,7 +10,7 @@ let codeFenceRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int) -> Bool {
 	// A fenced code block can't be started in a block that accepts content
 	if parent.acceptsContent {
 		return false
@@ -58,7 +58,7 @@ func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 				if isNewLine(char: endChar) {
 					end += 1
 				} else {
-					end = getEndOfLine(state: &state)
+					end = endOfLine
 					info = charToString(src, from: state.i + matched, to: end)
 
 					if char == "`" && info.contains("`") {
@@ -107,8 +107,6 @@ func testCodeFenceStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 			)
 			code.acceptsContent = true
 			code.info = info
-
-			state.i = end
 
 			if state.hasBlankLine && !currentParent.children.isEmpty {
 				let lastChild = currentParent.children[currentParent.children.count - 1]

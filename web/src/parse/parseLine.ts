@@ -1,4 +1,5 @@
 import type BlockParserState from "../types/BlockParserState";
+import { CARRIAGE_RETURN_CODE, NEW_LINE_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import parseBlock from "./parseBlock";
 import parseIndent from "./parseIndent";
@@ -39,6 +40,30 @@ export function parseLine(state: BlockParserState): void {
 		}
 	}
 
+	// Get the end of the line
+	let endOfLine = state.i;
+	let nextIndex = state.src.length;
+	for (; endOfLine < state.src.length; endOfLine++) {
+		let code = state.src.charCodeAt(endOfLine);
+		if (code === NEW_LINE_CODE) {
+			nextIndex = endOfLine + 1;
+			break;
+		} else if (code === CARRIAGE_RETURN_CODE) {
+			nextIndex = endOfLine + 1;
+			if (state.src.charCodeAt(endOfLine + 1) === NEW_LINE_CODE) {
+				nextIndex++;
+			}
+			break;
+		}
+	}
+
 	let parent = state.openNodes.at(-1)!;
-	parseBlock(state, parent);
+	parseBlock(state, parent, endOfLine);
+
+	// NOTE: a rule can move state.i past the next line
+	// (e.g. for a HTML block or link reference containing a newline)
+	if (state.i < nextIndex) {
+		state.i = nextIndex;
+		state.lineStart = nextIndex;
+	}
 }

@@ -5,11 +5,11 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
-const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
+    _ = end_of_line;
     if (parent.acceptsContent) return false;
 
     if (state.i >= state.src.len) return false;
@@ -78,8 +78,6 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             tbr.length = end - state.i;
 
             appendChild(state.allocator, effective_parent, tbr) catch unreachable;
-
-            state.i = end;
 
             return true;
         }

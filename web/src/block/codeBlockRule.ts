@@ -24,7 +24,7 @@ export default rule;
  * is not needed, however, between a code block and a following paragraph.)"
  */
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, endOfLine: number) {
 	if (parent.acceptsContent) {
 		return false;
 	}
@@ -52,7 +52,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 		state.indent = 0;
 		state.hasBlankLine = false;
-		parseBlock(state, code);
+		parseBlock(state, code, endOfLine);
 
 		return true;
 	}

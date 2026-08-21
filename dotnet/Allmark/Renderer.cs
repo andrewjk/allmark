@@ -29,7 +29,7 @@ public static class Renderer
         if (state.Output.Length > 0)
         {
             //output = System.Text.RegularExpressions.Regex.Replace(output, @"\n*$", "\n");
-            var output = state.Output.ToString().TrimEnd("\n").ToString() + "\n";
+            var output = state.Output.ToString().TrimEnd('\n', '\r') + "\n";
             state.Output.Clear();
             state.Output.Append(output);
         }

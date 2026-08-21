@@ -16,7 +16,7 @@ nonisolated(unsafe) let htmlRegex3 = /(?s)<\?.+?\?>/
 nonisolated(unsafe) let htmlRegex4 = /(?s)<![A-Z].+>/
 nonisolated(unsafe) let htmlRegex5 = /(?s)<!\[CDATA\[.+?\]\]>/
 nonisolated(unsafe) let htmlRegex6 = /(?i)^<\/?(address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h1|h2|h3|h4|h5|h6|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|nav|noframes|ol|optgroup|option|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul)(\s+|$|>|\/>)/
-nonisolated(unsafe) let htmlRegex7 = try! Regex("^(?:\(openTag)|\(closeTag))(?:\\s|$)")
+nonisolated(unsafe) let htmlRegex7 = try! Regex("^(?:\(openTag)|\(closeTag))(?:\\r?\\n|\\r|\\s|$)")
 
 func addHtmlBlock(state: inout BlockParserState, parent: MarkdownNode, start: Int, end: Int, type: Int) {
 	let html = newBlock(type: "html_block", index: start, line: state.line, markup: "", indent: type)
@@ -32,7 +32,7 @@ func addHtmlBlock(state: inout BlockParserState, parent: MarkdownNode, start: In
 	state.i = end
 }
 
-func testHtmlBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testHtmlBlockStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine _: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -133,18 +133,26 @@ func testHtmlCondition6(state: inout BlockParserState, parent: MarkdownNode, tai
 
 func testHtmlCondition7(state: inout BlockParserState, parent: MarkdownNode, tail: String) -> Bool {
 	if let match = tail.firstMatch(of: htmlRegex7) {
-		let end = state.i + tail.distance(from: tail.startIndex, to: match.range.upperBound)
+		let matchLength = tail.distance(from: tail.startIndex, to: match.range.upperBound)
+		var end = state.i + matchLength
+		let matchStr = charToString(state.src, from: state.i, to: state.i + matchLength)
+		if matchStr.hasSuffix("\r\n") {
+			end -= 2
+		} else {
+			end -= 1
+		}
 
-		for i in state.i ..< end - 1 {
+		for i in state.i ..< end {
 			if isNewLine(char: state.src[i]) {
 				return false
 			}
 		}
 
 		if parent.type == "paragraph" && !parent.blankAfter {
-			let content = charToString(state.src, from: state.i, to: end)
+			let contentEnd = state.i + matchLength
+			let content = charToString(state.src, from: state.i, to: contentEnd)
 			parent.content += content
-			state.i = end
+			state.i = contentEnd
 			return true
 		}
 

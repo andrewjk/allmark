@@ -10,7 +10,7 @@ let thematicBreakRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine _: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -87,7 +87,6 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode)
 			)
 			tbr.length = end - state.i
 			currentParent.children.append(tbr)
-			state.i = end
 			return true
 		}
 	}

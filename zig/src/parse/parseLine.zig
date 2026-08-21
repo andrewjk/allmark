@@ -32,10 +32,31 @@ pub fn parseLine(state: *BlockParserState) void {
         i += 1;
     }
 
-    // Safety check: ensure we always have at least the document node
-    //if (state.openNodes.items.len == 0) {
-    //    return; // Nothing to parse
-    //}
+    // Get the end of the line
+    var end_of_line = state.i;
+    var next_index = state.src.len;
+    while (end_of_line < state.src.len) {
+        const code = state.src[end_of_line];
+        if (code == '\n') {
+            next_index = end_of_line + 1;
+            break;
+        } else if (code == '\r') {
+            next_index = end_of_line + 1;
+            if (end_of_line + 1 < state.src.len and state.src[end_of_line + 1] == '\n') {
+                next_index += 1;
+            }
+            break;
+        }
+        end_of_line += 1;
+    }
+
     const parent = state.openNodes.items[state.openNodes.items.len - 1];
-    parseBlock(state, parent);
+    parseBlock(state, parent, end_of_line);
+
+    // NOTE: a rule can move state.i past the next line
+    // (e.g. for a HTML block or link reference containing a newline)
+    if (state.i < next_index) {
+        state.i = next_index;
+        state.lineStart = next_index;
+    }
 }

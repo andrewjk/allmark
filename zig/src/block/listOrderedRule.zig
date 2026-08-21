@@ -33,11 +33,8 @@ pub fn getMarkup(state: *BlockParserState) ?ListInfo {
     var next_char: u8 = 0;
     if (end + 1 < state.src.len) {
         next_char = state.src[end + 1];
-        if (next_char == '\r' and end + 2 < state.src.len) {
-            next_char = state.src[end + 2];
-        }
     }
-    const is_blank = (end + 1 >= state.src.len) or next_char == '\n';
+    const is_blank = (end + 1 >= state.src.len) or next_char == '\n' or next_char == '\r';
 
     return ListInfo{
         .delimiter = delimiter,
@@ -47,7 +44,7 @@ pub fn getMarkup(state: *BlockParserState) ?ListInfo {
     };
 }
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
     if (parent.acceptsContent) {
         return false;
     }
@@ -55,7 +52,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
     const info = getMarkup(state);
     if (info == null) return false;
 
-    return testListStart(state, parent, info);
+    return testListStart(state, parent, end_of_line, info);
 }
 
 pub fn testContinue(state: *BlockParserState, node: *MarkdownNode) bool {

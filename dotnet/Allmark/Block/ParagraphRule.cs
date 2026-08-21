@@ -15,7 +15,7 @@ public static class ParagraphRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -27,18 +27,15 @@ public static class ParagraphRule
             return false;
         }
 
-        var endOfLine = Utils.GetEndOfLine(state);
-        var content = state.Src.Substring(state.I, endOfLine - state.I);
+        var content = state.Src.Substring(state.I, endOfLine - state.I) + Utils.GetLineEnding(state, endOfLine);
 
         if (!Regex.IsMatch(content, @"[^\s]"))
         {
-            state.I += content.Length;
             return true;
         }
 
         var paragraph = Utils.NewBlock("paragraph", state.I, state.Line, "", 0);
         paragraph.Content = content;
-        state.I = endOfLine;
 
         if (state.HasBlankLine && parent.Children!.Count > 0)
         {

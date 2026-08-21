@@ -14,10 +14,9 @@ public static class ContentRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
-        var endOfLine = Utils.GetEndOfLine(state);
-        var content = state.Src.Substring(state.I, endOfLine - state.I);
+        var content = state.Src.Substring(state.I, endOfLine - state.I) + Utils.GetLineEnding(state, endOfLine);
         if (parent.AcceptsContent)
         {
             if (state.HasBlankLine)
@@ -35,7 +34,6 @@ public static class ContentRule
             state.Spaces = "";
         }
         parent.Content += content;
-        state.I = endOfLine;
         return true;
     }
 }

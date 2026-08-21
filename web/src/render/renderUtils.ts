@@ -2,7 +2,13 @@ import type MarkdownNode from "../types/MarkdownNode";
 import type RendererState from "../types/RendererState";
 
 export function startNewLine(node: MarkdownNode, state: RendererState): void {
-	if (state.output.length && node.block && !state.output.endsWith("\n")) {
+	if (state.output.length && node.block) {
+		if (state.output.endsWith("\n")) {
+			state.output = state.output.slice(0, -1);
+		}
+		if (state.output.endsWith("\r")) {
+			state.output = state.output.slice(0, -1);
+		}
 		state.output += "\n";
 	}
 }

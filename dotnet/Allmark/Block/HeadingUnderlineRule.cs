@@ -15,7 +15,7 @@ public static class HeadingUnderlineRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (state.MaybeContinue)
         {
@@ -76,7 +76,6 @@ public static class HeadingUnderlineRule
                 parent.Type = "heading_underline";
                 parent.Markup = state.Src.Substring(state.I, end - state.I);
                 parent.Length = end - parent.Index;
-                state.I = end;
                 return true;
             }
         }

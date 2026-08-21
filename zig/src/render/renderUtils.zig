@@ -4,10 +4,13 @@ const RendererState = @import("../types/RendererState.zig").RendererState;
 
 pub fn startNewLine(node: *const MarkdownNode, state: *RendererState) void {
     if (state.output.items.len > 0 and node.block) {
-        const last = state.output.items[state.output.items.len - 1];
-        if (last != '\n') {
-            state.output.append(state.allocator, '\n') catch unreachable;
+        if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\n') {
+            state.output.shrinkRetainingCapacity(state.output.items.len - 1);
         }
+        if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\r') {
+            state.output.shrinkRetainingCapacity(state.output.items.len - 1);
+        }
+        state.output.append(state.allocator, '\n') catch unreachable;
     }
 }
 

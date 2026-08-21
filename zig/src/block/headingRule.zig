@@ -4,11 +4,10 @@ const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
-const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
     if (parent.acceptsContent) return false;
 
     if (state.i >= state.src.len) return false;
@@ -58,7 +57,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
             const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
             movePastMarker(level, state);
-            const eol = getEndOfLine(state);
+            const eol = end_of_line;
 
             // Strip trailing spaces and optional closing # characters
             var end = eol - 1;
@@ -97,9 +96,8 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
                 heading.info = state.allocator.dupe(u8, state.src[end..eol]) catch unreachable;
             }
 
-            state.i = eol;
-            heading.length = state.i - heading.index;
-            content.length = state.i - content.index;
+            heading.length = eol - heading.index;
+            content.length = eol - content.index;
 
             return true;
         }

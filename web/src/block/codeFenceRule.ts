@@ -5,7 +5,6 @@ import { BACKTICK_CODE, TILDE_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
 import decodeEntities from "../utils/decodeEntities";
 import escapeBackslashes from "../utils/escapeBackslashes";
-import getEndOfLine from "../utils/getEndOfLine";
 import isNewLine from "../utils/isNewLine";
 import isSpace from "../utils/isSpace";
 import newBlock from "../utils/newBlock";
@@ -56,7 +55,7 @@ export default rule;
  * string."
  */
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, endOfLine: number) {
 	// A fenced code block can't be started in a block that accepts content
 	if (parent.acceptsContent) {
 		return false;
@@ -92,7 +91,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			if (isNewLine(endCode)) {
 				end++;
 			} else {
-				end = getEndOfLine(state);
+				end = endOfLine;
 				info = state.src.substring(state.i + matched, end);
 
 				// "Info strings for backtick code blocks cannot contain backticks"
@@ -135,8 +134,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 			let code = newBlock("code_fence", state.i, state.line, markup, state.indent);
 			code.acceptsContent = true;
 			code.info = info;
-
-			state.i = end;
 
 			if (state.hasBlankLine && parent.children !== undefined && parent.children.length > 0) {
 				parent.children.at(-1)!.blankAfter = true;

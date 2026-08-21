@@ -49,7 +49,7 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 	return nil
 }
 
-func testListBulletedStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testListBulletedStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -58,7 +58,7 @@ func testListBulletedStart(state: inout BlockParserState, parent: MarkdownNode) 
 		return false
 	}
 
-	return testListStart(state: &state, parent: parent, info: info)
+	return testListStart(state: &state, parent: parent, endOfLine: endOfLine, info: info)
 }
 
 func testListBulletedContinue(state: inout BlockParserState, node: MarkdownNode) -> Bool {

@@ -13,7 +13,7 @@ public record BlockRule
     /// <summary>
     /// Tests whether a node should start e.g. a block quote should start when we find a '>'.
     /// </summary>
-    public required Func<BlockParserState, MarkdownNode, bool> TestStart { get; init; }
+    public required Func<BlockParserState, MarkdownNode, int, bool> TestStart { get; init; }
 
     /// <summary>
     /// Tests whether a node should continue after being started e.g. a block quote should continue if we find a '>'.

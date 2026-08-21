@@ -14,7 +14,7 @@ public static class ListTaskItemRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.Type == "list_item")
         {

@@ -19,7 +19,7 @@ func hasAlertMarkup(char: Character, state: BlockParserState) -> Bool {
 	return state.indent <= 3 && char == ">"
 }
 
-func testAlertStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testAlertStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine _: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -52,8 +52,6 @@ func testAlertStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 
 			currentParent.children.append(quote)
 			state.openNodes.append(quote)
-
-			state.i = getEndOfLine(state: &state)
 
 			return true
 		}

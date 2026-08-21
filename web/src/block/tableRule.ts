@@ -109,7 +109,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			let headerIndex = parent.index;
 			let headerLength = parent.content.length;
-			if (parent.content.endsWith("\n")) {
+			if (parent.content.endsWith("\n") || parent.content.endsWith("\r")) {
 				headerLength--;
 			}
 			let header = newBlock("table_header", headerIndex, state.line, "", 0);

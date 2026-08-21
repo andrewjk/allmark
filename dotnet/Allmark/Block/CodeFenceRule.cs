@@ -14,7 +14,7 @@ public static class CodeFenceRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         // A fenced code block can't be started in a block that accepts content
         if (parent.AcceptsContent)
@@ -67,7 +67,7 @@ public static class CodeFenceRule
                 }
                 else
                 {
-                    end = Utils.GetEndOfLine(state);
+                    end = endOfLine;
                     info = state.Src.Substring(state.I + matched, end - (state.I + matched));
 
                     // "Info strings for backtick code blocks cannot contain backticks"
@@ -120,8 +120,6 @@ public static class CodeFenceRule
                 var code = Utils.NewBlock("code_fence", state.I, state.Line, markup, state.Indent);
                 code.AcceptsContent = true;
                 code.Info = info;
-
-                state.I = end;
 
                 if (state.HasBlankLine && parent.Children!.Count > 0)
                 {

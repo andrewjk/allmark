@@ -50,25 +50,25 @@ function getMarkup(state: BlockParserState) {
 	) {
 		let delimiter = state.src[state.i];
 		let nextCharCode = state.src.charCodeAt(state.i + 1);
-		if (nextCharCode === CARRIAGE_RETURN_CODE) {
-			nextCharCode = state.src.charCodeAt(state.i + 2);
-		}
 		return {
 			delimiter,
 			markup: delimiter,
-			isBlank: state.i === state.src.length - 1 || nextCharCode === NEW_LINE_CODE,
+			isBlank:
+				state.i === state.src.length - 1 ||
+				nextCharCode === NEW_LINE_CODE ||
+				nextCharCode === CARRIAGE_RETURN_CODE,
 			type: "list_bulleted",
 		};
 	}
 }
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, endOfLine: number) {
 	if (parent.acceptsContent) {
 		return false;
 	}
 
 	let info = getMarkup(state);
-	return testListStart(state, parent, info);
+	return testListStart(state, parent, endOfLine, info);
 }
 
 function testContinue(state: BlockParserState, node: MarkdownNode) {

@@ -38,8 +38,16 @@ public static class ListRenderer
                         RenderUtils.InnerNewLine(item, state);
                     }
                     RenderNode.Execute(child, state, decode);
-                    if (i == item.Children!.Count - 1 && child.Block && state.Output.Length > 0 && state.Output[^1] != '\n')
+                    if (i == item.Children!.Count - 1 && child.Block)
                     {
+                        if (state.Output.Length > 0 && state.Output[^1] == '\n')
+                        {
+                            state.Output.Length -= 1;
+                        }
+                        if (state.Output.Length > 0 && state.Output[^1] == '\r')
+                        {
+                            state.Output.Length -= 1;
+                        }
                         state.Output.Append('\n');
                     }
                 }

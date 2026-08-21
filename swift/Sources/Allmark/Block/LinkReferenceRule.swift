@@ -11,7 +11,7 @@ let linkReferenceRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine _: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -91,12 +91,6 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode)
 		}
 
 		parent.children.append(ref)
-
-		if state.i > 0 {
-			if !isNewLine(char: src[state.i - 1]) {
-				state.i = getEndOfLine(state: &state)
-			}
-		}
 
 		ref.length = state.i - ref.index
 

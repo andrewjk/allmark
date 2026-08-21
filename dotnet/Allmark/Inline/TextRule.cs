@@ -27,7 +27,15 @@ public static class TextRule
         {
             // "Spaces at the end of the line and beginning of the next line are removed"
             lastNode.Content = lastNode.Content.TrimEnd();
-            if (state.I + 1 < state.Src.Length && Utils.IsSpace(Utils.GetChar(state.Src, state.I + 1)))
+            var nextChar = Utils.GetChar(state.Src, state.I + 1);
+            if (ch == '\r' && nextChar == '\n')
+            {
+                lastNode.Content += ch;
+                ch = '\n';
+                state.I++;
+                nextChar = Utils.GetChar(state.Src, state.I + 1);
+            }
+            if (Utils.IsSpace(nextChar))
             {
                 lastNode.Content += ch;
                 lastNode.Length = lastNode.Content.Length;

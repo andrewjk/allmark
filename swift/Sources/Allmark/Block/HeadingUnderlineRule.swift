@@ -13,7 +13,7 @@ let headingUnderlineRule = BlockRule(
 
 let headingUnderlineContentPattern = try! NSRegularExpression(pattern: "[^\\s]")
 
-func testHeadingUnderlineStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testHeadingUnderlineStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine _: Int) -> Bool {
 	if state.maybeContinue {
 		var i = state.openNodes.count - 1
 		while i > 0 {
@@ -72,7 +72,6 @@ func testHeadingUnderlineStart(state: inout BlockParserState, parent: MarkdownNo
 			parent.type = "heading_underline"
 			parent.markup = charToString(src, from: state.i, to: end)
 			parent.length = end - parent.index
-			state.i = end
 			return true
 		}
 	}

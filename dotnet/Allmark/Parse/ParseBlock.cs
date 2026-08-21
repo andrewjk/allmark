@@ -4,14 +4,14 @@ using Allmark.Types;
 
 public static class ParseBlock
 {
-    public static void Execute(BlockParserState state, MarkdownNode parent)
+    public static void Execute(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         state.IsEscaped = Utils.IsEscaped(state.Src, state.I);
 
         foreach (var rule in state.Rules)
         {
             // int start = state.I;
-            bool handled = rule.TestStart(state, parent);
+            bool handled = rule.TestStart(state, parent, endOfLine);
 
             if (handled)
             {

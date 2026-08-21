@@ -24,7 +24,7 @@ public static class BlockQuoteRule
         return state.Indent <= 3 && c == '>';
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         MarkdownNode? closedNode = null;
 
@@ -57,7 +57,7 @@ public static class BlockQuoteRule
             Utils.MovePastMarker(1, state);
 
             state.HasBlankLine = false;
-            ParseBlock.Execute(state, quote);
+            ParseBlock.Execute(state, quote, endOfLine);
 
             return true;
         }

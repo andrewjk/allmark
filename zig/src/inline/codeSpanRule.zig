@@ -54,11 +54,11 @@ pub fn testCodeSpan(state: *InlineParserState, parent: *MarkdownNode) bool {
             defer new_content.deinit(state.allocator);
             var ci: usize = 0;
             while (ci < content.len) : (ci += 1) {
-                if (content[ci] == '\n') {
+                if (content[ci] == '\n' or content[ci] == '\r') {
                     new_content.append(state.allocator, ' ') catch unreachable;
-                } else if (content[ci] == '\r' and ci + 1 < content.len and content[ci + 1] == '\n') {
-                    new_content.append(state.allocator, ' ') catch unreachable;
-                    ci += 1;
+                    if (content[ci] == '\r' and ci + 1 < content.len and content[ci + 1] == '\n') {
+                        ci += 1;
+                    }
                 } else {
                     new_content.append(state.allocator, content[ci]) catch unreachable;
                 }

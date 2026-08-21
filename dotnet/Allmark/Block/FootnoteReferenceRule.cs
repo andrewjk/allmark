@@ -15,7 +15,7 @@ public static class FootnoteReferenceRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -110,7 +110,7 @@ public static class FootnoteReferenceRule
             state.OpenNodes.Push(refNode);
 
             state.HasBlankLine = false;
-            Parse.ParseBlock.Execute(state, refNode);
+            Parse.ParseBlock.Execute(state, refNode, endOfLine);
 
             refNode.Length = state.I - refNode.Index;
 
@@ -121,7 +121,7 @@ public static class FootnoteReferenceRule
         if (state.HasBlankLine && state.Indent >= 4 && parent.Children!.LastOrDefault()?.Type == "footnote_ref")
         {
             state.Indent = 0;
-            Parse.ParseBlock.Execute(state, parent.Children!.Last());
+            Parse.ParseBlock.Execute(state, parent.Children!.Last(), endOfLine);
             return true;
         }
 
@@ -140,7 +140,7 @@ public static class FootnoteReferenceRule
         {
             if (
                 state.Indent >= 4 ||
-                Regex.IsMatch(openNode.Content, @"  \r?\n$") ||
+                Regex.IsMatch(openNode.Content, @"  (\r?\n|\r)$") ||
                 // GitHub swallows link references after footnote references
                 (Utils.GetChar(state.Src, state.I) == '[' && Utils.GetChar(state.Src, state.I + 1) != '^'))
             {

@@ -119,7 +119,7 @@ const HTML_REGEX_6 =
  *
  * End condition: line is followed by a blank line.
  */
-const HTML_REGEX_7 = new RegExp(`^(?:${OPEN_TAG}|${CLOSE_TAG})(?:\\r?\\n|\\s|$)`);
+const HTML_REGEX_7 = new RegExp(`^(?:${OPEN_TAG}|${CLOSE_TAG})(?:\\r?\\n|\\r|\\s|$)`);
 
 function testHtmlCondition1(state: BlockParserState, parent: MarkdownNode, tail: string) {
 	let match1 = tail.match(HTML_REGEX_1);
@@ -181,8 +181,8 @@ function testHtmlCondition7(state: BlockParserState, parent: MarkdownNode, tail:
 		// block-level tags in (6), you must put the tag by itself on the first
 		// line (and it must be complete)"
 		// HACK: Maybe we could improve the regex?
-		let end = state.i + match[0].length;
-		for (let i = state.i; i < end - 1; i++) {
+		let end = state.i + match[0].length - (match[0].endsWith("\r\n") ? 2 : 1);
+		for (let i = state.i; i < end; i++) {
 			if (isNewLine(state.src.charCodeAt(i))) {
 				return false;
 			}

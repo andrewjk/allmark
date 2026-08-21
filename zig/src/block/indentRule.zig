@@ -4,8 +4,9 @@ const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isSpaceFn = @import("../utils/isSpace.zig").isSpace;
 
-pub fn testStart(state: *BlockParserState, _parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, _parent: *MarkdownNode, _end_of_line: usize) bool {
     _ = _parent;
+    _ = _end_of_line;
     if (state.i < state.src.len and isSpaceFn(state.src[state.i])) {
         while (state.i < state.src.len) {
             const char = state.src[state.i];

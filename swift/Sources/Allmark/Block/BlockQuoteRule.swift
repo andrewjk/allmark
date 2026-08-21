@@ -15,7 +15,7 @@ func hasBlockQuoteMarkup(char: Character, state: BlockParserState) -> Bool {
 	return state.indent <= 3 && char == ">"
 }
 
-func testBlockQuoteStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testBlockQuoteStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -55,7 +55,7 @@ func testBlockQuoteStart(state: inout BlockParserState, parent: MarkdownNode) ->
 		movePastMarker(markerLength: 1, state: &state)
 
 		state.hasBlankLine = false
-		parseBlock(state: &state, parent: quote)
+		parseBlock(state: &state, parent: quote, endOfLine: endOfLine)
 
 		return true
 	}

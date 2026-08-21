@@ -15,7 +15,7 @@ public static class IndentRule
     }
 
     // TODO: Should this be built in and not a rule??
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (state.I < state.Src.Length && Utils.IsSpace(state.Src[state.I]))
         {

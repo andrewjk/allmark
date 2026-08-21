@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 public static partial class Utils
 {
     private const char DASH = '-';
-    private static readonly Regex OpeningPattern = new Regex(@"^---\s*\r?\n");
+    private static readonly Regex OpeningPattern = new Regex(@"^---\s*(\r?\n|\r)");
 
     public static string? ExtractFrontMatter(MarkdownNode document, string src, int index)
     {
@@ -22,7 +22,7 @@ public static partial class Utils
                     contentEnd = src.Length;
                     for (int k = j + 3; k < src.Length; k++)
                     {
-                        if (src[k] == '\n')
+                        if (src[k] == '\n' || src[k] == '\r')
                         {
                             contentEnd = k;
                             break;

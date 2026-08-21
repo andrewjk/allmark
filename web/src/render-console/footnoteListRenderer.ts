@@ -26,6 +26,9 @@ function render(_node: MarkdownNode, state: RendererState): void {
 		if (state.output.endsWith("\n")) {
 			state.output = state.output.slice(0, -1);
 		}
+		if (state.output.endsWith("\r")) {
+			state.output = state.output.slice(0, -1);
+		}
 		state.output += "\n";
 	}
 }

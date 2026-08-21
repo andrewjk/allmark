@@ -14,7 +14,7 @@ public static class HeadingRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -67,7 +67,6 @@ public static class HeadingRule
                 parent.Children!.Add(heading);
 
                 Utils.MovePastMarker(level, state);
-                var endOfLine = Utils.GetEndOfLine(state);
                 var end = endOfLine - 1;
                 for (; end >= state.I; end--)
                 {
@@ -98,9 +97,8 @@ public static class HeadingRule
                     heading.Info = state.Src.Substring(end, endOfLine - end);
                 }
 
-                state.I = endOfLine;
-                heading.Length = state.I - heading.Index;
-                content.Length = state.I - content.Index;
+                heading.Length = endOfLine - heading.Index;
+                content.Length = endOfLine - content.Index;
 
                 return true;
             }

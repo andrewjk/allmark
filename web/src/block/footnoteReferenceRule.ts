@@ -24,7 +24,7 @@ export default rule;
  *   multiple lines with proper indentation.
  */
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, endOfLine: number) {
 	if (parent.acceptsContent) {
 		return false;
 	}
@@ -108,7 +108,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		state.openNodes.push(ref);
 
 		state.hasBlankLine = false;
-		parseBlock(state, ref);
+		parseBlock(state, ref, endOfLine);
 
 		ref.length = state.i - ref.index;
 
@@ -118,7 +118,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 	// Add another paragraph if there is an indent of at least 4 characters
 	if (state.hasBlankLine && state.indent >= 4 && parent.children?.at(-1)?.type === "footnote_ref") {
 		state.indent = 0;
-		parseBlock(state, parent.children.at(-1)!);
+		parseBlock(state, parent.children.at(-1)!, endOfLine);
 		return true;
 	}
 
@@ -134,7 +134,7 @@ function testContinue(state: BlockParserState, node: MarkdownNode) {
 	if (openNode.type === "paragraph") {
 		if (
 			state.indent >= 4 ||
-			/  \r?\n$/.test(openNode.content) ||
+			/  (\r?\n|\r)$/.test(openNode.content) ||
 			// GitHub swallows link references after footnote references
 			(state.src.charCodeAt(state.i) === BRACKET_OPEN_CODE &&
 				state.src.charCodeAt(state.i + 1) !== CARET_CODE)

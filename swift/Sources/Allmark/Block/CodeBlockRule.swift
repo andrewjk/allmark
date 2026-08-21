@@ -11,7 +11,7 @@ let codeBlockRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -54,7 +54,7 @@ func testCodeBlockStart(state: inout BlockParserState, parent: MarkdownNode) -> 
 
 		state.indent = 0
 		state.hasBlankLine = false
-		parseBlock(state: &state, parent: code)
+		parseBlock(state: &state, parent: code, endOfLine: endOfLine)
 
 		return true
 	}

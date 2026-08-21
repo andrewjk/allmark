@@ -41,6 +41,7 @@ interface ListInfo {
 export function testListStart(
 	state: BlockParserState,
 	parent: MarkdownNode,
+	endOfLine: number,
 	info?: ListInfo,
 ): boolean {
 	if (info === undefined) {
@@ -123,10 +124,8 @@ export function testListStart(
 	let blank = true;
 	for (let i = state.i + info.markup.length; i < state.src.length; i++) {
 		let nextCharCode = state.src.charCodeAt(i);
-		if (nextCharCode === NEW_LINE_CODE) {
+		if (nextCharCode === NEW_LINE_CODE || nextCharCode === CARRIAGE_RETURN_CODE) {
 			break;
-		} else if (nextCharCode === CARRIAGE_RETURN_CODE) {
-			// Keep going...
 		} else if (isSpace(nextCharCode)) {
 			spaces++;
 		} else {
@@ -177,7 +176,7 @@ export function testListStart(
 	movePastMarker(info.markup.length, state);
 
 	state.hasBlankLine = false;
-	parseBlock(state, item);
+	parseBlock(state, item, endOfLine);
 
 	return true;
 }

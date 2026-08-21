@@ -14,7 +14,7 @@ public static class ThematicBreakRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -95,7 +95,6 @@ public static class ThematicBreakRule
                 var tbr = Utils.NewBlock("thematic_break", state.I, state.Line, markup, 0);
                 tbr.Length = end - state.I;
                 parent.Children!.Add(tbr);
-                state.I = end;
                 return true;
             }
         }

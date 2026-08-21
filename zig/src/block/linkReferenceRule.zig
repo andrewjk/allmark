@@ -2,16 +2,15 @@ const std = @import("std");
 const BlockParserState = @import("../types/BlockParserState.zig").BlockParserState;
 const BlockRule = @import("../types/BlockRule.zig").BlockRule;
 const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
-const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const isEscaped = @import("../utils/isEscaped.zig").isEscaped;
-const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 const normalizeLabel = @import("../utils/normalizeLabel.zig").normalizeLabel;
 const parseLinkReference = @import("../utils/parseLinkReference.zig").parseLinkReference;
 const isSpaceFn = @import("../utils/isSpace.zig").isSpace;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
+    _ = end_of_line;
     if (parent.acceptsContent) {
         return false;
     }
@@ -85,10 +84,6 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
         }
 
         appendChild(state.allocator, parent, ref) catch unreachable;
-
-        if (state.i > 0 and !isNewLine(state.src[state.i - 1])) {
-            state.i = getEndOfLine(state);
-        }
 
         ref.length = state.i - ref.index;
 

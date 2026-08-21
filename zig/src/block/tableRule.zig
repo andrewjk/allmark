@@ -9,7 +9,8 @@ const isSpace = @import("../utils/isSpace.zig").isSpace;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
+    _ = end_of_line;
     if (parent.acceptsContent) {
         return false;
     }
@@ -149,7 +150,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             }
 
             var headerLength = parent.content.len;
-            if (parent.content.len > 0 and parent.content[parent.content.len - 1] == '\n') {
+            if (parent.content.len > 0 and (parent.content[parent.content.len - 1] == '\n' or parent.content[parent.content.len - 1] == '\r')) {
                 headerLength -= 1;
             }
 

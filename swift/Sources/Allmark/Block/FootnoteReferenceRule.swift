@@ -10,7 +10,7 @@ let footnoteReferenceRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -105,7 +105,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 		state.openNodes.append(ref)
 
 		state.hasBlankLine = false
-		parseBlock(state: &state, parent: ref)
+		parseBlock(state: &state, parent: ref, endOfLine: endOfLine)
 
 		return true
 	}
@@ -115,7 +115,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 		let currentParent = parent
 		if let lastChild = currentParent.children.last, lastChild.type == "footnote_ref" {
 			state.indent = 0
-			parseBlock(state: &state, parent: lastChild)
+			parseBlock(state: &state, parent: lastChild, endOfLine: endOfLine)
 			return true
 		}
 	}
@@ -133,6 +133,7 @@ func testFootnoteReferenceContinue(state: inout BlockParserState, node: Markdown
 		if state.indent >= 4 ||
 			openNode.content.hasSuffix("  \n") ||
 			openNode.content.hasSuffix("  \r\n") ||
+			openNode.content.hasSuffix("  \r") ||
 			(state.i + 1 < state.src.count && state.src[state.i] == "[" &&
 				state.src[state.i + 1] != "^")
 		{

@@ -14,7 +14,7 @@ let listTaskItemRule = BlockRule(
  * which begins with a task list item marker and at least one whitespace
  * character before any other content.
  */
-func testListTaskItemStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testListTaskItemStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine _: Int) -> Bool {
 	if parent.type == "list_item" {
 		let start = state.i
 		let src = state.src

@@ -44,7 +44,7 @@ function hasMarkup(state: BlockParserState) {
 	return state.indent <= 3 && state.src.charCodeAt(state.i) === ANGLE_RIGHT_CODE;
 }
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, endOfLine: number) {
 	let closedNode: MarkdownNode | undefined;
 
 	if (parent.acceptsContent) {
@@ -71,7 +71,7 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		movePastMarker(1, state);
 
 		state.hasBlankLine = false;
-		parseBlock(state, quote);
+		parseBlock(state, quote, endOfLine);
 
 		return true;
 	}

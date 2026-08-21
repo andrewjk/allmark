@@ -20,7 +20,7 @@ export default interface BlockRule {
 	 * @param parent
 	 * @returns
 	 */
-	testStart: (state: BlockParserState, parent: MarkdownNode) => boolean;
+	testStart: (state: BlockParserState, parent: MarkdownNode, endOfLine: number) => boolean;
 	/**
 	 * Creates a node for this rule.
 	 * @param state

@@ -54,24 +54,24 @@ Here is some more text
         Assert.IsNotNull(doc.Children);
         Assert.AreEqual("heading", doc.Children[0].Type);
         Assert.AreEqual(1, doc.Children[0].Index);
-        Assert.AreEqual(10, doc.Children[0].Length);
+        Assert.AreEqual(9, doc.Children[0].Length);
 
         var start = doc.Children[0].Index;
         var length = doc.Children[0].Length;
-        Assert.AreEqual("# Test ☺️\n", input.Substring(start, length));
+        Assert.AreEqual("# Test ☺️", input.Substring(start, length));
 
         var input2 = input.Replace("\r\n", "\r").Replace("\n", "\r");
         var doc2 = Parser.Execute(input2, Core.RuleSet);
         var html2 = Renderer.Execute(doc2, HtmlRenderers.Renderers);
-        Assert.AreEqual(expected.Trim(), html2.Trim());
+        Assert.AreEqual(expected.Trim(), html2.Replace("\r\n", "\n").Replace("\r", "\n").Trim());
 
         Assert.IsNotNull(doc2.Children);
         Assert.AreEqual("heading", doc2.Children[0].Type);
         Assert.AreEqual(1, doc2.Children[0].Index);
-        Assert.AreEqual(10, doc2.Children[0].Length);
+        Assert.AreEqual(9, doc2.Children[0].Length);
 
         var start2 = doc2.Children[0].Index;
         var length2 = doc2.Children[0].Length;
-        Assert.AreEqual("# Test ☺️\r", input2.Substring(start2, length2));
+        Assert.AreEqual("# Test ☺️", input2.Substring(start2, length2));
     }
 }

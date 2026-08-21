@@ -195,6 +195,9 @@ ${escapedInput}
 
 		const htmlCrLf = transform(input.replaceAll("\\n", "\\r\\n"), ${ruleSetName}, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\\r\\n", "\\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\\n", "\\r"), ${ruleSetName}, htmlRenderers);
+		expect(htmlCr.replaceAll("\\r", "\\n")).toBe(expected);
 	});`;
 	})
 	.join("\n\n")}
@@ -274,6 +277,9 @@ ${escapedInput}
 
 		const htmlCrLf = transform(input.replaceAll("\\n", "\\r\\n"), ${ruleSetName}, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\\r\\n", "\\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\\n", "\\r"), ${ruleSetName}, htmlRenderers);
+		expect(htmlCr.replaceAll("\\r", "\\n")).toBe(expected);
 	});`;
 	})
 	.join("\n\n")}
@@ -327,6 +333,9 @@ ${escapedInput}
 
         var htmlCrLf = Transformer.Execute(input.Replace("\\n", "\\r\\n"), ${ruleSetName}.RuleSet, HtmlRenderers.Renderers);
         Assert.AreEqual(expected, htmlCrLf.Replace("\\r\\n", "\\n"));
+
+        var htmlCr = Transformer.Execute(input.Replace("\\n", "\\r"), ${ruleSetName}.RuleSet, HtmlRenderers.Renderers);
+        Assert.AreEqual(expected, htmlCr.Replace("\\r", "\\n"));
     }`;
 	})
 	.join("\n\n")}
@@ -400,6 +409,10 @@ ${escapedExpected}
 			let inputCrLf = input.replacingOccurrences(of: "\\n", with: "\\r\\n")
 			let htmlCrLf = _transform(src: inputCrLf, rules: ${ruleSetName}RuleSet, renderers: htmlRenderers)
 			#expect(htmlCrLf.replacingOccurrences(of: "\\r\\n", with: "\\n") == expected)
+
+			let inputCr = input.replacingOccurrences(of: "\\n", with: "\\r")
+			let htmlCr = _transform(src: inputCrLf, rules: ${ruleSetName}RuleSet, renderers: htmlRenderers)
+			#expect(htmlCr.replacingOccurrences(of: "\\r", with: "\\n") == expected)
 		}
 	}`;
 	})
@@ -509,6 +522,14 @@ ${inputLines};
     const htmlCrLf2 = std.mem.replaceOwned(u8, gpa, htmlCrLf, "\\r\\n", "\\n") catch unreachable;
     defer gpa.free(htmlCrLf2);
     try std.testing.expectEqualStrings(expected, htmlCrLf2);
+
+    const inputCr = std.mem.replaceOwned(u8, gpa, input, "\\n", "\\r") catch unreachable;
+    defer gpa.free(inputCr);
+    const htmlCr = try transform(gpa, inputCr, rules, renderers);
+    defer gpa.free(htmlCr);
+    const htmlCr2 = std.mem.replaceOwned(u8, gpa, htmlCr, "\\r", "\\n") catch unreachable;
+    defer gpa.free(htmlCr2);
+    try std.testing.expectEqualStrings(expected, htmlCr2);
 }`;
 	})
 	.join("\n\n")}

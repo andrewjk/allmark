@@ -9,7 +9,7 @@ let indentRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testIndentStart(state: inout BlockParserState, parent _: MarkdownNode) -> Bool {
+func testIndentStart(state: inout BlockParserState, parent _: MarkdownNode, endOfLine _: Int) -> Bool {
 	let src = state.src
 	if state.i >= src.count {
 		return false

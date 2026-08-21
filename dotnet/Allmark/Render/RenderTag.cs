@@ -17,8 +17,16 @@ public static class RenderTag
         {
             RenderUtils.InnerNewLine(node, state);
             RenderChildren.Execute(node, state, decode);
-            if (node.Block && state.Output.Length > 0 && state.Output[^1] != '\n')
+            if (node.Block)
             {
+                if (state.Output.Length > 0 && state.Output[^1] == '\n')
+                {
+                    state.Output.Length -= 1;
+                }
+                if (state.Output.Length > 0 && state.Output[^1] == '\r')
+                {
+                    state.Output.Length -= 1;
+                }
                 state.Output.Append('\n');
             }
         }

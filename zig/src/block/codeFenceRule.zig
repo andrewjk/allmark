@@ -7,7 +7,6 @@ const isSpace = @import("../utils/isSpace.zig").isSpace;
 const decodeEntities = @import("../utils/decodeEntities.zig").decodeEntities;
 const escapeBackslashes = @import("../utils/escapeBackslashes.zig").escapeBackslashes;
 const closeNode = @import("../utils/closeNode.zig").closeNode;
-const getEndOfLine = @import("../utils/getEndOfLine.zig").getEndOfLine;
 const newBlock = @import("../utils/newBlock.zig").newBlock;
 
 fn appendToSlice(allocator: std.mem.Allocator, slice: []*MarkdownNode, item: *MarkdownNode) ![]*MarkdownNode {
@@ -18,7 +17,7 @@ fn appendToSlice(allocator: std.mem.Allocator, slice: []*MarkdownNode, item: *Ma
     return new_slice;
 }
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
     var effective_parent = parent;
     if (effective_parent.acceptsContent) {
         return false;
@@ -57,10 +56,10 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             var info: []const u8 = "";
             var info_allocated = false;
             const infoStart = state.i + matched;
-            if (end < state.src.len and (state.src[end] == '\n')) {
+            if (end < state.src.len and isNewLine(state.src[end])) {
                 end += 1;
             } else {
-                end = getEndOfLine(state);
+                end = end_of_line;
                 info = state.src[infoStart..end];
 
                 if (char == '`' and std.mem.indexOfScalar(u8, info, '`') != null) {
@@ -107,8 +106,6 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
             const code = newBlock(state.allocator, "code_fence", state.i, state.line, markup, state.indent) catch unreachable;
             code.*.acceptsContent = true;
             code.*.info = state.allocator.dupe(u8, info) catch unreachable;
-
-            state.i = end;
 
             if (state.hasBlankLine) {
                 if (effective_parent.children) |children| {

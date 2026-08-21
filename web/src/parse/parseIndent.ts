@@ -18,7 +18,11 @@ export default function parseIndent(state: BlockParserState): void {
 				state.hasBlankLine = true;
 				break;
 			} else if (charCode === CARRIAGE_RETURN_CODE) {
-				// Keep going...
+				state.hasBlankLine = true;
+				if (state.src.charCodeAt(state.i + 1) === NEW_LINE_CODE) {
+					state.i++;
+				}
+				break;
 			} else {
 				break;
 			}

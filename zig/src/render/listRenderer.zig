@@ -47,10 +47,13 @@ pub fn render(node: *const MarkdownNode, state: *RendererState, decode: ?bool) v
                         }
                         renderNodeFn(child, state, true);
                         if (ii == ic.len - 1 and child.block) {
-                            const output_slice = state.output.items;
-                            if (output_slice.len > 0 and output_slice[output_slice.len - 1] != '\n') {
-                                state.output.append(state.allocator, '\n') catch unreachable;
+                            if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\n') {
+                                state.output.shrinkRetainingCapacity(state.output.items.len - 1);
                             }
+                            if (state.output.items.len > 0 and state.output.items[state.output.items.len - 1] == '\r') {
+                                state.output.shrinkRetainingCapacity(state.output.items.len - 1);
+                            }
+                            state.output.append(state.allocator, '\n') catch unreachable;
                         }
                     }
                 }

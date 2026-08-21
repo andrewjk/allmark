@@ -9,16 +9,32 @@ const encodeUri = @import("encodeUri.zig").encodeUri;
 const isEscaped = @import("isEscaped.zig").isEscaped;
 const isNewLine = @import("isNewLine.zig").isNewLine;
 const isSpaceFn = @import("isSpace.zig").isSpace;
-const mvzr = @import("mvzr");
 
-const BLANK_LINE_REGEX = "\\r?\\n[ \\t]*\\r?\\n";
+// Detects a blank line: a line ending, optional spaces/tabs, then another line
+// ending. Equivalent to the TS regex /(\r?\n|\r)[ \t]*(\r?\n|\r)/ (mvzr does not
+// support capture groups or backreferences).
+fn containsBlankLine(s: []const u8) bool {
+    var i: usize = 0;
+    while (i < s.len) : (i += 1) {
+        if (s[i] == '\n' or s[i] == '\r') {
+            var j = i + 1;
+            if (s[i] == '\r' and j < s.len and s[j] == '\n') {
+                j += 1;
+            }
+            while (j < s.len and (s[j] == ' ' or s[j] == '\t')) : (j += 1) {}
+            if (j < s.len and (s[j] == '\n' or s[j] == '\r')) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 pub fn parseLinkReference(state: *BlockParserState, start: usize) !?LinkReference {
     const spaces = try consumeSpaces(state.allocator, state.src, start);
     defer state.allocator.free(spaces);
 
-    const regex = mvzr.compile(BLANK_LINE_REGEX) orelse return null;
-    if (regex.match(spaces) != null) {
+    if (containsBlankLine(spaces)) {
         return null;
     }
     var i = start + spaces.len;
@@ -104,9 +120,7 @@ pub fn parseLinkReference(state: *BlockParserState, start: usize) !?LinkReferenc
             return null;
         }
 
-        const has_blank_in_title = std.mem.indexOf(u8, title, "\n\n") != null or
-            std.mem.indexOf(u8, title, "\r\n\r\n") != null or
-            std.mem.indexOf(u8, title, "\r\r") != null;
+        const has_blank_in_title = containsBlankLine(title);
         if (has_blank_in_title) {
             if (url_allocated) state.allocator.free(url);
             if (title_allocated) state.allocator.free(title);

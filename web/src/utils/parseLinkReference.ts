@@ -16,7 +16,7 @@ import isEscaped from "./isEscaped";
 import isNewLine from "./isNewLine";
 import isSpace from "./isSpace";
 
-const BLANK_LINE_REGEX = /\r?\n[ \t]*\r?\n/;
+const BLANK_LINE_REGEX = /(\r?\n|\r)[ \t]*\1/;
 
 export default function parseLinkReference(
 	state: BlockParserState,

@@ -2,9 +2,7 @@ import type BlockParserState from "../types/BlockParserState";
 import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import { BRACKET_OPEN_CODE, BRACKET_CLOSE_CODE, COLON_CODE } from "../utils/charCodes";
-import getEndOfLine from "../utils/getEndOfLine";
 import isEscaped from "../utils/isEscaped";
-import isNewLine from "../utils/isNewLine";
 import newBlock from "../utils/newBlock";
 import normalizeLabel from "../utils/normalizeLabel";
 import parseLinkReference from "../utils/parseLinkReference";
@@ -30,7 +28,7 @@ export default rule;
  * definitions can come either before or after the links that use them."
  */
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, _endOfLine: number) {
 	if (parent.acceptsContent) {
 		return false;
 	}
@@ -103,10 +101,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 		}
 
 		parent.children!.push(ref);
-
-		if (!isNewLine(state.src.charCodeAt(state.i - 1))) {
-			state.i = getEndOfLine(state);
-		}
 
 		ref.length = state.i - ref.index;
 

@@ -665,7 +665,7 @@ public class SourceMappingTests
         var heading = doc.Children![0];
         Assert.AreEqual("heading", heading.Type);
         Assert.AreEqual(0, heading.Index);
-        Assert.AreEqual(12, heading.Length);
+        Assert.AreEqual(11, heading.Length);
 
         var paragraph = doc.Children![1];
         Assert.AreEqual("paragraph", paragraph.Type);

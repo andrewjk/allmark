@@ -16,7 +16,7 @@ fn appendToSlice(allocator: std.mem.Allocator, slice: []*MarkdownNode, item: *Ma
     return new_slice;
 }
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
     if (parent.acceptsContent) return false;
 
     if (state.i >= state.src.len) return false;
@@ -47,7 +47,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
         movePastMarker(1, state);
         state.hasBlankLine = false;
-        parseBlock(state, quote);
+        parseBlock(state, quote, end_of_line);
 
         return true;
     }

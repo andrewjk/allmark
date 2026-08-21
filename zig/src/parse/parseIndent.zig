@@ -15,7 +15,11 @@ pub fn parseIndent(state: *BlockParserState) void {
                 state.hasBlankLine = true;
                 break;
             } else if (char == '\r') {
-                // Keep going...
+                state.hasBlankLine = true;
+                if (state.i + 1 < state.src.len and state.src[state.i + 1] == '\n') {
+                    state.i += 1;
+                }
+                break;
             } else {
                 break;
             }

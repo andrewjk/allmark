@@ -24,22 +24,18 @@ public static class ListBulletedRule
         {
             var delimiter = Utils.GetChar(state.Src, state.I).ToString();
             var nextChar = Utils.GetChar(state.Src, state.I + 1);
-            if (nextChar == '\r')
-            {
-                nextChar = Utils.GetChar(state.Src, state.I + 2);
-            }
             return new ListInfo
             {
                 Delimiter = delimiter,
                 Markup = delimiter,
-                IsBlank = state.I == state.Src.Length - 1 || nextChar == '\n',
+                IsBlank = state.I == state.Src.Length - 1 || nextChar == '\n' || nextChar == '\r',
                 Type = "list_bulleted"
             };
         }
         return null;
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -47,7 +43,7 @@ public static class ListBulletedRule
         }
 
         var info = GetMarkup(state);
-        return ListRule.TestListStart(state, parent, info);
+        return ListRule.TestListStart(state, parent, endOfLine, info);
     }
 
     private static bool TestContinue(BlockParserState state, MarkdownNode node)

@@ -6,8 +6,16 @@ public static class RenderUtils
 {
     public static void StartNewLine(MarkdownNode node, RendererState state)
     {
-        if (state.Output.Length > 0 && node.Block && !state.Output.ToString().EndsWith('\n'))
+        if (state.Output.Length > 0 && node.Block)
         {
+            if (state.Output.ToString().EndsWith('\n'))
+            {
+                state.Output.Length -= 1;
+            }
+            if (state.Output.ToString().EndsWith('\r'))
+            {
+                state.Output.Length -= 1;
+            }
             state.Output.Append("\n");
         }
     }

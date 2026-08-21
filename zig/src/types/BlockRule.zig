@@ -8,7 +8,7 @@ pub const BlockRule = struct {
 
     name: []const u8,
 
-    testStart: *const fn (state: *BlockParserState, parent: *MarkdownNode) bool,
+    testStart: *const fn (state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool,
 
     testContinue: *const fn (state: *BlockParserState, parent: *MarkdownNode) bool,
 

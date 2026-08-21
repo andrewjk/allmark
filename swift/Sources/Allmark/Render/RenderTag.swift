@@ -8,7 +8,16 @@ func renderTag(node: MarkdownNode, state: inout RendererState, tag: String, deco
 	} else {
 		innerNewLine(node: node, state: &state)
 		renderChildren(node: node, state: &state, decode: decode)
-		if node.block, !state.output.hasSuffix("\n"), !state.output.hasSuffix("\r\n") {
+		if node.block {
+			if state.output.hasSuffix("\n") {
+				state.output.removeLast()
+			}
+			if state.output.hasSuffix("\r\n") {
+				state.output.removeLast()
+			}
+			if state.output.hasSuffix("\r") {
+				state.output.removeLast()
+			}
 			state.output += "\n"
 		}
 	}

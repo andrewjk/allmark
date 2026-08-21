@@ -14,7 +14,7 @@ public static class CodeBlockRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -47,7 +47,7 @@ public static class CodeBlockRule
 
             state.Indent = 0;
             state.HasBlankLine = false;
-            Parse.ParseBlock.Execute(state, code);
+            Parse.ParseBlock.Execute(state, code, endOfLine);
 
             return true;
         }

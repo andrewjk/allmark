@@ -25,7 +25,7 @@ public static class TableRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -36,11 +36,11 @@ public static class TableRule
         var lastNode = parent.Children!.LastOrDefault();
         if (!state.HasBlankLine && lastNode?.Type == "table")
         {
-            var endOfLine = Utils.GetEndOfLine(state);
+            var eol = Utils.GetEndOfLine(state);
 
             var headers = lastNode.Children?[0].Children!.Select((c) => c.Info ?? "").ToList() ?? [];
 
-            var rowLength = endOfLine - state.I;
+            var rowLength = eol - state.I;
 
             var row = Utils.NewBlock("table_row", state.I, state.Line, "", 0);
             row.Length = rowLength;
@@ -61,9 +61,9 @@ public static class TableRule
                 ParseTableCell(row, state, j, rowParts, headers, pipePositions);
             }
 
-            lastNode.Length = endOfLine - lastNode.Index;
+            lastNode.Length = eol - lastNode.Index;
 
-            state.I = endOfLine;
+            state.I = eol;
             return true;
         }
 
@@ -142,7 +142,7 @@ public static class TableRule
 
                 var headerIndex = parent.Index;
                 var headerLength = parent.Content?.Length ?? 0;
-                if ((parent.Content?.EndsWith("\n") ?? false))
+                if ((parent.Content?.EndsWith("\n") ?? false) || (parent.Content?.EndsWith("\r") ?? false))
                 {
                     headerLength--;
                 }

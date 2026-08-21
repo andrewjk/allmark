@@ -57,25 +57,25 @@ function getMarkup(state: BlockParserState) {
 	if (orderedList) {
 		let delimiter = state.src[end];
 		let nextCharCode = state.src.charCodeAt(end + 1);
-		if (nextCharCode === CARRIAGE_RETURN_CODE) {
-			nextCharCode = state.src.charCodeAt(end + 2);
-		}
 		return {
 			delimiter,
 			markup: numbers + delimiter,
-			isBlank: end === state.src.length - 1 || nextCharCode === NEW_LINE_CODE,
+			isBlank:
+				end === state.src.length - 1 ||
+				nextCharCode === NEW_LINE_CODE ||
+				nextCharCode === CARRIAGE_RETURN_CODE,
 			type: "list_ordered",
 		};
 	}
 }
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, endOfLine: number) {
 	if (parent.acceptsContent) {
 		return false;
 	}
 
 	let info = getMarkup(state);
-	return testListStart(state, parent, info);
+	return testListStart(state, parent, endOfLine, info);
 }
 
 function testContinue(state: BlockParserState, node: MarkdownNode) {

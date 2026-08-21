@@ -33,22 +33,18 @@ public static class ListOrderedRule
         {
             var delimiter = Utils.GetChar(state.Src, end).ToString();
             var nextChar = Utils.GetChar(state.Src, end + 1);
-            if (nextChar == '\r')
-            {
-                nextChar = Utils.GetChar(state.Src, end + 2);
-            }
             return new ListInfo
             {
                 Delimiter = delimiter,
                 Markup = numbers + delimiter,
-                IsBlank = end == state.Src.Length - 1 || nextChar == '\n',
+                IsBlank = end == state.Src.Length - 1 || nextChar == '\n' || nextChar == '\r',
                 Type = "list_ordered"
             };
         }
         return null;
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -56,7 +52,7 @@ public static class ListOrderedRule
         }
 
         var info = GetMarkup(state);
-        return ListRule.TestListStart(state, parent, info);
+        return ListRule.TestListStart(state, parent, endOfLine, info);
     }
 
     private static bool TestContinue(BlockParserState state, MarkdownNode node)

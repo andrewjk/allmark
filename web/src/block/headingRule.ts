@@ -3,7 +3,6 @@ import type BlockRule from "../types/BlockRule";
 import type MarkdownNode from "../types/MarkdownNode";
 import { BACKSLASH_CODE, HASH_CODE } from "../utils/charCodes";
 import closeNode from "../utils/closeNode";
-import getEndOfLine from "../utils/getEndOfLine";
 import isSpace from "../utils/isSpace";
 import movePastMarker from "../utils/movePastMarker";
 import newBlock from "../utils/newBlock";
@@ -27,7 +26,7 @@ export default rule;
  * number of # characters in the opening sequence."
  */
 
-function testStart(state: BlockParserState, parent: MarkdownNode) {
+function testStart(state: BlockParserState, parent: MarkdownNode, endOfLine: number) {
 	if (parent.acceptsContent) {
 		return false;
 	}
@@ -70,7 +69,6 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 
 			// Ignore optional end heading marks and spaces for content, but put
 			// them in info so that they aren't lost
-			let endOfLine = getEndOfLine(state);
 			let end = endOfLine - 1;
 			for (; end >= state.i; end--) {
 				if (!isSpace(state.src.charCodeAt(end))) break;
@@ -97,9 +95,8 @@ function testStart(state: BlockParserState, parent: MarkdownNode) {
 				heading.info = state.src.substring(end, endOfLine);
 			}
 
-			state.i = endOfLine;
-			heading.length = state.i - heading.index;
-			content.length = state.i - content.index;
+			heading.length = endOfLine - heading.index;
+			content.length = endOfLine - content.index;
 
 			return true;
 		}

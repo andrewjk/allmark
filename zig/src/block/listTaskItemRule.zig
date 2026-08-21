@@ -8,7 +8,8 @@ const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 const movePastMarker = @import("../utils/movePastMarker.zig").movePastMarker;
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, _end_of_line: usize) bool {
+    _ = _end_of_line;
     if (!std.mem.eql(u8, parent.type, "list_item")) {
         return false;
     }

@@ -4,7 +4,7 @@ import Foundation
 /// Frontmatter is delimited by `---` on its own line at the start and end.
 
 // Regex pattern: ^---[ \t]*\r?\n (anchored at start, no multiline)
-nonisolated(unsafe) let frontmatterPattern = /^---\s*(?:\n|\r\n)/
+nonisolated(unsafe) let frontmatterPattern = /^---\s*(?:\n|\r\n|\r)/
 
 func extractFrontMatter(_ document: inout MarkdownNode, _ src: [Character], _ index: Int) -> String? {
 	let DASH: Character = "-"

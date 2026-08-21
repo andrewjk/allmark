@@ -5,9 +5,10 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const isNumeric = @import("../utils/isAlphaNumeric.zig").isNumeric;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, _end_of_line: usize) bool {
     _ = state;
     _ = parent;
+    _ = _end_of_line;
     return false;
 }
 

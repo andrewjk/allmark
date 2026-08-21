@@ -9,7 +9,7 @@ let listItemRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testListItemStart(state _: inout BlockParserState, parent _: MarkdownNode) -> Bool {
+func testListItemStart(state _: inout BlockParserState, parent _: MarkdownNode, endOfLine _: Int) -> Bool {
 	return false
 }
 

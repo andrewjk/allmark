@@ -963,7 +963,7 @@ test "source mapping - various formattings" {
     const heading = doc.children.?[0];
     try std.testing.expectEqualStrings("heading", heading.type);
     try std.testing.expectEqual(@as(usize, 0), heading.index);
-    try std.testing.expectEqual(@as(usize, 12), heading.length);
+    try std.testing.expectEqual(@as(usize, 11), heading.length);
 
     const paragraph = doc.children.?[1];
     try std.testing.expectEqualStrings("paragraph", paragraph.type);

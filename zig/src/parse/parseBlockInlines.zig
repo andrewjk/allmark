@@ -24,7 +24,7 @@ pub fn parseBlockInlines(
             content = try stripLeadingTrailingBlankLines(allocator, content);
             should_free_stripped = (content.ptr != parent.content.ptr);
 
-            if (content.len > 0 and content[content.len - 1] != '\n') {
+            if (content.len > 0 and content[content.len - 1] != '\n' and content[content.len - 1] != '\r') {
                 var content_with_newline = try std.ArrayList(u8).initCapacity(allocator, content.len + 1);
                 defer content_with_newline.deinit(allocator);
                 try content_with_newline.appendSlice(allocator, content);
@@ -59,7 +59,7 @@ pub fn parseBlockInlines(
                 should_free_content = true;
             }
         }
-        if (content.len > 0 and content[content.len - 1] != '\n') {
+        if (content.len > 0 and content[content.len - 1] != '\n' and content[content.len - 1] != '\r') {
             var content_with_newline = try std.ArrayList(u8).initCapacity(allocator, content.len + 1);
             defer content_with_newline.deinit(allocator);
             try content_with_newline.appendSlice(allocator, content);
@@ -171,6 +171,10 @@ fn stripLeadingTrailingBlankLines(allocator: std.mem.Allocator, s: []const u8) !
     while (j >= 0) : (j -= 1) {
         if (s[j] == '\n') {
             last_non_blank = j;
+        } else if (s[j] == '\r') {
+            if (j + 1 >= s.len or s[j + 1] != '\n') {
+                last_non_blank = j;
+            }
         } else if (!std.ascii.isWhitespace(s[j])) {
             break;
         }
@@ -193,7 +197,7 @@ fn removeIndent(allocator: std.mem.Allocator, s: []const u8, indent: usize) ![]c
 
     var i: usize = 0;
     while (i < s.len) {
-        const at_line_start = (i == 0 or s[i - 1] == '\n');
+        const at_line_start = (i == 0 or s[i - 1] == '\n' or s[i - 1] == '\r');
         if (at_line_start) {
             var spaces_to_remove: usize = 0;
             var j: usize = i;

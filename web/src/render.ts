@@ -29,7 +29,7 @@ export default function render(
 	}
 
 	if (state.output.length > 0) {
-		state.output = state.output.replace(/\n*$/, "\n");
+		state.output = state.output.replace(/[\n\r]*$/, "\n");
 	}
 
 	return state.output;

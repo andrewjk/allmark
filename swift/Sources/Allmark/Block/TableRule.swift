@@ -12,7 +12,7 @@ let tableRule = BlockRule(
 	closeNode: { _, _ in }
 )
 
-func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
+func testTableStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine _: Int) -> Bool {
 	if parent.acceptsContent {
 		return false
 	}
@@ -140,7 +140,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode) -> Bool
 
 			let headerIndex = parent.index
 			var headerLength = parent.content.count
-			if parent.content.hasSuffix("\n") || parent.content.hasSuffix("\r\n") {
+			if parent.content.hasSuffix("\n") || parent.content.hasSuffix("\r\n") || parent.content.hasSuffix("\r") {
 				headerLength -= 1
 			}
 			let header = newBlock(

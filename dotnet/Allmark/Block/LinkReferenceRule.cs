@@ -15,7 +15,7 @@ public static class LinkReferenceRule
         };
     }
 
-    private static bool TestStart(BlockParserState state, MarkdownNode parent)
+    private static bool TestStart(BlockParserState state, MarkdownNode parent, int _endOfLine)
     {
         if (parent.AcceptsContent)
         {
@@ -96,11 +96,6 @@ public static class LinkReferenceRule
             }
 
             parent.Children!.Add(refNode);
-
-            if (!Utils.IsNewLine(Utils.GetChar(state.Src, state.I - 1)))
-            {
-                state.I = Utils.GetEndOfLine(state);
-            }
 
             refNode.Length = state.I - refNode.Index;
 

@@ -14,7 +14,7 @@ fn appendToSlice(allocator: std.mem.Allocator, slice: []*MarkdownNode, item: *Ma
     return new_slice;
 }
 
-pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
+pub fn testStart(state: *BlockParserState, parent: *MarkdownNode, end_of_line: usize) bool {
     if (parent.acceptsContent) return false;
 
     if (std.mem.eql(u8, parent.type, "paragraph") and !parent.blankAfter) {
@@ -58,7 +58,7 @@ pub fn testStart(state: *BlockParserState, parent: *MarkdownNode) bool {
 
         state.indent = 0;
         state.hasBlankLine = false;
-        parseBlock(state, code);
+        parseBlock(state, code, end_of_line);
 
         return true;
     }

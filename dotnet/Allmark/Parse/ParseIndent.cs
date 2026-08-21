@@ -27,7 +27,12 @@ public static class ParseIndent
                 }
                 else if (c == '\r')
                 {
-                    // Keep going...
+                    state.HasBlankLine = true;
+                    if (Utils.GetChar(state.Src, state.I + 1) == '\n')
+                    {
+                        state.I++;
+                    }
+                    break;
                 }
                 else
                 {

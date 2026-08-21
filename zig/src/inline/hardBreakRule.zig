@@ -5,27 +5,21 @@ const MarkdownNode = @import("../types/MarkdownNode.zig").MarkdownNode;
 const newInline = @import("../utils/newInline.zig").newInline;
 const appendChild = @import("../utils/appendChild.zig").appendChild;
 const consumeSpaces = @import("../utils/consumeSpaces.zig").consumeSpaces;
+const isNewLine = @import("../utils/isNewLine.zig").isNewLine;
 const isSpace = @import("../utils/isSpace.zig").isSpace;
 
 pub fn testHardBreak(state: *InlineParserState, parent: *MarkdownNode) bool {
     if (state.i < state.src.len) {
         if (state.src[state.i] == '\\') {
-            var end = state.i + 2;
-            var next_char: u8 = undefined;
+            var next_char: u8 = 0;
             if (state.i + 1 < state.src.len) {
                 next_char = state.src[state.i + 1];
-                if (next_char == '\r') {
-                    if (state.i + 2 < state.src.len) {
-                        next_char = state.src[state.i + 2];
-                        end += 1;
-                    }
-                }
             }
-            if (next_char == '\n') {
+            if (isNewLine(next_char)) {
                 const hb = newInline(state.allocator, "hard_break", state.parentIndex + state.i, state.line, "\\", 0) catch unreachable;
                 hb.*.length = 2;
                 appendChild(state.allocator, parent, hb) catch unreachable;
-                handleHardBreakEnd(state, end);
+                handleHardBreakEnd(state, state.i + 2);
                 return true;
             }
         } else if (state.src[state.i] == ' ') {
@@ -37,7 +31,11 @@ pub fn testHardBreak(state: *InlineParserState, parent: *MarkdownNode) bool {
                     end = i;
                     break;
                 } else if (state.src[i] == '\r') {
-                    // Keep going...
+                    end = i;
+                    if (i + 1 < state.src.len and state.src[i + 1] == '\n') {
+                        end += 1;
+                    }
+                    break;
                 } else if (state.src[i] == ' ') {
                     spaces += 1;
                 } else {

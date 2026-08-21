@@ -15,6 +15,7 @@ public static class ListRule
     public static bool TestListStart(
         BlockParserState state,
         MarkdownNode parent,
+        int endOfLine,
         ListInfo? info)
     {
         if (info == null)
@@ -116,13 +117,9 @@ public static class ListRule
         for (var j = state.I + info.Markup.Length; j < state.Src.Length; j++)
         {
             var nextChar = state.Src[j];
-            if (nextChar == '\n')
+            if (nextChar == '\n' || nextChar == '\r')
             {
                 break;
-            }
-            else if (nextChar == '\r')
-            {
-                // Keep going...
             }
             else if (Utils.IsSpace(nextChar))
             {
@@ -183,7 +180,7 @@ public static class ListRule
         Utils.MovePastMarker(info.Markup.Length, state);
 
         state.HasBlankLine = false;
-        Parse.ParseBlock.Execute(state, item);
+        Parse.ParseBlock.Execute(state, item, endOfLine);
 
         return true;
     }

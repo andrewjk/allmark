@@ -17,7 +17,13 @@ export default function render(
 	} else {
 		innerNewLine(node, state);
 		renderChildren(node, state, decode);
-		if (node.block && !state.output.endsWith("\n")) {
+		if (node.block) {
+			if (state.output.endsWith("\n")) {
+				state.output = state.output.slice(0, -1);
+			}
+			if (state.output.endsWith("\r")) {
+				state.output = state.output.slice(0, -1);
+			}
 			state.output += "\n";
 		}
 	}
