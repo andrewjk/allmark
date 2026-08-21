@@ -25,6 +25,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert tip", () => {
@@ -47,6 +50,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert important", () => {
@@ -69,6 +75,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert warning", () => {
@@ -91,6 +100,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert caution", () => {
@@ -113,6 +125,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert with multiple paragraphs", () => {
@@ -138,6 +153,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert with inline formatting", () => {
@@ -160,6 +178,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert with list", () => {
@@ -190,6 +211,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert with code block", () => {
@@ -218,6 +242,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert with link", () => {
@@ -240,6 +267,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert case insensitive", () => {
@@ -262,6 +292,9 @@ describe("alert", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("non alert blockquote", () => {
@@ -284,6 +317,9 @@ It should not be treated as an alert.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("blockquote with brackets but not alert", () => {
@@ -306,6 +342,9 @@ It should be a regular blockquote.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert with nested blockquote", () => {
@@ -333,6 +372,9 @@ It should be a regular blockquote.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("consecutive alerts", () => {
@@ -362,6 +404,9 @@ It should be a regular blockquote.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("alert with empty content", () => {
@@ -385,5 +430,8 @@ It should be a regular blockquote.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });

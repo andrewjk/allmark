@@ -37,6 +37,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with asterisk marker", () => {
@@ -60,6 +63,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with plus marker", () => {
@@ -83,6 +89,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist in ordered list", () => {
@@ -106,6 +115,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with inline formatting", () => {
@@ -131,6 +143,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with code", () => {
@@ -154,6 +169,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with links", () => {
@@ -177,6 +195,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("nested tasklist", () => {
@@ -207,6 +228,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("mixed tasks and regular items", () => {
@@ -234,6 +258,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with single character", () => {
@@ -257,6 +284,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with empty brackets", () => {
@@ -280,6 +310,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with uppercase X", () => {
@@ -303,6 +336,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist in blockquote", () => {
@@ -328,6 +364,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with multiple paragraphs", () => {
@@ -358,6 +397,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with sublist", () => {
@@ -388,6 +430,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with html entities", () => {
@@ -411,6 +456,9 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("tasklist with various whitespace", () => {
@@ -436,5 +484,8 @@ describe("tasklist", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });

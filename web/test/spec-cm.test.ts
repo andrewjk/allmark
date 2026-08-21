@@ -22,6 +22,9 @@ describe("spec-cm", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 2, line 362: '  →foo→baz→→bim'", () => {
@@ -41,6 +44,9 @@ describe("spec-cm", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 3, line 369: '    a→a\\n    ὐ→a'", () => {
@@ -62,6 +68,9 @@ describe("spec-cm", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 4, line 382: '  - foo\\n\\n→bar'", () => {
@@ -87,6 +96,9 @@ describe("spec-cm", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 5, line 395: '- foo\\n\\n→→bar'", () => {
@@ -113,6 +125,9 @@ describe("spec-cm", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 6, line 418: '>→→foo'", () => {
@@ -134,6 +149,9 @@ describe("spec-cm", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 7, line 427: '-→→foo'", () => {
@@ -157,6 +175,9 @@ describe("spec-cm", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 8, line 439: '    foo\\n→bar'", () => {
@@ -178,6 +199,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 9, line 448: ' - foo\\n   - bar\\n→ - baz'", () => {
@@ -208,6 +232,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 10, line 466: '#→Foo'", () => {
@@ -226,6 +253,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 11, line 472: '*→*→*→'", () => {
@@ -244,6 +274,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 12, line 489: '\\!\\\"\\#\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/\\:\\;\\<\\=\\>\\?\\@\\[\\\\\\]\\^\\_\\`\\{\\|\\}\\~'", () => {
@@ -262,6 +295,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 13, line 499: '\\→\\A\\a\\ \\3\\φ\\«'", () => {
@@ -280,6 +316,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 14, line 509: '\\*not emphasized*\\n\\<br/> not a tag\\n\\[not a link](/foo)\\n\\`not code`\\n1\\. not a list\\n\\* not a list\\n\\# not a heading\\n\\[foo]: /url \"not a reference\"\\n\\&ouml; not a character entity'", () => {
@@ -314,6 +353,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 15, line 534: '\\\\*emphasis*'", () => {
@@ -332,6 +374,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 16, line 543: 'foo\\\\nbar'", () => {
@@ -352,6 +397,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 17, line 555: '`` \\[\\` ``'", () => {
@@ -370,6 +418,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 18, line 562: '    \\[\\]'", () => {
@@ -389,6 +440,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 19, line 570: '~~~\\n\\[\\]\\n~~~'", () => {
@@ -410,6 +464,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 20, line 580: '<https://example.com?find=\\*>'", () => {
@@ -428,6 +485,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 21, line 587: '<a href=\"/bar\\/)\">'", () => {
@@ -446,6 +506,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 22, line 597: '[foo](/bar\\* \"ti\\*tle\")'", () => {
@@ -464,6 +527,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 23, line 604: '[foo]\\n\\n[foo]: /bar\\* \"ti\\*tle\"'", () => {
@@ -484,6 +550,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 24, line 613: '``` foo\\+bar\\nfoo\\n```'", () => {
@@ -505,6 +574,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 25, line 649: '&nbsp; &amp; &copy; &AElig; &Dcaron;\\n&frac34; &HilbertSpace; &DifferentialD;\\n&ClockwiseContourIntegral; &ngE;'", () => {
@@ -527,6 +599,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 26, line 668: '&#35; &#1234; &#992; &#0;'", () => {
@@ -545,6 +620,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 27, line 681: '&#X22; &#XD06; &#xcab;'", () => {
@@ -563,6 +641,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 28, line 690: '&nbsp &x; &#; &#x;\\n&#87654321;\\n&#abcdef0;\\n&ThisIsNotDefined; &hi?;'", () => {
@@ -587,6 +668,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 29, line 707: '&copy'", () => {
@@ -605,6 +689,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 30, line 717: '&MadeUpEntity;'", () => {
@@ -623,6 +710,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 31, line 728: '<a href=\"&ouml;&ouml;.html\">'", () => {
@@ -641,6 +731,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 32, line 735: '[foo](/f&ouml;&ouml; \"f&ouml;&ouml;\")'", () => {
@@ -659,6 +752,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 33, line 742: '[foo]\\n\\n[foo]: /f&ouml;&ouml; \"f&ouml;&ouml;\"'", () => {
@@ -679,6 +775,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 34, line 751: '``` f&ouml;&ouml;\\nfoo\\n```'", () => {
@@ -700,6 +799,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 35, line 764: '`f&ouml;&ouml;`'", () => {
@@ -718,6 +820,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 36, line 771: '    f&ouml;f&ouml;'", () => {
@@ -737,6 +842,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 37, line 783: '&#42;foo&#42;\\n*foo*'", () => {
@@ -757,6 +865,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 38, line 791: '&#42; foo\\n\\n* foo'", () => {
@@ -780,6 +891,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 39, line 802: 'foo&#10;&#10;bar'", () => {
@@ -800,6 +914,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 40, line 810: '&#9;foo'", () => {
@@ -818,6 +935,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 41, line 817: '[a](url &quot;tit&quot;)'", () => {
@@ -836,6 +956,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 42, line 840: '- `one\\n- two`'", () => {
@@ -858,6 +981,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 43, line 879: '***\\n---\\n___'", () => {
@@ -880,6 +1006,9 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 44, line 892: '+++'", () => {
@@ -898,6 +1027,9 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 45, line 899: '==='", () => {
@@ -916,6 +1048,9 @@ ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 46, line 908: '--\\n**\\n__'", () => {
@@ -938,6 +1073,9 @@ __</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 47, line 921: ' ***\\n  ***\\n   ***'", () => {
@@ -960,6 +1098,9 @@ __</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 48, line 934: '    ***'", () => {
@@ -979,6 +1120,9 @@ __</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 49, line 942: 'Foo\\n    ***'", () => {
@@ -999,6 +1143,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 50, line 953: '_____________________________________'", () => {
@@ -1017,6 +1164,9 @@ _____________________________________
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 51, line 962: ' - - -'", () => {
@@ -1035,6 +1185,9 @@ _____________________________________
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 52, line 969: ' **  * ** * ** * **'", () => {
@@ -1053,6 +1206,9 @@ _____________________________________
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 53, line 976: '-     -      -      -'", () => {
@@ -1071,6 +1227,9 @@ _____________________________________
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 54, line 985: '- - - -    '", () => {
@@ -1089,6 +1248,9 @@ _____________________________________
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 55, line 994: '_ _ _ _ a\\n\\na------\\n\\n---a---'", () => {
@@ -1113,6 +1275,9 @@ a------
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 56, line 1010: ' *-*'", () => {
@@ -1131,6 +1296,9 @@ a------
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 57, line 1019: '- foo\\n***\\n- bar'", () => {
@@ -1157,6 +1325,9 @@ a------
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 58, line 1036: 'Foo\\n***\\nbar'", () => {
@@ -1179,6 +1350,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 59, line 1053: 'Foo\\n---\\nbar'", () => {
@@ -1200,6 +1374,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 60, line 1066: '* Foo\\n* * *\\n* Bar'", () => {
@@ -1226,6 +1403,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 61, line 1083: '- Foo\\n- * * *'", () => {
@@ -1250,6 +1430,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 62, line 1112: '# foo\\n## foo\\n### foo\\n#### foo\\n##### foo\\n###### foo'", () => {
@@ -1278,6 +1461,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 63, line 1131: '####### foo'", () => {
@@ -1296,6 +1482,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 64, line 1146: '#5 bolt\\n\\n#hashtag'", () => {
@@ -1317,6 +1506,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 65, line 1158: '\\## foo'", () => {
@@ -1335,6 +1527,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 66, line 1167: '# foo *bar* \\*baz\\*'", () => {
@@ -1353,6 +1548,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 67, line 1176: '#                  foo                     '", () => {
@@ -1371,6 +1569,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 68, line 1185: ' ### foo\\n  ## foo\\n   # foo'", () => {
@@ -1393,6 +1594,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 69, line 1198: '    # foo'", () => {
@@ -1412,6 +1616,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 70, line 1206: 'foo\\n    # bar'", () => {
@@ -1432,6 +1639,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 71, line 1217: '## foo ##\\n  ###   bar    ###'", () => {
@@ -1452,6 +1662,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 72, line 1228: '# foo ##################################\\n##### foo ##'", () => {
@@ -1472,6 +1685,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 73, line 1239: '### foo ###     '", () => {
@@ -1490,6 +1706,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 74, line 1250: '### foo ### b'", () => {
@@ -1508,6 +1727,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 75, line 1259: '# foo#'", () => {
@@ -1526,6 +1748,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 76, line 1269: '### foo \\###\\n## foo #\\##\\n# foo \\#'", () => {
@@ -1548,6 +1773,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 77, line 1283: '****\\n## foo\\n****'", () => {
@@ -1570,6 +1798,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 78, line 1294: 'Foo bar\\n# baz\\nBar foo'", () => {
@@ -1592,6 +1823,9 @@ Bar foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 79, line 1307: '## \\n#\\n### ###'", () => {
@@ -1614,6 +1848,9 @@ Bar foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 80, line 1347: 'Foo *bar*\\n=========\\n\\nFoo *bar*\\n---------'", () => {
@@ -1637,6 +1874,9 @@ Foo *bar*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 81, line 1361: 'Foo *bar\\nbaz*\\n===='", () => {
@@ -1658,6 +1898,9 @@ baz</em></h1>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 82, line 1375: '  Foo *bar\\nbaz*→\\n===='", () => {
@@ -1679,6 +1922,9 @@ baz</em></h1>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 83, line 1387: 'Foo\\n-------------------------\\n\\nFoo\\n=='", () => {
@@ -1702,6 +1948,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 84, line 1402: '   Foo\\n---\\n\\n  Foo\\n-----\\n\\n  Foo\\n  ==='", () => {
@@ -1729,6 +1978,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 85, line 1420: '    Foo\\n    ---\\n\\n    Foo\\n---'", () => {
@@ -1756,6 +2008,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 86, line 1439: 'Foo\\n   ----      '", () => {
@@ -1775,6 +2030,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 87, line 1449: 'Foo\\n    ---'", () => {
@@ -1795,6 +2053,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 88, line 1460: 'Foo\\n= =\\n\\nFoo\\n--- -'", () => {
@@ -1820,6 +2081,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 89, line 1476: 'Foo  \\n-----'", () => {
@@ -1839,6 +2103,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 90, line 1486: 'Foo\\\\n----'", () => {
@@ -1858,6 +2125,9 @@ Foo\\
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 91, line 1497: '`Foo\\n----\\n`\\n\\n<a title=\"a lot\\n---\\nof dashes\"/>'", () => {
@@ -1885,6 +2155,9 @@ of dashes"/>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 92, line 1516: '> Foo\\n---'", () => {
@@ -1907,6 +2180,9 @@ of dashes"/>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 93, line 1527: '> foo\\nbar\\n==='", () => {
@@ -1931,6 +2207,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 94, line 1540: '- Foo\\n---'", () => {
@@ -1953,6 +2232,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 95, line 1555: 'Foo\\nBar\\n---'", () => {
@@ -1974,6 +2256,9 @@ Bar</h2>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 96, line 1568: 'Foo\\n---\\nBar\\n---\\nBaz'", () => {
@@ -1998,6 +2283,9 @@ Baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 97, line 1585: '\\n===='", () => {
@@ -2017,6 +2305,9 @@ Baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	// TODO:
@@ -2038,6 +2329,9 @@ Baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 99, line 1606: '- foo\\n-----'", () => {
@@ -2060,6 +2354,9 @@ Baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 100, line 1617: '    foo\\n---'", () => {
@@ -2081,6 +2378,9 @@ Baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 101, line 1627: '> foo\\n-----'", () => {
@@ -2103,6 +2403,9 @@ Baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 102, line 1641: '\\> foo\\n------'", () => {
@@ -2122,6 +2425,9 @@ Baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 103, line 1672: 'Foo\\n\\nbar\\n---\\nbaz'", () => {
@@ -2146,6 +2452,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 104, line 1688: 'Foo\\nbar\\n\\n---\\n\\nbaz'", () => {
@@ -2172,6 +2481,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 105, line 1706: 'Foo\\nbar\\n* * *\\nbaz'", () => {
@@ -2196,6 +2508,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 106, line 1721: 'Foo\\nbar\\n\\---\\nbaz'", () => {
@@ -2220,6 +2535,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 107, line 1749: '    a simple\\n      indented code block'", () => {
@@ -2241,6 +2559,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 108, line 1763: '  - foo\\n\\n    bar'", () => {
@@ -2266,6 +2587,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 109, line 1777: '1.  foo\\n\\n    - bar'", () => {
@@ -2293,6 +2617,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 110, line 1797: '    <a/>\\n    *hi*\\n\\n    - one'", () => {
@@ -2318,6 +2645,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 111, line 1813: '    chunk1\\n\\n    chunk2\\n  \\n \\n \\n    chunk3'", () => {
@@ -2349,6 +2679,9 @@ chunk3
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 112, line 1836: '    chunk1\\n      \\n      chunk2'", () => {
@@ -2372,6 +2705,9 @@ chunk3
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 113, line 1851: 'Foo\\n    bar\\n'", () => {
@@ -2393,6 +2729,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 114, line 1865: '    foo\\nbar'", () => {
@@ -2414,6 +2753,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 115, line 1878: '# Heading\\n    foo\\nHeading\\n------\\n    foo\\n----'", () => {
@@ -2443,6 +2785,9 @@ Heading
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 116, line 1898: '        foo\\n    bar'", () => {
@@ -2464,6 +2809,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 117, line 1911: '\\n    \\n    foo\\n    \\n'", () => {
@@ -2487,6 +2835,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 118, line 1925: '    foo  '", () => {
@@ -2506,6 +2857,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 119, line 1980: '```\\n<\\n >\\n```'", () => {
@@ -2529,6 +2883,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 120, line 1994: '~~~\\n<\\n >\\n~~~'", () => {
@@ -2552,6 +2909,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 121, line 2007: '``\\nfoo\\n``'", () => {
@@ -2572,6 +2932,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 122, line 2018: '```\\naaa\\n~~~\\n```'", () => {
@@ -2595,6 +2958,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 123, line 2030: '~~~\\naaa\\n```\\n~~~'", () => {
@@ -2618,6 +2984,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 124, line 2044: '````\\naaa\\n```\\n``````'", () => {
@@ -2641,6 +3010,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 125, line 2056: '~~~~\\naaa\\n~~~\\n~~~~'", () => {
@@ -2664,6 +3036,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 126, line 2071: '```'", () => {
@@ -2682,6 +3057,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 127, line 2078: '`````\\n\\n```\\naaa'", () => {
@@ -2706,6 +3084,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 128, line 2091: '> ```\\n> aaa\\n\\nbbb'", () => {
@@ -2731,6 +3112,9 @@ bbb
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 129, line 2107: '```\\n\\n  \\n```'", () => {
@@ -2754,6 +3138,9 @@ bbb
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 130, line 2121: '```\\n```'", () => {
@@ -2773,6 +3160,9 @@ bbb
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 131, line 2133: ' ```\\n aaa\\naaa\\n```'", () => {
@@ -2796,6 +3186,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 132, line 2145: '  ```\\naaa\\n  aaa\\naaa\\n  ```'", () => {
@@ -2821,6 +3214,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 133, line 2159: '   ```\\n   aaa\\n    aaa\\n  aaa\\n   ```'", () => {
@@ -2846,6 +3242,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 134, line 2175: '    ```\\n    aaa\\n    ```'", () => {
@@ -2869,6 +3268,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 135, line 2190: '```\\naaa\\n  ```'", () => {
@@ -2890,6 +3292,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 136, line 2200: '   ```\\naaa\\n  ```'", () => {
@@ -2911,6 +3316,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 137, line 2212: '```\\naaa\\n    ```'", () => {
@@ -2933,6 +3341,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 138, line 2226: '``` ```\\naaa'", () => {
@@ -2953,6 +3364,9 @@ aaa</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 139, line 2235: '~~~~~~\\naaa\\n~~~ ~~'", () => {
@@ -2975,6 +3389,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 140, line 2249: 'foo\\n```\\nbar\\n```\\nbaz'", () => {
@@ -3000,6 +3417,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 141, line 2266: 'foo\\n---\\n~~~\\nbar\\n~~~\\n# baz'", () => {
@@ -3026,6 +3446,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 142, line 2288: '```ruby\\ndef foo(x)\\n  return 3\\nend\\n```'", () => {
@@ -3051,6 +3474,9 @@ end
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 143, line 2302: '~~~~    ruby startline=3 $%@#$\\ndef foo(x)\\n  return 3\\nend\\n~~~~~~~'", () => {
@@ -3076,6 +3502,9 @@ end
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 144, line 2316: '````;\\n````'", () => {
@@ -3095,6 +3524,9 @@ end
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 145, line 2326: '``` aa ```\\nfoo'", () => {
@@ -3115,6 +3547,9 @@ foo</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 146, line 2337: '~~~ aa ``` ~~~\\nfoo\\n~~~'", () => {
@@ -3136,6 +3571,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 147, line 2349: '```\\n``` aaa\\n```'", () => {
@@ -3157,6 +3595,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 148, line 2428: '<table><tr><td>\\n<pre>\\n**Hello**,\\n\\n_world_.\\n</pre>\\n</td></tr></table>'", () => {
@@ -3186,6 +3627,9 @@ _world_.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 149, line 2457: '<table>\\n  <tr>\\n    <td>\\n           hi\\n    </td>\\n  </tr>\\n</table>\\n\\nokay.'", () => {
@@ -3219,6 +3663,9 @@ okay.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 150, line 2479: ' <div>\\n  *hello*\\n         <foo><a>'", () => {
@@ -3241,6 +3688,9 @@ okay.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 151, line 2492: '</div>\\n*foo*'", () => {
@@ -3261,6 +3711,9 @@ okay.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 152, line 2503: '<DIV CLASS=\"foo\">\\n\\n*Markdown*\\n\\n</DIV>'", () => {
@@ -3285,6 +3738,9 @@ okay.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 153, line 2519: \'<div id="foo"\\n  class="bar">\\n</div>\'', () => {
@@ -3307,6 +3763,9 @@ okay.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 154, line 2530: \'<div id="foo" class="bar\\n  baz">\\n</div>\'', () => {
@@ -3329,6 +3788,9 @@ okay.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 155, line 2542: '<div>\\n*foo*\\n\\n*bar*'", () => {
@@ -3352,6 +3814,9 @@ okay.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 156, line 2558: '<div id=\"foo\"\\n*hi*'", () => {
@@ -3372,6 +3837,9 @@ okay.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 157, line 2567: '<div class\\nfoo'", () => {
@@ -3392,6 +3860,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 158, line 2579: '<div *???-&&&-<---\\n*foo*'", () => {
@@ -3412,6 +3883,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 159, line 2591: '<div><a href=\"bar\">*foo*</a></div>'", () => {
@@ -3430,6 +3904,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 160, line 2598: '<table><tr><td>\\nfoo\\n</td></tr></table>'", () => {
@@ -3452,6 +3929,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 161, line 2615: '<div></div>\\n``` c\\nint x = 33;\\n```'", () => {
@@ -3476,6 +3956,9 @@ int x = 33;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 162, line 2632: '<a href=\"foo\">\\n*bar*\\n</a>'", () => {
@@ -3498,6 +3981,9 @@ int x = 33;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 163, line 2645: '<Warning>\\n*bar*\\n</Warning>'", () => {
@@ -3520,6 +4006,9 @@ int x = 33;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 164, line 2656: '<i class=\"foo\">\\n*bar*\\n</i>'", () => {
@@ -3542,6 +4031,9 @@ int x = 33;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 165, line 2667: '</ins>\\n*bar*'", () => {
@@ -3562,6 +4054,9 @@ int x = 33;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 166, line 2682: '<del>\\n*foo*\\n</del>'", () => {
@@ -3584,6 +4079,9 @@ int x = 33;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 167, line 2697: '<del>\\n\\n*foo*\\n\\n</del>'", () => {
@@ -3608,6 +4106,9 @@ int x = 33;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 168, line 2715: '<del>*foo*</del>'", () => {
@@ -3626,6 +4127,9 @@ int x = 33;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 169, line 2731: '<pre language=\"haskell\"><code>\\nimport Text.HTML.TagSoup\\n\\nmain :: IO ()\\nmain = print $ parseTags tags\\n</code></pre>\\nokay'", () => {
@@ -3656,6 +4160,9 @@ main = print $ parseTags tags
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 170, line 2752: \'<script type="text/javascript">\\n// JavaScript example\\n\\ndocument.getElementById("demo").innerHTML = "Hello JavaScript!";\\n</script>\\nokay\'', () => {
@@ -3684,6 +4191,9 @@ document.getElementById("demo").innerHTML = "Hello JavaScript!";
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 171, line 2771: '<textarea>\\n\\n*foo*\\n\\n_bar_\\n\\n</textarea>'", () => {
@@ -3714,6 +4224,9 @@ _bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 172, line 2791: '<style\\n  type=\"text/css\">\\nh1 {color:red;}\\n\\np {color:blue;}\\n</style>\\nokay'", () => {
@@ -3744,6 +4257,9 @@ p {color:blue;}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 173, line 2814: '<style\\n  type=\"text/css\">\\n\\nfoo'", () => {
@@ -3768,6 +4284,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 174, line 2827: '> <div>\\n> foo\\n\\nbar'", () => {
@@ -3793,6 +4312,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 175, line 2841: '- <div>\\n- foo'", () => {
@@ -3817,6 +4339,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 176, line 2856: '<style>p{color:red;}</style>\\n*foo*'", () => {
@@ -3837,6 +4362,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 177, line 2865: '<!-- foo -->*bar*\\n*baz*'", () => {
@@ -3857,6 +4385,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 178, line 2877: '<script>\\nfoo\\n</script>1. *bar*'", () => {
@@ -3879,6 +4410,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 179, line 2890: '<!-- Foo\\n\\nbar\\n   baz -->\\nokay'", () => {
@@ -3905,6 +4439,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 180, line 2908: '<?php\\n\\n  echo '>';\\n\\n?>\\nokay'", () => {
@@ -3933,6 +4470,9 @@ okay
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 181, line 2927: '<!DOCTYPE html>'", () => {
@@ -3951,6 +4491,9 @@ okay
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 182, line 2936: '<![CDATA[\\nfunction matchwo(a,b)\\n{\\n  if (a < b && a < 0) then {\\n    return 1;\\n\\n  } else {\\n\\n    return 0;\\n  }\\n}\\n]]>\\nokay'", () => {
@@ -3993,6 +4536,9 @@ function matchwo(a,b)
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 183, line 2970: '  <!-- foo -->\\n\\n    <!-- foo -->'", () => {
@@ -4015,6 +4561,9 @@ function matchwo(a,b)
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 184, line 2981: '  <div>\\n\\n    <div>'", () => {
@@ -4037,6 +4586,9 @@ function matchwo(a,b)
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 185, line 2995: 'Foo\\n<div>\\nbar\\n</div>'", () => {
@@ -4061,6 +4613,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 186, line 3012: '<div>\\nbar\\n</div>\\n*foo*'", () => {
@@ -4085,6 +4640,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 187, line 3027: 'Foo\\n<a href=\"bar\">\\nbaz'", () => {
@@ -4107,6 +4665,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 188, line 3068: '<div>\\n\\n*Emphasized* text.\\n\\n</div>'", () => {
@@ -4131,6 +4692,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 189, line 3081: '<div>\\n*Emphasized* text.\\n</div>'", () => {
@@ -4153,6 +4717,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 190, line 3103: '<table>\\n\\n<tr>\\n\\n<td>\\nHi\\n</td>\\n\\n</tr>\\n\\n</table>'", () => {
@@ -4187,6 +4754,9 @@ Hi
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 191, line 3130: '<table>\\n\\n  <tr>\\n\\n    <td>\\n      Hi\\n    </td>\\n\\n  </tr>\\n\\n</table>'", () => {
@@ -4222,6 +4792,9 @@ Hi
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 192, line 3179: '[foo]: /url \"title\"\\n\\n[foo]'", () => {
@@ -4242,6 +4815,9 @@ Hi
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 193, line 3188: '   [foo]: \\n      /url  \\n           'the title'  \\n\\n[foo]'", () => {
@@ -4264,6 +4840,9 @@ Hi
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 194, line 3199: '[Foo*bar\\]]:my_(url) 'title (with parens)'\\n\\n[Foo*bar\\]]'", () => {
@@ -4284,6 +4863,9 @@ Hi
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 195, line 3208: '[Foo bar]:\\n<my url>\\n'title'\\n\\n[Foo bar]'", () => {
@@ -4306,6 +4888,9 @@ Hi
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 196, line 3221: '[foo]: /url '\\ntitle\\nline1\\nline2\\n'\\n\\n[foo]'", () => {
@@ -4334,6 +4919,9 @@ line2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 197, line 3240: '[foo]: /url 'title\\n\\nwith blank line'\\n\\n[foo]'", () => {
@@ -4358,6 +4946,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 198, line 3255: '[foo]:\\n/url\\n\\n[foo]'", () => {
@@ -4379,6 +4970,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 199, line 3267: '[foo]:\\n\\n[foo]'", () => {
@@ -4400,6 +4994,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 200, line 3279: '[foo]: <>\\n\\n[foo]'", () => {
@@ -4420,6 +5017,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 201, line 3290: '[foo]: <bar>(baz)\\n\\n[foo]'", () => {
@@ -4441,6 +5041,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 202, line 3303: \'[foo]: /url\\bar\\*baz "foo\\"bar\\baz"\\n\\n[foo]\'', () => {
@@ -4461,6 +5064,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 203, line 3314: '[foo]\\n\\n[foo]: url'", () => {
@@ -4481,6 +5087,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 204, line 3326: '[foo]\\n\\n[foo]: first\\n[foo]: second'", () => {
@@ -4502,6 +5111,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 205, line 3339: '[FOO]: /url\\n\\n[Foo]'", () => {
@@ -4522,6 +5134,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 206, line 3348: '[ΑΓΩ]: /φου\\n\\n[αγω]'", () => {
@@ -4542,6 +5157,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 207, line 3363: '[foo]: /url'", () => {
@@ -4559,6 +5177,9 @@ with blank line'
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 208, line 3371: '[\\nfoo\\n]: /url\\nbar'", () => {
@@ -4580,6 +5201,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 209, line 3384: '[foo]: /url \"title\" ok'", () => {
@@ -4598,6 +5222,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 210, line 3393: '[foo]: /url\\n\"title\" ok'", () => {
@@ -4617,6 +5244,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 211, line 3404: '    [foo]: /url \"title\"\\n\\n[foo]'", () => {
@@ -4639,6 +5269,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 212, line 3418: '```\\n[foo]: /url\\n```\\n\\n[foo]'", () => {
@@ -4663,6 +5296,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 213, line 3433: 'Foo\\n[bar]: /baz\\n\\n[bar]'", () => {
@@ -4686,6 +5322,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 214, line 3448: '# [Foo]\\n[foo]: /url\\n> bar'", () => {
@@ -4709,6 +5348,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 215, line 3459: '[foo]: /url\\nbar\\n===\\n[foo]'", () => {
@@ -4731,6 +5373,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 216, line 3469: '[foo]: /url\\n===\\n[foo]'", () => {
@@ -4752,6 +5397,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 217, line 3482: \'[foo]: /foo-url "foo"\\n[bar]: /bar-url\\n  "bar"\\n[baz]: /baz-url\\n\\n[foo],\\n[bar],\\n[baz]\'', () => {
@@ -4779,6 +5427,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 218, line 3503: '[foo]\\n\\n> [foo]: /url'", () => {
@@ -4801,6 +5452,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 219, line 3525: 'aaa\\n\\nbbb'", () => {
@@ -4822,6 +5476,9 @@ bbb
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 220, line 3537: 'aaa\\nbbb\\n\\nccc\\nddd'", () => {
@@ -4847,6 +5504,9 @@ ddd</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 221, line 3553: 'aaa\\n\\n\\nbbb'", () => {
@@ -4869,6 +5529,9 @@ bbb
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 222, line 3566: '  aaa\\n bbb'", () => {
@@ -4889,6 +5552,9 @@ bbb</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 223, line 3578: 'aaa\\n             bbb\\n                                       ccc'", () => {
@@ -4911,6 +5577,9 @@ ccc</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 224, line 3592: '   aaa\\nbbb'", () => {
@@ -4931,6 +5600,9 @@ bbb</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 225, line 3601: '    aaa\\nbbb'", () => {
@@ -4952,6 +5624,9 @@ bbb
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 226, line 3615: 'aaa     \\nbbb     '", () => {
@@ -4972,6 +5647,9 @@ bbb</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 227, line 3632: '  \\n\\naaa\\n  \\n\\n# aaa\\n\\n  '", () => {
@@ -4998,6 +5676,9 @@ aaa
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 228, line 3700: '> # Foo\\n> bar\\n> baz'", () => {
@@ -5022,6 +5703,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 229, line 3715: '># Foo\\n>bar\\n> baz'", () => {
@@ -5046,6 +5730,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 230, line 3730: '   > # Foo\\n   > bar\\n > baz'", () => {
@@ -5070,6 +5757,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 231, line 3745: '    > # Foo\\n    > bar\\n    > baz'", () => {
@@ -5093,6 +5783,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 232, line 3760: '> # Foo\\n> bar\\nbaz'", () => {
@@ -5117,6 +5810,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 233, line 3776: '> bar\\nbaz\\n> foo'", () => {
@@ -5141,6 +5837,9 @@ foo</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 234, line 3800: '> foo\\n---'", () => {
@@ -5163,6 +5862,9 @@ foo</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 235, line 3820: '> - foo\\n- bar'", () => {
@@ -5189,6 +5891,9 @@ foo</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 236, line 3838: '>     foo\\n    bar'", () => {
@@ -5213,6 +5918,9 @@ foo</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 237, line 3851: '> ```\\nfoo\\n```'", () => {
@@ -5237,6 +5945,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 238, line 3867: '> foo\\n    - bar'", () => {
@@ -5259,6 +5970,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 239, line 3891: '>'", () => {
@@ -5278,6 +5992,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 240, line 3899: '>\\n>  \\n> '", () => {
@@ -5299,6 +6016,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 241, line 3911: '>\\n> foo\\n>  '", () => {
@@ -5321,6 +6041,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 242, line 3924: '> foo\\n\\n> bar'", () => {
@@ -5346,6 +6069,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 243, line 3946: '> foo\\n> bar'", () => {
@@ -5368,6 +6094,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 244, line 3959: '> foo\\n>\\n> bar'", () => {
@@ -5391,6 +6120,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 245, line 3973: 'foo\\n> bar'", () => {
@@ -5413,6 +6145,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 246, line 3987: '> aaa\\n***\\n> bbb'", () => {
@@ -5439,6 +6174,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 247, line 4005: '> bar\\nbaz'", () => {
@@ -5461,6 +6199,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 248, line 4016: '> bar\\n\\nbaz'", () => {
@@ -5484,6 +6225,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 249, line 4028: '> bar\\n>\\nbaz'", () => {
@@ -5507,6 +6251,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 250, line 4044: '> > > foo\\nbar'", () => {
@@ -5533,6 +6280,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 251, line 4059: '>>> foo\\n> bar\\n>>baz'", () => {
@@ -5561,6 +6311,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 252, line 4081: '>     code\\n\\n>    not code'", () => {
@@ -5587,6 +6340,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 253, line 4135: 'A paragraph\\nwith two lines.\\n\\n    indented code\\n\\n> A block quote.'", () => {
@@ -5616,6 +6372,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 254, line 4157: '1.  A paragraph\\n    with two lines.\\n\\n        indented code\\n\\n    > A block quote.'", () => {
@@ -5649,6 +6408,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 255, line 4190: '- one\\n\\n two'", () => {
@@ -5672,6 +6434,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 256, line 4202: '- one\\n\\n  two'", () => {
@@ -5697,6 +6462,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 257, line 4216: ' -    one\\n\\n     two'", () => {
@@ -5721,6 +6489,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 258, line 4229: ' -    one\\n\\n      two'", () => {
@@ -5746,6 +6517,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 259, line 4251: '   > > 1.  one\\n>>\\n>>     two'", () => {
@@ -5775,6 +6549,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 260, line 4278: '>>- one\\n>>\\n  >  > two'", () => {
@@ -5802,6 +6579,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 261, line 4297: '-one\\n\\n2.two'", () => {
@@ -5823,6 +6603,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 262, line 4310: '- foo\\n\\n\\n  bar'", () => {
@@ -5849,6 +6632,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 263, line 4327: '1.  foo\\n\\n    ```\\n    bar\\n    ```\\n\\n    baz\\n\\n    > bam'", () => {
@@ -5885,6 +6671,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 264, line 4355: '- Foo\\n\\n      bar\\n\\n\\n      baz'", () => {
@@ -5917,6 +6706,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 265, line 4377: '123456789. ok'", () => {
@@ -5937,6 +6729,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 266, line 4386: '1234567890. not ok'", () => {
@@ -5955,6 +6750,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 267, line 4395: '0. ok'", () => {
@@ -5975,6 +6773,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 268, line 4404: '003. ok'", () => {
@@ -5995,6 +6796,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 269, line 4415: '-1. not ok'", () => {
@@ -6013,6 +6817,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 270, line 4438: '- foo\\n\\n      bar'", () => {
@@ -6039,6 +6846,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 271, line 4455: '  10.  foo\\n\\n           bar'", () => {
@@ -6065,6 +6875,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 272, line 4474: '    indented code\\n\\nparagraph\\n\\n    more code'", () => {
@@ -6091,6 +6904,9 @@ paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 273, line 4489: '1.     indented code\\n\\n   paragraph\\n\\n       more code'", () => {
@@ -6121,6 +6937,9 @@ paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 274, line 4511: '1.      indented code\\n\\n   paragraph\\n\\n       more code'", () => {
@@ -6151,6 +6970,9 @@ paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 275, line 4538: '   foo\\n\\nbar'", () => {
@@ -6172,6 +6994,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 276, line 4548: '-    foo\\n\\n  bar'", () => {
@@ -6195,6 +7020,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 277, line 4565: '-  foo\\n\\n   bar'", () => {
@@ -6220,6 +7048,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 278, line 4592: '-\\n  foo\\n-\\n  ```\\n  bar\\n  ```\\n-\\n      baz'", () => {
@@ -6255,6 +7086,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 279, line 4618: '-   \\n  foo'", () => {
@@ -6276,6 +7110,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 280, line 4632: '-\\n\\n  foo'", () => {
@@ -6299,6 +7136,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 281, line 4646: '- foo\\n-\\n- bar'", () => {
@@ -6323,6 +7163,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 282, line 4661: '- foo\\n-   \\n- bar'", () => {
@@ -6347,6 +7190,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 283, line 4676: '1. foo\\n2.\\n3. bar'", () => {
@@ -6371,6 +7217,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 284, line 4691: '*'", () => {
@@ -6391,6 +7240,9 @@ bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 285, line 4701: 'foo\\n*\\n\\nfoo\\n1.'", () => {
@@ -6416,6 +7268,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 286, line 4723: ' 1.  A paragraph\\n     with two lines.\\n\\n         indented code\\n\\n     > A block quote.'", () => {
@@ -6449,6 +7304,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 287, line 4747: '  1.  A paragraph\\n      with two lines.\\n\\n          indented code\\n\\n      > A block quote.'", () => {
@@ -6482,6 +7340,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 288, line 4771: '   1.  A paragraph\\n       with two lines.\\n\\n           indented code\\n\\n       > A block quote.'", () => {
@@ -6515,6 +7376,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 289, line 4795: '    1.  A paragraph\\n        with two lines.\\n\\n            indented code\\n\\n        > A block quote.'", () => {
@@ -6544,6 +7408,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 290, line 4825: '  1.  A paragraph\\nwith two lines.\\n\\n          indented code\\n\\n      > A block quote.'", () => {
@@ -6577,6 +7444,9 @@ with two lines.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 291, line 4849: '  1.  A paragraph\\n    with two lines.'", () => {
@@ -6599,6 +7469,9 @@ with two lines.</li>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 292, line 4862: '> 1. > Blockquote\\ncontinued here.'", () => {
@@ -6627,6 +7500,9 @@ continued here.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 293, line 4879: '> 1. > Blockquote\\n> continued here.'", () => {
@@ -6655,6 +7531,9 @@ continued here.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 294, line 4907: '- foo\\n  - bar\\n    - baz\\n      - boo'", () => {
@@ -6690,6 +7569,9 @@ continued here.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 295, line 4933: '- foo\\n - bar\\n  - baz\\n   - boo'", () => {
@@ -6716,6 +7598,9 @@ continued here.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 296, line 4950: '10) foo\\n    - bar'", () => {
@@ -6741,6 +7626,9 @@ continued here.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 297, line 4966: '10) foo\\n   - bar'", () => {
@@ -6765,6 +7653,9 @@ continued here.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 298, line 4981: '- - foo'", () => {
@@ -6789,6 +7680,9 @@ continued here.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 299, line 4994: '1. - 2. foo'", () => {
@@ -6817,6 +7711,9 @@ continued here.</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 300, line 5013: '- # Foo\\n- Bar\\n  ---\\n  baz'", () => {
@@ -6845,6 +7742,9 @@ baz</li>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 301, line 5249: '- foo\\n- bar\\n+ baz'", () => {
@@ -6871,6 +7771,9 @@ baz</li>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 302, line 5264: '1. foo\\n2. bar\\n3) baz'", () => {
@@ -6897,6 +7800,9 @@ baz</li>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 303, line 5283: 'Foo\\n- bar\\n- baz'", () => {
@@ -6921,6 +7827,9 @@ Foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 304, line 5360: 'The number of windows in my house is\\n14.  The number of doors is 6.'", () => {
@@ -6941,6 +7850,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 305, line 5370: 'The number of windows in my house is\\n1.  The number of doors is 6.'", () => {
@@ -6963,6 +7875,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 306, line 5384: '- foo\\n\\n- bar\\n\\n\\n- baz'", () => {
@@ -6996,6 +7911,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 307, line 5405: '- foo\\n  - bar\\n    - baz\\n\\n\\n      bim'", () => {
@@ -7032,6 +7950,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 308, line 5435: '- foo\\n- bar\\n\\n<!-- -->\\n\\n- baz\\n- bim'", () => {
@@ -7064,6 +7985,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 309, line 5456: '-   foo\\n\\n    notcode\\n\\n-   foo\\n\\n<!-- -->\\n\\n    code'", () => {
@@ -7101,6 +8025,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 310, line 5487: '- a\\n - b\\n  - c\\n   - d\\n  - e\\n - f\\n- g'", () => {
@@ -7133,6 +8060,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 311, line 5508: '1. a\\n\\n  2. b\\n\\n   3. c'", () => {
@@ -7165,6 +8095,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 312, line 5532: '- a\\n - b\\n  - c\\n   - d\\n    - e'", () => {
@@ -7193,6 +8126,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 313, line 5552: '1. a\\n\\n  2. b\\n\\n    3. c'", () => {
@@ -7224,6 +8160,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 314, line 5575: '- a\\n- b\\n\\n- c'", () => {
@@ -7255,6 +8194,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 315, line 5597: '* a\\n*\\n\\n* c'", () => {
@@ -7284,6 +8226,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 316, line 5619: '- a\\n- b\\n\\n  c\\n- d'", () => {
@@ -7317,6 +8262,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 317, line 5641: '- a\\n- b\\n\\n  [ref]: /url\\n- d'", () => {
@@ -7349,6 +8297,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 318, line 5664: '- a\\n- ```\\n  b\\n\\n\\n  ```\\n- c'", () => {
@@ -7382,6 +8333,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 319, line 5690: '- a\\n  - b\\n\\n    c\\n- d'", () => {
@@ -7414,6 +8368,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 320, line 5714: '* a\\n  > b\\n  >\\n* c'", () => {
@@ -7442,6 +8399,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 321, line 5734: '- a\\n  > b\\n  ```\\n  c\\n  ```\\n- d'", () => {
@@ -7474,6 +8434,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 322, line 5757: '- a'", () => {
@@ -7494,6 +8457,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 323, line 5766: '- a\\n  - b'", () => {
@@ -7519,6 +8485,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 324, line 5783: '1. ```\\n   foo\\n   ```\\n\\n   bar'", () => {
@@ -7547,6 +8516,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 325, line 5802: '* foo\\n  * bar\\n\\n  baz'", () => {
@@ -7576,6 +8548,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 326, line 5820: '- a\\n  - b\\n  - c\\n\\n- d\\n  - e\\n  - f'", () => {
@@ -7615,6 +8590,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 327, line 5854: '`hi`lo`'", () => {
@@ -7633,6 +8611,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 328, line 5886: '`foo`'", () => {
@@ -7651,6 +8632,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 329, line 5897: '`` foo ` bar ``'", () => {
@@ -7669,6 +8653,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 330, line 5907: '` `` `'", () => {
@@ -7687,6 +8674,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 331, line 5915: '`  ``  `'", () => {
@@ -7705,6 +8695,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 332, line 5924: '` a`'", () => {
@@ -7723,6 +8716,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 333, line 5933: '` b `'", () => {
@@ -7741,6 +8737,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 334, line 5941: '` `\\n`  `'", () => {
@@ -7761,6 +8760,9 @@ The number of windows in my house is
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 335, line 5952: '``\\nfoo\\nbar  \\nbaz\\n``'", () => {
@@ -7783,6 +8785,9 @@ baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 336, line 5962: '``\\nfoo \\n``'", () => {
@@ -7803,6 +8808,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 337, line 5973: '`foo   bar \\nbaz`'", () => {
@@ -7822,6 +8830,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 338, line 5990: '`foo\\`bar`'", () => {
@@ -7840,6 +8851,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 339, line 6001: '``foo`bar``'", () => {
@@ -7858,6 +8872,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 340, line 6007: '` foo `` bar `'", () => {
@@ -7876,6 +8893,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 341, line 6019: '*foo`*`'", () => {
@@ -7894,6 +8914,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 342, line 6028: '[not a `link](/foo`)'", () => {
@@ -7912,6 +8935,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 343, line 6038: '`<a href=\"`\">`'", () => {
@@ -7930,6 +8956,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 344, line 6047: '<a href=\"`\">`'", () => {
@@ -7948,6 +8977,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 345, line 6056: '`<https://foo.bar.`baz>`'", () => {
@@ -7966,6 +8998,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 346, line 6065: '<https://foo.bar.`baz>`'", () => {
@@ -7984,6 +9019,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 347, line 6075: '```foo``'", () => {
@@ -8002,6 +9040,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 348, line 6082: '`foo'", () => {
@@ -8020,6 +9061,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 349, line 6091: '`foo``bar``'", () => {
@@ -8038,6 +9082,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 350, line 6308: '*foo bar*'", () => {
@@ -8056,6 +9103,9 @@ baz\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 351, line 6318: 'a * foo bar*'", () => {
@@ -8074,6 +9124,9 @@ a * foo bar*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 352, line 6329: 'a*\"foo\"*'", () => {
@@ -8092,6 +9145,9 @@ a*"foo"*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 353, line 6338: '* a *'", () => {
@@ -8110,6 +9166,9 @@ a*"foo"*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 354, line 6347: '*$*alpha.\\n\\n*£*bravo.\\n\\n*€*charlie.'", () => {
@@ -8134,6 +9193,9 @@ a*"foo"*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 355, line 6362: 'foo*bar*'", () => {
@@ -8152,6 +9214,9 @@ foo*bar*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 356, line 6369: '5*6*78'", () => {
@@ -8170,6 +9235,9 @@ foo*bar*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 357, line 6378: '_foo bar_'", () => {
@@ -8188,6 +9256,9 @@ _foo bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 358, line 6388: '_ foo bar_'", () => {
@@ -8206,6 +9277,9 @@ _ foo bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 359, line 6398: 'a_\"foo\"_'", () => {
@@ -8224,6 +9298,9 @@ a_"foo"_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 360, line 6407: 'foo_bar_'", () => {
@@ -8242,6 +9319,9 @@ foo_bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 361, line 6414: '5_6_78'", () => {
@@ -8260,6 +9340,9 @@ foo_bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 362, line 6421: 'пристаням_стремятся_'", () => {
@@ -8278,6 +9361,9 @@ foo_bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 363, line 6431: 'aa_\"bb\"_cc'", () => {
@@ -8296,6 +9382,9 @@ aa_"bb"_cc
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 364, line 6442: 'foo-_(bar)_'", () => {
@@ -8314,6 +9403,9 @@ foo-_(bar)_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 365, line 6454: '_foo*'", () => {
@@ -8332,6 +9424,9 @@ _foo*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 366, line 6464: '*foo bar *'", () => {
@@ -8350,6 +9445,9 @@ _foo*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 367, line 6473: '*foo bar\\n*'", () => {
@@ -8370,6 +9468,9 @@ _foo*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 368, line 6486: '*(*foo)'", () => {
@@ -8388,6 +9489,9 @@ _foo*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 369, line 6496: '*(*foo*)*'", () => {
@@ -8406,6 +9510,9 @@ _foo*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 370, line 6505: '*foo*bar'", () => {
@@ -8424,6 +9531,9 @@ _foo*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 371, line 6518: '_foo bar _'", () => {
@@ -8442,6 +9552,9 @@ _foo bar _
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 372, line 6528: '_(_foo)'", () => {
@@ -8460,6 +9573,9 @@ _(_foo)
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 373, line 6537: '_(_foo_)_'", () => {
@@ -8478,6 +9594,9 @@ _(_foo_)_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 374, line 6546: '_foo_bar'", () => {
@@ -8496,6 +9615,9 @@ _foo_bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 375, line 6553: '_пристаням_стремятся'", () => {
@@ -8514,6 +9636,9 @@ _пристаням_стремятся
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 376, line 6560: '_foo_bar_baz_'", () => {
@@ -8532,6 +9657,9 @@ _foo_bar_baz_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 377, line 6571: '_(bar)_.'", () => {
@@ -8550,6 +9678,9 @@ _(bar)_.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 378, line 6580: '**foo bar**'", () => {
@@ -8568,6 +9699,9 @@ _(bar)_.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 379, line 6590: '** foo bar**'", () => {
@@ -8586,6 +9720,9 @@ _(bar)_.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 380, line 6601: 'a**\"foo\"**'", () => {
@@ -8604,6 +9741,9 @@ a**"foo"**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 381, line 6610: 'foo**bar**'", () => {
@@ -8622,6 +9762,9 @@ foo**bar**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 382, line 6619: '__foo bar__'", () => {
@@ -8640,6 +9783,9 @@ __foo bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 383, line 6629: '__ foo bar__'", () => {
@@ -8658,6 +9804,9 @@ __ foo bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 384, line 6637: '__\\nfoo bar__'", () => {
@@ -8678,6 +9827,9 @@ foo bar__</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 385, line 6649: 'a__\"foo\"__'", () => {
@@ -8696,6 +9848,9 @@ a__"foo"__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 386, line 6658: 'foo__bar__'", () => {
@@ -8714,6 +9869,9 @@ foo__bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 387, line 6665: '5__6__78'", () => {
@@ -8732,6 +9890,9 @@ foo__bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 388, line 6672: 'пристаням__стремятся__'", () => {
@@ -8750,6 +9911,9 @@ foo__bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 389, line 6679: '__foo, __bar__, baz__'", () => {
@@ -8768,6 +9932,9 @@ __foo, __bar__, baz__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 390, line 6690: 'foo-__(bar)__'", () => {
@@ -8786,6 +9953,9 @@ foo-__(bar)__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 391, line 6703: '**foo bar **'", () => {
@@ -8804,6 +9974,9 @@ foo-__(bar)__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 392, line 6716: '**(**foo)'", () => {
@@ -8822,6 +9995,9 @@ foo-__(bar)__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 393, line 6726: '*(**foo**)*'", () => {
@@ -8840,6 +10016,9 @@ foo-__(bar)__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 394, line 6733: '**Gomphocarpus (*Gomphocarpus physocarpus*, syn.\\n*Asclepias physocarpa*)**'", () => {
@@ -8860,6 +10039,9 @@ foo-__(bar)__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 395, line 6742: '**foo \"*bar*\" foo**'", () => {
@@ -8878,6 +10060,9 @@ foo-__(bar)__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 396, line 6751: '**foo**bar'", () => {
@@ -8896,6 +10081,9 @@ foo-__(bar)__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 397, line 6763: '__foo bar __'", () => {
@@ -8914,6 +10102,9 @@ __foo bar __
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 398, line 6773: '__(__foo)'", () => {
@@ -8932,6 +10123,9 @@ __(__foo)
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 399, line 6783: '_(__foo__)_'", () => {
@@ -8950,6 +10144,9 @@ _(__foo__)_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 400, line 6792: '__foo__bar'", () => {
@@ -8968,6 +10165,9 @@ __foo__bar
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 401, line 6799: '__пристаням__стремятся'", () => {
@@ -8986,6 +10186,9 @@ __пристаням__стремятся
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 402, line 6806: '__foo__bar__baz__'", () => {
@@ -9004,6 +10207,9 @@ __foo__bar__baz__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 403, line 6817: '__(bar)__.'", () => {
@@ -9022,6 +10228,9 @@ __(bar)__.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 404, line 6829: '*foo [bar](/url)*'", () => {
@@ -9040,6 +10249,9 @@ __(bar)__.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 405, line 6836: '*foo\\nbar*'", () => {
@@ -9060,6 +10272,9 @@ bar</em></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 406, line 6848: '_foo __bar__ baz_'", () => {
@@ -9078,6 +10293,9 @@ _foo __bar__ baz_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 407, line 6855: '_foo _bar_ baz_'", () => {
@@ -9096,6 +10314,9 @@ _foo _bar_ baz_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 408, line 6862: '__foo_ bar_'", () => {
@@ -9114,6 +10335,9 @@ __foo_ bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 409, line 6869: '*foo *bar**'", () => {
@@ -9132,6 +10356,9 @@ __foo_ bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 410, line 6876: '*foo **bar** baz*'", () => {
@@ -9150,6 +10377,9 @@ __foo_ bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 411, line 6882: '*foo**bar**baz*'", () => {
@@ -9168,6 +10398,9 @@ __foo_ bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 412, line 6906: '*foo**bar*'", () => {
@@ -9186,6 +10419,9 @@ __foo_ bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 413, line 6919: '***foo** bar*'", () => {
@@ -9204,6 +10440,9 @@ __foo_ bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 414, line 6926: '*foo **bar***'", () => {
@@ -9222,6 +10461,9 @@ __foo_ bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 415, line 6933: '*foo**bar***'", () => {
@@ -9240,6 +10482,9 @@ __foo_ bar_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 416, line 6944: 'foo***bar***baz'", () => {
@@ -9258,6 +10503,9 @@ foo***bar***baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 417, line 6950: 'foo******bar*********baz'", () => {
@@ -9276,6 +10524,9 @@ foo******bar*********baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 418, line 6959: '*foo **bar *baz* bim** bop*'", () => {
@@ -9294,6 +10545,9 @@ foo******bar*********baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 419, line 6966: '*foo [*bar*](/url)*'", () => {
@@ -9312,6 +10566,9 @@ foo******bar*********baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 420, line 6975: '** is not an empty emphasis'", () => {
@@ -9330,6 +10587,9 @@ foo******bar*********baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 421, line 6982: '**** is not an empty strong emphasis'", () => {
@@ -9348,6 +10608,9 @@ foo******bar*********baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 422, line 6995: '**foo [bar](/url)**'", () => {
@@ -9366,6 +10629,9 @@ foo******bar*********baz
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 423, line 7002: '**foo\\nbar**'", () => {
@@ -9386,6 +10652,9 @@ bar</strong></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 424, line 7014: '__foo _bar_ baz__'", () => {
@@ -9404,6 +10673,9 @@ __foo _bar_ baz__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 425, line 7021: '__foo __bar__ baz__'", () => {
@@ -9422,6 +10694,9 @@ __foo __bar__ baz__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 426, line 7028: '____foo__ bar__'", () => {
@@ -9440,6 +10715,9 @@ ____foo__ bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 427, line 7035: '**foo **bar****'", () => {
@@ -9458,6 +10736,9 @@ ____foo__ bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 428, line 7042: '**foo *bar* baz**'", () => {
@@ -9476,6 +10757,9 @@ ____foo__ bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 429, line 7049: '**foo*bar*baz**'", () => {
@@ -9494,6 +10778,9 @@ ____foo__ bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 430, line 7056: '***foo* bar**'", () => {
@@ -9512,6 +10799,9 @@ ____foo__ bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 431, line 7063: '**foo *bar***'", () => {
@@ -9530,6 +10820,9 @@ ____foo__ bar__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 432, line 7072: '**foo *bar **baz**\\nbim* bop**'", () => {
@@ -9550,6 +10843,9 @@ bim</em> bop</strong></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 433, line 7081: '**foo [*bar*](/url)**'", () => {
@@ -9568,6 +10864,9 @@ bim</em> bop</strong></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 434, line 7090: '__ is not an empty emphasis'", () => {
@@ -9586,6 +10885,9 @@ __ is not an empty emphasis
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 435, line 7097: '____ is not an empty strong emphasis'", () => {
@@ -9604,6 +10906,9 @@ ____ is not an empty strong emphasis
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 436, line 7107: 'foo ***'", () => {
@@ -9622,6 +10927,9 @@ foo ***
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 437, line 7114: 'foo *\\**'", () => {
@@ -9640,6 +10948,9 @@ foo *\\**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 438, line 7121: 'foo *_*'", () => {
@@ -9658,6 +10969,9 @@ foo *_*
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 439, line 7128: 'foo *****'", () => {
@@ -9676,6 +10990,9 @@ foo *****
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 440, line 7135: 'foo **\\***'", () => {
@@ -9694,6 +11011,9 @@ foo **\\***
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 441, line 7142: 'foo **_**'", () => {
@@ -9712,6 +11032,9 @@ foo **_**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 442, line 7153: '**foo*'", () => {
@@ -9730,6 +11053,9 @@ foo **_**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 443, line 7160: '*foo**'", () => {
@@ -9748,6 +11074,9 @@ foo **_**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 444, line 7167: '***foo**'", () => {
@@ -9766,6 +11095,9 @@ foo **_**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 445, line 7174: '****foo*'", () => {
@@ -9784,6 +11116,9 @@ foo **_**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 446, line 7181: '**foo***'", () => {
@@ -9802,6 +11137,9 @@ foo **_**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 447, line 7188: '*foo****'", () => {
@@ -9820,6 +11158,9 @@ foo **_**
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 448, line 7198: 'foo ___'", () => {
@@ -9838,6 +11179,9 @@ foo ___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 449, line 7205: 'foo _\\__'", () => {
@@ -9856,6 +11200,9 @@ foo _\\__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 450, line 7212: 'foo _*_'", () => {
@@ -9874,6 +11221,9 @@ foo _*_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 451, line 7219: 'foo _____'", () => {
@@ -9892,6 +11242,9 @@ foo _____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 452, line 7226: 'foo __\\___'", () => {
@@ -9910,6 +11263,9 @@ foo __\\___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 453, line 7233: 'foo __*__'", () => {
@@ -9928,6 +11284,9 @@ foo __*__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 454, line 7240: '__foo_'", () => {
@@ -9946,6 +11305,9 @@ __foo_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 455, line 7251: '_foo__'", () => {
@@ -9964,6 +11326,9 @@ _foo__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 456, line 7258: '___foo__'", () => {
@@ -9982,6 +11347,9 @@ ___foo__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 457, line 7265: '____foo_'", () => {
@@ -10000,6 +11368,9 @@ ____foo_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 458, line 7272: '__foo___'", () => {
@@ -10018,6 +11389,9 @@ __foo___
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 459, line 7279: '_foo____'", () => {
@@ -10036,6 +11410,9 @@ _foo____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 460, line 7289: '**foo**'", () => {
@@ -10054,6 +11431,9 @@ _foo____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 461, line 7296: '*_foo_*'", () => {
@@ -10072,6 +11452,9 @@ _foo____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 462, line 7303: '__foo__'", () => {
@@ -10090,6 +11473,9 @@ __foo__
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 463, line 7310: '_*foo*_'", () => {
@@ -10108,6 +11494,9 @@ _*foo*_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 464, line 7320: '****foo****'", () => {
@@ -10126,6 +11515,9 @@ _*foo*_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 465, line 7327: '____foo____'", () => {
@@ -10144,6 +11536,9 @@ ____foo____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 466, line 7338: '******foo******'", () => {
@@ -10162,6 +11557,9 @@ ____foo____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 467, line 7347: '***foo***'", () => {
@@ -10180,6 +11578,9 @@ ____foo____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 468, line 7354: '_____foo_____'", () => {
@@ -10198,6 +11599,9 @@ _____foo_____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 469, line 7363: '*foo _bar* baz_'", () => {
@@ -10216,6 +11620,9 @@ _____foo_____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 470, line 7370: '*foo __bar *baz bim__ bam*'", () => {
@@ -10234,6 +11641,9 @@ _____foo_____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 471, line 7379: '**foo **bar baz**'", () => {
@@ -10252,6 +11662,9 @@ _____foo_____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 472, line 7386: '*foo *bar baz*'", () => {
@@ -10270,6 +11683,9 @@ _____foo_____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 473, line 7395: '*[bar*](/url)'", () => {
@@ -10288,6 +11704,9 @@ _____foo_____
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 474, line 7402: '_foo [bar_](/url)'", () => {
@@ -10306,6 +11725,9 @@ _foo [bar_](/url)
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 475, line 7409: \'*<img src="foo" title="*"/>\'', () => {
@@ -10324,6 +11746,9 @@ _foo [bar_](/url)
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 476, line 7416: '**<a href=\"**\">'", () => {
@@ -10342,6 +11767,9 @@ _foo [bar_](/url)
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 477, line 7423: '__<a href=\"__\">'", () => {
@@ -10360,6 +11788,9 @@ __<a href="__">
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 478, line 7430: '*a `*`*'", () => {
@@ -10378,6 +11809,9 @@ __<a href="__">
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 479, line 7437: '_a `_`_'", () => {
@@ -10396,6 +11830,9 @@ _a \`_\`_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 480, line 7444: '**a<https://foo.bar/?q=**>'", () => {
@@ -10414,6 +11851,9 @@ _a \`_\`_
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 481, line 7451: '__a<https://foo.bar/?q=__>'", () => {
@@ -10432,6 +11872,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 482, line 7539: '[link](/uri \"title\")'", () => {
@@ -10450,6 +11893,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 483, line 7549: '[link](/uri)'", () => {
@@ -10468,6 +11914,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 484, line 7555: '[](./target.md)'", () => {
@@ -10486,6 +11935,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 485, line 7562: '[link]()'", () => {
@@ -10504,6 +11956,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 486, line 7569: '[link](<>)'", () => {
@@ -10522,6 +11977,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 487, line 7576: '[]()'", () => {
@@ -10540,6 +11998,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 488, line 7585: '[link](/my uri)'", () => {
@@ -10558,6 +12019,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 489, line 7591: '[link](</my uri>)'", () => {
@@ -10576,6 +12040,9 @@ __a<https://foo.bar/?q=__>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 490, line 7600: '[link](foo\\nbar)'", () => {
@@ -10596,6 +12063,9 @@ bar)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 491, line 7608: '[link](<foo\\nbar>)'", () => {
@@ -10616,6 +12086,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 492, line 7619: '[a](<b)c>)'", () => {
@@ -10634,6 +12107,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 493, line 7627: '[link](<foo\\>)'", () => {
@@ -10652,6 +12128,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 494, line 7636: '[a](<b)c\\n[a](<b)c>\\n[a](<b>c)'", () => {
@@ -10674,6 +12153,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 495, line 7648: '[link](\\(foo\\))'", () => {
@@ -10692,6 +12174,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 496, line 7657: '[link](foo(and(bar)))'", () => {
@@ -10710,6 +12195,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 497, line 7666: '[link](foo(and(bar))'", () => {
@@ -10728,6 +12216,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 498, line 7673: '[link](foo\\(and\\(bar\\))'", () => {
@@ -10746,6 +12237,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 499, line 7680: '[link](<foo(and(bar)>)'", () => {
@@ -10764,6 +12258,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 500, line 7690: '[link](foo\\)\\:)'", () => {
@@ -10782,6 +12279,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 501, line 7699: '[link](#fragment)\\n\\n[link](https://example.com#fragment)\\n\\n[link](https://example.com?foo=3#frag)'", () => {
@@ -10806,6 +12306,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 502, line 7715: '[link](foo\\bar)'", () => {
@@ -10824,6 +12327,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 503, line 7731: '[link](foo%20b&auml;)'", () => {
@@ -10842,6 +12348,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 504, line 7742: '[link](\"title\")'", () => {
@@ -10860,6 +12369,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 505, line 7751: '[link](/url \"title\")\\n[link](/url 'title')\\n[link](/url (title))'", () => {
@@ -10882,6 +12394,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 506, line 7765: \'[link](/url "title \\"&quot;")\'', () => {
@@ -10900,6 +12415,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 507, line 7776: '[link](/url \"title\")'", () => {
@@ -10918,6 +12436,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 508, line 7785: \'[link](/url "title "and" title")\'', () => {
@@ -10936,6 +12457,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 509, line 7794: '[link](/url 'title \"and\" title')'", () => {
@@ -10954,6 +12478,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 510, line 7819: '[link](   /uri\\n  \"title\"  )'", () => {
@@ -10973,6 +12500,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 511, line 7830: '[link] (/uri)'", () => {
@@ -10991,6 +12521,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 512, line 7840: '[link [foo [bar]]](/uri)'", () => {
@@ -11009,6 +12542,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 513, line 7847: '[link] bar](/uri)'", () => {
@@ -11027,6 +12563,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 514, line 7854: '[link [bar](/uri)'", () => {
@@ -11045,6 +12584,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 515, line 7861: '[link \\[bar](/uri)'", () => {
@@ -11063,6 +12605,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 516, line 7870: '[link *foo **bar** `#`*](/uri)'", () => {
@@ -11081,6 +12626,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 517, line 7877: '[![moon](moon.jpg)](/uri)'", () => {
@@ -11099,6 +12647,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 518, line 7886: '[foo [bar](/uri)](/uri)'", () => {
@@ -11117,6 +12668,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 519, line 7893: '[foo *[bar [baz](/uri)](/uri)*](/uri)'", () => {
@@ -11135,6 +12689,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 520, line 7900: '![[[foo](uri1)](uri2)](uri3)'", () => {
@@ -11153,6 +12710,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 521, line 7910: '*[foo*](/uri)'", () => {
@@ -11171,6 +12731,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 522, line 7917: '[foo *bar](baz*)'", () => {
@@ -11189,6 +12752,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	// TODO:
@@ -11208,6 +12774,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 524, line 7937: '[foo <bar attr=\"](baz)\">'", () => {
@@ -11226,6 +12795,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 525, line 7944: '[foo`](/uri)`'", () => {
@@ -11244,6 +12816,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 526, line 7951: '[foo<https://example.com/?search=](uri)>'", () => {
@@ -11262,6 +12837,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 527, line 7989: '[foo][bar]\\n\\n[bar]: /url \"title\"'", () => {
@@ -11282,6 +12860,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 528, line 8004: '[link [foo [bar]]][ref]\\n\\n[ref]: /uri'", () => {
@@ -11302,6 +12883,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 529, line 8013: '[link \\[bar][ref]\\n\\n[ref]: /uri'", () => {
@@ -11322,6 +12906,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 530, line 8024: '[link *foo **bar** `#`*][ref]\\n\\n[ref]: /uri'", () => {
@@ -11342,6 +12929,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 531, line 8033: '[![moon](moon.jpg)][ref]\\n\\n[ref]: /uri'", () => {
@@ -11362,6 +12952,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 532, line 8044: '[foo [bar](/uri)][ref]\\n\\n[ref]: /uri'", () => {
@@ -11382,6 +12975,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 533, line 8053: '[foo *bar [baz][ref]*][ref]\\n\\n[ref]: /uri'", () => {
@@ -11402,6 +12998,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 534, line 8068: '*[foo*][ref]\\n\\n[ref]: /uri'", () => {
@@ -11422,6 +13021,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 535, line 8077: '[foo *bar][ref]*\\n\\n[ref]: /uri'", () => {
@@ -11442,6 +13044,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 536, line 8089: '[foo <bar attr=\"][ref]\">\\n\\n[ref]: /uri'", () => {
@@ -11462,6 +13067,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 537, line 8098: '[foo`][ref]`\\n\\n[ref]: /uri'", () => {
@@ -11482,6 +13090,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 538, line 8107: '[foo<https://example.com/?search=][ref]>\\n\\n[ref]: /uri'", () => {
@@ -11502,6 +13113,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 539, line 8118: '[foo][BaR]\\n\\n[bar]: /url \"title\"'", () => {
@@ -11522,6 +13136,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 540, line 8129: '[ẞ]\\n\\n[SS]: /url'", () => {
@@ -11542,6 +13159,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 541, line 8141: '[Foo\\n  bar]: /url\\n\\n[Baz][Foo bar]'", () => {
@@ -11563,6 +13183,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 542, line 8154: '[foo] [bar]\\n\\n[bar]: /url \"title\"'", () => {
@@ -11583,6 +13206,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 543, line 8163: '[foo]\\n[bar]\\n\\n[bar]: /url \"title\"'", () => {
@@ -11605,6 +13231,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 544, line 8204: '[foo]: /url1\\n\\n[foo]: /url2\\n\\n[bar][foo]'", () => {
@@ -11627,6 +13256,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 545, line 8219: '[bar][foo\\!]\\n\\n[foo!]: /url'", () => {
@@ -11647,6 +13279,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 546, line 8231: '[foo][ref[]\\n\\n[ref[]: /uri'", () => {
@@ -11668,6 +13303,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 547, line 8241: '[foo][ref[bar]]\\n\\n[ref[bar]]: /uri'", () => {
@@ -11689,6 +13327,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 548, line 8251: '[[[foo]]]\\n\\n[[[foo]]]: /url'", () => {
@@ -11710,6 +13351,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 549, line 8261: '[foo][ref\\[]\\n\\n[ref\\[]: /uri'", () => {
@@ -11730,6 +13374,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 550, line 8272: '[bar\\\\]: /uri\\n\\n[bar\\\\]'", () => {
@@ -11750,6 +13397,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 551, line 8284: '[]\\n\\n[]: /uri'", () => {
@@ -11771,6 +13421,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 552, line 8294: '[\\n ]\\n\\n[\\n ]: /uri'", () => {
@@ -11796,6 +13449,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 553, line 8317: '[foo][]\\n\\n[foo]: /url \"title\"'", () => {
@@ -11816,6 +13472,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 554, line 8326: '[*foo* bar][]\\n\\n[*foo* bar]: /url \"title\"'", () => {
@@ -11836,6 +13495,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 555, line 8337: '[Foo][]\\n\\n[foo]: /url \"title\"'", () => {
@@ -11856,6 +13518,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 556, line 8350: '[foo] \\n[]\\n\\n[foo]: /url \"title\"'", () => {
@@ -11878,6 +13543,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 557, line 8370: '[foo]\\n\\n[foo]: /url \"title\"'", () => {
@@ -11898,6 +13566,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 558, line 8379: '[*foo* bar]\\n\\n[*foo* bar]: /url \"title\"'", () => {
@@ -11918,6 +13589,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 559, line 8388: '[[*foo* bar]]\\n\\n[*foo* bar]: /url \"title\"'", () => {
@@ -11938,6 +13612,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 560, line 8397: '[[bar [foo]\\n\\n[foo]: /url'", () => {
@@ -11958,6 +13635,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 561, line 8408: '[Foo]\\n\\n[foo]: /url \"title\"'", () => {
@@ -11978,6 +13658,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 562, line 8419: '[foo] bar\\n\\n[foo]: /url'", () => {
@@ -11998,6 +13681,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 563, line 8431: '\\[foo]\\n\\n[foo]: /url \"title\"'", () => {
@@ -12018,6 +13704,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 564, line 8443: '[foo*]: /url\\n\\n*[foo*]'", () => {
@@ -12038,6 +13727,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 565, line 8455: '[foo][bar]\\n\\n[foo]: /url1\\n[bar]: /url2'", () => {
@@ -12059,6 +13751,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 566, line 8464: '[foo][]\\n\\n[foo]: /url1'", () => {
@@ -12079,6 +13774,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 567, line 8474: '[foo]()\\n\\n[foo]: /url1'", () => {
@@ -12099,6 +13797,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 568, line 8482: '[foo](not a link)\\n\\n[foo]: /url1'", () => {
@@ -12119,6 +13820,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 569, line 8493: '[foo][bar][baz]\\n\\n[baz]: /url'", () => {
@@ -12139,6 +13843,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 570, line 8505: '[foo][bar][baz]\\n\\n[baz]: /url1\\n[bar]: /url2'", () => {
@@ -12160,6 +13867,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 571, line 8518: '[foo][bar][baz]\\n\\n[baz]: /url1\\n[foo]: /url2'", () => {
@@ -12181,6 +13891,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 572, line 8541: '![foo](/url \"title\")'", () => {
@@ -12199,6 +13912,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 573, line 8548: '![foo *bar*]\\n\\n[foo *bar*]: train.jpg \"train & tracks\"'", () => {
@@ -12219,6 +13935,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 574, line 8557: '![foo ![bar](/url)](/url2)'", () => {
@@ -12237,6 +13956,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 575, line 8564: '![foo [bar](/url)](/url2)'", () => {
@@ -12255,6 +13977,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 576, line 8578: '![foo *bar*][]\\n\\n[foo *bar*]: train.jpg \"train & tracks\"'", () => {
@@ -12275,6 +14000,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 577, line 8587: '![foo *bar*][foobar]\\n\\n[FOOBAR]: train.jpg \"train & tracks\"'", () => {
@@ -12295,6 +14023,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 578, line 8596: '![foo](train.jpg)'", () => {
@@ -12313,6 +14044,9 @@ bar>)</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 579, line 8603: 'My ![foo bar](/path/to/train.jpg  \"title\"   )'", () => {
@@ -12331,6 +14065,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 580, line 8610: '![foo](<url>)'", () => {
@@ -12349,6 +14086,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 581, line 8617: '![](/url)'", () => {
@@ -12367,6 +14107,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 582, line 8626: '![foo][bar]\\n\\n[bar]: /url'", () => {
@@ -12387,6 +14130,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 583, line 8635: '![foo][bar]\\n\\n[BAR]: /url'", () => {
@@ -12407,6 +14153,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 584, line 8646: '![foo][]\\n\\n[foo]: /url \"title\"'", () => {
@@ -12427,6 +14176,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 585, line 8655: '![*foo* bar][]\\n\\n[*foo* bar]: /url \"title\"'", () => {
@@ -12447,6 +14199,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 586, line 8666: '![Foo][]\\n\\n[foo]: /url \"title\"'", () => {
@@ -12467,6 +14222,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 587, line 8678: '![foo] \\n[]\\n\\n[foo]: /url \"title\"'", () => {
@@ -12489,6 +14247,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 588, line 8691: '![foo]\\n\\n[foo]: /url \"title\"'", () => {
@@ -12509,6 +14270,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 589, line 8700: '![*foo* bar]\\n\\n[*foo* bar]: /url \"title\"'", () => {
@@ -12529,6 +14293,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 590, line 8711: '![[foo]]\\n\\n[[foo]]: /url \"title\"'", () => {
@@ -12550,6 +14317,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 591, line 8723: '![Foo]\\n\\n[foo]: /url \"title\"'", () => {
@@ -12570,6 +14340,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 592, line 8735: '!\\[foo]\\n\\n[foo]: /url \"title\"'", () => {
@@ -12590,6 +14363,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 593, line 8747: '\\![foo]\\n\\n[foo]: /url \"title\"'", () => {
@@ -12610,6 +14386,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 594, line 8780: '<http://foo.bar.baz>'", () => {
@@ -12628,6 +14407,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 595, line 8787: '<https://foo.bar.baz/test?q=hello&id=22&boolean>'", () => {
@@ -12646,6 +14428,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 596, line 8794: '<irc://foo.bar:2233/baz>'", () => {
@@ -12664,6 +14449,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 597, line 8803: '<MAILTO:FOO@BAR.BAZ>'", () => {
@@ -12682,6 +14470,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 598, line 8815: '<a+b+c:d>'", () => {
@@ -12700,6 +14491,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 599, line 8822: '<made-up-scheme://foo,bar>'", () => {
@@ -12718,6 +14512,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 600, line 8829: '<https://../>'", () => {
@@ -12736,6 +14533,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 601, line 8836: '<localhost:5001/foo>'", () => {
@@ -12754,6 +14554,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 602, line 8845: '<https://foo.bar/baz bim>'", () => {
@@ -12772,6 +14575,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 603, line 8854: '<https://example.com/\\[\\>'", () => {
@@ -12790,6 +14596,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 604, line 8876: '<foo@bar.example.com>'", () => {
@@ -12808,6 +14617,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 605, line 8883: '<foo+special@Bar.baz-bar0.com>'", () => {
@@ -12826,6 +14638,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 606, line 8892: '<foo\\+@bar.example.com>'", () => {
@@ -12844,6 +14659,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 607, line 8901: '<>'", () => {
@@ -12862,6 +14680,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 608, line 8908: '< https://foo.bar >'", () => {
@@ -12880,6 +14701,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 609, line 8915: '<m:abc>'", () => {
@@ -12898,6 +14722,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 610, line 8922: '<foo.bar.baz>'", () => {
@@ -12916,6 +14743,9 @@ My ![foo bar](/path/to/train.jpg  "title"   )
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 611, line 8929: 'https://example.com'", () => {
@@ -12934,6 +14764,9 @@ https://example.com
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 612, line 8936: 'foo@bar.example.com'", () => {
@@ -12952,6 +14785,9 @@ foo@bar.example.com
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 613, line 9016: '<a><bab><c2c>'", () => {
@@ -12970,6 +14806,9 @@ foo@bar.example.com
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 614, line 9025: '<a/><b2/>'", () => {
@@ -12988,6 +14827,9 @@ foo@bar.example.com
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 615, line 9034: '<a  /><b2\\ndata=\"foo\" >'", () => {
@@ -13008,6 +14850,9 @@ data="foo" ></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 616, line 9045: '<a foo=\"bar\" bam = 'baz <em>\"</em>'\\n_boolean zoop:33=zoop:33 />'", () => {
@@ -13028,6 +14873,9 @@ _boolean zoop:33=zoop:33 /></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 617, line 9056: 'Foo <responsive-image src=\"foo.jpg\" />'", () => {
@@ -13046,6 +14894,9 @@ Foo <responsive-image src="foo.jpg" />
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 618, line 9065: '<33> <__>'", () => {
@@ -13064,6 +14915,9 @@ Foo <responsive-image src="foo.jpg" />
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 619, line 9074: '<a h*#ref=\"hi\">'", () => {
@@ -13082,6 +14936,9 @@ Foo <responsive-image src="foo.jpg" />
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 620, line 9083: '<a href=\"hi'> <a href=hi'>'", () => {
@@ -13100,6 +14957,9 @@ Foo <responsive-image src="foo.jpg" />
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 621, line 9092: '< a><\\nfoo><bar/ >\\n<foo bar=baz\\nbim!bop />'", () => {
@@ -13124,6 +14984,9 @@ bim!bop /&gt;</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 622, line 9107: '<a href='bar'title=title>'", () => {
@@ -13142,6 +15005,9 @@ bim!bop /&gt;</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 623, line 9116: '</a></foo >'", () => {
@@ -13160,6 +15026,9 @@ bim!bop /&gt;</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 624, line 9125: '</a href=\"foo\">'", () => {
@@ -13178,6 +15047,9 @@ bim!bop /&gt;</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 625, line 9134: 'foo <!-- this is a --\\ncomment - with hyphens -->'", () => {
@@ -13198,6 +15070,9 @@ comment - with hyphens --></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 626, line 9142: 'foo <!--> foo -->\\n\\nfoo <!---> foo -->'", () => {
@@ -13219,6 +15094,9 @@ foo <!---> foo -->
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 627, line 9154: 'foo <?php echo $a; ?>'", () => {
@@ -13237,6 +15115,9 @@ foo <?php echo $a; ?>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 628, line 9163: 'foo <!ELEMENT br EMPTY>'", () => {
@@ -13255,6 +15136,9 @@ foo <!ELEMENT br EMPTY>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 629, line 9172: 'foo <![CDATA[>&<]]>'", () => {
@@ -13273,6 +15157,9 @@ foo <![CDATA[>&<]]>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 630, line 9182: 'foo <a href=\"&ouml;\">'", () => {
@@ -13291,6 +15178,9 @@ foo <a href="&ouml;">
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 631, line 9191: 'foo <a href=\"\\*\">'", () => {
@@ -13309,6 +15199,9 @@ foo <a href="\\*">
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test('Example 632, line 9198: \'<a href="\\"">\'', () => {
@@ -13327,6 +15220,9 @@ foo <a href="\\*">
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 633, line 9212: 'foo  \\nbaz'", () => {
@@ -13347,6 +15243,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 634, line 9224: 'foo\\\\nbaz'", () => {
@@ -13367,6 +15266,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 635, line 9235: 'foo       \\nbaz'", () => {
@@ -13387,6 +15289,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 636, line 9246: 'foo  \\n     bar'", () => {
@@ -13407,6 +15312,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 637, line 9255: 'foo\\\\n     bar'", () => {
@@ -13427,6 +15335,9 @@ bar</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 638, line 9267: '*foo  \\nbar*'", () => {
@@ -13447,6 +15358,9 @@ bar</em></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 639, line 9276: '*foo\\\\nbar*'", () => {
@@ -13467,6 +15381,9 @@ bar</em></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 640, line 9287: '`code  \\nspan`'", () => {
@@ -13486,6 +15403,9 @@ span\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 641, line 9295: '`code\\\\nspan`'", () => {
@@ -13505,6 +15425,9 @@ span\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 642, line 9305: '<a href=\"foo  \\nbar\">'", () => {
@@ -13525,6 +15448,9 @@ bar"></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 643, line 9314: '<a href=\"foo\\\\nbar\">'", () => {
@@ -13545,6 +15471,9 @@ bar"></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 644, line 9327: 'foo\\'", () => {
@@ -13563,6 +15492,9 @@ foo\\
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 645, line 9334: 'foo  '", () => {
@@ -13581,6 +15513,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 646, line 9341: '### foo\\'", () => {
@@ -13599,6 +15534,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 647, line 9348: '### foo  '", () => {
@@ -13617,6 +15555,9 @@ foo
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 648, line 9363: 'foo\\nbaz'", () => {
@@ -13637,6 +15578,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 649, line 9375: 'foo \\n baz'", () => {
@@ -13657,6 +15601,9 @@ baz</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 650, line 9395: 'hello $.;'there'", () => {
@@ -13675,6 +15622,9 @@ hello $.;'there
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 651, line 9402: 'Foo χρῆν'", () => {
@@ -13693,6 +15643,9 @@ Foo χρῆν
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Example 652, line 9411: 'Multiple     spaces'", () => {
@@ -13711,5 +15664,8 @@ Multiple     spaces
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });

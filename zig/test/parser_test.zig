@@ -65,4 +65,26 @@ test "basic parse" {
     const start = doc.children.?[0].index;
     const end = start + doc.children.?[0].length;
     try std.testing.expectEqualStrings("# Test ☺️\n", input[start..end]);
+
+    const input2 = try std.mem.replaceOwned(u8, gpa, input, "\r\n", "\r");
+    defer gpa.free(input2);
+    const input2b = try std.mem.replaceOwned(u8, gpa, input2, "\n", "\r");
+    defer gpa.free(input2b);
+
+    const doc2 = try parse.execute(gpa, input2b, rules);
+    defer doc2.deinit(gpa);
+
+    const html2 = try render(gpa, doc2, null, false, null);
+    defer gpa.free(html2);
+
+    try std.testing.expectEqualStrings(expected, html2);
+
+    try std.testing.expect(doc2.children != null);
+    try std.testing.expectEqualStrings("heading", doc2.children.?[0].type);
+    try std.testing.expectEqual(@as(usize, 0), doc2.children.?[0].index);
+    try std.testing.expectEqual(@as(usize, 14), doc2.children.?[0].length);
+
+    const start2 = doc2.children.?[0].index;
+    const end2 = start2 + doc2.children.?[0].length;
+    try std.testing.expectEqualStrings("# Test ☺️\r", input2b[start2..end2]);
 }

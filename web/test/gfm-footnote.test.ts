@@ -51,6 +51,9 @@ This is a second line. <a href="#fnref2" class="footnote-backref">↩</a></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("simple footnote reference", () => {
@@ -79,6 +82,9 @@ Text with a footnote[^1].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("multiple footnote references", () => {
@@ -111,6 +117,9 @@ First reference[^1] and second[^2].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote with inline formatting", () => {
@@ -139,6 +148,9 @@ Text[^1].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote with code", () => {
@@ -167,6 +179,9 @@ Code reference[^1].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote with link", () => {
@@ -195,6 +210,9 @@ Link reference[^1].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote reference not at definition", () => {
@@ -214,6 +232,9 @@ Unknown footnote[^99].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote with multiline content", () => {
@@ -246,6 +267,9 @@ Third line <a href="#fnref1" class="footnote-backref">↩</a></p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("repeated footnote reference", () => {
@@ -274,6 +298,9 @@ First[^1] and second[^1] use same footnote.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote in list", () => {
@@ -310,6 +337,9 @@ First[^1] and second[^1] use same footnote.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote in blockquote", () => {
@@ -340,6 +370,9 @@ First[^1] and second[^1] use same footnote.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote with special characters in label", () => {
@@ -361,6 +394,9 @@ Special label[^a-b_c].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("case insensitive footnote labels", () => {
@@ -389,6 +425,9 @@ Mixed case[^ABC].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote then list", () => {
@@ -421,6 +460,9 @@ Text[^1]
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("title after footnote label", () => {
@@ -449,6 +491,9 @@ Text[^1]
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("link then footnote", () => {
@@ -478,6 +523,9 @@ Text[^1] [foo]
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("footnote then link", () => {
@@ -508,6 +556,9 @@ Text[^1] [foo]
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("swallow following brackets", () => {
@@ -536,6 +587,9 @@ Text[^1] [foo]
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("link reference takes precedence", () => {
@@ -560,6 +614,9 @@ Text[^1] [foo]
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("multiple paragraphs", () => {
@@ -591,5 +648,8 @@ Footnote 1 link[^first].
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });

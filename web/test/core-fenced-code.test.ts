@@ -26,6 +26,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Simple code fence with tildes", () => {
@@ -48,6 +51,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with 4 backticks", () => {
@@ -70,6 +76,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with 5 tildes", () => {
@@ -92,6 +101,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with language specifier", () => {
@@ -114,6 +126,9 @@ const x = 1;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with language specifier and extra text", () => {
@@ -136,6 +151,9 @@ const x = 1;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with empty content", () => {
@@ -156,6 +174,9 @@ const x = 1;
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with multi-line content", () => {
@@ -182,6 +203,9 @@ line 3
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with 1 space indent", () => {
@@ -204,6 +228,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with 3 space indent", () => {
@@ -226,6 +253,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with 4 space indent should be code", () => {
@@ -250,6 +280,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence interrupts paragraph", () => {
@@ -274,6 +307,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence without space after opening", () => {
@@ -294,6 +330,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with blank line in content", () => {
@@ -320,6 +359,9 @@ line 2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence not valid - only 2 backticks", () => {
@@ -341,6 +383,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence not valid - only 2 tildes", () => {
@@ -364,6 +409,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence not valid - mixed backticks and tildes", () => {
@@ -387,6 +435,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence not valid - info string with backticks", () => {
@@ -410,6 +461,9 @@ code</p>
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with backticks in content", () => {
@@ -432,6 +486,9 @@ code with \`backticks\`
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with tildes in content", () => {
@@ -454,6 +511,9 @@ code with ~tildes~
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence preceded by paragraph without blank line", () => {
@@ -478,6 +538,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence followed by paragraph without blank line", () => {
@@ -502,6 +565,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Multiple code fences", () => {
@@ -530,6 +596,9 @@ code2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with inline markdown in content", () => {
@@ -554,6 +623,9 @@ code2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence at end of document", () => {
@@ -576,6 +648,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence in blockquote", () => {
@@ -601,6 +676,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence in list item", () => {
@@ -628,6 +706,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with trailing spaces after opening", () => {
@@ -650,6 +731,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with trailing spaces after closing", () => {
@@ -672,6 +756,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with very long opening", () => {
@@ -694,6 +781,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with shorter closing", () => {
@@ -717,6 +807,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence not valid - closing fence shorter than opening", () => {
@@ -740,6 +833,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with language containing numbers", () => {
@@ -762,6 +858,9 @@ import x
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with language containing dashes", () => {
@@ -784,6 +883,9 @@ int main() {}
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with trailing whitespace on closing fence", () => {
@@ -806,6 +908,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence between paragraphs", () => {
@@ -834,6 +939,9 @@ Paragraph 2
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with backslash in info string", () => {
@@ -856,6 +964,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with HTML entities in info", () => {
@@ -878,6 +989,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with indented content lines", () => {
@@ -902,6 +1016,9 @@ not indented
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence not valid - space between fence chars", () => {
@@ -923,6 +1040,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with only info string", () => {
@@ -943,6 +1063,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with setext heading above", () => {
@@ -968,6 +1091,9 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Code fence with ATX heading below", () => {
@@ -992,5 +1118,8 @@ code
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });

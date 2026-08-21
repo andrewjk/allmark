@@ -25,6 +25,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Simple bulleted list with plus", () => {
@@ -46,6 +49,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Simple bulleted list with asterisks", () => {
@@ -67,6 +73,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with multiple items", () => {
@@ -92,6 +101,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Tight bulleted list", () => {
@@ -115,6 +127,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Loose bulleted list with blank lines", () => {
@@ -143,6 +158,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Nested bulleted lists", () => {
@@ -171,6 +189,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Deep nested bulleted lists", () => {
@@ -202,6 +223,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list in blockquote", () => {
@@ -227,6 +251,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Empty list item", () => {
@@ -248,6 +275,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with paragraphs", () => {
@@ -279,6 +309,9 @@ describe("bulleted lists", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list preceded by paragraph", () => {
@@ -303,6 +336,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list followed by paragraph", () => {
@@ -327,6 +363,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Mixed bullet markers should not be same list", () => {
@@ -352,6 +391,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with code block", () => {
@@ -381,6 +423,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with inline formatting", () => {
@@ -402,6 +447,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with bold", () => {
@@ -423,6 +471,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list item with multiple paragraphs (loose)", () => {
@@ -454,6 +505,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with links", () => {
@@ -475,6 +529,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with code span", () => {
@@ -496,6 +553,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list at end of document", () => {
@@ -519,6 +579,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Multiple separate bulleted lists", () => {
@@ -555,6 +618,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list item with leading spaces (still a list)", () => {
@@ -576,6 +642,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list item with 4 spaces indent should be code", () => {
@@ -596,6 +665,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with only spaces after marker", () => {
@@ -617,6 +689,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Nested lists with different markers", () => {
@@ -648,6 +723,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list followed immediately by ordered list", () => {
@@ -677,6 +755,9 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Bulleted list with thematic break in item", () => {
@@ -708,5 +789,8 @@ Paragraph
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });

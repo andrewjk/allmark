@@ -624,7 +624,7 @@ describe("source mapping - block and inline rules", () => {
 		const heading = doc.children![0];
 		expect(heading.type).toBe("heading");
 		expect(heading.index).toBe(0);
-		expect(heading.length).toBe(12);
+		expect(heading.length).toBe(11);
 
 		const paragraph = doc.children![1];
 		expect(paragraph.type).toBe("paragraph");

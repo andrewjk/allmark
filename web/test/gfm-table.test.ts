@@ -49,6 +49,9 @@ describe("table", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with alignment", () => {
@@ -92,6 +95,9 @@ describe("table", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with inline formatting", () => {
@@ -137,6 +143,9 @@ describe("table", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with missing cells", () => {
@@ -180,6 +189,9 @@ describe("table", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with extra cells", () => {
@@ -215,6 +227,9 @@ describe("table", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with only header", () => {
@@ -243,6 +258,9 @@ describe("table", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with empty cells", () => {
@@ -286,6 +304,9 @@ describe("table", () => {
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table without outer pipes", () => {
@@ -312,6 +333,9 @@ a | b | c
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with whitespace variations", () => {
@@ -349,6 +373,9 @@ a | b | c
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with mixed content types", () => {
@@ -399,6 +426,9 @@ a | b | c
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with single column", () => {
@@ -436,6 +466,9 @@ a | b | c
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("table with many columns", () => {
@@ -488,5 +521,8 @@ a | b | c
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), gfm, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), gfm, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });

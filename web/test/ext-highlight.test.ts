@@ -21,6 +21,9 @@ This should be =highlighted= as it is important.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight double", () => {
@@ -39,6 +42,9 @@ This should be ==highlighted== as it is important.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight triple", () => {
@@ -57,6 +63,9 @@ This should be ===highlighted=== as it is important.
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight single character", () => {
@@ -75,6 +84,9 @@ text =a= more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("multiple highlights in one line", () => {
@@ -93,6 +105,9 @@ text =a= more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight at start of paragraph", () => {
@@ -111,6 +126,9 @@ text =a= more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight at end of paragraph", () => {
@@ -129,6 +147,9 @@ This is =highlighted=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight with punctuation", () => {
@@ -147,6 +168,9 @@ text =word!= more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight with spaces", () => {
@@ -165,6 +189,9 @@ text =with spaces= more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight with special characters", () => {
@@ -183,6 +210,9 @@ text =a+b= more
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight adjacent to text", () => {
@@ -201,6 +231,9 @@ test=ing=test
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("empty highlight", () => {
@@ -219,6 +252,9 @@ text==text
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight with markdown inside", () => {
@@ -237,6 +273,9 @@ text =**bold**=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight with code inside", () => {
@@ -255,6 +294,9 @@ text =\`code\`=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("escaped equals should not be highlight", () => {
@@ -273,6 +315,9 @@ text \\=not highlight\\=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("unmatched opening equals", () => {
@@ -291,6 +336,9 @@ text =not closed
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("unmatched closing equals", () => {
@@ -309,6 +357,9 @@ text not opened=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight in list item", () => {
@@ -329,6 +380,9 @@ text not opened=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight in blockquote", () => {
@@ -349,6 +403,9 @@ text not opened=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight with equals inside", () => {
@@ -367,6 +424,9 @@ text =equals = inside=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight at beginning of document", () => {
@@ -385,6 +445,9 @@ text =equals = inside=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("highlight at end of document", () => {
@@ -403,5 +466,8 @@ End of =document=
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), extended, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), extended, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });

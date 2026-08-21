@@ -29,6 +29,9 @@ Content
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Frontmatter at document start only", () => {
@@ -56,6 +59,9 @@ Content
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Frontmatter with single line content", () => {
@@ -78,6 +84,9 @@ title: Test
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Frontmatter with multiple lines", () => {
@@ -105,6 +114,9 @@ tags:
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Frontmatter with closing delimiter on separate line", () => {
@@ -128,6 +140,9 @@ title: Test
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 
 	test("Frontmatter with content following closing delimiter", () => {
@@ -149,5 +164,8 @@ Content here
 
 		const htmlCrLf = transform(input.replaceAll("\n", "\r\n"), core, htmlRenderers);
 		expect(htmlCrLf.replaceAll("\r\n", "\n")).toBe(expected);
+
+		const htmlCr = transform(input.replaceAll("\n", "\r"), core, htmlRenderers);
+		expect(htmlCr.replaceAll("\r", "\n")).toBe(expected);
 	});
 });
