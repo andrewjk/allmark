@@ -79,7 +79,7 @@ func parseBlockInlines(
 	}
 
 	let trimmed = trimTrailingWhitespace(parent.content)
-	let chars = Array(trimmed)
+	let chars = Array(trimmed.utf8)
 
 	var state = InlineParserState(
 		rules: rules,

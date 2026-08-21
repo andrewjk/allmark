@@ -22,7 +22,7 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode,
 
 	let char = src[state.i]
 
-	if state.indent <= 3 && (char == "-" || char == "_" || char == "*") {
+	if state.indent <= 3 && (char == DASH_CODE || char == UNDERSCORE_CODE || char == ASTERISK_CODE) {
 		var matched = 1
 		var end = state.i + 1
 
@@ -31,10 +31,10 @@ func testThematicBreakStart(state: inout BlockParserState, parent: MarkdownNode,
 
 			if nextChar == char {
 				matched += 1
-			} else if isNewLine(char: nextChar) {
+			} else if isNewLine(code: nextChar) {
 				end += 1
 				break
-			} else if isSpace(char: nextChar) {
+			} else if isSpace(code: nextChar) {
 				// continue
 			} else {
 				return false

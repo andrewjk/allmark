@@ -40,8 +40,8 @@ func parseLine(state: inout BlockParserState) {
 	var nextIndex = state.src.count
 	while endOfLine < state.src.count {
 		let code = state.src[endOfLine]
-		if isNewLine(char: code) {
-			nextIndex = endOfLine + 1
+		if isNewLine(code: code) {
+			nextIndex = endOfLine + newlineLength(state.src, endOfLine)
 			break
 		}
 		endOfLine += 1

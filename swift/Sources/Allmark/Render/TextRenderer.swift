@@ -11,8 +11,8 @@ func renderText(_ node: MarkdownNode, _ state: inout RendererState, _ decode: Bo
 
 	// Fast path: if none of the special characters are present, output as-is
 	let needsProcessing = content.utf8.contains { byte in
-		byte == 38 /* & */ || byte == 60 /* < */ || byte == 62 /* > */ || byte == 34 /* " */
-			|| (scanDecode && byte == 92 /* \ */ )
+		byte == AMPERSAND_CODE || byte == ANGLE_LEFT_CODE || byte == ANGLE_RIGHT_CODE || byte == QUOTE_DOUBLE_CODE
+			|| (scanDecode && byte == BACKSLASH_CODE)
 	}
 	if !needsProcessing {
 		state.output += content

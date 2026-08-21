@@ -1,8 +1,8 @@
-@inlinable func isEscaped(text: [Character], i: Int) -> Bool {
+@inlinable func isEscaped(text: [UInt8], i: Int) -> Bool {
 	if i == 0 {
 		return false
 	}
-	return text[i - 1] == "\\" && (i <= 1 || text[i - 2] != "\\")
+	return text[i - 1] == BACKSLASH_CODE && (i <= 1 || text[i - 2] != BACKSLASH_CODE)
 }
 
 @inlinable func isEscaped(text: String, i: Int) -> Bool {

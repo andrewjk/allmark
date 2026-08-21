@@ -23,12 +23,12 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode, endOf
 
 	let char = src[state.i]
 
-	if !state.isEscaped && state.indent <= 3 && char == "#" {
+	if !state.isEscaped && state.indent <= 3 && char == HASH_CODE {
 		var level = 1
 		var j = state.i + 1
 
 		while j < src.count {
-			if src[j] == "#" {
+			if src[j] == HASH_CODE {
 				level += 1
 			} else {
 				break
@@ -37,7 +37,7 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode, endOf
 		}
 
 		if level < 7 && state.i + level < src.count {
-			if isSpace(char: src[state.i + level]) {
+			if isSpace(code: src[state.i + level]) {
 				var closedNode: MarkdownNode? = nil
 				var currentParent = parent
 
@@ -70,15 +70,15 @@ func testHeadingStart(state: inout BlockParserState, parent: MarkdownNode, endOf
 				var end = endOfLine - 1
 
 				while end >= state.i {
-					if !isSpace(char: src[end]) {
+					if !isSpace(code: src[end]) {
 						break
 					}
 					end -= 1
 				}
 
 				while end >= state.i {
-					if src[end] != "#" {
-						if src[end] == "\\" || !isSpace(char: src[end]) {
+					if src[end] != HASH_CODE {
+						if src[end] == BACKSLASH_CODE || !isSpace(code: src[end]) {
 							end = endOfLine - 1
 						}
 						break

@@ -47,13 +47,12 @@ import Testing
 
 		#expect(doc.children[0].type == "heading")
 		#expect(doc.children[0].index == 0)
-		#expect(doc.children[0].length == 8)
+		#expect(doc.children[0].length == 13)
 
 		let start = doc.children[0].index
 		let end = start + doc.children[0].length
-		let inputIndex = input.index(input.startIndex, offsetBy: start)
-		let endIndex = input.index(input.startIndex, offsetBy: end)
-		#expect(String(input[inputIndex ..< endIndex]) == "# Test ☺️")
+		let inputBytes = Array(input.utf8)
+		#expect(String(decoding: inputBytes[start ..< end], as: UTF8.self) == "# Test ☺️")
 
 		let input2 = input.replacingOccurrences(of: "\r\n", with: "\r").replacingOccurrences(of: "\n", with: "\r")
 		let doc2 = _parse(src: input2, rules: coreRuleSet)
@@ -63,12 +62,11 @@ import Testing
 
 		#expect(doc2.children[0].type == "heading")
 		#expect(doc2.children[0].index == 0)
-		#expect(doc2.children[0].length == 8)
+		#expect(doc2.children[0].length == 13)
 
 		let start2 = doc2.children[0].index
 		let end2 = start2 + doc2.children[0].length
-		let inputIndex2 = input2.index(input2.startIndex, offsetBy: start2)
-		let endIndex2 = input2.index(input2.startIndex, offsetBy: end2)
-		#expect(String(input2[inputIndex2 ..< endIndex2]) == "# Test ☺️")
+		let inputBytes2 = Array(input2.utf8)
+		#expect(String(decoding: inputBytes2[start2 ..< end2], as: UTF8.self) == "# Test ☺️")
 	}
 }

@@ -22,7 +22,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 
 	let char = src[state.i]
 
-	if !state.isEscaped && state.indent <= 3 && char == "[" {
+	if !state.isEscaped && state.indent <= 3 && char == BRACKET_OPEN_CODE {
 		// A footnote definition cannot interrupt a paragraph
 		if parent.type == "paragraph" && !parent.blankAfter {
 			return false
@@ -32,7 +32,7 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 		var start = state.i + 1
 
 		// Check for ^ that indicates a footnote (not a regular link reference)
-		if start >= src.count || src[start] != "^" {
+		if start >= src.count || src[start] != CARET_CODE {
 			return false
 		}
 		start += 1
@@ -41,14 +41,14 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 		var label = ""
 		for i in start ..< src.count {
 			if !isEscaped(text: src, i: i) {
-				if src[i] == "]" {
+				if src[i] == BRACKET_CLOSE_CODE {
 					label = charToString(src, from: start, to: i)
 					start = i + 1
 					break
 				}
 
 				// Labels cannot contain brackets, unless they are backslash-escaped
-				if src[i] == "[" {
+				if src[i] == BRACKET_OPEN_CODE {
 					return false
 				}
 			}
@@ -61,14 +61,14 @@ func testFootnoteReferenceStart(state: inout BlockParserState, parent: MarkdownN
 			return false
 		}
 
-		if start >= src.count || src[start] != ":" {
+		if start >= src.count || src[start] != COLON_CODE {
 			return false
 		}
 		start += 1
 
 		// Skip whitespace after colon
 		while start < src.count {
-			if isSpace(char: src[start]) {
+			if isSpace(code: src[start]) {
 				start += 1
 			} else {
 				break
@@ -134,8 +134,8 @@ func testFootnoteReferenceContinue(state: inout BlockParserState, node: Markdown
 			openNode.content.hasSuffix("  \n") ||
 			openNode.content.hasSuffix("  \r\n") ||
 			openNode.content.hasSuffix("  \r") ||
-			(state.i + 1 < state.src.count && state.src[state.i] == "[" &&
-				state.src[state.i + 1] != "^")
+			(state.i + 1 < state.src.count && state.src[state.i] == BRACKET_OPEN_CODE &&
+				state.src[state.i + 1] != CARET_CODE)
 		{
 			state.maybeContinue = true
 			node.maybeContinuing = true

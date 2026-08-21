@@ -21,12 +21,12 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 
 	let char = src[state.i]
 
-	if char == "-" || char == "+" || char == "*" {
+	if char == DASH_CODE || char == PLUS_CODE || char == ASTERISK_CODE {
 		// Check if next char is space or end of line
 		if state.i == src.count - 1 {
 			return ListInfo(
-				delimiter: String(char),
-				markup: String(char),
+				delimiter: byteString(char),
+				markup: byteString(char),
 				isBlank: true,
 				type: "list_bulleted"
 			)
@@ -34,12 +34,12 @@ func getBulletedListMarkup(state: BlockParserState) -> ListInfo? {
 
 		let nextChar = src[state.i + 1]
 		// Check if next char is a space or newline
-		if isSpace(char: nextChar) || isNewLine(char: nextChar) {
+		if isSpace(code: nextChar) || isNewLine(code: nextChar) {
 			// If it's a newline directly after the marker, it's blank
-			let isBlank = isNewLine(char: nextChar)
+			let isBlank = isNewLine(code: nextChar)
 			return ListInfo(
-				delimiter: String(char),
-				markup: String(char),
+				delimiter: byteString(char),
+				markup: byteString(char),
 				isBlank: isBlank,
 				type: "list_bulleted"
 			)

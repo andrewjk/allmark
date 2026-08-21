@@ -24,13 +24,12 @@ private let htmlBlockTags6 = [
 	"thead", "title", "tr", "track", "ul",
 ]
 
-@inlinable func lowerAsciiByte(_ char: Character) -> UInt8 {
-	let code = char.asciiValue ?? 0
-	return (code >= 65 && code <= 90) ? code + 32 : code
+@inlinable func lowerAsciiByte(_ byte: UInt8) -> UInt8 {
+	return (byte >= 65 && byte <= 90) ? byte + 32 : byte
 }
 
 /// Case-insensitive ASCII literal match at `from`.
-@inlinable func matchesLiteralCI(_ src: [Character], _ from: Int, _ literal: String) -> Bool {
+@inlinable func matchesLiteralCI(_ src: [UInt8], _ from: Int, _ literal: String) -> Bool {
 	var i = from
 	for byte in literal.utf8 {
 		guard i < src.count else { return false }
@@ -43,11 +42,11 @@ private let htmlBlockTags6 = [
 }
 
 /// Case-sensitive ASCII literal match at `from`.
-@inlinable func matchesLiteral(_ src: [Character], _ from: Int, _ literal: String) -> Bool {
+@inlinable func matchesLiteral(_ src: [UInt8], _ from: Int, _ literal: String) -> Bool {
 	var i = from
 	for byte in literal.utf8 {
 		guard i < src.count else { return false }
-		if src[i].asciiValue != byte {
+		if src[i] != byte {
 			return false
 		}
 		i += 1
@@ -55,15 +54,14 @@ private let htmlBlockTags6 = [
 	return true
 }
 
-@inlinable func isHtmlWhitespace(_ char: Character) -> Bool {
-	return char == " " || char == "\t" || char == "\n" || char == "\r\n" || char == "\r"
-		|| char == "\u{0B}" || char == "\u{0C}"
+@inlinable func isHtmlWhitespace(_ byte: UInt8) -> Bool {
+	return byte == SPACE_CODE || byte == TAB_CODE || byte == NEW_LINE_CODE || byte == CARRIAGE_RETURN_CODE || byte == 0x0B || byte == 0x0C
 }
 
 /// Finds the first occurrence of `marker` at or after `from`, then the first
 /// occurrence of `closer` strictly after it (at least one character between).
-/// Returns the length in Characters from `from` to just past `closer`, or nil.
-private func findMarkerAndCloser(_ src: [Character], _ from: Int, _ marker: String, _ closer: String) -> Int? {
+/// Returns the length in bytes from `from` to just past `closer`, or nil.
+private func findMarkerAndCloser(_ src: [UInt8], _ from: Int, _ marker: String, _ closer: String) -> Int? {
 	let markerBytes = Array(marker.utf8)
 	let closerBytes = Array(closer.utf8)
 	let m = markerBytes.count
@@ -72,10 +70,10 @@ private func findMarkerAndCloser(_ src: [Character], _ from: Int, _ marker: Stri
 	let closerFirst = closerBytes[0]
 	var i = from
 	while i + m <= src.count {
-		if src[i].asciiValue == markerFirst, matchesLiteral(src, i, marker) {
+		if src[i] == markerFirst, matchesLiteral(src, i, marker) {
 			var j = i + m + 1
 			while j + c <= src.count {
-				if src[j].asciiValue == closerFirst, matchesLiteral(src, j, closer) {
+				if src[j] == closerFirst, matchesLiteral(src, j, closer) {
 					return j + c - from
 				}
 				j += 1
@@ -113,7 +111,7 @@ func testHtmlBlockStart(state: inout BlockParserState, parent: MarkdownNode, end
 
 	let char = src[state.i]
 
-	if !state.isEscaped && state.indent <= 3 && char == "<" {
+	if !state.isEscaped && state.indent <= 3 && char == ANGLE_LEFT_CODE {
 		if testHtmlCondition1(state: &state, parent: parent) {
 			return true
 		}
@@ -134,13 +132,13 @@ func testHtmlBlockStart(state: inout BlockParserState, parent: MarkdownNode, end
 func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
 	let src = state.src
 	let i = state.i
-	guard src[i] == "<", i + 1 < src.count else { return false }
+	guard src[i] == ANGLE_LEFT_CODE, i + 1 < src.count else { return false }
 
 	var tagName: String?
 	for tag in htmlBlockTags1 {
 		if matchesLiteralCI(src, i + 1, tag) {
 			let next = i + 1 + tag.utf8.count
-			if next >= src.count || isHtmlWhitespace(src[next]) || src[next] == ">" {
+			if next >= src.count || isHtmlWhitespace(src[next]) || src[next] == ANGLE_RIGHT_CODE {
 				tagName = tag
 				break
 			}
@@ -159,7 +157,7 @@ func testHtmlCondition1(state: inout BlockParserState, parent: MarkdownNode) -> 
 	let closingCount = closingTag.utf8.count
 
 	while end < src.count {
-		if src[end] == "<", end + 1 < src.count, src[end + 1] == "/" {
+		if src[end] == ANGLE_LEFT_CODE, end + 1 < src.count, src[end + 1] == SLASH_CODE {
 			let nextClosingTag = charToString(src, from: end, to: end + closingCount).lowercased()
 			if nextClosingTag == closingTag {
 				state.i = end
@@ -195,7 +193,7 @@ func testHtmlCondition2to5(state: inout BlockParserState, parent: MarkdownNode) 
 	var p = i
 	var foundDecl = false
 	while p + 3 < src.count {
-		if src[p] == "<", src[p + 1] == "!", let code = src[p + 2].asciiValue, code >= 65 && code <= 90 {
+		if src[p] == ANGLE_LEFT_CODE, src[p + 1] == EXCLAMATION_CODE, src[p + 2] >= 65 && src[p + 2] <= 90 {
 			foundDecl = true
 			break
 		}
@@ -205,7 +203,7 @@ func testHtmlCondition2to5(state: inout BlockParserState, parent: MarkdownNode) 
 		var lastGreater = -1
 		var j = p + 3
 		while j < src.count {
-			if src[j] == ">" {
+			if src[j] == ANGLE_RIGHT_CODE {
 				lastGreater = j
 			}
 			j += 1
@@ -238,7 +236,7 @@ func testHtmlCondition6(state: inout BlockParserState, parent: MarkdownNode) -> 
 	let i = state.i
 
 	// Match ^(?i)<\/?(address|...)(\s+|$|>|\/>)
-	let hasClose = i + 1 < src.count && src[i + 1] == "/"
+	let hasClose = i + 1 < src.count && src[i + 1] == SLASH_CODE
 	let tagStart = i + (hasClose ? 2 : 1)
 	guard tagStart < src.count else { return false }
 
@@ -250,9 +248,9 @@ func testHtmlCondition6(state: inout BlockParserState, parent: MarkdownNode) -> 
 				matched = true
 			} else {
 				let c = src[next]
-				if isHtmlWhitespace(c) || c == ">" {
+				if isHtmlWhitespace(c) || c == ANGLE_RIGHT_CODE {
 					matched = true
-				} else if c == "/", next + 1 < src.count, src[next + 1] == ">" {
+				} else if c == SLASH_CODE, next + 1 < src.count, src[next + 1] == ANGLE_RIGHT_CODE {
 					matched = true
 				}
 			}
@@ -279,15 +277,9 @@ func testHtmlCondition6(state: inout BlockParserState, parent: MarkdownNode) -> 
 }
 
 func testHtmlCondition7(state: inout BlockParserState, parent: MarkdownNode) -> Bool {
-	let src = state.src
-
-	// A complete tag must be short; bound the tail to keep this cheap.
-	let limit = min(src.count, state.i + 256)
-	guard limit > state.i else { return false }
-	let tail = charToString(src, from: state.i, to: limit)
-
+	let tail = charToString(state.src, from: state.i)
 	if let match = tail.firstMatch(of: htmlRegex7) {
-		let matchLength = tail.distance(from: tail.startIndex, to: match.range.upperBound)
+		let matchLength = String(tail[..<match.range.upperBound]).utf8.count
 		var end = state.i + matchLength
 		let matchStr = charToString(state.src, from: state.i, to: state.i + matchLength)
 		if matchStr.hasSuffix("\r\n") {
@@ -297,7 +289,7 @@ func testHtmlCondition7(state: inout BlockParserState, parent: MarkdownNode) -> 
 		}
 
 		for i in state.i ..< end {
-			if isNewLine(char: state.src[i]) {
+			if isNewLine(code: state.src[i]) {
 				return false
 			}
 		}

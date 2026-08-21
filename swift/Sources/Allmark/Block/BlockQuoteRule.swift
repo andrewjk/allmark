@@ -11,8 +11,8 @@ let blockQuoteRule = BlockRule(
 	closeNode: closeBlockQuote
 )
 
-func hasBlockQuoteMarkup(char: Character, state: BlockParserState) -> Bool {
-	return state.indent <= 3 && char == ">"
+func hasBlockQuoteMarkup(char: UInt8, state: BlockParserState) -> Bool {
+	return state.indent <= 3 && char == ANGLE_RIGHT_CODE
 }
 
 func testBlockQuoteStart(state: inout BlockParserState, parent: MarkdownNode, endOfLine: Int) -> Bool {
@@ -45,7 +45,7 @@ func testBlockQuoteStart(state: inout BlockParserState, parent: MarkdownNode, en
 			type: "block_quote",
 			index: state.i,
 			line: state.line,
-			markup: String(char),
+			markup: byteString(char),
 			indent: quoteIndent
 		)
 

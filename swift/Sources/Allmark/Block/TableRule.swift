@@ -77,31 +77,31 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode, endOfLi
 
 	let char = state.src[state.i]
 
-	if state.indent <= 3 && (char == "|" || char == "-" || char == ":") {
-		var cells: [String] = [char == ":" ? "left" : ""]
+	if state.indent <= 3 && (char == PIPE_CODE || char == DASH_CODE || char == COLON_CODE) {
+		var cells: [String] = [char == COLON_CODE ? "left" : ""]
 		var end = state.i + 1
 		var lastChar = char
 
 		while end < state.src.count {
 			let nextChar = state.src[end]
 
-			if nextChar == "|" {
+			if nextChar == PIPE_CODE {
 				cells.append("")
 				lastChar = nextChar
-			} else if nextChar == "-" {
+			} else if nextChar == DASH_CODE {
 				lastChar = nextChar
-			} else if nextChar == ":" {
+			} else if nextChar == COLON_CODE {
 				let x = cells.count - 1
-				if lastChar == "|" {
+				if lastChar == PIPE_CODE {
 					cells[x] = "left"
 				} else {
 					cells[x] = cells[x].isEmpty ? "right" : "center"
 				}
 				lastChar = nextChar
-			} else if isNewLine(char: nextChar) {
+			} else if isNewLine(code: nextChar) {
 				end += 1
 				break
-			} else if isSpace(char: nextChar) {
+			} else if isSpace(code: nextChar) {
 				// Continue past spaces
 			} else {
 				return false
@@ -109,7 +109,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode, endOfLi
 			end += 1
 		}
 
-		if lastChar == "|" {
+		if lastChar == PIPE_CODE {
 			cells.removeLast()
 		}
 

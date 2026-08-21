@@ -20,8 +20,8 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 	let char = src[state.i]
 
-	if !state.isEscaped && char == "<" {
-		let tail = charToString(src, from: state.i, to: min(src.count, state.i + 2048))
+	if !state.isEscaped && char == ANGLE_LEFT_CODE {
+		let tail = charToString(src, from: state.i)
 
 		// Try link match
 		let linkRange = NSRange(location: 0, length: tail.utf16.count)
@@ -42,9 +42,9 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							content: markup,
 							indent: state.indent
 						)
-						text.length = tail[fullRange].count
+						text.length = tail[fullRange].utf8.count
 						parent.children.append(text)
-						state.i += tail[fullRange].count
+						state.i += tail[fullRange].utf8.count
 						return true
 					}
 				}
@@ -71,8 +71,8 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 				let fullMatchRange = linkMatch.range(at: 0)
 				if let fullRange = Range(fullMatchRange, in: tail) {
-					link.length = tail[fullRange].count
-					state.i += tail[fullRange].count
+					link.length = tail[fullRange].utf8.count
+					state.i += tail[fullRange].utf8.count
 				}
 
 				link.children = [text]
@@ -101,9 +101,9 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 							content: markup,
 							indent: state.indent
 						)
-						text.length = tail[fullRange].count
+						text.length = tail[fullRange].utf8.count
 						parent.children.append(text)
-						state.i += tail[fullRange].count
+						state.i += tail[fullRange].utf8.count
 						return true
 					}
 				}
@@ -129,8 +129,8 @@ func testAutolink(state: inout InlineParserState, parent: inout MarkdownNode) ->
 
 				let fullMatchRange = emailMatch.range(at: 0)
 				if let fullRange = Range(fullMatchRange, in: tail) {
-					link.length = tail[fullRange].count
-					state.i += tail[fullRange].count
+					link.length = tail[fullRange].utf8.count
+					state.i += tail[fullRange].utf8.count
 				}
 
 				link.children = [text]

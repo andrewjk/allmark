@@ -87,9 +87,9 @@ func testListStart(state: inout BlockParserState, parent: MarkdownNode, endOfLin
 
 	for idx in startIdx ..< src.count {
 		let char = src[idx]
-		if isNewLine(char: char) {
+		if isNewLine(code: char) {
 			break
-		} else if isSpace(char: char) {
+		} else if isSpace(code: char) {
 			spaces += 1
 		} else {
 			blank = false
@@ -184,7 +184,7 @@ func testListContinue(state: inout BlockParserState, node: MarkdownNode, info: L
 		return false
 	}
 
-	if isNewLine(char: char) {
+	if isNewLine(code: char) {
 		return true
 	}
 

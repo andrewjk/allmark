@@ -1,33 +1,26 @@
 import Foundation
 
-@inlinable func charToString(_ chars: [Character], from: Int, to: Int) -> String {
-	var result = ""
-	result.reserveCapacity(to - from)
-	var i = from
-	while i < to {
-		result.append(chars[i])
-		i += 1
-	}
-	return result
+@inlinable func charToString(_ bytes: [UInt8], from: Int, to: Int) -> String {
+	return String(decoding: bytes[from ..< to], as: UTF8.self)
 }
 
-@inlinable func charToString(_ chars: [Character], from: Int) -> String {
-	return charToString(chars, from: from, to: chars.count)
-}
-
-/// The index of the end of the line starting at `from` (not including the newline).
-@inlinable func endOfLineIndex(_ chars: [Character], _ from: Int) -> Int {
-	var end = from
-	while end < chars.count, !isNewLine(char: chars[end]) {
-		end += 1
-	}
-	return end
+@inlinable func charToString(_ bytes: [UInt8], from: Int) -> String {
+	return String(decoding: bytes[from...], as: UTF8.self)
 }
 
 @inlinable func charToString(_ string: String, from: Int, to: Int) -> String {
 	let start = string.index(string.startIndex, offsetBy: from)
 	let end = string.index(string.startIndex, offsetBy: to)
 	return String(string[start ..< end])
+}
+
+/// The index of the end of the line starting at `from` (not including the newline).
+@inlinable func endOfLineIndex(_ bytes: [UInt8], _ from: Int) -> Int {
+	var end = from
+	while end < bytes.count, !isNewLine(code: bytes[end]) {
+		end += 1
+	}
+	return end
 }
 
 /// Removes trailing ASCII whitespace from a string (equivalent to `\s+$`).
