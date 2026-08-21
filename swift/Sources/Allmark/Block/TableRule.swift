@@ -44,8 +44,7 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode, endOfLi
 		let rowSrc = charToString(state.src, from: state.i, to: state.i + rowLength)
 		let pipePositions = loadPipePositions(line: rowSrc)
 
-		let rowContent = rowSrc.trimmingCharacters(in: .whitespaces)
-			.replacingOccurrences(of: "(^\\||\\|$)", with: "", options: .regularExpression)
+		let rowContent = trimPipesAndWhitespace(rowSrc)
 		var rowParts = splitByUnescapedPipe(rowContent)
 		while rowParts.count < headers.count {
 			rowParts.append("")
@@ -115,19 +114,16 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode, endOfLi
 		}
 
 		let haveParagraph = parent.type == "paragraph" && !parent.blankAfter
-			&& parent.content.range(of: "[^\\s]", options: .regularExpression) != nil
+			&& hasNonWhitespace(parent.content)
 
 		if haveParagraph {
 			// "The header row must match the delimiter row in the number of
 			// cells. If not, a table will not be recognized"
 			var headerCellCount = 1
-			let headerContent = parent.content
-				.trimmingCharacters(in: .whitespaces)
-				.replacingOccurrences(of: "(^\\||\\|$)", with: "", options: .regularExpression)
+			let headerContent = trimPipesAndWhitespace(parent.content)
 
-			for i in 0 ..< headerContent.count {
-				let idx = headerContent.index(headerContent.startIndex, offsetBy: i)
-				if headerContent[idx] == "|" && !isEscaped(text: headerContent, i: i) {
+			for idx in headerContent.indices {
+				if headerContent[idx] == "|", !isEscaped(text: headerContent, index: idx) {
 					headerCellCount += 1
 				}
 			}
@@ -181,24 +177,57 @@ func testTableStart(state: inout BlockParserState, parent: MarkdownNode, endOfLi
 	return false
 }
 
+/// Trims leading/trailing whitespace, then removes one leading and one
+/// trailing pipe character (equivalent to the previous regex processing).
+private func trimPipesAndWhitespace(_ text: String) -> String {
+	var start = text.startIndex
+	let end = text.endIndex
+	while start < end {
+		let char = text[start]
+		if char == " " || char == "\t" || char == "\n" || char == "\r\n" || char == "\r" {
+			start = text.index(after: start)
+		} else {
+			break
+		}
+	}
+	var e = end
+	while start < e {
+		let prev = text.index(before: e)
+		let char = text[prev]
+		if char == " " || char == "\t" || char == "\n" || char == "\r\n" || char == "\r" {
+			e = prev
+		} else {
+			break
+		}
+	}
+	var result = String(text[start ..< e])
+	if result.first == "|" {
+		result.removeFirst()
+	}
+	if result.last == "|" {
+		result.removeLast()
+	}
+	return result
+}
+
 /// Splits a string by unescaped pipe characters
 /// Swift doesn't support negative lookbehind, so we handle this manually
 private func splitByUnescapedPipe(_ text: String) -> [String] {
 	var result: [String] = []
 	var current = ""
-	var i = 0
+	var i = text.startIndex
+	let end = text.endIndex
 
-	while i < text.count {
-		let idx = text.index(text.startIndex, offsetBy: i)
-		let char = text[idx]
+	while i < end {
+		let char = text[i]
 
-		if char == "|", !isEscaped(text: text, i: i) {
+		if char == "|", !isEscaped(text: text, index: i) {
 			result.append(current)
 			current = ""
 		} else {
 			current.append(char)
 		}
-		i += 1
+		i = text.index(after: i)
 	}
 
 	result.append(current)
@@ -209,11 +238,13 @@ private func splitByUnescapedPipe(_ text: String) -> [String] {
 private func loadPipePositions(line: String) -> [Int] {
 	var pipePositions: [Int] = []
 	var haveEndPipe = false
-	for i in 0 ..< line.count {
-		let idx = line.index(line.startIndex, offsetBy: i)
-		let char = line[idx]
-		if char == "|", !isEscaped(text: line, i: i) {
-			pipePositions.append(i)
+	var pos = 0
+	var i = line.startIndex
+	let end = line.endIndex
+	while i < end {
+		let char = line[i]
+		if char == "|", !isEscaped(text: line, index: i) {
+			pipePositions.append(pos)
 			haveEndPipe = true
 		} else if !isSpace(char: char) {
 			// Make sure there's a start pipe position
@@ -222,6 +253,8 @@ private func loadPipePositions(line: String) -> [Int] {
 			}
 			haveEndPipe = false
 		}
+		pos += 1
+		i = line.index(after: i)
 	}
 	// Make sure there's an end pipe position
 	if !haveEndPipe {

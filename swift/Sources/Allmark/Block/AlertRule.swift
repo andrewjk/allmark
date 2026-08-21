@@ -32,7 +32,7 @@ func testAlertStart(state: inout BlockParserState, parent: MarkdownNode, endOfLi
 	let char = src[state.i]
 
 	if hasAlertMarkup(char: char, state: state) {
-		let tail = charToString(src, from: state.i + 1)
+		let tail = charToString(src, from: state.i + 1, to: min(src.count, state.i + 1 + 64))
 		let range = NSRange(location: 0, length: tail.utf16.count)
 
 		if let match = alertRegex.firstMatch(in: tail, options: [], range: range) {

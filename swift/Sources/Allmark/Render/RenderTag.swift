@@ -2,7 +2,9 @@ import Foundation
 
 func renderTag(node: MarkdownNode, state: inout RendererState, tag: String, decode: Bool = true) {
 	startNewLine(node: node, state: &state)
-	state.output += "<\(tag)>"
+	state.output += "<"
+	state.output += tag
+	state.output += ">"
 	if node.block, node.children.isEmpty {
 		state.output += "\n"
 	} else {
@@ -21,6 +23,8 @@ func renderTag(node: MarkdownNode, state: inout RendererState, tag: String, deco
 			state.output += "\n"
 		}
 	}
-	state.output += "</\(tag)>"
+	state.output += "</"
+	state.output += tag
+	state.output += ">"
 	endNewLine(node: node, state: &state)
 }

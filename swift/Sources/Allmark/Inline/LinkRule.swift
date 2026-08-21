@@ -109,17 +109,16 @@ func testLinkClose(state: inout InlineParserState, parent: inout MarkdownNode) -
 				// "The link text may contain balanced brackets, but not
 				// unbalanced ones, unless they are escaped"
 				var level = 0
-				var labelIndex = 0
-				while labelIndex < label.count {
-					let charIndex = label.index(label.startIndex, offsetBy: labelIndex)
-					if label[charIndex] == "\\" {
-						labelIndex += 1
-					} else if label[charIndex] == "[" {
+				var labelIndex = label.startIndex
+				while labelIndex < label.endIndex {
+					if label[labelIndex] == "\\" {
+						labelIndex = label.index(after: labelIndex)
+					} else if label[labelIndex] == "[" {
 						level += 1
-					} else if label[charIndex] == "]" {
+					} else if label[labelIndex] == "]" {
 						level -= 1
 					}
-					labelIndex += 1
+					labelIndex = label.index(after: labelIndex)
 				}
 				if level != 0 {
 					return false

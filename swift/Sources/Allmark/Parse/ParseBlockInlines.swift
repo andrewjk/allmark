@@ -78,11 +78,7 @@ func parseBlockInlines(
 		return
 	}
 
-	let trimmed = parent.content.replacingOccurrences(
-		of: "\\s+$",
-		with: "",
-		options: .regularExpression
-	)
+	let trimmed = trimTrailingWhitespace(parent.content)
 	let chars = Array(trimmed)
 
 	var state = InlineParserState(

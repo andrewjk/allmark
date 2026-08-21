@@ -26,5 +26,5 @@ func parseIndent(state: inout BlockParserState) {
 
 		state.i += 1
 	}
-	state.spaces = String(src[start ..< state.i])
+	state.spaces = charToString(src, from: start, to: state.i)
 }

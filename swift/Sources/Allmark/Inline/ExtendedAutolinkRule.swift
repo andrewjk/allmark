@@ -31,8 +31,8 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 	if !state.isEscaped {
 		let char = src[state.i]
 
-		if char == "w" {
-			let tail = charToString(src, from: state.i)
+		if char == "w", matchesLiteralCI(src, state.i, "www.") {
+			let tail = charToString(src, from: state.i, to: endOfLineIndex(src, state.i))
 
 			let urlRange = NSRange(location: 0, length: tail.utf16.count)
 			if let urlMatch = urlRegex.firstMatch(in: tail, options: [], range: urlRange) {
@@ -75,8 +75,12 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 			}
 		}
 
-		if char == "h" || char == "f" {
-			let tail = charToString(src, from: state.i)
+		if char == "h" || char == "f",
+		   matchesLiteralCI(src, state.i, "http://")
+		   || matchesLiteralCI(src, state.i, "https://")
+		   || matchesLiteralCI(src, state.i, "ftp://")
+		{
+			let tail = charToString(src, from: state.i, to: endOfLineIndex(src, state.i))
 
 			let urlRange = NSRange(location: 0, length: tail.utf16.count)
 			if let urlMatch = extUrlRegex.firstMatch(in: tail, options: [], range: urlRange) {
@@ -127,7 +131,7 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 					}
 				}
 
-				let tail = charToString(src, from: start)
+				let tail = charToString(src, from: start, to: endOfLineIndex(src, start))
 
 				let emailRange = NSRange(location: 0, length: tail.utf16.count)
 				if let emailMatch = extEmailRegex.firstMatch(in: tail, options: [], range: emailRange) {
@@ -169,8 +173,10 @@ func testExtendedAutolink(state: inout InlineParserState, parent: inout Markdown
 			}
 		}
 
-		if char == "m" || char == "x" {
-			let tail = charToString(src, from: state.i)
+		if char == "m" || char == "x",
+		   matchesLiteralCI(src, state.i, "mailto:") || matchesLiteralCI(src, state.i, "xmpp:")
+		{
+			let tail = charToString(src, from: state.i, to: endOfLineIndex(src, state.i))
 
 			let xmppRange = NSRange(location: 0, length: tail.utf16.count)
 			if let emailMatch = extXmppRegex.firstMatch(in: tail, options: [], range: xmppRange) {

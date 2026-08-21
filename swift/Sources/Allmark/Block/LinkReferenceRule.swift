@@ -50,9 +50,7 @@ func testLinkReferenceStart(state: inout BlockParserState, parent: MarkdownNode,
 		}
 
 		// A link label must contain at least one non-whitespace character
-		let labelPattern = try! NSRegularExpression(pattern: "[^\\s]")
-		let labelRange = NSRange(location: 0, length: label.utf16.count)
-		if label.isEmpty || labelPattern.firstMatch(in: label, options: [], range: labelRange) == nil {
+		if label.isEmpty || !hasNonWhitespace(label) {
 			return false
 		}
 

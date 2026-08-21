@@ -28,7 +28,7 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 	} else if isNewLine(char: char) {
 		if let last = lastNode {
 			var content = last.content
-			while content.last?.isWhitespace == true {
+			while let c = content.last, isWhitespace(code: c) {
 				content.removeLast()
 			}
 			last.content = content
@@ -89,7 +89,11 @@ func testText(state: inout InlineParserState, parent: inout MarkdownNode) -> Boo
 		currentLast.content += charToString(src, from: start, to: state.i)
 	}
 
-	currentLast.length = currentLast.content.count
+	// For text nodes, content is accumulated 1:1 from the inline source, so
+	// the length can be computed without re-counting the string
+	currentLast.length = currentLast.type == "text"
+		? state.parentIndex + state.i - currentLast.index
+		: currentLast.content.count
 
 	return true
 }
